@@ -1,25 +1,31 @@
-pushd C:\WORKS\WS\Eclipse_Kepler\VM_Cake\app\webroot
+#pushd C:\WORKS\WS\Eclipse_Kepler\Cake_NR5\app\webroot
 
-sqlite3 development.sqlite3
+sqlite3 C:\WORKS\WS\Eclipse_Kepler\Cake_NR5\app\webroot\development.sqlite3
 .explain on
+.tables
 
-pragma table_info(texts);
+pragma table_info(articles);
 
 .exit
 
 [sqlite3]======================================
-CREATE TABLE videos(
+CREATE TABLE articles(
    id			INTEGER PRIMARY KEY     AUTOINCREMENT	NOT NULL,
    created_at	VARCHAR(30),
    updated_at	VARCHAR(30),
    
-   title		VARCHAR(255),
+   line			TEXT,
    url			TEXT,
+   vendor		VARCHAR(30),
    
-   memo			TEXT,
-   tag			TEXT,
+   news_time	VARCHAR(30),
    
-   genre_id		INT
+   genre_id		INT,
+   cat_id		INT,
+   subcat_id	INT,
+   
+   user_id		INT
+   
    
    
 );
@@ -62,19 +68,22 @@ CREATE TABLE users (
 [mysql(lollipop)]======================================
 #REF http://sql-info.de/mysql/examples/CREATE-TABLE-examples.html
 
-CREATE TABLE videos(
+CREATE TABLE articles(
 	id			INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	created_at	VARCHAR(30),
 	updated_at	VARCHAR(30),
 	
-	title		VARCHAR(255),
-	url			TEXT,
-	
-	memo			TEXT,
-	tag			TEXT,
-	
-	genre_id		INT
-	
+   line			TEXT,
+   url			TEXT,
+   vendor		VARCHAR(30),
+   
+   news_time	VARCHAR(30),
+   
+   genre_id		INT,
+   cat_id		INT,
+   subcat_id	INT,
+   
+   user_id		INT
 	
 );
 
