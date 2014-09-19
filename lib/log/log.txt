@@ -145,3 +145,5 @@ ROOT => C:\WORKS\WS\Eclipse_Kepler\VM_Cake[07/05/2014 09:10:43 : C:\WORKS\WS\Ecl
 [07/17/2014 11:21:03 : \app\Controller\VideosController.php : 50] Videos#index
 [07/17/2014 11:21:10 : \app\Controller\VideosController.php : 50] Videos#index
 [07/17/2014 11:21:16 : \app\Controller\VideosController.php : 50] Videos#index
+[09/19/2014 09:31:37 : \app\Controller\ArticlesController.php : 14] Videos#index
+[09/19/2014 09:32:13 : \app\Controller\ArticlesController.php : 14] Videos#index

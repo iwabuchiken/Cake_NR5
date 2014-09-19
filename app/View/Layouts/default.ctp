@@ -61,23 +61,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 			<?php echo $this->fetch('content'); ?>
 			
-			<div>
-				<?php echo $this->element('layouts/links')?>
-			</div>
-			
 		</div>
 			
-		<div id="footer">
-			<?php //echo $this->Html->link(
-					//$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					//'http://www.cakephp.org/',
-					//array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-				//);
-			?>
-			<p>
-				<?php //echo $cakeVersion; ?>
-			</p>
-		</div>
 	</div>
 	<?php //echo $this->element('sql_dump'); ?>
 </body>
