@@ -4,6 +4,41 @@ class ArticlesController extends AppController {
 	public $helpers = array('Html', 'Form', 'Mytest');
 // 	public $helpers = array('Html', 'Form');
 
+	public function
+	_index_GetArticles() {
+	
+		/**********************************
+			* get: html
+		**********************************/
+		$url = "http://zasshi.news.yahoo.co.jp/newly/?p=1";
+	
+		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+		// 		$html = file_get_contents($url);
+		$html = file_get_html($url);
+	
+		$ahrefs = $html->find('a[href]');
+	
+		$ahref_0 = $ahrefs[0];
+	
+		//////////////////////////////////////////////
+		debug($ahref_0->href);
+	
+	
+		// 		debug($ahrefs[0]);	// Allowed memory size of 134217728 bytes exhausted
+		// 		debug(count($ahrefs));
+	
+		// 		debug($html);
+	
+		//////////////////////////////////////////////
+		$a = $this->Article->create();
+	
+		$a['url'] = "abcde";
+	
+		$this->set('a', $a);
+	
+	
+	}//_index_GetArticles
+	
 	public function index() {
 		
 		$this->set('articles', $this->Article->find('all'));
@@ -13,7 +48,328 @@ class ArticlesController extends AppController {
 					"Videos#index", 
 					__FILE__, __LINE__);
 		
+// 		$a = new Article();
+
+		/**********************************
+		* get: articles
+		**********************************/
+		$this->_index_GetArticles_T5();
+// 		$this->_index_GetArticles_T4();
+// 		$this->_index_GetArticles_T3();
+// 		$this->_index_GetArticles_T2();
+// 		$this->_index_GetArticles_T1();
+		
+// 		$a = $this->Article->create();
+		
+// 		$a['url'] = "abcde";
+		
+// 		$this->set('a', $a);
+		
+		
 	}
+
+	public function
+	_index_GetArticles_T5() {
+	
+		/**********************************
+		 * get: html
+		**********************************/
+		$genre = "soci";
+	
+		$url = "http://headlines.yahoo.co.jp/hl?c=$genre&t=l";
+		// 		$url = "http://zasshi.news.yahoo.co.jp/newly/?p=1";
+	
+		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+		// 		$html = file_get_contents($url);
+		$html = file_get_html($url);
+	
+		$ahrefs = $html->find('a[href]');
+	
+		$atags_2 = $html->find('div ul li a[href]');
+	
+		$ahrefs_hl = array();
+	
+		foreach ($ahrefs as $ahref) {
+				
+			if (Utils::startsWith($ahref->href, "/hl")) {
+				// 			if (Utils::startsWith($ahref, "/hl")) {
+				// 			if (Utils::startsWith($ahref, "/hl?")) {
+	
+				$ahref->href = "http://headlines.yahoo.co.jp".$ahref->href;
+				
+				array_push($ahrefs_hl, $ahref);
+	
+				// 				a_tag['href'] = "http://headlines.yahoo.co.jp" + a_tag['href']
+			}
+				
+		}
+	
+		// 		foreach ($atags_2 as $atag) {
+	
+		// 			$res = strstr()
+	
+		// 		}
+	
+	
+		//////////////////////////////////////////////
+// 		debug("\$ahrefs");
+// 		debug(count($ahrefs));
+	
+// 		debug("\$ahrefs_hl");
+// 		debug(count($ahrefs_hl));
+	
+		debug($ahrefs_hl[0]->href);
+		
+		debug($ahrefs_hl[0]->plaintext);
+		
+// 		debug($ahrefs_hl[0]->strval());	// Call to undefined method simple_html_dom_node::strval()
+		
+// 		debug($ahrefs_hl[0]->InnerNode);	// "false"
+		
+	
+// 		$ahrefs_hl[0]->href = "http://headlines.yahoo.co.jp".$ahrefs_hl[0]->href;
+	
+// 		debug($ahrefs_hl[0]->href);
+	
+// 		debug("atags_2");
+// 		debug(count($atags_2));
+	
+		// 		debug($ahrefs[0]);	// Allowed memory size of 134217728 bytes exhausted
+		// 		debug(count($ahrefs));
+	
+		// 		debug($html);
+	
+		//////////////////////////////////////////////
+		$a = $this->Article->create();
+	
+		$a['url'] = "abcde";
+	
+		$this->set('a', $a);
+		
+		$this->set('ahrefs_hl', $ahrefs_hl);
+	
+	
+	}//_index_GetArticles
+	
+	public function 
+	_index_GetArticles_T1() {
+
+		/**********************************
+		* get: html
+		**********************************/
+		$url = "http://zasshi.news.yahoo.co.jp/newly/?p=1";
+		
+		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+		$html = file_get_contents($url);
+// 		$dom = file_get_html($url);	// Allowed memory size of 134217728 bytes exhausted
+// 		$html = file_get_html($url);
+		
+// 		$atags = $html->find('a');
+		
+// 		debug($atags);
+		
+// 		$this->set('atags', $atags);
+		
+		$domDocument = new DOMDocument();
+		$domDocument->loadHTML($html);
+		
+// 		debug($domDocument);
+		
+		$xmlString = $domDocument->saveXML();
+// 		$xmlObject = simplexml_load_string($html);	// Detected an illegal character in input string
+		
+		$xmlObject = simplexml_load_string($xmlString);
+// 		$xmlObject = simplexml_load_string($html);	// error: encoding
+// 		$xmlObject = simplexml_load_string(mb_convert_encoding($html, "UTF-8", "EUC-JP"));
+		
+		//////////////////////////////////////////
+		
+		//REF http://sato-san.hatenadiary.jp/entry/2013/05/06/155919
+// 		debug($dom);;
+		
+// 		debug($xmlString);
+		
+// 		debug($xmlObject['head']);
+// 		debug(count($xmlObject));
+// 		debug($xmlObject->head['title']);	// null
+		
+// 		debug("body");	// null
+// 		debug($xmlObject->body->div[0]);	// 
+// 		debug($xmlObject->body);	// works
+		
+		
+// 		debug($xmlObject->head);	// works
+// 		debug($xmlObject->head->title);
+// 		debug($xmlObject[0]['head']);
+// 		debug($xmlObject[0]);
+// 		debug($xmlObject);
+		
+// 		debug($domDocument);
+		
+		//REF http://blog.katty.in/1400
+// 		$html = file_get_html($url);
+		
+		$a = $this->Article->create();
+
+		$a['url'] = "abcde";
+
+		$this->set('a', $a);
+
+		
+	}//_index_GetArticles
+	
+	public function 
+	_index_GetArticles_T2() {
+
+		/**********************************
+		* get: html
+		**********************************/
+		$url = "http://zasshi.news.yahoo.co.jp/newly/?p=1";
+		
+		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+		$html = file_get_contents($url);
+		
+		$domDocument = new DOMDocument();
+		$domDocument->loadHTML($html);
+		
+// 		debug($domDocument);
+		
+		$xmlString = $domDocument->saveXML();
+		
+		$dom = simplexml_load_string($xmlString);
+		
+		$body = $dom->body;
+		
+		$ahref = $dom->find('a[href]');
+// 		$ahref = $body->find('a[href]');
+		
+		//////////////////////////////////////////////
+		
+		debug($ahref);
+
+		// $ahref = $body->find('a[href]');
+// 		debug($ahref);	// Call to undefined method SimpleXMLElement::find()
+
+// 		debug($body);
+		
+		
+		
+		//////////////////////////////////////////////
+		$a = $this->Article->create();
+
+		$a['url'] = "abcde";
+
+		$this->set('a', $a);
+
+		
+	}//_index_GetArticles
+	
+	public function 
+	_index_GetArticles_T3() {
+
+		/**********************************
+		* get: html
+		**********************************/
+		$url = "http://zasshi.news.yahoo.co.jp/newly/?p=1";
+		
+		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+// 		$html = file_get_contents($url);
+		$html = file_get_html($url);
+
+		$ahrefs = $html->find('a[href]');
+		
+		$ahref_0 = $ahrefs[0];
+		
+		//////////////////////////////////////////////
+		debug($ahref_0->href);
+		
+		
+// 		debug($ahrefs[0]);	// Allowed memory size of 134217728 bytes exhausted
+// 		debug(count($ahrefs));
+		
+// 		debug($html);
+		
+		//////////////////////////////////////////////
+		$a = $this->Article->create();
+
+		$a['url'] = "abcde";
+
+		$this->set('a', $a);
+
+		
+	}//_index_GetArticles
+
+	public function
+	_index_GetArticles_T4() {
+	
+		/**********************************
+		 * get: html
+		**********************************/
+		$genre = "soci";
+		
+		$url = "http://headlines.yahoo.co.jp/hl?c=$genre&t=l";
+// 		$url = "http://zasshi.news.yahoo.co.jp/newly/?p=1";
+	
+		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+		// 		$html = file_get_contents($url);
+		$html = file_get_html($url);
+	
+		$ahrefs = $html->find('a[href]');
+
+		$atags_2 = $html->find('div ul li a[href]');
+		
+		$ahrefs_hl = array();
+		
+		foreach ($ahrefs as $ahref) {
+			
+			if (Utils::startsWith($ahref->href, "/hl")) {
+// 			if (Utils::startsWith($ahref, "/hl")) {
+// 			if (Utils::startsWith($ahref, "/hl?")) {
+				
+				array_push($ahrefs_hl, $ahref);
+				
+// 				a_tag['href'] = "http://headlines.yahoo.co.jp" + a_tag['href']
+			}
+			
+		}
+		
+// 		foreach ($atags_2 as $atag) {
+		
+// 			$res = strstr()
+		
+// 		}
+		
+		
+		//////////////////////////////////////////////
+		debug("\$ahrefs");
+		debug(count($ahrefs));
+		
+		debug("\$ahrefs_hl");
+		debug(count($ahrefs_hl));
+	
+		debug($ahrefs_hl[0]->href);
+		
+		$ahrefs_hl[0]->href = "http://headlines.yahoo.co.jp".$ahrefs_hl[0]->href;
+		
+		debug($ahrefs_hl[0]->href);
+		
+		debug("atags_2");
+		debug(count($atags_2));
+	
+		// 		debug($ahrefs[0]);	// Allowed memory size of 134217728 bytes exhausted
+		// 		debug(count($ahrefs));
+	
+		// 		debug($html);
+	
+		//////////////////////////////////////////////
+		$a = $this->Article->create();
+	
+		$a['url'] = "abcde";
+	
+		$this->set('a', $a);
+	
+	
+	}//_index_GetArticles
 	
 	public function view($id = null) {
 		if (!$id) {

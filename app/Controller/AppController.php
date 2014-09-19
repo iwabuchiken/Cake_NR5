@@ -57,6 +57,8 @@ class AppController extends Controller {
 		require_once $this->path_Utils.DS."CONS.php";
 	
 		require_once $this->path_Utils.DS."utils.php";
+		
+		require_once $this->path_Utils.DS."simple_html_dom.php";
 	
 // 		require_once $this->path_Utils.DS."db_util.php";
 	
