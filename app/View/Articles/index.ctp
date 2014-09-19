@@ -12,8 +12,12 @@ a =>
 
 <?php 
 
+	echo "<table>";
+
 	foreach ($ahrefs_hl as $a) {
 	
+		echo "<tr>";
+		echo "<td>";
 		echo $this->Html->link(
 		//     					'news',
 								//REF http://so-zou.jp/web-app/tech/programming/php/library/simplehtmldom/#no7
@@ -22,12 +26,12 @@ a =>
 								array('target' => '_blank')
 		//     					array('url' => $ahrefs_hl[0]->href)
 							); 
-		
-		echo "<br><br>";
+
+		echo "</td>";
+		echo "</tr>";
 	
 	}
 	
-
-
+	echo "</table>";
 
 ?>

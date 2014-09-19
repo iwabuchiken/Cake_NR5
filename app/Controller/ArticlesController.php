@@ -53,7 +53,8 @@ class ArticlesController extends AppController {
 		/**********************************
 		* get: articles
 		**********************************/
-		$this->_index_GetArticles_T5();
+		$this->_index_GetArticles_T6();
+// 		$this->_index_GetArticles_T5();
 // 		$this->_index_GetArticles_T4();
 // 		$this->_index_GetArticles_T3();
 // 		$this->_index_GetArticles_T2();
@@ -68,6 +69,68 @@ class ArticlesController extends AppController {
 		
 	}
 
+	public function
+	_index_GetArticles_T6() {
+	
+		/**********************************
+		 * get: html
+		**********************************/
+		$genre = "soci";
+	
+		$url = "http://headlines.yahoo.co.jp/hl?c=$genre&t=l";
+	
+		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+		$html = file_get_html($url);
+	
+		$ahrefs = $html->find('a[href]');
+	
+		$ahrefs_hl = array();
+	
+		foreach ($ahrefs as $ahref) {
+				
+			if (Utils::startsWith($ahref->href, "/hl")) {
+				// 			if (Utils::startsWith($ahref, "/hl")) {
+				// 			if (Utils::startsWith($ahref, "/hl?")) {
+	
+				$ahref->href = "http://headlines.yahoo.co.jp".$ahref->href;
+				
+				array_push($ahrefs_hl, $ahref);
+	
+				// 				a_tag['href'] = "http://headlines.yahoo.co.jp" + a_tag['href']
+			}
+				
+		}
+
+		/**********************************
+		* build: list
+		**********************************/
+		$articles = array();
+		
+		foreach ($ahrefs_hl as $ahref) {
+		
+			$a = $this->Article->create();
+			
+			$a['url'] = $ahref->href;
+			
+			$a['line'] = $ahref->plaintext;
+			
+			array_push($articles, $a);
+		
+		}
+		
+		debug(count($articles));
+		
+		$a = $this->Article->create();
+	
+		$a['url'] = "abcde";
+	
+		$this->set('a', $a);
+		
+		$this->set('ahrefs_hl', $ahrefs_hl);
+	
+	
+	}//_index_GetArticles
+	
 	public function
 	_index_GetArticles_T5() {
 	
