@@ -64,6 +64,15 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		</div>
 			
 	</div>
+	
+	<div id="footer">
+	
+		<?php echo $this->element('layouts/links'); ?>
+	
+	</div>
+	
+	
+	
 	<?php //echo $this->element('sql_dump'); ?>
 </body>
 </html>

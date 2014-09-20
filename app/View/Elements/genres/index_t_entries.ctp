@@ -10,7 +10,10 @@
 							); ?>
 		</td>
 		
+		<td><?php echo $genre['Genre']['code']; ?></td>
+		
 		<td><?php echo $genre['Genre']['created_at']; ?></td>
+		<td><?php echo $genre['Genre']['updated_at']; ?></td>
 		
 </tr>
 <?php endforeach; ?>

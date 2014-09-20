@@ -245,3 +245,12 @@ ROOT => C:\WORKS\WS\Eclipse_Kepler\VM_Cake[07/05/2014 09:10:43 : C:\WORKS\WS\Ecl
 [09/20/2014 14:44:56 : \app\Controller\ArticlesController.php : 14] Videos#index
 [09/20/2014 14:46:49 : \app\Controller\ArticlesController.php : 14] Videos#index
 [09/20/2014 14:49:58 : \app\Controller\ArticlesController.php : 14] Videos#index
+[09/20/2014 15:18:17 : \app\Controller\ArticlesController.php : 14] Videos#index
+[09/20/2014 15:24:16 : \app\Controller\ArticlesController.php : 14] Videos#index
+[09/20/2014 15:24:51 : \app\Controller\ArticlesController.php : 14] Videos#index
+[09/20/2014 15:27:21 : \app\Controller\ArticlesController.php : 14] Videos#index
+[09/20/2014 15:28:09 : \app\Controller\ArticlesController.php : 14] Videos#index
+[09/20/2014 15:28:31 : \app\Controller\ArticlesController.php : 14] Videos#index
+[09/20/2014 15:30:04 : \app\Controller\ArticlesController.php : 14] Videos#index
+[09/20/2014 15:30:19 : \app\Controller\ArticlesController.php : 14] Videos#index
+[09/20/2014 15:38:08 : \app\Controller\ArticlesController.php : 14] Videos#index

@@ -99,7 +99,7 @@ class ArticlesController extends AppController {
 // 		aa
 		
 		
-		debug(count($articles));
+// 		debug(count($articles));
 		
 // 		$a = $this->Article->create();
 	
@@ -107,7 +107,7 @@ class ArticlesController extends AppController {
 	
 // 		$this->set('a', $a);
 		
-		$this->set('ahrefs_hl', $ahrefs_hl);
+// 		$this->set('ahrefs_hl', $ahrefs_hl);
 		$this->set('articles', $articles);
 
 // 		debug($articles);
