@@ -40,6 +40,16 @@ CREATE TABLE genres (
 	
 );
 
+CREATE TABLE categories (
+	id			INTEGER PRIMARY KEY     AUTOINCREMENT	NOT NULL,
+	created_at	VARCHAR(30),
+	updated_at	VARCHAR(30),
+	
+	name		VARCHAR(100),
+	genre_id	INTEGER
+	
+);
+
 
 CREATE TABLE users (
 	id			INTEGER PRIMARY KEY     AUTOINCREMENT	NOT NULL,
@@ -82,6 +92,16 @@ CREATE TABLE genres (
 	
 	code			VARCHAR(100),
 	name			VARCHAR(100)
+	
+);
+
+CREATE TABLE categories (
+	id			INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	created_at	VARCHAR(30),
+	updated_at	VARCHAR(30),
+	
+	name		VARCHAR(100),
+	genre_id	INTEGER
 	
 );
 
