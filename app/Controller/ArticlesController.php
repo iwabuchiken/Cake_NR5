@@ -4,38 +4,191 @@ class ArticlesController extends AppController {
 	public $helpers = array('Html', 'Form', 'Mytest');
 // 	public $helpers = array('Html', 'Form');
 
-	public function index() {
+	public function 
+	index() {
 		
 		$this->set('articles', $this->Article->find('all'));
 		
-		Utils::write_Log(
-					Utils::get_dPath_Log(), 
-					"Videos#index", 
-					__FILE__, __LINE__);
+// 		Utils::write_Log(
+// 					Utils::get_dPath_Log(), 
+// 					"Videos#index", 
+// 					__FILE__, __LINE__);
 		
 // 		$a = new Article();
 
 		/**********************************
+		* genre id
+		**********************************/
+		$query_genre_id = $this->_index_Get_GenreID();
+		
+		/**********************************
 		* get: articles
 		**********************************/
-		$this->_index_GetArticles_T8();
-// 		$this->_index_GetArticles_T7();
-// 		$this->_index_GetArticles_T6();
-// 		$this->_index_GetArticles_T5();
-// 		$this->_index_GetArticles_T4();
-// 		$this->_index_GetArticles_T3();
-// 		$this->_index_GetArticles_T2();
-// 		$this->_index_GetArticles_T1();
+		$this->_index_GetArticles_T9($query_genre_id);
+// 		$this->_index_GetArticles_T8();
+
+		/**********************************
+		* genres list
+		**********************************/
+		$this->loadModel('Genre');
+			
+		$genres = $this->Genre->find('all');
+			
+		$select_Genres = array();
+			
+		foreach ($genres as $genre) {
 		
-// 		$a = $this->Article->create();
+			$genre_Name = $genre['Genre']['name'];
+			$genre_Id = $genre['Genre']['id'];
 		
-// 		$a['url'] = "abcde";
+			$select_Genres[$genre_Id] = $genre_Name;
+				
+		}
 		
-// 		$this->set('a', $a);
-		
+		$this->set('select_Genres', $select_Genres);
 		
 	}
 
+	public function
+	_index_Get_GenreID() {
+		
+		$genre_id = @$this->request->query['genre_id'];
+		
+		if ($genre_id == null) {
+			
+			return null;
+			
+		} else {
+			
+			return $genre_id;
+			
+		}
+		
+	}
+	
+	public function
+	_index_GetArticles_T9($query_genre_id) {
+	
+		debug("\$query_genre_id");
+		debug($query_genre_id);
+		
+		/**********************************
+		 * get: html
+		**********************************/
+		if ($query_genre_id == null) {
+			
+			$genre = "soci";
+			
+		} else {
+			
+			$genre = $this->_get_GenreCode_from_GenreID($query_genre_id);
+			
+		}
+		
+		
+		
+// 		$genre = "soci";
+	
+		$url = "http://headlines.yahoo.co.jp/hl?c=$genre&t=l";
+	
+		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+		$html = file_get_html($url);
+	
+		$ahrefs = $html->find('a[href]');
+	
+		$ahrefs_hl = array();
+	
+		foreach ($ahrefs as $ahref) {
+				
+// 			if (Utils::startsWith($ahref->href, "/hl")) {
+			if (Utils::startsWith($ahref->href, "/hl")
+					&& count(explode("-", $ahref->href)) > 3) {
+				// 			if (Utils::startsWith($ahref, "/hl")) {
+				// 			if (Utils::startsWith($ahref, "/hl?")) {
+	
+				$ahref->href = "http://headlines.yahoo.co.jp".$ahref->href;
+				
+				array_push($ahrefs_hl, $ahref);
+	
+				// 				a_tag['href'] = "http://headlines.yahoo.co.jp" + a_tag['href']
+			}
+				
+		}
+
+		/**********************************
+		* build: list
+		**********************************/
+		$articles = array();
+		
+		foreach ($ahrefs_hl as $ahref) {
+		
+			$a = $this->Article->create();
+			
+			$a['url'] = $ahref->href;
+			
+			$a['line'] = $ahref->plaintext;
+			
+// 			$a->vendor = $this->conv_Url_to_VendorName($ahref->href);
+			$a['vendor'] = $this->conv_Url_to_VendorName($ahref->href);
+			
+			$a['news_time'] = $this->conv_Url_to_NewsTime($ahref->href);
+			
+			array_push($articles, $a);
+		
+		}
+		
+		/**********************************
+		* build list: Articles
+		**********************************/
+// 		$list_Articles = $this->_index_Get_ArticlesList($ahrefs_hl);
+// 		aa
+		
+		
+// 		debug(count($articles));
+		
+// 		$a = $this->Article->create();
+	
+// 		$a['url'] = "abcde";
+	
+// 		$this->set('a', $a);
+		
+// 		$this->set('ahrefs_hl', $ahrefs_hl);
+		$this->set('articles', $articles);
+
+// 		debug($articles);
+		
+// 		debug(get_class($ahrefs_hl[0]));
+		
+	}//_index_GetArticles
+
+	public function
+	_get_GenreCode_from_GenreID($query_genre_id) {
+		
+		$this->loadModel('Genre');
+			
+		$genres = $this->Genre->find('all');
+		
+		/**********************************
+		* get genre id
+		**********************************/
+		foreach ($genres as $genre) {
+
+			//REF http://stackoverflow.com/questions/239136/fastest-way-to-convert-string-to-integer-in-php answered Oct 27 '08 at 5:51
+			if ($genre['Genre']['id'] == (int)$query_genre_id) {
+				
+				return $genre['Genre']['code'];
+				
+			};
+		
+		}
+		
+		/**********************************
+		* genre not found
+		**********************************/
+		return "soci";
+		
+	}
+	
 	public function
 	_index_GetArticles_T8() {
 	

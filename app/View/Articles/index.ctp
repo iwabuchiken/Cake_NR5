@@ -1,5 +1,7 @@
 <h1>Articles (<a href="#bottom">Bottom</a><a name="top"></a>)</h1>
 
+<?php echo $this->element('articles/index/_header'); ?>	
+
 <table>
 
 <?php 
