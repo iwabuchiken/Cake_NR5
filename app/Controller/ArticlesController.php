@@ -54,15 +54,19 @@ class ArticlesController extends AppController {
 		
 		$genre_id = @$this->request->query['genre_id'];
 		
-		if ($genre_id == null) {
+		$this->set("genre_id", $genre_id);
+		
+		return $genre_id;
+		
+// 		if ($genre_id == null) {
 			
-			return null;
+// 			return null;
 			
-		} else {
+// 		} else {
 			
-			return $genre_id;
+// 			return $genre_id;
 			
-		}
+// 		}
 		
 	}
 	

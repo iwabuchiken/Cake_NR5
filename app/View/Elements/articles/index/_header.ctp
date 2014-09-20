@@ -10,11 +10,14 @@
 					'type' => 'get');
 
 	$opt_input = array(
-					'type' => 'select',
-					'options' => $select_Genres,
-					'label' => false,
-					'name' => "genre_id",
-					'div' => false
+					'type'		=> 'select',
+					'options'	=> $select_Genres,
+					//REF http://satussy.blogspot.jp/2011/07/cakephp-select.html "見つけた方法は"
+					'selected'	=> $genre_id,
+			
+					'label'		=> false,
+					'name'		=> "genre_id",
+					'div'		=> false
 // 					'inputDefaults' => array(
 // 											'label' => false,
 // 											'div' => false
@@ -57,6 +60,7 @@
 // 									'div' => false
 // 								));
 
+	//REF http://stackoverflow.com/questions/6360767/form-end-without-a-div-in-cakephp answered Jun 15 '11 at 17:06
 	echo $this->Form->submit("Go", $opt_end);
 // 	echo $this->Form->end("Go", $opt_end);
 // 	echo $this->Form->end($options);
