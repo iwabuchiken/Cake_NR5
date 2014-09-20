@@ -4,41 +4,6 @@ class ArticlesController extends AppController {
 	public $helpers = array('Html', 'Form', 'Mytest');
 // 	public $helpers = array('Html', 'Form');
 
-	public function
-	_index_GetArticles() {
-	
-		/**********************************
-			* get: html
-		**********************************/
-		$url = "http://zasshi.news.yahoo.co.jp/newly/?p=1";
-	
-		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
-		// 		$html = file_get_contents($url);
-		$html = file_get_html($url);
-	
-		$ahrefs = $html->find('a[href]');
-	
-		$ahref_0 = $ahrefs[0];
-	
-		//////////////////////////////////////////////
-		debug($ahref_0->href);
-	
-	
-		// 		debug($ahrefs[0]);	// Allowed memory size of 134217728 bytes exhausted
-		// 		debug(count($ahrefs));
-	
-		// 		debug($html);
-	
-		//////////////////////////////////////////////
-		$a = $this->Article->create();
-	
-		$a['url'] = "abcde";
-	
-		$this->set('a', $a);
-	
-	
-	}//_index_GetArticles
-	
 	public function index() {
 		
 		$this->set('articles', $this->Article->find('all'));
@@ -53,7 +18,9 @@ class ArticlesController extends AppController {
 		/**********************************
 		* get: articles
 		**********************************/
-		$this->_index_GetArticles_T6();
+		$this->_index_GetArticles_T8();
+// 		$this->_index_GetArticles_T7();
+// 		$this->_index_GetArticles_T6();
 // 		$this->_index_GetArticles_T5();
 // 		$this->_index_GetArticles_T4();
 // 		$this->_index_GetArticles_T3();
@@ -69,6 +36,220 @@ class ArticlesController extends AppController {
 		
 	}
 
+	public function
+	_index_GetArticles_T8() {
+	
+		/**********************************
+		 * get: html
+		**********************************/
+		$genre = "soci";
+	
+		$url = "http://headlines.yahoo.co.jp/hl?c=$genre&t=l";
+	
+		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+		$html = file_get_html($url);
+	
+		$ahrefs = $html->find('a[href]');
+	
+		$ahrefs_hl = array();
+	
+		foreach ($ahrefs as $ahref) {
+				
+// 			if (Utils::startsWith($ahref->href, "/hl")) {
+			if (Utils::startsWith($ahref->href, "/hl")
+					&& count(explode("-", $ahref->href)) > 3) {
+				// 			if (Utils::startsWith($ahref, "/hl")) {
+				// 			if (Utils::startsWith($ahref, "/hl?")) {
+	
+				$ahref->href = "http://headlines.yahoo.co.jp".$ahref->href;
+				
+				array_push($ahrefs_hl, $ahref);
+	
+				// 				a_tag['href'] = "http://headlines.yahoo.co.jp" + a_tag['href']
+			}
+				
+		}
+
+		/**********************************
+		* build: list
+		**********************************/
+		$articles = array();
+		
+		foreach ($ahrefs_hl as $ahref) {
+		
+			$a = $this->Article->create();
+			
+			$a['url'] = $ahref->href;
+			
+			$a['line'] = $ahref->plaintext;
+			
+// 			$a->vendor = $this->conv_Url_to_VendorName($ahref->href);
+			$a['vendor'] = $this->conv_Url_to_VendorName($ahref->href);
+			
+			$a['news_time'] = $this->conv_Url_to_NewsTime($ahref->href);
+			
+			array_push($articles, $a);
+		
+		}
+		
+		/**********************************
+		* build list: Articles
+		**********************************/
+// 		$list_Articles = $this->_index_Get_ArticlesList($ahrefs_hl);
+// 		aa
+		
+		
+		debug(count($articles));
+		
+// 		$a = $this->Article->create();
+	
+// 		$a['url'] = "abcde";
+	
+// 		$this->set('a', $a);
+		
+		$this->set('ahrefs_hl', $ahrefs_hl);
+		$this->set('articles', $articles);
+
+// 		debug($articles);
+		
+// 		debug(get_class($ahrefs_hl[0]));
+		
+	}//_index_GetArticles
+
+	public function 
+	_index_Get_ArticlesList($ahrefs_hl) {
+
+		$list_Articles = array();
+		
+		foreach ($ahrefs_hl as $ahref) {
+		
+			$a = $this->Article->create();
+			
+// 			$a['line'] = 
+		
+		}
+		
+		
+	}
+	
+	public function
+	_index_GetArticles_T7() {
+	
+		/**********************************
+		 * get: html
+		**********************************/
+		$genre = "soci";
+	
+		$url = "http://headlines.yahoo.co.jp/hl?c=$genre&t=l";
+	
+		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+		$html = file_get_html($url);
+	
+		$ahrefs = $html->find('a[href]');
+	
+		$ahrefs_hl = array();
+	
+		foreach ($ahrefs as $ahref) {
+				
+			if (Utils::startsWith($ahref->href, "/hl")) {
+				// 			if (Utils::startsWith($ahref, "/hl")) {
+				// 			if (Utils::startsWith($ahref, "/hl?")) {
+	
+				$ahref->href = "http://headlines.yahoo.co.jp".$ahref->href;
+				
+				array_push($ahrefs_hl, $ahref);
+	
+				// 				a_tag['href'] = "http://headlines.yahoo.co.jp" + a_tag['href']
+			}
+				
+		}
+
+		/**********************************
+		* build: list
+		**********************************/
+		$articles = array();
+		
+		foreach ($ahrefs_hl as $ahref) {
+		
+			$a = $this->Article->create();
+			
+			$a['url'] = $ahref->href;
+			
+			$a['line'] = $ahref->plaintext;
+			
+// 			$a->vendor = $this->conv_Url_to_VendorName($ahref->href);
+			$a['vendor'] = $this->conv_Url_to_VendorName($ahref->href);
+			
+			array_push($articles, $a);
+		
+		}
+		
+		debug(count($articles));
+		
+// 		$a = $this->Article->create();
+	
+// 		$a['url'] = "abcde";
+	
+// 		$this->set('a', $a);
+		
+		$this->set('ahrefs_hl', $ahrefs_hl);
+
+		debug(get_class($ahrefs_hl[0]));
+		
+	}//_index_GetArticles
+	
+
+	public function 
+	conv_Url_to_VendorName
+	($url) {
+		
+		$tokens = explode("-", $url);
+		
+		$len = count($tokens);
+		
+		/**********************************
+		* build string
+		**********************************/
+		if ($len > 1) {
+			
+			return $tokens[$len - 2];
+			
+		} else {
+			
+			return "";
+			
+		}
+		
+	}//conv_Url_to_VendorName
+	
+	public function 
+	conv_Url_to_NewsTime
+	($url) {
+
+		/**********************************
+		* get: news time token
+		**********************************/
+		$tokens_Meta = explode("=", $url);
+		
+		$tokens_TimeAndVendor = explode("-", $tokens_Meta[1]);
+		
+		$len = count($tokens_TimeAndVendor);
+		
+		/**********************************
+		* build string
+		**********************************/
+		if ($len >= 4) {
+			
+			return $tokens_TimeAndVendor[$len - 4];
+			
+		} else {
+			
+			return "";
+			
+		}
+		
+	}//conv_Url_to_VendorName
+	
 	public function
 	_index_GetArticles_T6() {
 	

@@ -1,1 +1,1 @@
-C:\WORKS\shortcuts\cake_cr6\main.stop.bat
+C:\WORKS\Utils\shortcuts\cake_ifm11\main.stop.bat
