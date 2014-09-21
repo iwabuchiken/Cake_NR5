@@ -1,12 +1,13 @@
 <?php
 
 class KeywordsController extends AppController {
-	public $helpers = array('Html', 'Form');
+	public $helpers = array('Html', 'Form', 'Keyword');
+// 	public $helpers = array('Html', 'Form');
 
 	public function index() {
 		$this->set('keywords', $this->Keyword->find('all'));
 		
-		$this->set('genre', $this->_get_Genre($keyword['Category']['id']));
+// 		$this->set('genre', $this->_get_Genre($keyword['Category']['id']));
 	}
 	
 	public function 

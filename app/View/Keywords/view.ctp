@@ -22,6 +22,17 @@
   
 </table>
 
+KeywordHelper: 
+		<?php 
+			
+			$genre_ = $this->Keyword->get_Genre_From_KeywordID(
+											$keyword['Keyword']['id']);
+// 											$keyword['Keyword']['name']);
+		
+			echo $genre_['Keyword']['name'];
+		
+		?>
+
 <p>
 	<?php echo $this->Html->link(
 					'Delete Keyword',
