@@ -1,6 +1,7 @@
 <?php
 
-class CategorysController extends AppController {
+class CategorysController 
+				extends AppController {
 // class CategoriesController extends AppController {
 	
 	public $helpers = array('Html', 'Form');
@@ -19,6 +20,11 @@ class CategorysController extends AppController {
 			throw new NotFoundException(__('Invalid category'));
 		}
 		$this->set('category', $category);
+		
+		/**********************************
+		* read csv
+		**********************************/
+		$this->_read_CSV_Categories();
 		
 	}
 
@@ -110,5 +116,48 @@ class CategorysController extends AppController {
 		}
 	
 	}//public function delete($id)
+
+	public function
+	_read_CSV_Categories() {
+		
+		$fname = join(DS, array($this->path_Data, "Category_backup.csv"));
+		
+// 		debug($fname);
+		
+		$data = $this->csv_to_array($fname, ',');
+		
+		debug(count($data));
 	
-}
+	}//_read_CSV_Categories
+
+	//REF http://php.net/manual/ja/function.str-getcsv.php
+	public function 
+	csv_to_array
+	($filename='', $delimiter=',') {
+		if(!file_exists($filename) || !is_readable($filename))
+			return FALSE;
+	
+// 		$header = NULL;
+		$data = array();
+		
+		if (($handle = fopen($filename, 'r')) !== FALSE) {
+			
+			while (($row = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
+				
+// 				if(!$header)
+// 					$header = $row;
+// 				else
+// 					$data[] = array_combine($header, $row);
+				array_push($data, $row);
+				
+			}
+			
+			fclose($handle);
+			
+		}
+		
+		return $data;
+		
+	}//csv_to_array
+	
+}//CategorysController

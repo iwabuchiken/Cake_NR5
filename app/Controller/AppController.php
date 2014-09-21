@@ -79,6 +79,8 @@ class AppController extends Controller {
 	
 		$this->path_Docs = join(DS, array(ROOT, APP_DIR, "Lib", "docs"));
 	
+		$this->path_Data = join(DS, array(ROOT, APP_DIR, "Lib", "data"));
+	
 		$this->path_BackupUrl_Text =
 		"http://localhost/PHP_server/CR6_cake/texts/add";
 		// 						"http://localhost/PHP_server/CR6_cake/texts/index";
