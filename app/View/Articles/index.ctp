@@ -2,7 +2,7 @@
 
 <?php echo $this->element('articles/index/_header'); ?>	
 
-<table>
+<table class="articles">
 
 <?php 
 

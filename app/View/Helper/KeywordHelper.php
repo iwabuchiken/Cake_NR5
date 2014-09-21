@@ -10,6 +10,7 @@ class KeywordHelper extends AppHelper{
 		/**********************************
 		* keyword
 		**********************************/
+		//REF http://stackoverflow.com/questions/13356205/how-do-i-use-model-in-helper-cakephp-2-x answered Nov 13 '12 at 6:13
 		App::import("Keyword");
 		$model = new Keyword();
 		

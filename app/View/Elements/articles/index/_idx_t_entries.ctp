@@ -1,75 +1,63 @@
-<?php 
+<tr>
 
-	$index = 1;
+	<?php 
 
-	foreach ($articles as $a) {
-	
-		echo "<tr>";
-		echo "<td>";
-		echo $index;
-		echo "</td>";
-	
-		echo "<td>";
-		echo $this->Html->link(
-				//     					'news',
-				//REF http://so-zou.jp/web-app/tech/programming/php/library/simplehtmldom/#no7
-				$a['line'],
-				$a['url'],
-				array('target' => '_blank')
-				//     					array('url' => $ahrefs_hl[0]->href)
-		);
-	
-		echo "</td>";
-			
-		echo "<td>";
-			
-		echo $a['vendor'];
-		// 				echo $a['vendor'];	// Cannot use object of type simple_html_dom_node as array
-			
-		echo "</td>";
+		$index = 1;
 		
-		echo "<td>";
+		foreach ($articles as $a) { 
 			
+	?>
+	
+	<td 
+		<?php 
+			if($index % 2 == 0) {
+				
+				echo "class=\"td_id\"";
+			
+			} else {
+
+				echo "class=\"td_id_color\"";
+
+			}
+		?>
+		
+	>
+		<?php echo $index; ?>
+	</td>
+	
+	<td class="article_line">
+		<?php 
+			echo $this->Html->link(
+					//     					'news',
+					//REF http://so-zou.jp/web-app/tech/programming/php/library/simplehtmldom/#no7
+					$a['line'],
+					$a['url'],
+					array('target' => '_blank')
+					//     					array('url' => $ahrefs_hl[0]->href)
+			);
+		?>
+	</td>
+			
+	<td class="td_vendor">
+		<?php 	
+		
+			echo $a['vendor'];
+			
+		?>
+	</td>
+		
+	<td class="td_news_time">
+		<?php 	
 		echo $a['news_time'];
 		// 				echo $a['vendor'];	// Cannot use object of type simple_html_dom_node as array
-			
-		echo "</td>";
-			
-		echo "</tr>";
-	
-		$index += 1;
-	
-	}
-	
-// 	foreach ($ahrefs_hl as $a) {
-	
-// 		echo "<tr>";
-// 			echo "<td>";
-// 				echo $index;
-// 			echo "</td>";
+		?>
 		
-// 			echo "<td>";
-// 				echo $this->Html->link(
-// 				//     					'news',
-// 										//REF http://so-zou.jp/web-app/tech/programming/php/library/simplehtmldom/#no7
-// 				    					$a->plaintext,
-// 										$a->href,
-// 										array('target' => '_blank')
-// 				//     					array('url' => $ahrefs_hl[0]->href)
-// 									); 
-		
-// 			echo "</td>";
+	</td>
 			
-// 			echo "<td>";
-			
-// 				echo $a->vendor;
-// // 				echo $a['vendor'];	// Cannot use object of type simple_html_dom_node as array
-			
-// 			echo "</td>";
-			
-// 		echo "</tr>";
+</tr>
+	<?php 
 	
-// 		$index += 1;
-		
-// 	}
- ?>
+			$index += 1;
+	
+		}
+	?>

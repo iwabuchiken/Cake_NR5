@@ -3,7 +3,10 @@
 
 	$opt_input = array(
 			
-			'onmouseover' => 'this.select()'
+			'onmouseover' => 'this.select()',
+			'rows' => '1',
+				
+			'class'	=> 'add_name'
 			
 	);
 

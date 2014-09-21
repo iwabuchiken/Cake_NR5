@@ -6,8 +6,10 @@
 // 			'onmouseover' => 'show_msg();',
 			'onmouseover' => 'this.select();',
 // 			'onmouseover' => 'this.select(); show_msg();',
-			'rows' => '3',
-			'cols'	=> '10'
+			'rows' => '1',
+			
+			'class'	=> 'add_name'
+// 			'cols'	=> '10'
 // 			'width'	=> '100px'
 // 			'columns'	=> '5'
 			

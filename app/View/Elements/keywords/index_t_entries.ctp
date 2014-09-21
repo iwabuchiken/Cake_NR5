@@ -1,6 +1,13 @@
 <?php foreach ($keywords as $keyword): ?>
 <tr>
-		<td><?php echo $keyword['Keyword']['id']; ?></td>
+		<td class="td_id">
+		
+			<?php 
+				echo $keyword['Keyword']['id']; 
+			?>
+			
+		</td>
+		
 		<td>
 			<?php echo $this->Html->link($keyword['Keyword']['name'],
 							array(
@@ -10,9 +17,9 @@
 							); ?>
 		</td>
 		
-		<td><?php echo $keyword['Category']['name']; ?></td>
+		<td class="td_news_time"><?php echo $keyword['Category']['name']; ?></td>
 		
-		<td>
+		<td class="td_news_time">
 		
 			<?php 
 			
@@ -25,8 +32,8 @@
 			
 		</td>
 		
-		<td><?php echo $keyword['Keyword']['created_at']; ?></td>
-		<td><?php echo $keyword['Keyword']['updated_at']; ?></td>
+		<td class="td_news_time"><?php echo $keyword['Keyword']['created_at']; ?></td>
+		<td class="td_news_time"><?php echo $keyword['Keyword']['updated_at']; ?></td>
 		
 </tr>
 <?php endforeach; ?>

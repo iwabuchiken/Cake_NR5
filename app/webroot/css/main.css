@@ -81,6 +81,51 @@ td {
 	
 }
 
+td.article_line {
+	
+	border: 1px solid blue;
+	
+	width: 70%;
+	
+	/*REF http://stackoverflow.com/questions/1057574/html-td-wrap-text answered May 29 '12 at 12:43*/
+	word-wrap:	break-word;
+	
+}
+
+td.td_id {
+	
+	border: 1px solid black;
+	text-align:	center;
+	
+	width:	5%;
+	
+}
+
+td.td_id_color {
+	
+	border: 1px solid black;
+	text-align:	center;
+	
+	width:	5%;
+	
+	background:	#D4C9ED;
+	
+}
+
+td.td_vendor {
+	
+	border: 1px solid black;
+	text-align:	center;
+	
+}
+
+td.td_news_time {
+	
+	border: 1px solid black;
+	text-align:	center;
+	
+}
+
 
 td.delete_position {
 	
@@ -115,9 +160,23 @@ th {
 	
 }
 
+th.table_header {
+	
+	border: 1px solid blue;
+	background:	#CEFDB8;
+	text-align:	center;
+	
+}
+
 table.table_show {
 	
 	width: 60%;
+}
+
+table.articles {
+
+	table-layout:	fixed;
+	
 }
 
 table.table_show tr td.td_label_narrow {
@@ -370,4 +429,33 @@ textarea#jquery_textarea {
 	
 	height:	170px;
 	margin-top:	20px
+}
+
+textarea.add_name {
+
+	width: 25%;
+	
+}
+
+input.submit_go {
+	
+	/* REF http://hmaster.net/cform5.html */
+	margin-left:	10px;
+	margin-bottom:	5px;
+	
+	vertical-align: middle;
+	
+	/*vertical-align: middle;*/
+	
+}
+
+select.select_genre {
+
+	margin-bottom:	5px;
+	
+	/*color: blue;*/
+	background:	#E5F7DD;
+
+	vertical-align: middle;	
+	
 }
