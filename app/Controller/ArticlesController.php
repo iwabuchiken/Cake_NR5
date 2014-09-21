@@ -73,9 +73,6 @@ class ArticlesController extends AppController {
 	public function
 	_index_GetArticles_T9($query_genre_id) {
 	
-		debug("\$query_genre_id");
-		debug($query_genre_id);
-		
 		/**********************************
 		 * get: html
 		**********************************/

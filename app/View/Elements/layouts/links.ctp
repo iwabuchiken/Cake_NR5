@@ -37,6 +37,17 @@
 			
 		</td>
 	
+		<td>
+		
+			<?php echo $this->Html->link(
+								'Keywords',
+								array('controller' => 'keywords', 
+										'action' => 'index'),
+								array('class' => "button"));
+			?>
+			
+		</td>
+	
 	</tr>
 	
 </table>

@@ -6,5 +6,14 @@ class Category extends AppModel {
 	
 	var $belongsTo = 'Genre';
 	
+	var $hasMany = array(
+	
+			'Keyword' => array(
+	
+					'className' => 'Keyword'
+			)
+	
+	);
+	
 
 }
