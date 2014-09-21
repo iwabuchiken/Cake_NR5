@@ -24,7 +24,7 @@ class CategorysController
 		/**********************************
 		* read csv
 		**********************************/
-		$this->_read_CSV_Categories();
+// 		$this->_read_CSV_Categories();
 		
 	}
 
@@ -121,13 +121,193 @@ class CategorysController
 	_read_CSV_Categories() {
 		
 		$fname = join(DS, array($this->path_Data, "Category_backup.csv"));
+
+		/**********************************
+		* read csv
+		**********************************/
+// 		$data = $this->csv_to_array($fname, ',');
+		$data = Utils::csv_to_array($fname, ',');
+
+		/**********************************
+		* build list
+		**********************************/
+		$cat_pairs = array();
 		
-// 		debug($fname);
+		for ($i = 3; $i < count($data); $i++) {
+			
+			$pair = array();
+			
+			array_push($pair, $data[$i][0]);
+			array_push($pair, $data[$i][1]);
+			array_push($pair, $data[$i][2]);
+			
+			array_push($cat_pairs, $pair);
+			
+		}
 		
-		$data = $this->csv_to_array($fname, ',');
+		/**********************************
+		* save data
+		**********************************/
+		$this->Category->create();
+
+// 		$this->Category->name = $cat_pairs[1][1];
 		
-		debug(count($data));
+// 		$this->Category->genre_id = 4;
+
+		$param = array('Category' => 
+				
+							array(
+								'name' => $cat_pairs[7][1],
+								'genre_id' => 4
+							)
+		
+		);
+
+// 		$param = array(
+// 						'name' => $cat_pairs[1][1],
+// 						'genre_id' => 4
+// 				);
+		
+// 		$this->Category->set($param);
+// 		$this->Category->save();
+		
+		$this->Category->save($param);
+// 		$this->Category->save();
+		
+// 		debug($this->Category);
+		
+// 		debug(count($data));
+		debug(count($cat_pairs));
 	
+// 		debug($cat_pairs[0]);
+		
+	}//_read_CSV_Categories
+
+	public function
+	save_Data_Categories_from_CSV() {
+		
+		$fname = join(DS, array($this->path_Data, "Category_backup.csv"));
+
+		/**********************************
+		* read csv
+		**********************************/
+// 		$data = $this->csv_to_array($fname, ',');
+		$data = Utils::csv_to_array($fname, ',');
+
+		/**********************************
+		* build list
+		**********************************/
+		$cat_pairs = array();
+		
+		for ($i = 3; $i < count($data); $i++) {
+			
+			$pair = array();
+			
+			array_push($pair, $data[$i][0]);
+			array_push($pair, $data[$i][1]);
+			array_push($pair, $data[$i][2]);
+			
+			array_push($cat_pairs, $pair);
+			
+		}
+		
+// 		debug($cat_pairs[0]);
+		Utils::write_Log(
+					Utils::get_dPath_Log(),
+					"\$cat_pairs => ".((string)count($cat_pairs)),
+					__FILE__, __LINE__);
+		
+		/**********************************
+		* save data
+		**********************************/
+		$counter = 0;
+		
+		foreach ($cat_pairs as $cat_pair) {
+		
+// 			Utils::write_Log(
+// 					Utils::get_dPath_Log(),
+// 					"foreach",
+// 					__FILE__, __LINE__);
+			
+// 			Utils::write_Log(
+// 					Utils::get_dPath_Log(),
+// 					"\$cat_pair => ".$cat_pair[1],
+// 					__FILE__, __LINE__);
+			
+			if ($cat_pair[2] == 3) {
+				
+				$cat_pair[2] = 4;
+				
+			} else if ($cat_pair[2] == 1) {
+				
+				$cat_pair[2] = 2;
+				
+			} else if ($cat_pair[2] == 2) {
+				
+				$cat_pair[2] = 3;
+				
+			} else {
+				
+				continue;
+				
+			}
+		
+
+// 			if ($counter == 0) {
+				
+// 				Utils::write_Log(
+// 					Utils::get_dPath_Log(),
+// 					"cat_pair[0] => ".$cat_pair[0]."/".$cat_pair[1],
+// 					__FILE__, __LINE__);
+				
+// 			}
+			
+			$this->Category->create();
+			
+			// 		$this->Category->name = $cat_pairs[1][1];
+			
+			// 		$this->Category->genre_id = 4;
+			
+			$param = array('Category' =>
+			
+					array(
+							'name' => $cat_pair[1],
+							'genre_id' => $cat_pair[2]
+// 							'name' => $cat_pair[0],
+// 							'genre_id' => $cat_pair[1]
+					)
+			
+			);
+			
+// 			Utils::write_Log(
+// 					Utils::get_dPath_Log(),
+// 					"param => built",
+// 					__FILE__, __LINE__);
+			
+			if ($this->Category->save($param)) {
+				
+				$counter += 1;
+				
+			}
+// 			$this->Category->save($param);
+			
+		}
+		
+		Utils::write_Log(
+					Utils::get_dPath_Log(),
+					"counter => ".((string)$counter),
+					__FILE__, __LINE__);
+		
+		
+		$this->Session->setFlash(__('Save categories from csv => executed'));
+		
+		return $this->redirect(
+				array(
+						'controller' => 'categorys',
+						'action' => 'index'
+		
+				));
+		
 	}//_read_CSV_Categories
 
 	//REF http://php.net/manual/ja/function.str-getcsv.php

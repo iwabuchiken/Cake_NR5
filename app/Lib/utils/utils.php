@@ -253,23 +253,36 @@
 		
 			return (substr($haystack, -$length) === $needle);
 		}
+
+		//REF http://php.net/manual/ja/function.str-getcsv.php
+		public static function
+		csv_to_array
+		($filename='', $delimiter=',') {
+			if(!file_exists($filename) || !is_readable($filename))
+				return FALSE;
 		
-// 		public static function
-// 		conv_Float_to_TimeLabel ($float_time) {
-			
-			
-			
-// 			$sec_num = parseInt($float_time, 10); // don't forget the $second param
-// 			$hours   = Math.floor($sec_num / 3600);
-// 			$minutes = Math.floor(($sec_num - ($hours * 3600)) / 60);
-// 			$seconds = $sec_num - ($hours * 3600) - ($minutes * 60);
+			// 		$header = NULL;
+			$data = array();
 		
-// 			if ($hours   < 10) {$hours   = "0"+$hours;}
-// 			if ($minutes < 10) {$minutes = "0"+$minutes;}
-// 			if ($seconds < 10) {$seconds = "0"+$seconds;}
-// 			$time    = $hours+':'+$minutes+':'+$seconds;
-// 			return $time;
-// 		}
-				
+			if (($handle = fopen($filename, 'r')) !== FALSE) {
+					
+				while (($row = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
+		
+					// 				if(!$header)
+						// 					$header = $row;
+						// 				else
+							// 					$data[] = array_combine($header, $row);
+						array_push($data, $row);
+		
+				}
+					
+				fclose($handle);
+					
+			}
+		
+			return $data;
+		
+		}//csv_to_array
+		
 	}//class Utils
 	

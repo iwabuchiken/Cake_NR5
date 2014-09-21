@@ -279,3 +279,229 @@ ROOT => C:\WORKS\WS\Eclipse_Kepler\VM_Cake[07/05/2014 09:10:43 : C:\WORKS\WS\Ecl
 [09/20/2014 16:47:55 : \app\Controller\ArticlesController.php : 15] Videos#index
 [09/20/2014 16:50:22 : \app\Controller\ArticlesController.php : 15] Videos#index
 [09/20/2014 16:50:41 : \app\Controller\ArticlesController.php : 15] Videos#index
+[09/21/2014 16:55:43 : \app\Controller\CategorysController.php : 266] counter => 0
+[09/21/2014 17:00:57 : \app\Controller\CategorysController.php : 268] counter => 0
+[09/21/2014 17:02:10 : \app\Controller\CategorysController.php : 218] $cat_pairs => 52
+[09/21/2014 17:02:10 : \app\Controller\CategorysController.php : 272] counter => 0
+[09/21/2014 17:04:46 : \app\Controller\CategorysController.php : 218] $cat_pairs => 52
+[09/21/2014 17:04:46 : \app\Controller\CategorysController.php : 284] counter => 0
+[09/21/2014 17:06:47 : \app\Controller\CategorysController.php : 218] $cat_pairs => 52
+[09/21/2014 17:06:47 : \app\Controller\CategorysController.php : 284] counter => 0
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 218] $cat_pairs => 52
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:08:05 : \app\Controller\CategorysController.php : 287] counter => 0
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 218] $cat_pairs => 52
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:09:02 : \app\Controller\CategorysController.php : 292] counter => 0
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 218] $cat_pairs => 52
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => China
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Europe
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => US
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => South East Asia
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => South & North Korea
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Middle East
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => South Asia
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => 医療・介護
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Nuc plants
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Africa
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Latin America
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Global
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Incidents
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Legal
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Automobile
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Europe
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Electronics
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Mobile
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Taxes
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Law
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Political parties
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Nuc plants
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Okinawa
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Companies
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Labor
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Cities
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Politics
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Economies
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Companies
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Money
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => China
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Transportation
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Pacific
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Disaster
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => US
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Global
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Labor
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Education
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Energy
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => China
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Japan
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Weather
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => South & North Korea
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Global
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Defense
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Culture
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Central Asia
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Eastern Europe
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Transportation
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Retail
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Media
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 230] foreach
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 235] $cat_pair => Science
+[09/21/2014 17:10:15 : \app\Controller\CategorysController.php : 297] counter => 0
+[09/21/2014 17:11:17 : \app\Controller\CategorysController.php : 218] $cat_pairs => 52
+[09/21/2014 17:11:18 : \app\Controller\CategorysController.php : 297] counter => 48
+[09/21/2014 19:10:10 : \app\Controller\CategorysController.php : 218] $cat_pairs => 52
+[09/21/2014 19:10:11 : \app\Controller\CategorysController.php : 299] counter => 48

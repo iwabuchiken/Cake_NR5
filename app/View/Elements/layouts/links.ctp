@@ -49,5 +49,21 @@
 		</td>
 	
 	</tr>
+
+	<tr>
+	
+		<td>
+		
+			<?php echo $this->Html->link(
+								'Save categories from csv',
+								array('controller' => 'categorys', 
+										'action' => 'save_Data_Categories_from_CSV'),
+// 										'action' => '_save_Data_Categories_from_CSV'),
+								array('class' => "button"));
+			?>
+			
+		</td>
+	
+	</tr>
 	
 </table>
