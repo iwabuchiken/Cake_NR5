@@ -17,19 +17,35 @@
   
   <tr>
     <td class="td_label_narrow">Genre</td>
-    <td class="td_value_mideum"><?php echo $genre['Genre']['name']; ?></td>
+    
+    <td class="td_value_mideum">
+    
+    	<?php 
+    	
+//     		echo $genre['Genre']['name']; 
+	    	$genre = $this->Keyword->get_Genre_From_KeywordID(
+	    			$keyword['Keyword']['id']);
+	    	// 											$keyword['Keyword']['name']);
+	    	
+	    	echo $genre['Genre']['name'];
+    		
+    	?>
+    	
+    </td>
+    
   </tr>
   
 </table>
 
-KeywordHelper: 
+<!-- KeywordHelper: Genre is  -->
 		<?php 
 			
-			$genre_ = $this->Keyword->get_Genre_From_KeywordID(
-											$keyword['Keyword']['id']);
-// 											$keyword['Keyword']['name']);
+// 			$genre_ = $this->Keyword->get_Genre_From_KeywordID(
+// 											$keyword['Keyword']['id']);
+// // 											$keyword['Keyword']['name']);
 		
-			echo $genre_['Keyword']['name'];
+// 			echo $genre_['Genre']['name'];
+// 			echo $genre_['Keyword']['name'];
 		
 		?>
 

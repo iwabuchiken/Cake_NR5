@@ -6,9 +6,10 @@ class KeywordHelper extends AppHelper{
 	public function 
 	get_Genre_From_KeywordID
 	($keyword_id){
-		
-// 		$this->loadModel('Keyword');
 
+		/**********************************
+		* keyword
+		**********************************/
 		App::import("Keyword");
 		$model = new Keyword();
 		
@@ -17,8 +18,30 @@ class KeywordHelper extends AppHelper{
 		
 		$keyword = $model->find('first', $option);
 // 		$keyword = $this->Keyword->find('first', $option);
+
+		/**********************************
+		* category
+		**********************************/
+		App::import("Category");
+		$model = new Category();
 		
-		return $keyword;
+		$option = array(
+				'conditions' => array('Category.id' => $keyword['Category']['id']));
+		
+		$category = $model->find('first', $option);
+		
+		/**********************************
+		* genre
+		**********************************/
+		App::import("Genre");
+		$model = new Genre();
+		
+		$option = array(
+				'conditions' => array('Genre.id' => $category['Genre']['id']));
+		
+		$genre = $model->find('first', $option);
+		
+		return $genre;
 		
 	}//get_Genre_From_KeywordID
 	
