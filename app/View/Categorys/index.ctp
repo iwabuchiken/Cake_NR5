@@ -19,11 +19,18 @@
 
 (<a href="#top">Top</a><a name="bottom"></a>)
 
+<br>
+<br>
+
 <?php 
 
-// 	echo $this->Html->link(
-// 				    'Add Genre',
-// 				    array('controller' => 'genres', 'action' => 'add')
-// 	); 
+	echo $this->Html->link(
+				    'Delete all',
+				    array('controller' => 'categorys', 'action' => 'delete_all'),
+					null,
+					__("Delete all categories?")
+	); 
 
 ?>
+<br>
+<br>

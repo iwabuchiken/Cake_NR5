@@ -7,7 +7,23 @@ class CategorysController
 	public $helpers = array('Html', 'Form');
 
 	public function index() {
-		$this->set('categories', $this->Category->find('all'));
+
+		$option = array(
+				//REF http://book.cakephp.org/2.0/ja/models/retrieving-your-data.html "$params はいろいろな種類のfindへのパラメータを渡すために使われます"
+				'order'	=> array('Category.id' => 'asc')
+			
+		);
+		
+		$this->set('categories', $this->Category->find('all', $option));
+// 		$this->set('categories', $this->Category->find('all'));
+
+// 		//test
+// 		Utils::write_Log(
+// 				Utils::get_dPath_Log(),
+// 				//REF http://www.phpbook.jp/func/string/index7.html
+// 				"ROOT = ".ROOT,
+// 				__FILE__, __LINE__);
+		
 	}
 	
 	public function view($id = null) {
@@ -20,6 +36,8 @@ class CategorysController
 			throw new NotFoundException(__('Invalid category'));
 		}
 		$this->set('category', $category);
+		
+		debug($category);
 		
 		/**********************************
 		* read csv
@@ -117,6 +135,25 @@ class CategorysController
 	
 	}//public function delete($id)
 
+	public function 
+	delete_all() {
+	
+		//REF http://book.cakephp.org/2.0/ja/core-libraries/helpers/html.html
+		if ($this->Category->deleteAll(array('Category.id >=' => 1))) {
+// 		if ($this->Category->deleteAll(array('id >=' => 1))) {
+			
+			$this->Session->setFlash(__('Categories all deleted'));
+			return $this->redirect(array('action' => 'index'));
+			
+		} else {
+	
+			$this->Session->setFlash(__('Categories not deleted'));
+			return $this->redirect(array('action' => 'index'));
+	
+		}
+	
+	}//delete_all
+	
 	public function
 	_read_CSV_Categories() {
 		
@@ -157,6 +194,7 @@ class CategorysController
 		$param = array('Category' => 
 				
 							array(
+// 								'name' => mb_convert_encoding($cat_pairs[7][1], "UTF-8"),
 								'name' => $cat_pairs[7][1],
 								'genre_id' => 4
 							)
@@ -185,7 +223,7 @@ class CategorysController
 
 	public function
 	save_Data_Categories_from_CSV() {
-		
+
 		$fname = join(DS, array($this->path_Data, "Category_backup.csv"));
 
 		/**********************************
@@ -201,10 +239,26 @@ class CategorysController
 		
 		for ($i = 3; $i < count($data); $i++) {
 			
+// 			if ($i < 10) {
+				
+// 				Utils::write_Log(
+// 					Utils::get_dPath_Log(),
+// 					//REF http://www.phpbook.jp/func/string/index7.html
+// 					sprintf("data[%d] => %s, %s, %s", 
+// 							$i, $data[$i][0], $data[$i][1], $data[$i][2]),
+// 					__FILE__, __LINE__);
+				
+// 			}
+			
 			$pair = array();
 			
 			array_push($pair, $data[$i][0]);
+			
+// 			array_push($pair, mb_convert_encoding($data[$i][1], "UTF-8", "EUCJP"));
+// 			array_push($pair, mb_convert_encoding($data[$i][1], "UTF-8", "SJIS"));
+// 			array_push($pair, mb_convert_encoding($data[$i][1], "UTF-8"));
 			array_push($pair, $data[$i][1]);
+
 			array_push($pair, $data[$i][2]);
 			
 			array_push($cat_pairs, $pair);
@@ -233,31 +287,58 @@ class CategorysController
 // 					Utils::get_dPath_Log(),
 // 					"\$cat_pair => ".$cat_pair[1],
 // 					__FILE__, __LINE__);
+			if (env('SERVER_NAME') == 'localhost') {	//REF api http://php.net/manual/ja/reserved.variables.server.php
+// 			if (env('SERVER_NAME') !== 'localhost') {	//REF api http://php.net/manual/ja/reserved.variables.server.php
 			
-			if ($cat_pair[2] == 3) {
-				
-				$cat_pair[2] = 4;
-				
-			} else if ($cat_pair[2] == 1) {
-				
-				$cat_pair[2] = 2;
-				
-			} else if ($cat_pair[2] == 2) {
-				
-				$cat_pair[2] = 3;
+				if ($cat_pair[2] == 3) {
+					
+					$cat_pair[2] = 4;
+					
+				} else if ($cat_pair[2] == 1) {
+					
+					$cat_pair[2] = 2;
+					
+				} else if ($cat_pair[2] == 2) {
+					
+					$cat_pair[2] = 3;
+					
+				} else {
+					
+					continue;
+					
+				}
 				
 			} else {
 				
-				continue;
+				if ($cat_pair[2] == 3) {
+					
+					$cat_pair[2] = 3;
+					
+				} else if ($cat_pair[2] == 1) {
+					
+					$cat_pair[2] = 1;
+					
+				} else if ($cat_pair[2] == 2) {
+					
+					$cat_pair[2] = 2;
+					
+				} else {
+					
+					continue;
+					
+				}
 				
 			}
+				
 		
-
+			//log
 // 			if ($counter == 0) {
 				
 // 				Utils::write_Log(
 // 					Utils::get_dPath_Log(),
-// 					"cat_pair[0] => ".$cat_pair[0]."/".$cat_pair[1],
+// 					sprintf(
+// 						"cat_pair => %s, %s",
+// 						$cat_pair[0], $cat_pair[1]),
 // 					__FILE__, __LINE__);
 				
 // 			}
@@ -289,9 +370,15 @@ class CategorysController
 				$counter += 1;
 				
 			}
-// 			$this->Category->save($param);
 			
-		}
+// 			//test
+// 			if ($counter > 20) {
+				
+// 				break;
+				
+// 			}
+			
+		}//foreach ($cat_pairs as $cat_pair)
 		
 		Utils::write_Log(
 					Utils::get_dPath_Log(),
@@ -314,6 +401,19 @@ class CategorysController
 	public function 
 	csv_to_array
 	($filename='', $delimiter=',') {
+		
+		//test
+		setlocale(LC_ALL, 'ja_JP.UTF-8');
+// 		setlocale(LC_ALL, 'ja_JP.EUCJP');
+		
+		//test
+		Utils::write_Log(
+				Utils::get_dPath_Log(),
+				//REF http://www.phpbook.jp/func/string/index7.html
+				"mb_internal_encoding => ".mb_internal_encoding(),
+				__FILE__, __LINE__);
+		
+		
 		if(!file_exists($filename) || !is_readable($filename))
 			return FALSE;
 	

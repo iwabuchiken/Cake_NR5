@@ -131,9 +131,19 @@
 			// 		$file = str_replace(ROOT.DS, "", $file);
 		
 			$time = Utils::get_CurrentTime();
-		
+
+			/**********************************
+			* modify: dir path
+			**********************************/
+			//REF http://stackoverflow.com/questions/2192170/how-to-remove-part-of-a-string answered Feb 3 '10 at 13:33
+			$file_new = str_replace(ROOT, "", $file);
+			
+			/**********************************
+			* write
+			**********************************/
 			// 		$full_Text = "[$time : $file : $line] %% $text"."\n";
-			$full_Text = "[$time : $file : $line] $text"."\n";
+			$full_Text = "[$time : $file_new : $line] $text"."\n";
+// 			$full_Text = "[$time : $file : $line] $text"."\n";
 		
 			$res = fwrite($log_File, $full_Text);
 			
@@ -254,10 +264,35 @@
 			return (substr($haystack, -$length) === $needle);
 		}
 
+		/**********************************
+		* csv_to_array
+		* 
+		* Steps for handling multibyte chars in a csv file
+		* 	1. setlocale()	=> that's it
+		* 		=> syntax is ---> setlocale(LC_ALL, 'ja_JP.UTF-8');
+		* 		=> notice: encoding string needed after the locale place string
+		* 			---> i.e. "UTF-8" after "ja_JP", preceeded by a dot "."
+		**********************************/
 		//REF http://php.net/manual/ja/function.str-getcsv.php
 		public static function
 		csv_to_array
 		($filename='', $delimiter=',') {
+			
+// 			//test
+// 			Utils::write_Log(
+// 					Utils::get_dPath_Log(),
+// 					//REF http://www.phpbook.jp/func/string/index7.html
+// 					"mb_internal_encoding => ".mb_internal_encoding(),
+// 					__FILE__, __LINE__);
+					
+			
+			//test
+// 			setlocale(LC_ALL, 'ja-JP');
+			setlocale(LC_ALL, 'ja_JP.UTF-8');
+			
+			/**********************************
+			* validate
+			**********************************/
 			if(!file_exists($filename) || !is_readable($filename))
 				return FALSE;
 		
