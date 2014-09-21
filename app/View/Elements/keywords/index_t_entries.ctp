@@ -12,7 +12,18 @@
 		
 		<td><?php echo $keyword['Category']['name']; ?></td>
 		
-		<td><?php echo $genre['Genre']['name']; ?></td>
+		<td>
+		
+			<?php 
+			
+				$genre = $this->Keyword->get_Genre_From_KeywordID(
+											$keyword['Keyword']['id']);
+
+				echo $genre['Genre']['name']; 
+				
+			?>
+			
+		</td>
 		
 		<td><?php echo $keyword['Keyword']['created_at']; ?></td>
 		<td><?php echo $keyword['Keyword']['updated_at']; ?></td>
