@@ -8,15 +8,37 @@ class KeywordsController extends AppController {
 	
 	public function index() {
 		
+		$page_limit = 10;
+		
 		//REF http://www.codeofaninja.com/2013/07/pagination-in-cakephp.html
+// 		$this->paginate = array(
+// 				'limit' => 10,
+// 				'order' => array(
+// 						'id' => 'asc'
+// 				)
+// 		);
+		
 		$this->paginate = array(
-				'limit' => 4,
+		// 					'conditions' => array('Image.file_name LIKE' => "%$filter_TableName%"),
+// 				'conditions' => array('Image.memos LIKE' => "%$filter_TableName%"),
+				'limit' => $page_limit,
 				'order' => array(
 						'id' => 'asc'
 				)
 		);
 		
-		$this->set('keywords', $this->Keyword->find('all'));
+		$this->set('keywords', $this->paginate('Keyword'));
+// 		$this->set('keywords', $this->Keyword->find('all'));
+		
+		$num_of_kws = count($this->Keyword->find('all'));
+		$this->set('num_of_kws', count($this->Keyword->find('all')));
+		
+		// total pages
+// 		$num_of_pages = $num_of_kws / $page_limit;
+		
+		
+		$this->set('num_of_pages', (int) ceil($num_of_kws / $page_limit));
+// 		$this->set('num_of_pages', (int)($num_of_kws / $page_limit));
 		
 // 		$this->set('genre', $this->_get_Genre($keyword['Category']['id']));
 	}
