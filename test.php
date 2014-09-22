@@ -130,9 +130,25 @@ function test_Regex() {
 	
 }
 
+function test_ArrayPush() {
+	
+	$a = array();
+	
+	$a[0] = array();
+	$a[1] = array();
+	
+	array_push($a[0], 111);
+	array_push($a[1], 22);
+	
+	print_r($a);
+	
+}
+
 function execute() {
 	
-	test_Regex();
+	test_ArrayPush();
+	
+// 	test_Regex();
 	
 }
 

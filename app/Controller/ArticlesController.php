@@ -17,7 +17,8 @@ class ArticlesController extends AppController {
 		/**********************************
 		* get: articles
 		**********************************/
-		$this->_index_GetArticles_D9($query_genre_id);
+		$this->_index_GetArticles_D9_V_2_0($query_genre_id);
+// 		$this->_index_GetArticles_D9($query_genre_id);
 // 		$this->_index_GetArticles_T9($query_genre_id);
 // 		$this->_index_GetArticles_T8();
 
@@ -76,6 +77,203 @@ class ArticlesController extends AppController {
 		return $genre_id;
 		
 	}//_index_Get_GenreID
+	
+	public function
+	_index_GetArticles_D9_V_2_0
+	($query_genre_id) {
+
+		/**********************************
+		* get: articles (initial)
+		**********************************/
+		$articles = $this->__index_GetArticles_D9__Get_Articles($query_genre_id);
+
+		/**********************************
+		* grouping
+		**********************************/
+		$a_categorized = 
+					$this->__index_GetArticles_D9_V_2_0__Grouping(
+								$articles,
+								$query_genre_id);
+		
+		/**********************************
+		* set: vars
+		**********************************/
+		$this->set('articles', $articles);
+		
+		$this->set('a_categorized', $a_categorized);
+
+	}//_index_GetArticles_D9_V_2_0
+
+	public function
+	__index_GetArticles_D9_V_2_0__Grouping
+	($articles, $query_genre_id) {
+		/**********************************
+			* categories
+		**********************************/
+		$this->loadModel('Category');
+			
+		$option = array(
+	
+				'conditions' =>
+				array(
+							
+						'Category.genre_id' => $query_genre_id
+	
+				)
+		);
+	
+		$categories = $this->Category->find('all', $option);
+	
+		/**********************************
+			* keywords
+		**********************************/
+		$kw_sets = $this->__index_GetArticles_D9_V_2_0__Get_KW_sets($categories);
+		
+// 		$category = $categories[0];
+	
+// 		// 		debug($category['Category']);
+	
+// 		$this->loadModel('Keyword');
+			
+// 		$option = array(
+	
+// 				'conditions' =>
+// 				array(
+							
+// 						'Keyword.category_id' => $category['Category']['id']
+	
+// 				)
+// 		);
+	
+// 		$keywords = $this->Keyword->find('all', $option);
+	
+		/**********************************
+			* grouping
+		**********************************/
+		// 		debug($articles[5]);
+	
+		$a_categorized =
+			$this->__index_GetArticles_D9_V_2_0__Categorize(
+								$articles, $kw_sets, $categories);
+// 								$articles, $keywords, $category);
+	
+		return $a_categorized;
+	
+	}//__index_GetArticles_D9_V_2_0__Grouping
+
+	public function
+	__index_GetArticles_D9_V_2_0__Get_KW_sets
+	($categories) {
+
+		$kw_sets = array();
+		
+		$this->loadModel('Keyword');
+			
+		foreach ($categories as $cat) {
+		
+			$option = array(
+		
+					'conditions' =>
+					array(
+								
+							'Keyword.category_id' => $cat['Category']['id']
+		
+					)
+			);
+		
+			$keywords = $this->Keyword->find('all', $option);
+				
+// 			$kw_sets[$cat['Category']['id']] = $keywords;
+			array_push($kw_sets, $keywords);
+			
+		}//foreach ($categories as $cat)
+
+		return $kw_sets;
+		
+	}//__index_GetArticles_D9_V_2_0__Get_KW_sets
+	
+	/**********************************
+	 * @return
+	*
+	* array(
+	* 		"China" => array(
+			* 						article_1, article_2,...
+			* 					),
+	* 		"Others"=> array(
+			* 						article_1, article_2,...
+			* 					),
+	**********************************/
+	public function
+	__index_GetArticles_D9_V_2_0__Categorize
+	($articles, $kw_sets, $categories) {
+	
+		$a_categorized_main = array();
+	
+		$a_categorized = array();
+		$a_categorized_others = array();
+	
+		/**********************************
+			* grouping
+		**********************************/
+		foreach ($articles as $a) {
+	
+			// 			//debug
+			// 			debug($a);
+			// 			break;
+				
+			$found = false;
+				
+			$line = $a['line'];
+			// 			$line = $a['Article']['line'];
+				
+			foreach ($keywords as $k) {
+	
+				$k_name = $k['Keyword']['name'];
+	
+				$p = "/$k_name/";
+	
+				$res = preg_match($p, $line);
+	
+				if ($res == 1) {
+	
+					array_push($a_categorized, $a);
+						
+					$found = true;
+						
+					break;
+						
+				}
+					
+			}//foreach ($keywords as $k)
+				
+			if ($found == false) {
+	
+				array_push($a_categorized_others, $a);
+	
+			} else {
+	
+				$found == true;
+	
+			}
+	
+		}//foreach ($articles as $a)
+	
+		/**********************************
+			* build: master list
+		**********************************/
+		$a_categorized_main[$category['Category']['name']] = $a_categorized;
+		$a_categorized_main['Others'] = $a_categorized_others;
+		// 		array_push($a_categorized_main, $a_categorized);
+		// 		array_push($a_categorized_main, $a_categorized_others);
+	
+		// 		debug(count($a_categorized_main));
+	
+		// 		debug(array_keys($a_categorized_main));
+	
+		return $a_categorized_main;
+	
+	}//__index_GetArticles_D9_V_2_0__Categorize
+	
 	
 	public function
 	_index_GetArticles_D9($query_genre_id) {
@@ -225,6 +423,7 @@ class ArticlesController extends AppController {
 		
 	}//__index_GetArticles_D9__Grouping
 	
+	
 	/**********************************
 	 * @return
 	*
@@ -306,6 +505,7 @@ class ArticlesController extends AppController {
 		return $a_categorized_main;
 		
 	}//__index_GetArticles_D9__Categorize
+	
 	
 	public function
 	_index_GetArticles_T9($query_genre_id) {
