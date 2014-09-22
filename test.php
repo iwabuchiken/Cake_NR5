@@ -144,9 +144,168 @@ function test_ArrayPush() {
 	
 }
 
+function test_PrefMatch() {
+
+	setlocale(LC_ALL, 'ja_JP.UTF-8');
+	
+	$s = "関西を医療のメッカに、大阪でフォーラム−有識者8人が議論";
+	
+	$p = "医療";
+	
+	$res = preg_match($p, $s, $matches);
+	
+	echo "\$res => ".$res;
+	
+	echo "\n";
+	
+	echo "\$matches => ".$matches;
+	
+	echo "\n";
+	
+	echo "mb_strlen => ".mb_strlen($s);
+	
+	echo "\n";
+	
+	echo "s => ".$s;
+	
+	echo "\n";
+	
+	echo "s, mb_convert_encoding => ".mb_convert_encoding($s, "SJIS", "UTF-8");
+	
+	echo "\n";
+	
+	echo "strlen(mb_convert_encoding => ".strlen(mb_convert_encoding($s, "SJIS", "UTF-8"));
+	
+	echo "\n";
+	
+	echo "mb_strlen(mb_convert_encoding => "
+			.mb_strlen(mb_convert_encoding($s, "SJIS", "UTF-8"));
+	
+	echo "\n";
+	
+	echo "mb_strlen(\$s, \"SJIS\") => "
+			.mb_strlen($s, "SJIS");
+	
+	echo "\n";
+	
+	echo "mb_strlen(\$s, \"UTF-8\") => "
+			.mb_strlen($s, "UTF-8");
+	
+	
+	
+}
+
+function 
+test_PrefMatch_2() {
+
+	setlocale(LC_ALL, 'ja_JP.UTF-8');
+	
+// 	$s = "関西を医療のメッカに、大阪でフォーラム−有識者8人が議論";
+	$s = "関西を医療のメッカに、大阪でフォーラム医療−有識者8人が議論";
+	
+	$s2 = mb_convert_encoding($s, "SJIS", "UTF-8");
+	
+	$reg = mb_convert_encoding("医療", "SJIS", "UTF-8");
+	
+	echo "\$reg => $reg";
+	
+	$p = "/$reg/";
+// 	$p = "/医療/";
+	echo "\n";
+	
+	$res = preg_match($p, $s2, $matches);
+	
+	echo "\$res => ".$res;
+	
+	echo "\n";
+
+	print_r($matches);
+// 	echo "\$matches => ".$matches;
+	
+	
+	echo "\n";
+	
+	echo "mb_strlen(\$s, \"UTF-8\") => "
+			.mb_strlen($s, "UTF-8");
+	
+	
+	
+}//test_PrefMatch2
+
+function 
+test_PrefMatch_3__MatchAll() {
+
+	setlocale(LC_ALL, 'ja_JP.UTF-8');
+	
+// 	$s = "関西を医療のメッカに、大阪でフォーラム−有識者8人が議論";
+	$s = "関西を医療のメッカに、大阪でフォーラム医療−有識者8人が議論";
+	
+	$s2 = mb_convert_encoding($s, "SJIS", "UTF-8");
+	
+	echo "s2 => $s2";
+	
+	echo "\n";
+	
+	$reg = mb_convert_encoding("医療", "SJIS", "UTF-8");
+	
+	echo "\$reg => $reg";
+	
+	$p = "/$reg/";
+// 	$p = "/医療/";
+	echo "\n";
+	
+	$res = preg_match_all($p, $s2, $matches);
+	
+	echo "\$res => ".$res;
+	
+	echo "\n";
+
+	echo "matches----------------------------\n";
+	print_r($matches);
+// 	echo "\$matches => ".$matches;
+	
+	
+	echo "\n";
+	
+	//REF http://blog.ishitoya.info/entry/20090707/1246970868
+	echo "mb_strlen(\$s, \"UTF-8\") => "
+			.mb_strlen($s, "UTF-8");
+	
+	
+	
+}//test_PrefMatch_3__MatchAll
+
+function 
+test_Replace() {
+
+	setlocale(LC_ALL, 'ja_JP.UTF-8');
+	
+	// 	$s = "関西を医療のメッカに、大阪でフォーラム−有識者8人が議論";
+	$s = "関西を医療のメッカに、大阪でフォーラム医療−有識者8人が議論";
+	
+	$s2 = mb_convert_encoding($s, "SJIS", "UTF-8");
+	
+	echo "s2 => $s2";
+	
+	echo "\n";
+	
+	$reg = mb_convert_encoding("医療", "SJIS", "UTF-8");
+
+	$res = str_replace($reg, "<b>".$reg."</b>", $s2);
+	
+	print_r($res);
+	
+	
+}//test_Replace
+
 function execute() {
 	
-	test_ArrayPush();
+	test_Replace();
+// 	test_PrefMatch_3__MatchAll();
+// 	test_PrefMatch_2();
+// 	test_PrefMatch();
+	
+// 	test_ArrayPush();
 	
 // 	test_Regex();
 	

@@ -20,3 +20,6 @@
 </table>
 
 (<a href="#top">Top</a><a name="bottom"></a>)
+
+<br>
+<?php //phpinfo(); ?>

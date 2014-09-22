@@ -11,6 +11,7 @@
 	
 	$vars = array('keys' => $keys);
 
+	//REF http://weble.org/2012/05/03/cakephp-variable-element
 	echo $this->element('articles/index/_idx_test_D_9_V_1_1_Header', $vars); 
 ?>
 

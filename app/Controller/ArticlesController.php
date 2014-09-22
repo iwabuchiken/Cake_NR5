@@ -6,7 +6,7 @@ class ArticlesController extends AppController {
 
 	public function 
 	index() {
-		
+
 // 		$this->set('articles', $this->Article->find('all'));
 		
 		/**********************************
@@ -17,8 +17,8 @@ class ArticlesController extends AppController {
 		/**********************************
 		* get: articles
 		**********************************/
-		$this->_index_GetArticles_D9_V_2_0($query_genre_id);
-// 		$this->_index_GetArticles_D9($query_genre_id);
+// 		$this->_index_GetArticles_D9_V_2_0($query_genre_id);
+		$this->_index_GetArticles_D9($query_genre_id);
 // 		$this->_index_GetArticles_T9($query_genre_id);
 // 		$this->_index_GetArticles_T8();
 
@@ -468,6 +468,15 @@ class ArticlesController extends AppController {
 				
 				if ($res == 1) {
 
+					// colorize
+					$tmp = $a['line'];
+					
+					//REF http://php.net/manual/ja/function.str-replace.php
+					$tmp = str_replace(
+								$k_name, "<font color=\"blue\">".$k_name."</font>", $tmp);
+					
+					$a['line'] = $tmp;
+					
 					array_push($a_categorized, $a);
 					
 					$found = true;
