@@ -17,8 +17,8 @@ class ArticlesController extends AppController {
 		/**********************************
 		* get: articles
 		**********************************/
-// 		$this->_index_GetArticles_D9_V_2_0($query_genre_id);
-		$this->_index_GetArticles_D9($query_genre_id);
+		$this->_index_GetArticles_D9_V_2_0($query_genre_id);
+// 		$this->_index_GetArticles_D9($query_genre_id);
 // 		$this->_index_GetArticles_T9($query_genre_id);
 // 		$this->_index_GetArticles_T8();
 
@@ -129,31 +129,13 @@ class ArticlesController extends AppController {
 		**********************************/
 		$kw_sets = $this->__index_GetArticles_D9_V_2_0__Get_KW_sets($categories);
 		
-// 		$category = $categories[0];
-	
-// 		// 		debug($category['Category']);
-	
-// 		$this->loadModel('Keyword');
-			
-// 		$option = array(
-	
-// 				'conditions' =>
-// 				array(
-							
-// 						'Keyword.category_id' => $category['Category']['id']
-	
-// 				)
-// 		);
-	
-// 		$keywords = $this->Keyword->find('all', $option);
-	
 		/**********************************
 			* grouping
 		**********************************/
 		// 		debug($articles[5]);
 	
 		$a_categorized =
-			$this->__index_GetArticles_D9_V_2_0__Categorize(
+			$this->__index_GetArticles_D9_V_2_1__Categorize(
 								$articles, $kw_sets, $categories);
 // 								$articles, $keywords, $category);
 	
@@ -191,6 +173,192 @@ class ArticlesController extends AppController {
 		return $kw_sets;
 		
 	}//__index_GetArticles_D9_V_2_0__Get_KW_sets
+	
+	/**********************************
+	 * @return
+	*
+	* array(
+	* 		"China" => array(
+			* 						article_1, article_2,...
+			* 					),
+	* 		"Others"=> array(
+			* 						article_1, article_2,...
+			* 					),
+	**********************************/
+	public function
+	__index_GetArticles_D9_V_2_1__Categorize
+	($articles, $kw_sets, $categories) {
+	
+		debug("kw_sets => ".count($kw_sets));
+		debug("categories => ".count($categories));
+		
+		$a_categorized_main = array();
+	
+		$a_categorized = array();
+		$a_categorized_others = array();
+
+		//tmp
+		$keywords = $kw_sets[0];
+		$category = $categories[0];
+		
+		// array
+		$a_categorized_new = array();
+		$a_categorized_others_new = array();
+		$a_categorized_main_new = array();
+		
+		for ($i = 0; $i < count($categories); $i++) {
+			
+			$a_categorized_main_new[$categories[$i]['Category']['name']]
+						= array();
+			
+		}
+
+		/**********************************
+		* categorize: new
+		**********************************/
+		for ($i = 0; $i < count($articles); $i++) {
+			
+			$a = $articles[$i];
+			
+			$line = $a['line'];
+			
+			$found = false;
+			
+			for ($j = 0; $j < count($kw_sets); $j++) {
+				
+				$kws = $kw_sets[$j];
+
+				
+				foreach ($kws as $k) {
+				
+					$k_name = $k['Keyword']['name'];
+		
+					$p = "/$k_name/";
+		
+					$res = preg_match($p, $line);
+		
+					if ($res == 1) {
+		
+// 						array_push($a_categorized_new, $a);
+							
+						// colorize
+						$tmp = $a['line'];
+						
+						//REF http://php.net/manual/ja/function.str-replace.php
+						$tmp = str_replace(
+								$k_name, "<font color=\"blue\">".$k_name."</font>", $tmp);
+						
+						$a['line'] = $tmp;
+						
+						$found = true;
+							
+						break;
+							
+					}
+				
+				}//foreach ($kws as $k)
+				
+				// found?
+				if ($found == true) {
+					
+					array_push(
+							$a_categorized_main_new[$categories[$j]['Category']['name']], 
+							$a);
+					
+					break;
+					
+				}
+				
+			}//for ($j = 0; $j < count($kw_sets); $j++)
+				
+			// not found
+			if ($found == false) {
+				
+				array_push(
+						$a_categorized_others_new, 
+						$a);
+				
+			}
+			
+		}//for ($i = 0; $i < count($articles); $i++)
+
+		// Others
+		$a_categorized_main_new['Others'] = $a_categorized_others_new;
+// 		array_push(
+// 				$a_categorized_main_new['Others'],
+// 				$a_categorized_others_new);
+		
+		/**********************************
+			* grouping
+		**********************************/
+// 		debug($keywords);
+		
+		foreach ($articles as $a) {
+	
+			$found = false;
+				
+			$line = $a['line'];
+			// 			$line = $a['Article']['line'];
+				
+			foreach ($keywords as $k) {
+	
+				$k_name = $k['Keyword']['name'];
+	
+				$p = "/$k_name/";
+	
+				$res = preg_match($p, $line);
+	
+				if ($res == 1) {
+		
+// 					debug($a);
+					
+					// colorize
+					$tmp = $a['line'];
+						
+					//REF http://php.net/manual/ja/function.str-replace.php
+					$tmp = str_replace(
+							$k_name, "<font color=\"blue\">".$k_name."</font>", $tmp);
+						
+					$a['line'] = $tmp;
+					
+					array_push($a_categorized, $a);
+						
+					$found = true;
+						
+					break;
+						
+				}
+					
+			}//foreach ($keywords as $k)
+				
+			if ($found == false) {
+	
+				array_push($a_categorized_others, $a);
+	
+			} else {
+	
+				$found == true;
+	
+			}
+	
+		}//foreach ($articles as $a)
+	
+		/**********************************
+			* build: master list
+		**********************************/
+		$a_categorized_main[$category['Category']['name']] = $a_categorized;
+		$a_categorized_main['Others'] = $a_categorized_others;
+		// 		array_push($a_categorized_main, $a_categorized);
+		// 		array_push($a_categorized_main, $a_categorized_others);
+	
+		// 		debug(count($a_categorized_main));
+	
+		// 		debug(array_keys($a_categorized_main));
+	
+		return $a_categorized_main_new;
+// 		return $a_categorized_main;
+	
+	}//__index_GetArticles_D9_V_2_1__Categorize
 	
 	/**********************************
 	 * @return
