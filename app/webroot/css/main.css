@@ -252,6 +252,12 @@ div#div_poslist {
 	
 }
 
+div#a_list_header {
+	
+	background:	#CEFDB8;
+	
+}
+
 table#table_poslist {
 
 	/* REF http://www.w3schools.com/cssref/tryit.asp?filename=trycss_float4 */
@@ -515,3 +521,4 @@ div.pagination {
     zoom: 1.0;
     width: device-width;
 }
+

@@ -7,6 +7,12 @@
 	
 ?>
 
+<?php 
+	
+	$vars = array('keys' => $keys);
+
+	echo $this->element('articles/index/_idx_test_D_9_V_1_1_Header', $vars); 
+?>
 
 <?php 
 
@@ -14,7 +20,7 @@
 	
 		$a_group = $a_categorized[$k];
 
-		echo $k;
+		echo "<a name=\"$k\">$k</a>";
 		
 		echo "<br>";
 		
