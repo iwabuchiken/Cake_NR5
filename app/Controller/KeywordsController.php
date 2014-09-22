@@ -35,8 +35,8 @@ class KeywordsController extends AppController {
 		
 		// total pages
 // 		$num_of_pages = $num_of_kws / $page_limit;
-		
-		
+
+		//REF ceil http://php.net/manual/ja/function.ceil.php
 		$this->set('num_of_pages', (int) ceil($num_of_kws / $page_limit));
 // 		$this->set('num_of_pages', (int)($num_of_kws / $page_limit));
 		
