@@ -5,6 +5,7 @@ sqlite3 C:\WORKS\WS\Eclipse_Kepler\Cake_NR5\app\webroot\development.sqlite3
 .tables
 
 pragma table_info(articles);
+pragma table_info(categories);
 
 .exit
 
@@ -40,15 +41,21 @@ CREATE TABLE genres (
 	
 );
 
+DROP TABLE categories;
+
 CREATE TABLE categories (
 	id			INTEGER PRIMARY KEY     AUTOINCREMENT	NOT NULL,
 	created_at	VARCHAR(30),
 	updated_at	VARCHAR(30),
 	
 	name		VARCHAR(100),
-	genre_id	INTEGER
+	genre_id	INTEGER,
+
+	original_id	INTEGER
 	
 );
+
+DROP TABLE keywords;
 
 CREATE TABLE keywords (
 	id			INTEGER PRIMARY KEY     AUTOINCREMENT	NOT NULL,
@@ -105,13 +112,17 @@ CREATE TABLE genres (
 	
 );
 
+DROP TABLE categories;
+
 CREATE TABLE categories (
 	id			INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	created_at	VARCHAR(30),
 	updated_at	VARCHAR(30),
 	
 	name		VARCHAR(100),
-	genre_id	INTEGER
+	genre_id	INTEGER,
+	
+	original_id	INTEGER
 	
 );
 

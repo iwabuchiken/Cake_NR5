@@ -159,6 +159,7 @@
 			//REF http://stackoverflow.com/questions/470617/get-current-date-and-time-in-php
 			date_default_timezone_set('Asia/Tokyo');
 		
+// 			return date('m/d/Y H:i:s.u', time());
 			return date('m/d/Y H:i:s', time());
 		
 		}

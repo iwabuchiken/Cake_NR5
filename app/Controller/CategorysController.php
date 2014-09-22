@@ -330,19 +330,6 @@ class CategorysController
 				
 			}
 				
-		
-			//log
-// 			if ($counter == 0) {
-				
-// 				Utils::write_Log(
-// 					Utils::get_dPath_Log(),
-// 					sprintf(
-// 						"cat_pair => %s, %s",
-// 						$cat_pair[0], $cat_pair[1]),
-// 					__FILE__, __LINE__);
-				
-// 			}
-			
 			$this->Category->create();
 			
 			// 		$this->Category->name = $cat_pairs[1][1];
@@ -353,7 +340,8 @@ class CategorysController
 			
 					array(
 							'name' => $cat_pair[1],
-							'genre_id' => $cat_pair[2]
+							'genre_id' => $cat_pair[2],
+							'original_id'	=> $cat_pair[0]
 // 							'name' => $cat_pair[0],
 // 							'genre_id' => $cat_pair[1]
 					)

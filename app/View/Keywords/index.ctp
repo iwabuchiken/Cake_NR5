@@ -19,6 +19,23 @@
 
 (<a href="#top">Top</a><a name="bottom"></a>)
 
+<br>
+<br>
+
+<?php 
+
+	echo $this->Html->link(
+				    'Delete all',
+				    array('controller' => 'keywords', 'action' => 'delete_all'),
+					null,
+					__("Delete all keywords?")
+	); 
+
+?>
+<br>
+<br>
+
+
 <?php 
 
 // 	echo $this->Html->link(

@@ -12,6 +12,8 @@
 		
 		<td class="td_news_time"><?php echo $category['Genre']['name']; ?></td>
 		
+		<td class="td_news_time"><?php echo $category['Category']['original_id']; ?></td>
+		
 		<td class="td_news_time"><?php echo $category['Category']['created_at']; ?></td>
 		<td class="td_news_time"><?php echo $category['Category']['updated_at']; ?></td>
 		
