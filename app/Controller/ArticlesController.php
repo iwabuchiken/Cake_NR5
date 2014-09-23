@@ -17,7 +17,8 @@ class ArticlesController extends AppController {
 		/**********************************
 		* get: articles
 		**********************************/
-		$this->_index_GetArticles_D9_V_2_0($query_genre_id);
+		$this->_index_GetArticles_D9_V_2_1($query_genre_id);
+// 		$this->_index_GetArticles_D9_V_2_0($query_genre_id);
 // 		$this->_index_GetArticles_D9($query_genre_id);
 // 		$this->_index_GetArticles_T9($query_genre_id);
 // 		$this->_index_GetArticles_T8();
@@ -79,6 +80,48 @@ class ArticlesController extends AppController {
 	}//_index_Get_GenreID
 	
 	public function
+	_index_GetArticles_D9_V_2_1
+	($query_genre_id) {
+
+		/**********************************
+		* get: articles (initial)
+		**********************************/
+		$articles = $this->__index_Get_Articles($query_genre_id);
+
+		/**********************************
+		* get: categories
+		**********************************/
+		$categories = $this->__index_Get_Categories($query_genre_id);
+		
+		/**********************************
+		* get: kw sets
+		**********************************/
+		$kw_sets = $this->__index_Get_KW_Sets($categories);
+		
+		/**********************************
+		* categorize
+		**********************************/
+		$a_categorized_new = $this->__index_Grouping($articles, $categories, $kw_sets);
+		
+// 		/**********************************
+// 		* grouping
+// 		**********************************/
+// 		$a_categorized = 
+// 					$this->__index_GetArticles_D9_V_2_0__Grouping(
+// 								$articles,
+// 								$query_genre_id);
+		
+		/**********************************
+		* set: vars
+		**********************************/
+		$this->set('articles', $articles);
+		
+		$this->set('a_categorized', $a_categorized_new);
+// 		$this->set('a_categorized', $a_categorized);
+
+	}//_index_GetArticles_D9_V_2_0
+
+	public function
 	_index_GetArticles_D9_V_2_0
 	($query_genre_id) {
 
@@ -103,6 +146,78 @@ class ArticlesController extends AppController {
 		$this->set('a_categorized', $a_categorized);
 
 	}//_index_GetArticles_D9_V_2_0
+
+	public function
+	__index_Get_KW_Sets
+	($categories) {
+// 		/**********************************
+// 			* categories
+// 		**********************************/
+// 		$this->loadModel('Category');
+			
+// 		$option = array(
+	
+// 				'conditions' =>
+// 				array(
+							
+// 						'Category.genre_id' => $query_genre_id
+	
+// 				)
+// 		);
+	
+// 		$categories = $this->Category->find('all', $option);
+	
+		/**********************************
+			* keywords
+		**********************************/
+		return $this->__index_GetArticles_D9_V_2_0__Get_KW_sets($categories);
+		
+	}//__index_Get_KW_Sets
+
+	public function
+	__index_Get_Categories
+	($query_genre_id) {
+		/**********************************
+			* categories
+		**********************************/
+		$this->loadModel('Category');
+			
+		$option = array(
+	
+				'conditions' =>
+				array(
+							
+						'Category.genre_id' => $query_genre_id
+	
+				)
+		);
+	
+		return $this->Category->find('all', $option);
+	
+	}//__index_Get_Categories
+
+
+	public function
+	__index_Grouping
+	($articles, $categories, $kw_sets) {
+// 		/**********************************
+// 			* keywords
+// 		**********************************/
+// 		$kw_sets = $this->__index_GetArticles_D9_V_2_0__Get_KW_sets($categories);
+		
+		/**********************************
+			* grouping
+		**********************************/
+		// 		debug($articles[5]);
+	
+		$a_categorized =
+			$this->__index_GetArticles_D9_V_2_1__Categorize(
+								$articles, $kw_sets, $categories);
+// 								$articles, $keywords, $category);
+	
+		return $a_categorized;
+	
+	}//__index_Grouping
 
 	public function
 	__index_GetArticles_D9_V_2_0__Grouping
@@ -468,6 +583,75 @@ class ArticlesController extends AppController {
 
 	}//_index_GetArticles
 
+	public function
+	__index_Get_Articles
+	($query_genre_id) {
+		
+		/**********************************
+		 * get: html
+		**********************************/
+		if ($query_genre_id == null) {
+				
+			$genre = "soci";
+				
+		} else {
+				
+			$genre = $this->_get_GenreCode_from_GenreID($query_genre_id);
+				
+		}
+		
+		$url = "http://headlines.yahoo.co.jp/hl?c=$genre&t=l";
+		
+		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+		$html = file_get_html($url);
+		
+		$ahrefs = $html->find('a[href]');
+		
+		$ahrefs_hl = array();
+		
+		foreach ($ahrefs as $ahref) {
+		
+			// 			if (Utils::startsWith($ahref->href, "/hl")) {
+			if (Utils::startsWith($ahref->href, "/hl")
+				&& count(explode("-", $ahref->href)) > 3) {
+	
+					$ahref->href = "http://headlines.yahoo.co.jp".$ahref->href;
+	
+					array_push($ahrefs_hl, $ahref);
+	
+			}
+		
+		}//foreach ($ahrefs as $ahref)
+		
+		/**********************************
+		 * build: list
+		**********************************/
+		$articles = array();
+		
+		foreach ($ahrefs_hl as $ahref) {
+		
+			$a = $this->Article->create();
+				
+			$a['url'] = $ahref->href;
+				
+			$a['line'] = $ahref->plaintext;
+				
+			// 			$a->vendor = $this->conv_Url_to_VendorName($ahref->href);
+			$a['vendor'] = $this->conv_Url_to_VendorName($ahref->href);
+				
+			$a['news_time'] = $this->conv_Url_to_NewsTime($ahref->href);
+				
+			array_push($articles, $a);
+		
+		}
+		
+		/**********************************
+		* return
+		**********************************/
+		return $articles;
+		
+	}//__index_Get_Articles
+	
 	public function
 	__index_GetArticles_D9__Get_Articles
 	($query_genre_id) {
