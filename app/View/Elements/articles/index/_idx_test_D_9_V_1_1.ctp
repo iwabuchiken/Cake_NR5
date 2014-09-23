@@ -21,7 +21,24 @@
 	
 		$a_group = $a_categorized[$k];
 
+		// validate: any articles?
+		if (count($a_group) < 1) {
+			
+			continue;
+			
+		}
+		
 		echo "<a name=\"$k\">$k</a>";
+
+		echo " (".count($a_group).")";
+		
+		echo " | ";
+		
+		echo "<a href=\"#top\">Top</a>";
+		
+		echo " ";
+		
+		echo "<a href=\"#bottom\">Bottom</a>";
 		
 		echo "<br>";
 		
@@ -55,7 +72,20 @@
 		</td>
 	
 		<td class="article_line">
-			<?php echo $a['line']; ?>
+			<?php 
+				
+				$option = array(
+						'target'	=> '_blank',
+						'escape'	=> false
+				);
+			
+				echo $this->Html->link(
+								$a['line'],
+								$a['url'],
+								$option
+					);
+			?>
+			<?php //echo $a['line']; ?>
 		</td>
 	
 		<td class="td_news_time">

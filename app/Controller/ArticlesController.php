@@ -17,7 +17,8 @@ class ArticlesController extends AppController {
 		/**********************************
 		* get: articles
 		**********************************/
-		$this->_index_GetArticles_D9_V_2_1($query_genre_id);
+		$this->_index_GetArticles_D9_V_3_0($query_genre_id);
+// 		$this->_index_GetArticles_D9_V_2_1($query_genre_id);
 // 		$this->_index_GetArticles_D9_V_2_0($query_genre_id);
 // 		$this->_index_GetArticles_D9($query_genre_id);
 // 		$this->_index_GetArticles_T9($query_genre_id);
@@ -80,6 +81,41 @@ class ArticlesController extends AppController {
 	}//_index_Get_GenreID
 	
 	public function
+	_index_GetArticles_D9_V_3_0
+	($query_genre_id) {
+
+// 		debug($query_genre_id);
+		
+		/**********************************
+		* get: articles (initial)
+		**********************************/
+		$articles = $this->__index_Get_Articles($query_genre_id);
+
+		/**********************************
+		* get: categories
+		**********************************/
+		$categories = $this->__index_Get_Categories($query_genre_id);
+
+		/**********************************
+		* get: kw sets
+		**********************************/
+		$kw_sets = $this->__index_Get_KW_Sets($categories);
+		
+		/**********************************
+		* categorize
+		**********************************/
+		$a_categorized_new = $this->__index_Grouping($articles, $categories, $kw_sets);
+		
+		/**********************************
+		* set: vars
+		**********************************/
+		$this->set('articles', $articles);
+		
+		$this->set('a_categorized', $a_categorized_new);
+
+	}//_index_GetArticles_D9_V_2_1
+
+	public function
 	_index_GetArticles_D9_V_2_1
 	($query_genre_id) {
 
@@ -92,7 +128,7 @@ class ArticlesController extends AppController {
 		* get: categories
 		**********************************/
 		$categories = $this->__index_Get_Categories($query_genre_id);
-		
+
 		/**********************************
 		* get: kw sets
 		**********************************/
@@ -103,23 +139,14 @@ class ArticlesController extends AppController {
 		**********************************/
 		$a_categorized_new = $this->__index_Grouping($articles, $categories, $kw_sets);
 		
-// 		/**********************************
-// 		* grouping
-// 		**********************************/
-// 		$a_categorized = 
-// 					$this->__index_GetArticles_D9_V_2_0__Grouping(
-// 								$articles,
-// 								$query_genre_id);
-		
 		/**********************************
 		* set: vars
 		**********************************/
 		$this->set('articles', $articles);
 		
 		$this->set('a_categorized', $a_categorized_new);
-// 		$this->set('a_categorized', $a_categorized);
 
-	}//_index_GetArticles_D9_V_2_0
+	}//_index_GetArticles_D9_V_2_1
 
 	public function
 	_index_GetArticles_D9_V_2_0
@@ -304,8 +331,8 @@ class ArticlesController extends AppController {
 	__index_GetArticles_D9_V_2_1__Categorize
 	($articles, $kw_sets, $categories) {
 	
-		debug("kw_sets => ".count($kw_sets));
-		debug("categories => ".count($categories));
+// 		debug("kw_sets => ".count($kw_sets));
+// 		debug("categories => ".count($categories));
 		
 		$a_categorized_main = array();
 	
