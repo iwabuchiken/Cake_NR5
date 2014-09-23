@@ -79,6 +79,31 @@ td {
 	
 	border: 1px solid black;
 	
+	color:	black;
+	
+}
+
+/*td.plain {*/
+table#a_list_header td {
+	
+	border: 1px solid black;
+	
+	color:	black;
+	
+	background:	#CEFDB8;
+	
+}
+
+a.has_link {
+	
+	color: blue;
+	
+}
+
+a.no_article {
+	
+	color: gray;
+	
 }
 
 td.article_line {
@@ -207,6 +232,12 @@ table.table_no_line tr td {
 table#links {
 	
 	width:	400px;
+	
+}
+
+table#a_list_header {
+	
+	/*background:	#CEFDB8;*/
 	
 }
 

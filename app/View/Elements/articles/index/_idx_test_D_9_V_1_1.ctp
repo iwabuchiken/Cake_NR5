@@ -3,7 +3,12 @@
 
 <?php 
 
+	/**********************************
+	* setup
+	**********************************/
 	$keys = array_keys($a_categorized);
+	
+// 	ksort($a_categorized);
 	
 ?>
 

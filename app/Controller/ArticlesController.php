@@ -91,6 +91,15 @@ class ArticlesController extends AppController {
 		**********************************/
 		$articles = $this->__index_Get_Articles($query_genre_id);
 
+		// validate
+		if ($articles == null) {
+			
+			debug("articles => null");
+			
+			return;
+			
+		}
+		
 		/**********************************
 		* get: categories
 		**********************************/
@@ -106,6 +115,10 @@ class ArticlesController extends AppController {
 		**********************************/
 		$a_categorized_new = $this->__index_Grouping($articles, $categories, $kw_sets);
 		
+		ksort($a_categorized_new);
+		
+// 		debug(array_keys($a_categorized_new));
+		
 		/**********************************
 		* set: vars
 		**********************************/
@@ -113,6 +126,9 @@ class ArticlesController extends AppController {
 		
 		$this->set('a_categorized', $a_categorized_new);
 
+// 		debug(array_keys($a_categorized_new));
+// 		debug($a_categorized_new[array_keys($a_categorized_new)[0]]);
+		
 	}//_index_GetArticles_D9_V_2_1
 
 	public function
@@ -617,14 +633,34 @@ class ArticlesController extends AppController {
 		/**********************************
 		 * get: html
 		**********************************/
+		$articles = $this->__index_Get_Articles__Top($query_genre_id);
+		
+		/**********************************
+		* further pages
+		**********************************/
+		$articles = $this->__index_Get_Articles__Page_X($query_genre_id, $articles, 1);
+		
+		$articles = $this->__index_Get_Articles__Page_X($query_genre_id, $articles, 2);
+		
+		/**********************************
+		* return
+		**********************************/
+		return $articles;
+		
+	}//__index_Get_Articles
+	
+	public function
+	__index_Get_Articles__Top
+	($query_genre_id) {
+
 		if ($query_genre_id == null) {
-				
+		
 			$genre = "soci";
-				
+		
 		} else {
-				
+		
 			$genre = $this->_get_GenreCode_from_GenreID($query_genre_id);
-				
+		
 		}
 		
 		$url = "http://headlines.yahoo.co.jp/hl?c=$genre&t=l";
@@ -640,13 +676,13 @@ class ArticlesController extends AppController {
 		
 			// 			if (Utils::startsWith($ahref->href, "/hl")) {
 			if (Utils::startsWith($ahref->href, "/hl")
-				&& count(explode("-", $ahref->href)) > 3) {
-	
-					$ahref->href = "http://headlines.yahoo.co.jp".$ahref->href;
-	
-					array_push($ahrefs_hl, $ahref);
-	
-			}
+					&& count(explode("-", $ahref->href)) > 3) {
+		
+						$ahref->href = "http://headlines.yahoo.co.jp".$ahref->href;
+		
+						array_push($ahrefs_hl, $ahref);
+		
+					}
 		
 		}//foreach ($ahrefs as $ahref)
 		
@@ -658,26 +694,86 @@ class ArticlesController extends AppController {
 		foreach ($ahrefs_hl as $ahref) {
 		
 			$a = $this->Article->create();
-				
+		
 			$a['url'] = $ahref->href;
-				
+		
 			$a['line'] = $ahref->plaintext;
-				
+		
 			// 			$a->vendor = $this->conv_Url_to_VendorName($ahref->href);
 			$a['vendor'] = $this->conv_Url_to_VendorName($ahref->href);
-				
+		
 			$a['news_time'] = $this->conv_Url_to_NewsTime($ahref->href);
-				
+		
 			array_push($articles, $a);
+		
+		}//foreach ($ahrefs_hl as $ahref)
+		
+		return $articles;
+		
+	}//__index_Get_Articles__Top
+	
+	public function
+	__index_Get_Articles__Page_X
+	($query_genre_id, $articles, $page) {
+
+		if ($query_genre_id == null) {
+		
+			$genre = "soci";
+		
+		} else {
+		
+			$genre = $this->_get_GenreCode_from_GenreID($query_genre_id);
 		
 		}
 		
+		$url = "http://headlines.yahoo.co.jp/hl?c=$genre&t=l&p=$page";
+		
+		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+		$html = file_get_html($url);
+		
+		$ahrefs = $html->find('a[href]');
+		
+		$ahrefs_hl = array();
+		
+		foreach ($ahrefs as $ahref) {
+		
+			// 			if (Utils::startsWith($ahref->href, "/hl")) {
+			if (Utils::startsWith($ahref->href, "/hl")
+					&& count(explode("-", $ahref->href)) > 3) {
+		
+						$ahref->href = "http://headlines.yahoo.co.jp".$ahref->href;
+		
+						array_push($ahrefs_hl, $ahref);
+		
+					}
+		
+		}//foreach ($ahrefs as $ahref)
+		
 		/**********************************
-		* return
+		 * build: list
 		**********************************/
+// 		$articles = array();
+		
+		foreach ($ahrefs_hl as $ahref) {
+		
+			$a = $this->Article->create();
+		
+			$a['url'] = $ahref->href;
+		
+			$a['line'] = $ahref->plaintext;
+		
+			// 			$a->vendor = $this->conv_Url_to_VendorName($ahref->href);
+			$a['vendor'] = $this->conv_Url_to_VendorName($ahref->href);
+		
+			$a['news_time'] = $this->conv_Url_to_NewsTime($ahref->href);
+		
+			array_push($articles, $a);
+		
+		}//foreach ($ahrefs_hl as $ahref)
+		
 		return $articles;
 		
-	}//__index_Get_Articles
+	}//__index_Get_Articles__Page_X
 	
 	public function
 	__index_GetArticles_D9__Get_Articles
