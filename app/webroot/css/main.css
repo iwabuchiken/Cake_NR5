@@ -98,6 +98,8 @@ a.has_link {
 	
 	color: blue;
 	
+	text-decoration:	underline;
+	
 }
 
 a.no_article {

@@ -50,32 +50,33 @@
 	
 	</tr>
 
-	<tr>
+<!-- 	<tr> -->
 	
-		<td>
+<!-- 		<td> -->
 		
-			<?php echo $this->Html->link(
-								'Save categories from csv',
-								array('controller' => 'categorys', 
-										'action' => 'save_Data_Categories_from_CSV'),
-// 										'action' => '_save_Data_Categories_from_CSV'),
-								array('class' => "button"));
+			<?php //echo $this->Html->link(
+// 								'Save categories from csv',
+// 								array('controller' => 'categorys', 
+// 										'action' => 'save_Data_Categories_from_CSV'),
+// // 										'action' => '_save_Data_Categories_from_CSV'),
+// 								array('class' => "button"));
 			?>
 			
-		</td>
+<!-- 		</td> -->
 	
-		<td>
+<!-- 		<td> -->
 		
-			<?php echo $this->Html->link(
-								'Save keywords from csv',
-								array('controller' => 'keywords', 
-										'action' => 'save_Data_Keywords_from_CSV'),
-// 										'action' => '_save_Data_Categories_from_CSV'),
-								array('class' => "button"));
+			<?php 
+// 				echo $this->Html->link(
+// 								'Save keywords from csv',
+// 								array('controller' => 'keywords', 
+// 										'action' => 'save_Data_Keywords_from_CSV'),
+// // 										'action' => '_save_Data_Categories_from_CSV'),
+// 								array('class' => "button"));
 			?>
 			
-		</td>
+<!-- 		</td> -->
 	
-	</tr>
+<!-- 	</tr> -->
 	
 </table>

@@ -7,7 +7,40 @@ class KeywordsController extends AppController {
 	public $components = array('Paginator');
 	
 	public function index() {
+
+		/**********************************
+		* sort
+		**********************************/
+		$sort_name = @$this->request->query['sort'];
+
+		if ($sort_name != null && $sort_name != "") {
+				
+			$opt_order = array($sort_name => 'asc');
+				
+		} else {
+				
+			$opt_order = array('id' => 'asc');
+				
+		}
 		
+		/**********************************
+		* search
+		**********************************/
+		$search_word = @$this->request->query['search'];
+		
+		if ($search_word != null && $search_word != "") {
+		
+			$opt_conditions = array('Keyword.name LIKE' => "%$search_word%");
+		
+		} else {
+		
+			$opt_conditions = '';
+		
+		}
+		
+		/**********************************
+		* paginate
+		**********************************/
 		$page_limit = 10;
 		
 		//REF http://www.codeofaninja.com/2013/07/pagination-in-cakephp.html
@@ -17,14 +50,26 @@ class KeywordsController extends AppController {
 // 						'id' => 'asc'
 // 				)
 // 		);
+
+// 		if ($sort_name != null && $sort_name != "") {
+			
+// 			$opt_order = array($sort_name => 'asc');
+			
+// 		} else {
+			
+// 			$opt_order = array('id' => 'asc');
+			
+// 		}
 		
 		$this->paginate = array(
 		// 					'conditions' => array('Image.file_name LIKE' => "%$filter_TableName%"),
 // 				'conditions' => array('Image.memos LIKE' => "%$filter_TableName%"),
 				'limit' => $page_limit,
-				'order' => array(
-						'id' => 'asc'
-				)
+				'order' => $opt_order,
+				'conditions'	=> $opt_conditions
+// 				'order' => array(
+// 						'id' => 'asc'
+// 				)
 		);
 		
 		$this->set('keywords', $this->paginate('Keyword'));
