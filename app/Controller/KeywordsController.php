@@ -86,6 +86,11 @@ class KeywordsController extends AppController {
 // 		$this->set('num_of_pages', (int)($num_of_kws / $page_limit));
 		
 // 		$this->set('genre', $this->_get_Genre($keyword['Category']['id']));
+
+		//test
+// 		$this->render("Keywords/js/add_KW__Genre_Changed");	// not found
+// 		$this->render("js/add_KW__Genre_Changed");	// works
+		
 	}
 	
 	public function 
@@ -163,12 +168,35 @@ class KeywordsController extends AppController {
 			
 			$select_Genres = $this->_get_Selector_Genre();
 			
+// 			debug($select_Genres);
+			
+// 			debug(array_keys($select_Genres));
+			
 			$this->set('select_Genres', $select_Genres);
 			
-			$select_Categories = $this->_get_Selector_Category();
+			if (count($select_Genres) > 1) {
+				
+				$keys = array_keys($select_Genres);
+				
+// 				$tmp = $keys[1];
+				
+				$genre_id = $keys[1];
+// 				$genre_id = 0;
+// 				$genre_id = array_keys($select_Genres)[1];	// error in remote --> Parse error: syntax error, unexpected '[' 
+				
+			} else {
+				
+				$genre_id = 0;
+				
+			}
+			
+			
+			$select_Categories = 
+					$this->_get_Selector_Category_From_GenreID($genre_id);
 			
 			$this->set('select_Categories', $select_Categories);
 			
+			$this->set('genre_id', $genre_id);
 			
 		}
 		
@@ -180,6 +208,44 @@ class KeywordsController extends AppController {
 		$this->loadModel('Category');
 		
 		$option = array('order' => array('Category.name' => 'asc'));
+		
+		$genres = $this->Category->find('all', $option);
+		
+		$select_Categories = array();
+		
+		foreach ($genres as $genre) {
+				
+			$genre_Name = $genre['Category']['name'];
+			$genre_Id = $genre['Category']['id'];
+				
+			$select_Categories[$genre_Id] = $genre_Name;
+				
+		}
+		
+		return $select_Categories;
+		
+	}//_get_Selector_Category
+	
+	public function 
+	_get_Selector_Category_From_GenreID($id) {
+
+		$this->loadModel('Category');
+		
+		if ($id != null) {
+			
+			$option = array(
+					
+						'order' => array('Category.name' => 'asc'),
+						'conditions'	=> array('Category.genre_id' => $id)
+			
+			);
+			
+		} else {
+			
+			$option = array('order' => array('Category.name' => 'asc'));
+			
+		}
+		
 		
 		$genres = $this->Category->find('all', $option);
 		
@@ -474,5 +540,26 @@ class KeywordsController extends AppController {
 		}
 	
 	}//delete_all
-	
+
+	public function
+	add_KW__Genre_Changed() {
+		
+		//REF http://stackoverflow.com/questions/10878321/different-layouts-on-different-views-cakephp-2-0 answered Jun 4 '12 at 8:28
+		//REF http://learn.jquery.com/using-jquery-core/faq/how-do-i-get-the-text-value-of-a-selected-option/
+		$this->layout = 'plain_1';
+		
+		$id = @$this->request->query['id'];
+
+		/**********************************
+		* categories
+		**********************************/
+		$select_Categories = $this->_get_Selector_Category_From_GenreID($id);
+		
+		$this->set('select_Categories', $select_Categories);		
+
+		//REF http://stackoverflow.com/questions/11711385/rendering-controller-to-a-different-view-in-cakephpanswered Jul 30 '12 at 5:10
+		$this->render("js/add_KW__Genre_Changed");
+// 		return $this->redirect(array('action' => 'index'));
+		
+	}
 }

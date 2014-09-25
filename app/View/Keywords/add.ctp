@@ -20,6 +20,11 @@
 			'type'		=> 'select',
 			'options'	=> $select_Genres,
 			'onmouseover' => 'this.select()',
+			
+			'id'		=> "genre",
+			
+			'selected'	=> $genre_id,
+			
 // 			'rows' => '3'
 			
 			
@@ -46,3 +51,5 @@
 	
 	echo $this->Form->end('Save Keyword');
 ?>
+
+<!-- <div id="add_kw_ajax">abc</div> -->
