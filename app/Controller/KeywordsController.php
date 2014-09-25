@@ -179,7 +179,9 @@ class KeywordsController extends AppController {
 
 		$this->loadModel('Category');
 		
-		$genres = $this->Category->find('all');
+		$option = array('order' => array('Category.name' => 'asc'));
+		
+		$genres = $this->Category->find('all', $option);
 		
 		$select_Categories = array();
 		
@@ -201,7 +203,10 @@ class KeywordsController extends AppController {
 
 		$this->loadModel('Genre');
 		
-		$genres = $this->Genre->find('all');
+		$option = array('order' => array('name' => 'asc'));
+		
+		$genres = $this->Genre->find('all', $option);
+// 		$genres = $this->Genre->find('all');
 		
 		$select_Genres = array();
 		

@@ -62,7 +62,9 @@ class CategorysController
 			
 			$this->loadModel('Genre');
 				
-			$genres = $this->Genre->find('all');
+			$option = array('order' => array('Genre.name' => 'asc'));
+			
+			$genres = $this->Genre->find('all', $option);
 				
 			$select_Genres = array();
 				
