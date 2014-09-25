@@ -319,6 +319,109 @@
 			return $data;
 		
 		}//csv_to_array
+
+		public static function
+		_get_Selector_Category() {
+		
+			$this->loadModel('Category');
+		
+			$option = array('order' => array('Category.name' => 'asc'));
+		
+			$genres = $this->Category->find('all', $option);
+		
+			$select_Categories = array();
+		
+			foreach ($genres as $genre) {
+		
+				$genre_Name = $genre['Category']['name'];
+				$genre_Id = $genre['Category']['id'];
+		
+				$select_Categories[$genre_Id] = $genre_Name;
+		
+			}
+		
+			return $select_Categories;
+		
+		}//_get_Selector_Category
+		
+		public static function
+		_get_Selector_Category_From_GenreID($id) {
+		
+			//REF http://stackoverflow.com/questions/2802677/what-are-the-possible-reasons-for-appimport-not-working answered May 10 '10 at 13:18
+			$model = ClassRegistry::init('Category');
+			
+// 			$option = array('order' => array('Category.name' => 'asc'));
+				
+// 			$this->loadModel('Category');
+		
+			if ($id != null) {
+					
+				$option = array(
+							
+						'order' => array('Category.name' => 'asc'),
+						'conditions'	=> array('Category.genre_id' => $id)
+							
+				);
+					
+			} else {
+					
+				$option = array('order' => array('Category.name' => 'asc'));
+					
+			}
+		
+		
+			$categories = $model->find('all', $option);
+// 			$categories = $this->Category->find('all', $option);
+		
+			$select_Categories = array();
+		
+			foreach ($categories as $category) {
+		
+				$category_Name = $category['Category']['name'];
+				$category_Id = $category['Category']['id'];
+		
+				$select_Categories[$category_Id] = $category_Name;
+		
+			}
+		
+			return $select_Categories;
+		
+		}//_get_Selector_Category
+		
+		public static function
+		_get_Selector_Genre() {
+		
+// 			$this->loadModel('Genre');
+// 			App::import("Genre");
+		
+// 			$model = new Genre();
+	
+			//REF http://stackoverflow.com/questions/2802677/what-are-the-possible-reasons-for-appimport-not-working answered May 10 '10 at 13:18
+			$model = ClassRegistry::init('Genre');
+						
+			$option = array('order' => array('Genre.name' => 'asc'));
+			
+			$genres = $model->find('all', $option);
+			
+		
+// 			$genres = $this->Genre->find('all', $option);
+			// 		$genres = $this->Genre->find('all');
+		
+			$select_Genres = array();
+		
+			foreach ($genres as $genre) {
+		
+				$genre_Name = $genre['Genre']['name'];
+				$genre_Id = $genre['Genre']['id'];
+		
+				$select_Genres[$genre_Id] = $genre_Name;
+		
+			}
+		
+			return $select_Genres;
+		
+		}//_get_Selector_Genre
+		
 		
 	}//class Utils
 	

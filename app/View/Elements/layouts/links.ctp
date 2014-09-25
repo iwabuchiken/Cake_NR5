@@ -50,9 +50,21 @@
 	
 	</tr>
 
-<!-- 	<tr> -->
+	<tr>
 	
-<!-- 		<td> -->
+		<td>
+
+			<?php echo $this->Html->link(
+					
+					'History',
+					array('controller' => 'historys', 
+							'action' => 'index'),
+					array('class' => "button"));
+			?>
+		
+		</td>
+		
+	</tr>
 		
 			<?php //echo $this->Html->link(
 // 								'Save categories from csv',
