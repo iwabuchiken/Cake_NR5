@@ -120,6 +120,18 @@ class ArticlesController extends AppController {
 // 		debug(array_keys($a_categorized_new));
 		
 		/**********************************
+		* sort
+		**********************************/
+// 		usort($a_categorized_new, array(&$this, 'cmp_Articles'));	// Undefined index: Category
+		
+		//REF http://cakephp.1045679.n5.nabble.com/Using-usort-in-Cake-td1327099.html Aug 11, 2009; 9:18pm
+		@uksort($a_categorized_new, array(&$this, 'cmp_Articles'));	// n/c
+		//REF https://groups.google.com/forum/#!topic/cake-php/hNOGb_yWLig "Finally got it figured out."
+// 		uksort($a_categorized_new, array('ArticlesController', 'cmp_Articles'));
+// 		uksort($a_categorized_new, "cmp_Articles");
+		
+		
+		/**********************************
 		* set: vars
 		**********************************/
 		$this->set('articles', $articles);
@@ -366,7 +378,8 @@ class ArticlesController extends AppController {
 		
 		for ($i = 0; $i < count($categories); $i++) {
 			
-			$a_categorized_main_new[$categories[$i]['Category']['name']]
+			$a_categorized_main_new[$categories[$i]['Category']['id']]
+// 			$a_categorized_main_new[$categories[$i]['Category']['name']]
 						= array();
 			
 		}
@@ -420,7 +433,8 @@ class ArticlesController extends AppController {
 				if ($found == true) {
 					
 					array_push(
-							$a_categorized_main_new[$categories[$j]['Category']['name']], 
+							$a_categorized_main_new[$categories[$j]['Category']['id']], 
+// 							$a_categorized_main_new[$categories[$j]['Category']['name']], 
 							$a);
 					
 					break;
@@ -441,7 +455,9 @@ class ArticlesController extends AppController {
 		}//for ($i = 0; $i < count($articles); $i++)
 
 		// Others
-		$a_categorized_main_new['Others'] = $a_categorized_others_new;
+		$a_categorized_main_new[CONS::$category_Others_Num] = $a_categorized_others_new;
+// 		$a_categorized_main_new[CONS::$category_Others_Label] = $a_categorized_others_new;
+// 		$a_categorized_main_new['Others'] = $a_categorized_others_new;
 // 		array_push(
 // 				$a_categorized_main_new['Others'],
 // 				$a_categorized_others_new);
@@ -2173,7 +2189,8 @@ class ArticlesController extends AppController {
 		$this->History->set('updated_at', Utils::get_CurrentTime());
 		
 		if ($this->History->save()) {
-			
+
+			//REF http://book.cakephp.org/2.0/ja/controllers.html#id8
 			$this->redirect($article_url);
 			
 		} else {
@@ -2187,6 +2204,64 @@ class ArticlesController extends AppController {
 		
 		
 		
+	}//open_article
+
+	public function
+	cmp_Articles($a1, $a2) {
+		
+// 		debug("a1 = ".$a1);
+		
+// 		$key_a1 = array_keys($a1)[0];
+		
+		$a1_new = mb_convert_encoding($this->get_CategoryName_From_CategoryID($a1), "UTF-8", "SJIS");	// n/c
+		$a2_new = mb_convert_encoding($this->get_CategoryName_From_CategoryID($a2), "UTF-8", "SJIS");
+// 		$a1_new = mb_convert_encoding($this->get_CategoryName_From_CategoryID($a1), "UTF-8");	// n/c
+// 		$a2_new = mb_convert_encoding($this->get_CategoryName_From_CategoryID($a2), "UTF-8");
+// 		$a1_new = $this->get_CategoryName_From_CategoryID($a1);
+// 		$a2_new = $this->get_CategoryName_From_CategoryID($a2);
+		
+		
+// 		debug($a1_new);
+		
+// 		$a1_new = $this->get_CategoryName_From_CategoryID($a1);	//  uksort(): Array was modified by the user comparison function
+// 		$a2_new = $this->get_CategoryName_From_CategoryID($a2);
+// 		$a1 = $this->get_CategoryName_From_CategoryID($a1);		//  uksort(): Array was modified by the user comparison function
+// 		$a2 = $this->get_CategoryName_From_CategoryID($a2);
+		
+		return strcasecmp($a1_new, $a2_new);
+		
 	}
 	
-}
+	public function
+	get_CategoryName_From_CategoryID
+	($category_id){
+	
+		// 		debug($category_id);
+		/**********************************
+			* "Others"
+		**********************************/
+		if (((int)$category_id) == CONS::$category_Others_Num) {
+				
+			return CONS::$category_Others_Label;
+				
+		}
+	
+		/**********************************
+			* category
+		**********************************/
+		//REF http://stackoverflow.com/questions/13356205/how-do-i-use-model-in-helper-cakephp-2-x answered Nov 13 '12 at 6:13
+		App::import("Category");
+		$model = new Category();
+	
+		$option = array(
+				'conditions' => array('Category.id' => (int)$category_id));
+		// 				'conditions' => array('Category.id' => $category_id));
+	
+		$category = $model->find('first', $option);
+	
+		// 		return $category;
+		return $category['Category']['name'];
+	
+	}//get_Genre_From_KeywordID
+	
+}//class ArticlesController extends AppController

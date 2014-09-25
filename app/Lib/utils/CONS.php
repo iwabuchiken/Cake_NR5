@@ -37,4 +37,11 @@ class CONS {
 	**********************************/
 	public static $genre_code_dflt = "soci";
 	
+	/**********************************
+	* Articles
+	**********************************/
+	public static $category_Others_Label = "Others";
+	
+	public static $category_Others_Num = -5;
+	
 }//class CONS

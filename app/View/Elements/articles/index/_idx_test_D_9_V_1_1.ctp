@@ -33,7 +33,13 @@
 			
 		}
 		
-		echo "<a name=\"$k\">$k</a>";
+		$category_name = $this->Article->get_CategoryName_From_CategoryID($k);
+		
+// 		echo $category_name['Category']['name'];
+// 		debug($category_name);
+		
+		echo "<a name=\"$category_name\">$category_name($k)</a>";
+// 		echo "<a name=\"$k\">$k</a>";
 
 		echo " (".count($a_group).")";
 		
@@ -97,6 +103,7 @@
 								$a['line'],
 								array(
 									'action'	=> 'open_article',
+									//REF http://book.cakephp.org/2.0/ja/core-libraries/helpers/html.html "'?' => array('height' => 400, 'width' => 500))"
 									'?'			=> $param
 // 									'?'	=> "article_url=".$a['url']
 // 									'article_url'	=> $a['url']

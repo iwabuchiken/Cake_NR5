@@ -6,7 +6,7 @@
 	
 	<?php 
 
-		sort($keys);
+// 		sort($keys);
 // 		asort($keys);
 	
 		if (count($keys) < 2) {
@@ -39,17 +39,22 @@
 				}
 				
 // 				echo $keys[$i];
+				$category_name = 
+						$this->Article->get_CategoryName_From_CategoryID($keys[$i]);
+				
 				if (count($a_categorized[$keys[$i]]) == 0) {
 				
-					echo "<a href=\"#".$keys[$i]."\" class=\"no_article\">";
+					echo "<a href=\"#".$category_name."\" class=\"no_article\">";
+// 					echo "<a href=\"#".$keys[$i]."\" class=\"no_article\">";
 				
 				} else {
 				
-					echo "<a href=\"#".$keys[$i]."\" class=\"has_link\">";
+					echo "<a href=\"#".$category_name."\" class=\"has_link\">";
 				
 				}
 				
-				echo $keys[$i]."</a>";
+				echo $category_name."</a>";
+// 				echo $keys[$i]."</a>";
 
 				echo "(".count($a_categorized[$keys[$i]]).")";
 			
@@ -81,8 +86,12 @@
 				
 			}
 			
+			$category_name =
+					$this->Article->get_CategoryName_From_CategoryID($keys[$i]);
+			
 // 			echo $keys[$i];
-			echo "<a href=\"#".$keys[$i]."\">".$keys[$i]."</a>";
+			echo "<a href=\"#".$category_name."\">".$category_name."</a>";
+// 			echo "<a href=\"#".$keys[$i]."\">".$keys[$i]."</a>";
 			
 			echo "(".count($a_categorized[$keys[$i]]).")";
 			
