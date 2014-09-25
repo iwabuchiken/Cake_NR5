@@ -67,6 +67,29 @@ CREATE TABLE keywords (
 	
 );
 
+DROP TABLE histories;
+
+CREATE TABLE histories(
+   id			INTEGER PRIMARY KEY     AUTOINCREMENT	NOT NULL,
+   created_at	VARCHAR(30),
+   updated_at	VARCHAR(30),
+   
+   line			TEXT,
+   url			TEXT,
+   vendor		VARCHAR(30),
+   
+   news_time	VARCHAR(30),
+   
+   genre_id		INT,
+   category_id	INT,
+   subcat_id	INT,
+   
+   content		TEXT,
+   
+   user_id		INT
+   
+);
+
 
 CREATE TABLE users (
 	id			INTEGER PRIMARY KEY     AUTOINCREMENT	NOT NULL,
@@ -135,6 +158,30 @@ CREATE TABLE keywords (
 	category_id	INTEGER
 	
 );
+
+DROP TABLE histories;
+
+CREATE TABLE histories(
+   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+   created_at	VARCHAR(30),
+   updated_at	VARCHAR(30),
+   
+   line			TEXT,
+   url			TEXT,
+   vendor		VARCHAR(30),
+   
+   news_time	VARCHAR(30),
+   
+   genre_id		INT,
+   category_id	INT,
+   subcat_id	INT,
+   
+   content		TEXT,
+   
+   user_id		INT
+   
+);
+
 
 CREATE TABLE users (
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

@@ -11,6 +11,11 @@ class Category extends AppModel {
 			'Keyword' => array(
 	
 					'className' => 'Keyword'
+			),
+	
+			'History' => array(
+	
+					'className' => 'History'
 			)
 	
 	);
