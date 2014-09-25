@@ -2155,4 +2155,38 @@ class ArticlesController extends AppController {
 		
 	}//sort_PosList()
 
+	public function
+	open_article() {
+		
+		$article_url = @$this->request->query['article_url'];
+		$article_line = @$this->request->query['article_line'];
+		$article_vendor = @$this->request->query['article_vendor'];
+
+		$this->loadModel('History');
+		
+		$this->History->create();
+		
+		$this->History->set('url', $article_url);
+		$this->History->set('line', $article_line);
+		
+		$this->History->set('created_at', Utils::get_CurrentTime());
+		$this->History->set('updated_at', Utils::get_CurrentTime());
+		
+		if ($this->History->save()) {
+			
+			$this->redirect($article_url);
+			
+		} else {
+			
+			$this->redirect(
+						array(
+							'controller' => 'historys', 
+							'action' => 'index'));
+			
+		}
+		
+		
+		
+	}
+	
 }

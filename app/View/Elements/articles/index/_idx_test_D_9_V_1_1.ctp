@@ -81,12 +81,27 @@
 				
 				$option = array(
 						'target'	=> '_blank',
-						'escape'	=> false
+						'escape'	=> false,
+// 						'?'	=> "article_url=".$a['url']
+// 						'article_url'	=> $a['url']
+				);
+				
+				$param = array(
+					
+						'article_url'	=> $a['url'],
+						'article_line'	=> $a['line'],
+						'article_vendor'	=> $a['vendor'],
 				);
 			
 				echo $this->Html->link(
 								$a['line'],
-								$a['url'],
+								array(
+									'action'	=> 'open_article',
+									'?'			=> $param
+// 									'?'	=> "article_url=".$a['url']
+// 									'article_url'	=> $a['url']
+								),
+// 								$a['url'],
 								$option
 					);
 			?>
