@@ -572,3 +572,167 @@ ROOT => C:\WORKS\WS\Eclipse_Kepler\VM_Cake[07/05/2014 09:10:43 : C:\WORKS\WS\Ecl
 [09/22/2014 09:20:50 : \app\Controller\CategorysController.php : 374] counter => 48
 [09/22/2014 09:21:37 : \app\Controller\KeywordsController.php : 370] $kw_pairs => 921
 [09/22/2014 09:21:45 : \app\Controller\KeywordsController.php : 306] counter => 911
+[09/26/2014 11:37:34 : \app\Controller\ArticlesController.php : 2239] 14
+[09/26/2014 11:38:01 : \app\Controller\ArticlesController.php : 2239] 14
+[09/26/2014 11:38:43 : \app\Controller\ArticlesController.php : 2239] $ahrefs => 15
+[09/26/2014 11:43:04 : \app\Controller\ArticlesController.php : 2239] $ahrefs => 13
+[09/26/2014 11:43:58 : \app\Controller\ArticlesController.php : 2239] $ahrefs => 14
+[09/26/2014 11:43:58 : \app\Controller\ArticlesController.php : 2248] 0
+[09/26/2014 11:43:58 : \app\Controller\ArticlesController.php : 2248] 0
+[09/26/2014 11:43:58 : \app\Controller\ArticlesController.php : 2248] 0
+[09/26/2014 11:43:58 : \app\Controller\ArticlesController.php : 2248] 0
+[09/26/2014 11:43:58 : \app\Controller\ArticlesController.php : 2248] 0
+[09/26/2014 11:43:58 : \app\Controller\ArticlesController.php : 2248] 0
+[09/26/2014 11:43:58 : \app\Controller\ArticlesController.php : 2248] 0
+[09/26/2014 11:43:58 : \app\Controller\ArticlesController.php : 2248] 0
+[09/26/2014 11:43:58 : \app\Controller\ArticlesController.php : 2248] 0
+[09/26/2014 11:43:58 : \app\Controller\ArticlesController.php : 2248] 0
+[09/26/2014 11:43:58 : \app\Controller\ArticlesController.php : 2248] 0
+[09/26/2014 11:43:58 : \app\Controller\ArticlesController.php : 2248] 0
+[09/26/2014 11:43:58 : \app\Controller\ArticlesController.php : 2248] 0
+[09/26/2014 11:43:58 : \app\Controller\ArticlesController.php : 2248] 0
+[09/26/2014 11:44:50 : \app\Controller\ArticlesController.php : 2239] $ahrefs => 13
+[09/26/2014 11:44:50 : \app\Controller\ArticlesController.php : 2248] href: text => ニュース
+[09/26/2014 11:44:50 : \app\Controller\ArticlesController.php : 2248] href: text => 条件指定
+[09/26/2014 11:44:50 : \app\Controller\ArticlesController.php : 2248] href: text => トピックス
+[09/26/2014 11:44:50 : \app\Controller\ArticlesController.php : 2248] href: text => Buzzワード
+[09/26/2014 11:44:50 : \app\Controller\ArticlesController.php : 2248] href: text => 意識調査
+[09/26/2014 11:44:50 : \app\Controller\ArticlesController.php : 2248] href: text => 全国紙パック
+[09/26/2014 11:44:50 : \app\Controller\ArticlesController.php : 2248] href: text => 国内
+[09/26/2014 11:44:50 : \app\Controller\ArticlesController.php : 2248] href: text => 毎日新聞&nbsp;9月26日(金)7時10分配信     
+[09/26/2014 11:44:50 : \app\Controller\ArticlesController.php : 2248] href: text =>  　１８日に亡くなった文化勲章受章者の宇沢弘文・東大名誉教授は、マクロ、ミクロ両経済学の分野で先駆的な業績を上げ、世界計量経済学会会長を務めるなど、世界的な経済学者として活躍した。同時に環境破壊など現代文明に対する鋭い批判者としても知られ、地球温暖化防止などを訴え続けた。
+ 
+ 　宇沢さんは１９５１年に東大理学部数学科を卒業。生命保険会社に一時勤務したが、経済学に転じ、渡米。スタンフォード大で助教授、准教授を歴任。カリフォルニア大経済学部助教授、シカゴ大教授を経て、６９年から東大経済学部教授となった。
+ 
+ 　５０年代から７０年代にかけ、数理経済学の分野で数多くの実績を上げた。特に高い評価を受けたのは、消費財と資本財の２部門の成長モデルの構築。農業と工業が成長を遂げるため、土地、資本、労働など生産要素が部門間でどう移動すればいいかを理論的に実証した。
+ 
+ 　しかし７０年代以降は、次第に市場原理を優先する現代新古典派理論に疑問を抱き、同理論を激しく批判する立場をとった。公害など環境問題に対応できていないという不満からだった。地球温暖化など環境問題への発言は多く、生産、消費優先の先進工業国のあり方に疑問を投げかけた。
+ 
+ 　９０年８月には、毎日新聞のインタビューに対し、「石油、石炭をふんだんに消費し、環境保護の費用を出し惜しんできた工業文明のツケが、今、私たちに回ってきている」とし、「将来の世代と開発途上国に負担を肩代わりさせないよう、生産、消費のコストに温暖化を減らす費用を急ぎ組み込まねばなりません」と語った。当時、宇沢さんが提唱した「炭素税（カーボン・タックス）」を世界各国に課すというアイデアは、その税収で大気安定化国際基金を設け、発展途上国の森林作りなどに役立てるという狙いだった。そうした環境面での国際貢献で日本が先頭に立つよう、強く訴えた。
+ 
+ 　企業活動と環境保全をどう両立させるかについて、宇沢さんは「経済成長率が高いということは、地球の温暖化や日本の経済摩擦のような好ましくない問題を引き起こす。本来なら経済成長率は低いほど望ましい」とさえ述べていた。
+ 
+ 　９７年に地球温暖化防止に向け、京都議定書が締結され、先進国が温室効果ガス削減目標を定めたが、日本で官民による環境保全の流れを作る上で、宇沢さんの主張は大きな影響を及ぼした。
+ 
+ 　近年は、環太平洋パートナーシップ協定（ＴＰＰ）の反対運動に携わり、日本の農業保護などを訴えていた。
+[09/26/2014 11:44:50 : \app\Controller\ArticlesController.php : 2248] href: text => 最終更新:9月26日(金)7時10分
+[09/26/2014 11:44:50 : \app\Controller\ArticlesController.php : 2248] href: text => 
+[09/26/2014 11:44:50 : \app\Controller\ArticlesController.php : 2248] href: text => もっと見る
+[09/26/2014 11:44:50 : \app\Controller\ArticlesController.php : 2248] href: text => もっと見る
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2239] $ahrefs => 14
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2248] class => 
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2253] href: text => ニュース
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2248] class => 
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2253] href: text => 条件指定
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2248] class => 
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2253] href: text => トピックス
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2248] class => 
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2253] href: text => Buzzワード
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2248] class => 
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2253] href: text => 意識調査
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2248] class => 
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2253] href: text => 全国紙パック
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2248] class => 
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2253] href: text => 国内
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2248] class => 
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2253] href: text => 読売新聞&nbsp;9月26日(金)7時58分配信     
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2248] class => 
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2253] href: text =>  　ＪＲ北海道は２５日、男性運転士（２３）が特急列車を運転中、私用のスマートフォンを使って会員制交流サイト「フェイスブック」に書き込みを行ったと発表した。
+ 
+ 　乗務中にスマホを使うことは社内規定で禁じられており、同社は運転士を処分する方針。
+ 
+ 　発表によると、運転士は２２日午前６時５０分頃、釧路発札幌行き特急「スーパーおおぞら２号」で、北海道白糠町の根室線白糠―古瀬間を走行中、運転席でスマホから自身のフェイスブックに情報を送信した。社内調査に対し、書き込みを認め「大変反省している」と話しているという。
+ 
+ 　同社広報部は「いまだに意識が変わらない社員がいることを厳粛に受け止めている。指導を強化する」としている。
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2248] class => 
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2253] href: text => 最終更新:9月26日(金)7時58分
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2248] class => 
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2253] href: text => 
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2248] class => 
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2253] href: text => ※Buzzは自動抽出された記事です。
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2248] class => 
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2253] href: text => もっと見る
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2248] class => 
+[09/26/2014 11:47:27 : \app\Controller\ArticlesController.php : 2253] href: text => もっと見る
+[09/26/2014 11:49:17 : \app\Controller\ArticlesController.php : 2239] $ahrefs => 14
+[09/26/2014 11:49:17 : \app\Controller\ArticlesController.php : 2249] class => 
+[09/26/2014 11:49:17 : \app\Controller\ArticlesController.php : 2254] href: text => ニュース
+[09/26/2014 11:49:17 : \app\Controller\ArticlesController.php : 2249] class => 
+[09/26/2014 11:49:17 : \app\Controller\ArticlesController.php : 2254] href: text => 条件指定
+[09/26/2014 11:49:17 : \app\Controller\ArticlesController.php : 2249] class => 
+[09/26/2014 11:49:17 : \app\Controller\ArticlesController.php : 2254] href: text => トピックス
+[09/26/2014 11:49:17 : \app\Controller\ArticlesController.php : 2249] class => 
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2254] href: text => Buzzワード
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2249] class => 
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2254] href: text => 意識調査
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2249] class => 
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2254] href: text => 全国紙パック
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2249] class => 
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2254] href: text => 国内
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2249] class => 
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2254] href: text => 読売新聞&nbsp;9月26日(金)9時17分配信     
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2249] class => 
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2254] href: text =>  　【バンコク＝児玉浩太郎】ベトナムから輸入した冷凍シシャモに殺そ剤などの異物が混入していた問題で、ベトナム警察当局は、食品加工会社「リッチ・ビューティー・フード」元従業員の３０歳代の男を器物損壊容疑で逮捕した。
+ 
+ 　地元メディアが２５日報じた。
+ 
+ 　問題となったのは、同社が加工し、山口県内の業者が５〜６月に輸入した「子持ちからふとししゃも」。男は容疑を認め、「１日に１３〜１４時間も働かされており、会社の信用を失わせるためにやった」と供述しているという。
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2249] class => 
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2254] href: text => 最終更新:9月26日(金)9時17分
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2249] class => 
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2254] href: text => 
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2249] class => 
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2254] href: text => ※Buzzは自動抽出された記事です。
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2249] class => 
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2254] href: text => もっと見る
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2249] class => 
+[09/26/2014 11:49:18 : \app\Controller\ArticlesController.php : 2254] href: text => もっと見る
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2239] $ahrefs => 16
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2250] class => currentSearch
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2255] href: text => ニュース
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2250] class => advanced
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2255] href: text => 条件指定
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2250] class => currentSearch
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2255] href: text => トピックス
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2250] class => currentSearch
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2255] href: text => Buzzワード
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2250] class => currentSearch
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2255] href: text => 意識調査
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2250] class => currentSearch
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2255] href: text => 全国紙パック
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2250] class => dom
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2255] href: text => 国内
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2250] class => yjSt ymuiDate
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2255] href: text => 河北新報&nbsp;9月26日(金)9時5分配信     
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2250] class => photoOffer
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2255] href: text =>   店内から押収品を運び出す捜査員＝25日午後5時55分ごろ、仙台市青葉区一番町4丁目                          
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2250] class => ynDetailText
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2255] href: text =>  　車の運転に支障が出る恐れを知りながら危険ドラッグを販売したとして、宮城県警は25日、道交法違反（過労運転等の禁止）ほう助の疑いで、仙台市青葉区一番町4丁目の輸入雑貨販売店「FOUR　SIDE（フォーサイド）仙台店」を家宅捜索した。県警によると、同容疑による危険ドラッグ販売店の捜索は全国で初めて。
+ 　捜索容疑は12日、県内の40代の男性会社員に危険ドラッグを売り、男性が吸引して車を運転するのを手助けした疑い。
+ 　男性は同日午後0時45分ごろ、店の前の市道で乗用車を運転、道路脇の電柱にぶつかる事故を起こした。県警の調べに「店でハーブを買い、運転する直前に吸った」と供述。助手席付近から危険ドラッグとみられる植物片の入った袋が見つかった。
+ 　捜索は県警交通指導課と仙台中央署の捜査員ら計10人態勢で午後2時ごろから約4時間にわたった。店内にあった植物片やパイプなど計約190点を押収。県警は鑑定などの裏付け捜査を進めている。
+ 　同店はホームページで、販売が禁じられている危険ドラッグの名称を引き合いに出し、商品を紹介。一方で「法で規制されているものは一切扱っていない」「商品は人体への摂取が目的ではなく、トラブルに責任は負わない」とも記している。
+ 　県警によると、宮城県内で危険ドラッグを販売しているのは、フォーサイド仙台店を含む仙台市内の店舗型2店（うち1店は休業中）と宅配専門の3業者の計5業者が確認されている。
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2250] class => ynDetailAuthor
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2255] href: text => 河北新報社
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2250] class => ynLastEditDate yjSt
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2255] href: text => 最終更新:9月26日(金)9時5分
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2250] class => ynCobrandBanner
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2255] href: text => 
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2250] class => yjS
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2255] href: text => ※Buzzは自動抽出された記事です。
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2250] class => ft
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2255] href: text => もっと見る
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2250] class => ft
+[09/26/2014 11:49:45 : \app\Controller\ArticlesController.php : 2255] href: text => もっと見る
+[09/26/2014 11:50:49 : \app\Controller\ArticlesController.php : 2263] content =>  　滋賀県高島市で昨年、鴨川河川敷に放射性セシウムが付着した樹皮などの木材チップが投棄された問題で、県警は２５日、経営コンサルタント会社社長の田中良拓容疑者（４２）（東京都中野区）を廃棄物処理法違反と河川法違反の疑いで逮捕した。
+ 
+ 　容疑を否認している。
+ 
+ 　発表によると、田中容疑者は神奈川県内の男、滋賀県内の建設会社社長の２人と共謀。昨年３〜４月、高島市安曇川町の鴨川河川敷に長さ約５７０メートル、幅約５メートルにわたり、廃棄物であるチップ約３００立方メートルを県の許可なく廃棄、土地の形状を変更した疑い。
+ 
+ 　県によると、検出された放射性セシウムは１キロ当たり最大３９００ベクレルで、国の指定廃棄物の基準（１キロ当たり８０００ベクレル超）は下回っていた。今年２月までに撤去され、県などが告発していた。
+ 
+ 　捜査関係者らによると、チップは福島県内の製材会社の所有だったが、東京電力福島第一原発事故後、田中容疑者が無償処理を持ちかけ、製材会社から引き取った。田中容疑者はその後、チップの処分費用として東電から約４億円を受け取った。しかし、チップは結局、処分されず、一部が鴨川河川敷に投棄されたという。東電は「個別案件については答えられない」とする。
+ 
+ 　捜査関係者によると、田中容疑者は旧郵政省の元キャリア官僚。神奈川県の男を通じ、滋賀県の建設会社社長にチップの処分を依頼したとされる。これまでの読売新聞の取材に対し、神奈川県の男は「放射性物質に汚染されたものとは知らなかった」と説明。滋賀県の社長は「（神奈川県の男から）河川敷に運んでほしいと言われただけだ」と話していた。県警はこの２人からも事情を聞いている。

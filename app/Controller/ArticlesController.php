@@ -2180,6 +2180,14 @@ class ArticlesController extends AppController {
 		$article_category_id = @$this->request->query['article_category_id'];
 		$article_news_time = @$this->request->query['article_news_time'];
 
+		/**********************************
+		* save: content
+		**********************************/
+		$article_content = $this->_open_article__GetContent($article_url);
+		
+		/**********************************
+		* build: instance
+		**********************************/
 		$this->loadModel('History');
 		
 		$this->History->create();
@@ -2191,6 +2199,8 @@ class ArticlesController extends AppController {
 		$this->History->set('news_time', $article_news_time);
 		
 		$this->History->set('category_id', $article_category_id);
+		
+		$this->History->set('content', $article_content);
 		
 		$this->History->set('created_at', Utils::get_CurrentTime());
 		$this->History->set('updated_at', Utils::get_CurrentTime());
@@ -2213,6 +2223,55 @@ class ArticlesController extends AppController {
 		
 	}//open_article
 
+	public function
+	_open_article__GetContent
+	($article_url) {
+		
+// 		$url = "http://headlines.yahoo.co.jp/hl?c=$genre&t=l";
+		
+		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+		$html = file_get_html($article_url);
+		
+		$ahrefs = $html->find('p[class]');
+
+// 		//log
+// 		$msg = "\$ahrefs => ".count($ahrefs);
+// 		Utils::write_Log($this->path_Log, $msg, __FILE__, __LINE__);
+// // 		Utils::write_Log($this->dpath_Log, $msg, __FILE__, __LINE__);
+		
+		foreach ($ahrefs as $ahref) {
+		
+// 			$tmp = $ahref->href;
+
+// 			//log
+// 			$msg = "class => ".$ahref->class;
+// // 			$msg = "class => ".$tmp->class;
+// // 			$msg = "class => ".$tmp['class'];
+// 			Utils::write_Log($this->path_Log, $msg, __FILE__, __LINE__);
+			
+			
+// 			//log
+// 			$msg = "href: text => ".$ahref->plaintext;
+// 			Utils::write_Log($this->path_Log, $msg, __FILE__, __LINE__);
+			
+			
+			if ($ahref->class == "ynDetailText") {
+// 			if ($tmp == "ynDetailText") {
+				
+// 				//log
+// 				$msg = "content => ".$ahref->plaintext;
+// 				Utils::write_Log($this->path_Log, $msg, __FILE__, __LINE__);
+				
+				return $ahref->plaintext;
+				
+			}
+		
+		}//foreach ($ahrefs as $ahref)
+		
+// 		debug(count($ahrefs));
+		
+	}//_open_article__GetContent
+	
 	public function
 	cmp_Articles($a1, $a2) {
 		
