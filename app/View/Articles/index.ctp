@@ -9,11 +9,11 @@
 <?php echo $this->element('articles/index/_header'); ?>	
 
 
-<?php echo $this->element('articles/index/_idx_test_D_9_V_1_1'); ?>	
+<?php echo $this->element('articles/index/_idx_articles'); ?>	
 <?php //echo $this->element('articles/index/_idx_test_D_9'); ?>	
 
 
-<table class="articles">
+<!-- <table class="articles"> -->
 
 <?php 
 
@@ -23,7 +23,7 @@
 	
 ?>
 
-</table>
+<!-- </table> -->
 
 (<a href="#top">Top</a><a name="bottom"></a>)
 

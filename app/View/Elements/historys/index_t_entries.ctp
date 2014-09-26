@@ -14,7 +14,9 @@
 		
 		<td><?php echo $history['History']['news_time']; ?></td>
 		
-		<td><?php echo $history['Category']['name']; ?></td>
+		<td>
+			<?php echo $history['Category']['name']; ?>
+		</td>
 		
 		<td>
 		

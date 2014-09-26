@@ -2185,6 +2185,8 @@ class ArticlesController extends AppController {
 		$this->History->set('url', $article_url);
 		$this->History->set('line', $article_line);
 		
+		$this->History->set('category_id', $article_category_id);
+		
 		$this->History->set('created_at', Utils::get_CurrentTime());
 		$this->History->set('updated_at', Utils::get_CurrentTime());
 		
