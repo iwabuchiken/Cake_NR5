@@ -2177,6 +2177,8 @@ class ArticlesController extends AppController {
 		$article_url = @$this->request->query['article_url'];
 		$article_line = @$this->request->query['article_line'];
 		$article_vendor = @$this->request->query['article_vendor'];
+		$article_category_id = @$this->request->query['article_category_id'];
+		$article_news_time = @$this->request->query['article_news_time'];
 
 		$this->loadModel('History');
 		
@@ -2184,6 +2186,9 @@ class ArticlesController extends AppController {
 		
 		$this->History->set('url', $article_url);
 		$this->History->set('line', $article_line);
+		
+		$this->History->set('vendor', $article_vendor);
+		$this->History->set('news_time', $article_news_time);
 		
 		$this->History->set('category_id', $article_category_id);
 		

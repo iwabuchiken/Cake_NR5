@@ -13,6 +13,7 @@
 						'article_url'	=> $a['url'],
 						'article_line'	=> $a['line'],
 						'article_vendor'	=> $a['vendor'],
+						'article_news_time'	=> $a['news_time'],
 						'article_category_id'	=> $k,
 				);
 			
