@@ -45,6 +45,19 @@ class HistoryHelper extends AppHelper{
 		return $genre;
 		
 	}//get_Genre_From_KeywordID
+
+	public function
+	sanitize
+	($str, $tag="font") {
+
+		$tag = "font";
+		$p = "/<$tag.+?>(.+)<\/$tag>/";
+		
+		$rep = '${1}';
+		
+		return preg_replace($p, $rep, $str);
+		
+	}
 	
 	public function testFunction($arg1){
 		

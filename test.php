@@ -298,9 +298,77 @@ test_Replace() {
 	
 }//test_Replace
 
-function execute() {
+function 
+test_Sanitize() {
+
+	setlocale(LC_ALL, 'ja_JP.SJIS');
 	
-	test_Replace();
+	$str = "信長に「名古屋ことば」を　河村<font color=\"blue\">市長</font>、ＮＨＫに要望";
+	
+	print_r(mb_convert_encoding($str, "SJIS", "UTF-8"));
+	
+// 	$p = "\<.+\>";
+// 	$p = "<.+>";
+// 	$p = "/<.+>/";
+// 	$p = "/<.+>/";
+ 	$p2 = "/<.+?>(.+)<\/font>/";
+	$p = "/<font .+?>(.+)<\/font>/";
+	
+	$res = preg_match($p, $str, $matches);
+	
+	echo "\$res => ".$res;
+	
+	echo "\n";
+	
+	print_r($matches);
+// 	echo "\$matches => ".$matches;
+	
+	
+}//test_Sanitize
+
+function 
+test_Sanitize_Replace() {
+
+	setlocale(LC_ALL, 'ja_JP.SJIS');
+	
+	$str = "信長に「名古屋ことば」を　河村<font color=\"blue\">市長</font>、ＮＨＫに要望";
+	
+	print_r(mb_convert_encoding($str, "SJIS", "UTF-8"));
+	
+	echo "\n";
+	echo "\n";
+	
+// 	$p = "\<.+\>";
+// 	$p = "<.+>";
+// 	$p = "/<.+>/";
+// 	$p = "/<.+>/";
+ 	$p2 = "/<.+?>(.+)<\/font>/";
+ 	$p3 = "/<font .+?>(.+)<\/font>/";
+ 	
+	$p4 = "/<font.+?>(.+)<\/font>/";
+ 	$tag = "font";
+	$p = "/<$tag.+?>(.+)<\/$tag>/";
+	
+	$rep = '${1}';
+	
+	$res = preg_replace($p, $rep, $str);
+	
+// 	echo "\$res => ".$res;
+	
+// 	echo "\n";
+	
+	print_r(mb_convert_encoding($res, "SJIS", "UTF-8"));
+// 	print_r($res);
+// 	echo "\$matches => ".$matches;
+	
+	
+}//test_Sanitize_Replace
+
+function execute() {
+
+	test_Sanitize_Replace();
+// 	test_Sanitize();
+// 	test_Replace();
 // 	test_PrefMatch_3__MatchAll();
 // 	test_PrefMatch_2();
 // 	test_PrefMatch();

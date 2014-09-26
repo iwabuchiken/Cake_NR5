@@ -2,7 +2,18 @@
 <tr>
 		<td><?php echo $history['History']['id']; ?></td>
 		<td>
-			<?php echo $this->Html->link($history['History']['line'],
+			<?php 
+			
+				$line = $history['History']['line'];
+				
+				$line = $this->History->sanitize($line);
+			
+// 				echo $this->Html->link($history['History']['line'],
+				echo $this->Html->link($line,
+// 				echo $this->Html->link(Sanitize::html($line, array('remove' => true)),
+// 				echo $this->Html->link(Sanitize::html($line, remove),	// Unsupported operand types
+// 				echo $this->Html->link(Sanitize::html($line, true),		// Unsupported operand types
+// 				echo $this->Html->link(htmlentities($history['History']['line']),
 							array(
 								'controller' => 'historys', 
 								'action' => 'view', 
