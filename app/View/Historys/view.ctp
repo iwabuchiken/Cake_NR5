@@ -9,6 +9,11 @@
 	
 </h1>
 
+<br>
+word => <?php echo $word; ?>
+<br>
+<br>
+
 <table class="table_show">
   <tr>
     <td class="td_label_narrow">ID</td>

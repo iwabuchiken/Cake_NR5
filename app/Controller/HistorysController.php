@@ -7,7 +7,8 @@ class HistorysController extends AppController {
 		$this->set('historys', $this->History->find('all'));
 	}
 	
-	public function view($id = null) {
+	public function 
+	view($id = null) {
 		if (!$id) {
 			throw new NotFoundException(__('Invalid history'));
 		}
@@ -17,8 +18,81 @@ class HistorysController extends AppController {
 			throw new NotFoundException(__('Invalid history'));
 		}
 		$this->set('history', $history);
-	}
+		
+		/**********************************
+		* mecab
+		**********************************/
+		$this->_view_Mecab($history);
+		
+	}//view($id = null)
 
+	public function 
+	_view_Mecab($history) {
+		
+		$sen = $this->sanitize($history['History']['content']);
+// 		$sen = $this->sanitize($history['History']['line']);
+// 		$sen = $this->History->sanitize($history['History']['line']);
+// 		$sen = $history['History']['line'];
+		
+// 		debug($sen);
+		
+// 		$sen = mb_convert_encoding($sen, "UTF-8", "SJIS");
+		
+		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
+		
+// 		$html = file_get_contents($url);
+// 		$html = file_get_html($url);
+		
+// 		debug($html);
+
+		//REF http://stackoverflow.com/questions/9559796/php-simple-html-dom-parser-accessing-custom-attributes answered Mar 4 '12 at 23:44
+// 		$dom = new DOMDocument;
+// 		$dom->loadXML($html);
+		
+// 		debug($dom);		// n/w
+
+		//REF http://php.net/manual/en/function.simplexml-load-file.php
+// 		$xml = simplexml_load_file($html);	// n/w
+
+		//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:25
+// 		$data = simplexml_load_string($html);	// n/w
+
+		//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
+		$xml = simplexml_load_file($url);
+		
+// 		debug($xml);
+
+		$words = $xml->word;
+		
+// 		$tmp = "<head><meta "
+// 				."http-equiv=\"Content-Type\" "
+// 				."content=\"text/html; charset=utf-8\" />"
+// 				."</head>";
+		
+// 		debug($tmp);	// n/c
+		
+// 		debug(mb_convert_encoding((string)$words[10]->surface, "UTF-8", "SJIS"));	// n/c
+// 		debug(mb_convert_encoding((string)$words[10]->surface, "UTF-8", "EUCJP"));
+// 		debug(mb_convert_encoding((string)$words[10]->surface, "UTF-8", "EUCJP"));	// n/c
+// 		debug((string)$words[10]->surface);
+		
+// 		debug($words, true);
+// 		debug($words[0]);
+// 		debug(get_class($words[0]));
+// 		debug($words[10]);
+// 		debug($words[10]->surface);
+		
+// 		//REF http://stackoverflow.com/questions/10233732/getting-an-elements-inner-text-with-simplexmlelement answered Apr 19 '12 at 18:22
+// 		//REF (indirect clues) http://stackoverflow.com/questions/1133931/getting-actual-value-from-php-simplexml-node
+		debug((string)$words[10]->surface);
+		
+// 		debug($words[10]->surface->innerNode);
+// 		debug(count($words));
+		
+		$this->set("word", $words[10]->surface);
+		
+	}//_view_Mecab
+	
 	public function 
 	add() {
 		if ($this->request->is('post')) {
@@ -126,5 +200,19 @@ class HistorysController extends AppController {
 		}
 	
 	}//public function delete($id)
+
+	public function
+	sanitize
+	($str, $tag="font") {
+	
+		$tag = "font";
+		$p = "/<$tag.+?>(.+)<\/$tag>/";
+	
+		$rep = '${1}';
+	
+		return preg_replace($p, $rep, $str);
+	
+	}
+	
 	
 }
