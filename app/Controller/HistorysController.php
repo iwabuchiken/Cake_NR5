@@ -84,7 +84,9 @@ class HistorysController extends AppController {
 		
 // 		//REF http://stackoverflow.com/questions/10233732/getting-an-elements-inner-text-with-simplexmlelement answered Apr 19 '12 at 18:22
 // 		//REF (indirect clues) http://stackoverflow.com/questions/1133931/getting-actual-value-from-php-simplexml-node
-		debug((string)$words[10]->surface);
+// 		debug($words[10]);
+		debug((string)$words[10]->feature);
+// 		debug((string)$words[10]->surface);
 		
 // 		debug($words[10]->surface->innerNode);
 // 		debug(count($words));
