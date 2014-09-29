@@ -76,6 +76,19 @@
 		
 		</td>
 		
+		<td>
+
+			<?php echo $this->Html->link(
+					
+					'Delete Tokens',
+					array('controller' => 'tokens', 
+							'action' => 'delete_all'),
+					array('class' => "button"),
+					__("Delete all tokens?"));
+			?>
+		
+		</td>
+		
 	</tr>
 		
 	

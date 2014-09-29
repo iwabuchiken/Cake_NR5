@@ -87,5 +87,23 @@ class TokensController extends AppController {
 		}
 	
 	}//public function delete($id)
+
+	public function delete_all() {
+	
+		//REF http://book.cakephp.org/2.0/ja/core-libraries/helpers/html.html
+		if ($this->Token->deleteAll(array('Token.id >=' => 1))) {
+// 		if ($this->Token->deleteAll(array('id >=' => 1))) {
+			
+			$this->Session->setFlash(__('Tokens =>  all deleted'));
+			return $this->redirect(array('action' => 'index'));
+			
+		} else {
+	
+			$this->Session->setFlash(__('Tokens =>  not deleted'));
+			return $this->redirect(array('action' => 'index'));
+	
+		}
+	
+	}
 	
 }
