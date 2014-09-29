@@ -85,8 +85,8 @@ class HistorysController extends AppController {
 // 		//REF http://stackoverflow.com/questions/10233732/getting-an-elements-inner-text-with-simplexmlelement answered Apr 19 '12 at 18:22
 // 		//REF (indirect clues) http://stackoverflow.com/questions/1133931/getting-actual-value-from-php-simplexml-node
 // 		debug($words[10]);
-		debug((string)$words[10]->feature);
-		debug(explode(',', (string)$words[10]->feature));
+// 		debug((string)$words[10]->feature);
+// 		debug(explode(',', (string)$words[10]->feature));
 		
 // 		debug((string)$words[10]->surface);
 		
@@ -335,7 +335,7 @@ class HistorysController extends AppController {
 			}
 
 			//test
-			if ($counter > 10) {
+			if ($counter > 20) {
 				
 				break;
 				
@@ -373,30 +373,71 @@ class HistorysController extends AppController {
 			$tmp = explode(',', (string)$w->feature);
 // 			$tmp = explode(',', $w->feature);
 
+// 			if ($counter < 20) {
+
+// 				debug((string)$w->surface);
+// 				debug((string)$w->feature);
+// // 				debug($w->surface);
+
+// // 				break;
+// 			}
+					
+			
+			
 // 			//log
 // 			$msg = "count(\$tmp) => " + count($tmp);
 // 			Utils::write_Log($this->path_Log, $msg, __FILE__, __LINE__);
 			
 // 			debug($tmp);
+
+// 			if ($counter < 20) {
 			
-			if ($tmp == null || count($tmp) < 9) {
+// 				debug($tmp);
+// 				// 				debug($w->surface);
+			
+// 				// 				break;
+// 			}
+				
+			if ($tmp == null || count($tmp) == 7 ) {
+// 			if ($tmp == null || count($tmp) < 9) {
+				
+				$token->hin		= $tmp[0];
+				
+				$token->hin_1	= $tmp[1];
+				$token->hin_2	= $tmp[2];
+				$token->hin_3	= $tmp[3];
+				
+				$token->katsu_kei	= $tmp[4];
+				$token->katsu_kata	= $tmp[5];
+				$token->genkei	= $tmp[6];
+				$token->yomi	= "*";
+				
+				$token->hatsu	= "*";
 				
 // 				debug($w->feature);
 				
+// 				continue;
+				
+			} else if (count($tmp) == 9) {
+				
+				$token->hin		= $tmp[0];
+				
+				$token->hin_1	= $tmp[1];
+				$token->hin_2	= $tmp[2];
+				$token->hin_3	= $tmp[3];
+				
+				$token->katsu_kei	= $tmp[4];
+				$token->katsu_kata	= $tmp[5];
+				$token->genkei	= $tmp[6];
+				$token->yomi	= $tmp[7];
+				
+				$token->hatsu	= $tmp[8];
+				
+			} else {
+				
 				continue;
+				
 			}
-			$token->hin		= $tmp[0];
-			
-			$token->hin_1	= $tmp[1];
-			$token->hin_2	= $tmp[2];
-			$token->hin_3	= $tmp[3];
-			
-			$token->katsu_kei	= $tmp[4];
-			$token->katsu_kata	= $tmp[5];
-			$token->genkei	= $tmp[6];
-			$token->yomi	= $tmp[7];
-			
-			$token->hatsu	= $tmp[8];
 			
 			/**********************************
 			* hin
@@ -409,11 +450,14 @@ class HistorysController extends AppController {
 			//test
 			$counter += 1;
 			
-// 			if ($counter > 10) {
-// 				break;
+// 			if ($counter < 10) {
+				
+// 				debug($token);
+				
+// // 				break;
 // 			}
 			
-		}
+		}//foreach ($words as $w)
 		
 		return $token_list;
 		
