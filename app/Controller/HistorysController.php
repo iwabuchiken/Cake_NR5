@@ -3,8 +3,41 @@
 class HistorysController extends AppController {
 	public $helpers = array('Html', 'Form');
 
+	public $components = array('Paginator');
+	
 	public function index() {
-		$this->set('historys', $this->History->find('all'));
+
+		/**********************************
+		 * paginate
+		**********************************/
+		$page_limit = 10;
+		
+		$opt_order = array('History.id' => 'asc');
+		
+		$opt_conditions = '';
+		
+		$this->paginate = array(
+				// 					'conditions' => array('Image.file_name LIKE' => "%$filter_TableName%"),
+				// 				'conditions' => array('Image.memos LIKE' => "%$filter_TableName%"),
+				'limit' => $page_limit,
+				'order' => $opt_order,
+				'conditions'	=> $opt_conditions
+				// 				'order' => array(
+				// 						'id' => 'asc'
+				// 				)
+		);
+		
+		$this->set('historys', $this->paginate('History'));
+		
+		$num_of_histories = count($this->History->find('all'));
+		
+		$this->set('num_of_histories', $num_of_histories);
+		
+		$this->set('num_of_pages', (int) ceil($num_of_histories / $page_limit));
+		
+		
+// 		$this->set('historys', $this->History->find('all'));
+
 	}
 	
 	public function 
