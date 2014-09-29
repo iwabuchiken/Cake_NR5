@@ -141,23 +141,52 @@ word => <?php echo $word; ?>
   
 </table>
 
-<p>
-	<?php echo $this->Html->link(
-					'Delete History',
-					array(
-							'controller' => 'historys', 
-							'action' => 'delete', 
-							$history['History']['id']
-					),
-					array(
-							// 							'style'	=> 'color: blue'
-// 							'class'		=> 'link_word_alert'
-					),
-						
-					//REF http://stackoverflow.com/questions/22519966/cakephp-delete-confirmation answered Mar 19 at 23:18
-					__("Delete? => %s", $history['History']['line'])
+<!-- <p> -->
+<table id="history_view">
+	<tr>
 	
-				);
-	?>
+		<td class="history_ops">
 
-</p>
+			<?php echo $this->Html->link(
+							'Delete History',
+							array(
+									'controller' => 'historys', 
+									'action' => 'delete', 
+									$history['History']['id']
+							),
+							array(
+									// 							'style'	=> 'color: blue'
+									'class'		=> 'button'
+							),
+								
+							//REF http://stackoverflow.com/questions/22519966/cakephp-delete-confirmation answered Mar 19 at 23:18
+							__("Delete? => %s", $history['History']['line'])
+			
+						);
+			?>
+		
+		</td>
+		
+		<td class="history_ops">
+
+			<?php echo $this->Html->link(
+							'Save tokens',
+							array(
+									'controller' => 'historys', 
+									'action' => 'save_Tokens', 
+									$history['History']['id']
+							),
+
+							array(
+									'class'		=> 'button'
+							)
+						);
+			?>
+		
+		</td>
+		
+	</tr>
+	  
+</table>
+	
+<!-- </p> -->

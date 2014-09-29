@@ -86,6 +86,8 @@ class HistorysController extends AppController {
 // 		//REF (indirect clues) http://stackoverflow.com/questions/1133931/getting-actual-value-from-php-simplexml-node
 // 		debug($words[10]);
 		debug((string)$words[10]->feature);
+		debug(explode(',', (string)$words[10]->feature));
+		
 // 		debug((string)$words[10]->surface);
 		
 // 		debug($words[10]->surface->innerNode);
@@ -215,6 +217,221 @@ class HistorysController extends AppController {
 		return preg_replace($p, $rep, $str);
 	
 	}
+
+	public function
+	save_Tokens
+	($id = null) {
+
+		if (!$id) {
+			throw new NotFoundException(__('Invalid history id'));
+		}
+
+		/**********************************
+		* create: tokens
+		**********************************/
+		$history = $this->History->findById($id);
+		
+			if (!$history) {
+				
+				throw new NotFoundException(__('Invalid history'));
+				
+		}
+
+		/**********************************
+		* get: words list
+		**********************************/
+		$words= $this->get_Mecab_WordList($history['History']['content']);
+
+		/**********************************
+		* conv: words to tokens
+		**********************************/
+		$tokens = $this->conv_MecabWords_to_Tokens($words);
+
+		/**********************************
+		* save: tokens
+		**********************************/
+		$res = $this->save_token_list($tokens, $history['History']['id']);
+		
+		if ($words != null) {
+			
+			$msg_Flash = "save_Tokens => done. Words => ".count($words)
+						." \$words[10] => ".$words[10]->surface
+						." / "
+						."Tokens => ".count($tokens)
+						." \$tokens[10] => ".$tokens[10]->form
+						." / "
+						."\$tokens[10]->hin => ".$tokens[10]->hin
+						."/"
+						."save token => ".$res
+						;
+			$this->Session->setFlash(__($msg_Flash));
+			
+		} else {
+			
+			$this->Session->setFlash(__("save_Tokens => done. Words => null"));
+			
+		}
+		
+		$this->set('tokens', $tokens);
+		
+// 		$this->redirect(array('action' => 'view', $id));
+// 		$this->redirect(array('action' => 'view', $id));
+		
+	}//save_Tokens
 	
+	public function
+	save_token_list
+	($tokens, $history_id) {
+		
+		$counter = 0;
+		
+		$this->loadModel('Token');
+	
+		foreach ($tokens as $token) {
+	
+			$this->Token->create();
+
+// 			$cat_id = $this->_save_Data_Keywords_from_CSV__Get_CatID_From_OrigID(
+// 								$kw_pair[3], $categories);
+			
+// 			// valiate
+// 			if ($cat_id == false) {
+				
+// 				continue;
+				
+// 			}
+			
+			// build param
+			$param = array('Token' =>
+						
+					array(
+							
+							'created_at'	=> Utils::get_CurrentTime(),
+							'updated_at'	=> Utils::get_CurrentTime(),
+							
+							'form'			=> $token->form,
+							
+							'hin'			=> $token->hin,
+							'hin_1'			=> $token->hin_1,
+							'hin_2'			=> $token->hin_2,
+							'hin_3'			=> $token->hin_3,
+							
+							'katsu_kei'		=> $token->katsu_kei,
+							'katsu_kata'	=> $token->katsu_kata,
+							'genkei'		=> $token->genkei,
+							'yomi'			=> $token->yomi,
+							'hatsu'			=> $token->hatsu,
+							
+							'history_id'			=> $history_id,
+							
+					)
+						
+			);
+			
+			if ($this->Token->save($param)) {
+	
+				$counter += 1;
+	
+			}
+
+			//test
+			if ($counter > 10) {
+				
+				break;
+				
+			}
+			
+		}//foreach ($cat_pairs as $cat_pair)
+
+		return $counter;
+		
+	}//save_token_list
+	
+	public function
+	conv_MecabWords_to_Tokens
+	($words) {
+		
+		$token_list = array();
+		
+		$counter = 0;
+		
+		foreach ($words as $w) {
+		
+			$token = new Token();
+
+			/**********************************
+			* form
+			**********************************/
+			$token->form = $w->surface;
+// 			$token->form = $w->surface;
+
+			/**********************************
+			* features
+			**********************************/
+// 			$token->hin = $w->feature;
+			
+			$tmp = explode(',', (string)$w->feature);
+// 			$tmp = explode(',', $w->feature);
+
+// 			//log
+// 			$msg = "count(\$tmp) => " + count($tmp);
+// 			Utils::write_Log($this->path_Log, $msg, __FILE__, __LINE__);
+			
+// 			debug($tmp);
+			
+			if ($tmp == null || count($tmp) < 9) {
+				
+// 				debug($w->feature);
+				
+				continue;
+			}
+			$token->hin		= $tmp[0];
+			
+			$token->hin_1	= $tmp[1];
+			$token->hin_2	= $tmp[2];
+			$token->hin_3	= $tmp[3];
+			
+			$token->katsu_kei	= $tmp[4];
+			$token->katsu_kata	= $tmp[5];
+			$token->genkei	= $tmp[6];
+			$token->yomi	= $tmp[7];
+			
+			$token->hatsu	= $tmp[8];
+			
+			/**********************************
+			* hin
+			**********************************/
+			
+			
+			
+			array_push($token_list, $token);
+		
+			//test
+			$counter += 1;
+			
+// 			if ($counter > 10) {
+// 				break;
+// 			}
+			
+		}
+		
+		return $token_list;
+		
+	}//conv_MecabWords_to_Tokens
+	
+	public function
+	get_Mecab_WordList
+	($text) {
+		
+		$sen = $this->sanitize($text);
+		
+		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
+		
+		//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
+		$xml = simplexml_load_file($url);
+		
+		return $xml->word;
+		
+	}//get_MecabList	
 	
 }

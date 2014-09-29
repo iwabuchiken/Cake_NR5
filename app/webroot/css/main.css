@@ -83,6 +83,14 @@ td {
 	
 }
 
+td.history_ops {
+	
+	/*border: 1px solid black;*/
+	
+	color:	black;
+	
+}
+
 /*td.plain {*/
 table#a_list_header td {
 	
@@ -204,6 +212,10 @@ table.articles {
 
 	table-layout:	fixed;
 	
+}
+
+table#history_view {
+
 }
 
 table.table_show tr td.td_label_narrow {
