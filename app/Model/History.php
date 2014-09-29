@@ -10,5 +10,15 @@ class History extends AppModel {
 	var $name = 'History';
 	
 	var $belongsTo = 'Category';
+
+	var $hasMany = array(
+	
+			'Token' => array(
+	
+					'className' => 'Token'
+			)
+	
+	);
+	
 	
 }
