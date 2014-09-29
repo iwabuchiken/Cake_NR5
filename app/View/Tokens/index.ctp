@@ -1,4 +1,13 @@
-<h1>Tokens (<a href="#bottom">Bottom</a><a name="top"></a>)</h1>
+<h1>
+
+	Tokens (<a href="#bottom">Bottom</a><a name="top"></a>)
+	
+		(total = <?php echo $num_of_tokens; ?>, pages = <?php echo $num_of_pages; ?>)
+	
+</h1>
+
+<?php echo $this->element('tokens/_index_pagination')?>
+
 <table>
 
 	<?php echo $this->element('tokens/index_t_headers'); ?>
