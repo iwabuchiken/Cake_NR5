@@ -8,6 +8,7 @@ pragma table_info(tokens);
 
 pragma table_info(articles);
 pragma table_info(categories);
+pragma table_info(admin);
 
 .exit
 
@@ -118,6 +119,17 @@ CREATE TABLE tokens(
    
    user_id		INT
    
+);
+
+DROP TABLE admins;
+
+CREATE TABLE admins (
+	id			INTEGER PRIMARY KEY     AUTOINCREMENT	NOT NULL,
+	created_at	VARCHAR(30),
+	updated_at	VARCHAR(30),
+	
+	open_mode	INT
+	
 );
 
 CREATE TABLE users (
@@ -237,6 +249,18 @@ CREATE TABLE tokens(
    
    user_id		INT
    
+);
+
+DROP TABLE admins;
+DROP TABLE admin;
+
+CREATE TABLE admins (
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	created_at	VARCHAR(30),
+	updated_at	VARCHAR(30),
+	
+	open_mode	INT
+	
 );
 
 CREATE TABLE users (
