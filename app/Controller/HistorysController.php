@@ -510,5 +510,106 @@ class HistorysController extends AppController {
 		return $xml->word;
 		
 	}//get_MecabList	
+
+	public function
+	content_multilines
+	($id = null) {
+		
+// 		$q = $this->request->query;
+		
+// 		debug($q);
+		
+		$this->layout = 'plain_1';
+
+		/**********************************
+		* get: id
+		**********************************/
+		$id_get = @$this->request->query['id'];
+		
+// 		debug($id_get);
+		
+// 		$this->Session->setFlash(__('Your historys has been saved.'));
+		
+		
+		if ($id_get == null) {
+			
+			$msg = "null";
+			
+			$this->set("msg", $msg);
+			
+			$this->render("error");
+			
+// 			$this->set("history_id", $id);
+			
+// 			$this->Session->setFlash(__("id is ".$id));
+// 			$this->Session->setFlash(__('id is null'));
+			
+// 			$this->render("Layouts/plain_1");
+// 			$this->render("plain_1");
+// 			$this->render("AAA", "plain_1");
+			
+		} else {
+			
+			$this->set("history_id", $id_get);
+			
+			$history = $this->History->findById($id_get); 
+			
+			if ($history == null) {
+				
+				$msg = "unknown id => ".$id_get;
+				
+				$this->set("msg", $msg);
+				
+				$this->render("error");
+				
+				return;
+				
+			}
+			
+// 			debug($history);
+			$content_html = $this->_content_multilines_GetHtml(
+								$history['History']['content']);
+			
+			$this->set("content_html", $content_html);
+// 			$this->set("content", $history['History']['content']);
+// 			$this->Session->setFlash(__("id is ".$id));
+// 			$this->render("plain_1");
+// 			$this->render("no id", "plain_1");
+			
+		}
+		
+	}//content_multilines
+	
+	public function
+	_content_multilines_GetHtml
+	($content) {
+		
+		$lines = explode("。", $content);
+		
+		$lines_new = array();
+		
+		foreach ($lines as $line) {
+		
+			$tmp = $line."。"."<br>";
+			
+			$space = "";
+			
+			for ($i = 0; $i < 10; $i++) {
+				$space .="&nbsp;";
+			}
+			
+			$tmp = str_replace(
+						"、",
+// 						"、<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", 
+						"、<br>".$space, 
+						$tmp);
+			
+			array_push($lines_new, $tmp);
+		
+		}
+		
+		return implode("", $lines_new);
+		
+	}//_content_multilines_GetHtml
 	
 }
