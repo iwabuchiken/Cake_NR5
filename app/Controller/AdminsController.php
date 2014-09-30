@@ -87,5 +87,55 @@ class AdminsController extends AppController {
 		}
 	
 	}//public function delete($id)
+
+	public function 
+	edit($id = null) {
+		if (!$id) {
+			throw new NotFoundException(__('Invalid text'));
+		}
+	
+		/****************************************
+			* Admin
+		****************************************/
+		$admin = $this->Admin->findById($id);
+		if (!$admin) {
+			throw new NotFoundException(__('Invalid admin'));
+		}
+	
+// 		debug($this->request);
+// 		debug($this->request->is(array('admin', 'put')));
+// 		debug($this->request->is('post'));
+	
+		// 		if ($this->request->is(array('admin', 'put'))) {
+			
+		/**********************************
+		* save
+		**********************************/
+		if ($this->request->is(array('post', 'put'))) {
+// 		if ($this->request->is('post')) {
+			
+			$this->Admin->id = $id;
+			
+			$this->request->data['Admin']['updated_at'] = Utils::get_CurrentTime();
+			
+			if ($this->Admin->save($this->request->data)) {
+		
+				$this->Session->setFlash(__('Your admin has been updated.'));
+				return $this->redirect(
+						array(
+								'action' => 'view',
+								$id));
+		
+			}//if ($this->Admin->save($this->request->data))
+				
+			$this->Session->setFlash(__('Unable to update your admin.'));
+			
+		}
+			
+		if (!$this->request->data) {
+			$this->request->data = $admin;;
+		}
+	
+	}//edit
 	
 }
