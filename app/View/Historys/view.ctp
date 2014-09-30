@@ -49,8 +49,43 @@ word => <?php echo $word; ?>
   </tr>
   
   <tr>
-    <td class="td_label_narrow">Content</td>
-    <td class="td_value_mideum"><?php echo $history['History']['content']; ?></td>
+    <td class="td_label_narrow">
+    
+    		Content
+    		
+    		<br>
+    		<br>
+    		
+    		<span 
+    			class="button" 
+    			onclick="modify_content(<?php echo $history['History']['id']?>)">
+    			
+    					Modify
+    					
+    		</span>
+    		
+    		<?php 
+    		
+    		
+// 				echo $this->Html->link(
+// 							'Modify',
+// 							array(
+// 									'type' => 'button'
+// 							),
+// 							array(
+// 									// 							'style'	=> 'color: blue'
+// 									'class'		=> 'button'
+// 							)
+// 						);    			
+    		?>
+    </td>
+    
+    <td class="td_value_mideum" id="history_content">
+    
+    	<?php echo $history['History']['content']; ?>
+    	
+    </td>
+    
   </tr>
   
   <tr>

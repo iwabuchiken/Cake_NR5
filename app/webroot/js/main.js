@@ -73,6 +73,67 @@ _add_KW__Genre_Changed__Done(data, status, xhr) {
 	
 }
 
+
+function
+modify_content
+(history_id) {
+	
+	var hostname = window.location.hostname;
+
+	alert(hostname);
+	
+	var url;
+	
+	if (hostname == "benfranklin.chips.jp") {
+		
+		url = "/cake_apps/Cake_NR5/historys/content_multilines?id=" + history_id;
+		
+	} else {
+	
+		url = "/Cake_NR5/historys/content_multilines?id=" + history_id;
+	
+	}
+	
+	$.ajax({
+		
+	    url: url,
+	    type: "GET",
+	    //REF http://stackoverflow.com/questions/1916309/pass-multiple-parameters-to-jquery-ajax-call answered Dec 16 '09 at 17:37
+//	    data: {id: id},
+	    
+	    timeout: 10000
+	    
+	}).done(function(data, status, xhr) {
+		
+	//	alert(conv_Float_to_TimeLabel(data.point));
+	//	addPosition_ToList(data.point);
+		
+//		_delete_position_Ajax__Done(data, status, xhr);
+		_modify_content__Done(data, status, xhr);
+		
+	}).fail(function(xhr, status, error) {
+		
+		alert(xhr.status);
+		
+	});
+	
+}//modify_content
+
+function
+_modify_content__Done
+(data, status, xhr) {
+
+	alert("Ajax => done");
+//	alert(data);
+	
+	$("td#history_content").html(data);
+//	$("td#history_content").text(data);
+	
+//	alert($("td#history_content").text());
+	
+	
+}//_modify_content__Done
+
 $(document).ready(function(){
 	
 //	alert("ready");
