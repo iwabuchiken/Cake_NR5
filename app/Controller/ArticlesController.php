@@ -1079,7 +1079,6 @@ class ArticlesController extends AppController {
 		* build list: Articles
 		**********************************/
 // 		$list_Articles = $this->_index_Get_ArticlesList($ahrefs_hl);
-// 		aa
 		
 		
 // 		debug(count($articles));
@@ -1187,7 +1186,6 @@ class ArticlesController extends AppController {
 		* build list: Articles
 		**********************************/
 // 		$list_Articles = $this->_index_Get_ArticlesList($ahrefs_hl);
-// 		aa
 		
 		
 // 		debug(count($articles));
@@ -2181,12 +2179,12 @@ class ArticlesController extends AppController {
 		$article_news_time = @$this->request->query['article_news_time'];
 
 		/**********************************
-		* save: content
+		* get: content
 		**********************************/
 		$article_content = $this->_open_article__GetContent($article_url);
 		
 		/**********************************
-		* build: instance
+		* build: instance: History
 		**********************************/
 		$this->loadModel('History');
 		
@@ -2204,22 +2202,60 @@ class ArticlesController extends AppController {
 		
 		$this->History->set('created_at', Utils::get_CurrentTime());
 		$this->History->set('updated_at', Utils::get_CurrentTime());
+
+		/**********************************
+		* get: setting value: open_mode
+		**********************************/
+		$this->loadModel('Admin');
 		
+		$admin = $this->Admin->find('first');
+		
+		$open_mode = $admin['Admin']['open_mode'];
+		
+		/**********************************
+		* save: history
+		**********************************/
 		if ($this->History->save()) {
 
-			//REF http://book.cakephp.org/2.0/ja/controllers.html#id8
-			$this->redirect($article_url);
+			if ($open_mode == 1) {
+				
+				//REF http://book.cakephp.org/2.0/ja/controllers.html#id8
+				$this->redirect($article_url);
 			
-		} else {
+			} else {
+				
+				/**********************************
+				* build: article
+				**********************************/
+				$a = $this->Article->create();
+// 				$a = new Article();
+				
+				$a['url'] = $article_url;
+				$a['line'] = $article_line;
+				$a['vendor'] = $article_vendor;
+				$a['news_time'] = $article_news_time;
+				$a['category_id'] = $article_category_id;
+// 				$a['content'] = $article_content;
+				$a['content'] = $this->_content_multilines_GetHtml($article_content);
+				
+// 				debug($a);
+				
+				$this->set("a", $a);
+// 				$this->set("article", $this->History);
+// 				$this->redirect();
+				
+			}
+			
+		} else {//if ($this->History->save())
+			
+			$this->Session->setFlash(__("Can't save history: line is => ".$article_line));
 			
 			$this->redirect(
 						array(
 							'controller' => 'historys', 
 							'action' => 'index'));
 			
-		}
-		
-		
+		}//if ($this->History->save())
 		
 	}//open_article
 
@@ -2329,5 +2365,37 @@ class ArticlesController extends AppController {
 		return $category['Category']['name'];
 	
 	}//get_Genre_From_KeywordID
+
+	public function
+	_content_multilines_GetHtml
+	($content) {
+	
+		$lines = explode("。", $content);
+	
+		$lines_new = array();
+	
+		foreach ($lines as $line) {
+	
+			$tmp = $line."。"."<br>"."<br>";
+				
+			$space = "";
+				
+			for ($i = 0; $i < 10; $i++) {
+				$space .="&nbsp;";
+			}
+				
+			$tmp = str_replace(
+					"、",
+					// 						"、<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+					"、<br>".$space,
+					$tmp);
+				
+			array_push($lines_new, $tmp);
+	
+		}
+	
+		return implode("", $lines_new);
+	
+	}//_content_multilines_GetHtml
 	
 }//class ArticlesController extends AppController

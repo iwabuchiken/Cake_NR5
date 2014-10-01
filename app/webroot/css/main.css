@@ -164,6 +164,8 @@ td.td_news_time {
 
 td.delete_position {
 	
+	color:	blue;
+	
 	border: 1px solid blue;
 	width:	60px;
 }
@@ -178,6 +180,16 @@ td#td_video_memo {
 	
 	border: 1px solid blue;
 	background: #81BEF7;
+	
+}
+
+td.open_article_content {
+	
+	/*color:	blue;*/
+	
+	border: 1px solid blue;
+	/*background: #81BEF7;*/
+	width:	900;
 	
 }
 
@@ -207,6 +219,19 @@ table.table_show {
 	
 	width: 60%;
 }
+
+table#open_article {
+	
+	width: 80%;
+}
+
+table#open_article tr td.td_label_narrow {
+
+	width:		100px;
+	background:	#BEF781;
+	border: solid 1px black;
+}
+
 
 table.articles {
 

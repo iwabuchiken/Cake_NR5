@@ -80,6 +80,18 @@
 
 			<?php echo $this->Html->link(
 					
+					'Admin',
+					array('controller' => 'admins', 
+							'action' => 'index'),
+					array('class' => "button"));
+			?>
+		
+		</td>
+		
+		<td>
+
+			<?php echo $this->Html->link(
+					
 					'Delete Tokens',
 					array('controller' => 'tokens', 
 							'action' => 'delete_all'),
