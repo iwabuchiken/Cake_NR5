@@ -82,7 +82,16 @@ word => <?php echo $word; ?>
     
     <td class="td_value_mideum" id="history_content">
     
-    	<?php echo $history['History']['content']; ?>
+    
+    	<?php 
+    	
+    		echo $this->element(	
+					"historys/content_multilines", 
+					array("content_html", $content_html));
+
+//     		echo $history['History']['content']; 
+    		
+    	?>
     	
     </td>
     

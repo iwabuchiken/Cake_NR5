@@ -364,9 +364,47 @@ test_Sanitize_Replace() {
 	
 }//test_Sanitize_Replace
 
+function 
+test_Get_Type() {
+	
+	setlocale(LC_ALL, 'ja_JP.SJIS');
+	
+	$str = "信長に「名古屋ことば」を　河村市長、ＮＨＫに要望";
+	
+	print_r(mb_convert_encoding($str, "SJIS", "UTF-8"));	
+	
+	echo mb_strlen($str, "UTF-8");
+// 	echo mb_strlen($str);
+	
+// 	foreach ($str as $chr) {
+	for ($i = 0; $i < mb_strlen($str, "SJIS"); $i++) {
+// 	for ($i = 0; $i < mb_strlen($str, "UTF-8"); $i++) {
+		
+// 		echo $str[$i];
+		echo mb_convert_encoding($str, "SJIS", "UTF-8")[$i];
+			
+		echo "\n";
+		
+// 		echo $chr;
+		
+// 		if (!preg_match("/^[ぁ-ん]+$/u",$chr)) {
+			
+// 			print_r($chr);
+				
+// 			$flag = false;
+				
+// 			break;
+				
+// 		};
+			
+	}
+	
+}//test_Get_Type
+
 function execute() {
 
-	test_Sanitize_Replace();
+	test_Get_Type();
+// 	test_Sanitize_Replace();
 // 	test_Sanitize();
 // 	test_Replace();
 // 	test_PrefMatch_3__MatchAll();

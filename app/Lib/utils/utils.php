@@ -421,7 +421,178 @@
 			return $select_Genres;
 		
 		}//_get_Selector_Genre
+
+		public static function
+		isKanji_All
+		($str) {
+			
+			foreach ($str as $chr) {
+			
+				if (!preg_match("/^[一-龠]+$/u",$chr)) {
+					
+					return false;
+					
+				};
+			
+			}
+			
+			return true;
+			
+		}//isKanji_All
 		
+		/**********************************
+		* @return
+		* 	1	=> Kanji<br>
+		* 	2	=> Hiragana<br>
+		* 	3	=> Katakana<br>
+		* 	4	=> Number<br>
+		**********************************/
+		public static function
+		get_Type
+		($str) {
+			
+			$flag = true;
+			
+			/**********************************
+			* kanji
+			**********************************/
+			//REF http://stackoverflow.com/questions/2556289/php-split-multibyte-string-word-into-separate-characters answered Mar 31 '10 at 21:56
+			foreach (preg_split('//u', $str, -1, PREG_SPLIT_NO_EMPTY) as $chr) {
+// 			foreach ($str as $chr) {
+			
+// 				debug($chr);
+				
+				if (!preg_match("/^[一-龠]+$/u",$chr)) {
+					
+					$flag = false;
+					
+// 					debug("not match, kanji");
+					
+					break;
+					
+				} else {
+					
+// 					debug("mactch, kanji");
+					
+				}
+			
+			}
+			
+			if ($flag == true) {
+				
+// 				debug("all match, kanji");
+				
+				return 1;
+				
+			}
+			
+			/**********************************
+			* hiragana
+			**********************************/
+			$flag = true;
+			
+			foreach (preg_split('//u', $str, -1, PREG_SPLIT_NO_EMPTY) as $chr) {
+// 			foreach ($str as $chr) {
+			
+// 				debug($chr);
+				
+				if (!preg_match("/^[ぁ-んー]+$/u",$chr)) {
+					
+// 					debug("not match, hira");
+					
+					$flag = false;
+					
+					break;
+					
+				} else {
+					
+// 					debug("match, hira");
+					
+				}
+			
+			}
+			
+			if ($flag == true) {
+				
+// 				debug("all match, hira");
+				
+				return 2;
+				
+			}
+			
+			/**********************************
+			* katakana
+			**********************************/
+			$flag = true;
+			
+			foreach (preg_split('//u', $str, -1, PREG_SPLIT_NO_EMPTY) as $chr) {
+// 			foreach ($str as $chr) {
+			
+// 				debug($chr);
+				
+				if (!preg_match("/^[ァ-ヶー]+$/u",$chr)) {
+					
+// 					debug("not match, hira");
+					
+					$flag = false;
+					
+					break;
+					
+				} else {
+					
+// 					debug("match, hira");
+					
+				}
+			
+			}
+			
+			if ($flag == true) {
+				
+// 				debug("all match, hira");
+				
+				return 3;
+				
+			}
+			
+			/**********************************
+			* number
+			**********************************/
+			$flag = true;
+			
+			foreach (preg_split('//u', $str, -1, PREG_SPLIT_NO_EMPTY) as $chr) {
+// 			foreach ($str as $chr) {
+			
+// 				debug($chr);
+				
+				if (!preg_match("/^[0-9０-９]+$/u",$chr)) {
+					
+// 					debug("not match, hira");
+					
+					$flag = false;
+					
+					break;
+					
+				} else {
+					
+// 					debug("match, hira");
+					
+				}
+			
+			}
+			
+			if ($flag == true) {
+				
+// 				debug("all match, hira");
+				
+				return 4;
+				
+			}
+			
+			return 0;
+			
+// 			return true;
+			
+		}//isKanji_All
 		
 	}//class Utils
 	

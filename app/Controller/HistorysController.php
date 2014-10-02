@@ -50,83 +50,166 @@ class HistorysController extends AppController {
 		if (!$history) {
 			throw new NotFoundException(__('Invalid history'));
 		}
+		
 		$this->set('history', $history);
+		
+		/**********************************
+		* content: modified
+		**********************************/
+		$words = $this->_view_Mecab($history);
+		
+// 		$content_multiline = 
+// 				$this->_content_multilines_GetHtml($history['History']['content']);
+		
+		$content_multiline = $this->_colorize_Kanji($words);
+
+// 		debug($content_multiline);
+		
+		$content_multiline =
+				$this->_content_multilines_GetHtml($content_multiline);
+		
+		$this->set('content_html', $content_multiline);
 		
 		/**********************************
 		* mecab
 		**********************************/
-		$this->_view_Mecab($history);
+// 		$this->_view_Mecab($history);
 		
 	}//view($id = null)
 
 	public function 
+	_colorize_Kanji
+	($words) {
+
+		//test
+		$tmp = $words[10];
+
+		$tmp_str = (string)$tmp->surface;
+		
+// 		debug(preg_split('//u', $tmp_str));
+		
+// 		for ($i = 0; $i < mb_strlen($tmp_str); $i++) {
+// 		for ($i = 0; $i < mb_strlen((string)$tmp->surface)); $i++) {
+// 		foreach (str_split as item) {
+		
+// 			debug($tmp_str[$i]);
+			
+// 		}
+// 		debug(mb_strlen((string)$tmp->surface));
+// 		debug((string)$tmp->surface);
+// 		foreach ((string)$tmp->surface as $chr) {
+		
+// 			debug($chr);
+		
+// 		}
+		
+// 		debug($tmp);
+		
+		
+		
+		$content = "";
+		
+// 		$str = $words->surface;
+		
+		foreach ($words as $w) {
+		
+			$str = $w->surface;
+			
+// 			debug(mb_split('', $str));
+// 			debug(preg_split('//u', mb_convert_encoding($str, "UTF-8")));
+// 			debug(preg_split('//u', $str));
+// 			debug(preg_split('//u', $str, -1, PREG_SPLIT_NO_EMPTY));
+			
+			$res = Utils::get_Type($str);
+
+// 			debug((string)$str);
+// 			debug(mb_strlen((string)$str));
+// 			debug(strlen((string)$str));
+// 			debug((string)$str)[1];
+// 			debug($res);
+			
+			//REF color names http://www.colordic.org/
+			
+			switch ($res) {
+				case 1:
+					
+// 					$content .="<font color=\"black\">".$str."</font>";
+					$content .="<font color=\"darkgreen\">".$str."</font>";
+// 					$content .="<font color=\"green\">".$str."</font>";
+					
+					break;
+				
+				case 2:	// hiragana
+					// blue
+// 					$content .="<font color=\"#7368EF\">".$str."</font>";
+// 					$content .="<font color=\"#9F9CBC\">".$str."</font>";
+					$content .="<font color=\"blue\">".$str."</font>";
+					
+					break;
+					
+				case 3:	// katakana
+					
+					$content .="<font color=\"purple\">".$str."</font>";
+// 					$content .="<font color=\"palevioletred\">".$str."</font>";
+// 					$content .="<font color=\"green\">".$str."</font>";
+// 					$content .="<font color=\"#B5A243\">".$str."</font>";
+					
+					break;
+				
+				case 4:	// number
+					
+					$content .="<font color=\"#575757\">".$str."</font>";
+					
+					break;
+				
+				case 0:
+					
+					$content .= $str;
+					
+				break;
+				
+				default:
+					
+					$content .= $str;
+					
+				break;
+				
+			}
+		
+// 			$res = Utils::isKanji_All($w->surface);
+			
+// 			if ($res == true) {
+				
+// 				$content .="<font color=\"green\">".$w->surface."</font>";
+				
+// 			} else {
+				
+// 				$content .=$w->surface;
+				
+// 			}
+		
+		}//foreach ($words as $w)
+		
+		return $content;
+		
+		
+	}//_colorize_Kanji
+	
+	public function 
 	_view_Mecab($history) {
 		
 		$sen = $this->sanitize($history['History']['content']);
-// 		$sen = $this->sanitize($history['History']['line']);
-// 		$sen = $this->History->sanitize($history['History']['line']);
-// 		$sen = $history['History']['line'];
-		
-// 		debug($sen);
-		
-// 		$sen = mb_convert_encoding($sen, "UTF-8", "SJIS");
 		
 		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
-		
-// 		$html = file_get_contents($url);
-// 		$html = file_get_html($url);
-		
-// 		debug($html);
-
-		//REF http://stackoverflow.com/questions/9559796/php-simple-html-dom-parser-accessing-custom-attributes answered Mar 4 '12 at 23:44
-// 		$dom = new DOMDocument;
-// 		$dom->loadXML($html);
-		
-// 		debug($dom);		// n/w
-
-		//REF http://php.net/manual/en/function.simplexml-load-file.php
-// 		$xml = simplexml_load_file($html);	// n/w
-
-		//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:25
-// 		$data = simplexml_load_string($html);	// n/w
 
 		//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
 		$xml = simplexml_load_file($url);
-		
-// 		debug($xml);
 
 		$words = $xml->word;
 		
-// 		$tmp = "<head><meta "
-// 				."http-equiv=\"Content-Type\" "
-// 				."content=\"text/html; charset=utf-8\" />"
-// 				."</head>";
-		
-// 		debug($tmp);	// n/c
-		
-// 		debug(mb_convert_encoding((string)$words[10]->surface, "UTF-8", "SJIS"));	// n/c
-// 		debug(mb_convert_encoding((string)$words[10]->surface, "UTF-8", "EUCJP"));
-// 		debug(mb_convert_encoding((string)$words[10]->surface, "UTF-8", "EUCJP"));	// n/c
-// 		debug((string)$words[10]->surface);
-		
-// 		debug($words, true);
-// 		debug($words[0]);
-// 		debug(get_class($words[0]));
-// 		debug($words[10]);
-// 		debug($words[10]->surface);
-		
-// 		//REF http://stackoverflow.com/questions/10233732/getting-an-elements-inner-text-with-simplexmlelement answered Apr 19 '12 at 18:22
-// 		//REF (indirect clues) http://stackoverflow.com/questions/1133931/getting-actual-value-from-php-simplexml-node
-// 		debug($words[10]);
-// 		debug((string)$words[10]->feature);
-// 		debug(explode(',', (string)$words[10]->feature));
-		
-// 		debug((string)$words[10]->surface);
-		
-// 		debug($words[10]->surface->innerNode);
-// 		debug(count($words));
-		
 		$this->set("word", $words[10]->surface);
+		
+		return $words;
 		
 	}//_view_Mecab
 	
