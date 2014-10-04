@@ -2206,23 +2206,26 @@ class ArticlesController extends AppController {
 		/**********************************
 		* get: setting value: open_mode
 		**********************************/
-		$this->loadModel('Admin');
+// 		$this->loadModel('Admin');
 		
-		$option = array(
+// 		$option = array(
 			
-				'conditions'	=> array(
-									'Admin.name LIKE'	=> 'open_mode'
-								)
-		);
+// 				'conditions'	=> array(
+// 									'Admin.name LIKE'	=> 'open_mode'
+// 								)
+// 		);
 		
-// 		$admin = $this->Admin->find('first');
-		$admin = $this->Admin->find('first', $option);
+// // 		$admin = $this->Admin->find('first');
+// 		$admin = $this->Admin->find('first', $option);
 		
-// 		debug($admin);
+// // 		debug($admin);
 		
-		$val_1 = @$admin['Admin']['val1'];
+// 		$val_1 = @$admin['Admin']['val1'];
 		
 // 		debug($val_1);
+		
+		$val_1 = $this->get_Admin_Value(CONS::$admin_Open_Mode, "val1");
+// 		$val_1 = $this->get_Admin_Value("open_mode", "val1");
 		
 		// default
 		if ($val_1 == null || !is_numeric($val_1)) {

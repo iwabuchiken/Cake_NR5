@@ -44,4 +44,11 @@ class CONS {
 	
 	public static $category_Others_Num = -5;
 	
+	/**********************************
+	* admin
+	**********************************/
+	public static $admin_Open_Mode = "open_mode";
+	
+	public static $admin_Colorize = "colorize";
+	
 }//class CONS

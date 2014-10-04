@@ -61,8 +61,18 @@ class HistorysController extends AppController {
 // 		$content_multiline = 
 // 				$this->_content_multilines_GetHtml($history['History']['content']);
 		
-		$content_multiline = $this->_colorize_Kanji($words);
-
+		$val_1 = $this->get_Admin_Value(CONS::$admin_Colorize, "val1");
+		
+		if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1) {
+				
+			$content_multiline = $this->_build_Text($words);
+			
+		} else {
+				
+			$content_multiline = $this->_build_Text_Colorize_Kanji($words);
+				
+		}
+		
 // 		debug($content_multiline);
 		
 		$content_multiline =
@@ -78,7 +88,7 @@ class HistorysController extends AppController {
 	}//view($id = null)
 
 	public function 
-	_colorize_Kanji
+	_build_Text_Colorize_Kanji
 	($words) {
 
 		//test
@@ -193,7 +203,30 @@ class HistorysController extends AppController {
 		return $content;
 		
 		
-	}//_colorize_Kanji
+	}//_build_Text_Colorize_Kanji
+	
+	public function 
+	_build_Text
+	($words) {
+
+		//test
+		$tmp = $words[10];
+
+		$tmp_str = (string)$tmp->surface;
+		
+		$content = "";
+		
+		foreach ($words as $w) {
+		
+			$str = $w->surface;
+			
+			$content .= $str;
+			
+		}//foreach ($words as $w)
+		
+		return $content;
+		
+	}//_build_Text
 	
 	public function 
 	_view_Mecab($history) {
@@ -663,6 +696,9 @@ class HistorysController extends AppController {
 		
 	}//content_multilines
 	
+	/**********************************
+	* divide text with "。"
+	**********************************/
 	public function
 	_content_multilines_GetHtml
 	($content) {

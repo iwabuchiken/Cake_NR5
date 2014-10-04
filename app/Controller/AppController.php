@@ -138,5 +138,27 @@ class AppController extends Controller {
 // 					)
 // 			)
 // 	);
+
+	public function 
+	get_Admin_Value
+	($key, $val_1) {
+		
+		$this->loadModel('Admin');
+		
+		$option = array(
+					
+				'conditions'	=> array(
+						'Admin.name LIKE'	=> $key
+				)
+		);
+		
+		// 		$admin = $this->Admin->find('first');
+		$admin = $this->Admin->find('first', $option);
+		
+		// 		debug($admin);
+		
+		return @$admin['Admin'][$val_1];
+		
+	}//get_Admin_Value
 	
 }//class AppController extends Controller

@@ -1,3 +1,14 @@
+<?php 
+
+	$option = array(
+						'target'	=> '_blank',
+						'escape'	=> false,
+// 						'?'	=> "article_url=".$a['url']
+// 						'article_url'	=> $a['url']
+				);
+
+?>
+
 <?php foreach ($historys as $history): ?>
 <tr>
 		<td><?php echo $history['History']['id']; ?></td>
@@ -17,7 +28,8 @@
 							array(
 								'controller' => 'historys', 
 								'action' => 'view', 
-								$history['History']['id'])
+								$history['History']['id']),
+							$option
 							); ?>
 		</td>
 		
