@@ -8,11 +8,33 @@
   <tr>
     <td class="td_label_narrow">
     
-    				open mode (1: original  2: multi-lined)
+    				name
     				
     </td>
     
-    <td class="td_value_mideum"><?php echo $admin['Admin']['open_mode']; ?></td>
+    <td class="td_value_mideum"><?php echo $admin['Admin']['name']; ?></td>
+    
+  </tr>
+  
+  <tr>
+    <td class="td_label_narrow">
+    
+    				val 1
+    				
+    </td>
+    
+    <td class="td_value_mideum"><?php echo $admin['Admin']['val1']; ?></td>
+    
+  </tr>
+  
+  <tr>
+    <td class="td_label_narrow">
+    
+    				val 2
+    				
+    </td>
+    
+    <td class="td_value_mideum"><?php echo $admin['Admin']['val2']; ?></td>
     
   </tr>
   
@@ -42,7 +64,7 @@
 					),
 						
 					//REF http://stackoverflow.com/questions/22519966/cakephp-delete-confirmation answered Mar 19 at 23:18
-					__("Delete? => %s", $admin['Admin']['open_mode'])
+					__("Delete? => %s", $admin['Admin']['name'])
 	
 				);
 	?>

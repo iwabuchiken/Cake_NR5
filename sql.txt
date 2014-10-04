@@ -4,11 +4,11 @@ sqlite3 C:\WORKS\WS\Eclipse_Kepler\Cake_NR5\app\webroot\development.sqlite3
 .explain on
 .tables
 
+pragma table_info(admin);
 pragma table_info(tokens);
 
 pragma table_info(articles);
 pragma table_info(categories);
-pragma table_info(admin);
 
 .exit
 
@@ -128,7 +128,9 @@ CREATE TABLE admins (
 	created_at	VARCHAR(30),
 	updated_at	VARCHAR(30),
 	
-	open_mode	INT
+	name		VARCHAR(30),
+	val1		VARCHAR(100),
+	val2		VARCHAR(100)
 	
 );
 
@@ -254,15 +256,17 @@ CREATE TABLE tokens(
    
 );
 
-DROP TABLE admins;
 DROP TABLE admin;
+DROP TABLE admins;
 
 CREATE TABLE admins (
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	created_at	VARCHAR(30),
 	updated_at	VARCHAR(30),
 	
-	open_mode	INT
+	name		VARCHAR(30),
+	val1		VARCHAR(100),
+	val2		VARCHAR(100)
 	
 );
 

@@ -10,7 +10,11 @@
 	);
 
 	echo $this->Form->create('Admin');
-	echo $this->Form->input('open_mode', $opt_input);
+	
+	echo $this->Form->input('name', $opt_input);
+	echo $this->Form->input('val1', $opt_input);
+	echo $this->Form->input('val2', $opt_input);
+	
 	echo $this->Form->end('Save Admin');
 	
 ?>

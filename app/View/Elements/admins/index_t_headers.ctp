@@ -1,6 +1,10 @@
 <tr>
 		<th>Id</th>
-		<th>open mode (1: original  2: multi-lined)</th>
+		
+		<th>Name</th>
+		<th>val 1</th>
+		<th>val 2</th>
+		
 		<th>Created at</th>
 		<th>updated at</th>
 		
