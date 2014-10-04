@@ -193,6 +193,20 @@ td.open_article_content {
 	
 }
 
+td#open_article_content {
+	
+	/*color:	blue;*/
+	
+	border: 1px solid blue;
+	/*background: #81BEF7;*/
+	width:	900;
+	
+	background:	white;
+	/*background:	lightgoldenrodyellow;*/
+	/*background-color:	yellow;*/
+	
+}
+
 table.table_no_line tr td#td_video_memo {
 	
 	border: 1px solid blue;

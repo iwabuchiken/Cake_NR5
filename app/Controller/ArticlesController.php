@@ -2206,24 +2206,6 @@ class ArticlesController extends AppController {
 		/**********************************
 		* get: setting value: open_mode
 		**********************************/
-// 		$this->loadModel('Admin');
-		
-// 		$option = array(
-			
-// 				'conditions'	=> array(
-// 									'Admin.name LIKE'	=> 'open_mode'
-// 								)
-// 		);
-		
-// // 		$admin = $this->Admin->find('first');
-// 		$admin = $this->Admin->find('first', $option);
-		
-// // 		debug($admin);
-		
-// 		$val_1 = @$admin['Admin']['val1'];
-		
-// 		debug($val_1);
-		
 		$val_1 = $this->get_Admin_Value(CONS::$admin_Open_Mode, "val1");
 // 		$val_1 = $this->get_Admin_Value("open_mode", "val1");
 		
@@ -2262,7 +2244,31 @@ class ArticlesController extends AppController {
 				$a['news_time'] = $article_news_time;
 				$a['category_id'] = $article_category_id;
 // 				$a['content'] = $article_content;
-				$a['content'] = $this->_content_multilines_GetHtml($article_content);
+
+				/**********************************
+				* colorize
+				**********************************/
+				$val_1 = $this->get_Admin_Value(CONS::$admin_Colorize, "val1");
+				
+				if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1) {
+				
+					$a['content'] = 
+							$this->_content_multilines_GetHtml($article_content);
+					// 			$content_multiline = $this->_build_Text($words);
+						
+				} else {
+				
+					$words = $this->get_Words($article_content);
+					
+					$tmp = $this->build_Text_Colorize_Kanji($words);
+					
+					$a['content'] = $this->_content_multilines_GetHtml($tmp);
+					// 			$content_multiline = $this->_build_Text_Colorize_Kanji($words);
+				
+				}
+				
+				
+// 				$a['content'] = $this->_content_multilines_GetHtml($article_content);
 				
 // 				debug($a);
 				

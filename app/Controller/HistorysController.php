@@ -57,7 +57,7 @@ class HistorysController extends AppController {
 		* content: modified
 		**********************************/
 		$words = $this->_view_Mecab($history);
-		
+
 // 		$content_multiline = 
 // 				$this->_content_multilines_GetHtml($history['History']['content']);
 		
@@ -65,11 +65,13 @@ class HistorysController extends AppController {
 		
 		if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1) {
 				
-			$content_multiline = $this->_build_Text($words);
+			$content_multiline = $this->build_Text($words);
+// 			$content_multiline = $this->_build_Text($words);
 			
 		} else {
 				
-			$content_multiline = $this->_build_Text_Colorize_Kanji($words);
+			$content_multiline = $this->build_Text_Colorize_Kanji($words);
+// 			$content_multiline = $this->_build_Text_Colorize_Kanji($words);
 				
 		}
 		

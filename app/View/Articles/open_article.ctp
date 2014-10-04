@@ -49,7 +49,8 @@
     		
     </td>
     
-    <td class="open_article_content">
+    <td id="open_article_content">
+<!--     <td class="open_article_content" id="open_article_content"> -->
     
     	<?php echo $a['content']; ?>
     	

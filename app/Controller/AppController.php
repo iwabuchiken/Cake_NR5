@@ -139,6 +139,132 @@ class AppController extends Controller {
 // 			)
 // 	);
 
+	public function
+	build_Text_Colorize_Kanji
+	($words) {
+	
+		//test
+		$tmp = $words[10];
+	
+		$tmp_str = (string)$tmp->surface;
+	
+		// 		debug(preg_split('//u', $tmp_str));
+	
+		// 		for ($i = 0; $i < mb_strlen($tmp_str); $i++) {
+		// 		for ($i = 0; $i < mb_strlen((string)$tmp->surface)); $i++) {
+		// 		foreach (str_split as item) {
+	
+		// 			debug($tmp_str[$i]);
+			
+		// 		}
+		// 		debug(mb_strlen((string)$tmp->surface));
+		// 		debug((string)$tmp->surface);
+		// 		foreach ((string)$tmp->surface as $chr) {
+	
+		// 			debug($chr);
+	
+		// 		}
+	
+		// 		debug($tmp);
+	
+	
+	
+		$content = "";
+	
+		// 		$str = $words->surface;
+	
+		foreach ($words as $w) {
+	
+			$str = $w->surface;
+				
+			// 			debug(mb_split('', $str));
+			// 			debug(preg_split('//u', mb_convert_encoding($str, "UTF-8")));
+			// 			debug(preg_split('//u', $str));
+			// 			debug(preg_split('//u', $str, -1, PREG_SPLIT_NO_EMPTY));
+				
+			$res = Utils::get_Type($str);
+	
+			// 			debug((string)$str);
+			// 			debug(mb_strlen((string)$str));
+			// 			debug(strlen((string)$str));
+			// 			debug((string)$str)[1];
+			// 			debug($res);
+				
+			//REF color names http://www.colordic.org/
+				
+			switch ($res) {
+				case 1:
+						
+					// 					$content .="<font color=\"black\">".$str."</font>";
+					$content .="<font color=\"blue\"><b>".$str."</b></font>";
+// 					$content .="<font color=\"darkgreen\"><b>".$str."</b></font>";
+// 					$content .="<font color=\"darkgreen\">".$str."</font>";
+					// 					$content .="<font color=\"green\">".$str."</font>";
+						
+					break;
+	
+				case 2:	// hiragana
+					// blue
+					// 					$content .="<font color=\"#7368EF\">".$str."</font>";
+					// 					$content .="<font color=\"#9F9CBC\">".$str."</font>";
+					$content .="<font color=\"black\"><b>".$str."</b></font>";
+// 					$content .="<font color=\"blue\"><b>".$str."</b></font>";
+// 					$content .="<font color=\"blue\">".$str."</font>";
+						
+					break;
+						
+				case 3:	// katakana
+						
+					$content .="<font color=\"purple\"><b>".$str."</b></font>";
+// 					$content .="<font color=\"purple\">".$str."</font>";
+					// 					$content .="<font color=\"palevioletred\">".$str."</font>";
+					// 					$content .="<font color=\"green\">".$str."</font>";
+					// 					$content .="<font color=\"#B5A243\">".$str."</font>";
+						
+					break;
+	
+				case 4:	// number
+						
+					$content .="<font color=\"darkgreen\"><b>".$str."</b></font>";
+// 					$content .="<font color=\"#575757\"><b>".$str."</b></font>";
+						
+					break;
+	
+				case 0:
+						
+// 					$content .= $str;
+					$content .= "<b>".$str."</b>";
+						
+					break;
+	
+				default:
+						
+					$content .= "<b>".$str."</b>";
+// 					$content .= $str;
+						
+					break;
+	
+			}
+	
+			// 			$res = Utils::isKanji_All($w->surface);
+				
+			// 			if ($res == true) {
+	
+			// 				$content .="<font color=\"green\">".$w->surface."</font>";
+	
+			// 			} else {
+	
+			// 				$content .=$w->surface;
+	
+			// 			}
+	
+		}//foreach ($words as $w)
+	
+		return $content;
+	
+	
+	}//_build_Text_Colorize_Kanji
+	
 	public function 
 	get_Admin_Value
 	($key, $val_1) {
@@ -160,5 +286,94 @@ class AppController extends Controller {
 		return @$admin['Admin'][$val_1];
 		
 	}//get_Admin_Value
+
+	public function
+	build_Text
+	($words) {
+	
+		//test
+		$tmp = $words[10];
+	
+		$tmp_str = (string)$tmp->surface;
+	
+		$content = "";
+	
+		foreach ($words as $w) {
+	
+			$str = $w->surface;
+				
+			$content .= $str;
+				
+		}//foreach ($words as $w)
+	
+		return $content;
+	
+	}//_build_Text
+
+	public function
+	get_Words($text) {
+	
+		$sen = $this->_sanitize($text);
+	
+		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
+	
+		//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
+		$xml = simplexml_load_file($url);
+	
+		$words = $xml->word;
+	
+// 		$this->set("word", $words[10]->surface);
+	
+		return $words;
+	
+	}//_view_Mecab
+	
+	public function
+	_sanitize
+	($str, $tag="font") {
+	
+		$tag = "font";
+		$p = "/<$tag.+?>(.+)<\/$tag>/";
+	
+		$rep = '${1}';
+	
+		return preg_replace($p, $rep, $str);
+	
+	}
+
+	/**********************************
+	 * divide text with "。"
+	**********************************/
+	public function
+	content_multilines_GetHtml
+	($content) {
+	
+		$lines = explode("。", $content);
+	
+		$lines_new = array();
+	
+		foreach ($lines as $line) {
+	
+			$tmp = $line."。"."<br>";
+				
+			$space = "";
+				
+			for ($i = 0; $i < 10; $i++) {
+				$space .="&nbsp;";
+			}
+				
+			$tmp = str_replace(
+					"、",
+					// 						"、<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+					"、<br>".$space,
+					$tmp);
+				
+			array_push($lines_new, $tmp);
+	
+		}
+	
+		return implode("", $lines_new);
+	
+	}//_content_multilines_GetHtml
 	
 }//class AppController extends Controller
