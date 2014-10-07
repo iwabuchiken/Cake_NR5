@@ -12,7 +12,13 @@ class TokensController extends AppController {
 		**********************************/
 		$page_limit = 10;
 		
-		$opt_order = array('Token.id' => 'asc');
+		$opt_order = array(
+// 						'Token.id' => 'asc',
+						'Token.hin' => 'asc',
+						'Token.hin_1' => 'asc'
+				
+		
+		);
 		
 		$opt_conditions = '';
 		

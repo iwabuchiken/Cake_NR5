@@ -402,7 +402,7 @@ class HistorysController extends AppController {
 		* save: tokens
 		**********************************/
 		$res = $this->save_token_list($tokens, $history['History']['id']);
-		
+
 		if ($words != null) {
 			
 			$msg_Flash = "save_Tokens => done. Words => ".count($words)
@@ -485,12 +485,12 @@ class HistorysController extends AppController {
 	
 			}
 
-			//test
-			if ($counter > 20) {
+// 			//test
+// 			if ($counter > 20) {
 				
-				break;
+// 				break;
 				
-			}
+// 			}
 			
 		}//foreach ($cat_pairs as $cat_pair)
 
