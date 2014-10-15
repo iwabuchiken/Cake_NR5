@@ -16,6 +16,26 @@
 							); 
 ?>
 
+<br>
+<br>
+
+<?php echo $this->Html->link("Delete all eqs",
+							array(
+								'controller' => 'eqs', 
+								'action' => 'delete_all'),
+							array(
+									// 							'style'	=> 'color: blue'
+							// 							'class'		=> 'link_word_alert'
+							),
+							
+							//REF http://stackoverflow.com/questions/22519966/cakephp-delete-confirmation answered Mar 19 at 23:18
+							__("Delete all?")
+
+							); 
+?>
+
+<br>
+<br>
 
 (<a href="#top">Top</a><a name="bottom"></a>)
 

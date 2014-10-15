@@ -167,5 +167,24 @@ class EqsController extends AppController {
 		}
 	
 	}//public function edit($id = null)
+
+	public function
+	delete_all() {
+	
+		//REF http://book.cakephp.org/2.0/ja/core-libraries/helpers/html.html
+		if ($this->Eq->deleteAll(array('Eq.id >=' => 1))) {
+			// 		if ($this->Category->deleteAll(array('id >=' => 1))) {
+	
+			$this->Session->setFlash(__('Eqs all deleted'));
+			return $this->redirect(array('action' => 'index'));
+	
+		} else {
+	
+			$this->Session->setFlash(__('Eqs not deleted'));
+			return $this->redirect(array('action' => 'index'));
+	
+		}
+	
+	}//delete_all
 	
 }
