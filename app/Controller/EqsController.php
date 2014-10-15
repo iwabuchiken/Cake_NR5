@@ -9,17 +9,18 @@ class EqsController extends AppController {
 	
 	public function view($id = null) {
 		if (!$id) {
-			throw new NotFoundException(__('Invalid genre'));
+			throw new NotFoundException(__('Invalid eq'));
 		}
 	
-		$genre = $this->Eq->findById($id);
-		if (!$genre) {
-			throw new NotFoundException(__('Invalid genre'));
+		$eq = $this->Eq->findById($id);
+		if (!$eq) {
+			throw new NotFoundException(__('Invalid eq'));
 		}
-		$this->set('genre', $genre);
+		$this->set('eq', $eq);
 	}
 
-	public function add() {
+	public function 
+	add() {
 		if ($this->request->is('post')) {
 			$this->Eq->create();
 			
@@ -30,9 +31,20 @@ class EqsController extends AppController {
 				$this->Session->setFlash(__('Your eqs has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			}
+			
 			$this->Session->setFlash(__('Unable to add your eqs.'));
+			
+		} else {
+			
+			$option = array('class' => 'flash_ok');
+			
+			//REF flash bg http://hijiriworld.com/web/cakephp-setflash/
+			$this->Session->setFlash(__('Add Eq'), 'default', $option);
+// 			$this->Session->setFlash(__('Add Eq'));
+			
 		}
-	}
+		
+	}//add
 
 	public function delete($id) {
 		/******************************
@@ -41,13 +53,13 @@ class EqsController extends AppController {
 	
 		******************************/
 		if (!$id) {
-			throw new NotFoundException(__('Invalid genre id'));
+			throw new NotFoundException(__('Invalid eq id'));
 		}
 	
-		$genre = $this->Eq->findById($id);
+		$eq = $this->Eq->findById($id);
 	
-		if (!$genre) {
-			throw new NotFoundException(__("Can't find the genre. id = %d", $id));
+		if (!$eq) {
+			throw new NotFoundException(__("Can't find the eq. id = %d", $id));
 		}
 	
 		/******************************
@@ -60,7 +72,7 @@ class EqsController extends AppController {
 	
 			$this->Session->setFlash(__(
 					"Eq deleted => %s",
-					$genre['Eq']['name']));
+					$eq['Eq']['epi']));
 	
 			return $this->redirect(
 					array(
@@ -73,7 +85,7 @@ class EqsController extends AppController {
 	
 			$this->Session->setFlash(
 					__("Eq can't be deleted => %s",
-							$genre['Eq']['name']));
+							$eq['Eq']['epi']));
 	
 			// 			$page_num = _get_Page_from_Id($id - 1);
 	

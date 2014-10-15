@@ -2,7 +2,18 @@
 <tr>
 		<td><?php echo $eq['Eq']['id']; ?></td>
 		
-		<td><?php echo $eq['Eq']['epi']; ?></td>
+		<td>
+			<?php 
+// 				echo $eq['Eq']['epi'];
+				echo $this->Html->link($eq['Eq']['epi'],
+										array(
+													'controller' => 'eqs',
+													'action' => 'view',
+													$eq['Eq']['id'])
+										);
+				
+			?>
+		</td>
 		
 		<td><?php echo $eq['Eq']['time_eq']; ?></td>
 		

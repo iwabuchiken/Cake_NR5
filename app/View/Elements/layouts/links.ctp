@@ -115,6 +115,19 @@
 <!-- 		</td> -->
 		
 	</tr>
+
+	<tr>
+		<td>
 		
+			<?php echo $this->Html->link(
+						
+						'EQ',
+						array('controller' => 'eqs', 
+								'action' => 'index'),
+						array('class' => "button"));
+				?>
+		</td>
+	
+	</tr>
 	
 </table>

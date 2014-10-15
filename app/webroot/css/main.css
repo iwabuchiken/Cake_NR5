@@ -621,6 +621,22 @@ a[rel='prev'] {
 }
 */
 
+div.flash_ok {
+	
+	background:	green;
+	/* REF http://www.htmq.com/style/font-size.shtml */
+	font-size:	25px;
+	color:		white;
+	
+	/* REF http://www.htmq.com/style/padding.shtml */
+	padding:	5px;
+	
+	/*width:		100px;*/
+	/* REF http://stackoverflow.com/questions/450903/make-div-width-equal-to-child-contents answered Oct 12 '10 at 16:47 */
+	display:	inline-block;
+	
+}
+
 div.pagination {
 	
 	background: #A4F7B6;
