@@ -16,6 +16,11 @@ class History extends AppModel {
 			'Token' => array(
 	
 					'className' => 'Token'
+			),
+			
+			'SkimmedToken' => array(
+	
+					'className' => 'SkimmedToken'
 			)
 	
 	);

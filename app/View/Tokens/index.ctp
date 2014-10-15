@@ -28,6 +28,22 @@
 
 (<a href="#top">Top</a><a name="bottom"></a>)
 
+
+<br>
+<br>
+
+<?php 
+
+	echo $this->Html->link(
+				    'Delete all',
+				    array('controller' => 'tokens', 'action' => 'delete_all'),
+					null,
+					__("Delete all tokens?")
+	); 
+
+?>
+
+
 <?php 
 
 // 	echo $this->Html->link(
