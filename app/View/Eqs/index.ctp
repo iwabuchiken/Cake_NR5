@@ -19,6 +19,22 @@
 <br>
 <br>
 
+<?php echo $this->Html->link("Save eqs",
+							array(
+								'controller' => 'eqs', 
+								'action' => 'save_eqs'),
+							array(
+								'class'	=> 'link_blue'
+									// 							'style'	=> 'color: blue'
+							// 							'class'		=> 'link_word_alert'
+							)
+
+							); 
+?>
+
+<br>
+<br>
+
 <?php echo $this->Html->link("Delete all eqs",
 							array(
 								'controller' => 'eqs', 

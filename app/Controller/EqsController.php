@@ -6,16 +6,19 @@ class EqsController extends AppController {
 	public function index() {
 		$this->set('eqs', $this->Eq->find('all'));
 		
-		$eqs = $this->_index__Get_EqInfo();
+		$eqs = $this->_get_Eqs();
+// 		$eqs = $this->_index__Get_EqInfo();
 		
 	}
 
 	public function
 	_index__Get_EqInfo() {
 		
-		$url_base = "http://typhoon.yahoo.co.jp/weather/jp/earthquake";
+		$url_base = "http://typhoon.yahoo.co.jp";
+// 		$url_base = "http://typhoon.yahoo.co.jp/weather/jp/earthquake";
 		
-		$url = "$url_base/list/";
+		$url = "$url_base/weather/jp/earthquakelist/";
+// 		$url = "$url_base/list/";
 // 		$url = "http://typhoon.yahoo.co.jp/weather/jp/earthquake/list/";
 		
 		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
@@ -97,6 +100,7 @@ class EqsController extends AppController {
 		$eq['mag'] = $tds_1[3]->plaintext;
 		$eq['ss'] = $tds_1[4]->plaintext;
 
+		//REF http://qiita.com/chkk525@github/items/3d3fba394514fa2c4529
 		$a = $tds_1[0]->find('a');
 		
 		$href = $a[0]->href;	//=> '/weather/jp/earthquake/20141016092912.html'
@@ -308,5 +312,162 @@ class EqsController extends AppController {
 		}
 	
 	}//delete_all
+
+	public function
+	_get_Eqs() {
+
+// 		$url_base = "http://typhoon.yahoo.co.jp/weather/jp/earthquake";
+
+// 		$url = "$url_base/list/";
+// 		// 		$url = "http://typhoon.yahoo.co.jp/weather/jp/earthquake/list/";
+
+		$url_base = "http://typhoon.yahoo.co.jp";
+		// 		$url_base = "http://typhoon.yahoo.co.jp/weather/jp/earthquake";
+		
+		$url = "$url_base/weather/jp/earthquake/list/";
+		
+		debug($url);
+		
+		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+		$html = file_get_html($url);
+		
+		$trs = $html->find('table tr');
+		
+		return $this->_conv_TrTags_to_Eqs($trs, $url_base);
+// 		$eqs = $this->_conv_TrTags_to_Eqs($trs, $url_base);
+		
+	}//_get_Eqs
+
+	public function
+	_conv_TrTags_to_Eqs
+	($trs, $url_base) {
+		
+		$eqs = array();
+
+		for ($i = 1; $i < count($trs); $i++) {
+			
+			// get tr
+			$tr = $trs[$i];
+			
+			// get tds
+			$tds = $tr->children();
+			
+			// create eq
+			$eq = $this->Eq->create();
+			
+			// set: values
+			$eq['time_eq'] = $tds[0]->plaintext;
+			$eq['time_pub'] = $tds[1]->plaintext;
+			$eq['epi'] = $tds[2]->plaintext;
+			$eq['mag'] = $tds[3]->plaintext;
+			$eq['ss'] = $tds[4]->plaintext;
+			
+			$a = $tds[0]->find('a');
+			
+			$href = $a[0]->href;	//=> '/weather/jp/earthquake/20141016092912.html'
+			
+			$eq['url_img'] = $url_base.$href;
+				
+			// push
+			array_push($eqs, $eq);
+			
+		}
+		
+// 		debug(count($eqs));
+		
+// 		debug($eqs[50]);
+		
+		$tr_1 = $trs[1];
+		
+		$tds_1 = $tr_1->children();
+		
+		$eq = $this->Eq->create();
+		
+		$eq['time_eq'] = $tds_1[0]->plaintext;
+		$eq['time_pub'] = $tds_1[1]->plaintext;
+		$eq['epi'] = $tds_1[2]->plaintext;
+		$eq['mag'] = $tds_1[3]->plaintext;
+		$eq['ss'] = $tds_1[4]->plaintext;
+		
+		$a = $tds_1[0]->find('a');
+		
+		$href = $a[0]->href;	//=> '/weather/jp/earthquake/20141016092912.html'
+		
+		$eq['url_img'] = $url_base.$href;
+		
+		debug($eq);
+		
+		/**********************************
+		* return
+		**********************************/
+		return $eqs;
+		
+	}//_conv_TrTags_to_Eqs
+
+	public function
+	save_eqs() {
+
+		$counter = 0;
+		
+		/**********************************
+		* get: list
+		**********************************/
+		$eq_list = $this->_get_Eqs();
+		
+// 		http://typhoon.yahoo.co.jp/weather/jp/earthquake/weather/jp/earthquake/20141016080227.html
+// 		http://typhoon.yahoo.co.jp/weather/jp/earthquake/20141016092912.html
+		/**********************************
+		* save
+		**********************************/
+		foreach ($eq_list as $item) {
+		
+			$this->Eq->create();
+		
+			// build param
+			$param = array('Eq' =>
+			
+					array(
+								
+							'created_at'	=> Utils::get_CurrentTime(),
+							'updated_at'	=> Utils::get_CurrentTime(),
+								
+							'time_eq'		=> $item['time_eq'],
+							'time_pub'		=> $item['time_pub'],
+							'epi'		=> $item['epi'],
+							'mag'		=> $item['mag'],
+							'ss'		=> $item['ss'],
+							'url_img'		=> $item['url_img'],
+								
+								
+					)//array(
+			
+			);//$param = array('Eq' =>
+				
+			if ($this->Eq->save($param)) {
+			
+				$counter += 1;
+			
+			}
+				
+		}//foreach ($item as $eq_list)
+		
+		/**********************************
+		* redirect
+		**********************************/
+		$this->Session->setFlash(__("Eqs saved => ".$counter));
+		
+		//log
+		$msg = "Save eqs done => ".(string)$counter;
+		Utils::write_Log($this->path_Log, $msg, __FILE__, __LINE__);
+		
+		
+		return $this->redirect(
+					array(
+						'controller'	=> 'eqs',
+						'action' =>		'index'
+					)
+		);
+		
+	}//save_eqs
 	
 }

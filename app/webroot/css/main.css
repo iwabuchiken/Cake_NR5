@@ -3,6 +3,20 @@
 /*
 REF http://stackoverflow.com/questions/13491421/cakephp-create-simple-buttons-that-redirects-to-views answered Nov 21 '12 at 11:22
 */ 
+
+/*
+REF http://web-dou.com/css/etc_link.html
+*/
+a:hover {
+	
+	color:	blue;
+}
+
+a:VISITED {
+	
+	color:	purple;
+}
+
 a.button {
     color: #4e4e4e;
     /*color: #6e6e6e;*/

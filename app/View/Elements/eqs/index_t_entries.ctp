@@ -23,11 +23,17 @@
 		
 		<td>
 			<?php 
-			echo $this->Html->link(
-							"image",
-							$eq['Eq']['url_img']
-							
-							); 
+			
+				$option = array(
+						'target'	=> '_blank',
+						'escape'	=> false,
+				);
+					
+				echo $this->Html->link(
+								"image",
+								$eq['Eq']['url_img'],
+								$option
+								); 
 			?>
 		</td>
 		
