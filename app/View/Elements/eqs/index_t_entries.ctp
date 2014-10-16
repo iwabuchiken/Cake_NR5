@@ -19,19 +19,24 @@
 		
 		<td><?php echo $eq['Eq']['mag']; ?></td>
 		
-<!-- 		<td> -->
+		<td><?php echo $eq['Eq']['ss']; ?></td>
+		
+		<td>
 			<?php 
-// 			echo $this->Html->link($eq['Eq']['name'],
-// 							array(
-// 								'controller' => 'eqs', 
-// 								'action' => 'view', 
-// 								$eq['Eq']['id'])
-// 							); ?>
-<!-- 		</td> -->
+			echo $this->Html->link(
+							"image",
+							$eq['Eq']['url_img']
+							
+							); 
+			?>
+		</td>
 		
 		
 		<td><?php echo $eq['Eq']['created_at']; ?></td>
-		<td><?php echo $eq['Eq']['updated_at']; ?></td>
+		
+<!-- 		<td> -->
+			<?php //echo $eq['Eq']['updated_at']; ?>
+<!-- 		</td> -->
 		
 </tr>
 <?php endforeach; ?>

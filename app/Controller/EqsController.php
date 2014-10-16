@@ -13,14 +13,17 @@ class EqsController extends AppController {
 	public function
 	_index__Get_EqInfo() {
 		
-		$url = "http://typhoon.yahoo.co.jp/weather/jp/earthquake/list/";
+		$url_base = "http://typhoon.yahoo.co.jp/weather/jp/earthquake";
+		
+		$url = "$url_base/list/";
+// 		$url = "http://typhoon.yahoo.co.jp/weather/jp/earthquake/list/";
 		
 		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
 		$html = file_get_html($url);
 		
 		$trs = $html->find('table tr');
 		
-		$eqs = $this->_index__Conv_Html_to_Eqs($trs);
+		$eqs = $this->_index__Conv_Html_to_Eqs($trs, $url_base);
 		
 // 		$table = $html->find('table');
 		
@@ -78,7 +81,7 @@ class EqsController extends AppController {
 	}//_index__Get_EqInfo
 	
 	public function 
-	_index__Conv_Html_to_Eqs($trs) {
+	_index__Conv_Html_to_Eqs($trs, $url_base) {
 		
 		$eqs = array();
 		
@@ -91,8 +94,30 @@ class EqsController extends AppController {
 		$eq['time_eq'] = $tds_1[0]->plaintext;
 		$eq['time_pub'] = $tds_1[1]->plaintext;
 		$eq['epi'] = $tds_1[2]->plaintext;
+		$eq['mag'] = $tds_1[3]->plaintext;
+		$eq['ss'] = $tds_1[4]->plaintext;
+
+		$a = $tds_1[0]->find('a');
+		
+		$href = $a[0]->href;	//=> '/weather/jp/earthquake/20141016092912.html'
+		
+		$eq['url_img'] = $url_base.$href;
 		
 		debug($eq);
+		
+		$a = $tds_1[0]->find('a');
+
+		$href = $a[0]->href;	//=> '/weather/jp/earthquake/20141016092912.html'
+		
+// 		debug(count($a));	//=> 1
+		
+// 		$href = $a->href;	//=> Trying to get property of non-object
+		
+// 		debug($href);
+		
+// 		debug($a);	//=> out of memory
+		
+// 		debug($tds_1[0]->a);	//=> false
 		
 // 		$td_1 = $tds_1[0];
 		
