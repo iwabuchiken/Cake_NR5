@@ -3,8 +3,51 @@
 class EqsController extends AppController {
 	public $helpers = array('Html', 'Form');
 
+	public $components = array('Paginator');
+	
 	public function index() {
-		$this->set('eqs', $this->Eq->find('all'));
+		/**********************************
+		* setup: pagination
+		**********************************/
+		$page_limit = 10;
+		
+		$opt_order = array(
+				
+				'Eq.id' => 'asc',
+		
+		);
+		
+		$opt_conditions = '';
+		
+		$this->paginate = array(
+				// 					'conditions' => array('Image.file_name LIKE' => "%$filter_TableName%"),
+				// 				'conditions' => array('Image.memos LIKE' => "%$filter_TableName%"),
+				'limit' => $page_limit,
+				'order' => $opt_order,
+				'conditions'	=> $opt_conditions
+				// 				'order' => array(
+				// 						'id' => 'asc'
+				// 				)
+		);
+
+		// eqs
+		$this->set('eqs', $this->paginate('Eq'));
+		
+		/**********************************
+		* meta infos
+		**********************************/
+		// total number
+		$num_of_tokens = count($this->Eq->find('all'));
+		$this->set('num_of_tokens', $num_of_tokens);
+		
+		// total number of pages
+		$num_of_pages = (int) ceil($num_of_tokens / $page_limit);
+		$this->set('num_of_pages', $num_of_pages);
+		
+// 		$this->set('eqs', $this->Eq->find('all'));
+
+// 		// eqs
+// 		$this->set('eqs', $this->paginate('Eq'));
 		
 		$eqs = $this->_get_Eqs();
 // 		$eqs = $this->_index__Get_EqInfo();
