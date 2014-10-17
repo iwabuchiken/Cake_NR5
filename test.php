@@ -401,9 +401,92 @@ test_Get_Type() {
 	
 }//test_Get_Type
 
-function execute() {
+function
+test_PregMatch_EQ_TimeLabel() {
 
-	test_Get_Type();
+	$str = "2014年9月14日 12時52分ごろ";
+	
+	$str = mb_convert_encoding($str, "SJIS", "UTF-8");
+
+	print_r($str);
+	echo "\n";
+	
+	$p = "/\d+/i";
+// 	$p = "/\d+?/i";
+// 	$p = "/\d+?/";
+	
+	$res = preg_match_all($p, $str, $matches);
+
+	/**********************************
+	* matches?
+	**********************************/
+	if ($res == 0) {
+		
+		echo "no matches";
+		echo "\n";
+		
+	} else if ($res == FALSE) {
+
+		echo "FALSE";
+		echo "\n";
+		
+	} else {
+		
+		echo "res => ";
+// 		print_r($matches);
+// 		print_r($matches[0]);
+		
+		$label = _conv_Match_to_DateLabel($matches[0]);
+		
+	}
+	
+}//test_PregMatch_EQ_TimeLabel
+
+function
+_conv_Match_to_DateLabel
+($match) {
+	
+	print_r($match);
+	
+	arsort($match);
+	
+	print_r($match);
+	
+	for ($i = 0; $i < count($match); $i++) {
+
+		$num_str = (string) $match[$i];
+
+		$len = strlen($num_str);
+		
+		if ($len == 1) {
+			
+			$num_str = "0".$num_str;
+			
+		}
+		
+// 		echo $num_str."(".strlen($num_str).")";
+// 		echo "\n";
+		
+		$match[$i] = $num_str;
+		
+// 		echo $match[$i]."(".$match[$i].length.")";
+		
+	}
+	
+	print_r($match);
+	
+	arsort($match);
+// 	asort($match);
+	
+	print_r($match);
+	
+}//_conv_Match_to_DateLabel
+
+function
+execute() {
+
+	test_PregMatch_EQ_TimeLabel();
+// 	test_Get_Type();
 // 	test_Sanitize_Replace();
 // 	test_Sanitize();
 // 	test_Replace();

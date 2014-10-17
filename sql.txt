@@ -191,8 +191,9 @@ CREATE TABLE eqs (
 	depth		VARCHAR(30),
 	info		VARCHAR(100),
 	
-	url_img		VARCHAR(200)
+	url_img		VARCHAR(200),
 	
+	time_eq_serial		VARCHAR(30)
 );
 
 CREATE TABLE users (

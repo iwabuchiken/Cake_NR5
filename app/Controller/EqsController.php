@@ -13,7 +13,9 @@ class EqsController extends AppController {
 		
 		$opt_order = array(
 				
-				'Eq.id' => 'asc',
+				'Eq.mag' => 'desc',
+// 				'Eq.time_eq' => 'desc',
+// 				'Eq.id' => 'asc',
 		
 		);
 		
@@ -439,6 +441,10 @@ class EqsController extends AppController {
 		$eq['url_img'] = $url_base.$href;
 		
 		debug($eq);
+
+		$time_eq_serial = $this->_conv_TimeEQ_to_Serial($eq['time_eq']);
+		
+		debug($time_eq_serial);
 		
 		/**********************************
 		* return
@@ -512,5 +518,72 @@ class EqsController extends AppController {
 		);
 		
 	}//save_eqs
-	
+
+	public function
+	_conv_TimeEQ_to_Serial
+	($time_eq) {
+		
+		$p = "/\d+/i";
+		
+		$res = preg_match_all($p, $time_eq, $matches);
+		
+		/**********************************
+		 * matches?
+		**********************************/
+		if ($res == 0) {
+		
+			return $time_eq;
+			
+// 			echo "no matches";
+// 			echo "\n";
+		
+		} else if ($res == FALSE) {
+		
+			return $time_eq;
+			
+// 			echo "FALSE";
+// 			echo "\n";
+		
+		} else {
+		
+// 			echo "res => ";
+			// 		print_r($matches);
+			// 		print_r($matches[0]);
+		
+			return $this->_conv_Match_to_DateLabel($matches[0]);
+		
+		}
+		
+	}//_conv_TimeEQ_to_Serial
+
+	public function
+	_conv_Match_to_DateLabel
+	($match) {
+		
+		for ($i = 0; $i < count($match); $i++) {
+		
+			$num_str = (string) $match[$i];
+		
+			$len = strlen($num_str);
+		
+			if ($len == 1) {
+					
+				$num_str = "0".$num_str;
+					
+			}
+		
+			$match[$i] = $num_str;
+		
+		}
+
+		$label = implode("", array_slice($match, 0, 3))
+				."_"
+				.implode("", array_slice($match, 3))
+				;
+		
+		return $label;
+// 		return implode("_", $match);
+		
+	}//_conv_Match_to_DateLabel
+
 }
