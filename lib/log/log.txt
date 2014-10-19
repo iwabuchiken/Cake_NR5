@@ -2644,3 +2644,7 @@ ROOT => C:\WORKS\WS\Eclipse_Kepler\VM_Cake[07/05/2014 09:10:43 : C:\WORKS\WS\Ecl
 [10/16/2014 11:24:12 : \app\Controller\EqsController.php : 453] Save eqs done => 100
 [10/16/2014 11:29:56 : \app\Controller\EqsController.php : 460] Save eqs done => 100
 [10/16/2014 11:37:25 : \app\Controller\EqsController.php : 461] Save eqs done => 100
+[10/19/2014 11:10:48 : \app\Controller\EqsController.php : 510] Save eqs done => 100
+[10/19/2014 11:18:11 : \app\Controller\EqsController.php : 512] Save eqs done => 100
+[10/19/2014 11:19:55 : \app\Controller\EqsController.php : 514] Save eqs done => 100
+[10/19/2014 11:20:20 : \app\Controller\EqsController.php : 514] Save eqs done => 100

@@ -15,7 +15,17 @@
 			?>
 		</td>
 		
-		<td><?php echo $eq['Eq']['time_eq']; ?></td>
+		<td>
+		
+			<?php 
+			
+				echo $eq['Eq']['time_eq'];
+
+				echo "(".$eq['Eq']['time_eq_serial'].")";
+				
+			?>
+			
+		</td>
 		
 		<td><?php echo $eq['Eq']['mag']; ?></td>
 		

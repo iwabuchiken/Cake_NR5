@@ -5,7 +5,8 @@ class EqsController extends AppController {
 
 	public $components = array('Paginator');
 	
-	public function index() {
+	public function 
+	index() {
 		/**********************************
 		* setup: pagination
 		**********************************/
@@ -13,8 +14,9 @@ class EqsController extends AppController {
 		
 		$opt_order = array(
 				
-				'Eq.mag' => 'desc',
+// 				'Eq.mag' => 'desc',
 // 				'Eq.time_eq' => 'desc',
+				'Eq.time_eq_serial' => 'desc',
 // 				'Eq.id' => 'asc',
 		
 		);
@@ -54,7 +56,7 @@ class EqsController extends AppController {
 		$eqs = $this->_get_Eqs();
 // 		$eqs = $this->_index__Get_EqInfo();
 		
-	}
+	}//index
 
 	public function
 	_index__Get_EqInfo() {
@@ -412,6 +414,8 @@ class EqsController extends AppController {
 			$href = $a[0]->href;	//=> '/weather/jp/earthquake/20141016092912.html'
 			
 			$eq['url_img'] = $url_base.$href;
+			
+			$eq['time_eq_serial'] = $this->_conv_TimeEQ_to_Serial($eq['time_eq']);;
 				
 			// push
 			array_push($eqs, $eq);
@@ -486,6 +490,7 @@ class EqsController extends AppController {
 							'mag'		=> $item['mag'],
 							'ss'		=> $item['ss'],
 							'url_img'		=> $item['url_img'],
+							'time_eq_serial'	=> $item['time_eq_serial'],
 								
 								
 					)//array(
