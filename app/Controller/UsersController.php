@@ -7,6 +7,7 @@ class UsersController extends AppController {
 // 		$this->Auth->allow('add');
 // 		$this->Auth->allow('add', 'logout');
 		$this->Auth->allow('add_user', 'logout');
+// 		$this->Auth->allow('add_user', 'logout', 'open_article');
 		
 	}
 

@@ -63,7 +63,8 @@ class AppController extends Controller {
 	
 // 		require_once $this->path_Utils.DS."db_util.php";
 	
-		$this->Auth->allow('index', 'view');
+// 		$this->Auth->allow('index', 'view');
+		$this->Auth->allow('index', 'view', 'open_article');
 		
 	}//beforeFilter
 	
