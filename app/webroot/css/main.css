@@ -634,6 +634,29 @@ a[rel='prev'] {
 	
 }
 */
+div.message {
+	
+	color: blue;
+	
+}
+
+div.user_index {
+	
+	/*color: blue;*/
+	
+}
+
+div.notification {
+	
+	color: blue;
+	
+}
+
+p.notification {
+	
+	color: blue;
+	
+}
 
 div.flash_ok {
 	

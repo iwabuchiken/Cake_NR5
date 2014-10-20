@@ -47,7 +47,8 @@ class AppController extends Controller {
 	
 	public $title_Length	= 60;
 	
-	public function beforeFilter() {
+	public function 
+	beforeFilter() {
 	
 		$this->_Setup_Paths();
 	
@@ -62,9 +63,9 @@ class AppController extends Controller {
 	
 // 		require_once $this->path_Utils.DS."db_util.php";
 	
-// 		$this->Auth->allow('index', 'view');
+		$this->Auth->allow('index', 'view');
 		
-	}
+	}//beforeFilter
 	
 	private function _Setup_Paths() {
 		/****************************************
@@ -375,5 +376,22 @@ class AppController extends Controller {
 		return implode("", $lines_new);
 	
 	}//_content_multilines_GetHtml
+
+	public $components = array(
+			'Session',
+			'Auth' => array(
+					'loginRedirect' => array(
+							'controller' => 'articles',
+							// 							'controller' => 'posts',
+							'action' => 'index'
+					),
+					'logoutRedirect' => array(
+							'controller' => 'articles',
+							'action' => 'index'
+							// 							'action' => 'display',
+	// 							'home'
+					)
+			)
+	);
 	
 }//class AppController extends Controller

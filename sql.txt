@@ -13,6 +13,19 @@ pragma table_info(categories);
 .exit
 
 [sqlite3]======================================
+DROP TABLE users;
+
+CREATE TABLE users (
+	id			INTEGER PRIMARY KEY     AUTOINCREMENT	NOT NULL,
+	created_at	VARCHAR(30),
+	updated_at	VARCHAR(30),
+	
+    username VARCHAR(50),
+    password VARCHAR(255),
+    role VARCHAR(20)
+	
+);
+
 CREATE TABLE articles(
    id			INTEGER PRIMARY KEY     AUTOINCREMENT	NOT NULL,
    created_at	VARCHAR(30),
@@ -210,6 +223,19 @@ CREATE TABLE users (
 
 [mysql(lollipop)]======================================
 #REF http://sql-info.de/mysql/examples/CREATE-TABLE-examples.html
+
+DROP TABLE users;
+
+CREATE TABLE users (
+	id			INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	created_at	VARCHAR(30),
+	updated_at	VARCHAR(30),
+	
+    username VARCHAR(50),
+    password VARCHAR(255),
+    role VARCHAR(20)
+	
+);
 
 CREATE TABLE articles(
 	id			INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
