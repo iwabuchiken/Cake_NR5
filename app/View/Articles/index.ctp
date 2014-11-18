@@ -1,5 +1,6 @@
 <h1>
-
+	<?php echo $abc;?>
+	
 	Articles 
 		(total = <?php echo count($articles); ?>) 
 		(<a href="#bottom">Bottom</a><a name="top"></a>)

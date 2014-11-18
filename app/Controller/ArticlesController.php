@@ -138,6 +138,10 @@ class ArticlesController extends AppController {
 		
 		$this->set('a_categorized', $a_categorized_new);
 
+		//test
+		$this->set('abc', "abcabc");
+		
+		
 // 		debug(array_keys($a_categorized_new));
 // 		debug($a_categorized_new[array_keys($a_categorized_new)[0]]);
 		
@@ -651,6 +655,8 @@ class ArticlesController extends AppController {
 		**********************************/
 		$articles = $this->__index_Get_Articles__Top($query_genre_id);
 		
+// 		debug(count($articles));
+		
 		/**********************************
 		* further pages
 		**********************************/
@@ -686,21 +692,42 @@ class ArticlesController extends AppController {
 		
 		$ahrefs = $html->find('a[href]');
 		
+// 		debug(count($ahrefs));
+		
 		$ahrefs_hl = array();
+		
+// 		//test
+// 		$aaa = true;
 		
 		foreach ($ahrefs as $ahref) {
 		
+// 			if ($aaa == true) {
+				
+// 				debug($ahref->href);
+				
+// 				$aaa = false;
+				
+// 			}
+			
 			// 			if (Utils::startsWith($ahref->href, "/hl")) {
-			if (Utils::startsWith($ahref->href, "/hl")
+			if (Utils::startsWith($ahref->href, "http://headlines")
 					&& count(explode("-", $ahref->href)) > 3) {
 		
-						$ahref->href = "http://headlines.yahoo.co.jp".$ahref->href;
+// 						$ahref->href = "http://headlines.yahoo.co.jp".$ahref->href;
+// 			if (Utils::startsWith($ahref->href, "/hl")
+// 					&& count(explode("-", $ahref->href)) > 3) {
 		
+// 						$ahref->href = "http://headlines.yahoo.co.jp".$ahref->href;
+		
+						
+						
 						array_push($ahrefs_hl, $ahref);
 		
 					}
 		
 		}//foreach ($ahrefs as $ahref)
+		
+// 		debug(count($ahrefs_hl));
 		
 		/**********************************
 		 * build: list
