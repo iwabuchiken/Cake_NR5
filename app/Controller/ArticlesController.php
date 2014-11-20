@@ -91,6 +91,8 @@ class ArticlesController extends AppController {
 		**********************************/
 		$articles = $this->__index_Get_Articles($query_genre_id);
 
+// 		debug("articles => ".count($articles));
+		
 		// validate
 		if ($articles == null) {
 			
@@ -655,14 +657,18 @@ class ArticlesController extends AppController {
 		**********************************/
 		$articles = $this->__index_Get_Articles__Top($query_genre_id);
 		
-// 		debug(count($articles));
+// 		debug("top => ".count($articles));
 		
 		/**********************************
 		* further pages
 		**********************************/
 		$articles = $this->__index_Get_Articles__Page_X($query_genre_id, $articles, 1);
+
+// 		debug("top + 1 => ".count($articles));
 		
 		$articles = $this->__index_Get_Articles__Page_X($query_genre_id, $articles, 2);
+		
+// 		debug("top + 2 => ".count($articles));
 		
 		/**********************************
 		* return
@@ -776,21 +782,27 @@ class ArticlesController extends AppController {
 		
 		$ahrefs = $html->find('a[href]');
 		
+// 		debug("\$ahrefs($page) => ".count($ahrefs));
+		
 		$ahrefs_hl = array();
 		
 		foreach ($ahrefs as $ahref) {
 		
 			// 			if (Utils::startsWith($ahref->href, "/hl")) {
-			if (Utils::startsWith($ahref->href, "/hl")
-					&& count(explode("-", $ahref->href)) > 3) {
+// 			if (Utils::startsWith($ahref->href, "/hl")
+// 					&& count(explode("-", $ahref->href)) > 3) {
+		if (Utils::startsWith($ahref->href, "http://headlines")
+				&& count(explode("-", $ahref->href)) > 3) {
 		
-						$ahref->href = "http://headlines.yahoo.co.jp".$ahref->href;
+// 						$ahref->href = "http://headlines.yahoo.co.jp".$ahref->href;
 		
 						array_push($ahrefs_hl, $ahref);
 		
 					}
 		
 		}//foreach ($ahrefs as $ahref)
+		
+// 		debug("\$ahrefs_hl($page) => ".count($ahrefs_hl));
 		
 		/**********************************
 		 * build: list
