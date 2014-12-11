@@ -128,6 +128,17 @@
 				?>
 		</td>
 	
+		<td>
+		
+			<?php echo $this->Html->link(
+						
+						'EQ/map',
+						array('controller' => 'eqs', 
+								'action' => 'map'),
+						array('class' => "button"));
+				?>
+		</td>
+	
 	</tr>
 	
 </table>

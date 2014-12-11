@@ -341,6 +341,12 @@ class EqsController extends AppController {
 	
 	}//public function edit($id = null)
 
+	public function map() {
+		
+		$this->layout = 'plain';
+		
+	}
+	
 	public function
 	delete_all() {
 	
