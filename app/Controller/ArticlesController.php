@@ -702,31 +702,11 @@ class ArticlesController extends AppController {
 		
 		$ahrefs_hl = array();
 		
-// 		//test
-// 		$aaa = true;
-		
 		foreach ($ahrefs as $ahref) {
 		
-// 			if ($aaa == true) {
-				
-// 				debug($ahref->href);
-				
-// 				$aaa = false;
-				
-// 			}
-			
-			// 			if (Utils::startsWith($ahref->href, "/hl")) {
 			if (Utils::startsWith($ahref->href, "http://headlines")
 					&& count(explode("-", $ahref->href)) > 3) {
 		
-// 						$ahref->href = "http://headlines.yahoo.co.jp".$ahref->href;
-// 			if (Utils::startsWith($ahref->href, "/hl")
-// 					&& count(explode("-", $ahref->href)) > 3) {
-		
-// 						$ahref->href = "http://headlines.yahoo.co.jp".$ahref->href;
-		
-						
-						
 						array_push($ahrefs_hl, $ahref);
 		
 					}
@@ -2297,6 +2277,10 @@ class ArticlesController extends AppController {
 						
 				} else {
 				
+					$line_Length = mb_strlen($article_content);
+					
+					debug("line_Length => ".$line_Length);
+					
 					$words = $this->get_Words($article_content);
 					
 					$tmp = $this->build_Text_Colorize_Kanji($words);
@@ -2341,42 +2325,16 @@ class ArticlesController extends AppController {
 		
 		$ahrefs = $html->find('p[class]');
 
-// 		//log
-// 		$msg = "\$ahrefs => ".count($ahrefs);
-// 		Utils::write_Log($this->path_Log, $msg, __FILE__, __LINE__);
-// // 		Utils::write_Log($this->dpath_Log, $msg, __FILE__, __LINE__);
-		
 		foreach ($ahrefs as $ahref) {
 		
-// 			$tmp = $ahref->href;
-
-// 			//log
-// 			$msg = "class => ".$ahref->class;
-// // 			$msg = "class => ".$tmp->class;
-// // 			$msg = "class => ".$tmp['class'];
-// 			Utils::write_Log($this->path_Log, $msg, __FILE__, __LINE__);
-			
-			
-// 			//log
-// 			$msg = "href: text => ".$ahref->plaintext;
-// 			Utils::write_Log($this->path_Log, $msg, __FILE__, __LINE__);
-			
-			
 			if ($ahref->class == "ynDetailText") {
-// 			if ($tmp == "ynDetailText") {
-				
-// 				//log
-// 				$msg = "content => ".$ahref->plaintext;
-// 				Utils::write_Log($this->path_Log, $msg, __FILE__, __LINE__);
 				
 				return $ahref->plaintext;
 				
 			}
 		
 		}//foreach ($ahrefs as $ahref)
-		
-// 		debug(count($ahrefs));
-		
+			
 	}//_open_article__GetContent
 	
 	public function

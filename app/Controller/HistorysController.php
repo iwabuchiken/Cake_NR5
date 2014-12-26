@@ -56,36 +56,58 @@ class HistorysController extends AppController {
 		/**********************************
 		* content: modified
 		**********************************/
-		$words = $this->_view_Mecab($history);
-
-// 		$content_multiline = 
-// 				$this->_content_multilines_GetHtml($history['History']['content']);
+		$content_Length = mb_strlen($this->sanitize($history['History']['content']));
 		
-		$val_1 = $this->get_Admin_Value(CONS::$admin_Colorize, "val1");
+		debug("content_Length => ".$content_Length);
 		
-		if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1) {
-				
-			$content_multiline = $this->build_Text($words);
-// 			$content_multiline = $this->_build_Text($words);
+		debug("lines: length => "
+				.count(explode("。", $this->sanitize($history['History']['content']))));
+		
+		/**********************************
+		* dispatch
+		**********************************/
+		if ($content_Length > 2500) {
 			
+			$words_Array = $this->_view_Mecab_MultiWords($history);
+
+			$val_1 = $this->get_Admin_Value(CONS::$admin_Colorize, "val1");
+				
+			if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1) {
+					
+				$content_multiline = $this->build_Text($words_Array[0]);
+				$content_multiline .= $this->build_Text($words_Array[1]);
+				// 			$content_multiline = $this->_build_Text($words);
+			
+			} else {
+					
+				$content_multiline = $this->build_Text_Colorize_Kanji($words_Array[0]);
+				$content_multiline .= $this->build_Text_Colorize_Kanji($words_Array[1]);
+					
+			}//if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1)
+					
 		} else {
+			
+			$words = $this->_view_Mecab($history);
+	
+			$val_1 = $this->get_Admin_Value(CONS::$admin_Colorize, "val1");
+			
+			if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1) {
+					
+				$content_multiline = $this->build_Text($words);
 				
-			$content_multiline = $this->build_Text_Colorize_Kanji($words);
-// 			$content_multiline = $this->_build_Text_Colorize_Kanji($words);
-				
-		}
-		
-// 		debug($content_multiline);
-		
+			} else {
+					
+				$content_multiline = $this->build_Text_Colorize_Kanji($words);
+					
+			}//if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1)
+			
+		}//if ($content_Length > 2500)
+
+		// add "<br>" to each sentence
 		$content_multiline =
 				$this->_content_multilines_GetHtml($content_multiline);
 		
 		$this->set('content_html', $content_multiline);
-		
-		/**********************************
-		* mecab
-		**********************************/
-// 		$this->_view_Mecab($history);
 		
 	}//view($id = null)
 
@@ -233,7 +255,23 @@ class HistorysController extends AppController {
 	public function 
 	_view_Mecab($history) {
 		
+		/**********************************
+		* prep: sentences
+		**********************************/
 		$sen = $this->sanitize($history['History']['content']);
+		
+// 		if (mb_strlen($sen) > 2500) {
+			
+			
+// 			$sen1 = substr($sen, 0, mb_strlen($sen) / 2);
+// 			$sen2 = substr($sen, 0, mb_strlen($sen) / 2);
+			
+// 		} else {
+// 			arguement2;
+// 		}
+		
+		
+// 		debug("sen length => ".mb_strlen($sen));
 		
 		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
 
@@ -242,11 +280,52 @@ class HistorysController extends AppController {
 
 		$words = $xml->word;
 		
+		debug("\$words: type => ".gettype($words));
+		debug("\$words: class => ".get_class($words));
+		debug("\$words => ".$words);
+		debug("\$sen => ".mb_strlen($sen));
+		
 		$this->set("word", $words[10]->surface);
 		
 		return $words;
 		
 	}//_view_Mecab
+	
+	public function 
+	_view_Mecab_MultiWords($history) {
+		
+		/**********************************
+		* prep: sentences
+		**********************************/
+		$sen = $this->sanitize($history['History']['content']);
+
+		$lines = explode("。", $sen);
+		
+		$lines_1 = array_slice($lines, 0, count($lines) / 2);
+		
+		$lines_2 = array_slice($lines, count($lines) / 2);
+		
+		$sen_1 = implode("。", $lines_1);
+		$sen_2 = implode("。", $lines_2);
+		
+// 		debug("sen length => ".mb_strlen($sen));
+		
+		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen_1";
+
+		//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
+		$xml_1 = simplexml_load_file($url);
+
+		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen_2";
+
+		//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
+		$xml_2 = simplexml_load_file($url);
+
+		$words_1 = $xml_1->word;
+		$words_2 = $xml_2->word;
+		
+		return array($words_1, $words_2);
+		
+	}//_view_Mecab_MultiWords
 	
 	public function 
 	add() {
