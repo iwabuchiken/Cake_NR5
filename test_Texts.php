@@ -1,6 +1,126 @@
 <?php
 
-function test_Regex_ShowResult($url, $pattern) {
+function 
+test_ArraySlice_D_3_SEG_1_V_1_1() {
+	
+// 	$str = "If length is given and is positive, then the sequence will have up to that many elements in it. If the array is shorter than the length, then only the available array elements will be present. If length is given and is negative then the sequence will stop that many elements from the end of the array. If it is omitted, then the sequence will have everything from offset up until the end of the array.";
+// 	$str = "If length is given and is positive, then the sequence will have up to that many elements in it.";
+// 	$str = "Where things go haywire when trying to align numbers is that the space character does not have the same width as a digit when using a porportional spaced font.";
+	$str = "橋下徹大阪市長とヘイトスピーチが問題になっている「在日特権を許さない市民の会（在特会）」の「意見交換会」が10月20日、大阪市役所で行われた。意見交換という名とは裏腹に、面談は「あんたが言い出したことやろ」「あんたじゃねえだろ」など、冒頭から怒号が飛び交う展開となった。「うるせえ」「なんだよ」などと声を荒げた末、桜井氏が立ち上がり、橋下市長に詰め寄ったため、SPらが制止する場面もあった。議論はその後、しばらく続いたが、ほとんどかみ合わないまま。ついにはお互いに罵倒しあう展開になり、橋下市長が終了を告げて立ち去った。当初30分程度が予定されていた意見交換は、10分足らずで終わった。二人の面談の模様は、ニコニコ生放送で生中継されたが、視聴者からは「大の大人同士が恥ずかしいな」「口げんかか」など、批判的なコメントが投稿された。橋下市長と桜井氏のやりとりの全文は、以下のとおり。";	
+// 	$str = "橋下徹大阪市長とヘイトスピーチが問題になっている";	
+// 	$ary = split(' ', $str);
+	
+// 	print $str;
+	
+// 	print "";
+	
+// 	print_r(array_slice($ary, 0, 4));
+	
+// 	$numOf_Tokens = count($ary);
+	
+// 	print "tokens => $numOf_Tokens\n";
+
+	/**********************************
+	* call: test_ArraySlice()
+	**********************************/
+	$numOf_SubSentences = 3;
+// 	$numOf_SubSentences = 5;
+	
+	$split_Char = '。';
+// 	$split_Char = ' ';
+	
+	test_ArraySlice($str, $numOf_SubSentences, $split_Char);
+	
+}//test_ArraySlice_D_3_SEG_1_V_1_1
+
+function 
+test_ArraySlice($sen, $numOf_SubSentences, $split_Char) {
+
+	$ary = mb_split($split_Char, $sen);
+// 	$ary = split($split_Char, $sen);
+// 	$ary = split(' ', $sen);
+	
+// 	print $sen;
+
+	printf("[%d] sen => %s\n", __LINE__, mb_convert_encoding($sen, "SJIS", "UTF-8"));
+// 	printf("[%d] sen => %s\n", __LINE__, mb_convert_encoding($sen, "UTF-8", "SJIS"));
+// 	printf("[%d] sen => %s\n", __LINE__, $sen);
+	
+// 	print mb_convert_encoding($sen, "SJIS", "UTF-8");
+// 	print mb_convert_encoding($sen, "UTF-8", "SJIS");
+	
+	print "";
+	
+// 	print_r(array_slice($ary, 0, 4));
+	
+	$numOf_Tokens = count($ary);
+	
+// 	print "tokens => $numOf_Tokens\n";
+
+	printf("[%d] tokens => %d\n", __LINE__, $numOf_Tokens);
+	
+	
+	/**********************************
+	 * slice
+	**********************************/
+	$numOf_Lots = $numOf_SubSentences;
+// 	$numOf_Lots = 5;
+	
+	$numOf_Tokens_perLot = intval(ceil($numOf_Tokens / $numOf_Lots));
+
+	printf("[%d] numOf_Tokens_perLot => %d\n", __LINE__, $numOf_Tokens_perLot);
+	
+// 	print "numOf_Tokens_perLot => $numOf_Tokens_perLot";
+// 	print "\n";
+	
+	$ary_SlicedArrays = array($numOf_Lots);
+	
+	for ($i = 0; $i < $numOf_Lots; $i++) {
+	
+		$ary_SlicedArrays[$i] = array_slice(
+				$ary,
+				$numOf_Tokens_perLot * $i,
+				$numOf_Tokens_perLot);
+	
+	}
+	
+	/**********************************
+	* report: sliced arrays
+	 **********************************/
+	print "\n";
+	
+	print "ary_SlicedArrays[0] => ";
+	
+	print "\n";
+		print "\n";
+	
+// 	print_r(mb_convert_encoding($ary_SlicedArrays[0], "SJIS", "UTF-8"));
+	print_r($ary_SlicedArrays[0]);
+	
+// 	print mb_convert_encoding($ary_SlicedArrays[0], "SJIS", "UTF-8");
+	
+	/**********************************
+	* report: sliced sentences
+	**********************************/
+	for ($i = 0; $i < $numOf_Lots; $i++) {
+	
+		printf("[%d] Lot %d => ", __LINE__, $i);
+		
+		print mb_convert_encoding(
+					implode($split_Char, $ary_SlicedArrays[$i]), "SJIS", "UTF-8");
+// 					implode(" ", $ary_SlicedArrays[$i]), "SJIS", "UTF-8");
+// 		print implode(" ", $ary_SlicedArrays[$i]);
+		
+		print mb_convert_encoding(
+					"。", "SJIS", "UTF-8");
+		print "\n";
+	
+	}
+	
+}//test_ArraySlice($sen)
+
+function 
+test_Regex_ShowResult($url, $pattern) {
 
 	echo "url => $url";
 	echo "\n";
@@ -485,8 +605,9 @@ _conv_Match_to_DateLabel
 function
 execute() {
 
-// 	test_ArraySlice_
-	test_PregMatch_EQ_TimeLabel();
+	test_ArraySlice_D_3_SEG_1_V_1_1();
+	
+// 	test_PregMatch_EQ_TimeLabel();
 // 	test_Get_Type();
 // 	test_Sanitize_Replace();
 // 	test_Sanitize();

@@ -61,3 +61,6 @@ sqlite3 C:\WORKS\WS\Eclipse_Kepler\VM_Cake\app\webroot\development.sqlite3
 pragma table_info(videos);
 
 .tables
+
+[php]
+php C:\WORKS\WS\Eclipse_Kepler\Cake_NR5\test_Texts.php

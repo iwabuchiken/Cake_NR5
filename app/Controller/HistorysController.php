@@ -67,23 +67,37 @@ class HistorysController extends AppController {
 		* dispatch
 		**********************************/
 		if ($content_Length > 2500) {
-			
-			$words_Array = $this->_view_Mecab_MultiWords($history);
+
+			$words = $this->_view_Mecab($history);
 
 			$val_1 = $this->get_Admin_Value(CONS::$admin_Colorize, "val1");
 				
 			if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1) {
 					
-				$content_multiline = $this->build_Text($words_Array[0]);
-				$content_multiline .= $this->build_Text($words_Array[1]);
-				// 			$content_multiline = $this->_build_Text($words);
+				$content_multiline = $this->build_Text($words);
 			
 			} else {
 					
-				$content_multiline = $this->build_Text_Colorize_Kanji($words_Array[0]);
-				$content_multiline .= $this->build_Text_Colorize_Kanji($words_Array[1]);
+				$content_multiline = $this->build_Text_Colorize_Kanji($words);
 					
 			}//if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1)
+					
+// 			$words_Array = $this->_view_Mecab_MultiWords($history);
+
+// 			$val_1 = $this->get_Admin_Value(CONS::$admin_Colorize, "val1");
+				
+// 			if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1) {
+					
+// 				$content_multiline = $this->build_Text($words_Array[0]);
+// 				$content_multiline .= $this->build_Text($words_Array[1]);
+// 				// 			$content_multiline = $this->_build_Text($words);
+			
+// 			} else {
+					
+// 				$content_multiline = $this->build_Text_Colorize_Kanji($words_Array[0]);
+// 				$content_multiline .= $this->build_Text_Colorize_Kanji($words_Array[1]);
+					
+// 			}//if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1)
 					
 		} else {
 			
@@ -260,25 +274,41 @@ class HistorysController extends AppController {
 		**********************************/
 		$sen = $this->sanitize($history['History']['content']);
 		
-// 		if (mb_strlen($sen) > 2500) {
-			
-			
-// 			$sen1 = substr($sen, 0, mb_strlen($sen) / 2);
-// 			$sen2 = substr($sen, 0, mb_strlen($sen) / 2);
-			
-// 		} else {
-// 			arguement2;
-// 		}
+		/**********************************
+		* experi
+		**********************************/
+// 		$max = 1010;
+// 		$max = 1006;
+// 		$max = 1005;
+// 		$max = 1050;
+// 		$max = 1000;
+		$max = 800;
+// 		$max = 1100;
+// 		$max = 1200;
+// 		$max = 1300;
+// 		$max = 1500;	//=> error
+// 		$max = 2000;	//=> error
 		
+		if (mb_strlen($sen) > $max) {
+			
+			$words = $this->_view_Mecab__MultiLots($sen, $max);
+			
+// 			debug("mb_strlen(\$sen) > $max");
+			
+// 			debug("needs => ".intval(ceil(mb_strlen($sen) / $max))." lots");
+			
+// 			$sen = mb_substr($sen, 0, $max);
+			
+		} else {
 		
-// 		debug("sen length => ".mb_strlen($sen));
-		
-		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
-
-		//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
-		$xml = simplexml_load_file($url);
-
-		$words = $xml->word;
+			$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
+	
+			//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
+			$xml = simplexml_load_file($url);
+	
+			$words = $xml->word;
+			
+		}		
 		
 		debug("\$words: type => ".gettype($words));
 		debug("\$words: class => ".get_class($words));
@@ -290,6 +320,46 @@ class HistorysController extends AppController {
 		return $words;
 		
 	}//_view_Mecab
+
+	public function 
+	_view_Mecab__MultiLots($sen, $max) {
+
+		debug("mb_strlen(\$sen) > $max");
+			
+		debug("needs => ".intval(ceil(mb_strlen($sen) / $max))." lots");
+
+		/**********************************
+		* split: original sentence
+		**********************************/
+		$sen_Array = mb_split("。", $sen);
+		
+		debug("sen_Array => ".count($sen_Array));
+		
+		$numOf_SentenceArray = count($sen_Array);
+		
+		/**********************************
+		* prep: sentences derived from the original
+		**********************************/
+		$numOf_Lots = intval(ceil(mb_strlen($sen) / $max));
+		
+		debug("numOf_Lots => $numOf_Lots");
+		
+		$numOf_Senteces_perLot = intval(ceil($numOf_SentenceArray / $numOf_Lots));
+		
+		debug("numOf_Senteces_perLot => $numOf_Senteces_perLot");
+		
+		$sen = mb_substr($sen, 0, $max);
+
+		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
+		
+		//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
+		$xml = simplexml_load_file($url);
+		
+		$words = $xml->word;
+
+		return $words;
+		
+	}//_view_Mecab__MultiLots($sen)
 	
 	public function 
 	_view_Mecab_MultiWords($history) {
