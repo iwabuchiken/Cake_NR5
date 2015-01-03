@@ -67,34 +67,90 @@ class HistorysController extends AppController {
 		* dispatch
 		**********************************/
 		if ($content_Length > 2500) {
+			
+			/**********************************
+			* prep: data
+			**********************************/
+			$words_ary = $this->_view_Mecab($history);
+// 			$words = $this->_view_Mecab($history);
 
-			$words = $this->_view_Mecab($history);
+			debug("count(\$words_ary) => ".count($words_ary));
 
 			$val_1 = $this->get_Admin_Value(CONS::$admin_Colorize, "val1");
 				
+			
+			$content_multiline = "";
+			
+			$num = count($words_ary);
+
+			/**********************************
+			* build: content
+			**********************************/
+			// plain texts
 			if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1) {
 					
-				$content_multiline = $this->build_Text($words);
-			
+				for ($i = 0; $i < $num; $i++) {
+					
+					$content_multiline .= $this->build_Text($words_ary[$i]);
+					
+				}
+// 				$content_multiline = $this->build_Text($words);
+
+			// color texts
 			} else {
 					
-				$content_multiline = $this->build_Text_Colorize_Kanji($words);
+				for ($i = 0; $i < $num; $i++) {
+						
+					$content_multiline .= 
+							$this->build_Text_Colorize_Kanji($words_ary[$i]);
+						
+				}
+				
+// 				$content_multiline = $this->build_Text_Colorize_Kanji($words);
 					
 			}//if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1)
 					
 		} else {
+			/**********************************
+			 * prep: data
+			**********************************/
+			$words_ary = $this->_view_Mecab($history);
+			// 			$words = $this->_view_Mecab($history);
 			
-			$words = $this->_view_Mecab($history);
-	
 			$val_1 = $this->get_Admin_Value(CONS::$admin_Colorize, "val1");
+			
+			$content_multiline = "";
+				
+			$num = count($words_ary);
+			
+			/**********************************
+			 * build: content
+			**********************************/
+					
+// 			$words = $this->_view_Mecab($history);
+	
+// 			$val_1 = $this->get_Admin_Value(CONS::$admin_Colorize, "val1");
 			
 			if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1) {
 					
-				$content_multiline = $this->build_Text($words);
+				for ($i = 0; $i < $num; $i++) {
+						
+					$content_multiline .= $this->build_Text($words_ary[$i]);
+						
+				}
+				
+// 				$content_multiline = $this->build_Text($words);
 				
 			} else {
 					
-				$content_multiline = $this->build_Text_Colorize_Kanji($words);
+				for ($i = 0; $i < $num; $i++) {
+				
+					$content_multiline .=
+					$this->build_Text_Colorize_Kanji($words_ary[$i]);
+				
+				}
+				
+// 				$content_multiline = $this->build_Text_Colorize_Kanji($words);
 					
 			}//if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1)
 			
@@ -248,7 +304,13 @@ class HistorysController extends AppController {
 		return $content;
 		
 	}//_build_Text
-	
+
+	/**********************************
+	* @return
+	* 
+	* 	=> array(words)
+	* 
+	**********************************/
 	public function 
 	_view_Mecab($history) {
 		
@@ -260,21 +322,14 @@ class HistorysController extends AppController {
 		/**********************************
 		* experi
 		**********************************/
-// 		$max = 1010;
-// 		$max = 1006;
-// 		$max = 1005;
-// 		$max = 1050;
-// 		$max = 1000;
 		$max = 800;
-// 		$max = 1100;
-// 		$max = 1200;
-// 		$max = 1300;
 // 		$max = 1500;	//=> error
 // 		$max = 2000;	//=> error
 		
 		if (mb_strlen($sen) > $max) {
 			
-			$words = $this->_view_Mecab__MultiLots($sen, $max);
+			$words_ary = $this->_view_Mecab__MultiLots($sen, $max);
+// 			$words = $this->_view_Mecab__MultiLots($sen, $max);
 			
 		} else {
 		
@@ -283,18 +338,12 @@ class HistorysController extends AppController {
 			//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
 			$xml = simplexml_load_file($url);
 	
-			$words = $xml->word;
+			$words_ary = array($xml->word);
+// 			$words = $xml->word;
 			
 		}		
 		
-// 		debug("\$words: type => ".gettype($words));
-// 		debug("\$words: class => ".get_class($words));
-// 		debug("\$words => ".$words);
-		debug("\$sen => ".mb_strlen($sen));
-		
-// 		$this->set("word", $words[10]->surface);
-		
-		return $words;
+		return $words_ary;
 		
 	}//_view_Mecab
 
@@ -351,20 +400,6 @@ class HistorysController extends AppController {
 			
 		}
 
-		// report
-		if ($xmls == null) {
-			debug("xmls => null");
-		} else {
-			
-			debug("xmls => ".count($xmls));
-			
-			$words_tmp = $xmls[0]->word;
-			
-			debug("words_tmp => ".count($words_tmp));
-			
-		}
-		
-		
 		/**********************************
 		* shorten sentence
 		**********************************/
@@ -375,117 +410,26 @@ class HistorysController extends AppController {
 		//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
 		$xml = simplexml_load_file($url);
 		
-// 		$words = $xml->word;
 		if ($xmls == null) {
-// 			debug("xmls => null");
 
-			$words = $xml->word;
+			return array($xml->word);
 			
 		} else {
 				
-			$words = $xmls[0]->word;
+			$num = count($xmls);
 			
-			debug("words => ".count($words));
+			$words_ary = array();
+// 			$words_ary = array($num);
 			
-			debug("xmls[1] => ".count($xmls[1]->word));
-			
-// 			$words.addChild($xmls[1]->word);	//=> Error: Call to undefined function addChild()
-			
-// 			$words = Utils::mergeXML($words, $xmls[1]->word);	//=> count doesn't change
-
-			$words_1 = $xmls[1]->word;
-			
-			debug("\$words_1[0] is...");
-			debug($words_1[0]);
-			
-			debug("\$words->children() is...");
-			debug($words->children());
-			
-			debug("count(\$words) => ".count($words));
-			
-			$words = Utils::mergeXML_2($words, $words_1[0]);
-			
-			debug("Merged: \$words => ".count($words));
-			
-			// add child
-			$new_w = $words_1[0];
-			
-			$tmp = $words->addChild($new_w->getName());
-			
-			$tmp->surface = $new_w->surface;
-			$tmp->feature = $new_w->feature;
-					
-			debug("Merged manually: \$words => ".count($words));
-			
-			debug("\$words[0] is ...");
-			debug($words[0]);
-			// 			object(SimpleXMLElement) {
-			// 				surface => '橋下'
-			// 						feature => '名詞,固有名詞,地域,一般,*,*,橋下,ハシシタ,ハシシタ'
-			// 								word => array(
-			// 								(int) 0 => object(SimpleXMLElement) {
-			// 									surface => '勘違い'
-			// 											feature => '名詞,サ変接続,*,*,*,*,勘違い,カンチガイ,カンチガイ'
-			// 								},
-			// 								(int) 1 => object(SimpleXMLElement) {
-			// 									surface => '勘違い'
-			// 											feature => '名詞,サ変接続,*,*,*,*,勘違い,カンチガイ,カンチガイ'
-			// 								}
-			// 								)
-			// 			}
-			
-			debug("\$words[0]->getName() => ".$words[0]->getName());
-			debug("\$words->getName() => ".$words->getName());
-			debug("\$words->attributes() => ".$words->attributes());
-			
-// 			debug($words_1[0]);
-			
-// 			debug("words_1[0]->attributes() => ".$words_1[0]->attributes());
-// 			debug("words_1[0]->children() => ".$words_1[0]->children());
-// 			debug("get_class(\$words_1[0]->children()) => "
-// 					.get_class($words_1[0]->children()));
-// 			debug("words_1[0]->children() => ".$words_1[0]->children()->getName());
-			
-// 			debug("words_1[0]->getName() => ".$words_1[0]->getName());
-// 			debug("words_1[0]->surface => ".$words_1[0]->surface);
-// 			debug("words_1[0]->feature => ".$words_1[0]->feature);
-			
-// 			$new_w = $words_1[0];
-			
-// 			debug("\$new_w->getName() => ".$new_w->getName());
-// 			$tmp = $words->addChild($new_w->getName());
-			
-// // 			debug("\$tmp => ".$tmp);
-// 			debug($tmp);
-// 			debug("\$tmp->getName() => ".$tmp->getName());
-			
-// 			debug("get_class(\$tmp)".get_class($tmp));
-			
-// 			$tmp->surface = $new_w->surface;
-// 			$tmp->feature = $new_w->feature;
-// // 			$tmp->surface = "abc";
-// // 			$tmp->feature = "...+++***";
-			
-// 			debug($tmp);
-			
-// 			$words = Utils::mergeXML($words, $words_1[0]);
-			
-// 			debug("Merged: words => ".count($words));
-			
-			$words = $xmls[0]->word;
-			
-// 			$words = $xml->word;
-			
-// 			debug("xmls => ".count($xmls));
+			for ($i = 0; $i < $num; $i++) {
 				
-// 			$words_tmp = $xmls[0]->word;
+				array_push($words_ary, $xmls[$i]);
 				
-// 			debug("words_tmp => ".count($words_tmp));
-				
+			}
+			
+			return $words_ary;
+			
 		}
-		
-
-		return $words;
 		
 	}//_view_Mecab__MultiLots($sen)
 	

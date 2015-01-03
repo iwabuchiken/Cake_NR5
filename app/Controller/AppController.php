@@ -145,31 +145,10 @@ class AppController extends Controller {
 	build_Text_Colorize_Kanji
 	($words) {
 	
-		//test
-		$tmp = $words[10];
+// 		//test
+// 		$tmp = $words[10];
 	
-		$tmp_str = (string)$tmp->surface;
-	
-		// 		debug(preg_split('//u', $tmp_str));
-	
-		// 		for ($i = 0; $i < mb_strlen($tmp_str); $i++) {
-		// 		for ($i = 0; $i < mb_strlen((string)$tmp->surface)); $i++) {
-		// 		foreach (str_split as item) {
-	
-		// 			debug($tmp_str[$i]);
-			
-		// 		}
-		// 		debug(mb_strlen((string)$tmp->surface));
-		// 		debug((string)$tmp->surface);
-		// 		foreach ((string)$tmp->surface as $chr) {
-	
-		// 			debug($chr);
-	
-		// 		}
-	
-		// 		debug($tmp);
-	
-	
+// 		$tmp_str = (string)$tmp->surface;
 	
 		$content = "";
 	
@@ -179,62 +158,37 @@ class AppController extends Controller {
 	
 			$str = $w->surface;
 				
-			// 			debug(mb_split('', $str));
-			// 			debug(preg_split('//u', mb_convert_encoding($str, "UTF-8")));
-			// 			debug(preg_split('//u', $str));
-			// 			debug(preg_split('//u', $str, -1, PREG_SPLIT_NO_EMPTY));
-				
 			$res = Utils::get_Type($str);
 	
-			// 			debug((string)$str);
-			// 			debug(mb_strlen((string)$str));
-			// 			debug(strlen((string)$str));
-			// 			debug((string)$str)[1];
-			// 			debug($res);
-				
 			//REF color names http://www.colordic.org/
 				
 			switch ($res) {
 				case 1:
 						
-					// 					$content .="<font color=\"black\">".$str."</font>";
 					$content .="<font color=\"blue\"><b>".$str."</b></font>";
-// 					$content .="<font color=\"darkgreen\"><b>".$str."</b></font>";
-// 					$content .="<font color=\"darkgreen\">".$str."</font>";
-					// 					$content .="<font color=\"green\">".$str."</font>";
 						
 					break;
 	
 				case 2:	// hiragana
 					// blue
-					// 					$content .="<font color=\"#7368EF\">".$str."</font>";
-					// 					$content .="<font color=\"#9F9CBC\">".$str."</font>";
 					$content .="<font color=\"black\"><b>".$str."</b></font>";
-// 					$content .="<font color=\"blue\"><b>".$str."</b></font>";
-// 					$content .="<font color=\"blue\">".$str."</font>";
 						
 					break;
 						
 				case 3:	// katakana
 						
 					$content .="<font color=\"purple\"><b>".$str."</b></font>";
-// 					$content .="<font color=\"purple\">".$str."</font>";
-					// 					$content .="<font color=\"palevioletred\">".$str."</font>";
-					// 					$content .="<font color=\"green\">".$str."</font>";
-					// 					$content .="<font color=\"#B5A243\">".$str."</font>";
 						
 					break;
 	
 				case 4:	// number
 						
 					$content .="<font color=\"darkgreen\"><b>".$str."</b></font>";
-// 					$content .="<font color=\"#575757\"><b>".$str."</b></font>";
 						
 					break;
 	
 				case 0:
 						
-// 					$content .= $str;
 					$content .= "<b>".$str."</b>";
 						
 					break;
@@ -242,23 +196,10 @@ class AppController extends Controller {
 				default:
 						
 					$content .= "<b>".$str."</b>";
-// 					$content .= $str;
 						
 					break;
 	
 			}
-	
-			// 			$res = Utils::isKanji_All($w->surface);
-				
-			// 			if ($res == true) {
-	
-			// 				$content .="<font color=\"green\">".$w->surface."</font>";
-	
-			// 			} else {
-	
-			// 				$content .=$w->surface;
-	
-			// 			}
 	
 		}//foreach ($words as $w)
 	
