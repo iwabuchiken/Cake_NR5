@@ -593,6 +593,87 @@
 // 			return true;
 			
 		}//isKanji_All
+
+		/**********************************
+		* from: test_Texts.php: test_ArraySlice($sen, $numOf_SubSentences, $split_Char)
+		**********************************/
+		public static function
+		breakdown_Sentence
+		($sen, $numOf_SubSentences, $split_Char) {
+
+			/**********************************
+			* prep: data
+			**********************************/
+			$ary = mb_split($split_Char, $sen);
+		
+			$numOf_Tokens = count($ary);
+		
+			/**********************************
+			 * slice
+			**********************************/
+			$numOf_Lots = $numOf_SubSentences;
+		
+			$numOf_Tokens_perLot = intval(ceil($numOf_Tokens / $numOf_Lots));
+		
+			$ary_SlicedArrays = array($numOf_Lots);
+		
+			for ($i = 0; $i < $numOf_Lots; $i++) {
+		
+				$ary_SlicedArrays[$i] = array_slice(
+						$ary,
+						$numOf_Tokens_perLot * $i,
+						$numOf_Tokens_perLot);
+		
+			}
+		
+			/**********************************
+			* return
+			**********************************/
+			return $ary_SlicedArrays;
+			
+		}//breakdown_Sentence
+
+		/**********************************
+		* REF http://www.kinghost.com.br/php/ref.simplexml.php 09-Dec-2011 08:31
+		* 
+		* parameters of the original => &$base, $add
+		* changed to				=> $base, $add
+		**********************************/
+		public static function
+		mergeXML($base, $add) {
+// 		mergeXML(&$base, $add) {
+			$new = $base->addChild($add->getName());
+			foreach ($add->attributes() as $a => $b) {
+				$new[$a] = $b;
+			}
+			foreach ($add->children() as $child) {
+				
+				Utils::mergeXML($new, $child);
+// 				$this->mergeXML($new, $child);
+			}
+			
+			/**********************************
+			* return => this code is not in the REF code
+			**********************************/
+			return $base;
+			
+		}
+		
+		public static function
+// 		mergeXML_2(&$base, $add) {
+		mergeXML_2($base, $add) {
+			
+			$new = $base->addChild($add->getName());
+
+			$new->surface = $add->surface;
+			$new->feature = $add->feature;
+			
+// 			/**********************************
+// 			* return => this code is not in the REF code
+// 			**********************************/
+			return $base;
+			
+		}//mergeXML_2
 		
 	}//class Utils
 	

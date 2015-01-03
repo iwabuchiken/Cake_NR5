@@ -10,7 +10,7 @@
 </h1>
 
 <br>
-word => <?php echo $word; ?>
+<!-- word => <?php echo $word; ?> -->
 <br>
 <br>
 

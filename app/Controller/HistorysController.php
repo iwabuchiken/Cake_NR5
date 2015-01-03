@@ -82,23 +82,6 @@ class HistorysController extends AppController {
 					
 			}//if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1)
 					
-// 			$words_Array = $this->_view_Mecab_MultiWords($history);
-
-// 			$val_1 = $this->get_Admin_Value(CONS::$admin_Colorize, "val1");
-				
-// 			if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1) {
-					
-// 				$content_multiline = $this->build_Text($words_Array[0]);
-// 				$content_multiline .= $this->build_Text($words_Array[1]);
-// 				// 			$content_multiline = $this->_build_Text($words);
-			
-// 			} else {
-					
-// 				$content_multiline = $this->build_Text_Colorize_Kanji($words_Array[0]);
-// 				$content_multiline .= $this->build_Text_Colorize_Kanji($words_Array[1]);
-					
-// 			}//if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1)
-					
 		} else {
 			
 			$words = $this->_view_Mecab($history);
@@ -293,12 +276,6 @@ class HistorysController extends AppController {
 			
 			$words = $this->_view_Mecab__MultiLots($sen, $max);
 			
-// 			debug("mb_strlen(\$sen) > $max");
-			
-// 			debug("needs => ".intval(ceil(mb_strlen($sen) / $max))." lots");
-			
-// 			$sen = mb_substr($sen, 0, $max);
-			
 		} else {
 		
 			$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
@@ -310,12 +287,12 @@ class HistorysController extends AppController {
 			
 		}		
 		
-		debug("\$words: type => ".gettype($words));
-		debug("\$words: class => ".get_class($words));
-		debug("\$words => ".$words);
+// 		debug("\$words: type => ".gettype($words));
+// 		debug("\$words: class => ".get_class($words));
+// 		debug("\$words => ".$words);
 		debug("\$sen => ".mb_strlen($sen));
 		
-		$this->set("word", $words[10]->surface);
+// 		$this->set("word", $words[10]->surface);
 		
 		return $words;
 		
@@ -328,6 +305,7 @@ class HistorysController extends AppController {
 			
 		debug("needs => ".intval(ceil(mb_strlen($sen) / $max))." lots");
 
+		
 		/**********************************
 		* split: original sentence
 		**********************************/
@@ -347,7 +325,49 @@ class HistorysController extends AppController {
 		$numOf_Senteces_perLot = intval(ceil($numOf_SentenceArray / $numOf_Lots));
 		
 		debug("numOf_Senteces_perLot => $numOf_Senteces_perLot");
+
+		/**********************************
+		* split: original sentence => again
+		**********************************/
+		$split_Char = "。";
 		
+		$ary_SlicedArrays = Utils::breakdown_Sentence($sen, $numOf_Lots, $split_Char);
+		
+		$numOf_SlicedArrays = count($ary_SlicedArrays);
+		
+		debug("ary_SlicedArrays => ".$numOf_SlicedArrays);
+// 		debug("ary_SlicedArrays => ".count($ary_SlicedArrays));
+		
+		// get xmls
+		$xmls = array($numOf_SlicedArrays);
+		
+		for ($i = 0; $i < $numOf_SlicedArrays; $i++) {
+			
+			$text = implode($split_Char, $ary_SlicedArrays[$i]);
+			
+			$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$text";
+			
+			$xmls[$i] = simplexml_load_file($url);
+			
+		}
+
+		// report
+		if ($xmls == null) {
+			debug("xmls => null");
+		} else {
+			
+			debug("xmls => ".count($xmls));
+			
+			$words_tmp = $xmls[0]->word;
+			
+			debug("words_tmp => ".count($words_tmp));
+			
+		}
+		
+		
+		/**********************************
+		* shorten sentence
+		**********************************/
 		$sen = mb_substr($sen, 0, $max);
 
 		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
@@ -355,7 +375,115 @@ class HistorysController extends AppController {
 		//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
 		$xml = simplexml_load_file($url);
 		
-		$words = $xml->word;
+// 		$words = $xml->word;
+		if ($xmls == null) {
+// 			debug("xmls => null");
+
+			$words = $xml->word;
+			
+		} else {
+				
+			$words = $xmls[0]->word;
+			
+			debug("words => ".count($words));
+			
+			debug("xmls[1] => ".count($xmls[1]->word));
+			
+// 			$words.addChild($xmls[1]->word);	//=> Error: Call to undefined function addChild()
+			
+// 			$words = Utils::mergeXML($words, $xmls[1]->word);	//=> count doesn't change
+
+			$words_1 = $xmls[1]->word;
+			
+			debug("\$words_1[0] is...");
+			debug($words_1[0]);
+			
+			debug("\$words->children() is...");
+			debug($words->children());
+			
+			debug("count(\$words) => ".count($words));
+			
+			$words = Utils::mergeXML_2($words, $words_1[0]);
+			
+			debug("Merged: \$words => ".count($words));
+			
+			// add child
+			$new_w = $words_1[0];
+			
+			$tmp = $words->addChild($new_w->getName());
+			
+			$tmp->surface = $new_w->surface;
+			$tmp->feature = $new_w->feature;
+					
+			debug("Merged manually: \$words => ".count($words));
+			
+			debug("\$words[0] is ...");
+			debug($words[0]);
+			// 			object(SimpleXMLElement) {
+			// 				surface => '橋下'
+			// 						feature => '名詞,固有名詞,地域,一般,*,*,橋下,ハシシタ,ハシシタ'
+			// 								word => array(
+			// 								(int) 0 => object(SimpleXMLElement) {
+			// 									surface => '勘違い'
+			// 											feature => '名詞,サ変接続,*,*,*,*,勘違い,カンチガイ,カンチガイ'
+			// 								},
+			// 								(int) 1 => object(SimpleXMLElement) {
+			// 									surface => '勘違い'
+			// 											feature => '名詞,サ変接続,*,*,*,*,勘違い,カンチガイ,カンチガイ'
+			// 								}
+			// 								)
+			// 			}
+			
+			debug("\$words[0]->getName() => ".$words[0]->getName());
+			debug("\$words->getName() => ".$words->getName());
+			debug("\$words->attributes() => ".$words->attributes());
+			
+// 			debug($words_1[0]);
+			
+// 			debug("words_1[0]->attributes() => ".$words_1[0]->attributes());
+// 			debug("words_1[0]->children() => ".$words_1[0]->children());
+// 			debug("get_class(\$words_1[0]->children()) => "
+// 					.get_class($words_1[0]->children()));
+// 			debug("words_1[0]->children() => ".$words_1[0]->children()->getName());
+			
+// 			debug("words_1[0]->getName() => ".$words_1[0]->getName());
+// 			debug("words_1[0]->surface => ".$words_1[0]->surface);
+// 			debug("words_1[0]->feature => ".$words_1[0]->feature);
+			
+// 			$new_w = $words_1[0];
+			
+// 			debug("\$new_w->getName() => ".$new_w->getName());
+// 			$tmp = $words->addChild($new_w->getName());
+			
+// // 			debug("\$tmp => ".$tmp);
+// 			debug($tmp);
+// 			debug("\$tmp->getName() => ".$tmp->getName());
+			
+// 			debug("get_class(\$tmp)".get_class($tmp));
+			
+// 			$tmp->surface = $new_w->surface;
+// 			$tmp->feature = $new_w->feature;
+// // 			$tmp->surface = "abc";
+// // 			$tmp->feature = "...+++***";
+			
+// 			debug($tmp);
+			
+// 			$words = Utils::mergeXML($words, $words_1[0]);
+			
+// 			debug("Merged: words => ".count($words));
+			
+			$words = $xmls[0]->word;
+			
+// 			$words = $xml->word;
+			
+// 			debug("xmls => ".count($xmls));
+				
+// 			$words_tmp = $xmls[0]->word;
+				
+// 			debug("words_tmp => ".count($words_tmp));
+				
+		}
+		
 
 		return $words;
 		
