@@ -2281,9 +2281,20 @@ class ArticlesController extends AppController {
 					
 					debug("line_Length => ".$line_Length);
 					
-					$words = $this->get_Words($article_content);
+					$words_ary = Utils::get_Words($article_content);
+// 					$words = $this->get_Words($article_content);
 					
-					$tmp = $this->build_Text_Colorize_Kanji($words);
+					$tmp = "";
+					
+					$array_num = count($words_ary);
+					
+					for ($i = 0; $i < $array_num; $i++) {
+						
+						$tmp .= $this->build_Text_Colorize_Kanji($words_ary[$i]);
+						
+					}
+					
+// 					$tmp = $this->build_Text_Colorize_Kanji($words);
 					
 					$a['content'] = $this->_content_multilines_GetHtml($tmp);
 					// 			$content_multiline = $this->_build_Text_Colorize_Kanji($words);
@@ -2395,6 +2406,9 @@ class ArticlesController extends AppController {
 	
 	}//get_Genre_From_KeywordID
 
+	/**********************************<br>
+	* build html => split with "。", add "<br>" tag, add numbering<br>
+	**********************************/
 	public function
 	_content_multilines_GetHtml
 	($content) {

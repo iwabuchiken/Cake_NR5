@@ -674,6 +674,179 @@
 			return $base;
 			
 		}//mergeXML_2
+
+		/**********************************
+		 * @return
+		*
+		* 	=> array(words)
+		*
+		*	Copied from => HistorysController._view_Mecab($history)
+		**********************************/
+		public static function
+		get_Mecab_WordsArray($text) {
+		
+			/**********************************
+				* prep: sentences
+			**********************************/
+			$sen = $text;
+// 			$sen = $this->sanitize($history['History']['content']);
+		
+			/**********************************
+				* experi
+			**********************************/
+			$max = 800;
+		
+			if (mb_strlen($sen) > $max) {
+					
+				$words_ary = Utils::get_Mecab_WordsArray__MultiLots($sen, $max);
+// 				$words_ary = $this->_view_Mecab__MultiLots($sen, $max);
+					
+			} else {
+		
+				$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
+		
+				//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
+				$xml = simplexml_load_file($url);
+		
+				$words_ary = array($xml->word);
+				// 			$words = $xml->word;
+					
+			}
+		
+			return $words_ary;
+		
+		}//get_Mecab_WordsArray
+		
+		public static function
+		get_Mecab_WordsArray__MultiLots($sen, $max) {
+		
+// 			debug("mb_strlen(\$sen) > $max");
+				
+// 			debug("needs => ".intval(ceil(mb_strlen($sen) / $max))." lots");
+		
+		
+			/**********************************
+				* split: original sentence
+			**********************************/
+			$sen_Array = mb_split("。", $sen);
+		
+// 			debug("sen_Array => ".count($sen_Array));
+		
+			$numOf_SentenceArray = count($sen_Array);
+		
+			/**********************************
+				* prep: sentences derived from the original
+			**********************************/
+			$numOf_Lots = intval(ceil(mb_strlen($sen) / $max));
+		
+// 			debug("numOf_Lots => $numOf_Lots");
+		
+			$numOf_Senteces_perLot = intval(ceil($numOf_SentenceArray / $numOf_Lots));
+		
+// 			debug("numOf_Senteces_perLot => $numOf_Senteces_perLot");
+		
+			/**********************************
+				* split: original sentence => again
+			**********************************/
+			$split_Char = "。";
+		
+			$ary_SlicedArrays = Utils::breakdown_Sentence($sen, $numOf_Lots, $split_Char);
+		
+			$numOf_SlicedArrays = count($ary_SlicedArrays);
+		
+// 			debug("ary_SlicedArrays => ".$numOf_SlicedArrays);
+			// 		debug("ary_SlicedArrays => ".count($ary_SlicedArrays));
+		
+			// get xmls
+			$xmls = array($numOf_SlicedArrays);
+		
+			for ($i = 0; $i < $numOf_SlicedArrays; $i++) {
+					
+				$text = implode($split_Char, $ary_SlicedArrays[$i]);
+					
+				$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$text";
+					
+				$xmls[$i] = simplexml_load_file($url);
+					
+			}
+		
+			/**********************************
+				* shorten sentence
+			**********************************/
+			$sen = mb_substr($sen, 0, $max);
+		
+			$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
+		
+			//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
+			$xml = simplexml_load_file($url);
+		
+			if ($xmls == null) {
+		
+				return array($xml->word);
+					
+			} else {
+		
+				$num = count($xmls);
+					
+				$words_ary = array();
+				// 			$words_ary = array($num);
+					
+				for ($i = 0; $i < $num; $i++) {
+		
+					array_push($words_ary, $xmls[$i]);
+		
+				}
+					
+				return $words_ary;
+					
+			}
+		
+		}//get_Mecab_WordsArray__MultiLots
+
+		public static function
+		get_Words($text) {
+		
+			$sen = Utils::_sanitize($text);
+// 			$sen = $this->_sanitize($text);
+		
+			$max = 800;
+			// 		$max = 1500;	//=> error
+			// 		$max = 2000;	//=> error
+			
+			if (mb_strlen($sen) > $max) {
+					
+				$words_ary = Utils::get_Mecab_WordsArray__MultiLots($sen, $max);
+// 				$words_ary = $this->_view_Mecab__MultiLots($sen, $max);
+				// 			$words = $this->_view_Mecab__MultiLots($sen, $max);
+					
+			} else {
+			
+				$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
+			
+				//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
+				$xml = simplexml_load_file($url);
+			
+				$words_ary = array($xml->word);
+				// 			$words = $xml->word;
+					
+			}
+			
+			return $words_ary;
+				
+		}//_view_Mecab
+
+		public static function
+		_sanitize
+		($str, $tag="font") {
+		
+			$tag = "font";
+			$p = "/<$tag.+?>(.+)<\/$tag>/";
+		
+			$rep = '${1}';
+		
+			return preg_replace($p, $rep, $str);
+		
+		}
 		
 	}//class Utils
 	

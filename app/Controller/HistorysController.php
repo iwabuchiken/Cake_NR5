@@ -60,8 +60,8 @@ class HistorysController extends AppController {
 		
 		debug("content_Length => ".$content_Length);
 		
-		debug("lines: length => "
-				.count(explode("。", $this->sanitize($history['History']['content']))));
+// 		debug("lines: length => "
+// 				.count(explode("。", $this->sanitize($history['History']['content']))));
 		
 		/**********************************
 		* dispatch
@@ -350,9 +350,9 @@ class HistorysController extends AppController {
 	public function 
 	_view_Mecab__MultiLots($sen, $max) {
 
-		debug("mb_strlen(\$sen) > $max");
+// 		debug("mb_strlen(\$sen) > $max");
 			
-		debug("needs => ".intval(ceil(mb_strlen($sen) / $max))." lots");
+// 		debug("needs => ".intval(ceil(mb_strlen($sen) / $max))." lots");
 
 		
 		/**********************************
@@ -360,7 +360,7 @@ class HistorysController extends AppController {
 		**********************************/
 		$sen_Array = mb_split("。", $sen);
 		
-		debug("sen_Array => ".count($sen_Array));
+// 		debug("sen_Array => ".count($sen_Array));
 		
 		$numOf_SentenceArray = count($sen_Array);
 		
@@ -369,11 +369,11 @@ class HistorysController extends AppController {
 		**********************************/
 		$numOf_Lots = intval(ceil(mb_strlen($sen) / $max));
 		
-		debug("numOf_Lots => $numOf_Lots");
+// 		debug("numOf_Lots => $numOf_Lots");
 		
 		$numOf_Senteces_perLot = intval(ceil($numOf_SentenceArray / $numOf_Lots));
 		
-		debug("numOf_Senteces_perLot => $numOf_Senteces_perLot");
+// 		debug("numOf_Senteces_perLot => $numOf_Senteces_perLot");
 
 		/**********************************
 		* split: original sentence => again
@@ -384,7 +384,7 @@ class HistorysController extends AppController {
 		
 		$numOf_SlicedArrays = count($ary_SlicedArrays);
 		
-		debug("ary_SlicedArrays => ".$numOf_SlicedArrays);
+// 		debug("ary_SlicedArrays => ".$numOf_SlicedArrays);
 // 		debug("ary_SlicedArrays => ".count($ary_SlicedArrays));
 		
 		// get xmls

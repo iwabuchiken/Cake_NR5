@@ -258,6 +258,7 @@ class AppController extends Controller {
 	
 		$sen = $this->_sanitize($text);
 	
+		
 		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
 	
 		//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
