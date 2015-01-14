@@ -9,21 +9,21 @@ class HistorysController extends AppController {
 
 // 		phpinfo();
 		
-		debug($this->request->query);
+// 		debug($this->request->query);
 
 		$tmp = @$session_Filter = $this->Session->read("filter");
 // 		$tmp = @$session_Filter = $this->Session->read($filter);
 		
-		debug("session(filter) is ...");
-		debug($tmp);
+//debug("session(filter) is ...");
+//		debug($tmp);
 		
 		/**********************************
 		 * options
 		**********************************/
 		$opt_conditions = $this->_index__Options();
 
-		debug("opt_conditions is...");
-		debug($opt_conditions);
+//		debug("opt_conditions is...");
+//		debug($opt_conditions);
 		
 		/**********************************
 		* session
@@ -41,6 +41,11 @@ class HistorysController extends AppController {
 		
 		$opt_order = $this->_index__Orders();
 // 		$opt_order = array('History.id' => 'asc');
+
+//		debug("opt_order is...");
+//		debug($opt_order);
+//		debug("opt_conditions is...");
+//		debug($opt_conditions);
 		
 		$this->paginate = array(
 				// 					'conditions' => array('Image.file_name LIKE' => "%$filter_TableName%"),
@@ -89,8 +94,8 @@ class HistorysController extends AppController {
 		
 			@$session_Sort = $this->Session->read($sort);
 		
-			debug("session_Sort is ...");
-			debug($this->Session->read($sort));
+//			debug("session_Sort is ...");
+//			debug($this->Session->read($sort));
 		
 			if ($session_Sort != null) {
 				
@@ -118,7 +123,7 @@ class HistorysController extends AppController {
 			
 			$session_Sort = $this->Session->write($sort, $query_Sort);
 		
-			debug("session_Sort => written");
+//			debug("session_Sort => written: ".$query_Sort);
 				
 			/**********************************
 			 * set: var
@@ -152,11 +157,11 @@ class HistorysController extends AppController {
 		@$query_Filter = $this->request->query[$filter];
 // 		@$query_Filter = $this->request->query['filter'];
 		
-		debug("query_Filter is ...");
-		debug($query_Filter);
+//		debug("query_Filter is ...");
+//		debug($query_Filter);
 		
-		debug("session_Filter is ...");
-		debug($this->Session->read($filter));
+//		debug("session_Filter is ...");
+//		debug($this->Session->read($filter));
 		
 		if ($query_Filter == "__@") {
 			
@@ -168,12 +173,16 @@ class HistorysController extends AppController {
 				
 			@$session_Filter = $this->Session->read($filter);
 
-			debug("session_Filter is ...");
-			debug($this->Session->read($filter));
+//			debug("session_Filter is ...");
+//			debug($this->Session->read($filter));
 				
 			if ($session_Filter != null) {
 		
-				$opt_conditions['History.line LIKE'] = "%$session_Filter%";
+// 				$opt_conditions['History.line LIKE'] = "%$session_Filter%";
+				$opt_conditions['OR'] = array(
+						'History.line LIKE' => "%$session_Filter%",
+						'History.content LIKE' => "%$session_Filter%"
+				);
 
 				/**********************************
 				 * set: var
@@ -191,15 +200,17 @@ class HistorysController extends AppController {
 				
 		} else {
 				
-			$opt_conditions['History.line LIKE'] = "%$query_Filter%";
-// 			$opt_conditions['OR'] = array(
-// 							'History.line LIKE' => "%$query_Filter%",
-// 							'History.content LIKE' => "%$query_Filter%"
-// 							);
+// 			$opt_conditions['History.line LIKE'] = "%$query_Filter%";
+
+			//REF http://book.cakephp.org/2.0/en/models/retrieving-your-data.html
+			$opt_conditions['OR'] = array(
+							'History.line LIKE' => "%$query_Filter%",
+							'History.content LIKE' => "%$query_Filter%"
+							);
 			
 			$session_Filter = $this->Session->write($filter, $query_Filter);
 				
-			debug("session_Filter => written");
+//			debug("session_Filter => written");
 
 			/**********************************
 			 * set: var
@@ -235,7 +246,7 @@ class HistorysController extends AppController {
 		**********************************/
 		$content_Length = mb_strlen($this->sanitize($history['History']['content']));
 		
-		debug("content_Length => ".$content_Length);
+//		debug("content_Length => ".$content_Length);
 		
 // 		debug("lines: length => "
 // 				.count(explode("。", $this->sanitize($history['History']['content']))));
@@ -251,7 +262,7 @@ class HistorysController extends AppController {
 			$words_ary = $this->_view_Mecab($history);
 // 			$words = $this->_view_Mecab($history);
 
-			debug("count(\$words_ary) => ".count($words_ary));
+//			debug("count(\$words_ary) => ".count($words_ary));
 
 			$val_1 = $this->get_Admin_Value(CONS::$admin_Colorize, "val1");
 				

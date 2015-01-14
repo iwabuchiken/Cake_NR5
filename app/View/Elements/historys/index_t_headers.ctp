@@ -1,8 +1,28 @@
 <tr>
-		<th>Id</th>
+		<th>
+		
+			<?php echo $this->Html->link(
+								'Id',
+								array('controller' => 'historys', 
+										'action' => 'index',
+// 										'sort'		=> 'id')
+										'?'		=> 'sort=id')
+						);
+			?>
+			
+		</th>
 		
 		<th>
-			Line
+			<?php echo $this->Html->link(
+								'Line',
+								array('controller' => 'historys', 
+										'action' => 'index',
+// 										'sort'		=> 'id')
+										'?'		=> 'sort=line')
+						);
+			?>
+			
+<!-- 			Line -->
 			<?php 
 
 				$opt_input = array(
@@ -63,15 +83,80 @@
 		</th>
 		
 		<th>
-			Vendor
+			
+			<?php echo $this->Html->link(
+								'Vendor',
+								array('controller' => 'historys', 
+										'action' => 'index',
+// 										'sort'		=> 'id')
+										'?'		=> 'sort=vendor')
+						);
+			?>
 			
 			
 		</th>
 		
-		<th>Time</th>
-		<th>Category</th>
-		<th>Genre</th>
-		<th>Created at</th>
-		<th>updated at</th>
+		<th>
+			
+			<?php echo $this->Html->link(
+								'Time',
+								array('controller' => 'historys', 
+										'action' => 'index',
+// 										'sort'		=> 'id')
+										'?'		=> 'sort=news_time')
+						);
+			?>
+			
+		</th>
 		
+		<th>
+			
+			<?php echo $this->Html->link(
+								'Category',
+								array('controller' => 'historys', 
+										'action' => 'index',
+// 										'sort'		=> 'id')
+										'?'		=> 'sort=category_id')
+						);
+			?>
+			
+		</th>
+		
+		<th>
+			
+			<?php echo $this->Html->link(
+								'Genre',
+								array('controller' => 'historys', 
+										'action' => 'index',
+// 										'sort'		=> 'id')
+										'?'		=> 'sort=genre_id')
+						);
+			?>
+		</th>
+		
+		<th>
+			
+			<?php echo $this->Html->link(
+								'Created at',
+								array('controller' => 'historys', 
+										'action' => 'index',
+// 										'sort'		=> 'id')
+										'?'		=> 'sort=created_at')
+						);
+			?>
+		</th>
+		
+		<th>
+			
+			<?php echo $this->Html->link(
+								'Updated at',
+								array('controller' => 'historys', 
+										'action' => 'index',
+// 										'sort'		=> 'id')
+										'?'		=> 'sort=updated_at')
+						);
+			?>
+			
+		</th>
+
 </tr>
