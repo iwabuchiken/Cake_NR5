@@ -7,18 +7,45 @@ class HistorysController extends AppController {
 	
 	public function index() {
 
+// 		phpinfo();
+		
+		debug($this->request->query);
+
+		$tmp = @$session_Filter = $this->Session->read("filter");
+// 		$tmp = @$session_Filter = $this->Session->read($filter);
+		
+		debug("session(filter) is ...");
+		debug($tmp);
+		
+		/**********************************
+		 * options
+		**********************************/
+		$opt_conditions = $this->_index__Options();
+
+		debug("opt_conditions is...");
+		debug($opt_conditions);
+		
+		/**********************************
+		* session
+		**********************************/
+// 		$filter = "filter";
+		
+// 		$session_Filter = $this->Session->read($filter);
+		
+// 		debug($session_Filter);
+		
 		/**********************************
 		 * paginate
 		**********************************/
 		$page_limit = 10;
 		
-		$opt_order = array('History.id' => 'asc');
-		
-		$opt_conditions = '';
+		$opt_order = $this->_index__Orders();
+// 		$opt_order = array('History.id' => 'asc');
 		
 		$this->paginate = array(
 				// 					'conditions' => array('Image.file_name LIKE' => "%$filter_TableName%"),
-				// 				'conditions' => array('Image.memos LIKE' => "%$filter_TableName%"),
+// 				'conditions' => array('History.line LIKE' => "%運転士%"),
+// 				'conditions' => array('History.line LIKE' => "%首相%"),
 				'limit' => $page_limit,
 				'order' => $opt_order,
 				'conditions'	=> $opt_conditions
@@ -27,7 +54,10 @@ class HistorysController extends AppController {
 				// 				)
 		);
 		
-		$this->set('historys', $this->paginate('History'));
+		$histories_Current = $this->paginate('History');
+		
+		$this->set('historys', $histories_Current);
+// 		$this->set('historys', $this->paginate('History'));
 		
 		$num_of_histories = count($this->History->find('all'));
 		
@@ -35,10 +65,157 @@ class HistorysController extends AppController {
 		
 		$this->set('num_of_pages', (int) ceil($num_of_histories / $page_limit));
 		
+		$this->set('num_of_histories_Current', count($histories_Current));
 		
 // 		$this->set('historys', $this->History->find('all'));
 
 	}
+	
+	public function 
+	_index__Orders() {
+
+		/**********************************
+		 * param: sort
+		**********************************/
+		// 		debug($this->request->data);
+		// 		debug($this->request->query);
+		$opt_order = array();
+		
+		$sort = "sort";
+		
+		@$query_Sort = $this->request->query[$sort];
+		
+		if ($query_Sort == null) {
+		
+			@$session_Sort = $this->Session->read($sort);
+		
+			debug("session_Sort is ...");
+			debug($this->Session->read($sort));
+		
+			if ($session_Sort != null) {
+				
+				$opt_order["History.$session_Sort"] = "asc";
+
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("sort", $session_Sort);
+				
+			} else {
+				
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("sort", null);
+				
+			}
+		
+		} else {
+		
+// 			$opt_order['History.line LIKE'] = "%$query_Sort%";
+			
+			$opt_order["History.$query_Sort"] = "asc";
+			
+			$session_Sort = $this->Session->write($sort, $query_Sort);
+		
+			debug("session_Sort => written");
+				
+			/**********************************
+			 * set: var
+			**********************************/
+			$this->set("sort", $query_Sort);
+			
+		}
+
+// 		/**********************************
+// 		* set: var
+// 		**********************************/
+// 		$this->set("sort", $query_Sort);
+		
+		return $opt_order;
+		
+	}//_index__Orders
+	
+	public function 
+	_index__Options() {
+
+		$filter = "filter";
+		
+		$opt_conditions = array();
+		
+		/**********************************
+		 * param: filter
+		**********************************/
+		// 		debug($this->request->data);
+		// 		debug($this->request->query);
+		
+		@$query_Filter = $this->request->query[$filter];
+// 		@$query_Filter = $this->request->query['filter'];
+		
+		debug("query_Filter is ...");
+		debug($query_Filter);
+		
+		debug("session_Filter is ...");
+		debug($this->Session->read($filter));
+		
+		if ($query_Filter == "__@") {
+			
+			$this->Session->write($filter, null);
+			
+			$this->set("filter", '');
+			
+		} else if ($query_Filter == null) {
+				
+			@$session_Filter = $this->Session->read($filter);
+
+			debug("session_Filter is ...");
+			debug($this->Session->read($filter));
+				
+			if ($session_Filter != null) {
+		
+				$opt_conditions['History.line LIKE'] = "%$session_Filter%";
+
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("filter", $session_Filter);
+				
+			} else {
+				
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("filter", null);
+				
+			}
+				
+		} else {
+				
+			$opt_conditions['History.line LIKE'] = "%$query_Filter%";
+// 			$opt_conditions['OR'] = array(
+// 							'History.line LIKE' => "%$query_Filter%",
+// 							'History.content LIKE' => "%$query_Filter%"
+// 							);
+			
+			$session_Filter = $this->Session->write($filter, $query_Filter);
+				
+			debug("session_Filter => written");
+
+			/**********************************
+			 * set: var
+			**********************************/
+			$this->set("filter", $query_Filter);
+				
+		}
+
+// 		/**********************************
+// 		 * set: var
+// 		**********************************/
+// 		$this->set("filter", $query_Filter);
+		
+		return $opt_conditions;
+		
+	}//_index__Options
 	
 	public function 
 	view($id = null) {

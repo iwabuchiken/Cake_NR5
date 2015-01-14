@@ -553,6 +553,17 @@ input.submit_go {
 	
 }
 
+form .submit input[value="Filter"] {
+/*input[value="Filter"] {*/
+/*input.btn[value="Filter"] {*/
+	
+	font-size:	15px;
+	color:		blue;
+	/*color:		red;*/
+	/*padding:	1px;*/
+	
+}
+
 select.select_genre {
 
 	margin-bottom:	5px;
