@@ -1,5 +1,19 @@
 <?php
 
+function 
+test_ArrayUnique() {
+	
+	$ary = array("abc", "def", "abc", "ghi");
+	
+	print_r($ary);
+
+	$ary2 = array_unique($ary);
+	
+	print_r($ary2);
+	
+}
+
+
 function test_Regex_ShowResult($url, $pattern) {
 
 	echo "url => $url";
@@ -485,8 +499,9 @@ _conv_Match_to_DateLabel
 function
 execute() {
 
+	test_ArrayUnique();
 // 	test_ArraySlice_
-	test_PregMatch_EQ_TimeLabel();
+// 	test_PregMatch_EQ_TimeLabel();
 // 	test_Get_Type();
 // 	test_Sanitize_Replace();
 // 	test_Sanitize();

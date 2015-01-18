@@ -6,6 +6,11 @@ class TokensController extends AppController {
 	public $components = array('Paginator');
 	
 	public function index() {
+
+		/**********************************
+		* query
+		**********************************/
+// 		debug($this->request->query);
 		
 		/**********************************
 		 * paginate
@@ -13,10 +18,9 @@ class TokensController extends AppController {
 		$page_limit = 10;
 		
 		$opt_order = array(
-// 						'Token.id' => 'asc',
-						'Token.hin' => 'asc',
-						'Token.hin_1' => 'asc'
-				
+						'Token.id' => 'asc',
+// 						'Token.hin' => 'asc',
+// 						'Token.hin_1' => 'asc'
 		
 		);
 		
@@ -39,9 +43,16 @@ class TokensController extends AppController {
 		$this->set('num_of_tokens', $num_of_tokens);
 		
 		$this->set('num_of_pages', (int) ceil($num_of_tokens / $page_limit));
-		
-// 		$this->set('tokens', $this->Token->find('all'));
 
+		/**********************************
+		* filter: hins
+		**********************************/
+		$hins_Array = $this->_get_HinsArray();
+
+// 		debug($hins_Array);
+		
+		$this->set("hins_Array", $hins_Array);
+		
 	}
 	
 	public function view($id = null) {
@@ -142,5 +153,131 @@ class TokensController extends AppController {
 		}
 	
 	}
+
+	public function test_1() {
+		
+		$option = array(
+			
+				'conditions' => array('Token.hin_1'	=> '格助詞')
+// 				'conditions' => array('Token.hin_1'	=> '固有名詞')
+// 				'Token.history_id'	=> '82'
+// 				'Token.hin_1'	=> '固有名詞'
+				
+		);
+		
+		$tokens = $this->Token->find('all', $option);		
+		
+// 		debug("tokens...");
+// 		debug(count($tokens));
+// 		debug($tokens[0]);
+// 		debug($tokens);
+		
+		/**********************************
+		* build: text
+		**********************************/
+		$text = "";
+		
+		for ($i = 0; $i < count($tokens); $i++) {
+			
+			$text .= "/".$tokens[$i]['Token']['form'];
+// 			$text .= $tokens[$i]['Token']['form'];
+// 			$text .= $tokens[$i]['Token']['hin'];
+			
+		}
+		
+		/**********************************
+		* set
+		**********************************/
+		$this->set("text", $text);
+		
+	}
+
+	public function create_hins() {
+		
+		debug("create_hins");
+		
+		/**********************************
+		* get: hins
+		**********************************/
+		$tokens = $this->Token->find('all');
+		
+		$hins = array();
+		
+		for ($i = 0; $i < count($tokens); $i++) {
+			
+			array_push($hins, $tokens[$i]['Token']['hin']);
+			
+		}
+
+		$hins = array_unique($hins);
+		
+		/**********************************
+		* build: string
+		**********************************/
+		$hins_string = implode($hins, "/");
+		
+		$select_Hins = array();
+		
+		$hins = array_values($hins);
+		
+		for ($i = 0; $i < count($hins); $i++) {
+			
+			$select_Hins[$hins[$i]] = $hins[$i];
+// 			$select_Hins[$i] = $hins[$i];
+			
+		}
+		
+		debug($select_Hins);
+// 		debug($hins);
+		
+		//REF http://stackoverflow.com/questions/5943149/rebase-array-keys-after-unsetting-elements answered May 9 '11 at 22:18 
+// 		debug(array_values($hins));
+		
+		$this->set("hins_string", $hins_string);
+		
+		
+// 		return $this->redirect(array('action' => 'test_1'));
+		
+	}
+	
+	public function
+	_get_HinsArray() {
+
+		/**********************************
+		 * get: hins
+		**********************************/
+		$tokens = $this->Token->find('all');
+		
+		$hins = array();
+		
+		for ($i = 0; $i < count($tokens); $i++) {
+				
+			array_push($hins, $tokens[$i]['Token']['hin']);
+				
+		}
+		
+		$hins = array_unique($hins);
+		
+		/**********************************
+		 * build: string
+		**********************************/
+		$hins_string = implode($hins, "/");
+		
+		$select_Hins = array();
+		
+		$hins = array_values($hins);
+		
+		for ($i = 0; $i < count($hins); $i++) {
+				
+			$select_Hins[$hins[$i]] = $hins[$i];
+// 			$select_Hins[$i] = $hins[$i];
+				
+		}
+
+// 		debug($select_Hins);
+		
+		return $select_Hins;
+		
+	}//_get_HinsArray
 	
 }
