@@ -24,10 +24,19 @@
 						'type' => 'select',
 						'options' => $hins_Array,);
 				
+				if (isset($chosen_hin)) {
+				
+					//REF http://stackoverflow.com/questions/6259371/cakephp-this-form-input-how-to-set-a-select-default-option answered Jun 7 '11 at 0:38
+					$opt_input_Hins['default'] = $chosen_hin;
+						
+				}
+				
+				
 				echo $this->Form->create('', $opt_create);
 				 
 				echo $this->Form->input(
-						'filter_hins',
+						CONS::$str_Filter_Hins,
+// 						'filter_hins',
 						$opt_input_Hins
 				);
 				 

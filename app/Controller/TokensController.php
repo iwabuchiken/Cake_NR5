@@ -24,7 +24,8 @@ class TokensController extends AppController {
 		
 		);
 		
-		$opt_conditions = '';
+		$opt_conditions = $this->_index__Options();
+// 		$opt_conditions = '';
 		
 		$this->paginate = array(
 				// 					'conditions' => array('Image.file_name LIKE' => "%$filter_TableName%"),
@@ -53,7 +54,96 @@ class TokensController extends AppController {
 		
 		$this->set("hins_Array", $hins_Array);
 		
+		/**********************************
+		 * labels: options, sorts
+		**********************************/
+		@$chosen_hin = $hins_Array[$opt_conditions['Token.hin']];
+		// 		@$chosen_Lang = $opt_conditions['Text.lang_id'];
+		
+		if ($chosen_hin == null) {
+				
+			$chosen_hin = "No chonsen hin";
+				
+			$this->set("chosen_hin", null);
+				
+// 			$this->set("chosen_lang_id", null);
+				
+		} else {
+		
+			$this->set("chosen_hin", $chosen_hin);
+				
+// 			$this->set("chosen_lang_id", $opt_conditions['Text.lang_id']);
+		
+		}
+		
 	}
+
+	public function
+	_index__Options() {
+	
+		/**********************************
+		 * param: filter: lang_id
+		**********************************/
+		$filter_hins = CONS::$str_Filter_Hins;
+// 		$filter_hins = "filter_hins";
+	
+		$opt_conditions = array();
+	
+		@$query_Filter_Hins = $this->request->query[$filter_hins];
+	
+		if ($query_Filter_Hins == CONS::$str_Filter_Hins_all) {
+// 		if ($query_Filter_Hins == "-1") {
+	
+			$this->Session->write($filter_hins, null);
+	
+			$this->set("filter_hins", '');
+	
+		} else if ($query_Filter_Hins == null) {
+	
+			@$session_Filter = $this->Session->read($filter_hins);
+	
+			if ($session_Filter != null) {
+	
+				$opt_conditions['Token.hin'] = $session_Filter;
+	
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("filter_hins", $session_Filter);
+	
+			} else {
+	
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("filter_hins", null);
+	
+			}
+	
+		} else {
+	
+			// 			$opt_conditions['History.line LIKE'] = "%$query_Filter_Hins%";
+	
+			//REF http://book.cakephp.org/2.0/en/models/retrieving-your-data.html
+			$opt_conditions['Token.hin'] = $query_Filter_Hins;
+	
+			$session_Filter = $this->Session->write($filter_hins, $query_Filter_Hins);
+	
+			//			debug("session_Filter => written");
+	
+			/**********************************
+			 * set: var
+			**********************************/
+			$this->set("filter_hins", $query_Filter_Hins);
+	
+		}
+	
+		/**********************************
+			* return
+		**********************************/
+		return $opt_conditions;
+	
+	}//_index__Options
 	
 	public function view($id = null) {
 		if (!$id) {
@@ -274,6 +364,7 @@ class TokensController extends AppController {
 				
 		}
 
+		$select_Hins[CONS::$str_Filter_Hins_all] = CONS::$str_Filter_Hins_all;
 // 		debug($select_Hins);
 		
 		return $select_Hins;
