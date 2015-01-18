@@ -24,7 +24,11 @@ class TokensController extends AppController {
 		
 		);
 		
-		$opt_conditions = '';
+		$opt_conditions = $this->_index__Options();
+// 		$opt_conditions = '';
+
+		debug("\$opt_conditions is...");
+		debug($opt_conditions);
 		
 		$this->paginate = array(
 				// 					'conditions' => array('Image.file_name LIKE' => "%$filter_TableName%"),
@@ -53,7 +57,210 @@ class TokensController extends AppController {
 		
 		$this->set("hins_Array", $hins_Array);
 		
+		/**********************************
+		* filter: hins_1
+		**********************************/
+		$hins_1_Array = $this->_get_Hins_1_Array();
+
+// 		debug($hins_Array);
+		
+		$this->set("hins_1_Array", $hins_1_Array);
+		
+		/**********************************
+		 * labels: options, sorts
+		**********************************/
+		/**********************************
+		* hin
+		**********************************/
+		@$chosen_hin = $hins_Array[$opt_conditions['Token.hin']];
+		// 		@$chosen_Lang = $opt_conditions['Text.lang_id'];
+		
+		if ($chosen_hin == null) {
+				
+			$chosen_hin = "No chonsen hin";
+				
+			$this->set("chosen_hin", null);
+				
+// 			$this->set("chosen_lang_id", null);
+				
+		} else {
+		
+			$this->set("chosen_hin", $chosen_hin);
+				
+// 			$this->set("chosen_lang_id", $opt_conditions['Text.lang_id']);
+		
+		}
+		
+		/**********************************
+		* hin_1
+		**********************************/
+// 		debug($opt_conditions);
+		
+		@$chosen_hin_1 = $hins_1_Array[$opt_conditions['Token.hin_1']];
+		// 		@$chosen_Lang = $opt_conditions['Text.lang_id'];
+		
+		if ($chosen_hin_1 == null) {
+				
+			$chosen_hin_1 = "No chonsen hin_1";
+				
+			$this->set("chosen_hin_1", null);
+				
+// 			$this->set("chosen_lang_id", null);
+				
+		} else {
+		
+			$this->set("chosen_hin_1", $chosen_hin_1);
+				
+// 			$this->set("chosen_lang_id", $opt_conditions['Text.lang_id']);
+		
+		}
+		
 	}
+
+	public function
+	_index__Options() {
+	
+		/**********************************
+		 * param: filter: hin
+		**********************************/
+		$filter_hins = CONS::$str_Filter_Hins;
+// 		$filter_hins = "filter_hins";
+	
+		$opt_conditions = array();
+	
+		@$query_Filter_Hins = $this->request->query[$filter_hins];
+	
+		if ($query_Filter_Hins == CONS::$str_Filter_Hins_all) {
+// 		if ($query_Filter_Hins == "-1") {
+	
+			$this->Session->write($filter_hins, null);
+	
+			$this->set("filter_hins", '');
+	
+		} else if ($query_Filter_Hins == null) {
+	
+			@$session_Filter = $this->Session->read($filter_hins);
+	
+			if ($session_Filter != null) {
+	
+				$opt_conditions['Token.hin'] = $session_Filter;
+	
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("filter_hins", $session_Filter);
+	
+			} else {
+	
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("filter_hins", null);
+	
+			}
+	
+		} else {
+	
+			// 			$opt_conditions['History.line LIKE'] = "%$query_Filter_Hins%";
+	
+			//REF http://book.cakephp.org/2.0/en/models/retrieving-your-data.html
+			$opt_conditions['Token.hin'] = $query_Filter_Hins;
+	
+			$session_Filter = $this->Session->write($filter_hins, $query_Filter_Hins);
+	
+			//			debug("session_Filter => written");
+	
+			/**********************************
+			 * set: var
+			**********************************/
+			$this->set("filter_hins", $query_Filter_Hins);
+	
+		}
+	
+		/**********************************
+		* hin_1
+		**********************************/
+		$opt_conditions = $this->_index__Options__Hin_1($opt_conditions);
+		
+		/**********************************
+			* return
+		**********************************/
+		return $opt_conditions;
+	
+	}//_index__Options
+	
+	public function
+	_index__Options__Hin_1($opt_conditions) {
+	
+		/**********************************
+		 * param: filter: hin
+		**********************************/
+		$filter_hins_1 = CONS::$str_Filter_Hins_1;
+// 		$filter_hins = "filter_hins_1";
+	
+// 		$opt_conditions = array();
+	
+		@$query_Filter_Hins_1 = $this->request->query[$filter_hins_1];
+
+		debug("query_Filter_Hins_1 is...");
+		debug($query_Filter_Hins_1);
+		
+		if ($query_Filter_Hins_1 == CONS::$str_Filter_Hins_1_all) {
+// 		if ($query_Filter_Hins == "-1") {
+	
+			$this->Session->write($filter_hins_1, null);
+	
+			$this->set("filter_hins_1", '');
+	
+		} else if ($query_Filter_Hins_1 == null) {
+	
+			@$session_Filter = $this->Session->read($filter_hins_1);
+	
+			if ($session_Filter != null) {
+	
+				$opt_conditions['Token.hin_1'] = $session_Filter;
+	
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("filter_hins_1", $session_Filter);
+	
+			} else {
+	
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("filter_hins_1", null);
+	
+			}
+	
+		} else {
+	
+			// 			$opt_conditions['History.line LIKE'] = "%$query_Filter_Hins%";
+	
+			//REF http://book.cakephp.org/2.0/en/models/retrieving-your-data.html
+			$opt_conditions['Token.hin_1'] = $query_Filter_Hins_1;
+	
+			$session_Filter = $this->Session->write($filter_hins_1, $query_Filter_Hins_1);
+	
+			//			debug("session_Filter => written");
+	
+			/**********************************
+			 * set: var
+			**********************************/
+			$this->set("filter_hins_1", $query_Filter_Hins_1);
+	
+		}
+	
+		/**********************************
+			* return
+		**********************************/
+		debug("\$opt_conditions is...");
+		debug($opt_conditions);
+		
+		return $opt_conditions;
+	
+	}//_index__Options__Hin_1
 	
 	public function view($id = null) {
 		if (!$id) {
@@ -274,10 +481,52 @@ class TokensController extends AppController {
 				
 		}
 
+		$select_Hins[CONS::$str_Filter_Hins_all] = CONS::$str_Filter_Hins_all;
 // 		debug($select_Hins);
 		
 		return $select_Hins;
 		
 	}//_get_HinsArray
+	
+	public function
+	_get_Hins_1_Array() {
+
+		/**********************************
+		 * get: hins
+		**********************************/
+		$tokens = $this->Token->find('all');
+		
+		$hins_1 = array();
+		
+		for ($i = 0; $i < count($tokens); $i++) {
+				
+			array_push($hins_1, $tokens[$i]['Token']['hin_1']);
+				
+		}
+		
+		$hins_1 = array_unique($hins_1);
+		
+		/**********************************
+		 * build: string
+		**********************************/
+		$hins_1_string = implode($hins_1, "/");
+		
+		$select_Hins_1 = array();
+		
+		$hins_1 = array_values($hins_1);
+		
+		for ($i = 0; $i < count($hins_1); $i++) {
+				
+			$select_Hins_1[$hins_1[$i]] = $hins_1[$i];
+// 			$select_Hins_1[$i] = $hins_1[$i];
+				
+		}
+
+		$select_Hins_1[CONS::$str_Filter_Hins_1_all] = CONS::$str_Filter_Hins_1_all;
+// 		debug($select_Hins_1);
+		
+		return $select_Hins_1;
+		
+	}//_get_Hins_1_Array
 	
 }

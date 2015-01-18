@@ -51,4 +51,13 @@ class CONS {
 	
 	public static $admin_Colorize = "colorize";
 	
+	/**********************************
+	* Tokens
+	**********************************/
+	public static $str_Filter_Hins = "filter_hins";
+	public static $str_Filter_Hins_all = "filter_hins_all";
+	
+	public static $str_Filter_Hins_1 = "filter_hins_1";
+	public static $str_Filter_Hins_1_all = "filter_hins_1_all";
+	
 }//class CONS
