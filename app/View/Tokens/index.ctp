@@ -5,13 +5,15 @@
 		(total = <?php echo $num_of_tokens; ?>, pages = <?php echo $num_of_pages; ?>)
 	
 	<br>
-	(chosen hin = <?php echo $chosen_hin; ?> / 
-		chosen hin_1 = <?php echo $chosen_hin_1; ?> / 
-		chosen history_id = <?php echo $chosen_history_id; ?> 
+	(chosen hin = <font color="blue"><?php echo $chosen_hin; ?></font> / 
+		chosen hin_1 = <font color="blue"><?php echo $chosen_hin_1; ?></font> / 
+		chosen history_id = <font color="blue"><?php echo $chosen_history_id; ?></font>
+		 | sort = <font color="blue"><?php echo $sort; ?></font> 
 		)
 	
 </h1>
 
+<br>
 
 <?php echo $this->element('tokens/_index_pagination')?>
 
@@ -24,6 +26,10 @@
 	<?php echo $this->element('tokens/index_t_entries'); ?>
 		
 </table>
+
+<?php echo $this->element('tokens/_index_pagination')?>
+
+<br>
 
 <?php echo $this->Html->link("Add token",
 							array(

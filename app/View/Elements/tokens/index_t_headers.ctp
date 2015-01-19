@@ -1,97 +1,42 @@
+<?php 
+
+	$link_Options = array('controller' => 'tokens', 
+										'action' => 'index');
+
+?>
+
 <tr>
-		<th>Id</th>
-		<th>Form</th>
-		
 		<th>
-		
-			Hin
+			<?php 
 			
-			<?php
+				$link_Options['?'] = 'sort=id';
+			
+				echo $this->Html->link(
+								'Id',
+								$link_Options
 
-				$opt_create = array(
-						 
-						'div'	=> false,
-						//REF http://wiltonsoftware.com/posts/view/customizing-your-form-labels-in-cakephp-1-2
-						'label'	=> false,
-						'url'	=> array(
-								'controller'	=> 'tokens',
-								'action'	=> 'index'),
-						'type'	=> 'get'
-				
 				);
-			
-				$opt_input_Hins= array(
-						'type' => 'select',
-						'options' => $hins_Array,
-						'label'	=> false
-				);
-				
-				if (isset($chosen_hin)) {
-				
-					//REF http://stackoverflow.com/questions/6259371/cakephp-this-form-input-how-to-set-a-select-default-option answered Jun 7 '11 at 0:38
-					$opt_input_Hins['default'] = $chosen_hin;
-						
-				}
-				
-				
-				echo $this->Form->create('', $opt_create);
-				 
-				echo $this->Form->input(
-						CONS::$str_Filter_Hins,
-// 						'filter_hins',
-						$opt_input_Hins
-				);
-				 
-				echo $this->Form->end('Filter');
-					
 			?>
 			
 		</th>
 		
 		<th>
-		
-			Hin 1
+			<?php 
 			
-			<?php
+				$link_Options['?'] = 'sort=form';
+			
+				echo $this->Html->link(
+								'Form',
+								$link_Options
 
-				$opt_create = array(
-						 
-						'div'	=> false,
-						//REF http://wiltonsoftware.com/posts/view/customizing-your-form-labels-in-cakephp-1-2
-						'label'	=> false,
-						'url'	=> array(
-								'controller'	=> 'tokens',
-								'action'	=> 'index'),
-						'type'	=> 'get',
-						'label'	=> false
-				
-				);
-			
-				$opt_input_Hins= array(
-						'type' => 'select',
-						'options' => $hins_1_Array,
-						'label'	=> false
-				);
-				
-				if (isset($chosen_hin_1)) {
-				
-					//REF http://stackoverflow.com/questions/6259371/cakephp-this-form-input-how-to-set-a-select-default-option answered Jun 7 '11 at 0:38
-					$opt_input_Hins['default'] = $chosen_hin_1;
-						
-				}
-				
-				echo $this->Form->create('', $opt_create);
-				 
-				echo $this->Form->input(
-						CONS::$str_Filter_Hins_1,
-						$opt_input_Hins
-				);
-				 
-				echo $this->Form->end('Filter');
-					
-			?>
+				);?>
 			
 		</th>
+		
+		<?php echo $this->element('tokens/index/index_t_headers__Col_Hin'); ?>
+		
+		<?php echo $this->element('tokens/index/index_t_headers__Col_Hin_1'); ?>
+		
 		
 		<th>Hin 2</th>
 		<th>Hin 3</th>
@@ -103,7 +48,9 @@
 		<th>yomi</th>
 		<th>hatsu</th>
 		
-		<th>History</th>
+		<?php echo $this->element('tokens/index/index_t_headers__Col_History'); ?>
+		
+<!-- 		<th>History</th> -->
 		
 		<th>Created at</th>
 		<th>updated at</th>

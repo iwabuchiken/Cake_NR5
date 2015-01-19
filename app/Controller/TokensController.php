@@ -18,12 +18,13 @@ class TokensController extends AppController {
 		**********************************/
 		$page_limit = 10;
 		
-		$opt_order = array(
-						'Token.id' => 'asc',
+		$opt_order = $this->_index__Orders();
+// 		$opt_order = array(
+// 						'Token.id' => 'asc',
 // 						'Token.hin' => 'asc',
 // 						'Token.hin_1' => 'asc'
 		
-		);
+// 		);
 		
 		$opt_conditions = $this->_index__Options();
 // 		$opt_conditions = '';
@@ -75,8 +76,8 @@ class TokensController extends AppController {
 		$history_id_Array = $this->_get_History_Id_Array();
 
 // 		debug($hins_Array);
-		debug("\$opt_conditions is...");
-		debug($opt_conditions);
+// 		debug("\$opt_conditions is...");
+// 		debug($opt_conditions);
 		
 		$this->set("history_id_Array", $history_id_Array);
 		
@@ -96,7 +97,7 @@ class TokensController extends AppController {
 	($opt_conditions, $hins_Array, $hins_1_Array,
 		$history_id_Array) {
 
-		debug($opt_conditions);
+// 		debug($opt_conditions);
 		
 		/**********************************
 		 * hin
@@ -128,7 +129,7 @@ class TokensController extends AppController {
 		@$chosen_hin_1 = $hins_1_Array[$opt_conditions['Token.hin_1']];
 		// 		@$chosen_Lang = $opt_conditions['Text.lang_id'];
 		
-		debug($chosen_hin_1);
+// 		debug($chosen_hin_1);
 		
 		if ($chosen_hin_1 == null) {
 		
@@ -142,7 +143,7 @@ class TokensController extends AppController {
 		
 			$this->set("chosen_hin_1", $chosen_hin_1);
 		
-			debug("chosen_hin_1 => set");
+// 			debug("chosen_hin_1 => set");
 			
 			// 			$this->set("chosen_lang_id", $opt_conditions['Text.lang_id']);
 		
@@ -156,7 +157,7 @@ class TokensController extends AppController {
 		@$chosen_history_id = $history_id_Array[$opt_conditions['Token.history_id']];
 		// 		@$chosen_Lang = $opt_conditions['Text.lang_id'];
 		
-		debug($chosen_history_id);
+//		debug($chosen_history_id);
 		
 		if ($chosen_history_id == null) {
 		
@@ -170,7 +171,7 @@ class TokensController extends AppController {
 		
 			$this->set("chosen_history_id", $chosen_history_id);
 		
-			debug("chosen_history_id => set");
+//			debug("chosen_history_id => set");
 			
 			// 			$this->set("chosen_lang_id", $opt_conditions['Text.lang_id']);
 		
@@ -254,6 +255,66 @@ class TokensController extends AppController {
 		return $opt_conditions;
 	
 	}//_index__Options
+	
+	public function
+	_index__Orders() {
+	
+		/**********************************
+		 * param: sort
+		**********************************/
+		// 		debug($this->request->data);
+		// 		debug($this->request->query);
+		$opt_order = array();
+	
+		$sort = "sort";
+	
+		@$query_Sort = $this->request->query[$sort];
+	
+		if ($query_Sort == null) {
+	
+			@$session_Sort = $this->Session->read($sort);
+	
+			//			debug("session_Sort is ...");
+			//			debug($this->Session->read($sort));
+	
+			if ($session_Sort != null) {
+	
+				$opt_order["Token.$session_Sort"] = "asc";
+	
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("sort", $session_Sort);
+	
+			} else {
+	
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("sort", null);
+	
+			}
+	
+		} else {
+	
+			// 			$opt_order['History.line LIKE'] = "%$query_Sort%";
+				
+			$opt_order["Token.$query_Sort"] = "asc";
+				
+			$session_Sort = $this->Session->write($sort, $query_Sort);
+	
+			//			debug("session_Sort => written: ".$query_Sort);
+	
+			/**********************************
+			 * set: var
+			**********************************/
+			$this->set("sort", $query_Sort);
+				
+		}
+	
+		return $opt_order;
+	
+	}//_index__Orders
 	
 	public function
 	_index__Options__Hin_1($opt_conditions) {
@@ -341,10 +402,11 @@ class TokensController extends AppController {
 	
 		@$query_Filter_Hist_Id = $this->request->query[$filter_hist_id];
 
+		
 // 		debug("query_Filter_Hist_Id is...");
 // 		debug($query_Filter_Hist_Id);
 		
-		if ($query_Filter_Hist_Id == CONS::$str_Filter_Hins_1_all) {
+		if ($query_Filter_Hist_Id == CONS::$str_Filter_Hist_Id_all) {
 // 		if ($query_Filter_Hins == "-1") {
 	
 			$this->Session->write($filter_hist_id, null);
@@ -540,7 +602,7 @@ class TokensController extends AppController {
 
 	public function create_hins() {
 		
-		debug("create_hins");
+//		debug("create_hins");
 		
 		/**********************************
 		* get: hins
@@ -573,7 +635,7 @@ class TokensController extends AppController {
 			
 		}
 		
-		debug($select_Hins);
+//		debug($select_Hins);
 // 		debug($hins);
 		
 		//REF http://stackoverflow.com/questions/5943149/rebase-array-keys-after-unsetting-elements answered May 9 '11 at 22:18 

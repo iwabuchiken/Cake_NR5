@@ -24,7 +24,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $cakeDescription ?>:
+		<?php echo CONS::$proj_Name ?>:
+		<?php //echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
 	</title>
 	
