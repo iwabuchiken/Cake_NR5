@@ -5,7 +5,8 @@ class TokensController extends AppController {
 
 	public $components = array('Paginator');
 	
-	public function index() {
+	public function 
+	index() {
 
 		/**********************************
 		* query
@@ -27,8 +28,10 @@ class TokensController extends AppController {
 		$opt_conditions = $this->_index__Options();
 // 		$opt_conditions = '';
 
-		debug("\$opt_conditions is...");
-		debug($opt_conditions);
+// 		debug("\$opt_conditions is...");
+// 		debug($opt_conditions);
+		
+		
 		
 		$this->paginate = array(
 				// 					'conditions' => array('Image.file_name LIKE' => "%$filter_TableName%"),
@@ -67,56 +70,114 @@ class TokensController extends AppController {
 		$this->set("hins_1_Array", $hins_1_Array);
 		
 		/**********************************
+		* filter: history_id
+		**********************************/
+		$history_id_Array = $this->_get_History_Id_Array();
+
+// 		debug($hins_Array);
+		debug("\$opt_conditions is...");
+		debug($opt_conditions);
+		
+		$this->set("history_id_Array", $history_id_Array);
+		
+		/**********************************
 		 * labels: options, sorts
 		**********************************/
+		$this->_index_SetLabels(
+					$opt_conditions,
+					$hins_Array, $hins_1_Array,
+					$history_id_Array
+		);
+		
+	}//index
+
+	public function
+	_index_SetLabels
+	($opt_conditions, $hins_Array, $hins_1_Array,
+		$history_id_Array) {
+
+		debug($opt_conditions);
+		
 		/**********************************
-		* hin
+		 * hin
 		**********************************/
 		@$chosen_hin = $hins_Array[$opt_conditions['Token.hin']];
 		// 		@$chosen_Lang = $opt_conditions['Text.lang_id'];
 		
 		if ($chosen_hin == null) {
-				
+		
 			$chosen_hin = "No chonsen hin";
-				
+		
 			$this->set("chosen_hin", null);
-				
-// 			$this->set("chosen_lang_id", null);
-				
+		
+			// 			$this->set("chosen_lang_id", null);
+		
 		} else {
 		
 			$this->set("chosen_hin", $chosen_hin);
-				
-// 			$this->set("chosen_lang_id", $opt_conditions['Text.lang_id']);
+		
+			// 			$this->set("chosen_lang_id", $opt_conditions['Text.lang_id']);
 		
 		}
 		
 		/**********************************
-		* hin_1
+		 * hin_1
 		**********************************/
-// 		debug($opt_conditions);
+		// 		debug($opt_conditions);
 		
 		@$chosen_hin_1 = $hins_1_Array[$opt_conditions['Token.hin_1']];
 		// 		@$chosen_Lang = $opt_conditions['Text.lang_id'];
 		
+		debug($chosen_hin_1);
+		
 		if ($chosen_hin_1 == null) {
-				
+		
 			$chosen_hin_1 = "No chonsen hin_1";
-				
+		
 			$this->set("chosen_hin_1", null);
-				
-// 			$this->set("chosen_lang_id", null);
-				
+		
+			// 			$this->set("chosen_lang_id", null);
+		
 		} else {
 		
 			$this->set("chosen_hin_1", $chosen_hin_1);
-				
-// 			$this->set("chosen_lang_id", $opt_conditions['Text.lang_id']);
+		
+			debug("chosen_hin_1 => set");
+			
+			// 			$this->set("chosen_lang_id", $opt_conditions['Text.lang_id']);
 		
 		}
 		
-	}
-
+		/**********************************
+		 * history_id_Array
+		**********************************/
+		// 		debug($opt_conditions);
+		
+		@$chosen_history_id = $history_id_Array[$opt_conditions['Token.history_id']];
+		// 		@$chosen_Lang = $opt_conditions['Text.lang_id'];
+		
+		debug($chosen_history_id);
+		
+		if ($chosen_history_id == null) {
+		
+			$chosen_history_id = "No chonsen history_id";
+		
+			$this->set("chosen_history_id", null);
+		
+			// 			$this->set("chosen_lang_id", null);
+		
+		} else {
+		
+			$this->set("chosen_history_id", $chosen_history_id);
+		
+			debug("chosen_history_id => set");
+			
+			// 			$this->set("chosen_lang_id", $opt_conditions['Text.lang_id']);
+		
+		}
+		
+	}//_index_SetLabels($opt_conditions)
+	
 	public function
 	_index__Options() {
 	
@@ -183,6 +244,11 @@ class TokensController extends AppController {
 		$opt_conditions = $this->_index__Options__Hin_1($opt_conditions);
 		
 		/**********************************
+		* history_id
+		**********************************/
+		$opt_conditions = $this->_index__Options__Hist_Id($opt_conditions);
+		
+		/**********************************
 			* return
 		**********************************/
 		return $opt_conditions;
@@ -202,8 +268,8 @@ class TokensController extends AppController {
 	
 		@$query_Filter_Hins_1 = $this->request->query[$filter_hins_1];
 
-		debug("query_Filter_Hins_1 is...");
-		debug($query_Filter_Hins_1);
+// 		debug("query_Filter_Hins_1 is...");
+// 		debug($query_Filter_Hins_1);
 		
 		if ($query_Filter_Hins_1 == CONS::$str_Filter_Hins_1_all) {
 // 		if ($query_Filter_Hins == "-1") {
@@ -255,8 +321,81 @@ class TokensController extends AppController {
 		/**********************************
 			* return
 		**********************************/
-		debug("\$opt_conditions is...");
-		debug($opt_conditions);
+// 		debug("\$opt_conditions is...");
+// 		debug($opt_conditions);
+		
+		return $opt_conditions;
+	
+	}//_index__Options__Hin_1
+	
+	public function
+	_index__Options__Hist_Id($opt_conditions) {
+	
+		/**********************************
+		 * param: filter: hin
+		**********************************/
+		$filter_hist_id = CONS::$str_Filter_Hist_Id;
+// 		$filter_hins = "filter_hist_id";
+	
+// 		$opt_conditions = array();
+	
+		@$query_Filter_Hist_Id = $this->request->query[$filter_hist_id];
+
+// 		debug("query_Filter_Hist_Id is...");
+// 		debug($query_Filter_Hist_Id);
+		
+		if ($query_Filter_Hist_Id == CONS::$str_Filter_Hins_1_all) {
+// 		if ($query_Filter_Hins == "-1") {
+	
+			$this->Session->write($filter_hist_id, null);
+	
+			$this->set("filter_hist_id", '');
+	
+		} else if ($query_Filter_Hist_Id == null) {
+	
+			@$session_Filter = $this->Session->read($filter_hist_id);
+	
+			if ($session_Filter != null) {
+	
+				$opt_conditions['Token.history_id'] = $session_Filter;
+	
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("filter_hist_id", $session_Filter);
+	
+			} else {
+	
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("filter_hist_id", null);
+	
+			}
+	
+		} else {
+	
+			// 			$opt_conditions['History.line LIKE'] = "%$query_Filter_Hins%";
+	
+			//REF http://book.cakephp.org/2.0/en/models/retrieving-your-data.html
+			$opt_conditions['Token.history_id'] = $query_Filter_Hist_Id;
+	
+			$session_Filter = $this->Session->write($filter_hist_id, $query_Filter_Hist_Id);
+	
+			//			debug("session_Filter => written");
+	
+			/**********************************
+			 * set: var
+			**********************************/
+			$this->set("filter_hist_id", $query_Filter_Hist_Id);
+	
+		}
+	
+		/**********************************
+			* return
+		**********************************/
+// 		debug("\$opt_conditions is...");
+// 		debug($opt_conditions);
 		
 		return $opt_conditions;
 	
@@ -526,6 +665,48 @@ class TokensController extends AppController {
 // 		debug($select_Hins_1);
 		
 		return $select_Hins_1;
+		
+	}//_get_Hins_1_Array
+	
+	public function
+	_get_History_Id_Array() {
+
+		/**********************************
+		 * get: hins
+		**********************************/
+		$tokens = $this->Token->find('all');
+		
+		$history_id = array();
+		
+		for ($i = 0; $i < count($tokens); $i++) {
+				
+			array_push($history_id, $tokens[$i]['Token']['history_id']);
+				
+		}
+		
+		$history_id = array_unique($history_id);
+		
+		/**********************************
+		 * build: string
+		**********************************/
+		$history_id_string = implode($history_id, "/");
+		
+		$select_History_Id = array();
+		
+		$history_id = array_values($history_id);
+		
+		for ($i = 0; $i < count($history_id); $i++) {
+				
+			$select_History_Id[$history_id[$i]] = $history_id[$i];
+// 			$select_History_Id[$i] = $hins_1[$i];
+				
+		}
+
+		$select_History_Id[CONS::$str_Filter_Hist_Id_all] = CONS::$str_Filter_Hist_Id_all;
+// 		$select_History_Id[CONS::$str_Filter_Hins_1_all] = CONS::$str_Filter_Hins_1_all;
+// 		debug($select_History_Id);
+		
+		return $select_History_Id;
 		
 	}//_get_Hins_1_Array
 	

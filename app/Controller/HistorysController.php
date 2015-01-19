@@ -802,6 +802,8 @@ class HistorysController extends AppController {
 		**********************************/
 		$words= $this->get_Mecab_WordList($history['History']['content']);
 
+		debug(count($words));
+		
 		/**********************************
 		* conv: words to tokens
 		**********************************/
@@ -815,12 +817,12 @@ class HistorysController extends AppController {
 		if ($words != null) {
 			
 			$msg_Flash = "save_Tokens => done. Words => ".count($words)
-						." \$words[10] => ".$words[10]->surface
-						." / "
-						."Tokens => ".count($tokens)
-						." \$tokens[10] => ".$tokens[10]->form
-						." / "
-						."\$tokens[10]->hin => ".$tokens[10]->hin
+// 						." \$words[10] => ".$words[10]->surface
+// 						." / "
+// 						."Tokens => ".count($tokens)
+// 						." \$tokens[10] => ".$tokens[10]->form
+// 						." / "
+// 						."\$tokens[10]->hin => ".$tokens[10]->hin
 						."/"
 						."save token => ".$res
 						;

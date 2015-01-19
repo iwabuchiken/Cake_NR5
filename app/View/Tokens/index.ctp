@@ -4,7 +4,14 @@
 	
 		(total = <?php echo $num_of_tokens; ?>, pages = <?php echo $num_of_pages; ?>)
 	
+	<br>
+	(chosen hin = <?php echo $chosen_hin; ?> / 
+		chosen hin_1 = <?php echo $chosen_hin_1; ?> / 
+		chosen history_id = <?php echo $chosen_history_id; ?> 
+		)
+	
 </h1>
+
 
 <?php echo $this->element('tokens/_index_pagination')?>
 
