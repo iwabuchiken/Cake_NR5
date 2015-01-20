@@ -809,6 +809,9 @@
 			$sen = Utils::_sanitize($text);
 // 			$sen = $this->_sanitize($text);
 		
+// 			debug("\$sen is...");
+// 			debug($sen);
+			
 			$max = 800;
 			// 		$max = 1500;	//=> error
 			// 		$max = 2000;	//=> error

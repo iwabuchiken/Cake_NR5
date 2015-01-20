@@ -797,47 +797,134 @@ class HistorysController extends AppController {
 				
 		}
 
-		/**********************************
-		* get: words list
-		**********************************/
-		$words= $this->get_Mecab_WordList($history['History']['content']);
+// 		debug($history);
+		
+// 		debug($history['History']['content']);
+// 		debug(mb_strlen($history['History']['content']));
 
-		debug(count($words));
+		$words_ary = Utils::get_Words($history['History']['content']);
+		
+		debug("\$words_ary length...");
+		debug(count($words_ary));
+
+		/**********************************
+		* save tokens
+		**********************************/
+		$msg_Flash = $this->save_Tokens__V2($words_ary, $history);
+		
+		
+		
+		
+// 		/**********************************
+// 		* get: words list
+// 		**********************************/
+// 		$words= $this->get_Mecab_WordList($history['History']['content']);
+
+// // 		debug(count($words));
+		
+// 		/**********************************
+// 		* conv: words to tokens
+// 		**********************************/
+// 		$tokens = $this->conv_MecabWords_to_Tokens($words);
+
+		
+		
+// 		/**********************************
+// 		* save: tokens
+// 		**********************************/
+// 		$res = $this->save_token_list($tokens, $history['History']['id']);
+
+// 		if ($words != null) {
+			
+// 			$msg_Flash = "save_Tokens => done. Words => ".count($words)
+// // 						." \$words[10] => ".$words[10]->surface
+// // 						." / "
+// // 						."Tokens => ".count($tokens)
+// // 						." \$tokens[10] => ".$tokens[10]->form
+// // 						." / "
+// // 						."\$tokens[10]->hin => ".$tokens[10]->hin
+// 						."/"
+// 						."save token => ".$res
+// 						;
+// 			$this->Session->setFlash(__($msg_Flash));
+			
+// 		} else {
+			
+// 			$this->Session->setFlash(__("save_Tokens => done. Words => null"));
+			
+// 		}
+		
+		
+// 		$this->set('tokens', $tokens);
+		
+// 		$this->redirect(array('action' => 'view', $id));
+// 		$this->redirect(array('action' => 'view', $id));
+		
+	}//save_Tokens
+	
+	public function
+	save_Tokens__V2
+	($words_ary, $history) {
+
+		/**********************************
+		* vars
+		**********************************/
+		$msg_Flash = "";
+		
+		$tokens = array();
 		
 		/**********************************
-		* conv: words to tokens
+		* processing
 		**********************************/
-		$tokens = $this->conv_MecabWords_to_Tokens($words);
+		for ($i = 0; $i < count($words_ary); $i++) {
+			
+			/**********************************
+			* get: words list
+			**********************************/
+			$words = $words_ary[$i];
+			
+// 			$words= $this->get_Mecab_WordList($history['History']['content']);
+	
+			/**********************************
+			* conv: words to tokens
+			**********************************/
+			$tokens = $this->conv_MecabWords_to_Tokens__V2($words, $tokens);
+// 			$tokens = $this->conv_MecabWords_to_Tokens($words);
+	
+			/**********************************
+			* save: tokens
+			**********************************/
+			$res = $this->save_token_list($tokens, $history['History']['id']);
+	
+			if ($words != null) {
+				
+				$msg_Flash .= "save_Tokens => done. Words => ".count($words)
+							."/"
+							."save token => ".$res
+							." /// "
+							;
+				
+			} else {
+				
+				$msg_Flash .= "save_Tokens => done. Words => null /// ";
+				
+// 				$this->Session->setFlash(__("save_Tokens => done. Words => null"));
+				
+			}
+		
+		}//for ($i = 0; $i < count($words_ary); $i++)
 
 		/**********************************
-		* save: tokens
+		* flash
 		**********************************/
-		$res = $this->save_token_list($tokens, $history['History']['id']);
-
-		if ($words != null) {
-			
-			$msg_Flash = "save_Tokens => done. Words => ".count($words)
-// 						." \$words[10] => ".$words[10]->surface
-// 						." / "
-// 						."Tokens => ".count($tokens)
-// 						." \$tokens[10] => ".$tokens[10]->form
-// 						." / "
-// 						."\$tokens[10]->hin => ".$tokens[10]->hin
-						."/"
-						."save token => ".$res
-						;
-			$this->Session->setFlash(__($msg_Flash));
-			
-		} else {
-			
-			$this->Session->setFlash(__("save_Tokens => done. Words => null"));
-			
-		}
+		$msg_Flash .= "(history.id = ".$history['History']['id'].")";
 		
+		$this->Session->setFlash(__($msg_Flash));
+
+		/**********************************
+		* set: vars
+		**********************************/
 		$this->set('tokens', $tokens);
-		
-// 		$this->redirect(array('action' => 'view', $id));
-// 		$this->redirect(array('action' => 'view', $id));
 		
 	}//save_Tokens
 	
@@ -914,6 +1001,122 @@ class HistorysController extends AppController {
 	($words) {
 		
 		$token_list = array();
+		
+		$counter = 0;
+		
+		foreach ($words as $w) {
+		
+			$token = new Token();
+
+			/**********************************
+			* form
+			**********************************/
+			$token->form = $w->surface;
+// 			$token->form = $w->surface;
+
+			/**********************************
+			* features
+			**********************************/
+// 			$token->hin = $w->feature;
+			
+			$tmp = explode(',', (string)$w->feature);
+// 			$tmp = explode(',', $w->feature);
+
+// 			if ($counter < 20) {
+
+// 				debug((string)$w->surface);
+// 				debug((string)$w->feature);
+// // 				debug($w->surface);
+
+// // 				break;
+// 			}
+					
+			
+			
+// 			//log
+// 			$msg = "count(\$tmp) => " + count($tmp);
+// 			Utils::write_Log($this->path_Log, $msg, __FILE__, __LINE__);
+			
+// 			debug($tmp);
+
+// 			if ($counter < 20) {
+			
+// 				debug($tmp);
+// 				// 				debug($w->surface);
+			
+// 				// 				break;
+// 			}
+				
+			if ($tmp == null || count($tmp) == 7 ) {
+// 			if ($tmp == null || count($tmp) < 9) {
+				
+				$token->hin		= $tmp[0];
+				
+				$token->hin_1	= $tmp[1];
+				$token->hin_2	= $tmp[2];
+				$token->hin_3	= $tmp[3];
+				
+				$token->katsu_kei	= $tmp[4];
+				$token->katsu_kata	= $tmp[5];
+				$token->genkei	= $tmp[6];
+				$token->yomi	= "*";
+				
+				$token->hatsu	= "*";
+				
+// 				debug($w->feature);
+				
+// 				continue;
+				
+			} else if (count($tmp) == 9) {
+				
+				$token->hin		= $tmp[0];
+				
+				$token->hin_1	= $tmp[1];
+				$token->hin_2	= $tmp[2];
+				$token->hin_3	= $tmp[3];
+				
+				$token->katsu_kei	= $tmp[4];
+				$token->katsu_kata	= $tmp[5];
+				$token->genkei	= $tmp[6];
+				$token->yomi	= $tmp[7];
+				
+				$token->hatsu	= $tmp[8];
+				
+			} else {
+				
+				continue;
+				
+			}
+			
+			/**********************************
+			* hin
+			**********************************/
+			
+			
+			
+			array_push($token_list, $token);
+		
+			//test
+			$counter += 1;
+			
+// 			if ($counter < 10) {
+				
+// 				debug($token);
+				
+// // 				break;
+// 			}
+			
+		}//foreach ($words as $w)
+		
+		return $token_list;
+		
+	}//conv_MecabWords_to_Tokens
+	
+	public function
+	conv_MecabWords_to_Tokens__V2
+	($words, $token_list) {
+		
+// 		$token_list = array();
 		
 		$counter = 0;
 		
