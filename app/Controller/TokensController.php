@@ -31,21 +31,78 @@ class TokensController extends AppController {
 
 // 		debug("\$opt_conditions is...");
 // 		debug($opt_conditions);
+
+		$opt_group = $this->_index__Group();
 		
+		if ($opt_group != null && count($opt_group) > 0) {
+			
+// 			$this->paginate['group'] = $opt_group;	//=> "Indirect modification of overloaded property"
+			$this->paginate = array(
+					// 					'conditions' => array('Image.file_name LIKE' => "%$filter_TableName%"),
+					// 				'conditions' => array('Image.memos LIKE' => "%$filter_TableName%"),
+					'limit' => $page_limit,
+					'order' => $opt_order,
+					'conditions'	=> $opt_conditions,
+					'group'			=> $opt_group
+					//REF http://www.tailtension.com/cakephp/1116/ "重複したものを省くGROUP BY"
+			// 				'group'	=> array('form'),
+			// 				'fields'		=> array('Token.id', 'DISTINCT Token.form',)
+			// 				'fields'		=> array('Token.id', 'Token.form',)	//=> w
+			// 				'fields'		=> array('DISTINCT id', 'form',)
+			// 				'fields'		=> array('DISTINCT id', 'DISTINCT form',)
+					// 				'order' => array(
+					// 						'id' => 'asc'
+					// 				)
+			);
+				
+		} else {
+			
+			$this->paginate = array(
+					// 					'conditions' => array('Image.file_name LIKE' => "%$filter_TableName%"),
+					// 				'conditions' => array('Image.memos LIKE' => "%$filter_TableName%"),
+					'limit' => $page_limit,
+					'order' => $opt_order,
+					'conditions'	=> $opt_conditions,
+			
+					//REF http://www.tailtension.com/cakephp/1116/ "重複したものを省くGROUP BY"
+			// 				'group'	=> array('form'),
+			// 				'fields'		=> array('Token.id', 'DISTINCT Token.form',)
+			// 				'fields'		=> array('Token.id', 'Token.form',)	//=> w
+			// 				'fields'		=> array('DISTINCT id', 'form',)
+			// 				'fields'		=> array('DISTINCT id', 'DISTINCT form',)
+					// 				'order' => array(
+					// 						'id' => 'asc'
+					// 				)
+			);
+				
+		}
 		
+// 		$this->paginate = array(
+// 				// 					'conditions' => array('Image.file_name LIKE' => "%$filter_TableName%"),
+// 		// 				'conditions' => array('Image.memos LIKE' => "%$filter_TableName%"),
+// 				'limit' => $page_limit,
+// 				'order' => $opt_order,
+// 				'conditions'	=> $opt_conditions,
+				
+// 				//REF http://www.tailtension.com/cakephp/1116/ "重複したものを省くGROUP BY"
+// // 				'group'	=> array('form'),
+// // 				'fields'		=> array('Token.id', 'DISTINCT Token.form',)
+// // 				'fields'		=> array('Token.id', 'Token.form',)	//=> w
+// // 				'fields'		=> array('DISTINCT id', 'form',)
+// // 				'fields'		=> array('DISTINCT id', 'DISTINCT form',)
+// 				// 				'order' => array(
+// 						// 						'id' => 'asc'
+// 						// 				)
+// 		);
+
+		$tokens = $this->paginate('Token');
 		
-		$this->paginate = array(
-				// 					'conditions' => array('Image.file_name LIKE' => "%$filter_TableName%"),
-		// 				'conditions' => array('Image.memos LIKE' => "%$filter_TableName%"),
-				'limit' => $page_limit,
-				'order' => $opt_order,
-				'conditions'	=> $opt_conditions
-				// 				'order' => array(
-						// 						'id' => 'asc'
-						// 				)
-		);
+// 		debug($tokens[0]);
 		
-		$this->set('tokens', $this->paginate('Token'));
+// 		$tokens = $this->_index__SkimmTokens($tokens);
+		
+		$this->set('tokens', $tokens);
+// 		$this->set('tokens', $this->paginate('Token'));
 		
 		$num_of_tokens = count($this->Token->find('all'));
 		$this->set('num_of_tokens', $num_of_tokens);
@@ -94,6 +151,30 @@ class TokensController extends AppController {
 		
 	}//index
 
+	public function
+	_index__SkimmTokens($tokens) {
+		
+		$tokens_new = array();
+		
+		for ($i = 0; $i < count($tokens); $i++) {
+			
+			$res = Utils::isIn_Array_Tokens($tokens_new, $tokens[$i], "form");
+			
+			if ($res == false) {
+				
+				array_push($tokens_new, $tokens[$i]);
+				
+			}
+			
+		}
+		
+		debug("\$tokens_new ...");
+		debug(count($tokens_new));
+		
+		return $tokens_new;
+		
+	}//_index__SkimmTokens($tokens)
+	
 	public function
 	_index_SetLabels
 	($opt_conditions, $hins_Array, $hins_1_Array,
@@ -207,6 +288,7 @@ class TokensController extends AppController {
 	
 			if ($session_Filter != null) {
 	
+// 				$opt_conditions['Token.hin'] = "DISTINCT ".$session_Filter;
 				$opt_conditions['Token.hin'] = $session_Filter;
 	
 				/**********************************
@@ -228,6 +310,7 @@ class TokensController extends AppController {
 			// 			$opt_conditions['History.line LIKE'] = "%$query_Filter_Hins%";
 	
 			//REF http://book.cakephp.org/2.0/en/models/retrieving-your-data.html
+// 			$opt_conditions['Token.hin'] = "DISTINCT ".$query_Filter_Hins;
 			$opt_conditions['Token.hin'] = $query_Filter_Hins;
 	
 			$session_Filter = $this->Session->write($filter_hins, $query_Filter_Hins);
@@ -250,6 +333,11 @@ class TokensController extends AppController {
 		* history_id
 		**********************************/
 		$opt_conditions = $this->_index__Options__Hist_Id($opt_conditions);
+		
+		/**********************************
+		* option: distinct
+		**********************************/
+// 		$opt_conditions['fields'] = 'DISTINCT Token.hin';
 		
 		/**********************************
 			* return
@@ -317,6 +405,74 @@ class TokensController extends AppController {
 		return $opt_order;
 	
 	}//_index__Orders
+	
+	public function
+	_index__Group() {
+	
+		/**********************************
+		 * param: group
+		**********************************/
+		// 		debug($this->request->data);
+		// 		debug($this->request->query);
+		$opt_group = array();
+	
+		$group = "group";
+	
+		@$query_Group = $this->request->query[$group];
+	
+		if ($query_Group == null) {
+	
+			@$session_Sort = $this->Session->read($group);
+	
+			//			debug("session_Sort is ...");
+			//			debug($this->Session->read($group));
+	
+			if ($session_Sort != null) {
+	
+// 				$opt_group["Token.$session_Sort"] = "asc";
+				array_push($opt_group, $query_Group);
+	
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("group", $session_Sort);
+	
+			} else {
+	
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("group", null);
+	
+			}
+	
+		} else if ($query_Group == -1) {
+			
+			$this->set("group", "no grouping");
+			
+			$this->Session->write($group, null);
+			
+		} else {
+	
+			// 			$opt_group['History.line LIKE'] = "%$query_Sort%";
+				
+// 			$opt_group["Token.$query_Sort"] = "asc";
+			array_push($opt_group, $query_Group);
+				
+			$session_Sort = $this->Session->write($group, $query_Group);
+	
+			//			debug("session_Sort => written: ".$query_Sort);
+	
+			/**********************************
+			 * set: var
+			**********************************/
+			$this->set("group", $query_Group);
+				
+		}
+	
+		return $opt_group;
+	
+	}//_index__Group
 	
 	public function
 	_index__Options__Hin_1($opt_conditions) {

@@ -4,6 +4,28 @@
 	
 	class Utils {
 		
+		/**********************************
+		* @param<br>
+		* $key	=> e.g. "form"
+		**********************************/
+		public static function 
+		isIn_Array_Tokens($tokens_base, $token, $key) {
+			
+			for ($i = 0; $i < count($tokens_base); $i++) {
+				
+				$t = $tokens_base[$i];
+				
+				if ($token['Token'][$key] == $t['Token'][$key]) {
+					
+					return true;
+					
+				}
+			}
+			
+			return false;
+			
+		}
+		
 		public static function 
 		get_HostName() {
 			
@@ -850,6 +872,7 @@
 			return preg_replace($p, $rep, $str);
 		
 		}
+
 		
 	}//class Utils
 	
