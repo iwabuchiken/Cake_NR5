@@ -7,6 +7,8 @@ class CONS {
 	**********************************/
 	public static $proj_Name = "Cake_NR5";
 	
+	public static $numOf_Modulus = 40;
+	
 	/******************************
 	
 		Paths and names

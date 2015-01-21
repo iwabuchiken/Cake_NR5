@@ -797,68 +797,40 @@ class HistorysController extends AppController {
 				
 		}
 
-// 		debug($history);
-		
-// 		debug($history['History']['content']);
-// 		debug(mb_strlen($history['History']['content']));
-
-		$words_ary = Utils::get_Words($history['History']['content']);
-		
-		debug("\$words_ary length...");
-		debug(count($words_ary));
-
 		/**********************************
-		* save tokens
+		* validate:
 		**********************************/
-		$msg_Flash = $this->save_Tokens__V2($words_ary, $history);
+		$res = $this->_save_Tokens__TokensExist($history);
 		
+// 		debug("tokens exist => ".$res);
 		
-		
-		
-// 		/**********************************
-// 		* get: words list
-// 		**********************************/
-// 		$words= $this->get_Mecab_WordList($history['History']['content']);
+		if ($res == true) {
+			
+			$msg_Flash = "Tokens exist for this history: id = "
+						.$history['History']['id'];
 
-// // 		debug(count($words));
+			$this->Session->setFlash(__($msg_Flash));
+			
+// 			debug("message => set");
+			
+		} else {
 		
-// 		/**********************************
-// 		* conv: words to tokens
-// 		**********************************/
-// 		$tokens = $this->conv_MecabWords_to_Tokens($words);
+			/**********************************
+			* words array
+			**********************************/
+			$words_ary = Utils::get_Words($history['History']['content']);
+			
+// 			debug("\$words_ary length...");
+// 			debug(count($words_ary));
+	
+			/**********************************
+			* save tokens
+			**********************************/
+			$msg_Flash = $this->save_Tokens__V2($words_ary, $history);
+		
+		}
 
-		
-		
-// 		/**********************************
-// 		* save: tokens
-// 		**********************************/
-// 		$res = $this->save_token_list($tokens, $history['History']['id']);
-
-// 		if ($words != null) {
-			
-// 			$msg_Flash = "save_Tokens => done. Words => ".count($words)
-// // 						." \$words[10] => ".$words[10]->surface
-// // 						." / "
-// // 						."Tokens => ".count($tokens)
-// // 						." \$tokens[10] => ".$tokens[10]->form
-// // 						." / "
-// // 						."\$tokens[10]->hin => ".$tokens[10]->hin
-// 						."/"
-// 						."save token => ".$res
-// 						;
-// 			$this->Session->setFlash(__($msg_Flash));
-			
-// 		} else {
-			
-// 			$this->Session->setFlash(__("save_Tokens => done. Words => null"));
-			
-// 		}
-		
-		
-// 		$this->set('tokens', $tokens);
-		
-// 		$this->redirect(array('action' => 'view', $id));
-// 		$this->redirect(array('action' => 'view', $id));
+// 		$this->Session->setFlash(__($msg_Flash));
 		
 	}//save_Tokens
 	
@@ -927,6 +899,40 @@ class HistorysController extends AppController {
 		$this->set('tokens', $tokens);
 		
 	}//save_Tokens
+	
+	public function
+	_save_Tokens__TokensExist($history) {
+
+		$this->loadModel('Token');
+		
+		$options = array(
+						'conditions' => 
+								array("Token.history_id" => $history['History']['id'])
+						);
+		
+		$tokens = $this->Token->find('all', $options);
+		
+// 		debug("\$tokens ...");
+// 		debug(count($tokens));
+		
+		/**********************************
+		* return
+		**********************************/
+		if ($tokens == null) {
+			
+			return false;
+			
+		} else if (count($tokens) > 0) {
+			
+			return true;
+			
+		} else {
+			
+			return true;
+			
+		}
+		
+	}//_save_Tokens__TokensExist
 	
 	public function
 	save_token_list

@@ -79,6 +79,8 @@ class TokensController extends AppController {
 // 		debug("\$opt_conditions is...");
 // 		debug($opt_conditions);
 		
+		asort($history_id_Array);
+		
 		$this->set("history_id_Array", $history_id_Array);
 		
 		/**********************************

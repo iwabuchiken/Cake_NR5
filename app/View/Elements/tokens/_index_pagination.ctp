@@ -30,7 +30,8 @@
 		
 		echo " | ";
 		
-		echo $paginator->numbers(array('modulus' => 9));
+		echo $paginator->numbers(array('modulus' => CONS::$numOf_Modulus));
+// 		echo $paginator->numbers(array('modulus' => 9));
 // 		echo $paginator->numbers(array('modulus' => 6));
 		
 		echo " | ";

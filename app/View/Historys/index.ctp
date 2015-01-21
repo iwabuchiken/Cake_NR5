@@ -24,6 +24,12 @@
 		
 </table>
 
+<br>
+
+<?php echo $this->element('historys/_index_pagination')?>
+
+<br>
+
 <?php echo $this->Html->link("Add history",
 							array(
 								'controller' => 'historys', 

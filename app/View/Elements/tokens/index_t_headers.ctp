@@ -45,7 +45,21 @@
 		<th>katsu_kata</th>
 		
 		<th>genkei</th>
-		<th>yomi</th>
+		
+		<th>
+			<?php 
+			
+				$link_Options['?'] = 'sort=yomi';
+			
+				echo $this->Html->link(
+								'yomi',
+								$link_Options
+
+				);
+			?>
+			
+		</th>
+		
 		<th>hatsu</th>
 		
 		<?php echo $this->element('tokens/index/index_t_headers__Col_History'); ?>
