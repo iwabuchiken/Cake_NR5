@@ -929,5 +929,182 @@ class TokensController extends AppController {
 		return $select_History_Id;
 		
 	}//_get_Hins_1_Array
+
+	public function 
+	D_7() {
+	
+		$option = array(
+					
+				'conditions' => array('Token.history_id'	=> '82')
+				// 				'conditions' => array('Token.hin_1'	=> '固有名詞')
+		// 				'Token.history_id'	=> '82'
+		// 				'Token.hin_1'	=> '固有名詞'
+	
+		);
+	
+		$tokens = $this->Token->find('all', $option);
+	
+		// 		debug("tokens...");
+		// 		debug(count($tokens));
+		// 		debug($tokens[0]);
+		// 		debug($tokens);
+	
+		/**********************************
+			* build: text
+		**********************************/
+		$text = "";
+	
+		for ($i = 0; $i < count($tokens); $i++) {
+				
+			$text .= $tokens[$i]['Token']['form'];
+// 			$text .= "/".$tokens[$i]['Token']['form'];
+			// 			$text .= $tokens[$i]['Token']['form'];
+			// 			$text .= $tokens[$i]['Token']['hin'];
+				
+		}
+	
+		$text = mb_ereg_replace("。", "。<br>", $text);
+// 		$text = preg_replace("。", "。<br>", $text);
+		
+		/**********************************
+			* set
+		**********************************/
+		$this->set("text", $text);
+
+		/**********************************
+		* 「は」
+		**********************************/
+		$option = array(
+					
+				'conditions' => array(
+								'Token.form'	=> 'は',
+								'Token.hin'		=> '助詞',
+								'Token.history_id'	=> '82'
+				)
+				// 				'conditions' => array('Token.hin_1'	=> '固有名詞')
+		// 				'Token.history_id'	=> '82'
+		// 				'Token.hin_1'	=> '固有名詞'
+	
+		);
+		
+		$text_Ha_ary = array();
+		
+// 		$tokens_Ha = $this->Token->find('all', $option);
+		for ($i = 0; $i < count($tokens); $i++) {
+			
+			$token_Combo = array();
+			
+			if ($tokens[$i]['Token']['form'] == 'は'
+					&& $tokens[$i]['Token']['hin'] == '助詞'
+					&& $tokens[$i]['Token']['history_id'] == '82'
+// 					&& $tokens[$i]['Token']['insentence_id'] == $i
+				) {
+				
+				array_push($token_Combo, $tokens[$i]);
+				array_push($token_Combo, $i);
+				
+				array_push($text_Ha_ary, $token_Combo);
+// 				array_push($text_Ha_ary, $tokens[$i]);
+				
+			}
+		}
+		
+		$text_Ha = "";
+		
+		for ($i = 0; $i < count($text_Ha_ary); $i++) {
+		
+			$word_Ha = $this->_D_7__GetWord_Ha($tokens, $text_Ha_ary[$i]);
+			
+			if ($word_Ha == null) {
+				
+				debug("\$word_Ha => null");
+				
+				continue;
+				
+			}
+			
+			$text_Ha .= "/".$word_Ha;
+// 			$text_Ha .= "/"
+// 						.$tokens[$text_Ha_ary[$i][1] - 1]['Token']['form']
+// 						."("
+// 						.$tokens[$text_Ha_ary[$i][1] - 1]['Token']['hin']
+// 						.")"
+// 						.$text_Ha_ary[$i][0]['Token']['form']
+// 						."(".$text_Ha_ary[$i][0]['Token']['id'].")"
+// 						."(".$text_Ha_ary[$i][1].")"
+// 						;
+// 			$text_Ha .= "/".$text_Ha_ary[$i]['Token']['form']
+// 						."(".$text_Ha_ary[$i]['Token']['id'].")";
+			// 			$text .= "/".$tokens[$i]['Token']['form'];
+			// 			$text .= $tokens[$i]['Token']['form'];
+			// 			$text .= $tokens[$i]['Token']['hin'];
+		
+		}
+		
+// 		$text_Ha = preg_replace("。", "。<br>", $text_Ha);
+// 		$text_Ha = mb_replace("。", "。<br>", $text_Ha);
+// 		$text_Ha = mb_ereg_replace("。", "。<br>", $text_Ha);
+		
+		$this->set("text_Ha", $text_Ha);
+		
+		$word_Ha = $this->_D_7__GetWord_Ha($tokens, $text_Ha_ary[0]);
+		
+		/**********************************
+		* redirect
+		**********************************/
+// 		$this->redirect("/tokens/tests/D_7");
+		$this->render("/Tokens/tests/D_7");
+		
+	}//D_7
+
+	public function 
+	_D_7__GetWord_Ha($tokens, $combo) {
+
+		$insentence_Id = $combo[1];
+		
+		$word_Final = $combo[0]['Token']['form'];
+
+		debug("\initial \$word_Final is...");
+		debug($word_Final);
+		
+		$token_Index_Offset = -1;
+		
+		$target_Index = $insentence_Id + $token_Index_Offset;
+		
+		while ($target_Index >= 0) {
+			
+			$token_Prev = $tokens[$target_Index];
+			
+			if ($token_Prev['Token']['hin'] != '名詞') {
+				
+				break;
+				
+			}
+			
+// 			debug($token_Prev['Token']['form']);
+			
+			$word_Final = $token_Prev['Token']['form'].$word_Final;
+			
+// 			debug($word_Final);
+			
+			$target_Index --;
+			
+		}
+		
+		return ($word_Final == $combo[0]['Token']['form']) ? null : $word_Final;
+// 		return ($token_Index_Offset == -1) ? null : $word_Final;
+// 		if ($insentence_Id > 0) {
+			
+// 			$token_Prev = $tokens[$insentence_Id - 1];
+			
+// 			debug($token_Prev['Token']['form']);
+			
+// 			$word_Final = $token_Prev['Token']['form'].$word_Final;
+			
+// 			debug($word_Final);
+			
+// 		}
+		
+	}
 	
 }

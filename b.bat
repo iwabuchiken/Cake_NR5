@@ -7,12 +7,12 @@ echo param is %temp%
 REM REF http://answers.microsoft.com/en-us/windows/forum/windows_vista-windows_programs/batch-parameter-is-it-all-arguments-to-the-command/9f7484f3-819c-4c05-a4e9-a439043b18fa
 if %temp%=="ch" (
 
-	echo chrome
+	echo starting =^> chrome
 	goto start_chrome
 
 ) else if %temp%=="ff" (
 
-	echo firefox
+	echo starting =^> firefox
 	goto start_ff
 
 ) else (
