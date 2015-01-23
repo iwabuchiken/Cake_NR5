@@ -1064,8 +1064,8 @@ class TokensController extends AppController {
 		
 		$word_Final = $combo[0]['Token']['form'];
 
-		debug("\initial \$word_Final is...");
-		debug($word_Final);
+// 		debug("\initial \$word_Final is...");
+// 		debug($word_Final);
 		
 		$token_Index_Offset = -1;
 		
@@ -1106,5 +1106,124 @@ class TokensController extends AppController {
 // 		}
 		
 	}
+
+	public function
+	D_7_V_1_1() {
+
+		/**********************************
+		* history
+		**********************************/
+// 		$this->loadModel('History');
+		
+// 		$history = $this->History->find(
+// 								'first', 
+// 								array('order' => array('History.id' => 'asc'))
+// 								);
+		
+// 		$text = $history['History']['content'];
+		
+		$option = array(
+					
+				'conditions' => array('Token.history_id'	=> '82')
+				// 				'conditions' => array('Token.hin_1'	=> '固有名詞')
+				// 				'Token.history_id'	=> '82'
+				// 				'Token.hin_1'	=> '固有名詞'
+	
+		);
+
+		$tokens = $this->Token->find('all', $option);
+
+// 		debug(count($tokens));
+		
+		/**********************************
+		 * build: text
+		**********************************/
+		$text = "";
+		
+		for ($i = 0; $i < count($tokens); $i++) {
+		
+			$text .= $tokens[$i]['Token']['form'];
+			// 			$text .= "/".$tokens[$i]['Token']['form'];
+			// 			$text .= $tokens[$i]['Token']['form'];
+			// 			$text .= $tokens[$i]['Token']['hin'];
+		
+		}
+		
+// 		debug("\$text is...");
+// 		debug($text);
+		
+		/**********************************
+		* get: sentences
+		**********************************/
+		$token_Sentences = array();
+		$token_Sen = array();
+		
+		for ($i = 0; $i < count($tokens); $i++) {
+			
+			if ($tokens[$i]['Token']['form'] == "。") {
+// 			if ($tokens[$i] == "。") {
+				
+// 				debug("pushing a sentence...");
+				
+				array_push($token_Sen, $tokens[$i]);
+				
+				array_push($token_Sentences, $token_Sen);
+				
+				unset($token_Sen); $token_Sen = array();
+				
+			} else {
+				
+				array_push($token_Sen, $tokens[$i]);
+				
+			}
+			
+			
+		}
+	
+// 		debug("\$token_Sentences ...");
+// 		debug(count($token_Sentences));
+
+// 		debug($token_Sentences[0]);
+// 		debug($token_Sentences[0]['Token']);
+		
+		/**********************************
+		* get: one sentence
+		**********************************/
+		$sen = "";
+		
+		for ($i = 0; $i < count($token_Sentences[0]); $i++) {
+
+			$sen .= $token_Sentences[0][$i]['Token']['form'];
+			
+		}
+		
+		$this->set("sen", $sen);
+
+		/**********************************
+		* bunsetsu	=> bs
+		**********************************/
+		$id = 0;
+		
+		$bs_Subject = Utils::get_BS_Subject($token_Sentences[0], $id);
+// 		$bs_Subject = Utils::get_BS_Subject($token_Sentences[0], &$id);
+		
+		$bs_Verb = Utils::get_BS_Verb($token_Sentences[0], $id);
+		
+		debug("\$bs_Subject is...");
+		debug($bs_Subject);
+		
+		debug("id is...");
+		debug($id);
+		
+		debug("\$bs_Verb is...");
+		debug($bs_Verb);
+		
+		/**********************************
+			* redirect
+		**********************************/
+		// 		$this->redirect("/tokens/tests/D_7");
+		$this->render("/Tokens/tests/D_7_V_1_1");
+	
+	}//D_7
 	
 }

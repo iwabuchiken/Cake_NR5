@@ -873,6 +873,221 @@
 		
 		}
 
+		public static function
+		get_BS_Subject($token_Sen, &$id) {
+			
+			$ary_Ha = array();
+			
+			for ($i = 0; $i < count($token_Sen); $i++) {
+					
+				$token_Combo = array();
+					
+// 				debug("\$token_Sen[".$i."] is...");
+// 				debug($token_Sen[$i]);
+				
+				if ($token_Sen[$i]['Token']['form'] == 'は'
+						&& $token_Sen[$i]['Token']['hin'] == '助詞'
+// 						&& $token_Sen[$i]['Token']['history_id'] == '82'
+						// 					&& $tokens[$i]['Token']['insentence_id'] == $i
+				) {
+			
+					debug("yes => ");
+					array_push($token_Combo, $token_Sen[$i]);
+					array_push($token_Combo, $i);
+			
+					array_push($ary_Ha, $token_Combo);
+					// 				array_push($text_Ha_ary, $token_Sen[$i]);
+			
+				}
+				
+			}
+
+			/**********************************
+			* validate
+			**********************************/
+			if (count($ary_Ha) < 1) {
+				
+				debug("\$ary_Ha => no entry");
+				
+				return null;
+				
+			}
+			
+			/**********************************
+			* build: word
+			**********************************/
+			
+			$bs_Subject = Utils::get_Word_Ha($token_Sen, $ary_Ha[0]);
+			
+			$id = $ary_Ha[0][1];
+			
+			return $bs_Subject;
+			
+// 			debug("count(\$ary_Ha) is ...");
+// 			debug(count($ary_Ha));
+// 			debug($ary_Ha[0]);
+// 			debug($token_Combo);
+			
+		}//get_BS_Subject
+
+		public static function
+		get_BS_Verb($token_Sen, $start_Id) {
+			
+			$ary_Verb = array();
+			
+			for ($i = $start_Id; $i < count($token_Sen); $i++) {
+// 			for ($i = 0; $i < count($token_Sen); $i++) {
+					
+				$token_Combo = array();
+				
+				if (
+// 						$token_Sen[$i]['Token']['form'] == 'は'
+// 						&& $token_Sen[$i]['Token']['hin'] == '助詞'
+						$token_Sen[$i]['Token']['hin'] == '動詞'
+// 						&& $token_Sen[$i]['Token']['history_id'] == '82'
+						// 					&& $tokens[$i]['Token']['insentence_id'] == $i
+				) {
+			
+					debug("yes => ");
+					array_push($token_Combo, $token_Sen[$i]);
+					array_push($token_Combo, $i);
+			
+					array_push($ary_Verb, $token_Combo);
+					// 				array_push($text_Ha_ary, $token_Sen[$i]);
+			
+				}
+				
+			}
+
+			/**********************************
+			* validate
+			**********************************/
+			if (count($ary_Verb) < 1) {
+				
+				debug("\$ary_Verb => no entry");
+				
+				return null;
+				
+			}
+			
+			/**********************************
+			* build: word
+			**********************************/
+			$bs_Verb = Utils::get_Word_Verb($token_Sen, $ary_Verb[0]);
+			
+			return $bs_Verb;
+			
+		}//get_BS_Verb
+
+		
+		public static function
+		get_Word_Ha($tokens, $combo) {
+		
+			$insentence_Id = $combo[1];
+		
+			$word_Final = $combo[0]['Token']['form'];
+		
+			// 		debug("\initial \$word_Final is...");
+			// 		debug($word_Final);
+		
+			$token_Index_Offset = -1;
+		
+			$target_Index = $insentence_Id + $token_Index_Offset;
+		
+			while ($target_Index >= 0) {
+					
+				$token_Prev = $tokens[$target_Index];
+					
+				if ($token_Prev['Token']['hin'] != '名詞') {
+		
+					break;
+		
+				}
+					
+				// 			debug($token_Prev['Token']['form']);
+					
+				$word_Final = $token_Prev['Token']['form'].$word_Final;
+					
+				// 			debug($word_Final);
+					
+				$target_Index --;
+					
+			}
+		
+			return ($word_Final == $combo[0]['Token']['form']) ? null : $word_Final;
+			// 		return ($token_Index_Offset == -1) ? null : $word_Final;
+			// 		if ($insentence_Id > 0) {
+				
+			// 			$token_Prev = $tokens[$insentence_Id - 1];
+				
+			// 			debug($token_Prev['Token']['form']);
+				
+			// 			$word_Final = $token_Prev['Token']['form'].$word_Final;
+				
+			// 			debug($word_Final);
+				
+			// 		}
+		
+		}
+		
+		public static function
+		get_Word_Verb($tokens, $combo) {
+		
+			$insentence_Id = $combo[1];
+		
+			$word_Final = $combo[0]['Token']['form'];
+		
+			// 		debug("\initial \$word_Final is...");
+			// 		debug($word_Final);
+		
+			$token_Index_Offset = 1;
+// 			$token_Index_Offset = -1;
+		
+			$target_Index = $insentence_Id + $token_Index_Offset;
+		
+			while ($target_Index < count($tokens)) {
+					
+				$token_Next = $tokens[$target_Index];
+					
+				if ($token_Next['Token']['form'] == '。'
+					|| $token_Next['Token']['form'] == '、') {
+
+					$word_Final .= $token_Next['Token']['form'];
+					
+					break;
+		
+				} else {
+					
+					$word_Final .= $token_Next['Token']['form'];
+					
+				}
+					
+				// 			debug($token_Prev['Token']['form']);
+					
+// 				$word_Final = $token_Next['Token']['form'].$word_Final;
+					
+				// 			debug($word_Final);
+					
+				$target_Index ++;
+					
+			}
+		
+			return ($word_Final == $combo[0]['Token']['form']) ? null : $word_Final;
+			// 		return ($token_Index_Offset == -1) ? null : $word_Final;
+			// 		if ($insentence_Id > 0) {
+				
+			// 			$token_Prev = $tokens[$insentence_Id - 1];
+				
+			// 			debug($token_Prev['Token']['form']);
+				
+			// 			$word_Final = $token_Prev['Token']['form'].$word_Final;
+				
+			// 			debug($word_Final);
+				
+			// 		}
+		
+		}
 		
 	}//class Utils
+	
 	
