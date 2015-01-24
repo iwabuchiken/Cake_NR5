@@ -16,6 +16,18 @@
 							); 
 ?>
 
+<br>
+<br>
+
+<?php echo $this->Html->link("Stats",
+							array(
+								'controller' => 'admins', 
+								'action' => 'stats')
+							); 
+?>
+
+<br>
+<br>
 
 (<a href="#top">Top</a><a name="bottom"></a>)
 

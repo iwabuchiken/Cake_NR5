@@ -86,6 +86,14 @@ class HistorysController extends AppController {
 		// 		debug($this->request->query);
 		$opt_order = array();
 		
+// 		/**********************************
+// 		* default
+// 		**********************************/
+// 		$opt_order["History.id"] = "desc";
+
+		/**********************************
+		* set: orders
+		**********************************/
 		$sort = "sort";
 		
 		@$query_Sort = $this->request->query[$sort];
@@ -115,6 +123,12 @@ class HistorysController extends AppController {
 				
 			}
 		
+		} else if ($query_Sort == -1) {
+			
+			$session_Sort = $this->Session->write($sort, null);
+			
+			$this->set("sort", null);
+			
 		} else {
 		
 // 			$opt_order['History.line LIKE'] = "%$query_Sort%";
@@ -136,6 +150,15 @@ class HistorysController extends AppController {
 // 		* set: var
 // 		**********************************/
 // 		$this->set("sort", $query_Sort);
+
+		/**********************************
+		 * default
+		**********************************/
+		if (count($opt_order) < 1) {
+			
+			$opt_order["History.id"] = "desc";
+			
+		}
 		
 		return $opt_order;
 		

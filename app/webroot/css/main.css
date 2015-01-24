@@ -388,6 +388,16 @@ table#table_poslist tr td.pos_chosen {
 	
 }
 
+table#table_stats tr td.td_id {
+	
+	border: 1px solid blue;
+	text-align:	left;
+	
+	width:	20%;
+
+	
+}
+
 img.delete_position {
 	
 /*	border: 1px solid blue;*/

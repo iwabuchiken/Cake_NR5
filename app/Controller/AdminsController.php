@@ -137,5 +137,137 @@ class AdminsController extends AppController {
 		}
 	
 	}//edit
+
+	public function stats() {
+		
+		$this->loadModel('Token');
+		$this->loadModel('History');
+		
+		/**********************************
+		* num of histories
+		**********************************/
+		$historys = $this->History->find('all');
+		
+		$this->set("numOf_Histories", count($historys));
+		
+// 		debug(count($historys));
+
+		
+		/**********************************
+		* num of histories: each vendor
+		**********************************/
+		$this->_stats__Vendors($historys);
+		
+// 		$opt_Vendor = array();
+		
+// 		$opt_Vendor['conditions'] = array('History.vendor' => 'san');
+		
+// 		$historys_Vendor_san = $this->History->find('all', $opt_Vendor);
+		
+// 		$this->set("numOf_Histories_Vendor_san", count($historys_Vendor_san));
+		
+// 		$this->set("numOf_Histories_Vendor_san_Ratio", 
+// 								(double)count($historys_Vendor_san) / count($historys));
+		
+// 		debug(count($historys));
+
+		/**********************************
+		* render
+		**********************************/
+		$this->render("/Admins/stats/stats");
+		
+	}
+	
+	public function
+	_stats__Vendors($historys) {
+
+// 		$this->loadModel('Token');
+// 		$this->loadModel('History');
+		
+		/**********************************
+		* san
+		**********************************/
+		$opt_Vendor = array();
+		
+		$opt_Vendor['conditions'] = array('History.vendor' => 'san');
+		
+		$historys_Vendor_san = $this->History->find('all', $opt_Vendor);
+		
+		$this->set("numOf_Histories_Vendor_san", count($historys_Vendor_san));
+		
+		$this->set("numOf_Histories_Vendor_san_Ratio",
+				(double)count($historys_Vendor_san) / count($historys));
+		
+		/**********************************
+		* yom
+		**********************************/
+		$opt_Vendor = array();
+		
+		$opt_Vendor['conditions'] = array('History.vendor' => 'yom');
+		
+		$historys_Vendor_yom = $this->History->find('all', $opt_Vendor);
+		
+		$this->set("numOf_Histories_Vendor_yom", count($historys_Vendor_yom));
+		
+		$this->set("numOf_Histories_Vendor_yom_Ratio",
+				(double)count($historys_Vendor_yom) / count($historys));
+		
+		/**********************************
+		* asahi
+		**********************************/
+		$opt_Vendor = array();
+		
+		$opt_Vendor['conditions'] = array('History.vendor' => 'asahi');
+		
+		$historys_Vendor_asahi = $this->History->find('all', $opt_Vendor);
+		
+		$this->set("numOf_Histories_Vendor_asahi", count($historys_Vendor_asahi));
+		
+		$this->set("numOf_Histories_Vendor_asahi_Ratio",
+				(double)count($historys_Vendor_asahi) / count($historys));
+		
+		/**********************************
+		* mai
+		**********************************/
+		$opt_Vendor = array();
+		
+		$opt_Vendor['conditions'] = array('History.vendor' => 'mai');
+		
+		$historys_Vendor_mai = $this->History->find('all', $opt_Vendor);
+		
+		$this->set("numOf_Histories_Vendor_mai", count($historys_Vendor_mai));
+		
+		$this->set("numOf_Histories_Vendor_mai_Ratio",
+				(double)count($historys_Vendor_mai) / count($historys));
+		
+		/**********************************
+		* jij_afp
+		**********************************/
+		$opt_Vendor = array();
+		
+		$opt_Vendor['conditions'] = array('History.vendor' => 'jij_afp');
+		
+		$historys_Vendor_jij_afp = $this->History->find('all', $opt_Vendor);
+		
+		$this->set("numOf_Histories_Vendor_jij_afp", count($historys_Vendor_jij_afp));
+		
+		$this->set("numOf_Histories_Vendor_jij_afp_Ratio",
+				(double)count($historys_Vendor_jij_afp) / count($historys));
+		
+		/**********************************
+		* cnn
+		**********************************/
+		$opt_Vendor = array();
+		
+		$opt_Vendor['conditions'] = array('History.vendor' => 'cnn');
+		
+		$historys_Vendor_cnn = $this->History->find('all', $opt_Vendor);
+		
+		$this->set("numOf_Histories_Vendor_cnn", count($historys_Vendor_cnn));
+		
+		$this->set("numOf_Histories_Vendor_cnn_Ratio",
+				(double)count($historys_Vendor_cnn) / count($historys));
+		
+	}
 	
 }
