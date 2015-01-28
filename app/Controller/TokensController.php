@@ -1226,4 +1226,116 @@ class TokensController extends AppController {
 	
 	}//D_7
 	
+	public function
+	D_7_V_2_0__Nouns() {
+
+		/*******************************
+			get: query
+		*******************************/
+		@$history_Id = $this->request->query['history_id'];
+		
+		debug($history_Id);
+		
+		/**********************************
+		 * history
+		**********************************/
+		$this->loadModel('History');
+
+		$option = array(
+					
+				'conditions' => array('History.id'	=> $history_Id)
+	
+		);
+		
+		$history = $this->History->find('first', $option);
+		
+		if ($history == null) {
+			
+			$this->Session->setFlash(__("No such history: id = ".$history_Id));;
+
+			$this->render("/Tokens/tests/D_7_V_2_0__Nouns");
+			
+			return;
+			
+		}
+		
+// 		$this->Session->setFlash(__('Your tokens has been saved.'));
+		
+		/*******************************
+			find: tokens
+		*******************************/
+		$option = array(
+					
+				'conditions' => array('Token.history_id'	=> $history_Id)
+// 				'conditions' => array('Token.history_id'	=> '82')
+	
+		);
+
+		$tokens = $this->Token->find('all', $option);
+
+		if ($tokens == null) {
+				
+			$this->Session->setFlash(__("\$tokens null for the history id ".$history_Id));;
+		
+			$this->render("/Tokens/tests/D_7_V_2_0__Nouns");
+
+			return;
+			
+		}
+		
+		if (count($tokens) < 1) {
+				
+			$this->Session->setFlash(__("No tokens with the history id ".$history_Id));;
+		
+			$this->render("/Tokens/tests/D_7_V_2_0__Nouns");
+
+			return;
+			
+		}
+		
+		/**********************************
+		 * build: text
+		**********************************/
+		$text = "";
+		
+		$ary_N = array();
+		
+		for ($i = 0; $i < count($tokens); $i++) {
+		
+			if ($tokens[$i]['Token']['hin'] == '名詞') {
+				
+				$text .= $tokens[$i]['Token']['form'];
+				
+			} else {
+				
+				if ($text != "") {
+				
+					array_push($ary_N, $text);
+					
+					$text = "";
+				
+				}
+				
+			}
+			
+		}//for ($i = 0; $i < count($tokens); $i++)
+		
+// 		debug($ary_N);
+
+// 		debug(implode("/", $ary_N));
+		
+		debug("original => ".count($ary_N));
+		debug("unique => ".count(array_unique($ary_N)));
+		
+		$this->set("text", (implode("/", array_unique($ary_N))));
+// 		$this->set("text", array_unique(implode("/", $ary_N)));
+// 		$this->set("text", implode("/", $ary_N));
+		
+		/**********************************
+			* redirect
+		**********************************/
+		$this->render("/Tokens/tests/D_7_V_2_0__Nouns");
+	
+	}//D_7
+	
 }

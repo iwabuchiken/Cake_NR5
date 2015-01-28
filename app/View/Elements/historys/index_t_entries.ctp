@@ -77,7 +77,7 @@
 					$genre = $this->History->get_Genre_From_HistoryID(
 							$history['History']['id']);
 
-					$label = $genre['Genre']['name'];
+					$label = $genre['Genre']['name']."(".$genre['Genre']['id'].")";
 					
 				} else {
 					

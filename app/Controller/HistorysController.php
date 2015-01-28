@@ -42,6 +42,7 @@ class HistorysController extends AppController {
 		$opt_order = $this->_index__Orders();
 // 		$opt_order = array('History.id' => 'asc');
 
+		debug($opt_order);
 //		debug("opt_order is...");
 //		debug($opt_order);
 //		debug("opt_conditions is...");
