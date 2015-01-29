@@ -14,6 +14,8 @@ class HistorysController extends AppController {
 		**********************************/
 		$opt_conditions = $this->_index__Options();
 
+// 		debug($opt_conditions);
+		
 		/**********************************
 		 * paginate
 		**********************************/
@@ -40,6 +42,8 @@ class HistorysController extends AppController {
 			stats
 		*******************************/
 		$histories_Current = $this->paginate('History');
+
+		debug($histories_Current[0]);
 		
 		$this->set('historys', $histories_Current);
 // 		$this->set('historys', $this->paginate('History'));
@@ -152,86 +156,14 @@ class HistorysController extends AppController {
 		*******************************/
 		$opt_conditions = $this->_index__Options__Line();
 		
-// 		$filter_Line = "filter_Line";
-		
-// 		$opt_conditions = array();
-		
-// 		/**********************************
-// 		 * param: filter
-// 		**********************************/
-// 		// 		debug($this->request->data);
-// 		// 		debug($this->request->query);
-		
-// 		@$query_Filter = $this->request->query[$filter_Line];
-// // 		@$query_Filter = $this->request->query['filter'];
-		
-// //		debug("query_Filter is ...");
-// //		debug($query_Filter);
-		
-// //		debug("session_Filter is ...");
-// //		debug($this->Session->read($filter));
-		
-// 		if ($query_Filter == "__@") {
-			
-// 			$this->Session->write($filter_Line, null);
-			
-// 			$this->set("filter_Line", '');
-			
-// 		} else if ($query_Filter == null) {
-				
-// 			@$session_Filter = $this->Session->read($filter_Line);
+		/*******************************
+			filter: category
+		*******************************/
+		$opt_conditions = $this->_index__Options__Category($opt_conditions);
 
-// //			debug("session_Filter is ...");
-// //			debug($this->Session->read($filter));
-				
-// 			if ($session_Filter != null) {
-		
-// // 				$opt_conditions['History.line LIKE'] = "%$session_Filter%";
-// 				$opt_conditions['OR'] = array(
-// 						'History.line LIKE' => "%$session_Filter%",
-// 						'History.content LIKE' => "%$session_Filter%"
-// 				);
-
-// 				/**********************************
-// 				 * set: var
-// 				**********************************/
-// 				$this->set("filter_Line", $session_Filter);
-				
-// 			} else {
-				
-// 				/**********************************
-// 				 * set: var
-// 				**********************************/
-// 				$this->set("filter_Line", null);
-				
-// 			}
-				
-// 		} else {
-				
-// // 			$opt_conditions['History.line LIKE'] = "%$query_Filter%";
-
-// 			//REF http://book.cakephp.org/2.0/en/models/retrieving-your-data.html
-// 			$opt_conditions['OR'] = array(
-// 							'History.line LIKE' => "%$query_Filter%",
-// 							'History.content LIKE' => "%$query_Filter%"
-// 							);
-			
-// 			$session_Filter = $this->Session->write($filter_Line, $query_Filter);
-				
-// //			debug("session_Filter => written");
-
-// 			/**********************************
-// 			 * set: var
-// 			**********************************/
-// 			$this->set("filter_Line", $query_Filter);
-				
-// 		}
-
-// 		/**********************************
-// 		 * set: var
-// 		**********************************/
-// 		$this->set("filter", $query_Filter);
-		
+		/*******************************
+			return
+		*******************************/
 		return $opt_conditions;
 		
 	}//_index__Options
@@ -322,32 +254,103 @@ class HistorysController extends AppController {
 	}//_index__Options__Line()
 	
 	public function 
+	_index__Options__Category($opt_conditions) {
+
+		$filter_Cat = "filter_Cat";
+		
+// 		$opt_conditions = array();
+
+		$category_Id_Array = $this->_get_Category_Id_Array();
+		
+		/**********************************
+		 * param: filter
+		**********************************/
+		@$query_Filter = $this->request->query[$filter_Cat];
+		
+		if ($query_Filter == "-1") {
+				
+			$this->Session->write($filter_Cat, null);
+				
+			$this->set("filter_Cat", '');
+				
+		} else if ($query_Filter == null) {
+		
+			@$session_Filter = $this->Session->read($filter_Cat);
+		
+			if ($session_Filter != null) {
+		
+				$opt_conditions['History.category_id'] = $session_Filter;
+		
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("filter_Cat", $category_Id_Array[$session_Filter]);
+// 				$this->set("filter_Cat", $session_Filter);
+		
+			} else {
+		
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("filter_Cat", null);
+		
+			}
+		
+		} else {
+		
+			$opt_conditions['History.category_id'] = $query_Filter;
+			
+			$session_Filter = $this->Session->write($filter_Cat, $query_Filter);
+		
+			/**********************************
+			 * set: var
+			**********************************/
+// 			$this->set("filter_Cat", $query_Filter);
+		
+			$this->set("filter_Cat", $category_Id_Array[$query_Filter]);
+			
+		}//if ($query_Filter == "__@")
+		
+		/*******************************
+			return
+		*******************************/
+		return $opt_conditions;
+		
+	}//_index__Options__Line()
+	
+	
+	public function 
 	_get_Category_Id_Array() {
 		
 		/*******************************
 			get: categories
 		*******************************/
-		$this->loadModel('Category');
+// 		$this->loadModel('Category');
 		
-		$categories = $this->Category->find('all');
-		
-		debug("count(\$categories) ...");
-		debug(count($categories));
+// 		$categories = $this->Category->find('all');
 
+		$histories = $this->History->find('all');
+		
 		/*******************************
 			build: array
 		*******************************/
 		$cats = array();
 		
-		for ($i = 0; $i < count($categories); $i++) {
+		for ($i = 0; $i < count($histories); $i++) {
+// 		for ($i = 0; $i < count($categories); $i++) {
 			
-			$cat = $categories[$i];
+			$hist = $histories[$i];
+// 			$cat = $categories[$i];
 			
-			$cats[$cat['Category']['name']] = $cat['Category']['id'];
+			$cats[$hist['Category']['id']] = $hist['Category']['name'];
+// 			$cats[$hist['Category']['name']] = $hist['Category']['id'];
 			
 		}
 		
 		asort($cats);
+		
+		$cats['-1'] = "ALL";
+// 		$cats['ALL'] = -1;
 		
 		/*******************************
 			return

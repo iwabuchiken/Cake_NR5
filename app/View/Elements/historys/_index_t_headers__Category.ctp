@@ -57,7 +57,7 @@
 			
 		echo $this->Form->create(null, $opt_create);
 		
-		echo $this->Form->input('filter', $opt_input);
+		echo $this->Form->input('filter_Cat', $opt_input);
 		
 		echo $this->Form->end(
 						'Filter');

@@ -5,10 +5,12 @@
 		(
 			total = <?php echo $num_of_histories; ?>, 
 			pages = <?php echo $num_of_pages; ?>,
-			current = <?php echo $num_of_histories_Current ?>
+			current = <?php echo "<font color=\"blue\">$num_of_histories_Current</font>" ?>
 		)
 	<br>
-	(filter_Line = <?php echo $filter_Line ?> / filter_Category = / sort = <?php echo $sort ?>)
+	(filter_Line = <?php echo "<font color=\"blue\">".$filter_Line."</font>" ?> / 
+		filter_Category = <?php echo "<font color=\"blue\">".$filter_Cat."</font>" ?> / 
+		sort = <?php echo "<font color=\"blue\">".$sort."</font>" ?>)
 		
 </h1>
 
