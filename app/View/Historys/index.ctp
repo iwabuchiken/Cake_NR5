@@ -8,7 +8,7 @@
 			current = <?php echo $num_of_histories_Current ?>
 		)
 	<br>
-	(filter = <?php echo $filter ?> / sort = <?php echo $sort ?>)
+	(filter_Line = <?php echo $filter_Line ?> / filter_Category = / sort = <?php echo $sort ?>)
 		
 </h1>
 
