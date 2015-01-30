@@ -43,7 +43,7 @@ class HistorysController extends AppController {
 		*******************************/
 		$histories_Current = $this->paginate('History');
 
-		debug($histories_Current[0]);
+// 		debug($histories_Current[0]);
 		
 		$this->set('historys', $histories_Current);
 // 		$this->set('historys', $this->paginate('History'));
@@ -58,7 +58,7 @@ class HistorysController extends AppController {
 		
 // 		$this->set('historys', $this->History->find('all'));
 
-	}
+	}//index
 	
 	public function 
 	_index__Orders() {
@@ -323,9 +323,10 @@ class HistorysController extends AppController {
 	_get_Category_Id_Array() {
 		
 		/*******************************
-			get: categories
+			load: category
 		*******************************/
 // 		$this->loadModel('Category');
+		$this->loadModel('Genre');
 		
 // 		$categories = $this->Category->find('all');
 
@@ -336,13 +337,60 @@ class HistorysController extends AppController {
 		*******************************/
 		$cats = array();
 		
+// 		debug($histories[100]);
+		
+// 		$option = array('conditions' 
+// 							=> array(
+// 									'Genre.id' 
+// 										=> $histories[100]['Category']['genre_id']));
+// // 		$option = array('conditions' => array('Category.genre_id' => $histories[0]['Category']['id']));
+		
+// 		$genre = $this->Genre->find('first', $option);
+// 		$cat = $this->Category->find('first', $option);
+		
+// 		debug($genre);
+// 		debug($cat);
+		
+		
 		for ($i = 0; $i < count($histories); $i++) {
 // 		for ($i = 0; $i < count($categories); $i++) {
 			
 			$hist = $histories[$i];
 // 			$cat = $categories[$i];
 			
-			$cats[$hist['Category']['id']] = $hist['Category']['name'];
+			$option = array('conditions'
+					=> array(
+							'Genre.id'
+							=> $hist['Category']['genre_id']));
+// 							=> $histories[100]['Category']['genre_id']));
+			// 		$option = array('conditions' => array('Category.genre_id' => $histories[0]['Category']['id']));
+			
+			$genre = $this->Genre->find('first', $option);
+			
+// 			$cat = $this->Category->find('first', $option);
+			
+			if ($genre != null) {
+			
+				$genre_Name = "(".$genre['Genre']['name'].")";
+			
+			} else {
+			
+				$genre_Name = "(No entry)";
+			
+			}
+			
+			if ($hist['Category']['name'] != null) {
+			
+				$cats[$hist['Category']['id']] = $hist['Category']['name'].$genre_Name;
+			
+			} else {
+			
+				$cats[$hist['Category']['id']] = $hist['Category']['name'];
+			
+			}
+			
+// 			$cats[$hist['Category']['id']] = $hist['Category']['name'].$genre_Name;
+// 			$cats[$hist['Category']['id']] = $hist['Category']['name'];
 // 			$cats[$hist['Category']['name']] = $hist['Category']['id'];
 			
 		}
