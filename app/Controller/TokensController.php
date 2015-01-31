@@ -9,100 +9,42 @@ class TokensController extends AppController {
 	index() {
 
 		/**********************************
-		* query
-		**********************************/
-// 		debug($this->request->query);
-		
-		/**********************************
 		 * paginate
 		**********************************/
 		$page_limit = 10;
 		
 		$opt_order = $this->_index__Orders();
-// 		$opt_order = array(
-// 						'Token.id' => 'asc',
-// 						'Token.hin' => 'asc',
-// 						'Token.hin_1' => 'asc'
-		
-// 		);
 		
 		$opt_conditions = $this->_index__Options();
-// 		$opt_conditions = '';
-
-// 		debug("\$opt_conditions is...");
-// 		debug($opt_conditions);
 
 		$opt_group = $this->_index__Group();
 		
 		if ($opt_group != null && count($opt_group) > 0) {
 			
-// 			$this->paginate['group'] = $opt_group;	//=> "Indirect modification of overloaded property"
 			$this->paginate = array(
-					// 					'conditions' => array('Image.file_name LIKE' => "%$filter_TableName%"),
-					// 				'conditions' => array('Image.memos LIKE' => "%$filter_TableName%"),
 					'limit' => $page_limit,
 					'order' => $opt_order,
 					'conditions'	=> $opt_conditions,
 					'group'			=> $opt_group
-					//REF http://www.tailtension.com/cakephp/1116/ "重複したものを省くGROUP BY"
-			// 				'group'	=> array('form'),
-			// 				'fields'		=> array('Token.id', 'DISTINCT Token.form',)
-			// 				'fields'		=> array('Token.id', 'Token.form',)	//=> w
-			// 				'fields'		=> array('DISTINCT id', 'form',)
-			// 				'fields'		=> array('DISTINCT id', 'DISTINCT form',)
-					// 				'order' => array(
-					// 						'id' => 'asc'
-					// 				)
+					
 			);
 				
 		} else {
 			
 			$this->paginate = array(
-					// 					'conditions' => array('Image.file_name LIKE' => "%$filter_TableName%"),
-					// 				'conditions' => array('Image.memos LIKE' => "%$filter_TableName%"),
 					'limit' => $page_limit,
 					'order' => $opt_order,
 					'conditions'	=> $opt_conditions,
 			
-					//REF http://www.tailtension.com/cakephp/1116/ "重複したものを省くGROUP BY"
-			// 				'group'	=> array('form'),
-			// 				'fields'		=> array('Token.id', 'DISTINCT Token.form',)
-			// 				'fields'		=> array('Token.id', 'Token.form',)	//=> w
-			// 				'fields'		=> array('DISTINCT id', 'form',)
-			// 				'fields'		=> array('DISTINCT id', 'DISTINCT form',)
-					// 				'order' => array(
-					// 						'id' => 'asc'
-					// 				)
 			);
 				
 		}
 		
-// 		$this->paginate = array(
-// 				// 					'conditions' => array('Image.file_name LIKE' => "%$filter_TableName%"),
-// 		// 				'conditions' => array('Image.memos LIKE' => "%$filter_TableName%"),
-// 				'limit' => $page_limit,
-// 				'order' => $opt_order,
-// 				'conditions'	=> $opt_conditions,
-				
-// 				//REF http://www.tailtension.com/cakephp/1116/ "重複したものを省くGROUP BY"
-// // 				'group'	=> array('form'),
-// // 				'fields'		=> array('Token.id', 'DISTINCT Token.form',)
-// // 				'fields'		=> array('Token.id', 'Token.form',)	//=> w
-// // 				'fields'		=> array('DISTINCT id', 'form',)
-// // 				'fields'		=> array('DISTINCT id', 'DISTINCT form',)
-// 				// 				'order' => array(
-// 						// 						'id' => 'asc'
-// 						// 				)
-// 		);
-
 		$tokens = $this->paginate('Token');
 		
 // 		debug($tokens[0]);
 		
-// 		$tokens = $this->_index__SkimmTokens($tokens);
-		
 		$this->set('tokens', $tokens);
-// 		$this->set('tokens', $this->paginate('Token'));
 		
 		$num_of_tokens = count($this->Token->find('all'));
 		$this->set('num_of_tokens', $num_of_tokens);
@@ -114,8 +56,6 @@ class TokensController extends AppController {
 		**********************************/
 		$hins_Array = $this->_get_HinsArray();
 
-// 		debug($hins_Array);
-		
 		$this->set("hins_Array", $hins_Array);
 		
 		/**********************************
@@ -123,8 +63,6 @@ class TokensController extends AppController {
 		**********************************/
 		$hins_1_Array = $this->_get_Hins_1_Array();
 
-// 		debug($hins_Array);
-		
 		$this->set("hins_1_Array", $hins_1_Array);
 		
 		/**********************************
@@ -132,10 +70,6 @@ class TokensController extends AppController {
 		**********************************/
 		$history_id_Array = $this->_get_History_Id_Array();
 
-// 		debug($hins_Array);
-// 		debug("\$opt_conditions is...");
-// 		debug($opt_conditions);
-		
 		asort($history_id_Array);
 		
 		$this->set("history_id_Array", $history_id_Array);
