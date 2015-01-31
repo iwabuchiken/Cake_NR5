@@ -66,6 +66,8 @@
 		
 <!-- 		<th>History</th> -->
 		
+		<th>Category</th>
+		
 		<th>Created at</th>
 		<th>updated at</th>
 		
