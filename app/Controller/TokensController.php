@@ -44,6 +44,11 @@ class TokensController extends AppController {
 		
 // 		debug($tokens[0]);
 		
+// 		//debug
+// 		$cat = Utils::get_Category_From_Id($tokens[0]['History']['category_id']);
+		
+// 		debug($cat);
+		
 		$this->set('tokens', $tokens);
 		
 		$num_of_tokens = count($this->Token->find('all'));

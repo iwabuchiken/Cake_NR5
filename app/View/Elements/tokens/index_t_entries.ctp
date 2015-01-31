@@ -32,6 +32,22 @@
 			
 		</td>
 		
+		<td>
+		
+			<?php 
+			
+				//REF http://stackoverflow.com/questions/22780671/passing-variable-from-view-to-element-in-cakephp answered Apr 1 '14 at 11:36
+				echo $this->element(
+								'tokens/index/index_t_entries__Category',
+								array('token' => $token)
+				); 
+				
+			?>
+			
+			<?php //echo $token['Token']['created_at']; ?>
+		
+		</td>
+		
 		<td><?php echo $token['Token']['created_at']; ?></td>
 		<td><?php echo $token['Token']['updated_at']; ?></td>
 		

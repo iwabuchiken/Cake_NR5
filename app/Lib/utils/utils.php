@@ -1087,6 +1087,22 @@
 			// 		}
 		
 		}
+
+		public static function
+		get_Category_From_Id($cat_Id) {
+
+			/*******************************
+				get: category
+			*******************************/
+// 			$this->loadModel('Category');
+			$model = ClassRegistry::init('Category');
+			
+			$option = array('conditions' => array('Category.id' => $cat_Id));
+			
+			return $model->find('first', $option);
+// 			return $this->Category->find('first', $option);
+				
+		}
 		
 	}//class Utils
 	
