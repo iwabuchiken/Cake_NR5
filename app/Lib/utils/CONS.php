@@ -70,4 +70,7 @@ class CONS {
 	public static $str_Filter_Hist_Id = "filter_hist_id";
 	public static $str_Filter_Hist_Id_all = "filter_hist_id_all";
 	
+	public static $str_Filter_Cat_Id = "filter_cat_id";
+	public static $str_Filter_Cat_Id_all = "filter_cat_id_all";
+	
 }//class CONS
