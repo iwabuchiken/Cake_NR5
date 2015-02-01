@@ -42,13 +42,6 @@ class TokensController extends AppController {
 		
 		$tokens = $this->paginate('Token');
 		
-// 		debug($tokens[0]);
-		
-// 		//debug
-// 		$cat = Utils::get_Category_From_Id($tokens[0]['History']['category_id']);
-		
-// 		debug($cat);
-		
 		$this->set('tokens', $tokens);
 		
 		$num_of_tokens = count($this->Token->find('all'));
@@ -78,6 +71,19 @@ class TokensController extends AppController {
 		asort($history_id_Array);
 		
 		$this->set("history_id_Array", $history_id_Array);
+		
+// 		debug($history_id_Array);
+		
+		/*******************************
+			get array: categories
+		*******************************/
+		$category_id_Array = $this->_get_Category_Id_Array();
+		
+		asort($category_id_Array);
+		
+		$this->set("category_id_Array", $category_id_Array);
+		
+		debug($category_id_Array);
 		
 		/**********************************
 		 * labels: options, sorts
@@ -868,6 +874,94 @@ class TokensController extends AppController {
 		return $select_History_Id;
 		
 	}//_get_Hins_1_Array
+
+	public function
+	_get_Category_Id_Array() {
+
+		/**********************************
+		 * get: hins
+		**********************************/
+		$tokens = $this->Token->find('all');
+		
+		$category_id = array();
+		
+// 		debug("count(\$tokens)");
+// 		debug(count($tokens));
+		
+// 		debug($tokens[0]);
+// 		debug($tokens[0]['Token']['category_id']);
+		
+		for ($i = 0; $i < count($tokens); $i++) {
+				
+			array_push($category_id, $tokens[$i]['History']['category_id']);
+// 			array_push($category_id, $tokens[$i]['Token']['category_id']);
+				
+		}
+		
+		$category_id = array_unique($category_id);
+		
+		$category_id = array_values($category_id);
+		
+		/**********************************
+		 * build: string
+		**********************************/
+		// Load model
+		$this->loadModel('Category');
+		$this->loadModel('Genre');
+		
+		$category_Id_Array = array();
+		
+		$option['conditions'] = array();
+		
+// 		$cat = $this->Category->find('first', $option);
+
+// 		debug($category_id);
+		
+// 		for ($i = 0; $i < 2; $i++) {
+		for ($i = 0; $i < count($category_id); $i++) {
+
+			/*******************************
+				validate: id value
+			*******************************/
+			if ($category_id[$i] < 1) {
+				
+				continue;
+				
+			}
+			
+			//debug($category_id[$i]);	
+			
+			$option['conditions']['Category.id'] = $category_id[$i];
+
+// // 			$option['conditions'] = array('Category.id' => $category_id[$i]);
+			
+// // 			$option = array('conditions' => array("Category.id" => $category_id[$i]));
+			
+			$cat = $this->Category->find('first', $option);
+			
+			//debug($cat['Category']['name']."(".$cat['Genre']['name'].")");
+// 			debug($cat['Category']['name']."(".$category_id[$i].")");
+// 			debug($cat['Category']);
+// 			debug($cat);
+// 			debug($cat['Category']['name']);	//=> n/w
+			
+// // 			$cat = $this->Category->find('first', 
+// // 								array('conditions' 
+// // 											=> array('Category.id' => $category_id[$i])));
+			
+// 			$category_Id_Array[$cat['Category']['name']] = 
+			$category_Id_Array[$cat['Category']['name']."(".$cat['Genre']['name'].")"] = 
+					$category_id[$i];
+// // 			$category_Id_Array[$category_id[$i]] = $cat['Category']['name'];
+			
+		}
+		
+		//debug("array --> built");
+		
+		return $category_Id_Array;
+// 		return $select_Category_Id;
+		
+	}//_get_Category_Id_Array
 
 	public function 
 	D_7() {
