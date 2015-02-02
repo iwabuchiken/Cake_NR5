@@ -66,7 +66,9 @@
 		
 <!-- 		<th>History</th> -->
 		
-		<th>Category</th>
+		<?php echo $this->element('tokens/index/index_t_headers__Col_Category'); ?>
+		
+<!-- 		<th>Category</th> -->
 		
 		<th>Created at</th>
 		<th>updated at</th>

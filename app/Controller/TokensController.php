@@ -17,6 +17,8 @@ class TokensController extends AppController {
 		
 		$opt_conditions = $this->_index__Options();
 
+		debug($opt_conditions);
+		
 		$opt_group = $this->_index__Group();
 		
 		if ($opt_group != null && count($opt_group) > 0) {
@@ -83,7 +85,7 @@ class TokensController extends AppController {
 		
 		$this->set("category_id_Array", $category_id_Array);
 		
-		debug($category_id_Array);
+// 		debug($category_id_Array);
 		
 		/**********************************
 		 * labels: options, sorts
@@ -91,7 +93,7 @@ class TokensController extends AppController {
 		$this->_index_SetLabels(
 					$opt_conditions,
 					$hins_Array, $hins_1_Array,
-					$history_id_Array
+					$history_id_Array, $category_id_Array
 		);
 		
 	}//index
@@ -123,7 +125,7 @@ class TokensController extends AppController {
 	public function
 	_index_SetLabels
 	($opt_conditions, $hins_Array, $hins_1_Array,
-		$history_id_Array) {
+		$history_id_Array, $category_id_Array) {
 
 // 		debug($opt_conditions);
 		
@@ -205,6 +207,34 @@ class TokensController extends AppController {
 		
 		}
 		
+		/**********************************
+		 * category_id_Array
+		**********************************/
+		// 		debug($opt_conditions);
+		
+		@$chosen_category_id = $category_id_Array[$opt_conditions['Token.category_id']];
+		// 		@$chosen_Lang = $opt_conditions['Text.lang_id'];
+		
+//		debug($chosen_history_id);
+		
+		if ($chosen_category_id == null) {
+		
+			$chosen_category_id = "No chonsen category_id";
+		
+			$this->set("chosen_category_id", null);
+		
+			// 			$this->set("chosen_lang_id", null);
+		
+		} else {
+		
+			$this->set("chosen_category_id", $chosen_category_id);
+		
+//			debug("chosen_history_id => set");
+			
+			// 			$this->set("chosen_lang_id", $opt_conditions['Text.lang_id']);
+		
+		}
+		
 	}//_index_SetLabels($opt_conditions)
 	
 	public function
@@ -279,6 +309,11 @@ class TokensController extends AppController {
 		**********************************/
 		$opt_conditions = $this->_index__Options__Hist_Id($opt_conditions);
 		
+		/**********************************
+		* cat_id
+		**********************************/
+		$opt_conditions = $this->_index__Options__Cat_Id($opt_conditions);
+
 		/**********************************
 		* option: distinct
 		**********************************/
@@ -565,6 +600,73 @@ class TokensController extends AppController {
 		return $opt_conditions;
 	
 	}//_index__Options__Hin_1
+	
+	public function
+	_index__Options__Cat_Id($opt_conditions) {
+	
+		/**********************************
+		 * param: filter: hin
+		**********************************/
+		$filter_cat_id = CONS::$str_Filter_Cat_Id;
+	
+		@$query_Value = $this->request->query[$filter_cat_id];
+		
+		debug("\$query_Value");
+		debug($query_Value);
+		
+		if ($query_Value == CONS::$str_Filter_Cat_Id_all_Val) {
+// 		if ($query_Value == CONS::$str_Filter_Cat_Id_all) {
+	
+			$this->Session->write($filter_cat_id, null);
+	
+			$this->set("filter_cat_id", '');
+	
+		} else if ($query_Value == null) {
+	
+			@$session_Filter = $this->Session->read($filter_cat_id);
+	
+			if ($session_Filter != null) {
+	
+				$opt_conditions['History.category_id'] = $session_Filter;
+	
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("filter_cat_id", $session_Filter);
+	
+			} else {
+	
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("filter_cat_id", null);
+	
+			}
+	
+		} else {
+	
+			// 			$opt_conditions['History.line LIKE'] = "%$query_Filter_Hins%";
+	
+			//REF http://book.cakephp.org/2.0/en/models/retrieving-your-data.html
+			$opt_conditions['History.category_id'] = $query_Value;
+	
+			$session_Filter = $this->Session->write($filter_cat_id, $query_Value);
+	
+			//			debug("session_Filter => written");
+	
+			/**********************************
+			 * set: var
+			**********************************/
+			$this->set("filter_cat_id", $query_Value);
+	
+		}
+	
+		/**********************************
+			* return
+		**********************************/
+		return $opt_conditions;
+	
+	}//_index__Options__Cat_Id
 	
 	public function view($id = null) {
 		if (!$id) {
@@ -885,12 +987,6 @@ class TokensController extends AppController {
 		
 		$category_id = array();
 		
-// 		debug("count(\$tokens)");
-// 		debug(count($tokens));
-		
-// 		debug($tokens[0]);
-// 		debug($tokens[0]['Token']['category_id']);
-		
 		for ($i = 0; $i < count($tokens); $i++) {
 				
 			array_push($category_id, $tokens[$i]['History']['category_id']);
@@ -939,22 +1035,19 @@ class TokensController extends AppController {
 			
 			$cat = $this->Category->find('first', $option);
 			
-			//debug($cat['Category']['name']."(".$cat['Genre']['name'].")");
-// 			debug($cat['Category']['name']."(".$category_id[$i].")");
-// 			debug($cat['Category']);
-// 			debug($cat);
-// 			debug($cat['Category']['name']);	//=> n/w
+			$category_Id_Array[$category_id[$i]] = 
+						$cat['Category']['name']."(".$cat['Genre']['name'].")";
 			
-// // 			$cat = $this->Category->find('first', 
-// // 								array('conditions' 
-// // 											=> array('Category.id' => $category_id[$i])));
-			
-// 			$category_Id_Array[$cat['Category']['name']] = 
-			$category_Id_Array[$cat['Category']['name']."(".$cat['Genre']['name'].")"] = 
-					$category_id[$i];
-// // 			$category_Id_Array[$category_id[$i]] = $cat['Category']['name'];
+// 			$category_Id_Array[$cat['Category']['name']."(".$cat['Genre']['name'].")"] = 
+// 					$category_id[$i];
 			
 		}
+		
+		/*******************************
+			no filter
+		*******************************/
+		$category_Id_Array[-1] =
+				CONS::$str_Filter_Cat_Id_all;
 		
 		//debug("array --> built");
 		
