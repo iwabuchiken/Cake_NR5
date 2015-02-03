@@ -2,12 +2,16 @@
 
 	Tokens (<a href="#bottom">Bottom</a><a name="top"></a>)
 	
-		(total = <?php echo $num_of_tokens; ?>, pages = <?php echo $num_of_pages; ?>)
+		(total = <?php echo $num_of_tokens; ?>, 
+			pages = <?php echo $num_of_pages; ?>, 
+			current = <font color="blue"><?php echo $num_of_tokens_Current; ?></font>
+		)
 	
 	<br>
 	(chosen hin = <font color="blue"><?php echo $chosen_hin; ?></font> / 
 		chosen hin_1 = <font color="blue"><?php echo $chosen_hin_1; ?></font> / 
-		chosen history_id = <font color="blue"><?php echo $chosen_history_id; ?></font>
+		chosen history_id = <font color="blue"><?php echo $chosen_history_id; ?></font> /
+		chosen category = <font color="blue"><?php echo $chosen_category_id; ?></font>
 		 | sort = <font color="blue"><?php echo $sort; ?></font> 
 		)
 	

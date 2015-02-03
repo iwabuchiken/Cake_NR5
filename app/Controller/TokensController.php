@@ -41,7 +41,10 @@ class TokensController extends AppController {
 			);
 				
 		}
-		
+
+		/*******************************
+			tokens
+		*******************************/
 		$tokens = $this->paginate('Token');
 		
 		$this->set('tokens', $tokens);
@@ -51,6 +54,51 @@ class TokensController extends AppController {
 		
 		$this->set('num_of_pages', (int) ceil($num_of_tokens / $page_limit));
 
+		/*******************************
+			current tokens
+		*******************************/
+// 		$this->paginate = array(
+// 				'limit' => $num_of_tokens,
+// 				'order' => $opt_order,
+// 				'conditions'	=> $opt_conditions,
+					
+// 		);
+		
+// 		$tokens_Current = $this->paginate('Token');
+		$tokens_Current = $this->Token->find('all',
+						array(
+								'conditions'	=> $opt_conditions,
+		));
+		
+		$this->set('num_of_tokens_Current', count($tokens_Current));
+// 		$this->set('num_of_tokens_Current', count($tokens));
+
+// 		/*******************************
+// 			resume: tokens
+// 		*******************************/
+// 		if ($opt_group != null && count($opt_group) > 0) {
+				
+// 			$this->paginate = array(
+// 					'limit' => $page_limit,
+// 					'order' => $opt_order,
+// 					'conditions'	=> $opt_conditions,
+// 					'group'			=> $opt_group
+						
+// 			);
+		
+// 		} else {
+				
+// 			$this->paginate = array(
+// 					'limit' => $page_limit,
+// 					'order' => $opt_order,
+// 					'conditions'	=> $opt_conditions,
+						
+// 			);
+		
+// 		}
+		
+// 		$tokens = $this->paginate('Token');
+		
 		/**********************************
 		* filter: hins
 		**********************************/
@@ -212,7 +260,9 @@ class TokensController extends AppController {
 		**********************************/
 		// 		debug($opt_conditions);
 		
-		@$chosen_category_id = $category_id_Array[$opt_conditions['Token.category_id']];
+		@$chosen_category_id = $opt_conditions['History.category_id'];
+// 		@$chosen_category_id = $category_id_Array[$opt_conditions['History.category_id']];
+// 		@$chosen_category_id = $category_id_Array[$opt_conditions['Token.category_id']];
 		// 		@$chosen_Lang = $opt_conditions['Text.lang_id'];
 		
 //		debug($chosen_history_id);
@@ -227,13 +277,18 @@ class TokensController extends AppController {
 		
 		} else {
 		
-			$this->set("chosen_category_id", $chosen_category_id);
+			$this->set("chosen_category_id", 
+							$category_id_Array[$opt_conditions['History.category_id']]);
+// 			$this->set("chosen_category_id", $chosen_category_id);
 		
 //			debug("chosen_history_id => set");
 			
 			// 			$this->set("chosen_lang_id", $opt_conditions['Text.lang_id']);
 		
 		}
+		
+		debug("\$chosen_category_id");
+		debug($chosen_category_id);
 		
 	}//_index_SetLabels($opt_conditions)
 	
