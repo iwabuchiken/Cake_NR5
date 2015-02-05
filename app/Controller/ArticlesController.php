@@ -17,12 +17,7 @@ class ArticlesController extends AppController {
 		/**********************************
 		* get: articles
 		**********************************/
-		$this->_index_GetArticles_D9_V_3_0($query_genre_id);
-// 		$this->_index_GetArticles_D9_V_2_1($query_genre_id);
-// 		$this->_index_GetArticles_D9_V_2_0($query_genre_id);
-// 		$this->_index_GetArticles_D9($query_genre_id);
-// 		$this->_index_GetArticles_T9($query_genre_id);
-// 		$this->_index_GetArticles_T8();
+		$this->_index_GetArticles($query_genre_id);
 
 		/**********************************
 		* genres list
@@ -81,7 +76,7 @@ class ArticlesController extends AppController {
 	}//_index_Get_GenreID
 	
 	public function
-	_index_GetArticles_D9_V_3_0
+	_index_GetArticles
 	($query_genre_id) {
 
 // 		debug($query_genre_id);
@@ -2336,16 +2331,24 @@ class ArticlesController extends AppController {
 		
 		$ahrefs = $html->find('p[class]');
 
+		$texts = array();
+		
 		foreach ($ahrefs as $ahref) {
 		
 			if ($ahref->class == "ynDetailText") {
 				
-				return $ahref->plaintext;
+// 				return $ahref->plaintext;
+				array_push($texts, $ahref->plaintext);
 				
 			}
 		
 		}//foreach ($ahrefs as $ahref)
 			
+		/*******************************
+			return
+		*******************************/
+		return implode("", $texts);
+		
 	}//_open_article__GetContent
 	
 	public function
