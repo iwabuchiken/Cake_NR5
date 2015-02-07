@@ -5,7 +5,16 @@
 		(
 			total = <?php echo $num_of_histories; ?>, 
 			pages = <?php echo $num_of_pages; ?>,
-			current = <?php echo "<font color=\"blue\">$num_of_histories_Current</font>" ?>
+			
+			current = <?php 
+							if (isset($num_of_histories_Current)) {
+
+								echo "<font color=\"blue\">$num_of_histories_Current</font>";
+
+								echo "/page";
+					
+							}
+					?>
 		)
 	<br>
 	(filter_Line = <?php echo "<font color=\"blue\">".$filter_Line."</font>" ?> / 

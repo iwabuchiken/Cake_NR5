@@ -158,10 +158,36 @@ $(document).ready(function(){
 //    	alert("changed");
     });
     
-	
-//        $('#ProductBrandId').change(function(){
-//            getfamily()
-//        });
+    $('#Genre').change(function(){
+    	
+    	//REF http://stackoverflow.com/questions/10659097/jquery-get-selected-option-from-dropdown answered May 18 '12 at 20:14
+    	var id = $('#Genre').find(":selected").val();
+    	
+    	var hostname = window.location.hostname;
+    	
+    	var url = "";
+    	
+    	if (hostname == "localhost") {
+			
+    		url = "http://localhost/Cake_NR5/articles?genre_id=" + id;
+    			
+		} else {
+			
+			url = "http://benfranklin.chips.jp/cake_apps/Cake_NR5/articles?genre_id=" + id;
+
+		}
+    	
+//    	alert(window.location.hostname);
+//    	alert(window.location.href);	//=> working
+//    	alert(location.href);			//=> n/w
+//    	alert(location.url);
+
+    	//REF https://developer.mozilla.org/en-US/docs/Web/API/window.location "Basic Example"
+    	location.assign(url);
+//    	location.assign("http://localhost/Cake_NR5/articles?genre_id=" + id);
+    	
+    });
+    
 })
 
 function show_msg() {

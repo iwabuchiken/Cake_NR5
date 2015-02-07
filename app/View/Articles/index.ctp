@@ -1,5 +1,5 @@
 <h1>
-	<?php echo $abc;?>
+	<?php //echo $abc;?>
 	
 	Articles 
 		(total = <?php echo count($articles); ?>) 
