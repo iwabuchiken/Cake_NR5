@@ -2195,7 +2195,8 @@ class ArticlesController extends AppController {
 		/**********************************
 		* get: content
 		**********************************/
-		$article_content = $this->_open_article__GetContent($article_url);
+		$article_content = $this->_open_article__GetContent_2($article_url);
+// 		$article_content = $this->_open_article__GetContent($article_url);
 		
 		/**********************************
 		* build: instance: History
@@ -2352,6 +2353,122 @@ class ArticlesController extends AppController {
 	}//_open_article__GetContent
 	
 	public function
+	_open_article__GetContent_2
+	($article_url) {
+		
+		$html = file_get_html($article_url);
+
+// 		debug(get_class($html));
+		
+		/*******************************
+			div[class]
+		*******************************/
+		//REF http://www.phpbuilder.com/columns/PHP_HTML_DOM_parser/PHPHTMLDOMParser.cc_09-07-2011.php3 "Find the element where the id is equal to a certain value"
+// 		$pages = $html->find('div[class]');
+// 		$pages = $html->find("div[class=ymuiPagingBottom]");	//=> working
+// 		$pages = $html->find("div[class=ymuiPagingBottom] a");	//=> 2
+		$pages = $html->find("div[class=ymuiPagingBottom] a[href]");	//=> 2
+
+		
+// 		debug("count(\$pages)");
+// 		debug(count($pages));
+		
+// 		if (count($pages) > 0) {
+
+// 			for ($i = 0; $i < count($pages); $i++) {
+				
+// 				debug($pages[$i]->href);
+				
+// 			}
+			
+// 		}
+		
+		/*******************************
+			dispatch
+		*******************************/
+		$texts = array();
+		
+		if ($pages != null && count($pages) > 1) {
+		
+			/*******************************
+				page 1
+			*******************************/
+			$text = $this->_open_article__GetContent($article_url);
+			
+			array_push($texts, "[PAGE-1]");
+			array_push($texts, $text);
+			
+			/*******************************
+				page 2 ~
+			*******************************/
+			for ($i = 0; $i < count($pages) - 1; $i++) {
+
+				debug($pages[$i]->href);
+				
+				$text = $this->_open_article__GetContent($pages[$i]->href);
+				
+				if ($text != null) {
+					
+					array_push($texts, "[PAGE-".($i+2)."]");
+					array_push($texts, $text);
+					
+				}
+			}
+		
+		} else {
+		
+			/*******************************
+			 p[class]
+			*******************************/
+			$ahrefs = $html->find('p[class]');
+			
+			
+			
+// 			$texts = array();
+			
+			foreach ($ahrefs as $ahref) {
+			
+				if ($ahref->class == "ynDetailText") {
+			
+					// 				return $ahref->plaintext;
+					array_push($texts, $ahref->plaintext);
+			
+				}
+			
+			}//foreach ($ahrefs as $ahref)
+					
+		}
+		
+		
+// 		/*******************************
+// 			p[class]
+// 		*******************************/
+// 		$ahrefs = $html->find('p[class]');
+
+		
+		
+// 		$texts = array();
+		
+// 		foreach ($ahrefs as $ahref) {
+		
+// 			if ($ahref->class == "ynDetailText") {
+				
+// // 				return $ahref->plaintext;
+// 				array_push($texts, $ahref->plaintext);
+				
+// 			}
+		
+// 		}//foreach ($ahrefs as $ahref)
+			
+		/*******************************
+			return
+		*******************************/
+		return implode("", $texts);
+		
+	}//_open_article__GetContent
+	
+	
+	public function
 	cmp_Articles($a1, $a2) {
 		
 // 		debug("a1 = ".$a1);
@@ -2443,5 +2560,19 @@ class ArticlesController extends AppController {
 		return implode("", $lines_new);
 	
 	}//_content_multilines_GetHtml
+
+	public function
+	test_ymuiPagingBottom() {
+
+		$url = "http://headlines.yahoo.co.jp/hl?a=20150206-00000021-bloom_st-bus_all";
+
+		$text = $this->_open_article__GetContent_2($url);
+		
+		$this->set("text", $text);
+
+		//REF http://stackoverflow.com/questions/11711385/rendering-controller-to-a-different-view-in-cakephp answered Jul 30 '12 at 5:10
+		$this->render('test/test_1');		
+		
+	}
 	
 }//class ArticlesController extends AppController
