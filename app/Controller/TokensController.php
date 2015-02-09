@@ -907,6 +907,74 @@ class TokensController extends AppController {
 // 		return $this->redirect(array('action' => 'test_1'));
 		
 	}
+
+	public function
+	hin_changed() {
+		
+		@$query_Hin_Name = $this->request->query['hin_name'];
+		
+		debug("\$query_Hin_Name");
+		debug($query_Hin_Name);
+
+		/*******************************
+			validate:
+		*******************************/
+		if ($query_Hin_Name == null) {
+			
+			debug("no hin name given");
+			
+			return;
+			
+		}
+		
+		/*******************************
+			get: tokens
+		*******************************/
+		$option = array(
+					'conditions' => 
+							array('Token.hin' => $query_Hin_Name),
+					'group'	=> 'Token.hin_1'
+		);
+		
+		$tokens = $this->Token->find('all', $option);
+		
+		/*******************************
+			validate
+		*******************************/
+		if (count($tokens) < 1) {
+			
+			debug("no hin_1s for the hin: ".$query_Hin_Name);
+			
+			return;
+			
+		}
+		
+		debug(count($tokens));
+		
+// 		debug($tokens[0]);
+		
+		/*******************************
+			build: hin_1s
+		*******************************/
+		$hin_1s = array();
+
+		for ($i = 0; $i < count($tokens); $i++) {
+			
+			$hin_1 = $tokens[$i]['Token']['hin_1'];
+			
+			if ($hin_1 != null) {
+				
+				array_push($hin_1s, $hin_1);
+				
+			}
+			
+		}
+		
+// 		debug(implode("/", $hin_1s)."(".count($hin_1s).")");
+
+		$this->set("text", implode("/", $hin_1s)."(".count($hin_1s).")");
+		
+	}//hin_Changed
 	
 	public function
 	_get_HinsArray() {

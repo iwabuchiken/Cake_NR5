@@ -186,7 +186,64 @@ $(document).ready(function(){
     	location.assign(url);
 //    	location.assign("http://localhost/Cake_NR5/articles?genre_id=" + id);
     	
-    });
+    });//$('#Genre').change(function(){
+    
+    $('#header_hins').change(function(){
+    	
+    	//REF http://stackoverflow.com/questions/10659097/jquery-get-selected-option-from-dropdown answered May 18 '12 at 20:14
+    	var hin_name = $('#header_hins').find(":selected").val();
+
+//    	alert(id);
+    	
+    	var hostname = window.location.hostname;
+    	
+    	var url = "";
+    	
+    	if (hostname == "localhost") {
+    		
+    		url = "http://localhost/Cake_NR5/" +
+    				"tokens/hin_Changed?hin_name=" + hin_name;
+    		
+    	} else {
+    		
+    		url = "http://benfranklin.chips.jp/cake_apps/Cake_NR5/" +
+    				"tokens/hin_Changed?hin_name=" + hin_name;
+    		
+    	}
+    	
+    	alert(url);
+    	
+//    	
+//    	//REF https://developer.mozilla.org/en-US/docs/Web/API/window.location "Basic Example"
+//    	location.assign(url);
+    	
+    });//$('#Genre').change(function(){
+    
+    $('#header_hins_1').change(function(){
+    	
+    	//REF http://stackoverflow.com/questions/10659097/jquery-get-selected-option-from-dropdown answered May 18 '12 at 20:14
+    	var id = $('#header_hins_1').find(":selected").val();
+    	
+    	alert(id);
+    	
+//    	var hostname = window.location.hostname;
+//    	
+//    	var url = "";
+//    	
+//    	if (hostname == "localhost") {
+//    		
+//    		url = "http://localhost/Cake_NR5/articles?genre_id=" + id;
+//    		
+//    	} else {
+//    		
+//    		url = "http://benfranklin.chips.jp/cake_apps/Cake_NR5/articles?genre_id=" + id;
+//    		
+//    	}
+//    	
+//    	//REF https://developer.mozilla.org/en-US/docs/Web/API/window.location "Basic Example"
+//    	location.assign(url);
+    	
+    });//$('#Genre').change(function(){
     
 })
 

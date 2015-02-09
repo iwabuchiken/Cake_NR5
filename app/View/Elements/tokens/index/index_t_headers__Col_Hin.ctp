@@ -12,7 +12,7 @@
 
 	?>
 
-	
+<div id="header_hin">	
 	<?php
 
 		$opt_create = array(
@@ -30,7 +30,8 @@
 		$opt_input_Hins= array(
 				'type' => 'select',
 				'options' => $hins_Array,
-				'label'	=> false
+				'label'	=> false,
+				'id'	=> 'header_hins'
 		);
 		
 		if (isset($chosen_hin)) {
@@ -41,7 +42,8 @@
 		}
 		
 		
-		echo $this->Form->create('', $opt_create);
+		echo $this->Form->create('Hin', $opt_create);
+// 		echo $this->Form->create('', $opt_create);
 		 
 		echo $this->Form->input(
 				CONS::$str_Filter_Hins,
@@ -51,6 +53,7 @@
 		echo $this->Form->end('Filter');
 			
 	?>
-	
+
+</div>
 </th>
 

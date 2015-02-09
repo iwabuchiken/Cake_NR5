@@ -31,7 +31,8 @@
 		$opt_input_Hins= array(
 				'type' => 'select',
 				'options' => $hins_1_Array,
-				'label'	=> false
+				'label'	=> false,
+				'id'	=> 'header_hins_1',
 		);
 		
 		if (isset($chosen_hin_1)) {
