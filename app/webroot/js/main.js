@@ -202,17 +202,83 @@ $(document).ready(function(){
     	if (hostname == "localhost") {
     		
     		url = "http://localhost/Cake_NR5/" +
-    				"tokens/hin_Changed?hin_name=" + hin_name;
+    				"tokens/hin_changed";
+//    		"tokens/hin_Changed";
+//    		"tokens/hin_Changed?hin_name=" + hin_name;
     		
     	} else {
     		
     		url = "http://benfranklin.chips.jp/cake_apps/Cake_NR5/" +
-    				"tokens/hin_Changed?hin_name=" + hin_name;
+    				"tokens/hin_changed";
+//    		"tokens/hin_Changed";
+//    		"tokens/hin_Changed?hin_name=" + hin_name;
     		
     	}
     	
-    	alert(url);
+//    	alert(url);
     	
+//    	//test
+//    	alert($('#header_hins_1').html());
+    	
+    	//test
+//    	$('#header_hins_1').replaceWith("done");	//=> working
+//    	$('#header_hins_1').html("done");	//=> working
+    	
+    	/***************************
+			change color
+		 ***************************/
+		$("th#hin_1").css("background", "yellow");
+		
+    	$.ajax({
+    		
+    	    url: url,
+    	    type: "GET",
+    	    //REF http://stackoverflow.com/questions/1916309/pass-multiple-parameters-to-jquery-ajax-call answered Dec 16 '09 at 17:37
+    	    data: {hin_name: hin_name},
+//    	    data: {id: id},
+    	    
+    	    timeout: 10000
+    	    
+    	}).done(function(data, status, xhr) {
+
+//    		alert(data);
+//    		alert("done");
+
+    		var options = $('#header_hins_1');
+//    		var options = $('header_hins_1');
+    		
+//    		alert(options);
+    		
+//    		alert($('#header_hins_1').html());
+    		
+    		$('header_hins_1').html(data);	//=> working
+//    		$("header_hins_1").html(data);	//=> n/w
+//    		$("header_hins_1").replaceWith(data);	//=> n/w
+    		
+    		
+    		$('#header_hins_1').replaceWith(data);	//=> working
+
+        	/***************************
+				change color
+			 ***************************/
+			$("th#hin_1").css("background", "white");
+
+    		
+//    		//REF http://api.jquery.com/replaceWith/
+//    		var hin_form = $("#TokenHinChangedForm");
+////    		var hin_form = $("form#TokenHinChangedForm");
+//    		
+//    		alert(hin_form.html());
+////    		alert(hin_form);
+//    		
+//    		$("form#TokenHinChangedForm").replaceWith(data);
+    		
+    	}).fail(function(xhr, status, error) {
+    		
+    		alert(xhr.status);
+    		
+    	});
+
 //    	
 //    	//REF https://developer.mozilla.org/en-US/docs/Web/API/window.location "Basic Example"
 //    	location.assign(url);
@@ -224,7 +290,13 @@ $(document).ready(function(){
     	//REF http://stackoverflow.com/questions/10659097/jquery-get-selected-option-from-dropdown answered May 18 '12 at 20:14
     	var id = $('#header_hins_1').find(":selected").val();
     	
-    	alert(id);
+//    	alert(id);
+    	
+//    	//test
+//    	alert($('#header_hins_1').html());	//=> working
+//    	alert($("header_hins_1").html());	//=> undefined
+    	
+//    	alert($('#header_hins_1').html());
     	
 //    	var hostname = window.location.hostname;
 //    	
