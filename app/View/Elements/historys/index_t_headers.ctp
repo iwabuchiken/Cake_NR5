@@ -43,17 +43,17 @@
 		
 		<?php echo $this->element('historys/_index_t_headers__Category')?>
 		
-		<th>
+<!-- 		<th> -->
 			
-			<?php echo $this->Html->link(
-								'Genre',
-								array('controller' => 'historys', 
-										'action' => 'index',
-// 										'sort'		=> 'id')
-										'?'		=> 'sort=genre_id')
-						);
-			?>
-		</th>
+			<?php //echo $this->Html->link(
+// 								'Genre',
+// 								array('controller' => 'historys', 
+// 										'action' => 'index',
+// // 										'sort'		=> 'id')
+// 										'?'		=> 'sort=genre_id')
+// 						);
+ 			?>
+<!-- 		</th> -->
 		
 		<th>
 			

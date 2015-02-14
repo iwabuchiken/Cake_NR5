@@ -30,7 +30,7 @@
 		
 		echo " | ";
 		
-		echo $paginator->numbers(array('modulus' => 9));
+		echo $paginator->numbers(array('modulus' => 20));
 // 		echo $paginator->numbers(array('modulus' => 6));
 		
 		echo " | ";

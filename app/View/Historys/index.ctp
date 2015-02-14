@@ -3,8 +3,25 @@
 	Histories (<a href="#bottom">Bottom</a><a name="top"></a>)
 	
 		(
-			total = <?php echo $num_of_histories; ?>, 
-			pages = <?php echo $num_of_pages; ?>,
+			total = <?php 
+			
+						if (isset($num_of_histories)) {
+							
+							echo $num_of_histories; 
+							
+						}
+						
+						?>, 
+						
+			pages = <?php 
+			
+						if (isset($num_of_pages)) {
+							
+							echo $num_of_pages; 
+							
+						}
+						
+						?>,
 			
 			current = <?php 
 							if (isset($num_of_histories_Current)) {

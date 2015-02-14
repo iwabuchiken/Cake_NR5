@@ -68,31 +68,31 @@
 			?>
 		</td>
 		
-		<td>
+<!-- 		<td> -->
 		
 			<?php 
 			
-				if ($category_id != null) {
+// 				if ($category_id != null) {
 
-					$genre = $this->History->get_Genre_From_HistoryID(
-							$history['History']['id']);
+// 					$genre = $this->History->get_Genre_From_HistoryID(
+// 							$history['History']['id']);
 
-					$label = $genre['Genre']['name']."(".$genre['Genre']['id'].")";
+// 					$label = $genre['Genre']['name']."(".$genre['Genre']['id'].")";
 					
-				} else {
+// 				} else {
 					
-					$label = "No genre";
+// 					$label = "No genre";
 
-				}
+// 				}
 				
-				echo $label;
-// 				echo $genre['Genre']['name'];
+// 				echo $label;
+// // 				echo $genre['Genre']['name'];
 				
-// 				echo $history['Category']['name']; 
+// // 				echo $history['Category']['name']; 
 				
-			?>
+// 			?>
 			
-		</td>
+<!-- 		</td> -->
 		
 		<td><?php echo $history['History']['created_at']; ?></td>
 		<td><?php echo $history['History']['updated_at']; ?></td>

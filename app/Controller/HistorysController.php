@@ -31,6 +31,35 @@ class HistorysController extends AppController {
 				
 		);
 
+		$histories_Current = $this->paginate('History');
+
+		$this->set('historys', $histories_Current);
+
+// 		$this->set('num_of_histories_Current', count($histories_Current));
+
+// // 		$num_of_histories = count($this->History->find('all'));
+
+// // 		$this->set('num_of_histories', $num_of_histories);
+
+// 		$this->set('num_of_pages', (int) ceil(count($histories_Current) / $page_limit));
+// // 		$this->set('num_of_pages', (int) ceil($num_of_histories / $page_limit));
+
+		//REF http://alvinalexander.com/php/php-cakephp-database-sql-query-select
+		//test
+		$count = $this->History->query("SELECT COUNT(*) FROM histories");
+		
+		$total = $count[0][0]['COUNT(*)'];
+		
+		$this->set('num_of_histories', $total);
+		
+// 		debug($count / $page_limit);
+// 		$this->set('num_of_pages', $count / $page_limit);
+		$this->set('num_of_pages', (int) ceil($total / $page_limit));
+		
+// 		debug("\$count[0][0] is...");
+// 		debug($count[0][0]['COUNT(*)']);
+// // 		debug($count[0][0]['count(*)']);
+		
 		/*******************************
 			category_id array
 		*******************************/
@@ -38,25 +67,25 @@ class HistorysController extends AppController {
 
 		$this->set('category_Id_Array', $category_Id_Array);
 		
-		/*******************************
-			stats
-		*******************************/
-		$histories_Current = $this->paginate('History');
+// 		/*******************************
+// 			stats
+// 		*******************************/
+// 		$histories_Current = $this->paginate('History');
 
-// 		debug($histories_Current[0]);
+// // 		debug($histories_Current[0]);
 		
-		$this->set('historys', $histories_Current);
-// 		$this->set('historys', $this->paginate('History'));
+// 		$this->set('historys', $histories_Current);
+// // 		$this->set('historys', $this->paginate('History'));
 		
-		$num_of_histories = count($this->History->find('all'));
+// 		$num_of_histories = count($this->History->find('all'));
 		
-		$this->set('num_of_histories', $num_of_histories);
+// 		$this->set('num_of_histories', $num_of_histories);
 		
-		$this->set('num_of_pages', (int) ceil($num_of_histories / $page_limit));
+// 		$this->set('num_of_pages', (int) ceil($num_of_histories / $page_limit));
 		
-		$this->set('num_of_histories_Current', count($histories_Current));
+// 		$this->set('num_of_histories_Current', count($histories_Current));
 		
-// 		$this->set('historys', $this->History->find('all'));
+// // 		$this->set('historys', $this->History->find('all'));
 
 	}//index
 	
