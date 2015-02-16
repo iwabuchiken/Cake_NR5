@@ -58,6 +58,8 @@ class CONS {
 	
 	public static $admin_Colorize = "colorize";
 	
+	public static $admin_FilterVendors = "filter_vendor";
+	
 	/**********************************
 	* Tokens
 	**********************************/

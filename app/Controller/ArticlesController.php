@@ -17,8 +17,53 @@ class ArticlesController extends AppController {
 		/**********************************
 		* get: articles
 		**********************************/
-		$this->_index_GetArticles($query_genre_id);
+		$articles = $this->_index_GetArticles($query_genre_id);
+		
+// 		debug($articles[0]);
+		
+		/*******************************
+			vendors
+		*******************************/
+// 		debug("before filter");
+// 		debug(count($articles));
+		
+		$articles = $this->_index_Filter_Vendor($articles);
 
+// 		debug("after filter");
+// 		debug(count($articles));
+		
+		$this->set("articles", $articles);
+		
+// 		$filter_vendor = $this->get_Admin_Value(CONS::$admin_FilterVendors, "val1");
+// 		// 		$val_1 = $this->get_Admin_Value("open_mode", "val1");
+
+// 		if (condition) {
+// 			;
+// 		}
+		
+// 		$vendors = array();
+		
+// 		for ($i = 0; $i < count($articles); $i++) {
+			
+// 			$vendor = $articles[$i]['vendor'];
+			
+// 			$vendors[$vendor] = $vendor;
+			
+// // 			array_push($vendors, $vendor);
+			
+// 		}
+		
+// 		$vendors = array_unique($vendors);
+		
+// 		asort($vendors);	
+		
+// // 		debug($vendors);
+		
+// // 		debug("count(\$vendors)");
+// // 		debug(count($vendors));
+		
+// 		$this->set("vendors", $vendors);
+		
 		/**********************************
 		* genres list
 		**********************************/
@@ -41,6 +86,78 @@ class ArticlesController extends AppController {
 		
 	}
 
+	public function
+	_index_Filter_Vendor($articles) {
+
+		$filter_vendor = $this->get_Admin_Value(CONS::$admin_FilterVendors, "val1");
+
+		/*******************************
+			validate:
+		*******************************/
+		if ($filter_vendor == null) {
+			
+			debug("\$filter_vendor => null");
+			
+			return $articles;
+			
+		}
+		
+		/*******************************
+			tokens
+		*******************************/
+		$tokens = explode(" ", $filter_vendor);
+		
+// 		debug($tokens);
+
+		/*******************************
+			filter
+		*******************************/
+		$articles_new = array();
+		
+// 		debug($articles[0]);
+		
+		for ($i = 0; $i < count($articles); $i++) {
+			
+			$v = $articles[$i]['vendor'];
+			
+			$is_In = false;
+			
+			for ($j = 0; $j < count($tokens); $j++) {
+				
+				if($v == $tokens[$j]) {
+
+// 					debug($articles[$i]);
+					
+					$is_In = true;
+					
+					break;
+					
+				}
+				
+			}
+			
+			if ($is_In == false) {
+				
+				array_push($articles_new, $articles[$i]);
+				
+			} else {
+				
+// 				debug("not included");
+// 				debug($articles[$i]);
+			}
+			
+		}//for ($i = 0; $i < count($articles); $i++)
+		
+		/*******************************
+			return
+		*******************************/
+// 		debug(count($articles));
+// 		debug(count($articles_new));
+		
+		return $articles_new;
+		
+	}//_index_Filter_Vendor
+	
 	public function
 	_index_Get_GenreID() {
 		
@@ -86,6 +203,14 @@ class ArticlesController extends AppController {
 		**********************************/
 		$articles = $this->__index_Get_Articles($query_genre_id);
 
+		debug(count($articles));
+		
+		$articles = $this->_index_Filter_Vendor($articles);
+		
+		debug(count($articles));
+		
+// 		debug($articles[0]);
+		
 // 		debug("articles => ".count($articles));
 		
 		// validate
@@ -135,12 +260,15 @@ class ArticlesController extends AppController {
 		
 		$this->set('a_categorized', $a_categorized_new);
 
+// 		debug($a_categorized_new[0]);
+		
 		//test
 		$this->set('abc', "abcabc");
-		
-		
-// 		debug(array_keys($a_categorized_new));
-// 		debug($a_categorized_new[array_keys($a_categorized_new)[0]]);
+
+		/*******************************
+			return
+		*******************************/
+		return $articles;
 		
 	}//_index_GetArticles_D9_V_2_1
 
