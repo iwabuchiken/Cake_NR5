@@ -785,13 +785,19 @@ class ArticlesController extends AppController {
 		/**********************************
 		* further pages
 		**********************************/
-		$articles = $this->__index_Get_Articles__Page_X($query_genre_id, $articles, 1);
+		for ($i = 1; $i <= 3; $i++) {
+			
+			$articles = $this->__index_Get_Articles__Page_X($query_genre_id, $articles, $i);
+			
+		}
+		
+// 		$articles = $this->__index_Get_Articles__Page_X($query_genre_id, $articles, 1);
 
-// 		debug("top + 1 => ".count($articles));
+// // 		debug("top + 1 => ".count($articles));
 		
-		$articles = $this->__index_Get_Articles__Page_X($query_genre_id, $articles, 2);
+// 		$articles = $this->__index_Get_Articles__Page_X($query_genre_id, $articles, 2);
 		
-// 		debug("top + 2 => ".count($articles));
+// // 		debug("top + 2 => ".count($articles));
 		
 		/**********************************
 		* return
