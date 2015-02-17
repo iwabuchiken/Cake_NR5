@@ -27,12 +27,12 @@ class ArticlesController extends AppController {
 // 		debug("before filter");
 // 		debug(count($articles));
 		
-		$articles = $this->_index_Filter_Vendor($articles);
+// 		$articles = $this->_index_Filter_Vendor($articles);
 
 // 		debug("after filter");
 // 		debug(count($articles));
 		
-		$this->set("articles", $articles);
+// 		$this->set("articles", $articles);
 		
 // 		$filter_vendor = $this->get_Admin_Value(CONS::$admin_FilterVendors, "val1");
 // 		// 		$val_1 = $this->get_Admin_Value("open_mode", "val1");
@@ -203,11 +203,11 @@ class ArticlesController extends AppController {
 		**********************************/
 		$articles = $this->__index_Get_Articles($query_genre_id);
 
-		debug(count($articles));
+// 		debug(count($articles));
 		
 		$articles = $this->_index_Filter_Vendor($articles);
 		
-		debug(count($articles));
+// 		debug(count($articles));
 		
 // 		debug($articles[0]);
 		
@@ -251,7 +251,8 @@ class ArticlesController extends AppController {
 		//REF https://groups.google.com/forum/#!topic/cake-php/hNOGb_yWLig "Finally got it figured out."
 // 		uksort($a_categorized_new, array('ArticlesController', 'cmp_Articles'));
 // 		uksort($a_categorized_new, "cmp_Articles");
-		
+
+		$a_categorized_new = $this->_index_Sort_CategorizedArticles($a_categorized_new);
 		
 		/**********************************
 		* set: vars
@@ -272,6 +273,106 @@ class ArticlesController extends AppController {
 		
 	}//_index_GetArticles_D9_V_2_1
 
+	public function
+	_index_Sort_CategorizedArticles($a_categorized_new) {
+
+// 		@uksort($a_categorized_new, array(&$this, 'cmp_Articles__NewsTime'));	// n/c
+
+		/*******************************
+			get: keys
+		*******************************/
+		$keys = array_keys($a_categorized_new);
+		
+		/*******************************
+			sort
+		*******************************/
+// 		$category = $a_categorized_new[$keys[1]];
+// // 		$category = $a_categorized_new[$keys[2]];
+		
+// 		debug($category);
+		
+// // 		@uksort($category, 'cmp_Articles__NewsTime');
+// 		@usort($category, array(&$this, 'cmp_Articles__NewsTime'));
+// // 		@uksort($category, array(&$this, 'cmp_Articles__NewsTime'));
+		
+// 		debug($category);
+		
+		
+		$a_categorized_new_Filtered = array();
+		
+		$categories = array();
+		
+		for ($i = 0; $i < count($a_categorized_new); $i++) {
+			
+// 			$categories[$i] = $a_categorized_new[$keys[$i]];
+			$category = $a_categorized_new[$keys[$i]];
+			
+			debug("key");
+			debug($keys[$i]);
+			
+// 			debug(count($categories[$i]));
+// 			debug(count($category));
+			
+// 			debug($categories[$i]);
+// 			debug($category);
+			
+			@usort($category, array(&$this, 'cmp_Articles__NewsTime'));
+// 			@usort($categories[$i], array(&$this, 'cmp_Articles__NewsTime'));
+// 			@uksort($categories[$i], array(&$this, 'cmp_Articles__NewsTime'));
+// 			@uksort($category, array(&$this, 'cmp_Articles__NewsTime'));
+
+			@usort($category, array(&$this, 'cmp_Articles__Vendor'));
+			
+// 			$category = array_reverse($category);
+			
+// 			debug("sorted");
+// 			debug($categories[$i]);
+// // 			debug($category);
+			
+// 			$a_categorized_new_Filtered[$keys[$i]] = $categories[$i];
+			$a_categorized_new_Filtered[$keys[$i]] = $category;
+			
+		}
+		
+// 		$category = $a_categorized_new[$keys[1]];
+		
+// 		debug($category);
+		
+// 		@uksort($category, array(&$this, 'cmp_Articles__NewsTime'));
+		
+// 		debug($category);
+		
+// 		foreach ($a_categorized_new as $category) {
+			
+// 			@uksort($category, array(&$this, 'cmp_Articles__NewsTime'));
+			
+// 		}
+		
+// 		//debug
+// 		$keys = array_keys($a_categorized_new);
+		
+// 		// 		debug($keys);
+// 		// 		debug($a_categorized_new[$keys[0]]);
+		
+// 		$a1 = $a_categorized_new[$keys[1]][0];
+// 		$a2 = $a_categorized_new[$keys[1]][4];
+		
+// 		debug($a1);
+// 		debug($a2);
+		
+// 		debug($this->cmp_Articles__NewsTime($a1, $a2));
+// 		debug($this->cmp_Articles__NewsTime($a1, $a1));
+// 		// 		debug($this->cmp_Articles($a1, $a1));
+		
+		
+		/*******************************
+			return
+		*******************************/
+		return $a_categorized_new_Filtered;
+// 		return $a_categorized_new;
+		
+	}//_index_Sort_CategorizedArticles($a_categorized_new)
+	
 	public function
 	_index_GetArticles_D9_V_2_1
 	($query_genre_id) {
@@ -2625,6 +2726,62 @@ class ArticlesController extends AppController {
 // 		$a2 = $this->get_CategoryName_From_CategoryID($a2);
 		
 		return strcasecmp($a1_new, $a2_new);
+		
+	}
+	
+	public function
+// 	cmp_Articles__NewsTime(&$a1, &$a2) {
+	cmp_Articles__NewsTime($a1, $a2) {
+		
+// 		debug("a1 = ".$a1);
+		
+// 		$key_a1 = array_keys($a1)[0];
+		
+		$a1_new = $a1['news_time'];
+		$a2_new = $a2['news_time'];
+		
+// 		$a1_new = mb_convert_encoding($a1['news_time'], "UTF-8", "SJIS");	// n/c
+// 		$a2_new = mb_convert_encoding($a2['news_time'], "UTF-8", "SJIS");	// n/c
+// 		$a1_new = mb_convert_encoding($this->get_CategoryName_From_CategoryID($a1), "UTF-8", "SJIS");	// n/c
+// 		$a2_new = mb_convert_encoding($this->get_CategoryName_From_CategoryID($a2), "UTF-8", "SJIS");
+// 		$a1_new = mb_convert_encoding($this->get_CategoryName_From_CategoryID($a1), "UTF-8");	// n/c
+// 		$a2_new = mb_convert_encoding($this->get_CategoryName_From_CategoryID($a2), "UTF-8");
+// 		$a1_new = $this->get_CategoryName_From_CategoryID($a1);
+// 		$a2_new = $this->get_CategoryName_From_CategoryID($a2);
+		
+// 		debug(&$a1);
+// 		debug(&$a2);
+// 				//=> Call-time pass-by-reference has been removed; If you would like to pass argument by reference, modify the declaration of debug().
+// 		debug($a1);
+// 		debug($a2);
+// 		debug($a1_new);
+// 		debug($a2_new);
+		
+// 		$a1_new = $this->get_CategoryName_From_CategoryID($a1);	//  uksort(): Array was modified by the user comparison function
+// 		$a2_new = $this->get_CategoryName_From_CategoryID($a2);
+// 		$a1 = $this->get_CategoryName_From_CategoryID($a1);		//  uksort(): Array was modified by the user comparison function
+// 		$a2 = $this->get_CategoryName_From_CategoryID($a2);
+		
+		return strcasecmp($a2_new, $a1_new);
+// 		return strcasecmp($a1_new, $a2_new);
+		
+	}
+	
+	public function
+// 	cmp_Articles__NewsTime(&$a1, &$a2) {
+	cmp_Articles__Vendor($a1, $a2) {
+
+		if ($a1['news_time'] != $a2['news_time']) {
+			
+			return 0;
+			
+		}
+		
+		$a1_new = $a1['vendor'];
+		$a2_new = $a2['vendor'];
+		
+		return strcasecmp($a2_new, $a1_new);
+// 		return strcasecmp($a1_new, $a2_new);
 		
 	}
 	
