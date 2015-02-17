@@ -60,6 +60,8 @@ class CONS {
 	
 	public static $admin_FilterVendors = "filter_vendor";
 	
+	public static $admin_NumOfPages = "admin_NumOfPages";
+	
 	/**********************************
 	* Tokens
 	**********************************/

@@ -96,7 +96,7 @@ class ArticlesController extends AppController {
 		*******************************/
 		if ($filter_vendor == null) {
 			
-			debug("\$filter_vendor => null");
+// 			debug("\$filter_vendor => null");
 			
 			return $articles;
 			
@@ -284,20 +284,25 @@ class ArticlesController extends AppController {
 		$keys = array_keys($a_categorized_new);
 		
 		/*******************************
+			sort: test
+		*******************************/
+// 		$category = $a_categorized_new[$keys[2]];
+		
+// 		debug($category);
+		
+// 		@usort($category, array(&$this, 'cmp_Articles__NewsTime'));
+		
+// 		debug("sorted: news_time");
+// 		debug($category);
+		
+// 		@usort($category, array(&$this, 'cmp_Articles__Vendor'));
+		
+// 		debug("sorted: vendor");
+// 		debug($category);
+		
+		/*******************************
 			sort
 		*******************************/
-// 		$category = $a_categorized_new[$keys[1]];
-// // 		$category = $a_categorized_new[$keys[2]];
-		
-// 		debug($category);
-		
-// // 		@uksort($category, 'cmp_Articles__NewsTime');
-// 		@usort($category, array(&$this, 'cmp_Articles__NewsTime'));
-// // 		@uksort($category, array(&$this, 'cmp_Articles__NewsTime'));
-		
-// 		debug($category);
-		
-		
 		$a_categorized_new_Filtered = array();
 		
 		$categories = array();
@@ -307,63 +312,16 @@ class ArticlesController extends AppController {
 // 			$categories[$i] = $a_categorized_new[$keys[$i]];
 			$category = $a_categorized_new[$keys[$i]];
 			
-			debug("key");
-			debug($keys[$i]);
-			
-// 			debug(count($categories[$i]));
-// 			debug(count($category));
-			
-// 			debug($categories[$i]);
-// 			debug($category);
+// 			debug("key");
+// 			debug($keys[$i]);
 			
 			@usort($category, array(&$this, 'cmp_Articles__NewsTime'));
-// 			@usort($categories[$i], array(&$this, 'cmp_Articles__NewsTime'));
-// 			@uksort($categories[$i], array(&$this, 'cmp_Articles__NewsTime'));
-// 			@uksort($category, array(&$this, 'cmp_Articles__NewsTime'));
 
 			@usort($category, array(&$this, 'cmp_Articles__Vendor'));
 			
-// 			$category = array_reverse($category);
-			
-// 			debug("sorted");
-// 			debug($categories[$i]);
-// // 			debug($category);
-			
-// 			$a_categorized_new_Filtered[$keys[$i]] = $categories[$i];
 			$a_categorized_new_Filtered[$keys[$i]] = $category;
 			
 		}
-		
-// 		$category = $a_categorized_new[$keys[1]];
-		
-// 		debug($category);
-		
-// 		@uksort($category, array(&$this, 'cmp_Articles__NewsTime'));
-		
-// 		debug($category);
-		
-// 		foreach ($a_categorized_new as $category) {
-			
-// 			@uksort($category, array(&$this, 'cmp_Articles__NewsTime'));
-			
-// 		}
-		
-// 		//debug
-// 		$keys = array_keys($a_categorized_new);
-		
-// 		// 		debug($keys);
-// 		// 		debug($a_categorized_new[$keys[0]]);
-		
-// 		$a1 = $a_categorized_new[$keys[1]][0];
-// 		$a2 = $a_categorized_new[$keys[1]][4];
-		
-// 		debug($a1);
-// 		debug($a2);
-		
-// 		debug($this->cmp_Articles__NewsTime($a1, $a2));
-// 		debug($this->cmp_Articles__NewsTime($a1, $a1));
-// 		// 		debug($this->cmp_Articles($a1, $a1));
-		
 		
 		/*******************************
 			return
@@ -886,7 +844,16 @@ class ArticlesController extends AppController {
 		/**********************************
 		* further pages
 		**********************************/
-		for ($i = 1; $i <= 3; $i++) {
+		$numOf_Pages = $this->get_Admin_Value(CONS::$admin_NumOfPages, "val1");
+		
+		if ($numOf_Pages == null || !is_numeric($numOf_Pages)) {
+			
+			$numOf_Pages = 3;
+			
+		}
+		
+		for ($i = 1; $i <= $numOf_Pages; $i++) {
+// 		for ($i = 1; $i <= 3; $i++) {
 			
 			$articles = $this->__index_Get_Articles__Page_X($query_genre_id, $articles, $i);
 			
@@ -2740,28 +2707,6 @@ class ArticlesController extends AppController {
 		$a1_new = $a1['news_time'];
 		$a2_new = $a2['news_time'];
 		
-// 		$a1_new = mb_convert_encoding($a1['news_time'], "UTF-8", "SJIS");	// n/c
-// 		$a2_new = mb_convert_encoding($a2['news_time'], "UTF-8", "SJIS");	// n/c
-// 		$a1_new = mb_convert_encoding($this->get_CategoryName_From_CategoryID($a1), "UTF-8", "SJIS");	// n/c
-// 		$a2_new = mb_convert_encoding($this->get_CategoryName_From_CategoryID($a2), "UTF-8", "SJIS");
-// 		$a1_new = mb_convert_encoding($this->get_CategoryName_From_CategoryID($a1), "UTF-8");	// n/c
-// 		$a2_new = mb_convert_encoding($this->get_CategoryName_From_CategoryID($a2), "UTF-8");
-// 		$a1_new = $this->get_CategoryName_From_CategoryID($a1);
-// 		$a2_new = $this->get_CategoryName_From_CategoryID($a2);
-		
-// 		debug(&$a1);
-// 		debug(&$a2);
-// 				//=> Call-time pass-by-reference has been removed; If you would like to pass argument by reference, modify the declaration of debug().
-// 		debug($a1);
-// 		debug($a2);
-// 		debug($a1_new);
-// 		debug($a2_new);
-		
-// 		$a1_new = $this->get_CategoryName_From_CategoryID($a1);	//  uksort(): Array was modified by the user comparison function
-// 		$a2_new = $this->get_CategoryName_From_CategoryID($a2);
-// 		$a1 = $this->get_CategoryName_From_CategoryID($a1);		//  uksort(): Array was modified by the user comparison function
-// 		$a2 = $this->get_CategoryName_From_CategoryID($a2);
-		
 		return strcasecmp($a2_new, $a1_new);
 // 		return strcasecmp($a1_new, $a2_new);
 		
@@ -2773,7 +2718,13 @@ class ArticlesController extends AppController {
 
 		if ($a1['news_time'] != $a2['news_time']) {
 			
-			return 0;
+// 			debug($a1);
+// 			debug($a2);
+			
+// 			return 1;
+// 			return -1;
+			return strcasecmp($a2['news_time'], $a1['news_time']);;
+// 			return 0;
 			
 		}
 		
