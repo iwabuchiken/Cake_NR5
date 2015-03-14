@@ -24,6 +24,11 @@ class History extends AppModel {
 			)
 	
 	);
-	
+
+// 	//REF http://stackoverflow.com/questions/6152416/how-to-limit-the-paginate-in-cakephp answered May 27 '11 at 13:23
+// 	public function paginateCount($conditions = null, $recursive = 0, $extra = array())
+// 	{
+// 		if( isset($extra['totallimit']) ) return $extra['totallimit'];
+// 	}
 	
 }

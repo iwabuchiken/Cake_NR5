@@ -48,6 +48,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
+
 		
 		echo $this->Html->script('swfobject');
 		
@@ -57,6 +58,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->script('main');
 		
 	?>
+	
+<!-- 	http://d3js.org/ -->
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	
 </head>
 <body>
 <!-- 	<div id="container"> -->
@@ -83,6 +88,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	
 	
 	
-	<?php //echo $this->element('sql_dump'); ?>
+	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>

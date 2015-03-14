@@ -16,21 +16,6 @@ class HistorysController extends AppController {
 
 // 		debug($opt_conditions);
 		
-		/*******************************
-			total limit
-		*******************************/
-		$totalCount = $this->History->find('count');
-
-		debug($totalCount);
-		
-// 		$opt_conditions['id >='] = $totalCount - 50;
-// 		$opt_conditions['History.id >='] = $totalCount - 50;
-		$opt_conditions['History.id >='] = $totalCount - 5;
-// 		$opt_conditions['limit'] = 5;
-// 		$opt_conditions['limit >='] = 5;
-		
-		debug($opt_conditions);
-		
 		/**********************************
 		 * paginate
 		**********************************/
@@ -42,11 +27,7 @@ class HistorysController extends AppController {
 				
 				'limit' => $page_limit,
 				'order' => $opt_order,
-				'conditions'	=> $opt_conditions,
-// 				'limit'			=> 4,
-				//REF http://book.cakephp.org/2.0/en/core-libraries/components/pagination.html "The number of results that are fetched is"
-// 				'maxLimit'			=> 7,
-// 				'totallimit'			=> 2,
+				'conditions'	=> $opt_conditions
 				
 		);
 
@@ -63,17 +44,17 @@ class HistorysController extends AppController {
 // 		$this->set('num_of_pages', (int) ceil(count($histories_Current) / $page_limit));
 // // 		$this->set('num_of_pages', (int) ceil($num_of_histories / $page_limit));
 
-// 		//REF http://alvinalexander.com/php/php-cakephp-database-sql-query-select
-// 		//test
-// 		$count = $this->History->query("SELECT COUNT(*) FROM histories");
+		//REF http://alvinalexander.com/php/php-cakephp-database-sql-query-select
+		//test
+		$count = $this->History->query("SELECT COUNT(*) FROM histories");
 		
-// 		$total = $count[0][0]['COUNT(*)'];
+		$total = $count[0][0]['COUNT(*)'];
 		
-// 		$this->set('num_of_histories', $total);
+		$this->set('num_of_histories', $total);
 		
 // 		debug($count / $page_limit);
 // 		$this->set('num_of_pages', $count / $page_limit);
-// 		$this->set('num_of_pages', (int) ceil($total / $page_limit));
+		$this->set('num_of_pages', (int) ceil($total / $page_limit));
 		
 // 		debug("\$count[0][0] is...");
 // 		debug($count[0][0]['COUNT(*)']);

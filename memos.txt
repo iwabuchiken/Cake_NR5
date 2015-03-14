@@ -58,7 +58,9 @@ pushd C:\Users\IwabuchiKen\Desktop
 
 sqlite3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\development.sqlite3
 .explain on
-pragma table_info(videos);
+pragma table_info(histories);
+
+SELECT id FROM histories WHERE id >= 100;
 
 .tables
 
