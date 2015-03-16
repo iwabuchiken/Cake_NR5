@@ -27,7 +27,7 @@
 			
 			
 		</th>
-
+		
 		<th>
 			
 			<?php echo $this->Html->link(
@@ -40,6 +40,20 @@
 			?>
 			
 		</th>
+		
+		<?php echo $this->element('historys/_index_t_headers__Category')?>
+		
+<!-- 		<th> -->
+			
+			<?php //echo $this->Html->link(
+// 								'Genre',
+// 								array('controller' => 'historys', 
+// 										'action' => 'index',
+// // 										'sort'		=> 'id')
+// 										'?'		=> 'sort=genre_id')
+// 						);
+ 			?>
+<!-- 		</th> -->
 		
 		<th>
 			

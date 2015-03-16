@@ -21,15 +21,15 @@ class HistorysController extends AppController {
 		*******************************/
 		$totalCount = $this->History->find('count');
 
-		debug($totalCount);
+// 		debug($totalCount);
 		
 // 		$opt_conditions['id >='] = $totalCount - 50;
 // 		$opt_conditions['History.id >='] = $totalCount - 50;
-		$opt_conditions['History.id >='] = $totalCount - 5;
+// 		$opt_conditions['History.id >='] = $totalCount - 5;
 // 		$opt_conditions['limit'] = 5;
 // 		$opt_conditions['limit >='] = 5;
 		
-		debug($opt_conditions);
+// 		debug($opt_conditions);
 		
 		/**********************************
 		 * paginate
@@ -38,11 +38,24 @@ class HistorysController extends AppController {
 		
 		$opt_order = $this->_index__Orders();
 
+		$opt_Fields = array(
+					'History.id',
+					'History.line',
+					'History.vendor',
+					'History.news_time',
+					'History.created_at', 
+					'History.updated_at',
+// 					'History.line',
+// 					'History.url',
+// 					'History.vendor',
+		);
+		
 		$this->paginate = array(
 				
 				'limit' => $page_limit,
 				'order' => $opt_order,
 				'conditions'	=> $opt_conditions,
+				'fields'		=> $opt_Fields,
 // 				'limit'			=> 4,
 				//REF http://book.cakephp.org/2.0/en/core-libraries/components/pagination.html "The number of results that are fetched is"
 // 				'maxLimit'			=> 7,
@@ -52,16 +65,21 @@ class HistorysController extends AppController {
 
 		$histories_Current = $this->paginate('History');
 
+		debug("count(\$histories_Current)");
+		debug(count($histories_Current));
+		
 		$this->set('historys', $histories_Current);
 
-// 		$this->set('num_of_histories_Current', count($histories_Current));
+// 		debug("historys => obtained");
+		
+		$this->set('num_of_histories_Current', count($histories_Current));
 
-// // 		$num_of_histories = count($this->History->find('all'));
+		$num_of_histories = count($this->History->find('all'));
 
-// // 		$this->set('num_of_histories', $num_of_histories);
+		$this->set('num_of_histories', $num_of_histories);
 
-// 		$this->set('num_of_pages', (int) ceil(count($histories_Current) / $page_limit));
-// // 		$this->set('num_of_pages', (int) ceil($num_of_histories / $page_limit));
+		$this->set('num_of_pages', (int) ceil(count($histories_Current) / $page_limit));
+// 		$this->set('num_of_pages', (int) ceil($num_of_histories / $page_limit));
 
 // 		//REF http://alvinalexander.com/php/php-cakephp-database-sql-query-select
 // 		//test
@@ -79,12 +97,14 @@ class HistorysController extends AppController {
 // 		debug($count[0][0]['COUNT(*)']);
 // // 		debug($count[0][0]['count(*)']);
 		
-		/*******************************
-			category_id array
-		*******************************/
-		$category_Id_Array = $this->_get_Category_Id_Array();
+// 		/*******************************
+// 			category_id array
+// 		*******************************/
+// 		$category_Id_Array = $this->_get_Category_Id_Array();
 
-		$this->set('category_Id_Array', $category_Id_Array);
+// 		debug("\$category_Id_Array => built");
+		
+// 		$this->set('category_Id_Array', $category_Id_Array);
 		
 // 		/*******************************
 // 			stats
@@ -106,6 +126,8 @@ class HistorysController extends AppController {
 		
 // // 		$this->set('historys', $this->History->find('all'));
 
+// 		return $this->redirect(array('action' => 'test_1'));
+		
 	}//index
 	
 	public function 
@@ -1590,4 +1612,17 @@ class HistorysController extends AppController {
 		
 	}//_content_multilines_GetHtml
 	
+	public function
+	test_1() {
+		
+		$params = array('fields'	=> array('History.id', 'History.created_at'));
+		
+		
+		$histories = $this->History->find('all', $params);
+
+		debug($histories[0]);
+		
+		debug(count($histories));
+		
+	}
 }

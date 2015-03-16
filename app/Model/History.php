@@ -13,10 +13,10 @@ class History extends AppModel {
 
 	var $hasMany = array(
 	
-			'Token' => array(
+// 			'Token' => array(
 	
-					'className' => 'Token'
-			),
+// 					'className' => 'Token'
+// 			),
 			
 			'SkimmedToken' => array(
 	
