@@ -1,6 +1,7 @@
 <?php 
 
-	$link_Options = array('controller' => 'tokens', 
+// 	$link_Options = array('controller' => 'tokens', 
+	$link_Options = array('controller' => 'Tokens', 
 										'action' => 'index');
 
 ?>

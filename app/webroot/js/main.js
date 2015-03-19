@@ -202,14 +202,16 @@ $(document).ready(function(){
     	if (hostname == "localhost") {
     		
     		url = "http://localhost/Cake_NR5/" +
-    				"tokens/hin_changed";
+    				"Tokens/hin_changed";
+//    		"tokens/hin_changed";
 //    		"tokens/hin_Changed";
 //    		"tokens/hin_Changed?hin_name=" + hin_name;
     		
     	} else {
     		
     		url = "http://benfranklin.chips.jp/cake_apps/Cake_NR5/" +
-    				"tokens/hin_changed";
+    				"Tokens/hin_changed";
+//    		"tokens/hin_changed";
 //    		"tokens/hin_Changed";
 //    		"tokens/hin_Changed?hin_name=" + hin_name;
     		

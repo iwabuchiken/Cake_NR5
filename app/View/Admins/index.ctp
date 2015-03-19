@@ -26,6 +26,15 @@
 							); 
 ?>
 
+|
+
+<?php echo $this->Html->link("CSV",
+							array(
+								'controller' => 'admins', 
+								'action' => 'csv')
+							); 
+?>
+
 <br>
 <br>
 

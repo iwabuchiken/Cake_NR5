@@ -243,6 +243,14 @@ th.table_header {
 	
 }
 
+th.csv_maintable {
+
+	width:	200;
+	background:	#CEFDB8;
+	text-align:	center;
+	
+}
+
 table.table_show {
 	
 	width: 60%;
@@ -664,6 +672,12 @@ div.message {
 div.user_index {
 	
 	/*color: blue;*/
+	
+}
+
+div.flash_done {
+	
+	color: blue;
 	
 }
 

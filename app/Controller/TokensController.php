@@ -146,6 +146,147 @@ class TokensController extends AppController {
 		
 	}//index
 
+	public function 
+	index_2() {
+
+		/**********************************
+		 * paginate
+		**********************************/
+		$page_limit = 10;
+		
+		$opt_order = $this->_index__Orders();
+		
+		$opt_conditions = $this->_index__Options();
+
+		debug($opt_conditions);
+		
+		$opt_group = $this->_index__Group();
+		
+		if ($opt_group != null && count($opt_group) > 0) {
+			
+			$this->paginate = array(
+					'limit' => $page_limit,
+					'order' => $opt_order,
+					'conditions'	=> $opt_conditions,
+					'group'			=> $opt_group
+					
+			);
+				
+		} else {
+			
+			$this->paginate = array(
+					'limit' => $page_limit,
+					'order' => $opt_order,
+					'conditions'	=> $opt_conditions,
+			
+			);
+				
+		}
+
+		/*******************************
+			tokens
+		*******************************/
+		$tokens = $this->paginate('Token');
+		
+		$this->set('tokens', $tokens);
+		
+		$num_of_tokens = count($this->Token->find('all'));
+		$this->set('num_of_tokens', $num_of_tokens);
+		
+		$this->set('num_of_pages', (int) ceil($num_of_tokens / $page_limit));
+
+		/*******************************
+			current tokens
+		*******************************/
+// 		$this->paginate = array(
+// 				'limit' => $num_of_tokens,
+// 				'order' => $opt_order,
+// 				'conditions'	=> $opt_conditions,
+					
+// 		);
+		
+// 		$tokens_Current = $this->paginate('Token');
+		$tokens_Current = $this->Token->find('all',
+						array(
+								'conditions'	=> $opt_conditions,
+		));
+		
+		$this->set('num_of_tokens_Current', count($tokens_Current));
+// 		$this->set('num_of_tokens_Current', count($tokens));
+
+// 		/*******************************
+// 			resume: tokens
+// 		*******************************/
+// 		if ($opt_group != null && count($opt_group) > 0) {
+				
+// 			$this->paginate = array(
+// 					'limit' => $page_limit,
+// 					'order' => $opt_order,
+// 					'conditions'	=> $opt_conditions,
+// 					'group'			=> $opt_group
+						
+// 			);
+		
+// 		} else {
+				
+// 			$this->paginate = array(
+// 					'limit' => $page_limit,
+// 					'order' => $opt_order,
+// 					'conditions'	=> $opt_conditions,
+						
+// 			);
+		
+// 		}
+		
+// 		$tokens = $this->paginate('Token');
+		
+		/**********************************
+		* filter: hins
+		**********************************/
+		$hins_Array = $this->_get_HinsArray();
+
+		$this->set("hins_Array", $hins_Array);
+		
+		/**********************************
+		* filter: hins_1
+		**********************************/
+		$hins_1_Array = $this->_get_Hins_1_Array();
+
+		$this->set("hins_1_Array", $hins_1_Array);
+		
+		/**********************************
+		* filter: history_id
+		**********************************/
+		$history_id_Array = $this->_get_History_Id_Array();
+
+		asort($history_id_Array);
+		
+		$this->set("history_id_Array", $history_id_Array);
+		
+// 		debug($history_id_Array);
+		
+		/*******************************
+			get array: categories
+		*******************************/
+		$category_id_Array = $this->_get_Category_Id_Array();
+		
+		asort($category_id_Array);
+		
+		$this->set("category_id_Array", $category_id_Array);
+		
+// 		debug($category_id_Array);
+		
+		/**********************************
+		 * labels: options, sorts
+		**********************************/
+		$this->_index_SetLabels(
+					$opt_conditions,
+					$hins_Array, $hins_1_Array,
+					$history_id_Array, $category_id_Array
+		);
+		
+	}//index
+
 	public function
 	_index__SkimmTokens($tokens) {
 		

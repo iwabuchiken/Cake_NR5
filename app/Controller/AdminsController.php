@@ -269,5 +269,113 @@ class AdminsController extends AppController {
 				(double)count($historys_Vendor_cnn) / count($historys));
 		
 	}
+
+	public function
+	csv() {
+
+		debug($this->response->getMimeType('csv'));
+		
+	}
+
+	public function
+	csv_Tokens_create($name) {
+		
+		$this->loadModel('Token');
+		
+		$tokens = $this->Token->find('all');
+		
+// 		debug(count($tokens));
+		
+// 		debug(array_values($tokens[0]['Token']));
+// 		debug($tokens[0]['Token']);
+// 		debug($tokens[0]);
+
+		/*******************************
+			write file
+		*******************************/
+// 		REF http://www.tizag.com/phpT/filecreate.php
+// 		$file = fopen("webroot/$name.csv", 'w');
+		$file = fopen("$name.csv", 'w');
+// 		$file = fopen("tokens.csv", 'w');
+
+		$values = array_values($tokens[0]['Token']);
+		$keys = array_keys($tokens[0]['Token']);
+		
+		fputcsv($file, $keys);
+		
+		for ($i = 0; $i < count($tokens); $i++) {
+			
+			$values = array_values($tokens[$i]['Token']);
+			
+			fputcsv($file, $values);
+			
+		}
+		
+// 		fputcsv($file, $values);
+		
+		fclose($file);
+		
+		//REF http://book.cakephp.org/2.0/en/core-libraries/components/sessions.html "You can use the additional parameters of setFlash() to create different kinds of flash messages"
+		$this->Session->setFlash("csv created => $name.csv", 'flash_done');	
+// 		$this->Session->setFlash(__("csv created => $name.csv"));	
+// 		$this->Session->setFlash(__('csv created'));	
+		
+		return $this->redirect(array('action' => 'csv'));
+		
+		
+	}//csv_Tokens_create()
+	
+	public function
+	csv_Tokens_dl($name) {
+// 	csv_Tokens_dl() {
+
+		//REF http://stackoverflow.com/questions/14760630/downloading-a-docx-file-in-cakephp answered Feb 7 '13 at 21:20
+		$this->autoRender = false;	//=> n/c
+		
+// 		debug($name);
+		
+		//REF http://stackoverflow.com/questions/15887953/cakephp-file-download-link answered Apr 8 '13 at 20:56
+		$path = "tokens.csv";
+// 		$path = "webroot/tokens.csv";
+// 		$path = "index.php";
+// 		$path = "index.php";
+		
+		//REF download() http://andy-carter.com/blog/downloading-files-as-request-responses-in-cakephp-23
+// 		$this->response->download($path);	//=> n/c
+
+		//REF http://book.cakephp.org/2.0/en/controllers/request-response.html#sending-files
+// 		$this->response->file($path);	//=> n/c
+
+// 		debug($this->response->getMimeType('csv'));
+		
+		$this->response->file($path, 
+				array(
+					'download' => true,
+					'name' => "$name.csv",
+// 				'name' => 'the name of the file as it should appear on the client\'s computer',
+		));
+		
+// 		//REF http://book.cakephp.org/2.0/en/controllers/request-response.html#dealing-with-content-types
+// 		$this->response->type('csv');	//=> n/c
+// 		$this->response->type('text/csv');	//=> 
+		
+		
+		$this->Session->setFlash("dowloading csv... => $name.csv", 'flash_done');
+		
+		return $this->response;
+		
+		//REF http://www.tizag.com/phpT/filecreate.php
+// 		$file = fopen("temp.txt", 'w');
+		
+// 		fclose($file);
+		
+		//REF http://andy-carter.com/blog/exporting-data-to-a-downloadable-csv-file-with-cakephp
+// 		$this->response->download("index.php");
+// 		$this->response->download("app/index.php");
+// 		$this->response->download("memos.txt");
+// 		$this->response->download("export.csv");
+		
+		
+	}
 	
 }

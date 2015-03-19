@@ -69,7 +69,8 @@
 			<?php echo $this->Html->link(
 					
 					'Token',
-					array('controller' => 'tokens', 
+					array('controller' => 'Tokens', 
+// 					array('controller' => 'tokens', 
 							'action' => 'index'),
 					array('class' => "button"));
 			?>
