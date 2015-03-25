@@ -77,5 +77,30 @@ class CONS {
 	public static $str_Filter_Cat_Id = "filter_cat_id";
 	public static $str_Filter_Cat_Id_all = "filter_cat_id_all";
 	public static $str_Filter_Cat_Id_all_Val = "-1";
+
+	/*******************************
+		NVP
+	*******************************/
+	public static $map_HinSymbols = array(
+		
+			"接続詞"	=> "C",		// Connective
+			"助動詞"	=> "A",		// Auxiliary
+			"名詞"	=> "N",
+			
+			"形容詞"	=> "J",		// adJective
+			"接頭詞"	=> "F",		// preFix
+// 			"接頭詞"	=> "FP",		// PreFix
+			"連体詞"	=> "T",		// renTai-shi
+			
+			"感動詞"	=> "E",		// Exclamation
+			"動詞"	=> "V",
+			"助詞"	=> "P",		// Particle
+			
+			"副詞"	=> "D",		// aDverb
+			"記号"	=> "S",		// Symbol
+					
+			
+	);
+	
 	
 }//class CONS

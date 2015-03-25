@@ -1088,6 +1088,45 @@
 		
 		}
 
+		/*******************************
+			@param
+			$hist_id	=> History id
+		*******************************/
+		public static function
+		exists_History($hist_id) {
+			
+			/*******************************
+				load
+			*******************************/
+// 			$option = array('conditions' => array('id' => $hist_id));
+			$option = array('conditions' => array('History.id' => $hist_id));
+			
+			$model = ClassRegistry::init('History');
+			
+// 			$hist = $model->find('first', $option);
+
+			try {
+				
+				$hist = $model->find('first', $option);
+				
+			} catch (Exception $e) {
+				
+				debug($e);
+				
+			}
+			
+			if ($hist != null) {
+				
+				return true;
+				
+			} else {
+				
+				return false;
+				
+			}
+			
+		}//exists_History($hist_id)
+		
 		public static function
 		get_Category_From_Id($cat_Id) {
 

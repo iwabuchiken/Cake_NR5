@@ -1792,5 +1792,107 @@ class TokensController extends AppController {
 		$this->render("/Tokens/tests/D_7_V_2_0__Nouns");
 	
 	}//D_7
-	
+
+	public function
+	test_NVP() {
+
+		/*******************************
+			get: history id
+		*******************************/
+		@$hist_id = $this->request->query['hist_id'];
+
+		if ($hist_id == null) {
+		
+			$hist_id = 63;
+		
+		} else {
+		
+// 			$hist_id;
+		
+		}
+
+		/*******************************
+			validate: history exists
+		*******************************/
+		$res = Utils::exists_History($hist_id);
+		
+		if ($res == false) {
+			
+			$this->set("message", "No history for id $hist_id");
+			
+			$this->render("/Tokens/tests/test_NVP");
+			
+			return;
+			
+		}
+		
+		/*******************************
+			get: tokens
+		*******************************/
+		
+		$option = array('conditions' => array('Token.history_id' => $hist_id));
+		
+		$tokens = $this->Token->find('all', $option);
+		
+// 		debug(count($tokens));
+
+		/*******************************
+			build: NL sentence
+		*******************************/
+		$this->set("hist_id", $hist_id);
+		
+		if ($tokens == null || count($tokens) < 1) {
+		
+			$this->set("sen_NL", "NO TOKENS");
+		
+		} else {
+		
+			$ary_Forms = array();
+			$ary_Syms = array();
+			
+			$max = 50;
+			
+			$count = 1;
+			
+			for ($i = 0; $i < count($tokens); $i++) {
+				
+				array_push($ary_Forms, $tokens[$i]['Token']['form']);
+				array_push($ary_Syms, CONS::$map_HinSymbols[$tokens[$i]['Token']['hin']]);
+				
+				if ($i > $max) {
+					
+					break;
+					
+				}
+				
+				// delimiter
+				if ($i % 5 == 0) {
+					
+					array_push($ary_Forms, "/($count)");
+					array_push($ary_Syms, "/($count)");
+					
+					$count ++;
+					
+				}
+				
+			}
+			
+			$sen_NL = implode(" ", $ary_Forms);
+			$sen_Syms = implode("", $ary_Syms);
+// 			$sen_Syms = implode(" ", $ary_Syms);
+			
+			$this->set("sen_NL", $sen_NL);
+			$this->set("sen_Syms", $sen_Syms);
+			
+	// 		debug($sen_NL);
+		
+		}
+		
+		
+		/**********************************
+		 * view
+		**********************************/
+		$this->render("/Tokens/tests/test_NVP");
+		
+	}
 }
