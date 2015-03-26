@@ -102,5 +102,30 @@ class CONS {
 			
 	);
 	
+	public static $hin1_Names = array(
+		
+			"格助詞",		"並立助詞",	"終助詞",		// 0-2
+			
+			"係助詞",		"副助詞",		"接続助詞",	// 3-5
+			
+			"連体化",		"副詞化",					// 6-7
+			
+	);
+	
+	public static $map_Hin1_Symbols = array(
+		
+			//REF http://en.wikipedia.org/wiki/Japanese_particles
+			"格助詞"		=> "C",		// Case markers
+			"連体化"		=> "A",		// Attributive
+			"係助詞"		=> "B",		// Binding
+			"接続助詞"	=> "J",		// conJunctive
+			
+			"その他"		=> "X",
+// 			"並立助詞"	=> "P",		// Parallel
+// 			"終助詞"		=> "E",		// Ending
+			
+			
+	);
+	
 	
 }//class CONS

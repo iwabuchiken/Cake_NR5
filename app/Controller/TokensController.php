@@ -1887,12 +1887,111 @@ class TokensController extends AppController {
 	// 		debug($sen_NL);
 		
 		}
+
+		/*******************************
+			stat: hin_1 names => "助詞"
+		*******************************/
+		$option2 = array('conditions' => 
+							array('Token.hin' => "助詞"));
 		
+		$tokens2 = $this->Token->find('all', $option2); 
+		
+		$total = count($tokens2);
+		
+		debug("tokens with 助詞");
+		debug($total);
+// 		debug(count($tokens2));
+		
+// 		debug($tokens2[0]);
+		
+		$count = 0;
+		
+		$cnt_NoMatch = 0;
+		
+		$particles = array();
+		
+		for ($i = 0; $i < count(CONS::$hin1_Names); $i++) {
+			
+			$particles[CONS::$hin1_Names[$i]] = 0;
+			
+		}
+		
+		for ($i = 0; $i < count($tokens2); $i++) {
+
+			$match = false;
+			
+			for ($j = 0; $j < count(CONS::$hin1_Names); $j++) {
+
+				$hin_1 = $tokens2[$i]['Token']['hin_1'];
+					
+				if ($hin_1 == CONS::$hin1_Names[$j]) {
+				
+					$particles[CONS::$hin1_Names[$j]] += 1;
+// 					$count ++;
+					
+					$match = true;
+				
+					break;
+					
+				}
+				
+			}//for ($j = 0; $j < count(CONS::$hin1_Names); $j++)
+
+			// no match
+			if ($match == false) {
+				
+				$cnt_NoMatch ++;
+				
+			}
+			
+// 			$hin_1 = $tokens2[$i]['Token']['hin_1'];
+// // 			$hin_1 = $tokens2[0]['Token']['hin_1'];
+// // 			$hin_1 = $tokens2['Token']['hin_1'];
+			
+// 			if ($hin_1 == "格助詞") {
+				
+// 				$count ++;
+				
+// 			}
+			
+		}
+		
+// 		debug("格助詞");
+// 		debug($count);
+
+// 		debug($particles);
+		
+		$message = "";
+		
+		asort($particles);
+		
+		$keys = array_keys($particles);
+		
+		for ($i = 0; $i < count($particles); $i++) {
+			
+			$message .= $keys[$i]." => "
+					.$particles[$keys[$i]]
+					."("
+					.(($particles[$keys[$i]]) / $total * 100)
+					.")"
+					."<br>";
+			
+		}
+
+		$message .= "no match"." => "
+				.$cnt_NoMatch
+				."("
+						.(($cnt_NoMatch) / $total * 100)
+						.")"
+								."<br>";
+		
+		$this->set("message", $message);
 		
 		/**********************************
 		 * view
 		**********************************/
 		$this->render("/Tokens/tests/test_NVP");
 		
-	}
+	}//test_NVP
+	
 }
