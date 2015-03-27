@@ -1793,6 +1793,44 @@ class TokensController extends AppController {
 	
 	}//D_7
 
+	/*******************************
+		e.g.<br>
+		"係助詞"	=> "NB"
+	*******************************/
+	public function
+	conv_Particle_2_SubParticle($hin_1) {
+		
+		$hin = "P";
+		
+		/*******************************
+			judge
+		*******************************/
+		if ($hin_1 == CONS::$hin1_Names[0]) {
+		
+			// 格助詞
+			$hin .= CONS::$map_Hin1_Symbols[CONS::$hin1_Names[0]];
+		
+		} else if ($hin_1 == CONS::$hin1_Names[6]) {
+			
+			// 連体化
+			$hin .= CONS::$map_Hin1_Symbols[CONS::$hin1_Names[6]];
+			
+		} else if ($hin_1 == CONS::$hin1_Names[3]) {
+			
+			// 係助詞
+			$hin .= CONS::$map_Hin1_Symbols[CONS::$hin1_Names[3]];
+			
+		} else {		
+		
+			// その他
+			$hin .= CONS::$map_Hin1_Symbols[CONS::$hin1_Names[8]];
+		
+		}
+		
+		return $hin;
+		
+	}//conv_Particle_2_SubParticle
+	
 	public function
 	test_NVP() {
 
@@ -1856,8 +1894,24 @@ class TokensController extends AppController {
 			
 			for ($i = 0; $i < count($tokens); $i++) {
 				
+				/*******************************
+					hin, sym
+				*******************************/
+				$hin = $tokens[$i]['Token']['hin'];
+				$sym = CONS::$map_HinSymbols[$hin];
+
+				/*******************************
+				 modify: particles => subparticles
+				*******************************/
+				if ($hin == "助詞") {
+					
+					$sym = $this->conv_Particle_2_SubParticle($tokens[$i]['Token']['hin_1']);
+					
+				}
+				
 				array_push($ary_Forms, $tokens[$i]['Token']['form']);
-				array_push($ary_Syms, CONS::$map_HinSymbols[$tokens[$i]['Token']['hin']]);
+				array_push($ary_Syms, $sym);
+// 				array_push($ary_Syms, CONS::$map_HinSymbols[$tokens[$i]['Token']['hin']]);
 				
 				if ($i > $max) {
 					
@@ -1878,8 +1932,8 @@ class TokensController extends AppController {
 			}
 			
 			$sen_NL = implode(" ", $ary_Forms);
-			$sen_Syms = implode("", $ary_Syms);
-// 			$sen_Syms = implode(" ", $ary_Syms);
+// 			$sen_Syms = implode("", $ary_Syms);
+			$sen_Syms = implode(" ", $ary_Syms);
 			
 			$this->set("sen_NL", $sen_NL);
 			$this->set("sen_Syms", $sen_Syms);
@@ -1903,7 +1957,10 @@ class TokensController extends AppController {
 // 		debug(count($tokens2));
 		
 // 		debug($tokens2[0]);
-		
+
+		/*******************************
+			number of each kind of particles
+		*******************************/
 		$count = 0;
 		
 		$cnt_NoMatch = 0;
@@ -1984,6 +2041,35 @@ class TokensController extends AppController {
 						.(($cnt_NoMatch) / $total * 100)
 						.")"
 								."<br>";
+
+		/*******************************
+			names of hins, particles
+		*******************************/
+		$tmp = "";
+		$keys_HinSymbols = array_keys(CONS::$map_HinSymbols);
+		
+		for ($i = 0; $i < count(CONS::$map_HinSymbols); $i++) {
+			
+			$tmp .= $keys_HinSymbols[$i]." => "
+					.CONS::$map_HinSymbols[$keys_HinSymbols[$i]]."/";
+			
+		}
+		
+		$message .= $tmp."<br>";
+		
+		$tmp = "";
+		$keys_Hin1_Symbols = array_keys(CONS::$map_Hin1_Symbols);
+		
+		for ($i = 0; $i < count(CONS::$map_Hin1_Symbols); $i++) {
+			
+			$tmp .= $keys_Hin1_Symbols[$i]." => "
+					.CONS::$map_Hin1_Symbols[$keys_Hin1_Symbols[$i]]."/";
+			
+		}
+		
+		$message .= $tmp."<br>";
+		
+		
 		
 		$this->set("message", $message);
 		
