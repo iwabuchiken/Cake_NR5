@@ -81,6 +81,26 @@ class CONS {
 	/*******************************
 		NVP
 	*******************************/
+	public static $hin_Names = array(
+		
+			"接続詞",
+			"助動詞",
+			"名詞",		// 0-2
+			
+			"形容詞",
+			"接頭詞",
+// 			"接頭詞",
+			"連体詞",		// 3-5
+			
+			"感動詞",
+			"動詞",
+			"助詞",		// 6-8
+			
+			"副詞",
+			"記号",		// 9-10
+			
+	);
+	
 	public static $map_HinSymbols = array(
 		
 			"接続詞"	=> "C",		// Connective
@@ -124,6 +144,41 @@ class CONS {
 // 			"並立助詞"	=> "P",		// Parallel
 // 			"終助詞"		=> "E",		// Ending
 			
+			
+	);
+	
+	
+	public static $hin1_Noun_Names = array(
+		
+			"一般",		"代名詞",	"固有名詞",		// 0-2
+			
+			"サ変接続",		"数",		"非自立",	// 3-5
+			
+			"副詞可能",		"ナイ形容詞語幹",		"形容動詞語幹",	// 6-8
+			
+			"接尾",								// 9
+			
+			"その他",								// 
+	);
+	
+	public static $map_Hin1_Noun_Symbols = array(
+		
+			//REF http://en.wikipedia.org/wiki/Japanese_particles
+			"一般"		=> "G",		// General			// 0
+			"代名詞"		=> "P",		// Pronoun			// 1
+			"固有名詞"	=> "R",		// pRoper noun		// 2
+			
+			"サ変接続"	=> "S",		// Sa-hen
+			"数"			=> "N",		// Number
+			"非自立"		=> "D",		// Dependent		// 3-5
+			
+			"副詞可能" 	=> "V",		// adVerb possible
+			"ナイ形容詞語幹"	=> "J",	// NAI-adJective
+			"形容動詞語幹"	=> "A",		// Adverbe			// 6-8
+			
+			"接尾"		=> "F",		// prefix			// 9
+			
+			"その他"		=> "X",							// 6
 			
 	);
 	
