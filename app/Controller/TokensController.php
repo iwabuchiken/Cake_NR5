@@ -16,6 +16,10 @@ class TokensController extends AppController {
 		$opt_order = $this->_index__Orders();
 		
 		$opt_conditions = $this->_index__Options();
+		
+		//debug
+// 		$opt_conditions['Token.hin_1'] = "形容動詞語幹";
+// 		$opt_conditions['Token.id'] = "< 600";
 
 		debug($opt_conditions);
 		
@@ -112,6 +116,20 @@ class TokensController extends AppController {
 		$hins_1_Array = $this->_get_Hins_1_Array();
 
 		$this->set("hins_1_Array", $hins_1_Array);
+		
+		/**********************************
+		* filter: hins_2
+		**********************************/
+		$hins_2_Array = $this->_get_Hins_2_Array();
+
+		$this->set("hins_2_Array", $hins_2_Array);
+		
+		/**********************************
+		* filter: hins_3
+		**********************************/
+		$hins_3_Array = $this->_get_Hins_3_Array();
+
+		$this->set("hins_3_Array", $hins_3_Array);
 		
 		/**********************************
 		* filter: history_id
@@ -1054,11 +1072,11 @@ class TokensController extends AppController {
 		
 		@$query_Hin_Name = $this->request->query['hin_name'];
 		
-		//log
-		Utils::write_Log(
-						Utils::get_dPath_Log(),
-						"hin_name => ".$query_Hin_Name,
-						__FILE__, __LINE__);
+// 		//log
+// 		Utils::write_Log(
+// 						Utils::get_dPath_Log(),
+// 						"hin_name => ".$query_Hin_Name,
+// 						__FILE__, __LINE__);
 		
 		
 // 		debug("\$query_Hin_Name");
@@ -1075,11 +1093,11 @@ class TokensController extends AppController {
 			
 		}
 
-		//log
-		Utils::write_Log(
-						Utils::get_dPath_Log(),
-						"\$query_Hin_Name => not null",
-						__FILE__, __LINE__);
+// 		//log
+// 		Utils::write_Log(
+// 						Utils::get_dPath_Log(),
+// 						"\$query_Hin_Name => not null",
+// 						__FILE__, __LINE__);
 		
 		/*******************************
 			get: tokens
@@ -1097,15 +1115,17 @@ class TokensController extends AppController {
 		*******************************/
 		if (count($tokens) < 1) {
 			
-			debug("no hin_1s for the hin: ".$query_Hin_Name);
+// 			debug("no hin_1s for the hin: ".$query_Hin_Name);
 
-			//log
-			Utils::write_Log(
-					Utils::get_dPath_Log(),
-					"count(\$tokens) => < 1",
-					__FILE__, __LINE__);
+			$tokens = $this->Token->find('all', array('group'	=> 'Token.hin_1'));
+			
+// 			//log
+// 			Utils::write_Log(
+// 					Utils::get_dPath_Log(),
+// 					"count(\$tokens) => < 1",
+// 					__FILE__, __LINE__);
 						
-			return;
+// 			return;
 			
 		}
 		
@@ -1181,6 +1201,143 @@ class TokensController extends AppController {
 						__FILE__, __LINE__);
 		
 	}//hin_Changed
+	
+	public function
+	hin_1_changed() {
+		
+		@$query_Hin_Name = $this->request->query['hin_1_name'];
+		
+// 		//log
+// 		Utils::write_Log(
+// 						Utils::get_dPath_Log(),
+// 						"hin_1_name => ".$query_Hin_Name,
+// 						__FILE__, __LINE__);
+		
+		
+// 		debug("\$query_Hin_Name");
+// 		debug($query_Hin_Name);
+
+		/*******************************
+			validate:
+		*******************************/
+		if ($query_Hin_Name == null) {
+			
+			debug("no hin_1 name given");
+			
+			return;
+			
+		}
+
+// 		//log
+// 		Utils::write_Log(
+// 						Utils::get_dPath_Log(),
+// 						"\$query_Hin_Name => not null",
+// 						__FILE__, __LINE__);
+		
+		/*******************************
+			get: tokens
+		*******************************/
+		$option = array(
+					'conditions' => 
+							array('Token.hin_1' => $query_Hin_Name),
+					'group'	=> 'Token.hin_2'
+		);
+		
+		$tokens = $this->Token->find('all', $option);
+		
+		/*******************************
+			validate
+		*******************************/
+		if (count($tokens) < 1) {
+
+			$tokens = $this->Token->find('all', array('group'	=> 'Token.hin_2'));
+				
+// 			debug("no hin_2s for the hin: ".$query_Hin_Name);
+
+// 			//log
+// 			Utils::write_Log(
+// 					Utils::get_dPath_Log(),
+// 					"count(\$tokens) => < 1",
+// 					__FILE__, __LINE__);
+						
+// 			return;
+			
+		}
+		
+// 			//log
+// 			Utils::write_Log(
+// 					Utils::get_dPath_Log(),
+// 					"count(\$tokens) => >= 1",
+// 					__FILE__, __LINE__);
+		
+// 		debug(count($tokens));
+		
+// 		debug($tokens[0]);
+		
+		/*******************************
+			build: hin_2s
+		*******************************/
+		$hin_2s = array();
+
+		for ($i = 0; $i < count($tokens); $i++) {
+			
+			$hin_2 = $tokens[$i]['Token']['hin_2'];
+			
+			if ($hin_2 != null) {
+				
+				array_push($hin_2s, $hin_2);
+				
+			}
+			
+		}
+
+// 		//log
+// 		Utils::write_Log(
+// 						Utils::get_dPath_Log(),
+// 						"hin_1s => done",
+// 						__FILE__, __LINE__);
+		
+		/*******************************
+			array
+		*******************************/
+		$select_Hins_2 = array();
+		
+		for ($i = 0; $i < count($hin_2s); $i++) {
+		
+			$select_Hins_2[$hin_2s[$i]] = $hin_2s[$i];
+			// 			$select_Hins_2[$i] = $hins_1[$i];
+		
+		}
+		
+		$select_Hins_2[CONS::$str_Filter_Hins_2_all] = CONS::$str_Filter_Hins_2_all;
+		// 		debug($select_Hins_1);
+		
+// 		debug(implode("/", $hin_1s)."(".count($hin_1s).")");
+
+// 		//log
+// 		Utils::write_Log(
+// 						Utils::get_dPath_Log(),
+// 						"\$select_Hins_1 => built",
+// 						__FILE__, __LINE__);
+		
+		/*******************************
+			layout, vars
+		*******************************/
+		$this->set("text", implode("/", $hin_2s)."(".count($hin_2s).")");
+		
+		$this->set("hins_2_Array", $select_Hins_2);
+		
+		$this->layout = 'plain';
+
+// 		//log
+// 		Utils::write_Log(
+// 						Utils::get_dPath_Log(),
+// 						"layout => set",
+// 						__FILE__, __LINE__);
+		
+	}//hin_1_changed()
+	
+	
 	
 	public function
 	_get_HinsArray() {
@@ -1263,6 +1420,89 @@ class TokensController extends AppController {
 		return $select_Hins_1;
 		
 	}//_get_Hins_1_Array
+	
+	public function
+	_get_Hins_2_Array() {
+
+		/**********************************
+		 * get: hins
+		**********************************/
+		$tokens = $this->Token->find('all');
+		
+		$hins_2 = array();
+		
+		for ($i = 0; $i < count($tokens); $i++) {
+				
+			array_push($hins_2, $tokens[$i]['Token']['hin_2']);
+				
+		}
+		
+		$hins_2 = array_unique($hins_2);
+		
+		/**********************************
+		 * build: string
+		**********************************/
+		$hins_2_string = implode($hins_2, "/");
+		
+		$select_Hins_2 = array();
+		
+		$hins_2 = array_values($hins_2);
+		
+		for ($i = 0; $i < count($hins_2); $i++) {
+				
+			$select_Hins_2[$hins_2[$i]] = $hins_2[$i];
+// 			$select_Hins_1[$i] = $hins_1[$i];
+				
+		}
+
+		$select_Hins_2[CONS::$str_Filter_Hins_2_all] = CONS::$str_Filter_Hins_2_all;
+// 		debug($select_Hins_1);
+		
+		return $select_Hins_2;
+		
+	}//_get_Hins_2_Array
+	
+	public function
+	_get_Hins_3_Array() {
+
+		/**********************************
+		 * get: hins
+		**********************************/
+		$tokens = $this->Token->find('all');
+		
+		$hins_3 = array();
+		
+		for ($i = 0; $i < count($tokens); $i++) {
+				
+			array_push($hins_3, $tokens[$i]['Token']['hin_3']);
+				
+		}
+		
+		$hins_3 = array_unique($hins_3);
+		
+		/**********************************
+		 * build: string
+		**********************************/
+		$hins_3_string = implode($hins_3, "/");
+		
+		$select_Hins_3 = array();
+		
+		$hins_3 = array_values($hins_3);
+		
+		for ($i = 0; $i < count($hins_3); $i++) {
+				
+			$select_Hins_3[$hins_3[$i]] = $hins_3[$i];
+// 			$select_Hins_1[$i] = $hins_1[$i];
+				
+		}
+
+		$select_Hins_3[CONS::$str_Filter_Hins_3_all] = CONS::$str_Filter_Hins_3_all;
+// 		debug($select_Hins_1);
+		
+		return $select_Hins_3;
+		
+	}//_get_Hins_3_Array
+	
 	
 	public function
 	_get_History_Id_Array() {

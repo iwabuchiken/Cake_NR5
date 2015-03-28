@@ -39,14 +39,14 @@
 				
 		}
 		
-// 		echo $this->Form->create('', $opt_create);
+		echo $this->Form->create('', $opt_create);
 		 
 		echo $this->Form->input(
 				CONS::$str_Filter_Hins_1,
 				$opt_input_Hins
 		);
 		 
-// 		echo $this->Form->end('Filter');
+		echo $this->Form->end('Filter');
 			
 	?>
 		

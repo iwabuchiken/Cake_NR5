@@ -1,11 +1,11 @@
-<th id="hin_1">
+<th id="hin_2">
 
 	<?php 
 		
-		$link_Options['?'] = 'sort=hin_1';
+		$link_Options['?'] = 'sort=hin_2';
 	
 		echo $this->Html->link(
-						'Hin 1',
+						'Hin 2',
 						$link_Options
 
 		);
@@ -26,28 +26,28 @@
 						'action'	=> 'index'),
 				'type'	=> 'get',
 				'label'	=> false,
-				'id'	=> 'form_hin_1'
+				'id'	=> 'form_hin_2'
 		
 		);
 	
 		$opt_input_Hins= array(
 				'type' => 'select',
-				'options' => $hins_1_Array,
+				'options' => $hins_2_Array,
 				'label'	=> false,
-				'id'	=> 'header_hins_1',
+				'id'	=> 'header_hins_2',
 		);
 		
-		if (isset($chosen_hin_1)) {
+		if (isset($chosen_hin_2)) {
 		
 			//REF http://stackoverflow.com/questions/6259371/cakephp-this-form-input-how-to-set-a-select-default-option answered Jun 7 '11 at 0:38
-			$opt_input_Hins['default'] = $chosen_hin_1;
+			$opt_input_Hins['default'] = $chosen_hin_2;
 				
 		}
 		
 		echo $this->Form->create('', $opt_create);
 		 
 		echo $this->Form->input(
-				CONS::$str_Filter_Hins_1,
+				CONS::$str_Filter_Hins_2,
 				$opt_input_Hins
 		);
 		 

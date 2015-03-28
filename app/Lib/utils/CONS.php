@@ -71,6 +71,12 @@ class CONS {
 	public static $str_Filter_Hins_1 = "filter_hins_1";
 	public static $str_Filter_Hins_1_all = "filter_hins_1_all";
 	
+	public static $str_Filter_Hins_2 = "filter_hins_2";
+	public static $str_Filter_Hins_2_all = "filter_hins_2_all";
+	
+	public static $str_Filter_Hins_3 = "filter_hins_3";
+	public static $str_Filter_Hins_3_all = "filter_hins_3_all";
+	
 	public static $str_Filter_Hist_Id = "filter_hist_id";
 	public static $str_Filter_Hist_Id_all = "filter_hist_id_all";
 	

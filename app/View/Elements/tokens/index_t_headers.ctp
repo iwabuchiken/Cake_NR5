@@ -38,9 +38,13 @@
 		
 		<?php echo $this->element('tokens/index/index_t_headers__Col_Hin_1'); ?>
 		
+		<?php echo $this->element('tokens/index/index_t_headers__Col_Hin_2'); ?>
 		
-		<th>Hin 2</th>
-		<th>Hin 3</th>
+		<?php echo $this->element('tokens/index/index_t_headers__Col_Hin_3'); ?>
+		
+		
+<!-- 		<th>Hin 2</th> -->
+<!-- 		<th>Hin 3</th> -->
 		
 		<th>katsu_kei</th>
 		<th>katsu_kata</th>
