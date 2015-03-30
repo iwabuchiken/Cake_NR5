@@ -2977,6 +2977,8 @@ class TokensController extends AppController {
 		/**********************************
 		 * view
 		**********************************/
+		$this->layout = 'plain';
+		
 		$this->render("/Tokens/tests/test_D3");
 		
 	}//test_D3

@@ -9,6 +9,8 @@
 // used: d3_alert
 var col_State = 1;
 
+var p;
+
 //REF http://stackoverflow.com/questions/610406/javascript-equivalent-to-printf-string-format answered Nov 23 '10 at 12:41
 String.prototype.format = function() {
     var formatted = this;
@@ -96,7 +98,38 @@ get_DateLabel(type) {
 }//get_DateLabel
 
 function
+d3_alert_OFF() {
+	
+//	/***************************
+//		validate
+//	 ***************************/
+//	if (p == null) {
+//		
+//		alert("p is null");
+//		
+//	} else {
+//		
+////		alert("not null");
+//		
+//	}
 
+	/***************************
+		test: 7
+	 ***************************/
+	d3.select("body").transition()
+		.duration(2000)
+		.style("background-color", "blue");
+
+//	/***************************
+//		remove: p
+//	 ***************************/
+//	p.exit().remove();
+//	
+//	alert("removed");
+	
+}//d3_alert_OFF
+
+function
 d3_alert(msg) {
 	
 //	var str = "{0}{1}".format("{1}", "{0}");
@@ -106,16 +139,59 @@ d3_alert(msg) {
 	//REF http://www.diveintojavascript.com/projects/javascript-sprintf
 	var str = sprintf("%s %s", "aaa", "bbb");
 
+//	/***************************
+//		test: 8			//=> n/w
+//	 ***************************/
+//	d3.selectAll("circle").transition()
+//		    .duration(750)
+//		    .delay(function(d, i) { return i * 10; })
+//		    .attr("r", function(d) { return Math.sqrt(d * scale); });
+	
 	/***************************
-		test: 4
+		test: 7
 	 ***************************/
-	//REF http://bost.ocks.org/mike/bar/	<= https://github.com/mbostock/d3/wiki/Tutorials
-	var div = document.createElement("div");
+	d3.select("body").transition()
+		.duration(2000)
+    	.style("background-color", "black");
 	
-	alert("div => " + div.className);
+//	/***************************
+//		test: 6
+//	 ***************************/
+////	var p = d3.select("body").selectAll("p")
+//	p = d3.select("body").selectAll("p")
+//			    .data([4, 8, 15, 16, 23, 42])
+//			    .text(String);
+//	
+//	var tmp = p.enter().append("p")
+//    			.text(String);
+//	
+//	alert(tmp.length);		//=> 1
+////	alert(tmp);
 	
-	div.innerHTML = "Hello, world!";
-	document.body.appendChild(div);
+//	alert(p.enter().append("p")
+//    			.text(String));
+	
+//	alert(p.className);
+	
+//	/***************************
+//		test: 5
+//	 ***************************/
+//	d3.select("body").selectAll("p")
+//		    .data([4, 8, 15, 16, 23, 42])
+//		  .enter().append("p")
+//		    .text(function(d) { return sprintf("%s %s", get_DateLabel("basic"), "bbb") + " " + d + "!"; });
+////	.text(function(d) { return "I’m number " + d + "!"; });
+	
+//	/***************************
+//		test: 4
+//	 ***************************/
+//	//REF http://bost.ocks.org/mike/bar/	<= https://github.com/mbostock/d3/wiki/Tutorials
+//	var div = document.createElement("div");
+//	
+//	alert("div => " + div.className);
+//	
+//	div.innerHTML = "Hello, world!";
+//	document.body.appendChild(div);
 	
 	
 //	/***************************
@@ -178,3 +254,77 @@ d3_alert(msg) {
 //	alert(msg);
 	
 }//d3_alert
+
+function
+d3_Bar_OFF() {
+	
+	/***************************
+		test: 2
+	 ***************************/
+	d3.selectAll("td")
+		  .remove();
+//	.remove("div");			//=> td tags --> removed
+	
+	
+}//d3_Bar_OFF
+
+function
+d3_Bar() {
+
+	/***************************
+		test: 4
+	 ***************************/
+	var obj = d3.select(".chart")
+				  .selectAll("div")
+				    .data(data);
+	
+	alert(obj.className);
+	
+//	d3.select(".chart")
+//	  .selectAll("div")
+//	    .data(data)
+//	  .enter().append("div")
+//	    .style("width", function(d) { return d * 10 + "px"; })
+//	    .text(function(d) { return d; });
+	
+//	/***************************
+//		test: 3
+//	 ***************************/
+////	var section = d3.selectAll(".chart");	//=> n/w
+////	var section = d3.select("body").selectAll("div.chart");	//=> n/w
+////	var section = d3.select("body").selectAll("div.chart div");	//=> w
+////	var section = d3.selectAll("div.chart div");	//=> w
+////	var section = d3.selectAll(".chart div");		//=> w
+//	var section = d3.selectAll(".chart div");		//=> 
+////	var section = d3.selectAll(".chart");
+//	
+//	section.style("color", "black");
+	
+//	/***************************
+//		test: 2
+//	 ***************************/
+////	d3.selectAll("section")
+////	d3.selectAll("abc")
+////	d3.selectAll("div")		//=> w
+////	d3.selectAll("td")		//=> w
+//	var section = d3.selectAll("td");
+//	
+////	    .attr("class", "special")
+//	section.append("div")
+////	  .append("div")
+//	    .html("Hello, div!");
+	
+//	/***************************
+//		test: 1
+//	 ***************************/
+//	//REF http://bost.ocks.org/mike/bar/
+//	var body = d3.select("body");
+//	var div = body.append("div");
+//	div.html("Hello, world!");
+//
+//	d3.select("body")
+//	    .style("color", "black")
+//	    .style("background-color", "white");
+	
+	
+}
