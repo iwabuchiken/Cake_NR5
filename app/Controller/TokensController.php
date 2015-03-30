@@ -2728,4 +2728,257 @@ class TokensController extends AppController {
 		
 	}//test_NVP
 	
+	public function
+	test_D3() {
+
+// 		//debug(count(CONS::$hin1_Noun_Names));
+// 		debug(CONS::$map_Hin1_Noun_Symbols[count(CONS::$hin1_Noun_Names) - 1]);
+		
+		/*******************************
+			get: history id
+		*******************************/
+		@$hist_id = $this->request->query['hist_id'];
+
+		if ($hist_id == null) {
+		
+			$hist_id = 63;
+		
+		} else {
+		
+// 			$hist_id;
+		
+		}//if ($hist_id == null)
+
+		/*******************************
+			validate: history exists
+		*******************************/
+		$res = Utils::exists_History($hist_id);
+		
+		if ($res == false) {
+			
+			$this->set("message", "No history for id $hist_id");
+			
+			$this->render("/Tokens/tests/test_NVP");
+			
+			return;
+			
+		}//if ($res == false)
+		
+		/*******************************
+			get: tokens
+		*******************************/
+		
+		$option = array('conditions' => array('Token.history_id' => $hist_id));
+		
+		$tokens = $this->Token->find('all', $option);
+		
+		//debug(count($tokens));
+
+		/*******************************
+			build: NL sentence
+		*******************************/
+		$this->set("hist_id", $hist_id);
+		
+		if ($tokens == null || count($tokens) < 1) {
+		
+			$this->set("sen_NL", "NO TOKENS");
+		
+		} else {
+		
+			$ary_Forms = array();
+			$ary_Syms = array();
+			
+			$max = 50;
+			
+			$count = 1;
+			
+			for ($i = 0; $i < count($tokens); $i++) {
+				
+				/*******************************
+					hin, sym
+				*******************************/
+				$hin = $tokens[$i]['Token']['hin'];
+				$sym = CONS::$map_HinSymbols[$hin];
+
+				/*******************************
+				 modify: particles => subparticles
+				*******************************/
+				if ($hin == "助詞") {
+					
+					$sym = $this->conv_Particle_2_SubParticle($tokens[$i]['Token']['hin_1']);
+					
+				} else if ($hin == "名詞") {
+					
+					$sym = $this->conv_Noun_2_SubNoun($tokens[$i]['Token']['hin_1']);
+					
+				}//if ($hin == "助詞")
+				
+				array_push($ary_Forms, $tokens[$i]['Token']['form']);
+				array_push($ary_Syms, $sym);
+// 				array_push($ary_Syms, CONS::$map_HinSymbols[$tokens[$i]['Token']['hin']]);
+				
+				if ($i > $max) {
+					
+					break;
+					
+				}
+				
+				// delimiter
+				if ($i % 5 == 0) {
+					
+					array_push($ary_Forms, "/($count)");
+					array_push($ary_Syms, "/($count)");
+					
+					$count ++;
+					
+				}
+				
+			}//for ($i = 0; $i < count($tokens); $i++)
+			
+			$sen_NL = implode(" ", $ary_Forms);
+// 			$sen_Syms = implode("", $ary_Syms);
+			$sen_Syms = implode(" ", $ary_Syms);
+			
+			$this->set("sen_NL", $sen_NL);
+			$this->set("sen_Syms", $sen_Syms);
+			
+	// 		debug($sen_NL);
+		
+		}//if ($tokens == null || count($tokens) < 1)
+
+		/*******************************
+			stat: hin_1 names => "助詞"
+		*******************************/
+		$option2 = array('conditions' => 
+							array('Token.hin' => CONS::$hin_Names[2]));	// 名詞
+// 							array('Token.hin' => "助詞"));
+		
+		$tokens2 = $this->Token->find('all', $option2); 
+		
+		$total = count($tokens2);
+		
+		//debug("tokens with ".CONS::$hin_Names[2]);
+		//debug($total);
+// 		debug(count($tokens2));
+		
+// 		debug($tokens2[0]);
+
+		/*******************************
+			number of each kind of particles
+		*******************************/
+		$count = 0;
+		
+		$cnt_NoMatch = 0;
+		
+		$particles = array();
+		
+		for ($i = 0; $i < count(CONS::$hin1_Noun_Names); $i++) {
+			
+			$particles[CONS::$hin1_Noun_Names[$i]] = 0;
+			
+		}
+		
+		for ($i = 0; $i < count($tokens2); $i++) {
+
+			$match = false;
+			
+			for ($j = 0; $j < count(CONS::$hin1_Noun_Names); $j++) {
+
+				$hin_1 = $tokens2[$i]['Token']['hin_1'];
+					
+				if ($hin_1 == CONS::$hin1_Noun_Names[$j]) {
+				
+					$particles[CONS::$hin1_Noun_Names[$j]] += 1;
+// 					$count ++;
+					
+					$match = true;
+				
+					break;
+					
+				}
+				
+			}//for ($j = 0; $j < count(CONS::$hin1_Noun_Names); $j++)
+
+			// no match
+			if ($match == false) {
+				
+				$cnt_NoMatch ++;
+				
+			}
+			
+		}
+		
+		//debug($particles);
+		
+		/*******************************
+			build: message
+		*******************************/
+		$message = "";
+		
+		asort($particles);
+		
+		$keys = array_keys($particles);
+		
+		for ($i = 0; $i < count($particles); $i++) {
+			
+			$message .= $keys[$i]." => "
+					.$particles[$keys[$i]]
+					."("
+					.(($particles[$keys[$i]]) / $total * 100)
+					.")"
+					."<br>";
+			
+		}
+
+		$message .= "no match"." => "
+				.$cnt_NoMatch
+				."("
+						.(($cnt_NoMatch) / $total * 100)
+						.")"
+								."<br>";
+
+		/*******************************
+			names of hins, particles
+		*******************************/
+		/*******************************
+			hin names
+		*******************************/
+		$tmp = "";
+		$keys_HinSymbols = array_keys(CONS::$map_HinSymbols);
+		
+		for ($i = 0; $i < count(CONS::$map_HinSymbols); $i++) {
+			
+			$tmp .= $keys_HinSymbols[$i]." => "
+					.CONS::$map_HinSymbols[$keys_HinSymbols[$i]]."/";
+			
+		}//for ($i = 0; $i < count(CONS::$map_HinSymbols); $i++)
+		
+		$message .= $tmp."<br>";
+
+		/*******************************
+			subnouns
+		*******************************/
+		$tmp = "";
+		$keys_Hin1_Noun_Symbols = array_keys(CONS::$map_Hin1_Noun_Symbols);
+		
+		for ($i = 0; $i < count(CONS::$map_Hin1_Noun_Symbols); $i++) {
+			
+			$tmp .= $keys_Hin1_Noun_Symbols[$i]." => "
+					.CONS::$map_Hin1_Noun_Symbols[$keys_Hin1_Noun_Symbols[$i]]."/";
+			
+		}
+		
+		$message .= $tmp."<br>";
+		
+		
+		
+		$this->set("message", $message);
+		
+		/**********************************
+		 * view
+		**********************************/
+		$this->render("/Tokens/tests/test_D3");
+		
+	}//test_D3
+	
 }

@@ -39,6 +39,7 @@ sen_NL is
 
 <hr>
 
+<p>
 sen_Syms is 
 <?php 
 
@@ -61,3 +62,14 @@ sen_Syms is
 	}
 
 ?>
+
+</p>
+
+<br>
+
+	<span></span>
+
+<br>
+
+<a onclick="d3_alert('clicked')">click</a>
+

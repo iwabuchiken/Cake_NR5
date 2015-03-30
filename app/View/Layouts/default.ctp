@@ -56,12 +56,31 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->script('jquery-ui.js');
 		
 		echo $this->Html->script('main');
+
+		// d3
+		echo $this->Html->script('http://d3js.org/d3.v3.min.js');
+		
+		// sprintf
+		//REF http://www.diveintojavascript.com/projects/javascript-sprintf
+		//REF C:\WORKS\WS\Eclipse_Luna\Cake_NR5\sprintf.js\demo\angular.html
+		echo $this->Html->script('https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.3/angular.min.js');
+		echo $this->Html->script('angular-sprintf');
+		echo $this->Html->script('sprintf');
+
+		
+		echo $this->Html->script('test_NVP');
+		
 		
 	?>
 	
 <!-- 	http://d3js.org/ -->
-	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<!-- 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
 	
+	<?php 
+	
+// 		echo $this->Html->script('test_NVP');
+	
+	?>
 </head>
 <body>
 <!-- 	<div id="container"> -->
