@@ -2,6 +2,12 @@
 
 <a onclick="d3_Bar()">click</a>
 
+<br>
+<br>
+
+<a onclick="d3_Circle()">Circle</a>
+
+
 <!-- <a onclick="d3_alert('clicked')"> -->
 <!-- 				click -->
 <!-- </a> -->
@@ -51,3 +57,11 @@
   <div style="width: 230px;">23</div>
   <div style="width: 420px;">42</div>
 </div>
+
+<hr>
+<!-- REF http://bost.ocks.org/mike/circles/ -->
+<svg width="720" height="120">
+  <circle cx="40" cy="60" r="10"></circle>
+  <circle cx="80" cy="60" r="10"></circle>
+  <circle cx="120" cy="60" r="10"></circle>
+</svg>

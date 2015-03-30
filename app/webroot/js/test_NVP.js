@@ -328,3 +328,134 @@ d3_Bar() {
 	
 	
 }
+
+function
+d3_Circle() {
+
+	/***************************
+		test: 5
+	 ***************************/
+	//REF http://bost.ocks.org/mike/circles/
+	var svg = d3.select("svg");
+	
+	var circle = svg.selectAll("circle")
+	    .data([32, 57])
+	    ;	
+	
+	circle.exit().remove();
+	
+	circle.attr("cx", function(d, i) { return i * 100 + 30; });
+	
+//	/***************************
+//		test: 5
+//	 ***************************/
+//	//REF http://bost.ocks.org/mike/circles/
+//	var svg = d3.select("svg");
+//	
+//	svg.selectAll("circle")
+//	.data([32, 57, 112, 293])
+//	.enter().append("circle")
+//	.attr("cy", 60)
+//	.attr("cx", function(d, i) { return i * 100 + 30; })
+//	.attr("r", function(d) { return Math.sqrt(d); })
+//	.style("fill", function(d) { return "hsl(" + Math.random() * d + ",100%,50%)"; })
+//	;	
+	
+//	/***************************
+//		test: 4
+//	 ***************************/
+//	//REF http://bost.ocks.org/mike/circles/
+//	var svg = d3.select("svg");
+//	
+//	var circle = svg.selectAll("circle")
+//	.data([32, 57, 112, 293]);
+//	
+//	var circleEnter = circle.enter().append("circle");
+//	
+//	circleEnter.attr("r", function(d) { return Math.sqrt(d); });
+//	
+//	circleEnter.attr("cx", function(d, i) { return i * 100 + 30; });
+//	circleEnter.attr("cy", 60);
+//	circleEnter.style("fill", function(d) { return "hsl(" + Math.random() * d + ",100%,50%)"; });
+//	
+//	/***************************
+//		test: 3
+//	 ***************************/
+//	//REF http://bost.ocks.org/mike/circles/
+//	var circle = d3.selectAll("circle");
+//	
+//	circle.data([32, 57, 112]);
+//	
+//	circle.attr("r", function(d) { return Math.sqrt(d); });
+//	
+//	circle.style("fill", function(d) { return "hsl(" + Math.random() * d + ",100%,50%)"; });
+//	
+//	circle.attr("cx", function(d, i) { return i * 100 + 30; });
+	
+//	/***************************
+//		test: 2
+//	 ***************************/
+//	//REF http://bost.ocks.org/mike/circles/
+//	var circle = d3.selectAll("circle");
+//	
+//	circle.data([32, 57, 112]);
+//	
+////	alert("data => bound");
+//	
+//	circle.attr("r", function(d) { return Math.sqrt(d); });
+//	
+//	circle.style("fill", function(d) { return "hsl(" + Math.random() * d + ",100%,50%)"; });
+
+//	for (var int = 0; int < 5; int++) {
+		
+//		setTimeout(d3_Circle_exe(), 1000);
+		
+//	}
+	
+//	//REF http://stackoverflow.com/questions/7854820/sleep-pause-wait-in-javascript answered Oct 21 '11 at 20:19
+////	setTimeout(function(){alert("hi")}, 1000);	//=> w
+//	setTimeout(function(){}, 1000);
+//
+//	alert("1000");
+	
+//	window.setTimeout(partB,1000);
+//	
+//	alert("1000");
+	
+//	/***************************
+//		test: 1
+//	 ***************************/
+//	//REF http://bost.ocks.org/mike/circles/
+//	var circle = d3.selectAll("circle");	
+//
+//	circle.style("fill", "hsl(" + Math.random() * 360 + ",100%,50%)");
+////	circle.style("fill", "steelblue");
+////	circle.attr("r", 30);	//=> w
+//	circle.attr("cx", function() { return Math.random() * 720; });
+//	circle.attr("r", function() { return Math.random() * 50; });
+////	circle.style("color", "hsl(" + Math.random() * 360 + ",100%,50%)");
+	
+	//REF length http://stackoverflow.com/questions/14202601/array-size-vs-array-length
+//	alert(circle + "(" + circle.length + ")");
+	
+}//d3_Circle
+
+function
+d3_Circle_exe() {
+	
+	/***************************
+		test: 2
+	 ***************************/
+	//REF http://bost.ocks.org/mike/circles/
+	var circle = d3.selectAll("circle");
+	
+//	circle.data([32, 57, 112]);
+	circle.data([100, 50, 70]);
+	
+//	alert("data => bound");
+	
+	circle.attr("r", function(d) { return Math.sqrt(d); });
+	
+	circle.style("fill", function(d) { return "hsl(" + Math.random() * d + ",100%,50%)"; });
+	
+}//d3_Circle_exe
