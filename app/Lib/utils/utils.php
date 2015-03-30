@@ -201,12 +201,12 @@
 			."/"
 					."WWW_ROOT => ".WWW_ROOT;
 				
-			write_Log(
-			CONS::get_dPath_Log(),
-			// 				$this->get_dPath_Log(),
-			$msg,
-			__FILE__,
-			__LINE__);
+// 			write_Log(
+// 			CONS::get_dPath_Log(),
+// 			// 				$this->get_dPath_Log(),
+// 			$msg,
+// 			__FILE__,
+// 			__LINE__);
 				
 				
 			return join(DS,

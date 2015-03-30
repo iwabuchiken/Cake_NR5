@@ -519,6 +519,11 @@ class TokensController extends AppController {
 		$opt_conditions = $this->_index__Options__Hin_1($opt_conditions);
 		
 		/**********************************
+		* hin_2
+		**********************************/
+		$opt_conditions = $this->_index__Options__Hin_2($opt_conditions);
+		
+		/**********************************
 		* history_id
 		**********************************/
 		$opt_conditions = $this->_index__Options__Hist_Id($opt_conditions);
@@ -740,6 +745,79 @@ class TokensController extends AppController {
 		return $opt_conditions;
 	
 	}//_index__Options__Hin_1
+	
+	public function
+	_index__Options__Hin_2($opt_conditions) {
+	
+		/**********************************
+		 * param: filter: hin
+		**********************************/
+		$filter_hins_2 = CONS::$str_Filter_Hins_2;
+// 		$filter_hins = "filter_hins_1";
+	
+// 		$opt_conditions = array();
+	
+		@$query_Filter_Hins_2 = $this->request->query[$filter_hins_2];
+
+// 		debug("query_Filter_Hins_1 is...");
+// 		debug($query_Filter_Hins_1);
+		
+		if ($query_Filter_Hins_2 == CONS::$str_Filter_Hins_2_all) {
+// 		if ($query_Filter_Hins == "-1") {
+	
+			$this->Session->write($filter_hins_2, null);
+	
+			$this->set("filter_hins_2", '');
+	
+		} else if ($query_Filter_Hins_2 == null) {
+	
+			@$session_Filter = $this->Session->read($filter_hins_2);
+	
+			if ($session_Filter != null) {
+	
+				$opt_conditions['Token.hin_2'] = $session_Filter;
+	
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("filter_hins_2", $session_Filter);
+	
+			} else {
+	
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("filter_hins_2", null);
+	
+			}
+	
+		} else {
+	
+			// 			$opt_conditions['History.line LIKE'] = "%$query_Filter_Hins%";
+	
+			//REF http://book.cakephp.org/2.0/en/models/retrieving-your-data.html
+			$opt_conditions['Token.hin_2'] = $query_Filter_Hins_2;
+	
+			$session_Filter = $this->Session->write($filter_hins_2, $query_Filter_Hins_2);
+	
+			//			debug("session_Filter => written");
+	
+			/**********************************
+			 * set: var
+			**********************************/
+			$this->set("filter_hins_2", $query_Filter_Hins_2);
+	
+		}
+	
+		/**********************************
+			* return
+		**********************************/
+// 		debug("\$opt_conditions is...");
+// 		debug($opt_conditions);
+		
+		return $opt_conditions;
+	
+	}//_index__Options__Hin_2
 	
 	public function
 	_index__Options__Hist_Id($opt_conditions) {
@@ -1194,11 +1272,11 @@ class TokensController extends AppController {
 		
 		$this->layout = 'plain';
 
-		//log
-		Utils::write_Log(
-						Utils::get_dPath_Log(),
-						"layout => set",
-						__FILE__, __LINE__);
+// 		//log
+// 		Utils::write_Log(
+// 						Utils::get_dPath_Log(),
+// 						"layout => set",
+// 						__FILE__, __LINE__);
 		
 	}//hin_Changed
 	

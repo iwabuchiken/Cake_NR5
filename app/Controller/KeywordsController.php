@@ -449,10 +449,10 @@ class KeywordsController extends AppController {
 				
 		}//foreach ($cat_pairs as $cat_pair)
 	
-		Utils::write_Log(
-		Utils::get_dPath_Log(),
-		"counter => ".((string)$counter),
-		__FILE__, __LINE__);
+// 		Utils::write_Log(
+// 		Utils::get_dPath_Log(),
+// 		"counter => ".((string)$counter),
+// 		__FILE__, __LINE__);
 	
 	
 		$this->Session->setFlash(__('Save keywords from csv => executed'));
@@ -512,11 +512,11 @@ class KeywordsController extends AppController {
 		
 		}
 		
-		// 		debug($kw_pairs[0]);
-		Utils::write_Log(
-		Utils::get_dPath_Log(),
-		"\$kw_pairs => ".((string)count($kw_pairs)),
-		__FILE__, __LINE__);
+// 		// 		debug($kw_pairs[0]);
+// 		Utils::write_Log(
+// 		Utils::get_dPath_Log(),
+// 		"\$kw_pairs => ".((string)count($kw_pairs)),
+// 		__FILE__, __LINE__);
 		
 		return $kw_pairs;
 		
