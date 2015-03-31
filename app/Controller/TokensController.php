@@ -2983,4 +2983,24 @@ class TokensController extends AppController {
 		
 	}//test_D3
 	
+	public function
+	get_JSON_Data() {
+
+		//REF rand http://php.net/manual/en/function.rand.php
+		$data = array("a" => rand(0,10), "b" => rand(0,10), "c" => rand(0,10));
+// 		$data = array("a" => 10, "b" => 20, "c" => 30);
+// 		$data = array(1 => 10, 2 => 20, 3 => 30);
+		
+		//REF http://php.net/manual/en/function.json-encode.php
+		$this->set("data", json_encode($data));
+		
+		/**********************************
+		 * view
+		**********************************/
+		$this->layout = 'plain';
+		
+		$this->render("/Tokens/tests/get_JSON_Data");
+		
+	}//get_JSON_Data
+	
 }

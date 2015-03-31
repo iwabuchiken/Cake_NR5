@@ -369,6 +369,39 @@ d3_Bar() {
 }
 
 function
+d3_Bar_2(data) {
+	
+	/***************************
+		test: 6
+	 ***************************/
+//	var data = [4, 8, 15, 16, 23, 42];
+	
+	d3.select(".chart2")
+	.selectAll("div")
+	.data(data)
+	.enter().append("div")
+	.style("width", function(d) { return d * 10 + "px"; })
+	.text(function(d) { return d; });
+	
+	var x = d3.scale.linear()
+	.domain([0, d3.max(data)])
+	.range([0, 210]);
+//	.range([0, 420]);
+	
+//	alert("d3.max(data) => " + d3.max(data));
+	
+	d3.select(".chart")
+	.selectAll("div")
+	.data(data)
+	.enter().append("div")
+	.style("width", function(d) { return x(Math.random() * d) + "px"; })
+//		    .style("width", function(d) { return x(d) + "px"; })
+	.text(function(d) { return d; });
+	
+}//d3_Bar_2
+
+
+function
 d3_Circle() {
 
 	/***************************
@@ -498,3 +531,116 @@ d3_Circle_exe() {
 	circle.style("fill", function(d) { return "hsl(" + Math.random() * d + ",100%,50%)"; });
 	
 }//d3_Circle_exe
+
+function
+get_JSON_Data() {
+	
+	/***************************
+		prep
+	 ***************************/
+	var hostname = window.location.hostname;
+	
+	var url;
+	
+	if (hostname == "benfranklin.chips.jp") {
+		
+		url = "/cake_apps/Cake_NR5/Tokens/get_JSON_Data";
+		
+	} else {
+	
+		url = "/Cake_NR5/Tokens/get_JSON_Data";
+	
+	}
+	
+//	alert(url);
+	
+	$.ajax({
+		
+	    url: url,
+	    type: "GET",
+	    //REF http://stackoverflow.com/questions/1916309/pass-multiple-parameters-to-jquery-ajax-call answered Dec 16 '09 at 17:37
+//	    data: {id: id},
+	    
+	    timeout: 10000
+	    
+	}).done(function(data, status, xhr) {
+
+		var json = $.parseJSON(data);
+
+		var msg = "";
+
+		var count = 0;
+		
+		$.each(json, function(i, obj) { count ++; });
+		
+//		alert("count => " + count);
+		
+		//REF array http://stackoverflow.com/questions/4852017/proper-way-to-initialize-an-arrays-length-in-javascript answered Jan 31 '11 at 14:32
+		var ary = new Array(count);
+		
+//		alert(ary);
+		
+		count = 0;
+		
+		$.each(json, function(key, value){		//=> w
+		//	$.each(json[0], function(key, value){	//=> n/w
+		
+			ary[count] = value;
+			
+			count ++;
+//					msg += "(" + key + "/" + value + ")";
+		//    			console.log(key, value);
+		});
+		
+//		alert(ary);
+
+		d3_Bar_2(ary);	//=> 
+		
+		
+//		$.each(json, function(i, obj) { });	//=> no response
+//		$.each(myJsonObject.Apps, function(i, obj) { });
+		
+//		alert(obj.Groups.length;);
+		
+//		alert(json.length);	//=> undefined
+//		alert(json);		//=> [object Object]
+		
+		//REF http://stackoverflow.com/questions/7073837/how-to-get-json-key-and-value answered Aug 16 '11 at 5:33
+//		$.each(json, function(key, value){		//=> w
+////			$.each(json[0], function(key, value){	//=> n/w
+//			
+//					msg += "(" + key + "/" + value + ")";
+////		    			console.log(key, value);
+//		});
+//		
+//		alert(msg);
+		
+//		var data = [json.a, json.b, json.c];
+		
+//		alert(data);
+		
+//		d3_Bar_2(data);	//=> w
+		
+//		d3_Bar();		//=> w
+
+		//REF http://api.jquery.com/jQuery.parseJSON/
+//		alert(json.a);	//=> "10"
+//		alert(json.1);	//=> non response
+		
+//		alert(json."1");	//=> non response
+		
+//		alert(data.items);	//=> undefined
+		
+//		//REF http://www.jquery4u.com/demos/ajax/ "jQuery.getJSON() Example"
+//		alert(JSON.stringify(data));	//=> w
+//		alert(json.html);	//=> undefined
+//		alert(json);	//=> [object Object]
+//		alert(data);
+		
+	}).fail(function(xhr, status, error) {
+		
+		alert(xhr.status);
+		
+	});
+	
+}//get_JSON_Data

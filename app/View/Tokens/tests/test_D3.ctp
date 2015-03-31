@@ -1,5 +1,9 @@
 
 
+<a onclick="get_JSON_Data()">get_JSON_Data</a>
+
+<hr>
+
 <a onclick="d3_Bar()">Bar</a>
 
 <hr>
