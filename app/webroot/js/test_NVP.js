@@ -272,13 +272,52 @@ function
 d3_Bar() {
 
 	/***************************
-		test: 4
+		test: 6
 	 ***************************/
-	var obj = d3.select(".chart")
-				  .selectAll("div")
-				    .data(data);
+	var data = [4, 8, 15, 16, 23, 42];
+
+	d3.select(".chart2")
+			.selectAll("div")
+			.data(data)
+			.enter().append("div")
+			.style("width", function(d) { return d * 10 + "px"; })
+			.text(function(d) { return d; });
+
+	var x = d3.scale.linear()
+			    .domain([0, d3.max(data)])
+			    .range([0, 210]);
+//	.range([0, 420]);
 	
-	alert(obj.className);
+//	alert("d3.max(data) => " + d3.max(data));
+	
+	d3.select(".chart")
+		  .selectAll("div")
+		    .data(data)
+		  .enter().append("div")
+		    .style("width", function(d) { return x(Math.random() * d) + "px"; })
+//		    .style("width", function(d) { return x(d) + "px"; })
+		    .text(function(d) { return d; });
+	
+//	/***************************
+//		test: 5
+//	 ***************************/
+//	var data = [4, 8, 15, 16, 23, 42];
+//	
+//	d3.select(".chart")
+//	.selectAll("div")
+//	.data(data)
+//	.enter().append("div")
+//	.style("width", function(d) { return d * 10 + "px"; })
+//	.text(function(d) { return d; });
+//	
+//	/***************************
+//		test: 4
+//	 ***************************/
+//	var obj = d3.select(".chart")
+//				  .selectAll("div")
+//				    .data(data);
+//	
+//	alert(obj.className);
 	
 //	d3.select(".chart")
 //	  .selectAll("div")

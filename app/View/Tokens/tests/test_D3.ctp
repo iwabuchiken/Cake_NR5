@@ -1,41 +1,9 @@
-<h1><?php echo __FILE__; ?></h1>
-
-<a onclick="d3_Bar()">click</a>
-
-<br>
-<br>
-
-<a onclick="d3_Circle()">Circle</a>
 
 
-<!-- <a onclick="d3_alert('clicked')"> -->
-<!-- 				click -->
-<!-- </a> -->
-
-<br>
-<br>
-
-<a onclick="d3_Bar_OFF()">off</a>
-
-<!-- <a onclick="d3_alert_OFF()">alert => off</a> -->
+<a onclick="d3_Bar()">Bar</a>
 
 <hr>
 
-<div class="abc">
-
-	ABC
-
-</div>
-
-<br>
-
-<div class="abc">
-
-	DEF
-	
-</div>
-
-<hr>
 <!-- REF http://bost.ocks.org/mike/bar/ -->
 <style>
 
@@ -48,20 +16,26 @@
   color: white;
 }
 
+.chart2 div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+
 </style>
 <div class="chart">
-  <div style="width: 40px;">4</div>
-  <div style="width: 80px;">8</div>
-  <div style="width: 150px;">15</div>
-  <div style="width: 160px;">16</div>
-  <div style="width: 230px;">23</div>
-  <div style="width: 420px;">42</div>
+  <!-- <div style="width: 40px;">4</div> -->
+  <!-- <div style="width: 80px;">8</div> -->
+  <!-- <div style="width: 150px;">15</div> -->
+  <!-- <div style="width: 160px;">16</div> -->
+  <!-- <div style="width: 230px;">23</div> -->
+  <!-- <div style="width: 420px;">42</div> -->
 </div>
 
 <hr>
-<!-- REF http://bost.ocks.org/mike/circles/ -->
-<svg width="720" height="120">
-  <circle cx="40" cy="60" r="10"></circle>
-  <circle cx="80" cy="60" r="10"></circle>
-  <circle cx="120" cy="60" r="10"></circle>
-</svg>
+<div class="chart2">
+
+</div>
