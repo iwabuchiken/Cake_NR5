@@ -369,34 +369,107 @@ d3_Bar() {
 }
 
 function
+get_MaxElement(data) {
+	
+	//REF http://stackoverflow.com/questions/307179/what-is-javascripts-highest-integer-value-that-a-number-can-go-to-without-losin Aug 21 '14 at 17:59
+	var tmp = -1 * Number.MAX_SAFE_INTEGER;
+
+//	alert("tmp=" + tmp);
+	
+	var len = data.length;
+	
+//	alert("len=" + len);
+	
+	for (var i = 0; i < len; i++) {
+		
+		if (tmp < data[i]) {
+			
+			tmp = data[i];
+			
+		}
+		
+	}
+	
+	return tmp;
+	
+//	alert(tmp);
+	
+}
+
+function
+d3_Bar_2__Adjust(data, max) {
+	
+//	alert("max=" + max);
+	
+	var max_Elem = get_MaxElement(data);
+	
+	alert("max elem=" + max_Elem);
+	
+	var len = data.length;
+	
+	var data_New = new Array(len);
+	
+	alert(max_Elem.toFixed(2));
+	
+	alert(data[1] / max_Elem.toFixed(2));
+	
+	for (var i = 0; i < len; i++) {
+		
+		//REF toFixed http://stackoverflow.com/questions/4057489/javascript-convert-int-to-float answered Oct 30 '10 at 6:12
+		data_New[i] = parseInt(data[i] / max_Elem.toFixed(2) * max);
+//		data_New[i] = data[i];
+		
+	}
+	
+	return data_New;
+	
+}
+
+function
 d3_Bar_2(data) {
+
+	
+////	alert(Number.MINIMUM_SAFE_INTEGER);
+//	alert(Number.MAX_SAFE_INTEGER + " / " + (Math.pow(2,32) - 1)
+//			 + " / " + (Math.pow(2,64) - 1)
+//	 );
+	
+//	alert(data[i]);
 	
 	/***************************
 		test: 6
 	 ***************************/
 //	var data = [4, 8, 15, 16, 23, 42];
 	
+	var max = 600;
+	
+	var max_elem = get_MaxElement(data);
+	
+//	data = d3_Bar_2__Adjust(data, max);
+	
 	d3.select(".chart2")
-	.selectAll("div")
-	.data(data)
-	.enter().append("div")
-	.style("width", function(d) { return d * 10 + "px"; })
+		.selectAll("div")
+		.data(data)
+		.enter().append("div")
+		.style("width", function(d) { return parseInt(max * d / max_elem) + "px"; })
+//		.style("width", function(d) { return d * 10 + "px"; })
+//		.text(function(d) { return parseInt(max * d / max_elem); });
 	.text(function(d) { return d; });
 	
 	var x = d3.scale.linear()
-	.domain([0, d3.max(data)])
-	.range([0, 210]);
+		.domain([0, d3.max(data)])
+		.range([0, 210]);
 //	.range([0, 420]);
 	
 //	alert("d3.max(data) => " + d3.max(data));
 	
 	d3.select(".chart")
-	.selectAll("div")
-	.data(data)
-	.enter().append("div")
-	.style("width", function(d) { return x(Math.random() * d) + "px"; })
-//		    .style("width", function(d) { return x(d) + "px"; })
-	.text(function(d) { return d; });
+		.selectAll("div")
+		.data(data)
+		.enter().append("div")
+		.style("width", function(d) { return x(Math.random() * d) + "px"; })
+	//		    .style("width", function(d) { return x(d) + "px"; })
+		.text(function(d) { return d; });
 	
 }//d3_Bar_2
 
@@ -565,6 +638,8 @@ get_JSON_Data() {
 	    
 	}).done(function(data, status, xhr) {
 
+//		alert(data);
+		
 		var json = $.parseJSON(data);
 
 		var msg = "";
@@ -582,6 +657,8 @@ get_JSON_Data() {
 		
 		count = 0;
 		
+		var keys = "";
+		
 		$.each(json, function(key, value){		//=> w
 		//	$.each(json[0], function(key, value){	//=> n/w
 		
@@ -590,11 +667,17 @@ get_JSON_Data() {
 			count ++;
 //					msg += "(" + key + "/" + value + ")";
 		//    			console.log(key, value);
+			
+			keys += key + "/";
+			
 		});
 		
 //		alert(ary);
 
 		d3_Bar_2(ary);	//=> 
+		
+		//debug
+		$('#message').text(keys);
 		
 		
 //		$.each(json, function(i, obj) { });	//=> no response

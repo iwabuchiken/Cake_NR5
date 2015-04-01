@@ -2984,7 +2984,7 @@ class TokensController extends AppController {
 	}//test_D3
 	
 	public function
-	get_JSON_Data() {
+	get_JSON_Data_deprecated() {
 
 		//REF rand http://php.net/manual/en/function.rand.php
 		$data = array("a" => rand(0,10), "b" => rand(0,10), "c" => rand(0,10));
@@ -3000,6 +3000,257 @@ class TokensController extends AppController {
 		$this->layout = 'plain';
 		
 		$this->render("/Tokens/tests/get_JSON_Data");
+		
+	}//get_JSON_Data
+	
+	public function
+	get_JSON_Data() {
+
+		/*******************************
+			build: particles list
+		*******************************/
+		/*******************************
+		 get: history id
+		*******************************/
+		@$hist_id = $this->request->query['hist_id'];
+		
+		if ($hist_id == null) {
+		
+			$hist_id = 63;
+		
+		} else {
+		
+			// 			$hist_id;
+		
+		}//if ($hist_id == null)
+		
+		/*******************************
+		 validate: history exists
+		*******************************/
+		$res = Utils::exists_History($hist_id);
+		
+		if ($res == false) {
+
+			$data = array();
+			
+			$this->set("data", json_encode($data));
+			
+			/**********************************
+			 * view
+			**********************************/
+			$this->layout = 'plain';
+			$this->render("/Tokens/tests/get_JSON_Data");
+			
+			return;
+				
+		}//if ($res == false)
+		
+		/*******************************
+		 get: tokens
+		*******************************/
+		$option = array('conditions' => array('Token.history_id' => $hist_id));
+		
+		$tokens = $this->Token->find('all', $option);
+		
+// 		debug(count($tokens));
+		
+		/*******************************
+		 build: NL sentence
+		*******************************/
+		$this->set("hist_id", $hist_id);
+		
+		if ($tokens == null || count($tokens) < 1) {
+		
+			$this->set("sen_NL", "NO TOKENS");
+		
+		} else {
+		
+			$ary_Forms = array();
+			$ary_Syms = array();
+				
+			$max = 50;
+				
+			$count = 1;
+				
+			for ($i = 0; $i < count($tokens); $i++) {
+		
+				/*******************************
+				 hin, sym
+				*******************************/
+				$hin = $tokens[$i]['Token']['hin'];
+				$sym = CONS::$map_HinSymbols[$hin];
+		
+				/*******************************
+				 modify: particles => subparticles
+				*******************************/
+				if ($hin == "助詞") {
+						
+					$sym = $this->conv_Particle_2_SubParticle($tokens[$i]['Token']['hin_1']);
+						
+				} else if ($hin == "名詞") {
+						
+					$sym = $this->conv_Noun_2_SubNoun($tokens[$i]['Token']['hin_1']);
+						
+				}//if ($hin == "助詞")
+		
+				array_push($ary_Forms, $tokens[$i]['Token']['form']);
+				array_push($ary_Syms, $sym);
+					// 				array_push($ary_Syms, CONS::$map_HinSymbols[$tokens[$i]['Token']['hin']]);
+		
+				if ($i > $max) {
+						
+					break;
+						
+				}
+		
+				// delimiter
+				if ($i % 5 == 0) {
+						
+					array_push($ary_Forms, "/($count)");
+					array_push($ary_Syms, "/($count)");
+						
+					$count ++;
+						
+				}
+		
+			}//for ($i = 0; $i < count($tokens); $i++)
+				
+			$sen_NL = implode(" ", $ary_Forms);
+				// 			$sen_Syms = implode("", $ary_Syms);
+			$sen_Syms = implode(" ", $ary_Syms);
+				
+			$this->set("sen_NL", $sen_NL);
+			$this->set("sen_Syms", $sen_Syms);
+				
+			// 		debug($sen_NL);
+		
+		}//if ($tokens == null || count($tokens) < 1)
+		
+		/*******************************
+		 stat: hin_1 names => "助詞"
+		*******************************/
+		$option2 = array('conditions' =>
+				array('Token.hin' => CONS::$hin_Names[2]));	// 名詞
+		// 							array('Token.hin' => "助詞"));
+		
+		$tokens2 = $this->Token->find('all', $option2);
+		
+		$total = count($tokens2);
+		
+// 		debug("tokens with ".CONS::$hin_Names[2]);
+// 		debug($total);
+		// 		debug(count($tokens2));
+		
+		// 		debug($tokens2[0]);
+		
+		/*******************************
+		 number of each kind of particles
+		*******************************/
+		$count = 0;
+		
+		$cnt_NoMatch = 0;
+		
+		$particles = array();
+		
+		for ($i = 0; $i < count(CONS::$hin1_Noun_Names); $i++) {
+				
+			$particles[CONS::$hin1_Noun_Names[$i]] = 0;
+				
+		}
+		
+		$total_hin1_Noun_Names = count(CONS::$hin1_Noun_Names);
+		
+		for ($i = 0; $i < $total; $i++) {
+// 		for ($i = 0; $i < count($tokens2); $i++) {
+		
+			$match = false;
+				
+			for ($j = 0; $j < $total_hin1_Noun_Names; $j++) {
+// 			for ($j = 0; $j < count(CONS::$hin1_Noun_Names); $j++) {
+		
+				$hin_1 = $tokens2[$i]['Token']['hin_1'];
+					
+				if ($hin_1 == CONS::$hin1_Noun_Names[$j]) {
+		
+					$particles[CONS::$hin1_Noun_Names[$j]] += 1;
+					// 					$count ++;
+						
+					$match = true;
+		
+					break;
+						
+				}
+		
+			}//for ($j = 0; $j < count(CONS::$hin1_Noun_Names); $j++)
+		
+			// no match
+			if ($match == false) {
+		
+				$cnt_NoMatch ++;
+		
+			}
+				
+		}
+		
+// 		debug($particles);
+		
+		/*******************************
+		 build: message
+		*******************************/
+// 		$message = "";
+		
+		asort($particles);
+		
+// 		$data = array();
+		
+		$keys = array_keys($particles);
+		
+		for ($i = 0; $i < count($particles); $i++) {
+				
+// 			$data[$keys[$i]] = $particles[$keys[$i]];
+			
+// 			$message .= $keys[$i]." => "
+// 					.$particles[$keys[$i]]
+// 					."("
+// 							.(($particles[$keys[$i]]) / $total * 100)
+// 							.")"
+// 									."<br>";
+				
+		}
+		
+// 		$message .= "no match"." => "
+// 				.$cnt_NoMatch
+// 				."("
+// 						.(($cnt_NoMatch) / $total * 100)
+// 						.")"
+// 								."<br>";
+		
+
+		//REF http://php.net/manual/en/function.json-encode.php
+		$this->set("data", json_encode($particles));
+// 		$this->set("data", json_encode($data));
+
+		/**********************************
+		 * view
+		**********************************/
+		$this->layout = 'plain';
+
+		$this->render("/Tokens/tests/get_JSON_Data");
+
+// 		//REF rand http://php.net/manual/en/function.rand.php
+// 		$data = array("a" => rand(0,10), "b" => rand(0,10), "c" => rand(0,10));
+// // 		$data = array("a" => 10, "b" => 20, "c" => 30);
+// // 		$data = array(1 => 10, 2 => 20, 3 => 30);
+		
+// 		//REF http://php.net/manual/en/function.json-encode.php
+// 		$this->set("data", json_encode($data));
+		
+// 		/**********************************
+// 		 * view
+// 		**********************************/
+// 		$this->layout = 'plain';
+		
+// 		$this->render("/Tokens/tests/get_JSON_Data");
 		
 	}//get_JSON_Data
 	

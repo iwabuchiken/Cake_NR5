@@ -43,3 +43,8 @@
 <div class="chart2">
 
 </div>
+
+<div id="message">
+
+
+</div>
