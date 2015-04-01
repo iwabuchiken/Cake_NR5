@@ -1,10 +1,15 @@
-
+<svg id="svg_donut" width="600" height="400"></svg>
 
 <a onclick="get_JSON_Data()">get_JSON_Data</a>
 
 <hr>
 
 <a onclick="d3_Bar()">Bar</a>
+
+<br>
+<br>
+
+<a onclick="d3_Pie()">Pie</a>
 
 <hr>
 

@@ -416,6 +416,7 @@ d3_Bar_2__Adjust(data, max) {
 	for (var i = 0; i < len; i++) {
 		
 		//REF toFixed http://stackoverflow.com/questions/4057489/javascript-convert-int-to-float answered Oct 30 '10 at 6:12
+		//REF parseInt() https://www.hscripts.com/tutorials/javascript/type-conversions.php
 		data_New[i] = parseInt(data[i] / max_Elem.toFixed(2) * max);
 //		data_New[i] = data[i];
 		
@@ -727,3 +728,60 @@ get_JSON_Data() {
 	});
 	
 }//get_JSON_Data
+
+function
+d3_Pie() {
+	
+	var vis = d3.select("#svg_donut");
+	var arc = d3.svg.arc() 
+				.innerRadius(50)
+				.outerRadius(100)
+				.startAngle(Math.random() * 2.0 * Math.PI)
+//				.startAngle(Math.random() * 1.0 * Math.PI)
+				.endAngle(Math.random() * 2.0 * Math.PI);
+//	.startAngle(0)
+//	.endAngle(1.0*Math.PI);
+//	.endAngle(1.5*Math.PI);
+
+//	var hsl = "hsl(" 
+//				+ Math.random() * 360 
+//				+ "," 
+//				+ Math.random() * 360 
+//				+ "," 
+//				+ Math.random() * 100
+//				+ "%"
+//				+ ")";
+//	+ Math.random() * 360 
+//	+ ")";				
+				//=> n/w --> color remains black
+	
+	var hsl = "hsl(" + Math.random() * 360 + ",100%,50%)";
+	
+//	alert("hsl=" + hsl);
+
+	//REF http://stackoverflow.com/questions/11257015/how-to-give-hsl-color-value-to-an-svg-element answered Jun 29 '12 at 6:48
+	var color = "hsl("+[0,0,0].map(function(){   return Math.round(100*Math.random())+"%"; }).join(',')+")";
+	
+//	alert(color);
+	
+	var hsl_2 = "hsl(" + Math.round(Math.random() * 100) + "%" + ",100%,50%)";
+//	var hsl_2 = "hsl(" + Math.random() * 100 + "%" + ",100%,50%)";
+	
+//	alert(hsl_2);
+	
+	vis.append("path")
+		.attr("d", arc)
+//		.attr("transform", "translate(300,400)");
+	.attr("transform", "translate(300,200)")
+	
+//	.attr("fill", hsl_2)	//=> black
+//	.attr("fill", "hsl(" + Math.random() * 100 + "%" + ",100%,50%)")	//=> black
+//	.attr("fill", "hsl("+[0,0,0].map(function(){   return Math.round(100*Math.random())+"%"; }).join(',')+")")	//=> color is black
+//	.attr("fill", color)	//=> color is black
+	.attr("fill", hsl)
+//	.attr("fill", "hsl(" + Math.random() * 360 + ","  + Math.random() * 360 + ",50%)")	//=> n/w
+//	.attr("fill", "hsl(" + Math.random() * 360 + ",100%,50%)")
+//	.attr("fill", "green")
+	;
+	
+}//d3_Pie
