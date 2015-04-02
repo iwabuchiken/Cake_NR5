@@ -397,6 +397,24 @@ get_MaxElement(data) {
 }
 
 function
+get_Sum(ary) {
+	
+	var sum = 0;
+	
+	var len = ary.length;
+	
+	for (var i = 0; i < len; i++) {
+		
+		sum += ary[i];
+		
+	}
+	
+	return sum;
+	
+}
+
+
+function
 d3_Bar_2__Adjust(data, max) {
 	
 //	alert("max=" + max);
@@ -730,58 +748,388 @@ get_JSON_Data() {
 }//get_JSON_Data
 
 function
+get_Stat() {
+	
+	/***************************
+		prep
+	 ***************************/
+	var hostname = window.location.hostname;
+	
+	var url;
+	
+	if (hostname == "benfranklin.chips.jp") {
+		
+		url = "/cake_apps/Cake_NR5/Tokens/get_JSON_Data";
+		
+	} else {
+		
+		url = "/Cake_NR5/Tokens/get_JSON_Data";
+		
+	}
+	
+	$.ajax({
+		
+		url: url,
+		type: "GET",
+		//REF http://stackoverflow.com/questions/1916309/pass-multiple-parameters-to-jquery-ajax-call answered Dec 16 '09 at 17:37
+//	    data: {id: id},
+		
+		timeout: 10000
+		
+	}).done(function(data, status, xhr) {
+
+		alert("ajax => done");
+		
+		return $.parseJSON(data);
+		
+	}).fail(function(xhr, status, error) {
+		
+		alert("status => " + status);
+		
+		return null;
+		
+	});
+	
+}//get_Stat
+
+function
+get_SumPartial(ary, limit) {
+
+	/***************************
+		validate
+	 ***************************/
+	var len = ary.length;
+	
+	if (limit > (len - 1)) {
+		
+		return null;
+		
+	}
+	
+	/***************************
+		get: sum
+	 ***************************/
+	var sum = 0;
+	
+	for (var i = 0; i <= limit; i++) {
+		
+		sum += ary[i];
+		
+	}
+	
+	return sum;
+	
+}
+
+function
 d3_Pie() {
-	
-	var vis = d3.select("#svg_donut");
-	var arc = d3.svg.arc() 
-				.innerRadius(50)
-				.outerRadius(100)
-				.startAngle(Math.random() * 2.0 * Math.PI)
-//				.startAngle(Math.random() * 1.0 * Math.PI)
-				.endAngle(Math.random() * 2.0 * Math.PI);
-//	.startAngle(0)
-//	.endAngle(1.0*Math.PI);
-//	.endAngle(1.5*Math.PI);
 
-//	var hsl = "hsl(" 
-//				+ Math.random() * 360 
-//				+ "," 
-//				+ Math.random() * 360 
-//				+ "," 
-//				+ Math.random() * 100
-//				+ "%"
-//				+ ")";
-//	+ Math.random() * 360 
-//	+ ")";				
-				//=> n/w --> color remains black
+	/***************************
+		test: 3
+	 ***************************/
+	/***************************
+		get: data
+	 ***************************/
+	var hostname = window.location.hostname;
 	
-	var hsl = "hsl(" + Math.random() * 360 + ",100%,50%)";
+	var url;
 	
-//	alert("hsl=" + hsl);
+	if (hostname == "benfranklin.chips.jp") {
+		
+		url = "/cake_apps/Cake_NR5/Tokens/get_JSON_Data";
+		
+	} else {
+		
+		url = "/Cake_NR5/Tokens/get_JSON_Data";
+		
+	}
+	
+	$.ajax({
+		
+		url: url,
+		type: "GET",
+		//REF http://stackoverflow.com/questions/1916309/pass-multiple-parameters-to-jquery-ajax-call answered Dec 16 '09 at 17:37
+//	    data: {id: id},
+		
+		timeout: 10000
+		
+	}).done(function(data, status, xhr) {
+		
+		/***************************
+			prep: data
+		 ***************************/
+		var json = $.parseJSON(data);
+		
+		var msg = "";
+		
+		var count = 0;
+		
+		$.each(json, function(i, obj) { count ++; });
+		
+		//REF array http://stackoverflow.com/questions/4852017/proper-way-to-initialize-an-arrays-length-in-javascript answered Jan 31 '11 at 14:32
+		var ary = new Array(count);
+		
+		count = 0;
+		
+		var keys = "";
+		var keys_ary = new Array(count);
+		
+		$.each(json, function(key, value){		//=> w
+			
+			ary[count] = value;
+			
+			keys_ary[count] = key;
+			
+			count ++;
+			
+			keys += key + "/";
+			
+		});
+		
+		alert(ary + " / " + "max=" + get_MaxElement(ary)
+				+ "\n"
+				+ " / "
+				+ "partial(3)=" + get_SumPartial(ary, 3));
+		
+		//REF max http://www.w3schools.com/jsref/jsref_max.asp
+//		alert(ary + " / " + "max=" + Math.max(ary));		//=> NaN
+		
+		var max_elem = get_MaxElement(ary);
+		
+		var sum_total = get_Sum(ary);
+		
+		/***************************
+			display
+		 ***************************/
+		//REF http://schoolofdata.org/2013/10/01/pie-and-donut-charts-in-d3-js/
+		var cScale = d3.scale.linear().domain([0, sum_total]).range([0, 2 * Math.PI]);
+		
+		// reverse data
+		//REF http://www.w3schools.com/jsref/jsref_reverse.asp
+		ary.reverse();
+		
+		alert("reversed => " + ary);
+		
+		data = [
+		        [0,get_SumPartial(ary, 0),"#AA8888"],
+		        [get_SumPartial(ary, 0),get_SumPartial(ary, 1),"#88BB88"], 
+		        [get_SumPartial(ary, 1),get_SumPartial(ary, 2),"#88CC88"],
+		        [get_SumPartial(ary, 2),get_SumPartial(ary, 3),"#88DD88"],
+		        [get_SumPartial(ary, 3),get_SumPartial(ary, (ary.length - 1)),"#88DD11"]
+//		        [0,get_SumPartial(ary, 7),"#AA8888"],
+//		        [get_SumPartial(ary, 7),get_SumPartial(ary, 8),"#88BB88"], 
+//		        [get_SumPartial(ary, 8),get_SumPartial(ary, 9),"#88CC88"],
+//		        [get_SumPartial(ary, 9),get_SumPartial(ary, 10),"#88DD88"]
+		        ];
+//		        [75,100,"#8888CC"]];
+//		data = [[0,50,"#AA8888"], [50,75,"#88BB88"], [75,100,"#8888CC"]]
+		
+//		alert("data[0][1]=" + data[0][1] + " / scaled=" + cScale(data[0][1]));
+		
+		var vis = d3.select("#svg_donut");
+		
+		var arc = d3.svg.arc() 
+		.innerRadius(50) 
+		.outerRadius(100) 
+		.startAngle(function(d){return cScale(d[0]);}) 
+		.endAngle(function(d){return cScale(d[1]);});
+		
+		vis.selectAll("path") 
+		.data(data) 
+		.enter() .append("path") 
+		.attr("d", arc) 
+		.style("fill", function(d){return d[2];}) 
+		.attr("transform", "translate(300,200)")
+//		.attr("transform", "translate(300,200)");
+		.text(function(d) { return d[1]; })
+//		.text(function(d) { return d; })	//=> no text
+		;
+		
+//		alert("ajax => done");
+//		
+//		return $.parseJSON(data);
+		
+		/***************************
+			disp: labels
+		 ***************************/
+		keys_ary.reverse();
+		
+		//REF join http://www.w3schools.com/jsref/jsref_join.asp
+		$('#message').text(keys_ary.join("/"));
+//		$('#message').text(keys);
+		
+	}).fail(function(xhr, status, error) {
+		
+		alert("status => " + status);
+		
+//		return null;
+		
+	});
+	
+//	/***************************
+//		test: 2
+//	 ***************************/
+//	/***************************
+//		get: data
+//	 ***************************/
+//	var hostname = window.location.hostname;
+//	
+//	var url;
+//	
+//	if (hostname == "benfranklin.chips.jp") {
+//		
+//		url = "/cake_apps/Cake_NR5/Tokens/get_JSON_Data";
+//		
+//	} else {
+//		
+//		url = "/Cake_NR5/Tokens/get_JSON_Data";
+//		
+//	}
+//	
+//	$.ajax({
+//		
+//		url: url,
+//		type: "GET",
+//		//REF http://stackoverflow.com/questions/1916309/pass-multiple-parameters-to-jquery-ajax-call answered Dec 16 '09 at 17:37
+////	    data: {id: id},
+//		
+//		timeout: 10000
+//		
+//	}).done(function(data, status, xhr) {
+//
+//		/***************************
+//			prep: data
+//		 ***************************/
+//		var json = $.parseJSON(data);
+//
+//		var msg = "";
+//
+//		var count = 0;
+//		
+//		$.each(json, function(i, obj) { count ++; });
+//		
+//		//REF array http://stackoverflow.com/questions/4852017/proper-way-to-initialize-an-arrays-length-in-javascript answered Jan 31 '11 at 14:32
+//		var ary = new Array(count);
+//		
+//		count = 0;
+//		
+//		var keys = "";
+//		
+//		$.each(json, function(key, value){		//=> w
+//		
+//			ary[count] = value;
+//			
+//			count ++;
+//			
+////			keys += key + "/";
+//			
+//		});
+//
+//		alert(ary + " / " + "max=" + get_MaxElement(ary));
+////		alert(ary + " / " + "max=" + Math.max(ary));		//=> NaN
+//
+//		var max_elem = get_MaxElement(ary);
+//		
+//		/***************************
+//			display
+//		 ***************************/
+//		//REF http://schoolofdata.org/2013/10/01/pie-and-donut-charts-in-d3-js/
+//		var cScale = d3.scale.linear().domain([0, 100]).range([0, 2 * Math.PI]);
+//
+//		data = [[0,50,"#AA8888"], [50,75,"#88BB88"], [75,100,"#8888CC"]]
+//
+////		alert("data[0][1]=" + data[0][1] + " / scaled=" + cScale(data[0][1]));
+//		
+//		var vis = d3.select("#svg_donut");
+//
+//		var arc = d3.svg.arc() 
+//					.innerRadius(50) 
+//					.outerRadius(100) 
+//					.startAngle(function(d){return cScale(d[0]);}) 
+//					.endAngle(function(d){return cScale(d[1]);});
+//
+//		vis.selectAll("path") 
+//			.data(data) 
+//			.enter() .append("path") 
+//			.attr("d", arc) 
+//			.style("fill", function(d){return d[2];}) 
+//			.attr("transform", "translate(300,200)");
+//
+////		alert("ajax => done");
+////		
+////		return $.parseJSON(data);
+//		
+//	}).fail(function(xhr, status, error) {
+//		
+//		alert("status => " + status);
+//		
+////		return null;
+//		
+//	});
+//
+////	var json = get_Stat();
+////	
+////	alert(json);
+//	
+////	if (json == null) {
+////		
+////		alert("data => null");
+////		
+////	} else {
+////
+////		alert("data => Obtained");
+////		
+////	}
+//	
+////	//REF http://schoolofdata.org/2013/10/01/pie-and-donut-charts-in-d3-js/
+////	var cScale = d3.scale.linear().domain([0, 100]).range([0, 2 * Math.PI]);
+////
+////	data = [[0,50,"#AA8888"], [50,75,"#88BB88"], [75,100,"#8888CC"]]
+////
+////	var vis = d3.select("#svg_donut");
+////
+////	var arc = d3.svg.arc() 
+////				.innerRadius(50) 
+////				.outerRadius(100) 
+////				.startAngle(function(d){return cScale(d[0]);}) 
+////				.endAngle(function(d){return cScale(d[1]);});
+////
+////	vis.selectAll("path") 
+////		.data(data) 
+////		.enter() .append("path") 
+////		.attr("d", arc) 
+////		.style("fill", function(d){return d[2];}) 
+////		.attr("transform", "translate(300,200)");
 
-	//REF http://stackoverflow.com/questions/11257015/how-to-give-hsl-color-value-to-an-svg-element answered Jun 29 '12 at 6:48
-	var color = "hsl("+[0,0,0].map(function(){   return Math.round(100*Math.random())+"%"; }).join(',')+")";
-	
-//	alert(color);
-	
-	var hsl_2 = "hsl(" + Math.round(Math.random() * 100) + "%" + ",100%,50%)";
-//	var hsl_2 = "hsl(" + Math.random() * 100 + "%" + ",100%,50%)";
-	
-//	alert(hsl_2);
-	
-	vis.append("path")
-		.attr("d", arc)
-//		.attr("transform", "translate(300,400)");
-	.attr("transform", "translate(300,200)")
-	
-//	.attr("fill", hsl_2)	//=> black
-//	.attr("fill", "hsl(" + Math.random() * 100 + "%" + ",100%,50%)")	//=> black
-//	.attr("fill", "hsl("+[0,0,0].map(function(){   return Math.round(100*Math.random())+"%"; }).join(',')+")")	//=> color is black
-//	.attr("fill", color)	//=> color is black
-	.attr("fill", hsl)
-//	.attr("fill", "hsl(" + Math.random() * 360 + ","  + Math.random() * 360 + ",50%)")	//=> n/w
-//	.attr("fill", "hsl(" + Math.random() * 360 + ",100%,50%)")
-//	.attr("fill", "green")
-	;
+	/***************************
+		test: 1
+	 ***************************/
+	//REF http://schoolofdata.org/2013/10/01/pie-and-donut-charts-in-d3-js/
+//	var myScale = d3.scale.linear().domain([0, 100]).range([0, 2 * Math.PI]);
+//	
+////	alert(myScale(100));
+//	
+//	var vis = d3.select("#svg_donut");
+//	var arc = d3.svg.arc() 
+//				.innerRadius(50)
+//				.outerRadius(100)
+//				.startAngle(myScale(100 * Math.random()))
+//				.endAngle(myScale(100 * Math.random()));
+////	.startAngle(myScale(0))
+////	.endAngle(myScale(75));
+////	.startAngle(Math.random() * 2.0 * Math.PI)
+//////				.startAngle(Math.random() * 1.0 * Math.PI)
+////	.endAngle(Math.random() * 2.0 * Math.PI);
+////	.startAngle(0)
+////	.endAngle(1.0*Math.PI);
+////	.endAngle(1.5*Math.PI);
+//
+//	var hsl = "hsl(" + Math.random() * 360 + ",100%,50%)";
+//	
+//	vis.append("path")
+//		.attr("d", arc)
+//	.attr("transform", "translate(300,200)")
+//	.attr("fill", hsl)
+//	;
 	
 }//d3_Pie
