@@ -14,7 +14,9 @@ class HistorysController extends AppController {
 		**********************************/
 		$opt_conditions = $this->_index__Options();
 
-// 		debug($opt_conditions);
+		debug($opt_conditions);
+
+// 		debug($filter_Cat);
 		
 		/*******************************
 			total limit
@@ -45,6 +47,11 @@ class HistorysController extends AppController {
 					'History.news_time',
 					'History.created_at', 
 					'History.updated_at',
+					'History.category_id',
+				
+					'Category.id',
+					'Category.name',
+					'Category.genre_id',
 // 					'History.line',
 // 					'History.url',
 // 					'History.vendor',
@@ -81,6 +88,9 @@ class HistorysController extends AppController {
 		$this->set('num_of_pages', (int) ceil(count($histories_Current) / $page_limit));
 // 		$this->set('num_of_pages', (int) ceil($num_of_histories / $page_limit));
 
+// 		debug($histories_Current[0]);
+		
+		
 // 		//REF http://alvinalexander.com/php/php-cakephp-database-sql-query-select
 // 		//test
 // 		$count = $this->History->query("SELECT COUNT(*) FROM histories");
@@ -331,6 +341,10 @@ class HistorysController extends AppController {
 // 		$opt_conditions = array();
 
 		$category_Id_Array = $this->_get_Category_Id_Array();
+
+		$this->set("category_Id_Array", $category_Id_Array);
+		
+// 		debug($category_Id_Array);
 		
 		/**********************************
 		 * param: filter

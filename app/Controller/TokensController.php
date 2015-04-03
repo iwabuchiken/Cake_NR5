@@ -2733,6 +2733,30 @@ class TokensController extends AppController {
 	test_NVP_nouns_list() {
 		
 		/*******************************
+			get: history ids	=> 3 ids
+		*******************************/
+		$this->loadModel('History');
+		
+		$histories = $this->History->find('all');
+		
+		$max = 3;
+		
+		$history_Ids = array();
+		
+		//debug
+		debug($histories[0]);
+		
+		for ($i = 0; $i < $max; $i++) {
+			
+			$h = $histories[$i];
+			
+			$id = $h['History']['id'];
+			
+			array_push($history_Ids, $id);
+			
+		}
+		
+		/*******************************
 		 get: history id
 		*******************************/
 		@$hist_id = $this->request->query['hist_id'];
@@ -2766,10 +2790,13 @@ class TokensController extends AppController {
 		/*******************************
 		 get: tokens
 		*******************************/
+
+		debug($history_Ids);
 		
 		$option = array('conditions' => 
 							array(
-									'Token.history_id' => $hist_id,
+									'Token.history_id' => $history_Ids,
+// 									'Token.history_id' => $hist_id,
 									'Token.hin' => "名詞",
 							)
 		);
@@ -2879,7 +2906,7 @@ class TokensController extends AppController {
 		
 		array_push($tmp, $d);
 		
-		debug($tmp);
+// 		debug($tmp);
 
 // 		//test
 // 		$tmp2 = array_unique($tokens);

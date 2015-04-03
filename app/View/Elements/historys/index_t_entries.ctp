@@ -38,6 +38,21 @@
 		
 		<td><?php echo $history['History']['news_time']; ?></td>
 		
+<!-- 		<td> -->
+			<?php //echo $history['History']['category_id']; ?>
+<!-- 		</td> -->
+		
+		<td>
+		
+			<?php 
+			
+				echo $history['Category']['name']
+					."(".$history['Category']['id']."/".$history['Category']['genre_id'].")"; 
+				
+			?>
+			
+		</td>
+		
 		<td><?php echo $history['History']['created_at']; ?></td>
 		<td><?php echo $history['History']['updated_at']; ?></td>
 		
