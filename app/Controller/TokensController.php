@@ -2727,6 +2727,242 @@ class TokensController extends AppController {
 		$this->render("/Tokens/tests/test_NVP");
 		
 	}//test_NVP
+
+	
+	public function
+	test_NVP_nouns_list() {
+		
+		/*******************************
+		 get: history id
+		*******************************/
+		@$hist_id = $this->request->query['hist_id'];
+		
+		if ($hist_id == null) {
+		
+			$hist_id = 126;
+// 			$hist_id = 63;
+		
+		} else {
+		
+			// 			$hist_id;
+		
+		}//if ($hist_id == null)
+		
+		/*******************************
+		 validate: history exists
+		*******************************/
+		$res = Utils::exists_History($hist_id);
+		
+		if ($res == false) {
+				
+			$this->set("message", "No history for id $hist_id");
+				
+			$this->render("/Tokens/tests/test_NVP");
+				
+			return;
+				
+		}//if ($res == false)
+		
+		/*******************************
+		 get: tokens
+		*******************************/
+		
+		$option = array('conditions' => 
+							array(
+									'Token.history_id' => $hist_id,
+									'Token.hin' => "名詞",
+							)
+		);
+		
+		$tokens = $this->Token->find('all', $option);
+		
+		debug(count($tokens));		
+		
+		/*******************************
+			biuld: nouns
+		*******************************/
+		$nouns = array();
+		
+		for ($i = 0; $i < count($tokens); $i++) {
+			
+			array_push($nouns, $tokens[$i]['Token']['form']);
+			
+		}
+		
+// 		debug(count($nouns));
+		
+		/*******************************
+			unique
+		*******************************/
+		$nouns = array_unique($nouns);
+		
+		debug(count($nouns));
+		
+// 		debug(array_slice($nouns, 0, 10));
+		
+// // 		debug($nouns[4]);
+// 		debug($nouns[5]);
+// // 		debug($nouns[6]);
+		
+		//REF http://stackoverflow.com/questions/7536961/reset-php-array-index answered Sep 24 '11 at 4:10
+		$nouns = array_values($nouns);
+		
+// 		debug(array_slice($nouns, 0, 10));
+// 		debug($nouns[5]);
+		
+		/*******************************
+			setup: nouns with histogram data
+		*******************************/
+		$histo = array();
+		
+		for ($i = 0; $i < count($nouns); $i++) {
+			
+// 			debug($nouns[$i]."($i)");
+			
+			$histo[$nouns[$i]] = 0;
+			
+		}
+		
+// 		debug(array_slice($histo, 0, 10));
+		
+// 		debug("\$histo => ".count($histo));
+		
+		/*******************************
+			build: histogram data
+		*******************************/
+		for ($i = 0; $i < count($tokens); $i++) {
+
+			$t = $tokens[$i];
+
+			$form = $t['Token']['form'];
+			
+			$histo[$form] ++;
+				
+		}
+		
+
+// 		debug(array_slice($histo, 0, 10));
+		
+// 		debug("\$histo => ".count($histo));
+		
+		/*******************************
+			sort
+		*******************************/
+		asort($histo);
+		
+		$histo = array_reverse($histo);
+
+// 		debug(array_slice($histo, 0, 20));
+// // 		debug(array_slice($histo, 0, 10));
+		
+// 		debug("\$histo => ".count($histo));
+		
+		/*******************************
+			set: values
+		*******************************/
+		$this->set("total", count($tokens));
+// 		$this->set("total", count($histo));
+		
+		$this->set("histo", $histo);
+
+		//test
+		$tmp = array(
+				
+				'aaa'	=> 2,
+				'bbb'	=> 3,
+				'aaa'	=> 6,
+				'ccc'	=> 32,
+			
+		);
+		
+		$d = array('aaa'	=> 9871);
+		
+		array_push($tmp, $d);
+		
+		debug($tmp);
+
+// 		//test
+// 		$tmp2 = array_unique($tokens);
+		
+// 		debug(count($tmp2));
+
+		$tmp = array();
+		
+		$tokens_New = array();
+		
+// 		debug($tokens[10]);
+		
+		for ($i = 0; $i < count($tokens); $i++) {
+			
+			$t = $tokens[$i];
+
+			if (in_array($t['Token']['form'], $tmp)) {
+				
+				continue;
+				
+			} else {
+				
+				array_push($tokens_New, $t);
+				
+				array_push($tmp, $t['Token']['form']);
+				
+			}
+			
+		}
+
+		debug("\$tokens_New => ".count($tokens_New));
+		
+// 		//debug
+// 		$text = "";
+		
+// 		for ($i = 0; $i < count($tokens); $i++) {
+
+// 			$text .= $tokens[$i]['Token']['form'];
+			
+// 			if ($i % 10 == 0) {
+				
+// 				$text .= "\n";
+// // 				$text .= "<br>";
+				
+// 			}
+			
+// 		}
+		
+// 		debug($text);
+
+// 		//debug
+// 		$option = array('conditions' =>
+// 				array(
+// 						'Token.history_id' => $hist_id,
+// // 						'Token.hin' => "名詞",
+// 				)
+// 		);
+		
+// 		$tokens = $this->Token->find('all', $option);
+		
+// 		$text = "";
+		
+// 		for ($i = 0; $i < count($tokens); $i++) {
+		
+// 			$text .= $tokens[$i]['Token']['form'];
+				
+// 			if ($i % 10 == 0) {
+		
+// 				$text .= "\n";
+// 				// 				$text .= "<br>";
+		
+// 			}
+				
+// 		}
+
+// 		debug($text);
+		
+		/**********************************
+		 * view
+		**********************************/
+		$this->render("/Tokens/tests/test_NVP_nouns_list");		
+		
+	}//test_NVP_nouns_list
 	
 	public function
 	test_D3() {
