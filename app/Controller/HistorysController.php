@@ -344,7 +344,7 @@ class HistorysController extends AppController {
 
 		$this->set("category_Id_Array", $category_Id_Array);
 		
-// 		debug($category_Id_Array);
+// 		debug($category_Id_Array);	
 		
 		/**********************************
 		 * param: filter

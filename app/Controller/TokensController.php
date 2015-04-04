@@ -2737,24 +2737,86 @@ class TokensController extends AppController {
 		*******************************/
 		$this->loadModel('History');
 		
-		$histories = $this->History->find('all');
+		$option_Histories = array("History.category_id" => '8');
+		
+		$histories = $this->History->find('all', $option_Histories);
+// 		$histories = $this->History->find('all');
 		
 		$max = 3;
 		
-		$history_Ids = array();
+		$history_Ids = array("127", "128", "129");
+// 		$history_Ids = array();
 		
 		//debug
-		debug($histories[0]);
+		$tmp_option = array('conditions' => 
+				
+							array("AND"	=> array(
+
+							//REF OR http://book.cakephp.org/1.3/en/The-Manual/Developing-with-CakePHP/Models.html "could just as easily find posts that match either condition:"
+							// history id => integer, not string (i.e. no double-quotation)
+							//REF first hint here => http://stackoverflow.com/questions/8485950/cakephp-or-condition answered Dec 13 '11 at 14:52
+							//REF also here => http://stackoverflow.com/questions/8485950/cakephp-or-condition answered Dec 13 '11 at 8:12
+												array("OR" => array(
+															"Token.history_id" => array(127, 128))
+												),
+												
+												array('Token.hin' => "名詞")
+									
+							)//array("AND"	=> array
+				
+// 				//REF
+// // 				array( "OR" => array (
+// // 						"Post.title" => array("First post", "Second post", "Third post"),
+// // 						"Post.created >" => date('Y-m-d', strtotime("-2 weeks"))
+// // 				)
+// // 				)
+// 								array("OR" => array(
+// 												"Token.history_id" => array(127, 128))	//=> w
+// // 												"Token.history_id" => array("127, 128"))
+// 								),
+// // 								'Token.hin' => "名詞",
+// // 								array('IN' => array("Token.history_id" => array("127, 128")))	//=> n/w
+
+// // 										//=> SQL Query: SELECT "Token"."id", "Token"."created_at", "Token"."updated_at", "Token"."form", "Token"."hin", "Token"."hin_1", "Token"."hin_2", "Token"."hin_3", "Token"."katsu_kei", "Token"."katsu_kata", "Token"."genkei", "Token"."yomi", "Token"."hatsu", "Token"."history_id", "Token"."user_id", "History"."id", "History"."created_at", "History"."updated_at", "History"."line", "History"."url", "History"."vendor", "History"."news_time", "History"."genre_id", "History"."category_id", "History"."subcat_id", "History"."content", "History"."user_id" FROM "main"."tokens" AS "Token" LEFT JOIN "main"."histories" AS "History" ON ("Token"."history_id" = "History"."id") WHERE IN = (Array)
+
+// // 								array('IN' => array("Token.history_id" => "127, 128"))	//=> n/w
+// // 								array("Token.history_id" => "127, 128")	//=> n/w
+// // 								array("Token.history_id" => "127")
+// // 								array('OR' => 
+// // // 										array("Token.history_id" => "127"),
+// // 										array("Token.history_id" => "128"),
+// // // 										array("Token.history_id" => "129"),
+// // 											)
+			)
+			
+		);//array('conditions'
 		
-		for ($i = 0; $i < $max; $i++) {
+		$history_1 = $this->Token->find('all', 
+								
+								$tmp_option
+// 								array('conditions' => array('OR' => 
+// // 										array("Token.history_id" => "127"),
+// 										array("Token.history_id" => "128"),
+// // 										array("Token.history_id" => "129"),
+// 											))
+						);
+// 								array('conditions' => array("Token.history_id" => "127")));
+		
+		debug("count(\$history_1)");
+		debug(count($history_1));
+		
+// 		//debug
+// 		debug($histories[0]);
+		
+// 		for ($i = 0; $i < $max; $i++) {
 			
-			$h = $histories[$i];
+// 			$h = $histories[$i];
 			
-			$id = $h['History']['id'];
+// 			$id = $h['History']['id'];
 			
-			array_push($history_Ids, $id);
+// 			array_push($history_Ids, $id);
 			
-		}
+// 		}
 		
 		/*******************************
 		 get: history id
@@ -2792,14 +2854,69 @@ class TokensController extends AppController {
 		*******************************/
 
 		debug($history_Ids);
+
+// 		//REF http://stackoverflow.com/questions/6836990/how-to-get-complete-current-url-for-cakephp answered Jul 29 '11 at 15:18
+// 		debug(Router::url( $this->here, true ));
+
+// 		debug(gethostname());
+// // 		debug(gethostbyname());
+// 		debug($_SERVER['SERVER_NAME']);
+		
+		//REF http://php.net/manual/en/reserved.variables.server.php
+		@$server_name = $_SERVER['SERVER_NAME'];
+		
+		$history_Ids = array(127, 128, 129);
+		
+		if ($server_name != null && $server_name != "localhost") {
+			
+			$history_Ids = array(1421, 1471, 1514);
+			
+		}
 		
 		$option = array('conditions' => 
-							array(
-									'Token.history_id' => $history_Ids,
-// 									'Token.history_id' => $hist_id,
-									'Token.hin' => "名詞",
-							)
-		);
+				
+				array("AND"	=> array(
+								
+							array("OR" => array(
+									"Token.history_id" => $history_Ids)
+// 									"Token.history_id" => array(127, 128, 129))
+// 									"Token.history_id" => array(127, 128))
+							),
+			
+							array('Token.hin' => "名詞")
+								
+					)//array("AND"	=> array
+
+				)//array(
+					
+		);//array('conditions'
+		
+// 		$option = array('conditions' => 
+// 							array(
+// 									'AND' => array(
+// 												'OR' => array(
+// 														array('Token.history_id' => "127"),
+// 														array('Token.history_id' => "128"),
+// 														array('Token.history_id' => "129"),
+// 												),
+// 												'Token.hin' => "名詞",
+// 									),
+// // 									'Token.hin' => "名詞",
+									
+// // 									'OR' => array(
+											
+// // 											array('Token.history_id' => "127"),
+// // 											array('Token.history_id' => "128"),
+// // 											array('Token.history_id' => "129"),
+// // // 											'Token.history_id' => "128",
+// // // 											'Token.history_id' => "129",
+						
+// // 									),
+// // // 									'Token.history_id' => $history_Ids,		//=> seems working
+// // // 									'Token.history_id' => $hist_id,
+// // 									'Token.hin' => "名詞",
+// 							)
+// 		);
 		
 		$tokens = $this->Token->find('all', $option);
 		
