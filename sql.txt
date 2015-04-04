@@ -1,6 +1,7 @@
 #pushd C:\WORKS\WS\Eclipse_Kepler\Cake_NR5\app\webroot
 
-sqlite3 C:\WORKS\WS\Eclipse_Kepler\Cake_NR5\app\webroot\development.sqlite3
+#sqlite3 C:\WORKS\WS\Eclipse_Kepler\Cake_NR5\app\webroot\development.sqlite3
+sqlite3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\development.sqlite3
 .explain on
 .tables
 
@@ -220,6 +221,69 @@ CREATE TABLE users (
 	
 );
 
+DROP TABLE tokens_new;
+
+CREATE TABLE tokens_new (
+   id			INTEGER PRIMARY KEY     AUTOINCREMENT	NOT NULL,
+   created_at	VARCHAR(30),
+   updated_at	VARCHAR(30),
+   
+   form			VARCHAR(30),
+   
+   hin			VARCHAR(30),
+   hin_1		VARCHAR(30),
+   hin_2		VARCHAR(30),
+   hin_3		VARCHAR(30),
+   
+   katsu_kei	VARCHAR(30),
+   katsu_kata	VARCHAR(30),
+   
+   genkei		VARCHAR(30),
+   
+   yomi			VARCHAR(30),
+   hatsu		VARCHAR(30),
+   
+   history_id	INT,
+   
+   category_id	INT,
+   
+   user_id		INT
+   
+);
+
+INSERT INTO tokens_new (
+
+	id,
+	created_at,
+	updated_at,
+
+	form		,
+
+	hin		,
+	hin_1	,
+	hin_2	,
+	hin_3	,
+
+	katsu_kei,
+	katsu_kata,
+
+	genkei	,
+
+	yomi		,
+	hatsu	,
+
+	history_id,
+
+	user_id
+	)
+	SELECT * FROM tokens;
+
+SELECT id,yomi FROM tokens_new WHERE id < 20;
+
+DROP TABLE tokens;
+
+ALTER TABLE tokens_new RENAME TO tokens;
+
 
 [mysql(lollipop)]======================================
 #REF http://sql-info.de/mysql/examples/CREATE-TABLE-examples.html
@@ -336,6 +400,8 @@ CREATE TABLE tokens(
    hatsu		VARCHAR(30),
    
    history_id	INT,
+   
+   category_id	INT,
    
    user_id		INT
    
