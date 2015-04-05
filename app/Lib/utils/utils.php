@@ -1144,6 +1144,22 @@
 		}
 
 		public static function
+		get_Category_From_Name($cat_Name) {
+
+			/*******************************
+				get: category
+			*******************************/
+// 			$this->loadModel('Category');
+			$model = ClassRegistry::init('Category');
+			
+			$option = array('conditions' => array('Category.name' => $cat_Name));
+			
+			return $model->find('first', $option);
+// 			return $this->Category->find('first', $option);
+				
+		}
+
+		public static function
 		sanitize_Tags($article_line, $tag_array) {
 			
 			for ($i = 0; $i < count($tag_array); $i++) {

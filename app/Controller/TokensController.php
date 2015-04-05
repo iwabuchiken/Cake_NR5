@@ -3116,13 +3116,23 @@ class TokensController extends AppController {
 	test_NVP_nouns_list_V2() {
 		
 		/*******************************
+			get: category id
+		*******************************/
+		$cat_Name = "医療・介護";
+		
+		$cat = Utils::get_Category_From_Name($cat_Name);
+		
+// 		debug($cat);
+		
+		/*******************************
 		 get: tokens
 		*******************************/
 		$option = array('conditions' => 
 				
 // 							array("OR" => array(
 							array("AND" => 
-									array("Token.category_id" => 8),
+									array("Token.category_id" => $cat['Category']['id']),
+// 									array("Token.category_id" => 8),
 									array('Token.hin' => "名詞")
 							),
 			
@@ -3729,5 +3739,5 @@ class TokensController extends AppController {
 // 		$this->render("/Tokens/tests/get_JSON_Data");
 		
 	}//get_JSON_Data
-	
+
 }

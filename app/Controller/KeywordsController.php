@@ -18,25 +18,37 @@ class KeywordsController extends AppController {
 			$opt_order = array($sort_name => 'asc');
 				
 		} else {
-				
-			$opt_order = array('id' => 'asc');
+
+			$sort_name = "id";
+			
+			$opt_order = array($sort_name => 'asc');
+// 			$opt_order = array('id' => 'asc');
 				
 		}
 		
-		/**********************************
-		* search
-		**********************************/
-		$search_word = @$this->request->query['search'];
+		$this->set("sort", $sort_name);
 		
-		if ($search_word != null && $search_word != "") {
+		/*******************************
+			opt_conditions
+		*******************************/
+		$opt_conditions = $this->get_Opt_Conditions();
+
+		debug($opt_conditions);
 		
-			$opt_conditions = array('Keyword.name LIKE' => "%$search_word%");
+// 		/**********************************
+// 		* search
+// 		**********************************/
+// 		$search_word = @$this->request->query['search'];
 		
-		} else {
+// 		if ($search_word != null && $search_word != "") {
 		
-			$opt_conditions = '';
+// 			$opt_conditions = array('Keyword.name LIKE' => "%$search_word%");
 		
-		}
+// 		} else {
+		
+// 			$opt_conditions = '';
+		
+// 		}
 		
 		/**********************************
 		* paginate
@@ -90,8 +102,205 @@ class KeywordsController extends AppController {
 		//test
 // 		$this->render("Keywords/js/add_KW__Genre_Changed");	// not found
 // 		$this->render("js/add_KW__Genre_Changed");	// works
+
+		/*******************************
+		 get array: categories
+		*******************************/
+// 		$category_Id_Array = $this->_get_Category_Id_Array();
+		
+// 		asort($category_Id_Array);
+		
+// 		$this->set("category_Id_Array", $category_Id_Array);
 		
 	}
+	
+	public function 
+	get_Opt_Conditions() {
+
+		
+		/**********************************
+		 * search
+		**********************************/
+		$opt_conditions = array();
+		
+		$opt_conditions = $this->get_Opt_Conditions__Search($opt_conditions);
+
+// 		$search_word = @$this->request->query['search'];
+		
+// 		if ($search_word != null && $search_word != "") {
+		
+// 			$opt_conditions = array('Keyword.name LIKE' => "%$search_word%");
+		
+// 		} else {
+		
+// 			$opt_conditions = '';
+		
+// 		}
+
+		/*******************************
+			filter: category
+		*******************************/
+		$opt_conditions = $this->get_Opt_Conditions__Category($opt_conditions);
+		
+		
+		/*******************************
+			return
+		*******************************/
+		return $opt_conditions;
+		
+	}//get_Opt_Conditions
+	
+	public function 
+	get_Opt_Conditions__Search($opt_conditions) {
+
+		$search_word = @$this->request->query['search'];
+		
+		$session_word = "search";
+
+		debug($search_word);
+		
+		/*******************************
+			dispatch
+		*******************************/
+		if ($search_word == null) {
+			
+			// read: session
+			@$session_Filter = $this->Session->read($session_word);
+			
+			if ($session_Filter == null) {
+			
+				// reset global var
+				$this->set("search", null);
+				
+				return $opt_conditions;
+			
+			} else {
+			
+				$opt_conditions['Keyword.name LIKE'] = "%$session_Filter%";
+					
+				$this->set("search", $session_Filter);
+			
+				return $opt_conditions;
+				
+			}
+			
+		} else if ($search_word == "__@") {
+
+			$this->Session->write($session_word, null);
+			
+			$this->set("search", null);
+				
+			return $opt_conditions;
+				
+			
+		} else if ($search_word != null && $search_word != "") {
+		
+// 			$opt_conditions = array('Keyword.name LIKE' => "%$search_word%");
+			$opt_conditions['Keyword.name LIKE'] = "%$search_word%";
+			
+			$this->Session->write($session_word, $search_word);
+		
+			$this->set("search", $session_word);
+			
+			return $opt_conditions;
+			
+		} else {
+		
+			return $opt_conditions;
+			
+// 			$opt_conditions = '';
+		
+		}
+		
+	}//get_Opt_Conditions__Search
+	
+	public function 
+	get_Opt_Conditions__Category($opt_conditions) {
+
+		/*******************************
+			prep
+		*******************************/
+		$filter_Cat = "filter_Cat";
+		
+		$category_Id_Array = $this->_get_Category_Id_Array();
+		
+		asort($category_Id_Array);
+		
+		$this->set("category_Id_Array", $category_Id_Array);
+		
+		/**********************************
+		 * param: filter
+		**********************************/
+		@$query_Filter = $this->request->query[$filter_Cat];
+		
+		if ($query_Filter == "-1") {
+		
+			$this->Session->write($filter_Cat, null);
+		
+			$this->set("filter_Cat", '');
+		
+			$this->set("chosen_category_id", $query_Filter);
+			
+		} else if ($query_Filter == null) {
+		
+			@$session_Filter = $this->Session->read($filter_Cat);
+		
+			if ($session_Filter != null) {
+		
+				$opt_conditions['Keyword.category_id'] = $session_Filter;
+		
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("filter_Cat", 
+							$category_Id_Array[$session_Filter]
+							."("
+							.$session_Filter
+							.")");
+				
+				$this->set("chosen_category_id", $session_Filter);
+				
+				// 				$this->set("filter_Cat", $session_Filter);
+		
+			} else {
+		
+				/**********************************
+				 * set: var
+				**********************************/
+				$this->set("filter_Cat", null);
+		
+				$this->set("chosen_category_id", -1);
+				
+			}
+		
+		} else {	// $query_Filter has value other than -1
+		
+			$opt_conditions['Keyword.category_id'] = $query_Filter;
+				
+			$session_Filter = $this->Session->write($filter_Cat, $query_Filter);
+		
+			/**********************************
+			 * set: var
+			**********************************/
+			// 			$this->set("filter_Cat", $query_Filter);
+		
+			$this->set("filter_Cat", 
+							$category_Id_Array[$query_Filter]
+							."("
+							.$query_Filter
+							.")"
+			);
+			
+			$this->set("chosen_category_id", $query_Filter);
+				
+		}//if ($query_Filter == "__@")
+		
+		/*******************************
+			return
+		*******************************/
+		return $opt_conditions;
+		
+	}//get_Opt_Conditions__Category($opt_conditions)
 	
 	public function 
 	view($id = null) {
@@ -562,4 +771,47 @@ class KeywordsController extends AppController {
 // 		return $this->redirect(array('action' => 'index'));
 		
 	}
+	
+	public function
+	_get_Category_Id_Array() {
+
+		/*******************************
+		 load: category
+		*******************************/
+		// 		$this->loadModel('Category');
+		$this->loadModel('Category');
+
+		// 		$categories = $this->Category->find('all');
+
+		$categories = $this->Category->find('all');
+
+		/*******************************
+		 build: array
+		*******************************/
+		$len = count($categories);
+
+		$cats = array($len);
+
+		for ($i = 0; $i < $len; $i++) {
+
+			$cat = $categories[$i];
+
+			$cats[$cat['Category']['id']] = $cat['Category']['name'];
+// 			$cats[$cat['Category']['name']] = $cat['Category']['id'];
+
+		}
+
+		asort($cats);
+
+		$cats['-1'] = "ALL";
+		// 		$cats['ALL'] = -1;
+
+		/*******************************
+		 return
+		*******************************/
+		return $cats;
+
+	}//_get_Category_Id_Array
+
+	
 }

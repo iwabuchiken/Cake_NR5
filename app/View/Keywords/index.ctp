@@ -2,6 +2,30 @@
 
 	Keywords (<a href="#bottom">Bottom</a><a name="top"></a>) 
 		(total = <?php echo $num_of_kws; ?>, pages = <?php echo $num_of_pages; ?>)
+	<br>
+		( 
+		filter_Category = 
+				<?php 
+					
+					if (isset($filter_Cat)) {
+						
+						echo "<font color=\"blue\">".$filter_Cat."</font>"; 
+				
+					}
+				?> 
+				/ 
+		
+		sort = 
+				<?php 
+
+					if (isset($sort)) {
+					
+						echo "<font color=\"blue\">".$sort."</font>"; 
+				
+					}
+			
+				?>
+				)
 	
 </h1>
 
