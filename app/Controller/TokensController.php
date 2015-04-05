@@ -3113,6 +3113,98 @@ class TokensController extends AppController {
 	}//test_NVP_nouns_list
 	
 	public function
+	test_NVP_nouns_list_V2() {
+		
+		/*******************************
+		 get: tokens
+		*******************************/
+		$option = array('conditions' => 
+				
+// 							array("OR" => array(
+							array("AND" => 
+									array("Token.category_id" => 8),
+									array('Token.hin' => "名詞")
+							),
+			
+// 							array('Token.hin' => "名詞")
+
+		);//array('conditions'
+		
+		$tokens = $this->Token->find('all', $option);
+		
+		debug(count($tokens));		
+		
+		/*******************************
+			biuld: nouns
+		*******************************/
+		$nouns = array();
+		
+		for ($i = 0; $i < count($tokens); $i++) {
+			
+			array_push($nouns, $tokens[$i]['Token']['form']);
+			
+		}
+		
+// 		debug(count($nouns));
+		
+		/*******************************
+			unique
+		*******************************/
+		$nouns = array_unique($nouns);
+		
+		debug("\$nouns(unique) => ".count($nouns));
+		
+		//REF http://stackoverflow.com/questions/7536961/reset-php-array-index answered Sep 24 '11 at 4:10
+		$nouns = array_values($nouns);
+		
+		/*******************************
+			setup: nouns with histogram data
+		*******************************/
+		$histo = array();
+		
+		for ($i = 0; $i < count($nouns); $i++) {
+			
+			$histo[$nouns[$i]] = 0;
+			
+		}
+		
+		debug("\$histo => ".count($histo));
+		
+		/*******************************
+			build: histogram data
+		*******************************/
+		for ($i = 0; $i < count($tokens); $i++) {
+
+			$t = $tokens[$i];
+
+			$form = $t['Token']['form'];
+			
+			$histo[$form] ++;
+				
+		}
+		
+		/*******************************
+			sort
+		*******************************/
+		asort($histo);
+		
+		$histo = array_reverse($histo);
+
+		/*******************************
+			set: values
+		*******************************/
+		$this->set("total", count($tokens));
+		
+		$this->set("histo", $histo);
+		
+		/**********************************
+		 * view
+		**********************************/
+		$this->render("/Tokens/tests/test_NVP_nouns_list");		
+		
+	}//test_NVP_nouns_list_V2
+	
+	public function
 	test_D3() {
 
 // 		//debug(count(CONS::$hin1_Noun_Names));

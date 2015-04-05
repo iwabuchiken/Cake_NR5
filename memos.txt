@@ -59,6 +59,7 @@ pushd C:\Users\IwabuchiKen\Desktop
 sqlite3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\development.sqlite3
 .explain on
 pragma table_info(histories);
+pragma table_info(tokens);
 
 SELECT id FROM histories WHERE id >= 100;
 
