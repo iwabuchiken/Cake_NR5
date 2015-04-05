@@ -51,6 +51,10 @@ class TokensController extends AppController {
 		*******************************/
 		$tokens = $this->paginate('Token');
 		
+// 		debug($tokens[0]);
+// 		debug($tokens[7]);
+// 		debug(count($tokens));
+		
 		$this->set('tokens', $tokens);
 		
 		$num_of_tokens = count($this->Token->find('all'));

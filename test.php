@@ -1,6 +1,33 @@
 <?php
 
 function 
+test_SanitizeTags() {
+
+	$tag_array = array("font");
+	
+	$article_line = "<font color=\"blue\">トヨタ</font>、あえて中国へ工場新設　他社注視";
+	
+	echo "line => ".$article_line;
+	
+	echo "\n";
+	echo "\n";
+	
+	for ($i = 0; $i < count($tag_array); $i++) {
+	
+		$tag = $tag_array[$i];
+	
+		$pattern = "/<$tag.+>/";
+		// 				$pattern = "<$tag.+>";
+		$replacement = "";
+	
+		echo preg_replace($pattern, $replacement, $article_line);
+	
+	}
+	
+	
+}
+
+function 
 test_ArrayUnique() {
 	
 	$ary = array("abc", "def", "abc", "ghi");
@@ -499,7 +526,8 @@ _conv_Match_to_DateLabel
 function
 execute() {
 
-	test_ArrayUnique();
+	test_SanitizeTags();
+// 	test_ArrayUnique();
 // 	test_ArraySlice_
 // 	test_PregMatch_EQ_TimeLabel();
 // 	test_Get_Type();

@@ -8,7 +8,8 @@
 	/*******************************
 		get: category
 	*******************************/
-	$cat = Utils::get_Category_From_Id($token['History']['category_id']);
+	$cat = Utils::get_Category_From_Id($token['Token']['category_id']);
+// 	$cat = Utils::get_Category_From_Id($token['History']['category_id']);
 	
 	if ($cat == null) {
 	

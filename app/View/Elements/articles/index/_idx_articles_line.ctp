@@ -1,6 +1,13 @@
 		<td class="article_line">
 			<?php 
 				
+// 				if (!isset($genre_id)) {
+				
+// 					$genre_id = 
+				
+// 				}
+				
+			
 				$option = array(
 						'target'	=> '_blank',
 						'escape'	=> false,
@@ -15,6 +22,7 @@
 						'article_vendor'	=> $a['vendor'],
 						'article_news_time'	=> $a['news_time'],
 						'article_category_id'	=> $k,
+						'article_genre_id'	=> $genre_id,
 				);
 			
 				echo $this->Html->link(

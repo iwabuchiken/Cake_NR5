@@ -39,7 +39,8 @@
 // 		echo $category_name['Category']['name'];
 // 		debug($category_name);
 		
-		echo "<a name=\"$category_name\">$category_name($k)</a>";
+		echo "<a name=\"$category_name\">$category_name</a>";
+// 		echo "<a name=\"$category_name\">$category_name($k)</a>";
 // 		echo "<a name=\"$k\">$k</a>";
 
 		echo " (".count($a_group).")";

@@ -1142,6 +1142,35 @@
 // 			return $this->Category->find('first', $option);
 				
 		}
+
+		public static function
+		sanitize_Tags($article_line, $tag_array) {
+			
+			for ($i = 0; $i < count($tag_array); $i++) {
+				
+				$tag = $tag_array[$i];
+				
+				$pattern = "/<$tag.*?>/";
+// 				$pattern = "/<$tag.+>/";
+// 				$pattern = "<$tag.+>";
+				$replacement = "";
+				
+				$article_line = preg_replace($pattern, $replacement, $article_line);
+// 				preg_replace($pattern, $replacement, $article_line);
+				
+				$pattern = "/<\/$tag>/";
+// 				$pattern = "/<$tag.+>/";
+// 				$pattern = "<$tag.+>";
+				$replacement = "";
+				
+				$article_line = preg_replace($pattern, $replacement, $article_line);
+// 				preg_replace($pattern, $replacement, $article_line);
+				
+			}
+			
+			return $article_line;
+			
+		}//sanitize_Tags
 		
 	}//class Utils
 	

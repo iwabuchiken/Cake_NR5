@@ -1139,7 +1139,8 @@ class HistorysController extends AppController {
 			/**********************************
 			* save: tokens
 			**********************************/
-			$res = $this->save_token_list($tokens, $history['History']['id']);
+			$res = $this->save_token_list($tokens, $history);
+// 			$res = $this->save_token_list($tokens, $history['History']['id']);
 	
 			if ($words != null) {
 				
@@ -1209,7 +1210,14 @@ class HistorysController extends AppController {
 	
 	public function
 	save_token_list
-	($tokens, $history_id) {
+	($tokens, $history) {
+// 	($tokens, $history_id) {
+		
+		$history_id = $history['History']['id'];
+		
+		$category_id = $history['Category']['id'];
+		
+		$genre_id = $history['Category']['genre_id'];
 		
 		$counter = 0;
 		
@@ -1250,7 +1258,10 @@ class HistorysController extends AppController {
 							'yomi'			=> $token->yomi,
 							'hatsu'			=> $token->hatsu,
 							
-							'history_id'			=> $history_id,
+							'history_id'	=> $history_id,
+							
+							'category_id'	=> $category_id,
+							'genre_id'		=> $genre_id,
 							
 					)
 						

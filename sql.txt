@@ -1,6 +1,6 @@
 #pushd C:\WORKS\WS\Eclipse_Kepler\Cake_NR5\app\webroot
-
 #sqlite3 C:\WORKS\WS\Eclipse_Kepler\Cake_NR5\app\webroot\development.sqlite3
+
 sqlite3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\development.sqlite3
 .explain on
 .tables
@@ -110,28 +110,32 @@ CREATE TABLE histories(
 DROP TABLE tokens;
 
 CREATE TABLE tokens(
-   id			INTEGER PRIMARY KEY     AUTOINCREMENT	NOT NULL,
-   created_at	VARCHAR(30),
-   updated_at	VARCHAR(30),
-   
-   form			VARCHAR(30),
-   
-   hin			VARCHAR(30),
-   hin_1		VARCHAR(30),
-   hin_2		VARCHAR(30),
-   hin_3		VARCHAR(30),
-   
-   katsu_kei	VARCHAR(30),
-   katsu_kata	VARCHAR(30),
-   
-   genkei		VARCHAR(30),
-   
-   yomi			VARCHAR(30),
-   hatsu		VARCHAR(30),
-   
-   history_id	INT,
-   
-   user_id		INT
+
+	id			INTEGER PRIMARY KEY     AUTOINCREMENT	NOT NULL,
+	created_at	VARCHAR(30),
+	updated_at	VARCHAR(30),
+	
+	form			VARCHAR(30),
+	
+	hin			VARCHAR(30),
+	hin_1		VARCHAR(30),
+	hin_2		VARCHAR(30),
+	hin_3		VARCHAR(30),
+	
+	katsu_kei	VARCHAR(30),
+	katsu_kata	VARCHAR(30),
+	
+	genkei		VARCHAR(30),
+	
+	yomi			VARCHAR(30),
+	hatsu		VARCHAR(30),
+	
+	history_id	INT,
+	
+	category_id	INT,
+	genre_id	INT,
+	
+	user_id		INT
    
 );
 
@@ -246,6 +250,7 @@ CREATE TABLE tokens_new (
    history_id	INT,
    
    category_id	INT,
+   genre_id	INT,
    
    user_id		INT
    
@@ -282,6 +287,8 @@ SELECT id,yomi FROM tokens_new WHERE id < 20;
 
 DROP TABLE tokens;
 
+#REF http://stackoverflow.com/questions/426495/how-do-you-rename-a-table-in-sqlite-3-0 Runscope API Tools
+#REF consicely explained => http://stackoverflow.com/questions/805363/how-do-i-rename-a-column-in-a-sqlite-database-table answered Apr 30 '09 at 5:57
 ALTER TABLE tokens_new RENAME TO tokens;
 
 
@@ -402,6 +409,7 @@ CREATE TABLE tokens(
    history_id	INT,
    
    category_id	INT,
+   genre_id	INT,
    
    user_id		INT
    

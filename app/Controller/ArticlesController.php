@@ -7,7 +7,23 @@ class ArticlesController extends AppController {
 	public function 
 	index() {
 
+		//test
+// 		$line = "<body text='%body%'>";
+// 		$bodytag = str_replace("%body%", "black", $line);
+		
+// 		debug("$line => $bodytag");
+
+// 		$string = 'April 15, 2003';
+// 		$pattern = '/(\w+) (\d+), (\d+)/i';
+// 		$replacement = '${1}1,$3';
+// 		debug($string."=>".preg_replace($pattern, $replacement, $string));
+		
 // 		$this->set('articles', $this->Article->find('all'));
+		
+// 		$line = "<font color=\"blue\">トヨタ</font>、あえて中国へ工場新設　他社注視";
+		
+// 		debug("$line \n=> ".Utils::sanitize_Tags($line, array("font")));
+		
 		
 		/**********************************
 		* genre id
@@ -2391,7 +2407,13 @@ class ArticlesController extends AppController {
 		$article_url = @$this->request->query['article_url'];
 		$article_line = @$this->request->query['article_line'];
 		$article_vendor = @$this->request->query['article_vendor'];
+		
+		//sanitize
+		$article_line = Utils::sanitize_Tags($article_line, array("font"));
+		
 		$article_category_id = @$this->request->query['article_category_id'];
+		$article_genre_id = @$this->request->query['article_genre_id'];
+		
 		$article_news_time = @$this->request->query['article_news_time'];
 
 		/**********************************
@@ -2414,6 +2436,7 @@ class ArticlesController extends AppController {
 		$this->History->set('news_time', $article_news_time);
 		
 		$this->History->set('category_id', $article_category_id);
+		$this->History->set('genre_id', $article_genre_id);
 		
 		$this->History->set('content', $article_content);
 		

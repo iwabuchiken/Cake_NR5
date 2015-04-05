@@ -36,6 +36,9 @@
 		
 			<?php 
 			
+// 				echo $token['Token']['category_id'];
+			
+			
 				//REF http://stackoverflow.com/questions/22780671/passing-variable-from-view-to-element-in-cakephp answered Apr 1 '14 at 11:36
 				echo $this->element(
 								'tokens/index/index_t_entries__Category',
