@@ -3215,6 +3215,128 @@ class TokensController extends AppController {
 	}//test_NVP_nouns_list_V2
 	
 	public function
+	test_NVP_nouns_list_V3() {
+		
+		/*******************************
+			get: category id
+		*******************************/
+		$cat_Name = "医療・介護";
+		
+		$cat = Utils::get_Category_From_Name($cat_Name);
+		
+// 		debug($cat);
+		
+		/*******************************
+		 get: tokens
+		*******************************/
+		$option = array('conditions' => 
+				
+// 							array("OR" => array(
+							array("AND" => 
+									array("Token.category_id" => $cat['Category']['id']),
+// 									array("Token.category_id" => 8),
+// 									array('Token.hin' => "名詞")
+							),
+			
+// 							array('Token.hin' => "名詞")
+
+		);//array('conditions'
+		
+		$tokens = $this->Token->find('all', $option);
+		
+		debug(count($tokens));		
+		
+		/*******************************
+			build: list
+		*******************************/
+		$s = "";
+		
+		$nouns = array();
+		
+		for ($i = 0; $i < count($tokens); $i++) {
+			
+			$t = $tokens[$i];
+			
+			if ($t['Token']['hin'] == "名詞") {
+				
+				$s .= $t['Token']['form'];
+				
+				continue;
+				
+			} else {
+				
+				if ($s == "") {
+				
+					continue;
+				
+				} else {
+				
+					array_push($nouns, $s);
+					
+					$s = "";
+					
+					continue;
+				
+				}
+				
+			}//if ($t['Tokens']['hin'] == "名詞")
+			
+		}//for ($i = 0; $i < count($tokens); $i++)
+		
+		debug("count(\$nouns)");
+		debug(count($nouns));
+
+		$nouns_unique = array_unique($nouns);
+		
+		debug("count(\$nouns_unique)");
+		debug(count($nouns_unique));
+		
+		$len_unique = count($nouns_unique);
+		
+		$nouns_unique = array_values($nouns_unique);
+		
+		$histo = array($len_unique);
+		
+		for ($i = 0; $i < $len_unique; $i++) {
+			
+			$histo[$nouns_unique[$i]] = 0;
+			
+		}
+		
+		$len_total = count($nouns);
+		
+		for ($i = 0; $i < $len_total; $i++) {
+			
+			$histo[$nouns[$i]] ++;
+			
+		}
+		
+// 		debug(array_slice($histo, 0, 10));
+		
+		/*******************************
+		 sort
+		*******************************/
+		asort($histo);
+		
+		$histo = array_reverse($histo);
+		
+		
+		/*******************************
+		 set: values
+		*******************************/
+		$this->set("total", count($nouns));
+// 		$this->set("total", count($tokens));
+		
+		$this->set("histo", $histo);
+		
+		/**********************************
+		 * view
+		**********************************/
+		$this->render("/Tokens/tests/test_NVP_nouns_list_V3");		
+		
+	}//test_NVP_nouns_list_V3
+	
+	public function
 	test_D3() {
 
 // 		//debug(count(CONS::$hin1_Noun_Names));
