@@ -57,7 +57,18 @@
 
 	      	<?php 
 	    	
-	    		echo $histo[$keys[$i]] / $total;
+	      		if ($total > 0) {
+	      		
+	      			echo $histo[$keys[$i]] / $total;
+	      		
+	      		} else {
+	      		
+	      			echo "0";
+	      			
+	      		}//if ($total > 0)
+	      		
+	      		
+// 	    		echo $histo[$keys[$i]] / $total;
 	    	
 	    	?>
 	    
@@ -66,10 +77,19 @@
 	    <td>
 
 	    	<?php 
-	    	
-	    		$ratio_sum += $histo[$keys[$i]] / $total;
-	    		
-	    		echo $ratio_sum;
+
+		    	if ($total > 0) {
+		    		 
+		    		$ratio_sum += $histo[$keys[$i]] / $total;
+		    		
+		    		echo $ratio_sum;
+		    		 
+		    	} else {
+		    		 
+		    		echo "0";
+		    	
+		    	}//if ($total > 0)
+		    	
 	    	
 	    	?>
 	    
