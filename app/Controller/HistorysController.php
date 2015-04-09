@@ -1107,6 +1107,10 @@ class HistorysController extends AppController {
 		
 	}//save_Tokens
 	
+	/*******************************
+		@return
+		1. Flash message string
+	*******************************/
 	public function
 	save_Tokens__V2
 	($words_ary, $history) {
@@ -1171,6 +1175,12 @@ class HistorysController extends AppController {
 		* set: vars
 		**********************************/
 		$this->set('tokens', $tokens);
+		
+		/*******************************
+			return
+		*******************************/
+		return $msg_Flash;
+// 		return $history['History']['id'];
 		
 	}//save_Tokens
 	
@@ -1650,4 +1660,110 @@ class HistorysController extends AppController {
 		debug(count($histories));
 		
 	}
+
+	public function
+	create_Tokens() {
+	
+		/*******************************
+		 query
+		*******************************/
+		$query_CatId = "cat_id";
+	
+		@$cat_Id = $this->request->query[$query_CatId];
+	
+		if ($cat_Id == null) {
+	
+			$this->Session->setFlash(__('no category id'));
+	
+			$this->render("/Historys/tests/create_Tokens");
+				
+			return;
+	
+		} else {
+				
+			debug("category id => ".$cat_Id);
+				
+		}
+	
+		/*******************************
+		 get: history list
+		*******************************/
+		$option = array('conditions'
+							=> array(
+									'History.category_id'
+										=> $cat_Id));
+		
+		$histories = $this->History->find('all', $option);
+		
+// 		debug("count(\$histories)");
+// 		debug(count($histories));
+
+		/*******************************
+			validate: any history
+		*******************************/
+		if (count($histories) < 1) {
+		
+			$this->Session->setFlash(__('no history for category id: '.$cat_Id));
+		
+			$this->render("/Historys/tests/create_Tokens");
+		
+			return;
+		
+		} else {
+		
+			debug("count(\$histories)");
+			debug(count($histories));
+						
+		}
+		
+		/*******************************
+			tokenize
+		*******************************/
+		$len = count($histories);
+		
+		$count = 0;
+		
+		for ($i = 0; $i < $len; $i++) {
+			
+			$h = $histories[$i];
+			
+			$res = $this->_save_Tokens__TokensExist($h); 
+			
+			/*******************************
+				validate: tokens exist
+			*******************************/
+			if ($res == true) {
+				
+				continue;
+				
+			}
+			
+			$count ++;
+
+			/**********************************
+			 * words array
+			**********************************/
+			$words_ary = Utils::get_Words($h['History']['content']);
+				
+			// 			debug("\$words_ary length...");
+			// 			debug(count($words_ary));
+			
+			/**********************************
+			 * save tokens
+			**********************************/
+			$msg_Flash = $this->save_Tokens__V2($words_ary, $h);
+			
+			debug($msg_Flash);
+			
+		}
+		
+// 		debug("tokenizing => $count histories");
+		
+		/**********************************
+		 * view
+		**********************************/
+		$this->render("/Historys/tests/create_Tokens");
+	
+	}//create_Tokens
+	
 }

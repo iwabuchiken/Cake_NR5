@@ -16,12 +16,39 @@ class TokensController extends AppController {
 		$opt_order = $this->_index__Orders();
 		
 		$opt_conditions = $this->_index__Options();
+
+		//test
+		//REF http://stackoverflow.com/questions/20234155/how-to-count-total-number-of-rows-of-table-in-cakephp
+		$tmp_tokens = $this->Token->find('count', array('conditions' => $opt_conditions));
+// 		$tmp_tokens = $this->Token->find('count');
+		
+		debug($tmp_tokens);
+		
+// 		$opt_conditions = array('Token.id > ?' => array($tmp_tokens - 100));
+		
+		$opt_conditions = array('Token.id > ?' => array(10000));
 		
 		//debug
 // 		$opt_conditions['Token.hin_1'] = "形容動詞語幹";
 // 		$opt_conditions['Token.id'] = "< 600";
 
+		//test
+// 		$opt_conditions['Token.id'] = "> 9000";
+// 		$opt_conditions['Token.id BETWEEN ? AND ?'] = "> 9000";
+
+		//REF http://alvinalexander.com/php/cakephp-find-between-select-query-syntax
+// 		$opt_conditions = array('Token.id > ?' => array(10000));
+// 		$opt_conditions = array('Token.id BETWEEN ? AND ?' => array(9000, 9100));
+		
+		
 		debug($opt_conditions);
+		
+// 		//test
+// 		$tmp_tokens = $this->Token->find('count');
+		
+// 		debug("count => ".count($tmp_tokens));
+		
+// 		debug($tmp_tokens);
 		
 		$opt_group = $this->_index__Group();
 		
@@ -4146,4 +4173,40 @@ class TokensController extends AppController {
 		
 	}//get_JSON_Data
 
+	public function
+	create_Tokens() {
+		
+		/*******************************
+		 query
+		*******************************/
+		$query_CatId = "cat_id";
+		
+		@$cat_Id = $this->request->query[$query_CatId];
+		
+		if ($cat_Id == null) {
+
+			$this->Session->setFlash(__('no category id'));
+
+			$this->render("/Tokens/tests/create_Tokens");
+			
+			return;
+				
+		} else {
+			
+			debug("category id => ".$cat_Id);
+			
+		}
+		
+		/*******************************
+			get: history list
+		*******************************/
+		
+		
+		/**********************************
+		 * view
+		**********************************/
+		$this->render("/Tokens/tests/create_Tokens");
+		
+	}//create_Tokens
+	
 }
