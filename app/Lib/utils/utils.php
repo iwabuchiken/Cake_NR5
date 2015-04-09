@@ -1187,6 +1187,25 @@
 			return $article_line;
 			
 		}//sanitize_Tags
+
+		public static function
+		unset_Vars($target, $var_Array) {
+			
+			$count = 0;
+			
+			foreach ($var_Array as $v) {
+				
+				unset($target[$v]);
+// 				unset($v);
+				
+				$count ++;
+				
+			}
+			
+			return $target;
+// 			return $count;
+			
+		}//unset_Vars
 		
 	}//class Utils
 	

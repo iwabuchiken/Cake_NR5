@@ -3407,8 +3407,26 @@ class TokensController extends AppController {
 					continue;
 				
 				} else {
-				
-					array_push($nouns, $s);
+
+// 					if ($s != null) {	//=> w
+// 					if ($s != null && $s != "") {	//=> w
+					if ($s != null && $s != "" && $s != -1) {	//=> w
+// 					if ($s != null && $s != "" && $s != -1 && $s != 0) {	//=> debug displayed
+// 					if ($s != null && $s != "" && $s != -1 && $s != 0) {
+// 					if ($s != "０" && $s != "0") {
+// 					if ($s != "０") {
+						
+// 						debug($s);
+						
+						array_push($nouns, $s);;
+						
+					} else {
+						
+						debug($s);
+						
+					}
+					
+// 					array_push($nouns, $s);
 					
 					$s = "";
 					
@@ -3425,13 +3443,92 @@ class TokensController extends AppController {
 
 		$nouns_unique = array_unique($nouns);
 		
+// 		// omit '0'
+// 		$len = count($nouns_unique);
+		
+// // 		debug($nouns_unique[10]);
+		
+// // 		debug(array_slice($nouns_unique, 600, 10));
+// // 		debug($len);
+		
+// 		for ($i = 0; $i < $len; $i++) {
+// // 		for ($i = 0; $i < count($nouns_unique); $i++) {
+			
+// 			debug($nouns_unique[$i]."(".$i.")");
+			
+// // 			$noun = $nouns_unique[$i];
+// // 			$n = $nouns_unique[$i];
+			
+// // 			if ($n == "0") {
+// // // 			if ($n == '0') {
+				
+// // 				debug("yes");
+// // // 				debug("='0'");
+				
+// // 			}
+// 		}
+		
+		
+// // 		$nouns_unique = array_diff($nouns_unique, array('0'));
+		
+		
 		debug("count(\$nouns_unique)");
 		debug(count($nouns_unique));
-		
+
 		$len_unique = count($nouns_unique);
 		
 		$nouns_unique = array_values($nouns_unique);
 		
+// 		// omit '0'
+// 		unset($nouns_unique[0]);
+		
+// 		debug("unset => \$nouns_unique[0]");
+		
+// 		debug(array_slice($nouns_unique, 0, 20));
+
+		for ($i = 0; $i < $len_unique; $i++) {
+// 		for ($i = 0; $i < count($nouns_unique); $i++) {
+	
+			$n = $nouns_unique[$i];
+			
+			if ($n == '0') {
+				
+				debug("='0'");
+				
+			} else if ($n == "0") {
+				
+				debug("=\"0\"");
+				
+			} else if ($n == "０") {
+				
+				debug("=\"０\"");
+				
+			}
+			
+			
+// 			debug($nouns_unique[$i]."(".$i.")");
+	
+// 			$noun = $nouns_unique[$i];
+// 			$n = $nouns_unique[$i];
+	
+// 			if ($n == "0") {
+// // 			if ($n == '0') {
+
+// 				debug("yes");
+// // 				debug("='0'");
+
+// 			}
+		}
+
+// 		$nouns_unique = array_diff($nouns_unique, array("０"));
+		
+// 		$len_unique = count($nouns_unique);
+		
+// 		$nouns_unique = array_values($nouns_unique);
+		
+		/*******************************
+			histogram
+		*******************************/
 		$histo = array($len_unique);
 		
 		for ($i = 0; $i < $len_unique; $i++) {
@@ -3457,11 +3554,61 @@ class TokensController extends AppController {
 		
 		$histo = array_reverse($histo);
 		
+		// omit '0'
+		$omit = array(0, 'こと', '人', 'ロボット', '理由', '場合', '中止', 'ため', 'の');
+		
+		$histo = Utils::unset_Vars($histo, $omit);
+// 		$histo = Utils::unset_Vars($histo, array(0, 'こと', '人', 'ロボット'));
+// 		$histo = Utils::unset_Vars($histo, array(0, 'こと'));	//=> w
+// 		$histo = Utils::unset_Vars($histo, array(0));	//=> w
+// 		Utils::unset_Vars($histo, array(0));
+// 		Utils::unset_Vars(array($histo[0], $histo['こと']));
+// 		unset($histo[0]);
+		
+// 		debug($histo);
 		
 		/*******************************
 		 set: values
 		*******************************/
-		$this->set("total", count($nouns));
+		$total = 0;
+		
+// 		debug(array_slice($histo, 10,10));
+		
+// 		$total += $histo[0] + $histo[1];
+		
+// 		debug($total);
+		
+// 		debug($histo[0]);
+// 		debug($histo[1]);
+		
+		$count = 0;
+		
+		foreach ($histo as $h) {
+			
+			$total += $h;
+			
+// 			debug($h."/".$total);
+			
+// 			$count ++;
+			
+// 			if ($count > 10) {
+				
+// 				break;;
+				
+// 			}
+			
+		}
+		
+// 		debug($total);
+		
+// 		for ($i = 0; $i < count($histo); $i++) {
+			
+// 			$total += $histo[$i];
+			
+// 		}
+		
+		$this->set("total", $total);
+// 		$this->set("total", count($nouns));
 // 		$this->set("total", count($tokens));
 		
 		$this->set("histo", $histo);
