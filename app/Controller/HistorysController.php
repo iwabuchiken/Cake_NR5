@@ -236,6 +236,8 @@ class HistorysController extends AppController {
 		*******************************/
 		$opt_conditions = $this->_index__Options__Line();
 		
+//		debug($opt_conditions);
+		
 		/*******************************
 			filter: category
 		*******************************/
@@ -284,12 +286,15 @@ class HistorysController extends AppController {
 			//			debug($this->Session->read($filter));
 		
 			if ($session_Filter != null) {
-		
-				// 				$opt_conditions['History.line LIKE'] = "%$session_Filter%";
-				$opt_conditions['OR'] = array(
-						'History.line LIKE' => "%$session_Filter%",
-						'History.content LIKE' => "%$session_Filter%"
-				);
+
+				$opt_conditions =
+					$this->_index__Options__Line_Query($opt_conditions, $session_Filter);
+				
+// 				// 				$opt_conditions['History.line LIKE'] = "%$session_Filter%";
+// 				$opt_conditions['OR'] = array(
+// 						'History.line LIKE' => "%$session_Filter%",
+// 						'History.content LIKE' => "%$session_Filter%"
+// 				);
 		
 				/**********************************
 				 * set: var
@@ -307,13 +312,16 @@ class HistorysController extends AppController {
 		
 		} else {
 		
+			
+			$opt_conditions = 
+					$this->_index__Options__Line_Query($opt_conditions, $query_Filter);
 			// 			$opt_conditions['History.line LIKE'] = "%$query_Filter%";
 		
-			//REF http://book.cakephp.org/2.0/en/models/retrieving-your-data.html
-			$opt_conditions['OR'] = array(
-					'History.line LIKE' => "%$query_Filter%",
-					'History.content LIKE' => "%$query_Filter%"
-			);
+// 			//REF http://book.cakephp.org/2.0/en/models/retrieving-your-data.html
+// 			$opt_conditions['OR'] = array(
+// 					'History.line LIKE' => "%$query_Filter%",
+// 					'History.content LIKE' => "%$query_Filter%"
+// 			);
 				
 			$session_Filter = $this->Session->write($filter_Line, $query_Filter);
 		
@@ -332,6 +340,152 @@ class HistorysController extends AppController {
 		return $opt_conditions;
 		
 	}//_index__Options__Line()
+	
+	public function 
+	_index__Options__Line_Query
+	($opt_conditions, $query_Filter) {
+
+		/*******************************
+			radio buttons
+		*******************************/
+		@$AND_OR = $this->request->query[CONS::$str_Filter_RadioButtons_Name_History];
+		
+		debug($AND_OR);
+		
+		// replace "　"(whole char) with " "
+		$target = preg_replace("/　/", " ", $query_Filter);
+		
+		
+// 		debug("target=".$target);
+		
+		$keywords = explode(" ", $target);
+
+		$tmp = array();
+		$not = array();
+		
+		$aor = "";		// $tmp array key "AND" or "OR"
+		
+		if ($AND_OR != null) {
+		
+			$aor = $AND_OR;
+// 			$tmp[$AND_OR] = array();
+		
+		} else {
+		
+			$aor = 'OR';
+			
+// 			$tmp['OR'] = array();
+			
+		}//if ($AND_OR != null)
+		
+		
+		$tmp[$aor] = array();
+// 		$tmp['OR'] = array();
+		
+		$not['NOT'] = array();
+		
+		for ($i = 0; $i < count($keywords); $i++) {
+			
+			$w = $keywords[$i];
+			
+// 			debug($w." => ".mb_strlen($w));
+// 			debug($w." => ".strlen($w));
+			
+			if (mb_strlen($w) > 1) {
+			
+				if ($w[0] == "-") {
+				
+					$ary_not = array(
+// 					$ary = array(
+							'History.line LIKE' => "%".mb_substr($keywords[$i], 1)."%",
+							'History.content LIKE' => "%".mb_substr($keywords[$i], 1)."%",
+// 							'History.line NOT LIKE' => "%".mb_substr($keywords[$i], 1)."%",
+// 							'History.content NOT LIKE' => "%".mb_substr($keywords[$i], 1)."%",
+// 							'History.line NOT LIKE' => "%$keywords[$i]%",
+// 							'History.content NOT LIKE' => "%$keywords[$i]%"
+					);
+					
+					array_push($not['NOT'], $ary_not);
+// 					array_push($not, $ary_not);
+				
+				} else {
+				
+					$ary = array(
+							'History.line LIKE' => "%$keywords[$i]%",
+							'History.content LIKE' => "%$keywords[$i]%"
+					);
+
+					if (isset($ary) && $ary != null) {
+// 					if (isset($ary)) {
+					
+						array_push($tmp[$aor], $ary);
+// 						array_push($tmp['OR'], $ary);
+					
+					}
+						
+				}//if ($w[0] == "-")
+			
+			} else {
+			
+				$ary = array(
+						'History.line LIKE' => "%$keywords[$i]%",
+						'History.content LIKE' => "%$keywords[$i]%"
+				);
+				
+				if (isset($ary) && $ary != null) {
+// 				if (isset($ary)) {
+						
+					array_push($tmp[$aor], $ary);
+// 					array_push($tmp['OR'], $ary);
+						
+				}
+			}//if (conditions)
+			
+			
+// 			$ary = array(
+// 						'History.line LIKE' => "%$keywords[$i]%",
+// 						'History.content LIKE' => "%$keywords[$i]%"
+// 						);
+			
+// 			if (isset($ary)) {
+				
+// 				array_push($tmp['OR'],
+	
+// 						$ary
+// 	// 					array(
+// 	// 						'History.line LIKE' => "%$keywords[$i]%",
+// 	// 						'History.content LIKE' => "%$keywords[$i]%"
+// 	// 						)
+// 				);
+
+// 			}
+			
+		}//for ($i = 0; $i < count($keywords); $i++)
+			
+// 		array_push($tmp['OR'], array('History.line LIKE' => "%$query_Filter%"));
+		
+// 		debug($tmp);
+		
+		
+		//REF http://book.cakephp.org/2.0/en/models/retrieving-your-data.html
+		$opt_conditions[$aor] = $tmp[$aor];
+// 		$opt_conditions['OR'] = $tmp['OR'];
+		
+		$opt_conditions['NOT'] = $not['NOT'];
+		
+//		debug($not);
+//		debug($not['NOT']);
+		
+// 		$opt_conditions['OR'] = array(
+// 				'History.line LIKE' => "%$query_Filter%",
+// 				'History.content LIKE' => "%$query_Filter%"
+// 		);
+
+//		debug($opt_conditions);
+		
+		return $opt_conditions;
+		
+	}//_index__Options__Line_Query
 	
 	public function 
 	_index__Options__Category($opt_conditions) {

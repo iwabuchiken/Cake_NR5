@@ -42,6 +42,25 @@
 			
 		echo $this->Form->create(null, $opt_create);
 		
+		//REF http://www.cakephpexample.com/cakephp/cakephp-radio-button/
+		// 			echo $this->Form->input('RadioGroup', array(
+		echo $this->Form->input(CONS::$str_Filter_RadioButtons_Name_History, array(
+				'div' => true,
+				// 					'div' => false,
+				'label' => true,
+				'type' => 'radio',
+				'legend' => false,
+				'options' => array(
+						CONS::$str_Filter_RadioButtons_History_AND
+						=> CONS::$str_Filter_RadioButtons_History_AND,
+						CONS::$str_Filter_RadioButtons_History_OR
+						=> CONS::$str_Filter_RadioButtons_History_OR
+				),
+				'default'	=> CONS::$str_Filter_RadioButtons_History_AND
+				// 					'options' => array(1 => 'Personal ', 2 => 'Company')
+		));
+		
+		
 		echo $this->Form->input('filter', $opt_input);
 		
 		echo $this->Form->end(

@@ -187,6 +187,23 @@ class CONS {
 			"その他"		=> "X",							// 6
 			
 	);
+
+	/*******************************
+		history
+	*******************************/
+	public static $str_Filter_History = "filter_history";
+	public static $str_Filter_History_all = "*";
+	
+	public static $str_Filter_RadioButtons_Name_History = "RBs_AND_OR_History";
+	public static $str_Filter_RadioButtons_History_AND = "AND";
+	public static $str_Filter_RadioButtons_History_OR = "OR";
+	
+	public static $str_Filter_RadioButtons_Name_TableName = "RBs_AND_OR_TableName";
+	public static $str_Filter_RadioButtons_TableName_AND = "AND_TableName";
+	public static $str_Filter_RadioButtons_TableName_OR = "OR_TableName";
+	
+	public static $str_Filter_TableName = "filter_table_name";
+	public static $str_Filter_TableName_all = "*";
 	
 	
 }//class CONS
