@@ -25,8 +25,20 @@ class TokensController extends AppController {
 		debug($tmp_tokens);
 		
 // 		$opt_conditions = array('Token.id > ?' => array($tmp_tokens - 100));
+
+		/*******************************
+			limit the records
+		*******************************/
+		$query_limit = "query_limit";
 		
-		$opt_conditions = array('Token.id > ?' => array(10000));
+		@$limit = $this->request->query[$query_limit];
+		
+		if ($limit != null) {
+			
+			$opt_conditions = array('Token.id > ?' => array($limit));;
+			
+		}
+// 		$opt_conditions = array('Token.id > ?' => array(10000));
 		
 		//debug
 // 		$opt_conditions['Token.hin_1'] = "形容動詞語幹";
@@ -4208,5 +4220,107 @@ class TokensController extends AppController {
 		$this->render("/Tokens/tests/create_Tokens");
 		
 	}//create_Tokens
+
+	public function
+	test_NVP_2_Categories() {
+
+		/*******************************
+		 query
+		*******************************/
+		$query_CatId = "cat_id";
+		
+		@$cat_Id = $this->request->query[$query_CatId];
+		
+		if ($cat_Id == null) {
+		
+			$this->Session->setFlash(__('query is null; set the cat ids to default'));
+			
+			@$server_name = $_SERVER['SERVER_NAME'];
+			
+			if ($server_name != null && $server_name != "localhost") {
+					
+				$cat_1 = 8;
+				$cat_2 = 15;
+					
+			} else {
+				
+				$cat_1 = 8;
+				$cat_2 = 15;
+				
+			}
+				
+		} else {
+
+			$cats = explode(",", $cat_Id);
+			
+			if ($cats != null && count($cats) == 2) {
+			
+				$this->Session->setFlash(
+						__("query given; set the cat ids to: $cats[0] and $cats[1]")
+				);
+				
+				$cat_1 = $cats[0];
+				$cat_2 = $cats[1];
+			
+			} else {
+			
+				$this->Session->setFlash(__('2 cat ids not given; set the cat ids to default'));
+				
+				@$server_name = $_SERVER['SERVER_NAME'];
+					
+				if ($server_name != null && $server_name != "localhost") {
+						
+					$cat_1 = 8;
+					$cat_2 = 15;
+						
+				} else {
+				
+					$cat_1 = 8;
+					$cat_2 = 15;
+				
+				}
+				
+			}//if ($cats != null && count($cats) == 2)
+			
+		}
+
+		/*******************************
+			build: list: category 1
+		*******************************/
+// 		$hin = "名詞";
+		
+		$tokens_1 = Utils::find_Tokens_from_CatId($cat_1);
+		
+		debug(count($tokens_1));
+
+		$data_1 = Utils::get_Histo($tokens_1);
+		
+		debug("\$data_1[1] => $data_1[1]");
+		
+		$this->set("total_1", $data_1[1]);
+		$this->set("histo_1", $data_1[0]);
+		
+		/*******************************
+			build: list: category 2
+		*******************************/
+// 		$hin = "名詞";
+		
+		$tokens_2 = Utils::find_Tokens_from_CatId($cat_2);
+		
+		debug(count($tokens_2));
+
+		$data_2 = Utils::get_Histo($tokens_2);
+		
+		debug("\$data_2[1] => $data_2[1]");
+		
+		$this->set("total_2", $data_2[1]);
+		$this->set("histo_2", $data_2[0]);
+		
+		/**********************************
+		 * view
+		**********************************/
+		$this->render("/Tokens/tests/test_NVP_2_Categories");
+		
+	}//test_NVP_2_Categories
 	
 }

@@ -410,10 +410,29 @@ class HistorysController extends AppController {
 				
 				} else {
 				
-					$ary = array(
-							'History.line LIKE' => "%$keywords[$i]%",
-							'History.content LIKE' => "%$keywords[$i]%"
-					);
+					if ($aor == "AND") {
+					
+						$ary = array("OR" => 
+								array('History.line LIKE' => "%$keywords[$i]%",
+								'History.content LIKE' => "%$keywords[$i]%"
+								)
+						);
+					
+					} else {
+					
+						$ary = array(
+								'History.line LIKE' => "%$keywords[$i]%",
+								'History.content LIKE' => "%$keywords[$i]%"
+						);
+						
+					}//if ($aor == "AND")
+					
+					
+					
+// 					$ary = array(
+// 							'History.line LIKE' => "%$keywords[$i]%",
+// 							'History.content LIKE' => "%$keywords[$i]%"
+// 					);
 
 					if (isset($ary) && $ary != null) {
 // 					if (isset($ary)) {
@@ -426,11 +445,28 @@ class HistorysController extends AppController {
 				}//if ($w[0] == "-")
 			
 			} else {
-			
-				$ary = array(
-						'History.line LIKE' => "%$keywords[$i]%",
-						'History.content LIKE' => "%$keywords[$i]%"
-				);
+
+				if ($aor == "AND") {
+						
+					$ary = array("OR" =>
+							array('History.line LIKE' => "%$keywords[$i]%",
+									'History.content LIKE' => "%$keywords[$i]%"
+							)
+					);
+						
+				} else {
+						
+					$ary = array(
+							'History.line LIKE' => "%$keywords[$i]%",
+							'History.content LIKE' => "%$keywords[$i]%"
+					);
+				
+				}//if ($aor == "AND")
+				
+// 				$ary = array(
+// 						'History.line LIKE' => "%$keywords[$i]%",
+// 						'History.content LIKE' => "%$keywords[$i]%"
+// 				);
 				
 				if (isset($ary) && $ary != null) {
 // 				if (isset($ary)) {
