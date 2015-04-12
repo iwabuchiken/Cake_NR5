@@ -4323,4 +4323,211 @@ class TokensController extends AppController {
 		
 	}//test_NVP_2_Categories
 	
+	public function
+	test_NVP_2_Categories_Compare() {
+
+		/*******************************
+		 query
+		*******************************/
+		$query_CatId = "cat_id";
+		
+		@$cat_Id = $this->request->query[$query_CatId];
+		
+		if ($cat_Id == null) {
+		
+// 			$this->Session->setFlash(__('query is null; set the cat ids to default'));
+			$msg_Flash = "query is null; set the cat ids to default";
+			
+			@$server_name = $_SERVER['SERVER_NAME'];
+			
+			if ($server_name != null && $server_name != "localhost") {
+					
+				$cat_1 = 8;
+				$cat_2 = 15;
+					
+			} else {
+				
+				$cat_1 = 8;
+				$cat_2 = 15;
+				
+			}
+				
+		} else {
+
+			$cats = explode(",", $cat_Id);
+			
+			if ($cats != null && count($cats) == 2) {
+			
+// 				$this->Session->setFlash(
+// 						__("query given; set the cat ids to: $cats[0] and $cats[1]")
+// 				);
+				
+				$msg_Flash = "query given; set the cat ids to: $cats[0] and $cats[1]";
+				
+				$cat_1 = $cats[0];
+				$cat_2 = $cats[1];
+			
+			} else {
+			
+// 				$this->Session->setFlash(__('2 cat ids not given; set the cat ids to default'));
+				
+				$msg_Flash = "2 cat ids not given; set the cat ids to default";
+				
+				@$server_name = $_SERVER['SERVER_NAME'];
+					
+				if ($server_name != null && $server_name != "localhost") {
+						
+					$cat_1 = 8;
+					$cat_2 = 15;
+						
+				} else {
+				
+					$cat_1 = 8;
+					$cat_2 = 15;
+				
+				}
+				
+			}//if ($cats != null && count($cats) == 2)
+			
+		}
+
+		/*******************************
+			build: list: category 1
+		*******************************/
+// 		$hin = "名詞";
+		
+		$tokens_1 = Utils::find_Tokens_from_CatId($cat_1);
+		
+		debug(count($tokens_1));
+
+		$data_1 = Utils::get_Histo($tokens_1);
+		
+		debug("\$data_1[1] => $data_1[1]");
+		
+		$this->set("total_1", $data_1[1]);
+		$this->set("histo_1", $data_1[0]);
+		
+		/*******************************
+			build: list: category 2
+		*******************************/
+// 		$hin = "名詞";
+		
+		$tokens_2 = Utils::find_Tokens_from_CatId($cat_2);
+		
+		debug(count($tokens_2));
+
+		$data_2 = Utils::get_Histo($tokens_2);
+		
+		debug("\$data_2[1] => $data_2[1]");
+		
+		$this->set("total_2", $data_2[1]);
+		$this->set("histo_2", $data_2[0]);
+		
+		/*******************************
+			"Others"
+		*******************************/
+		@$server_name = $_SERVER['SERVER_NAME'];
+		
+		if ($server_name == null) {
+			
+			$msg_Flash .= "<br>server_name => null";
+			
+			
+		} else if ($server_name != null && $server_name == "localhost") {
+				
+			$history_Id = 142;
+				
+		} else {
+			
+			$history_Id = 1638;
+			
+		}
+		
+		debug("history_Id => ".$history_Id);
+		
+		/*******************************
+			tokens
+		*******************************/
+		$option = array('conditions'
+					=> array('AND' 
+						=> array(
+								"Token.history_id" => $history_Id,
+								)
+		));
+
+		$tokens_Other = $this->Token->find('all', $option);
+		
+		debug("tokens => ".count($tokens_Other));
+		
+		$data_Other = Utils::get_Histo($tokens_Other);
+		
+		$this->set("total_Other", $data_Other[1]);
+		$this->set("histo_Other", $data_Other[0]);
+		
+		debug(array_slice($data_Other[0], 2, 10));
+// 		debug(count($data_Other));
+		
+		/*******************************
+			get: genre code: "soci"
+		*******************************/
+// 		$this->loadModel('Genre');
+
+// 		$code = "soci";
+		
+// 		$genre = Utils::find_Genre_from_Code($code);
+
+// 		if ($genre == null) {
+		
+// 			$msg_Flash .= "<br>Genre => null";
+			
+// 		} else {
+		
+// 			$msg_Flash .= "<br>Genre => found";
+			
+// 			/*******************************
+// 				get: history: soci, others
+// 			*******************************/
+// 			$cat_ID_Others = -5;
+			
+// 			$option = array('conditions'
+// 						=> array('AND' 
+// 							=> array(
+// 									"History.genre_id" => $genre['Genre']['id'],
+// 									"History.category_id" => $cat_ID_Others,
+// 									)
+// 			));
+			
+// 			$this->loadModel('History');
+			
+// 			$histories = $this->History->find('all', $option);
+// // 			$histories = $this->History->find('first', $option);
+			
+// 			if ($histories == null) {
+			
+// 				$msg_Flash .= "<br>histories => null";
+			
+// 			} else {
+			
+// 				$msg_Flash .= "<br>histories => found"."(".count($histories).")";
+				
+				
+				
+// 			}//if ($histories == null)
+			
+			
+			
+// 		}//if ($genre != null)
+		
+		/*******************************
+			flash
+		*******************************/
+		$this->Session->setFlash(__($msg_Flash));
+		
+		/**********************************
+		 * view
+		**********************************/
+		$this->render("/Tokens/tests/test_NVP_2_Categories_Compare");
+		
+	}//test_NVP_2_Categories
+	
 }

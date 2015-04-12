@@ -1232,6 +1232,31 @@
 			
 		}//find_Tokens_from_CatId_and_Hin
 
+		public static function
+		find_Genre_from_Code($code) {
+			
+			/*******************************
+				model
+			*******************************/
+			$model = ClassRegistry::init('Genre');
+			
+			/*******************************
+			 get: tokens
+			*******************************/
+			$option = array('conditions' =>
+			
+// 					array("AND" =>
+							array("Genre.code" => $code),
+// 							array('Token.hin' => "名詞")
+// 					),
+			);//array('conditions'
+			
+			$genre = $model->find('first', $option);
+
+			return $genre;
+			
+		}//find_Genre_from_Code($code)
+
 		/*******************************
 			@return
 			$histo, $total
