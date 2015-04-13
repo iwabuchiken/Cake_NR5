@@ -62,6 +62,12 @@ class CONS {
 	
 	public static $admin_NumOfPages = "admin_NumOfPages";
 	
+	public static $admin_ScoreTopX = "admin_ScoreTopX";
+	
+	public static $admin_Val_1 = "val1";
+	
+	public static $admin_Val_2 = "val2";
+	
 	/**********************************
 	* Tokens
 	**********************************/
@@ -84,6 +90,8 @@ class CONS {
 	public static $str_Filter_Cat_Id_all = "filter_cat_id_all";
 	public static $str_Filter_Cat_Id_all_Val = "-1";
 
+	public static $str_TopX_Default = 50;
+	
 	/*******************************
 		NVP
 	*******************************/

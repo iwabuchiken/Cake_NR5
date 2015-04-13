@@ -1501,6 +1501,44 @@
 // 			return array();
 			
 		}//get_Histo
+
+		public static function
+		get_Admin_Value
+		($key, $val_1) {
+		
+// 			$this->loadModel('Admin');
+	
+			//REF http://stackoverflow.com/questions/2802677/what-are-the-possible-reasons-for-appimport-not-working answered May 10 '10 at 13:18
+			$model = ClassRegistry::init('Admin');
+		
+			$option = array(
+						
+					'conditions'	=> array(
+							'Admin.name LIKE'	=> $key
+					)
+			);
+		
+			// 		$admin = $this->Admin->find('first');
+			$admin = $model->find('first', $option);
+// 			$admin = $this->Admin->find('first', $option);
+		
+			// 		debug($admin);
+		
+			if ($admin == null) {
+			
+				return null;
+			
+			} else {
+			
+				return @$admin['Admin'][$val_1];
+				
+			}//if ($admin == null)
+			
+			
+			
+// 			return @$admin['Admin'][$val_1];
+		
+		}//get_Admin_Value
 		
 	}//class Utils
 	

@@ -1,7 +1,7 @@
 <h1><?php echo __FILE__; ?></h1>
 
 <br>
-Usage => e.g. "http://localhost/Cake_NR5/Tokens/test_NVP_2_Categories?cat_id=8,15"
+Usage => e.g. "http://localhost/Cake_NR5/Tokens/test_NVP_2_Categories?cat_id=8,15&history_id=139"
 <br>
 <br>
 <a href="#bottom">Bottom</a><a name="top"></a>
@@ -54,6 +54,12 @@ Usage => e.g. "http://localhost/Cake_NR5/Tokens/test_NVP_2_Categories?cat_id=8,1
   			
   		}//if (isset(($histo_Other)))
   		
+  		// modify length
+  		if (isset($topX) && $len > $topX) {
+  			
+			$len = $topX;
+			
+  		}
   		
 //   		$len = (count($keys_1) < count($keys_2)) ? count($keys_1) : count($keys_2);
 //   		$len = ($keys_1 < $keys_2) ? $keys_1 : $keys_2;
