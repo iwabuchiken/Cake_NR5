@@ -4398,11 +4398,11 @@ class TokensController extends AppController {
 		
 		$tokens_1 = Utils::find_Tokens_from_CatId($cat_1);
 		
-		debug(count($tokens_1));
+		debug("tokens_1 => ".count($tokens_1));
 
 		$data_1 = Utils::get_Histo($tokens_1);
 		
-		debug("\$data_1[1] => $data_1[1]");
+//		debug("\$data_1[1] => $data_1[1]");
 		
 		$this->set("total_1", $data_1[1]);
 		$this->set("histo_1", $data_1[0]);
@@ -4414,11 +4414,11 @@ class TokensController extends AppController {
 		
 		$tokens_2 = Utils::find_Tokens_from_CatId($cat_2);
 		
-		debug(count($tokens_2));
+		debug("tokens_2 => ".count($tokens_2));
 
 		$data_2 = Utils::get_Histo($tokens_2);
 		
-		debug("\$data_2[1] => $data_2[1]");
+//		debug("\$data_2[1] => $data_2[1]");
 		
 		$this->set("total_2", $data_2[1]);
 		$this->set("histo_2", $data_2[0]);
@@ -4426,27 +4426,35 @@ class TokensController extends AppController {
 		/*******************************
 			"Others"
 		*******************************/
-		@$server_name = $_SERVER['SERVER_NAME'];
+		$query_HistoryId = "history_id";
 		
-		if ($server_name == null) {
+		@$history_Id = $this->request->query[$query_HistoryId];
+		
+		if ($history_Id == null) {
 			
-			$msg_Flash .= "<br>server_name => null";
+			@$server_name = $_SERVER['SERVER_NAME'];
 			
-			
-		} else if ($server_name != null && $server_name == "localhost") {
+			if ($server_name == null) {
 				
-			$history_Id = 142;
+				$msg_Flash .= "<br>server_name => null";
 				
-		} else {
-			
-			$history_Id = 1638;
-			
-		}
+				
+			} else if ($server_name != null && $server_name == "localhost") {
+					
+				$history_Id = 142;
+					
+			} else {
+				
+				$history_Id = 1638;
+				
+			}
+		
+		}//if ($history_Id == null)
 		
 		debug("history_Id => ".$history_Id);
 		
 		/*******************************
-			tokens
+			tokens: Other
 		*******************************/
 		$option = array('conditions'
 					=> array('AND' 
@@ -4459,64 +4467,88 @@ class TokensController extends AppController {
 		
 		debug("tokens => ".count($tokens_Other));
 		
-		$data_Other = Utils::get_Histo($tokens_Other);
-		
-		$this->set("total_Other", $data_Other[1]);
-		$this->set("histo_Other", $data_Other[0]);
-		
-		debug(array_slice($data_Other[0], 2, 10));
-// 		debug(count($data_Other));
-		
-		/*******************************
-			get: genre code: "soci"
-		*******************************/
-// 		$this->loadModel('Genre');
+		if ($tokens_Other == null or count($tokens_Other) < 1) {
+			
+			$msg_Flash .= "<br>no tokens found for history id => ".$history_Id;
+			
+		} else {
+			
+			$data_Other = Utils::get_Histo($tokens_Other);
+			
+			$this->set("total_Other", $data_Other[1]);
+			$this->set("histo_Other", $data_Other[0]);
+				
+	// 		debug(array_slice($data_Other[0], 2, 10));
+	
+			/*******************************
+				scoring
+			*******************************/
+			$len = min(count($data_1[0]), count($data_2[0]), count($data_Other[0]));
+			
+	//		debug("len => ".$len);
+			
+			$keys_1 = array_keys($data_1[0]);
+			$keys_2 = array_keys($data_2[0]);
+			$keys_Other = array_keys($data_Other[0]);
+			
+			$score_1 = 0;
+			$score_2 = 0;
+			
+	// 		debug(array_slice($keys_1,2,10));
+			
+			/*******************************
+				match: keys_1
+			*******************************/
+			debug("keys_1");
+			
+			for ($i = 0; $i < $len; $i++) {
+				
+				for ($j = 0; $j < $len; $j ++) {
+	// 			foreach ($keys_1 as $data) {
+	// 			foreach ($data_1[0] as $data) {
+	
+					$data = $keys_1[$j];
+					
+					if ($keys_Other[$i] == $data) {
+						
+						$score_1 ++;
+						
+	// 					debug("match => ".$keys_Other[$i]." / ".$data);
+						
+					}
+				}
+				
+			}
+			
+			debug("score_1 => ".$score_1);
+			
+			/*******************************
+				match: keys_2
+			*******************************/
+			debug("keys_2");
+			
+			for ($i = 0; $i < $len; $i++) {
+				
+				for ($j = 0; $j < $len; $j ++) {
+	// 			foreach ($keys_2 as $data) {
+	// 			foreach ($data_2[0] as $data) {
+	
+					$data = $keys_2[$j];
+					
+					if ($keys_Other[$i] == $data) {
+						
+						$score_2 ++;
+						
+	// 					debug("match => ".$keys_Other[$i]." / ".$data);
+						
+					}
+				}
+				
+			}
+			
+			debug("score_2 => ".$score_2);
 
-// 		$code = "soci";
-		
-// 		$genre = Utils::find_Genre_from_Code($code);
-
-// 		if ($genre == null) {
-		
-// 			$msg_Flash .= "<br>Genre => null";
-			
-// 		} else {
-		
-// 			$msg_Flash .= "<br>Genre => found";
-			
-// 			/*******************************
-// 				get: history: soci, others
-// 			*******************************/
-// 			$cat_ID_Others = -5;
-			
-// 			$option = array('conditions'
-// 						=> array('AND' 
-// 							=> array(
-// 									"History.genre_id" => $genre['Genre']['id'],
-// 									"History.category_id" => $cat_ID_Others,
-// 									)
-// 			));
-			
-// 			$this->loadModel('History');
-			
-// 			$histories = $this->History->find('all', $option);
-// // 			$histories = $this->History->find('first', $option);
-			
-// 			if ($histories == null) {
-			
-// 				$msg_Flash .= "<br>histories => null";
-			
-// 			} else {
-			
-// 				$msg_Flash .= "<br>histories => found"."(".count($histories).")";
-				
-				
-				
-// 			}//if ($histories == null)
-			
-			
-			
-// 		}//if ($genre != null)
+		}//if ($tokens_Other == null or count($tokens_Other) < 1)
 		
 		/*******************************
 			flash
@@ -4528,6 +4560,6 @@ class TokensController extends AppController {
 		**********************************/
 		$this->render("/Tokens/tests/test_NVP_2_Categories_Compare");
 		
-	}//test_NVP_2_Categories
+	}//test_NVP_2_Categories_Compare
 	
 }

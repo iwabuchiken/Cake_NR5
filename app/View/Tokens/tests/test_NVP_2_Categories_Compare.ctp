@@ -34,12 +34,27 @@ Usage => e.g. "http://localhost/Cake_NR5/Tokens/test_NVP_2_Categories?cat_id=8,1
 
   		$keys_1 = array_keys($histo_1);
   		$keys_2 = array_keys($histo_2);
-  		$keys_Other = array_keys($histo_Other);
+  		
+  		if (isset($histo_Other)) {
+  			
+	  		$keys_Other = array_keys($histo_Other);
+	  		
+  		}
 
-  		debug(count($keys_Other));
+//   		debug(count($keys_Other));
   		
   		// set the size => smaller histo
-  		$len = min(count($keys_1), count($keys_2), count($keys_Other));
+  		if (isset($histo_Other)) {
+  		
+	  		$len = min(count($keys_1), count($keys_2), count($keys_Other));
+  		
+  		} else {
+  		
+  			$len = min(count($keys_1), count($keys_2));
+  			
+  		}//if (isset(($histo_Other)))
+  		
+  		
 //   		$len = (count($keys_1) < count($keys_2)) ? count($keys_1) : count($keys_2);
 //   		$len = ($keys_1 < $keys_2) ? $keys_1 : $keys_2;
   		
@@ -129,135 +144,44 @@ Usage => e.g. "http://localhost/Cake_NR5/Tokens/test_NVP_2_Categories?cat_id=8,1
 <!-- 	    </td> -->
 
 	    <!-- histo 2 --------------------------------------->
-    	<td>
-	    	<?php 
-	    	
-	    		echo ($i + 1);
-	    		
-	    	?>
-	    </td>
+	    <?php 
 
-	    <td>
-	    	
-	    	<?php 
-	    	
-	    		echo $keys_2[$i];
-	    	
-	    	?>
-	    	
-    	</td>
+	  		if (isset($total_2)) {
+	  		
+		  		echo $this->element(
+		  						'tokens/tests/test_NVP_2_Categories_Compare_Histo_2',
+		  						array(
+									'i' => $i, 
+									'keys_2' => $keys_2, 
+									'histo_2' => $histo_2,
+									'total_2' => $total_2,
+								)
+				); 
 
-    	<td>
+	  		}
+	  		
+	  ?>
 	    
-    	   	<?php 
-	    	
-	    		echo $histo_2[$keys_2[$i]];
-	    	
-	    	?>
-	    	
-    	</td>
-
-    	<td>
-
-	      	<?php 
-	    	
-	      		if ($total_2 > 0) {
-	      		
-	      			echo round($histo_2[$keys_2[$i]] / $total_2 * 100, 4);
-// 	      			echo $histo_1[$keys_1[$i]] / $total_1;
-// 					echo "data";
-	      		
-	      		} else {
-	      		
-	      			echo "0";
-	      			
-	      		}//if ($total_1 > 0)
-	      		
-	      		
-// 	    		echo $histo_1[$keys_1[$i]] / $total_1;
-	    	
-	    	?>
-	    
-    	</td>
-	    
-<!-- 	    <td> -->
-
-	    	<?php 
-
-// 		    	if ($total_2 > 0) {
-		    		 
-// 		    		$ratio_sum_2 += $histo_2[$keys_2[$i]] / $total_2;
-		    		
-// 		    		echo round($ratio_sum_2 * 100, 4);
-// // 		    		echo $ratio_sum_2;
-		    		 
-// 		    	} else {
-		    		 
-// 		    		echo "0";
-		    	
-// 		    	}//if ($total_2 > 0)
-		    	
-	    	
-// 	    	?>
-	    
-<!-- 	    </td> -->
-    	
 	  <!-- histo Other --------------------------------------->
-		<td>
-	    	<?php 
-	    	
-	    		echo ($i + 1);
-	    		
-	    	?>
-	    </td>
+	  <?php 
 
-	    <td>
-	    	
-	    	<?php 
-	    	
-// 	    		echo "data";
-	    		echo $keys_Other[$i];
-	    	
-	    	?>
-	    	
-    	</td>
+	  		if (isset($total_Other)) {
+	  		
+		  		echo $this->element(
+		  						'tokens/tests/test_NVP_2_Categories_Compare_Other',
+		  						array(
+									'i' => $i, 
+									'keys_Other' => $keys_Other, 
+									'histo_Other' => $histo_Other,
+									'total_Other' => $total_Other,
+								)
+				); 
 
-    	    	<td>
-	    
-    	   	<?php 
-	    	
-	    		echo $histo_Other[$keys_Other[$i]];
-	    	
-	    	?>
-	    	
-    	</td>
-
-    	<td>
-
-	      	<?php 
-	    	
-	      		if ($total_Other > 0) {
-	      		
-	      			echo round($histo_Other[$keys_Other[$i]] / $total_Other * 100, 4);
-// 	      			echo $histo_1[$keys_1[$i]] / $total_1;
-// 					echo "data";
-	      		
-	      		} else {
-	      		
-	      			echo "0";
-	      			
-	      		}//if ($total_1 > 0)
-	      		
-	      		
-// 	    		echo $histo_1[$keys_1[$i]] / $total_1;
-	    	
-	    	?>
-	    
-    	</td>
-    	
-	  </tr>
+	  		}
+	  		
+	  ?>
 	  
-		
+	  </tr>
 	  
   <?php 
   		}
