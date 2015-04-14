@@ -1539,6 +1539,35 @@
 // 			return @$admin['Admin'][$val_1];
 		
 		}//get_Admin_Value
+
+
+		public static function
+		get_Matching_Scores($keys_Target, $keys_Ref) {
+			
+			$score_1 = 0;
+			
+			for ($i = 0; $i < $len; $i++) {
+			
+				for ($j = 0; $j < $len; $j ++) {
+					// 			foreach ($keys_Ref as $data) {
+					// 			foreach ($data_1[0] as $data) {
+			
+					$data = $keys_Ref[$j];
+						
+					if ($keys_Target[$i] == $data) {
+			
+						$score_1 ++;
+			
+						// 					debug("match => ".$keys_Target[$i]." / ".$data);
+			
+					}
+				}
+			
+			}
+
+			return $score_1;
+			
+		}//get_Matching_Scores
 		
 	}//class Utils
 	

@@ -4827,4 +4827,228 @@ class TokensController extends AppController {
 		
 	}//test_NVP_Category_AB_Top50
 
+	public function
+	test_NVP_Get_Scores() {
+
+		/*******************************
+		 query
+		*******************************/
+		$query_CatId = "cat_id";
+		
+		@$cat_Id = $this->request->query[$query_CatId];
+		
+		if ($cat_Id == null) {
+		
+// 			$this->Session->setFlash(__('query is null; set the cat ids to default'));
+			$msg_Flash = "query is null; set the cat ids to default";
+			
+			@$server_name = $_SERVER['SERVER_NAME'];
+			
+			if ($server_name != null && $server_name != "localhost") {
+					
+				$cat_1 = 8;
+				$cat_2 = 15;
+					
+			} else {
+				
+				$cat_1 = 8;
+				$cat_2 = 15;
+				
+			}
+				
+		} else {
+
+			$cats = explode(",", $cat_Id);
+			
+			if ($cats != null && count($cats) == 2) {
+			
+// 				$this->Session->setFlash(
+// 						__("query given; set the cat ids to: $cats[0] and $cats[1]")
+// 				);
+				
+				$msg_Flash = "query given; set the cat ids to: $cats[0] and $cats[1]";
+				
+				$cat_1 = $cats[0];
+				$cat_2 = $cats[1];
+			
+			} else {
+			
+// 				$this->Session->setFlash(__('2 cat ids not given; set the cat ids to default'));
+				
+				$msg_Flash = "2 cat ids not given; set the cat ids to default";
+				
+				@$server_name = $_SERVER['SERVER_NAME'];
+					
+				if ($server_name != null && $server_name != "localhost") {
+						
+					$cat_1 = 8;
+					$cat_2 = 15;
+						
+				} else {
+				
+					$cat_1 = 8;
+					$cat_2 = 15;
+				
+				}
+				
+			}//if ($cats != null && count($cats) == 2)
+			
+		}
+
+		/*******************************
+			build: list: category 1
+		*******************************/
+// 		$hin = "名詞";
+		
+		$tokens_1 = Utils::find_Tokens_from_CatId($cat_1);
+		
+		debug("tokens_1 => ".count($tokens_1));
+
+		$data_1 = Utils::get_Histo($tokens_1);
+		
+//		debug("\$data_1[1] => $data_1[1]");
+		
+		$this->set("total_1", $data_1[1]);
+		$this->set("histo_1", $data_1[0]);
+		
+		/*******************************
+			build: list: category 2
+		*******************************/
+// 		$hin = "名詞";
+		
+		$tokens_2 = Utils::find_Tokens_from_CatId($cat_2);
+		
+		debug("tokens_2 => ".count($tokens_2));
+
+		$data_2 = Utils::get_Histo($tokens_2);
+		
+//		debug("\$data_2[1] => $data_2[1]");
+		
+		$this->set("total_2", $data_2[1]);
+		$this->set("histo_2", $data_2[0]);
+		
+		/*******************************
+			"Others"
+		*******************************/
+		$query_HistoryId = "history_id";
+		
+		@$history_Id = $this->request->query[$query_HistoryId];
+		
+		if ($history_Id == null) {
+			
+			@$server_name = $_SERVER['SERVER_NAME'];
+			
+			if ($server_name == null) {
+				
+				$msg_Flash .= "<br>server_name => null";
+				
+				
+			} else if ($server_name != null && $server_name == "localhost") {
+					
+				$history_Id = 142;
+					
+			} else {
+				
+				$history_Id = 1638;
+				
+			}
+		
+		}//if ($history_Id == null)
+		
+		debug("history_Id => ".$history_Id);
+		
+		/*******************************
+			tokens: Other
+		*******************************/
+		$option = array('conditions'
+					=> array('AND' 
+						=> array(
+								"Token.history_id" => $history_Id,
+								)
+		));
+
+		$tokens_Other = $this->Token->find('all', $option);
+		
+		debug("tokens => ".count($tokens_Other));
+		
+		if ($tokens_Other == null or count($tokens_Other) < 1) {
+			
+			$msg_Flash .= "<br>no tokens found for history id => ".$history_Id;
+			
+		} else {
+			
+			$data_Other = Utils::get_Histo($tokens_Other);
+			
+			$this->set("total_Other", $data_Other[1]);
+			$this->set("histo_Other", $data_Other[0]);
+				
+	// 		debug(array_slice($data_Other[0], 2, 10));
+	
+			/*******************************
+				scoring
+			*******************************/
+			$len = min(count($data_1[0]), count($data_2[0]), count($data_Other[0]));
+			
+			debug("len => $len");
+			
+			$topX = Utils::get_Admin_Value(CONS::$admin_ScoreTopX, CONS::$admin_Val_1);
+			
+			
+			$topX_default = CONS::$str_TopX_Default;
+// 			$topX_default = 50;
+			
+			if ($topX == null || $topX == -1) {
+				
+				$topX = $topX_default;
+				
+			}
+			
+			debug("topX => $topX");
+
+// 			$topX = 50;
+			
+			if ($len > $topX) {
+				
+				$len = $topX;
+				
+			}
+			
+			$this->set("topX", $topX);
+			
+			$keys_1 = array_keys($data_1[0]);
+			$keys_2 = array_keys($data_2[0]);
+			$keys_Other = array_keys($data_Other[0]);
+			
+			/*******************************
+				match: keys_1
+			*******************************/
+			debug("keys_1");
+			
+			$score_1 = Utils::get_Matching_Scores($keys_Other, $keys_1);
+
+			debug("score_1 => ".$score_1);
+			
+			/*******************************
+				match: keys_2
+			*******************************/
+			debug("keys_2");
+			
+			$score_2 = Utils::get_Matching_Scores($keys_Other, $keys_2);
+			
+			debug("score_2 => ".$score_2);
+
+		}//if ($tokens_Other == null or count($tokens_Other) < 1)
+		
+		/*******************************
+			flash
+		*******************************/
+		$this->Session->setFlash(__($msg_Flash));
+		
+		/**********************************
+		 * view
+		**********************************/
+		$this->render("/Tokens/tests/test_NVP_2_Categories_Compare");
+		
+	}//test_NVP_Get_Scores
+
 }
