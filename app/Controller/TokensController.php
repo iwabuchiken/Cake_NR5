@@ -17,6 +17,8 @@ class TokensController extends AppController {
 		
 		$opt_conditions = $this->_index__Options();
 
+		debug($opt_conditions);
+		
 		//test
 		//REF http://stackoverflow.com/questions/20234155/how-to-count-total-number-of-rows-of-table-in-cakephp
 		$tmp_tokens = $this->Token->find('count', array('conditions' => $opt_conditions));
@@ -32,10 +34,18 @@ class TokensController extends AppController {
 		$query_limit = "query_limit";
 		
 		@$limit = $this->request->query[$query_limit];
-		
-		if ($limit != null) {
+
+		if ($limit == null) {
 			
-			$opt_conditions = array('Token.id > ?' => array($limit));;
+			$limit = $tmp_tokens - 100;
+			
+		}
+		
+		if ($limit != null && count($opt_conditions) < 1) {
+// 		if ($limit != null) {
+			
+			$opt_conditions = array('Token.id > ?' => $limit);
+// 			$opt_conditions = array('Token.id > ?' => array($limit));;
 			
 		}
 // 		$opt_conditions = array('Token.id > ?' => array(10000));
@@ -77,6 +87,9 @@ class TokensController extends AppController {
 		} else {
 			
 			$this->paginate = array(
+					//REF http://stackoverflow.com/questions/861960/how-can-i-limit-the-find-to-a-specific-number-in-cakephp answered May 14 '10 at 0:08
+// 					'limit' => "13314,10",
+// 					'recursive'	=> -1,
 					'limit' => $page_limit,
 					'order' => $opt_order,
 					'conditions'	=> $opt_conditions,
@@ -85,6 +98,9 @@ class TokensController extends AppController {
 				
 		}
 
+// 		debug($this->request['paging']);
+// 		debug($this->Controller->request['paging']);
+		
 		/*******************************
 			tokens
 		*******************************/
@@ -4212,7 +4228,7 @@ class TokensController extends AppController {
 		/*******************************
 			get: history list
 		*******************************/
-		
+		Utils::create_Tokens($cat_Id);
 		
 		/**********************************
 		 * view
