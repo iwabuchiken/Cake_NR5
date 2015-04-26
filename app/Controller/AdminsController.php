@@ -284,6 +284,17 @@ class AdminsController extends AppController {
 		
 		
 		/*******************************
+			historys
+		*******************************/
+		if ($name == "historys") {
+
+			$this->csv_Histories_create($name);
+			
+			return $this->redirect(array('action' => 'csv'));
+			
+		}
+		
+		/*******************************
 			categorys
 		*******************************/
 		if ($name == "categorys") {
@@ -448,6 +459,54 @@ class AdminsController extends AppController {
 		
 		
 	}//csv_Genres_create()
+	
+	public function
+	csv_Histories_create($name) {
+		
+		$this->loadModel('History');
+		
+		$historys = $this->History->find('all');
+		
+// 		debug(count($tokens));
+		
+// 		debug(array_values($tokens[0]['Token']));
+// 		debug($tokens[0]['Token']);
+// 		debug($tokens[0]);
+
+		/*******************************
+			write file
+		*******************************/
+// 		REF http://www.tizag.com/phpT/filecreate.php
+// 		$file = fopen("webroot/$name.csv", 'w');
+		$file = fopen("$name.csv", 'w');
+// 		$file = fopen("tokens.csv", 'w');
+
+		$values = array_values($historys[0]['History']);
+		$keys = array_keys($historys[0]['History']);
+		
+		fputcsv($file, $keys);
+		
+		for ($i = 0; $i < count($historys); $i++) {
+			
+			$values = array_values($historys[$i]['History']);
+			
+			fputcsv($file, $values);
+			
+		}
+		
+// 		fputcsv($file, $values);
+		
+		fclose($file);
+		
+		//REF http://book.cakephp.org/2.0/en/core-libraries/components/sessions.html "You can use the additional parameters of setFlash() to create different kinds of flash messages"
+		$this->Session->setFlash("csv created => $name.csv", 'flash_done');	
+// 		$this->Session->setFlash(__("csv created => $name.csv"));	
+// 		$this->Session->setFlash(__('csv created'));	
+		
+		return $this->redirect(array('action' => 'csv'));
+		
+		
+	}//csv_Histories_create()
 	
 	
 	/*******************************

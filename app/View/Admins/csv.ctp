@@ -117,4 +117,37 @@
 	
 	</tr>
 
+	<!-- Historys ------------------------------------------>
+	<tr>
+		
+		<td class="csv_maintable">
+		
+			<?php echo $this->Html->link("Histories",
+								array(
+									'controller' => 'admins', 
+									'action' => 'csv_Tokens_create',
+									'historys'
+									)
+								); 
+			?>
+		
+		</td>
+	
+		<td class="csv_maintable">
+		
+			<?php echo $this->Html->link("Histories",
+								array(
+									'controller' => 'admins', 
+									'action' => 'csv_Tokens_dl',
+									'historys')
+// 									'name')
+// 									'name' => 'index')
+// 									'action' => 'csv_Tokens_dl')
+								); 
+			?>
+		
+		</td>
+	
+	</tr>
+
 </table>
