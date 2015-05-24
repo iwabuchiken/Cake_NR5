@@ -1954,6 +1954,28 @@
 		
 		}//save_token_list
 		
+		public static function
+		decode_HTML($text, $set) {
+			
+			foreach ($set as $key => $val) {
+				
+				$p = "/$key/";
+				
+				$rep = $val;
+				
+				$text = preg_replace($p, $rep, $text);
+				
+			}
+			
+			return $text;
+			
+// 			$p = '/&lt/';
+			
+// 			$rep = '<';
+			
+// 			return preg_replace($p, $rep, $text);
+			
+		}
 		
 	}//class Utils
 	

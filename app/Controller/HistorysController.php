@@ -14,7 +14,7 @@ class HistorysController extends AppController {
 		**********************************/
 		$opt_conditions = $this->_index__Options();
 
-		debug($opt_conditions);
+		//debug($opt_conditions);
 
 // 		debug($filter_Cat);
 		
@@ -72,8 +72,8 @@ class HistorysController extends AppController {
 
 		$histories_Current = $this->paginate('History');
 
-		debug("count(\$histories_Current)");
-		debug(count($histories_Current));
+		//debug("count(\$histories_Current)");
+		//debug(count($histories_Current));
 		
 		$this->set('historys', $histories_Current);
 
@@ -350,7 +350,7 @@ class HistorysController extends AppController {
 		*******************************/
 		@$AND_OR = $this->request->query[CONS::$str_Filter_RadioButtons_Name_History];
 		
-		debug($AND_OR);
+		//debug($AND_OR);
 		
 		// replace "　"(whole char) with " "
 		$target = preg_replace("/　/", " ", $query_Filter);
@@ -739,7 +739,9 @@ class HistorysController extends AppController {
 			**********************************/
 			// plain texts
 			if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1) {
-					
+
+				//debug("\$val_1 == null");
+				
 				for ($i = 0; $i < $num; $i++) {
 					
 					$content_multiline .= $this->build_Text($words_ary[$i]);
@@ -750,6 +752,8 @@ class HistorysController extends AppController {
 			// color texts
 			} else {
 					
+				//debug("else");
+				
 				for ($i = 0; $i < $num; $i++) {
 						
 					$content_multiline .= 
@@ -765,8 +769,12 @@ class HistorysController extends AppController {
 			/**********************************
 			 * prep: data
 			**********************************/
+// 			debug($history);		//=> whole content
+			
 			$words_ary = $this->_view_Mecab($history);
 			// 			$words = $this->_view_Mecab($history);
+
+// 			debug($words_ary);		//=> content --> shortened
 			
 			$val_1 = $this->get_Admin_Value(CONS::$admin_Colorize, "val1");
 			
@@ -783,7 +791,9 @@ class HistorysController extends AppController {
 // 			$val_1 = $this->get_Admin_Value(CONS::$admin_Colorize, "val1");
 			
 			if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1) {
-					
+
+				//debug("\$val_1 == null, etc.");
+				
 				for ($i = 0; $i < $num; $i++) {
 						
 					$content_multiline .= $this->build_Text($words_ary[$i]);
@@ -793,13 +803,19 @@ class HistorysController extends AppController {
 // 				$content_multiline = $this->build_Text($words);
 				
 			} else {
-					
+				
+				//debug("else!");
+
+// 				debug($words_ary);
+				
 				for ($i = 0; $i < $num; $i++) {
 				
 					$content_multiline .=
-					$this->build_Text_Colorize_Kanji($words_ary[$i]);
+						$this->build_Text_Colorize_Kanji($words_ary[$i]);
 				
 				}
+				
+// 				debug($content_multiline);
 				
 // 				$content_multiline = $this->build_Text_Colorize_Kanji($words);
 					
@@ -807,9 +823,15 @@ class HistorysController extends AppController {
 			
 		}//if ($content_Length > 2500)
 
+// 		debug($content_multiline);
+		
 		// add "<br>" to each sentence
 		$content_multiline =
 				$this->_content_multilines_GetHtml($content_multiline);
+		
+		
+		
+// 		debug($content_multiline);
 		
 		$this->set('content_html', $content_multiline);
 		
@@ -968,7 +990,11 @@ class HistorysController extends AppController {
 		/**********************************
 		* prep: sentences
 		**********************************/
-		$sen = $this->sanitize($history['History']['content']);
+// 		$sen = $this->sanitize($history['History']['content']);
+		$sen = $history['History']['content'];
+		
+// 		debug("sen");
+// 		debug($sen);		//=> not shortened
 		
 		/**********************************
 		* experi
@@ -978,12 +1004,18 @@ class HistorysController extends AppController {
 // 		$max = 2000;	//=> error
 		
 		if (mb_strlen($sen) > $max) {
+
+			//debug("mb_strlen(\$sen) > \$max");
 			
 			$words_ary = $this->_view_Mecab__MultiLots($sen, $max);
 // 			$words = $this->_view_Mecab__MultiLots($sen, $max);
+
+// 			debug($words_ary);	//=> shortened
 			
 		} else {
 		
+			//debug("else");
+			
 			$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
 	
 			//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
@@ -993,6 +1025,8 @@ class HistorysController extends AppController {
 // 			$words = $xml->word;
 			
 		}		
+		
+		
 		
 		return $words_ary;
 		
@@ -1010,6 +1044,9 @@ class HistorysController extends AppController {
 		* split: original sentence
 		**********************************/
 		$sen_Array = mb_split("。", $sen);
+		
+// 		debug("sen_Array");
+// 		debug($sen_Array);		//=> not short
 		
 // 		debug("sen_Array => ".count($sen_Array));
 		
@@ -1033,6 +1070,9 @@ class HistorysController extends AppController {
 		
 		$ary_SlicedArrays = Utils::breakdown_Sentence($sen, $numOf_Lots, $split_Char);
 		
+// 		debug("\$ary_SlicedArrays");
+// 		debug($ary_SlicedArrays);		//=> not short
+		
 		$numOf_SlicedArrays = count($ary_SlicedArrays);
 		
 // 		debug("ary_SlicedArrays => ".$numOf_SlicedArrays);
@@ -1045,6 +1085,26 @@ class HistorysController extends AppController {
 			
 			$text = implode($split_Char, $ary_SlicedArrays[$i]);
 			
+// 			debug($text);
+			
+// 			debug($text);
+			
+// 			$tmp = Utils::decode_HTML($text, array("&lt;" => "", "&gt;" => ""));
+
+			$replace_set = array(
+// 								"&lt;" => "<", 
+// 								"&gt;" => ">"
+								"&lt;" => "(", 
+								"&gt;" => ")"
+			);
+			
+			$text = Utils::decode_HTML($text, $replace_set);
+// 			$text = Utils::decode_HTML($text, array("&lt;" => "", "&gt;" => ""));
+			
+// 			debug($tmp);
+// 			debug($text);
+			
+// 			$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=".urlencode($text);
 			$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$text";
 			
 			$xmls[$i] = simplexml_load_file($url);
@@ -1056,6 +1116,9 @@ class HistorysController extends AppController {
 		**********************************/
 		$sen = mb_substr($sen, 0, $max);
 
+// 		debug("\$sen");
+// 		debug($sen);		//=> not short
+		
 		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
 		
 		//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
@@ -1066,7 +1129,11 @@ class HistorysController extends AppController {
 			return array($xml->word);
 			
 		} else {
-				
+
+// 			debug("else");
+
+// 			debug($xmls);
+			
 			$num = count($xmls);
 			
 			$words_ary = array();
@@ -1845,7 +1912,7 @@ class HistorysController extends AppController {
 		
 		$histories = $this->History->find('all', $params);
 
-		debug($histories[0]);
+		//debug($histories[0]);
 		
 		debug(count($histories));
 		
