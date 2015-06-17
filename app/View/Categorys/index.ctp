@@ -11,7 +11,7 @@
 
 <?php echo $this->Html->link("Add category",
 							array(
-								'controller' => 'categorys', 
+								'controller' => 'Categorys', 
 								'action' => 'add')
 							); 
 ?>
@@ -26,7 +26,7 @@
 
 	echo $this->Html->link(
 				    'Delete all',
-				    array('controller' => 'categorys', 'action' => 'delete_all'),
+				    array('controller' => 'Categorys', 'action' => 'delete_all'),
 					null,
 					__("Delete all categories?")
 	); 

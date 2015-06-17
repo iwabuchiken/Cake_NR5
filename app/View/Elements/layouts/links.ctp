@@ -8,7 +8,7 @@
 		
 			<?php echo $this->Html->link(
 								'Articles',
-								array('controller' => 'articles', 
+								array('controller' => 'Articles', 
 										'action' => 'index'),
 								array('class' => "button"));
 			?>
@@ -19,7 +19,7 @@
 		
 			<?php echo $this->Html->link(
 								'Genres',
-								array('controller' => 'genres', 
+								array('controller' => 'Genres', 
 										'action' => 'index'),
 								array('class' => "button"));
 			?>
@@ -30,7 +30,7 @@
 		
 			<?php echo $this->Html->link(
 								'Categories',
-								array('controller' => 'categorys', 
+								array('controller' => 'Categorys', 
 										'action' => 'index'),
 								array('class' => "button"));
 			?>
@@ -41,7 +41,7 @@
 		
 			<?php echo $this->Html->link(
 								'Keywords',
-								array('controller' => 'keywords', 
+								array('controller' => 'Keywords', 
 										'action' => 'index'),
 								array('class' => "button"));
 			?>
@@ -57,7 +57,7 @@
 			<?php echo $this->Html->link(
 					
 					'History',
-					array('controller' => 'historys', 
+					array('controller' => 'Historys', 
 							'action' => 'index'),
 					array('class' => "button"));
 			?>
@@ -82,7 +82,7 @@
 			<?php echo $this->Html->link(
 					
 					'Skimmed token',
-					array('controller' => 'skimmedtokens', 
+					array('controller' => 'Skimmedtokens', 
 							'action' => 'index'),
 					array('class' => "button"));
 			?>
@@ -94,7 +94,7 @@
 			<?php echo $this->Html->link(
 					
 					'Admin',
-					array('controller' => 'admins', 
+					array('controller' => 'Admins', 
 							'action' => 'index'),
 					array('class' => "button"));
 			?>
@@ -123,7 +123,7 @@
 			<?php echo $this->Html->link(
 						
 						'EQ',
-						array('controller' => 'eqs', 
+						array('controller' => 'qs', 
 								'action' => 'index'),
 						array('class' => "button"));
 				?>

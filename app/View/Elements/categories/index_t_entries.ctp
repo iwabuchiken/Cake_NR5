@@ -4,7 +4,7 @@
 		<td>
 			<?php echo $this->Html->link($category['Category']['name'],
 							array(
-								'controller' => 'categorys', 
+								'controller' => 'Categorys', 
 								'action' => 'view', 
 								$category['Category']['id'])
 							); ?>

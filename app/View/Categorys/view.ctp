@@ -27,7 +27,7 @@
 	<?php echo $this->Html->link(
 					'Delete Category',
 					array(
-							'controller' => 'categorys', 
+							'controller' => 'Categorys', 
 							'action' => 'delete', 
 							$category['Category']['id']
 					),

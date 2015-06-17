@@ -2839,5 +2839,232 @@ class ArticlesController extends AppController {
 		$this->render('test/test_1');		
 		
 	}
+
+	public function
+	store_Article_from_URL() {
+		
+// 		$url = @$this->request->query['url'];
+		
+// 		debug($url);
+		
+		$this->render('/Articles/others/add');
+// 		$this->render('/Articles/others/plain');
+		
+	}//store_Article_from_URL
+	
+	public function
+	store_Article() {
+		
+		$url = @$this->request->query['url'];
+		
+		debug($url);
+
+		///////////////////////////////
+		//
+		// validate
+		//
+		 ///////////////////////////////
+		if ($url == null) {
+			
+			$msg = "no url";
+		
+			$this->Session->setFlash(__($msg));
+			
+			return $this->redirect(array('action' => 'store_Article_from_URL'));
+			
+		}
+		
+		///////////////////////////////
+		//
+		// get: basic info
+		//
+		 ///////////////////////////////
+// 		http://headlines.yahoo.co.jp/hl?a=20150528-00000051-reut-bus_all
+
+		$tokens_1 = explode("=", $url);
+		
+// 		debug($tokens_1);
+		
+		$tokens_2 = explode("-", $tokens_1[1]);
+		
+		debug($tokens_2);
+		
+		///////////////////////////////
+		//
+		// processing
+		//
+		 ///////////////////////////////
+		$article_url = $url;
+		
+		///////////////////////////////
+		//
+		// get: line
+		//
+		 ///////////////////////////////
+		$article_line = Utils::get_Article_Line($url);
+		
+		debug($article_line);
+		
+		$article_vendor = $tokens_2[2];
+		
+		//sanitize
+// 		$article_line = Utils::sanitize_Tags($article_line, array("font"));
+		
+		// -5
+		$article_category_id = -1;
+		
+		$genre = Utils::get_Genre_From_Genre_Code($tokens_2[3]);
+		
+		$article_genre_id = $genre['Genre']['id'];
+		
+		$article_news_time = @$this->request->query['article_news_time'];
+		
+// 		debug("genre id = ".$article_genre_id);
+		
+		/**********************************
+		 * get: content
+		**********************************/
+		$article_content = $this->_open_article__GetContent($article_url);
+		
+// 		debug($article_content);
+		
+// 		$article_content = $tokens_2[0];
+		// 		$article_content = $this->_open_article__GetContent($article_url);
+		
+		/**********************************
+		 * build: instance: History
+		**********************************/
+		$this->loadModel('History');
+		
+		$this->History->create();
+		
+		$this->History->set('url', $article_url);
+		$this->History->set('line', $article_line);
+		
+		$this->History->set('vendor', $article_vendor);
+		$this->History->set('news_time', $article_news_time);
+		
+		$this->History->set('category_id', $article_category_id);
+		$this->History->set('genre_id', $article_genre_id);
+		
+		$this->History->set('content', $article_content);
+		
+		$this->History->set('created_at', Utils::get_CurrentTime());
+		$this->History->set('updated_at', Utils::get_CurrentTime());
+		
+		debug("history => set");
+		
+		/**********************************
+		 * get: setting value: open_mode
+		**********************************/
+		$val_1 = $this->get_Admin_Value(CONS::$admin_Open_Mode, "val1");
+		// 		$val_1 = $this->get_Admin_Value("open_mode", "val1");
+		
+		// default
+		if ($val_1 == null || !is_numeric($val_1)) {
+				
+			$open_mode = 1;
+				
+		} else {
+				
+			$open_mode = intval($val_1);
+				
+		}
+		
+		debug("open_mode => ".$open_mode);
+		
+		/**********************************
+		 * save: history
+		**********************************/
+		if ($this->History->save()) {
+		
+			if ($open_mode == 1) {
+		
+				//REF http://book.cakephp.org/2.0/ja/controllers.html#id8
+				$this->redirect($article_url);
+					
+			} else {
+		
+				/**********************************
+				 * build: article
+				**********************************/
+				$a = $this->Article->create();
+				// 				$a = new Article();
+		
+				$a['url'] = $article_url;
+				$a['line'] = $article_line;
+				$a['vendor'] = $article_vendor;
+				$a['news_time'] = $article_news_time;
+				$a['category_id'] = $article_category_id;
+				// 				$a['content'] = $article_content;
+		
+				/**********************************
+				 * colorize
+				**********************************/
+				$val_1 = $this->get_Admin_Value(CONS::$admin_Colorize, "val1");
+		
+				if ($val_1 == null || !is_numeric($val_1) || intval($val_1) == 1) {
+		
+					$a['content'] =
+						$this->_content_multilines_GetHtml($article_content);
+					// 			$content_multiline = $this->_build_Text($words);
+		
+				} else {
+		
+					$line_Length = mb_strlen($article_content);
+						
+					debug("line_Length => ".$line_Length);
+						
+					$words_ary = Utils::get_Words($article_content);
+					// 					$words = $this->get_Words($article_content);
+						
+					$tmp = "";
+						
+					$array_num = count($words_ary);
+						
+					for ($i = 0; $i < $array_num; $i++) {
+		
+						$tmp .= $this->build_Text_Colorize_Kanji($words_ary[$i]);
+		
+					}
+						
+					// 					$tmp = $this->build_Text_Colorize_Kanji($words);
+						
+					$a['content'] = $this->_content_multilines_GetHtml($tmp);
+					// 			$content_multiline = $this->_build_Text_Colorize_Kanji($words);
+		
+				}
+		
+		
+				// 				$a['content'] = $this->_content_multilines_GetHtml($article_content);
+		
+				// 				debug($a);
+		
+				$this->set("a", $a);
+				// 				$this->set("article", $this->History);
+				// 				$this->redirect();
+		
+			}
+				
+		} else {//if ($this->History->save())
+				
+			$this->Session->setFlash(__("Can't save history: line is => ".$article_line));
+				
+			$this->redirect(
+					array(
+							'controller' => 'historys',
+							'action' => 'index'));
+				
+		}//if ($this->History->save())
+		
+		$msg = "article stored";
+		
+		$this->Session->setFlash(__($msg));
+		
+		$this->render('/Articles/open_article');
+// 		$this->render('/Articles/others/add_result');
+// 		$this->render('/Articles/others/plain');
+		
+	}//store_Article_from_URL
 	
 }//class ArticlesController extends AppController

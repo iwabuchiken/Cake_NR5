@@ -1160,6 +1160,22 @@
 		}
 
 		public static function
+		get_Genre_From_Genre_Code($genre_code) {
+
+			/*******************************
+				get: category
+			*******************************/
+// 			$this->loadModel('Category');
+			$model = ClassRegistry::init('Genre');
+			
+			$option = array('conditions' => array('Genre.code' => $genre_code));
+			
+			return $model->find('first', $option);
+// 			return $this->Category->find('first', $option);
+				
+		}
+
+		public static function
 		sanitize_Tags($article_line, $tag_array) {
 			
 			for ($i = 0; $i < count($tag_array); $i++) {
@@ -1976,6 +1992,63 @@
 // 			return preg_replace($p, $rep, $text);
 			
 		}
+
+		///////////////////////////////
+		//
+		// if can't get h1 tags => return null
+		//
+		 ///////////////////////////////
+		public static function
+		get_Article_Line($url) {
+
+// 			debug("get_Article_Line");
+			
+			$html = file_get_html($url);
+			
+// 			debug("html => obtained");
+			
+			$h1s = $html->find('h1');
+			
+			/****************************
+			 * validate
+			 *****************************/
+			if (count($h1s) < 1) {
+				
+				return null;
+				
+			}
+			
+// 			debug(count($h1s));
+// 			debug(count($h1->plaintext));
+// 			debug(count($h1->text));
+
+// 			debug($h1s[0]);	//=> out of mem
+			
+			$texts = array();
+			
+			foreach ($h1s as $h1) {
+			
+// 				debug($h1->plaintext);
+
+				array_push($texts, $h1->plaintext);
+				
+// 				if ($h1->class == "ynDetailText") {
+			
+					// 				return $h1->plaintext;
+// 					array_push($texts, $h1->plaintext);
+			
+// 				}
+			
+			}//foreach ($h1s as $h1)
+			
+			///////////////////////////////
+			//
+			// return
+			//
+			 ///////////////////////////////
+			return $texts[0];
+			
+		}//get_Article_Line($url)
 		
 	}//class Utils
 	
