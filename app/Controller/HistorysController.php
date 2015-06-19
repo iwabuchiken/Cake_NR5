@@ -14,24 +14,12 @@ class HistorysController extends AppController {
 		**********************************/
 		$opt_conditions = $this->_index__Options();
 
-		//debug($opt_conditions);
-
-// 		debug($filter_Cat);
+		debug($opt_conditions);
 		
 		/*******************************
 			total limit
 		*******************************/
 		$totalCount = $this->History->find('count');
-
-// 		debug($totalCount);
-		
-// 		$opt_conditions['id >='] = $totalCount - 50;
-// 		$opt_conditions['History.id >='] = $totalCount - 50;
-// 		$opt_conditions['History.id >='] = $totalCount - 5;
-// 		$opt_conditions['limit'] = 5;
-// 		$opt_conditions['limit >='] = 5;
-		
-// 		debug($opt_conditions);
 		
 		/**********************************
 		 * paginate
@@ -52,9 +40,6 @@ class HistorysController extends AppController {
 					'Category.id',
 					'Category.name',
 					'Category.genre_id',
-// 					'History.line',
-// 					'History.url',
-// 					'History.vendor',
 		);
 		
 		$this->paginate = array(
@@ -86,57 +71,7 @@ class HistorysController extends AppController {
 		$this->set('num_of_histories', $num_of_histories);
 
 		$this->set('num_of_pages', (int) ceil(count($histories_Current) / $page_limit));
-// 		$this->set('num_of_pages', (int) ceil($num_of_histories / $page_limit));
-
-// 		debug($histories_Current[0]);
 		
-		
-// 		//REF http://alvinalexander.com/php/php-cakephp-database-sql-query-select
-// 		//test
-// 		$count = $this->History->query("SELECT COUNT(*) FROM histories");
-		
-// 		$total = $count[0][0]['COUNT(*)'];
-		
-// 		$this->set('num_of_histories', $total);
-		
-// 		debug($count / $page_limit);
-// 		$this->set('num_of_pages', $count / $page_limit);
-// 		$this->set('num_of_pages', (int) ceil($total / $page_limit));
-		
-// 		debug("\$count[0][0] is...");
-// 		debug($count[0][0]['COUNT(*)']);
-// // 		debug($count[0][0]['count(*)']);
-		
-// 		/*******************************
-// 			category_id array
-// 		*******************************/
-// 		$category_Id_Array = $this->_get_Category_Id_Array();
-
-// 		debug("\$category_Id_Array => built");
-		
-// 		$this->set('category_Id_Array', $category_Id_Array);
-		
-// 		/*******************************
-// 			stats
-// 		*******************************/
-// 		$histories_Current = $this->paginate('History');
-
-// // 		debug($histories_Current[0]);
-		
-// 		$this->set('historys', $histories_Current);
-// // 		$this->set('historys', $this->paginate('History'));
-		
-// 		$num_of_histories = count($this->History->find('all'));
-		
-// 		$this->set('num_of_histories', $num_of_histories);
-		
-// 		$this->set('num_of_pages', (int) ceil($num_of_histories / $page_limit));
-		
-// 		$this->set('num_of_histories_Current', count($histories_Current));
-		
-// // 		$this->set('historys', $this->History->find('all'));
-
-// 		return $this->redirect(array('action' => 'test_1'));
 		
 	}//index
 	
@@ -260,17 +195,7 @@ class HistorysController extends AppController {
 		/**********************************
 		 * param: filter
 		**********************************/
-		// 		debug($this->request->data);
-		// 		debug($this->request->query);
-		
 		@$query_Filter = $this->request->query[$filter_Line];
-		// 		@$query_Filter = $this->request->query['filter'];
-		
-		//		debug("query_Filter is ...");
-		//		debug($query_Filter);
-		
-		//		debug("session_Filter is ...");
-		//		debug($this->Session->read($filter));
 		
 		if ($query_Filter == "__@") {
 				
@@ -282,20 +207,11 @@ class HistorysController extends AppController {
 		
 			@$session_Filter = $this->Session->read($filter_Line);
 		
-			//			debug("session_Filter is ...");
-			//			debug($this->Session->read($filter));
-		
 			if ($session_Filter != null) {
 
 				$opt_conditions =
 					$this->_index__Options__Line_Query($opt_conditions, $session_Filter);
 				
-// 				// 				$opt_conditions['History.line LIKE'] = "%$session_Filter%";
-// 				$opt_conditions['OR'] = array(
-// 						'History.line LIKE' => "%$session_Filter%",
-// 						'History.content LIKE' => "%$session_Filter%"
-// 				);
-		
 				/**********************************
 				 * set: var
 				**********************************/
@@ -315,17 +231,8 @@ class HistorysController extends AppController {
 			
 			$opt_conditions = 
 					$this->_index__Options__Line_Query($opt_conditions, $query_Filter);
-			// 			$opt_conditions['History.line LIKE'] = "%$query_Filter%";
-		
-// 			//REF http://book.cakephp.org/2.0/en/models/retrieving-your-data.html
-// 			$opt_conditions['OR'] = array(
-// 					'History.line LIKE' => "%$query_Filter%",
-// 					'History.content LIKE' => "%$query_Filter%"
-// 			);
 				
 			$session_Filter = $this->Session->write($filter_Line, $query_Filter);
-		
-			//			debug("session_Filter => written");
 		
 			/**********************************
 			 * set: var
@@ -350,13 +257,7 @@ class HistorysController extends AppController {
 		*******************************/
 		@$AND_OR = $this->request->query[CONS::$str_Filter_RadioButtons_Name_History];
 		
-		//debug($AND_OR);
-		
-		// replace "　"(whole char) with " "
 		$target = preg_replace("/　/", " ", $query_Filter);
-		
-		
-// 		debug("target=".$target);
 		
 		$keywords = explode(" ", $target);
 
@@ -374,13 +275,9 @@ class HistorysController extends AppController {
 		
 			$aor = 'OR';
 			
-// 			$tmp['OR'] = array();
-			
 		}//if ($AND_OR != null)
 		
-		
 		$tmp[$aor] = array();
-// 		$tmp['OR'] = array();
 		
 		$not['NOT'] = array();
 		
@@ -388,33 +285,53 @@ class HistorysController extends AppController {
 			
 			$w = $keywords[$i];
 			
-// 			debug($w." => ".mb_strlen($w));
-// 			debug($w." => ".strlen($w));
-			
 			if (mb_strlen($w) > 1) {
 			
 				if ($w[0] == "-") {
 				
 					$ary_not = array(
-// 					$ary = array(
 							'History.line LIKE' => "%".mb_substr($keywords[$i], 1)."%",
 							'History.content LIKE' => "%".mb_substr($keywords[$i], 1)."%",
-// 							'History.line NOT LIKE' => "%".mb_substr($keywords[$i], 1)."%",
-// 							'History.content NOT LIKE' => "%".mb_substr($keywords[$i], 1)."%",
-// 							'History.line NOT LIKE' => "%$keywords[$i]%",
-// 							'History.content NOT LIKE' => "%$keywords[$i]%"
 					);
 					
 					array_push($not['NOT'], $ary_not);
-// 					array_push($not, $ary_not);
 				
 				} else {
 				
 					if ($aor == "AND") {
 					
+						$sensitive = "";
+						
+// 						if (strpos($w, "*s") !== false) {
+						
+// // 							$sensitive = "GLOB";
+// // 							$sensitive = "caseSensitiveField";
+						
+// 							$w = str_replace("*s", "", $w);
+// // 							$w = substr($w, strpos($w, "*s"), strlen("*s"));
+							
+// 						} else {
+						
+// // 							$sensitive = "caseInsensitiveField";
+							
+// // 							$w = str_replace("*s", "", $w);
+// // 							$w = substr($w, strpos($w, "*s"), strlen("*s"));
+							
+// 						}//if (conditions)
+						
+						
+						
 						$ary = array("OR" => 
-								array('History.line LIKE' => "%$keywords[$i]%",
-								'History.content LIKE' => "%$keywords[$i]%"
+// 								array("$sensitive History.line GLOB" => "%$w%",
+// 								"$sensitive History.content GLOB" => "%$w%"
+// 								array("$sensitive History.line LIKE" => "%$w%",
+// 								"$sensitive History.content LIKE" => "%$w%"
+								array("History.line $sensitive LIKE" => "%$w%",	//=> n/w
+								"History.content $sensitive LIKE" => "%$w%"
+// 								array("History.line $sensitive LIKE" => "%$keywords[$i]%",
+// 								"History.content $sensitive LIKE" => "%$keywords[$i]%"
+// 								array('History.line LIKE' => "%$keywords[$i]%",
+// 								'History.content LIKE' => "%$keywords[$i]%"
 								)
 						);
 					
@@ -427,13 +344,6 @@ class HistorysController extends AppController {
 						
 					}//if ($aor == "AND")
 					
-					
-					
-// 					$ary = array(
-// 							'History.line LIKE' => "%$keywords[$i]%",
-// 							'History.content LIKE' => "%$keywords[$i]%"
-// 					);
-
 					if (isset($ary) && $ary != null) {
 // 					if (isset($ary)) {
 					
@@ -463,11 +373,6 @@ class HistorysController extends AppController {
 				
 				}//if ($aor == "AND")
 				
-// 				$ary = array(
-// 						'History.line LIKE' => "%$keywords[$i]%",
-// 						'History.content LIKE' => "%$keywords[$i]%"
-// 				);
-				
 				if (isset($ary) && $ary != null) {
 // 				if (isset($ary)) {
 						
@@ -477,47 +382,13 @@ class HistorysController extends AppController {
 				}
 			}//if (conditions)
 			
-			
-// 			$ary = array(
-// 						'History.line LIKE' => "%$keywords[$i]%",
-// 						'History.content LIKE' => "%$keywords[$i]%"
-// 						);
-			
-// 			if (isset($ary)) {
-				
-// 				array_push($tmp['OR'],
-	
-// 						$ary
-// 	// 					array(
-// 	// 						'History.line LIKE' => "%$keywords[$i]%",
-// 	// 						'History.content LIKE' => "%$keywords[$i]%"
-// 	// 						)
-// 				);
-
-// 			}
-			
 		}//for ($i = 0; $i < count($keywords); $i++)
 			
-// 		array_push($tmp['OR'], array('History.line LIKE' => "%$query_Filter%"));
-		
-// 		debug($tmp);
-		
-		
 		//REF http://book.cakephp.org/2.0/en/models/retrieving-your-data.html
 		$opt_conditions[$aor] = $tmp[$aor];
 // 		$opt_conditions['OR'] = $tmp['OR'];
 		
 		$opt_conditions['NOT'] = $not['NOT'];
-		
-//		debug($not);
-//		debug($not['NOT']);
-		
-// 		$opt_conditions['OR'] = array(
-// 				'History.line LIKE' => "%$query_Filter%",
-// 				'History.content LIKE' => "%$query_Filter%"
-// 		);
-
-//		debug($opt_conditions);
 		
 		return $opt_conditions;
 		

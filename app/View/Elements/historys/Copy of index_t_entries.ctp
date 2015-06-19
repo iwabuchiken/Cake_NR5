@@ -26,7 +26,7 @@
 // 				echo $this->Html->link(Sanitize::html($line, true),		// Unsupported operand types
 // 				echo $this->Html->link(htmlentities($history['History']['line']),
 							array(
-								'controller' => 'historys', 
+								'controller' => 'Historys', 
 								'action' => 'view', 
 								$history['History']['id']),
 							$option

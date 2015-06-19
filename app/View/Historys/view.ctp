@@ -194,7 +194,7 @@
 			<?php echo $this->Html->link(
 							'Delete History',
 							array(
-									'controller' => 'historys', 
+									'controller' => 'Historys', 
 									'action' => 'delete', 
 									$history['History']['id']
 							),
@@ -216,7 +216,7 @@
 			<?php echo $this->Html->link(
 							'Save tokens',
 							array(
-									'controller' => 'historys', 
+									'controller' => 'Historys', 
 									'action' => 'save_Tokens', 
 									$history['History']['id']
 							),

@@ -3,7 +3,7 @@
 		
 			<?php echo $this->Html->link(
 								'Id',
-								array('controller' => 'historys', 
+								array('controller' => 'Historys', 
 										'action' => 'index',
 // 										'sort'		=> 'id')
 										'?'		=> 'sort=id')
@@ -18,7 +18,7 @@
 			
 			<?php echo $this->Html->link(
 								'Vendor',
-								array('controller' => 'historys', 
+								array('controller' => 'Historys', 
 										'action' => 'index',
 // 										'sort'		=> 'id')
 										'?'		=> 'sort=vendor')
@@ -32,7 +32,7 @@
 			
 			<?php echo $this->Html->link(
 								'Time',
-								array('controller' => 'historys', 
+								array('controller' => 'Historys', 
 										'action' => 'index',
 // 										'sort'		=> 'id')
 										'?'		=> 'sort=news_time')
@@ -48,7 +48,7 @@
 		
 // 				$link_Options = array(
 
-// 						'controller' => 'historys',
+// 						'controller' => 'Historys',
 // 						'action' => 'index',
 // 						"?"			=> "sort=category_id",
 
@@ -62,7 +62,7 @@
 // 				echo $this->Html->link(
 // 								'Category ID',
 // 								$link_Options
-// // 								array('controller' => 'historys', 
+// // 								array('controller' => 'Historys', 
 // // 										'action' => 'index',
 // // // 										'sort'		=> 'id')
 // // 										'?'		=> 'sort=category_id')
@@ -74,7 +74,7 @@
 			
 			<?php echo $this->Html->link(
 								'Created at',
-								array('controller' => 'historys', 
+								array('controller' => 'Historys', 
 										'action' => 'index',
 // 										'sort'		=> 'id')
 										'?'		=> 'sort=created_at')
@@ -86,7 +86,7 @@
 			
 			<?php echo $this->Html->link(
 								'Updated at',
-								array('controller' => 'historys', 
+								array('controller' => 'Historys', 
 										'action' => 'index',
 // 										'sort'		=> 'id')
 										'?'		=> 'sort=updated_at')

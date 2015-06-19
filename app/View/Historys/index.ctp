@@ -60,7 +60,7 @@
 
 <?php echo $this->Html->link("Add history",
 							array(
-								'controller' => 'historys', 
+								'controller' => 'Historys', 
 								'action' => 'add')
 							); 
 ?>

@@ -32,7 +32,7 @@
 				//REF http://wiltonsoftware.com/posts/view/customizing-your-form-labels-in-cakephp-1-2
 				'label'	=> false,
 				'url'	=> array(
-								'controller'	=> 'historys',
+								'controller'	=> 'Historys',
 								'action'	=> 'index'),
 				'type'	=> 'get'
 				

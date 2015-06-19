@@ -23,7 +23,7 @@
 				
 				echo $this->Html->link($token['History']['id'],
 						array(
-							'controller' => 'historys',
+							'controller' => 'Historys',
 							'action' => 'view',
 							$token['History']['id'])
 										);
