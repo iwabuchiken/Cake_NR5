@@ -1,5 +1,11 @@
 <h1>
 
+	<?php 
+	
+		$t_Start = microtime(true);
+	
+	?>
+
 	Histories (<a href="#bottom">Bottom</a><a name="top"></a>)
 	
 		(
@@ -65,6 +71,19 @@
 							); 
 ?>
 
+<?php 
+
+	echo "<br>";
+	echo "<br>";
+	
+	$t_End = microtime(true);
+	
+	echo $t_End - $t_Start;
+	
+	echo "<br>";
+	echo "<br>";
+
+?>
 
 (<a href="#top">Top</a><a name="bottom"></a>)
 

@@ -14,6 +14,22 @@ class HistorysController extends AppController {
 		**********************************/
 		$opt_conditions = $this->_index__Options();
 
+		if ((@$range = $this->request->query["range"]) != null) {
+
+			$opt_conditions = $this->_index__Options__Range($opt_conditions, $range);
+			
+			//REF http://stackoverflow.com/questions/11931633/cakephp-find-condition-for-a-query-between-two-dates answered Aug 13 '12 at 10:13
+// 			$opt_conditions['History.news_time >='] = $range;
+// 			$opt_conditions['History.news_time >='] = "20150601";
+	// 		$opt_conditions['History.news_time >='] = "20150408";	//=> w
+	// 		$opt_conditions['History.news_time'] = "20150408";		//=> w
+	// 		$opt_conditions['History.news_time'] = ">= 20150408";	//=> n/w
+	// 		$opt_conditions['History.news_time'] = "= '20150408'";	//=> n/w
+	// 		$opt_conditions['History.news_time'] = ">= '20150408'";
+		
+			
+		}
+		
 		debug($opt_conditions);
 		
 		/*******************************
@@ -55,13 +71,28 @@ class HistorysController extends AppController {
 				
 		);
 
+		$time_fetch_Start = microtime(true);
+		
 		$histories_Current = $this->paginate('History');
 
+		$time_fetch_End = microtime(true);
+		
+		debug("fetch: start = ".$time_fetch_Start
+				."/"
+				."end = ".$time_fetch_End
+				."/"
+				." diff = ".($time_fetch_End - $time_fetch_Start)
+		);
+		
 		//debug("count(\$histories_Current)");
 		//debug(count($histories_Current));
 		
 		$this->set('historys', $histories_Current);
 
+		$time_set_historys_End = microtime(true);
+		
+		debug("fetch end ~ historys set => ".($time_set_historys_End - $time_fetch_End));
+		
 // 		debug("historys => obtained");
 		
 		$this->set('num_of_histories_Current', count($histories_Current));
@@ -72,8 +103,99 @@ class HistorysController extends AppController {
 
 		$this->set('num_of_pages', (int) ceil(count($histories_Current) / $page_limit));
 		
+		// time
+		$time_set_all_End = microtime(true);
+		
+		$t = new DateTime(date("Y-m-d H:i:s", $time_set_all_End - $time_set_historys_End));
+// 		$t = new DateTime($time_set_all_End - $time_set_historys_End);	//=> n/w
+		
+		debug($t->format("Y/m/d H:i:s.u"));
+		
+		debug("historys set ~ all set => "
+				.number_format($time_set_all_End - $time_set_historys_End, 6, "!", "")
+// 				.($time_set_all_End - $time_set_historys_End)
+				."\n"
+				."("
+// 				.date($time_set_all_End - $time_set_historys_End)->format("Y-m-d H:i:s")
+// 				.date($time_set_all_End - $time_set_historys_End)->format("Y-m-d H:i:s")
+				.")"
+		);
 		
 	}//index
+	
+	public function 
+	_index__Options__Range($opt_conditions, $range) {
+		
+		$tokens = explode("-", $range);
+		
+		if (count($tokens) == 2) {
+		
+			$tmp = array(
+				
+				'AND' => array(
+						
+						'History.news_time >=' => $tokens[0],
+						'History.news_time <=' => $tokens[1],
+				)
+			);
+
+			if (array_key_exists("AND", $opt_conditions)) {
+// 			if (defined($opt_conditions['AND']) == true) {
+// 			if ($opt_conditions['AND'] != null) {
+			
+				array_push($opt_conditions['AND'], $tmp);
+			
+			} else {
+			
+// 				array_push($opt_conditions, $tmp);	//=> n/w
+				
+				$opt_conditions['AND'] = $tmp['AND'];
+				
+			}//if ($opt_conditions['AND'] != null)
+			
+			
+// 			array_push($opt_conditions, $tmp);
+// 			array_push($opt_conditions, $tmp);
+			
+// 			'AND' => array(
+// 					(int) 0 => array(
+// 							'OR' => array(
+// 									'History.line  LIKE' => '%日本%',
+// 									'History.content  LIKE' => '%日本%'
+// 							)
+// 					),
+// 					(int) 1 => array(
+// 							'OR' => array(
+// 									'History.line  LIKE' => '%中国%',
+// 									'History.content  LIKE' => '%中国%'
+// 							)
+// 					)
+// 			)
+// 			$opt_conditions['History.news_time >='] = $tokens[0];
+			
+// 			$opt_conditions['History.news_time >='] = $tokens[0];
+		
+		} else if (count($tokens) == 1) {
+			
+			$opt_conditions['History.news_time >='] = $tokens[0];
+			
+		} else {
+		
+			$opt_conditions['History.news_time >='] = $range;
+			
+		}//if (count($tokens) == 2)
+		
+		
+		
+// // 		//REF http://stackoverflow.com/questions/11931633/cakephp-find-condition-for-a-query-between-two-dates answered Aug 13 '12 at 10:13
+// 		$opt_conditions['History.news_time >='] = $range;
+		
+		/*******************************
+			return
+		*******************************/
+		return $opt_conditions;
+		
+	}//_index__Options__Range($opt_conditions)
 	
 	public function 
 	_index__Orders() {
