@@ -1,2 +1,1 @@
-<h1>Tokens</h1>
-
+<?php echo ($result == null) ? "null" : $result; ?>

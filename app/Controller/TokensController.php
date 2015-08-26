@@ -5068,12 +5068,80 @@ class TokensController extends AppController {
 	}//test_NVP_Get_Scores
 
 	public function
-	get_Tokens($type, $num) {
+// 	get_tokens() {
+	get_Tokens() {
+// 	get_Tokens($type, $num) {
 		
 		/*******************************
-			type
+			get: data
 		*******************************/
+		@$type = $this->request->query['type'];
 		
+		@$num = $this->request->query['num'];
+		
+		debug("type => ".$type."/"."num => ".$num);
+		
+		/*******************************
+			validate: params
+		*******************************/
+		if ($type == null || $num == null
+				|| $type == "" || $num == "") {
+			
+			$this->set("result", null);
+			
+			$this -> render('get__tokens');
+			
+			return;
+			
+		}
+		
+		/*******************************
+			validate: type name
+		*******************************/
+		if (!array_key_exists($type, CONS::$map_Symbols_2_HinNames)) {
+			
+			$this->set("result", "no such key => ".$type);;
+			
+			$this -> render('get__tokens');
+			
+			return ;
+			
+		}
+		
+		/*******************************
+			validate: num => numeric
+		*******************************/
+		if (!is_numeric($num)) {
+			
+			$this->set("result", "Not a number => ".$num);;
+			
+			$this -> render('get__tokens');
+			
+			return ;
+			
+		}
+		
+		/*******************************
+			set value
+		*******************************/
+		$this->set("result", "done");
+		
+// 		debug($this->request->webroot);
+// 		debug($this->request);
+// 		debug($this->request->data);
+// 		$this->request->query[$filter_hins]
+
+		/*******************************
+			layout
+		*******************************/
+// 		$this->layout = 'plain';
+
+		/*******************************
+			render
+		*******************************/
+		//ref http://stackoverflow.com/questions/11711385/rendering-controller-to-a-different-view-in-cakephp 
+		$this -> render('get__tokens');
+// 		$this -> render('Tokens/get__tokens');
 		
 	}//get_Tokens
 	
