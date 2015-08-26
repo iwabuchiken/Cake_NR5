@@ -5067,4 +5067,14 @@ class TokensController extends AppController {
 		
 	}//test_NVP_Get_Scores
 
+	public function
+	get_Tokens($type, $num) {
+		
+		/*******************************
+			type
+		*******************************/
+		
+		
+	}//get_Tokens
+	
 }

@@ -12,6 +12,8 @@ pragma table_info(articles);
 pragma table_info(categories);
 pragma table_info(histories);
 
+SELECT id,name FROM genres;
+
 .exit
 
 [sqlite3]======================================

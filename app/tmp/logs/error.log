@@ -1,0 +1,1677 @@
+2015-01-28 00:55:38 Error: [MissingControllerException] Controller class TestsController could not be found.
+Exception Attributes: array (
+  'class' => 'TestsController',
+  'plugin' => NULL,
+)
+Request URL: /Cake_NR5/tests/D_7_V_2_0__Nouns
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-01-28 01:04:17 Error: [PDOException] SQLSTATE[HY000]: General error: 1 no such column: Token.history_id
+Request URL: /Cake_NR5/tokens/D_7_V_2_0__Nouns?history_id=62
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "History...', Array)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "History...', Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "History...', Array, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "History...', false)
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(History), Array)
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('first', Array)
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php(1250): Model->find('first', Array)
+#7 [internal function]: TokensController->D_7_V_2_0__Nouns()
+#8 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(TokensController), Array)
+#9 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#11 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-01-31 04:05:40 Error: Fatal Error (1): Using $this when not in object context in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils.php, line 1097]
+2015-01-31 04:05:40 Error: [FatalErrorException] Using $this when not in object context
+Request URL: /Cake_NR5/tokens/index/page:41
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1097)
+#1 [internal function]: ErrorHandler::handleError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1097, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1097, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-01-31 04:06:23 Error: Fatal Error (1): Using $this when not in object context in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils.php, line 1097]
+2015-01-31 04:06:23 Error: [FatalErrorException] Using $this when not in object context
+Request URL: /Cake_NR5/tokens/index/page:41
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1097)
+#1 [internal function]: ErrorHandler::handleError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1097, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1097, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-01-31 04:08:13 Error: Fatal Error (1): Using $this when not in object context in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils.php, line 1097]
+2015-01-31 04:08:13 Error: [FatalErrorException] Using $this when not in object context
+Request URL: /Cake_NR5/tokens/index/page:41
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1097)
+#1 [internal function]: ErrorHandler::handleError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1097, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1097, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-01 04:15:06 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 26075278 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-02-01 04:15:06 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 26075278 bytes)
+Request URL: /Cake_NR5/tokens
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-01 04:16:40 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 26075370 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\Debugger.php, line 793]
+2015-02-01 04:16:40 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 26075370 bytes)
+Request URL: /Cake_NR5/tokens
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 793)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 793, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 793, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-01 04:18:11 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 26075265 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-02-01 04:18:11 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 26075265 bytes)
+Request URL: /Cake_NR5/tokens
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-01 04:20:18 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 26082392 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-02-01 04:20:18 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 26082392 bytes)
+Request URL: /Cake_NR5/tokens
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-01 04:21:04 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 26082392 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-02-01 04:21:04 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 26082392 bytes)
+Request URL: /Cake_NR5/tokens
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-01 04:21:19 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 26082349 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-02-01 04:21:19 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 26082349 bytes)
+Request URL: /Cake_NR5/tokens
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-01 04:22:33 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 26082349 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-02-01 04:22:33 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 26082349 bytes)
+Request URL: /Cake_NR5/tokens
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-01 04:25:39 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 26082349 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-02-01 04:25:39 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 26082349 bytes)
+Request URL: /Cake_NR5/tokens
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-01 04:26:55 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 26082243 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-02-01 04:26:55 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 26082243 bytes)
+Request URL: /Cake_NR5/tokens
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-01 04:27:44 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 26075571 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-02-01 04:27:44 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 26075571 bytes)
+Request URL: /Cake_NR5/tokens
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-01 04:33:35 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 26075804 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-02-01 04:33:35 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 26075804 bytes)
+Request URL: /Cake_NR5/tokens
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-01 04:36:27 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 26075675 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-02-01 04:36:27 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 26075675 bytes)
+Request URL: /Cake_NR5/tokens
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-01 04:42:05 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 26075831 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-02-01 04:42:05 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 26075831 bytes)
+Request URL: /Cake_NR5/tokens
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-02 09:20:56 Error: Fatal Error (4): syntax error, unexpected 'return' (T_RETURN) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php, line 325]
+2015-02-02 09:20:56 Error: [FatalErrorException] syntax error, unexpected 'return' (T_RETURN)
+Request URL: /Cake_NR5/tokens?filter_cat_id=22
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 325)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 325, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 325, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-03 07:53:50 Error: [NotFoundException] Not Found
+Request URL: /Cake_NR5/tokens/index/page:41?filter_cat_id=30
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(1080): PaginatorComponent->paginate('Token', Array, Array)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php(65): Controller->paginate('Token')
+#2 [internal function]: TokensController->index()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(TokensController), Array)
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 {main}
+2015-02-08 01:43:30 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Articles\Articles\test\test_1.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Articles\\Articles\\test\\test_1.ctp',
+)
+Request URL: /Cake_NR5/articles/test_ymuiPagingBottom
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName('Articles/test/t...')
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render('Articles/test/t...', NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php(2450): Controller->render('Articles/test/t...')
+#3 [internal function]: ArticlesController->test_ymuiPagingBottom()
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ArticlesController), Array)
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest))
+#7 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2015-02-08 01:43:40 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Articles\Articles\test\test_1.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Articles\\Articles\\test\\test_1.ctp',
+)
+Request URL: /Cake_NR5/articles/test_ymuiPagingBottom
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName('Articles/test/t...')
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render('Articles/test/t...', NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php(2450): Controller->render('Articles/test/t...')
+#3 [internal function]: ArticlesController->test_ymuiPagingBottom()
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ArticlesController), Array)
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest))
+#7 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2015-02-08 01:43:42 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Articles\Articles\test\test_1.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Articles\\Articles\\test\\test_1.ctp',
+)
+Request URL: /Cake_NR5/articles/test_ymuiPagingBottom
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName('Articles/test/t...')
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render('Articles/test/t...', NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php(2450): Controller->render('Articles/test/t...')
+#3 [internal function]: ArticlesController->test_ymuiPagingBottom()
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ArticlesController), Array)
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest))
+#7 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2015-02-08 01:45:17 Error: Fatal Error (1): Call to undefined function _open_article__GetContent() in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php, line 2452]
+2015-02-08 01:45:17 Error: [FatalErrorException] Call to undefined function _open_article__GetContent()
+Request URL: /Cake_NR5/articles/test_ymuiPagingBottom
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 2452)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 2452, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 2452, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-08 02:03:20 Error: Fatal Error (1): Call to undefined function couint() in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php, line 2392]
+2015-02-08 02:03:20 Error: [FatalErrorException] Call to undefined function couint()
+Request URL: /Cake_NR5/articles/test_ymuiPagingBottom
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 2392)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 2392, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 2392, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-09 04:27:54 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E8%A8%98%E5%8F%B7
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-09 04:28:20 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E8%A8%98%E5%8F%B7
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-09 04:28:28 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E5%8B%95%E8%A9%9E
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-09 04:28:34 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E5%8B%95%E8%A9%9E
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-09 04:28:49 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E5%8B%95%E8%A9%9E
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-09 04:29:08 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E5%8B%95%E8%A9%9E
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-09 04:52:39 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E5%90%8D%E8%A9%9E
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-09 04:53:43 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E5%90%8D%E8%A9%9E
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-11 00:30:56 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E5%8B%95%E8%A9%9E
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-11 00:55:06 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E5%8A%A9%E8%A9%9E
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-11 08:59:20 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E5%8B%95%E8%A9%9E
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-11 09:01:10 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E5%89%AF%E8%A9%9E
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-11 09:02:19 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E5%8A%A9%E8%A9%9E
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-11 09:03:39 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E5%8B%95%E8%A9%9E
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-11 09:05:11 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E6%8E%A5%E9%A0%AD%E8%A9%9E
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-11 09:06:12 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E5%8A%A9%E8%A9%9E
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-11 09:08:01 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E5%89%AF%E8%A9%9E
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-11 09:08:36 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E5%90%8D%E8%A9%9E
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-11 09:09:15 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\hin__changed.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\hin__changed.ctp',
+)
+Request URL: /Cake_NR5/tokens/hin_Changed?hin_name=%E5%8A%A9%E8%A9%9E
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-02-15 00:18:32 Error: [PDOException] SQLSTATE[HY000]: General error: 1 no such table: historys
+Request URL: /Cake_NR5/historys
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT COUNT(*)...', Array)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT COUNT(*)...', Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT COUNT(*)...', Array, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT COUNT(*)...')
+#4 [internal function]: DboSource->query('SELECT COUNT(*)...')
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(3309): call_user_func_array(Array, Array)
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\HistorysController.php(48): Model->query('SELECT COUNT(*)...')
+#7 [internal function]: HistorysController->index()
+#8 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(HistorysController), Array)
+#9 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(HistorysController), Object(CakeRequest))
+#11 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-02-15 00:33:06 Error: Fatal Error (4): syntax error, unexpected '?>' in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Elements\historys\index_t_headers.ctp, line 55]
+2015-02-15 00:33:06 Error: [FatalErrorException] syntax error, unexpected '?>'
+Request URL: /Cake_NR5/historys
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 55)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 55, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 55, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-15 00:39:26 Error: Fatal Error (1): Unsupported operand types in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\HistorysController.php, line 52]
+2015-02-15 00:39:26 Error: [FatalErrorException] Unsupported operand types
+Request URL: /Cake_NR5/historys
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Unsupported ope...', 'C:\\WORKS\\WS\\Ecl...', 52)
+#1 [internal function]: ErrorHandler::handleError(1, 'Unsupported ope...', 'C:\\WORKS\\WS\\Ecl...', 52, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Unsupported ope...', 'C:\\WORKS\\WS\\Ecl...', 52, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-15 00:40:00 Error: Fatal Error (1): Unsupported operand types in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\HistorysController.php, line 52]
+2015-02-15 00:40:00 Error: [FatalErrorException] Unsupported operand types
+Request URL: /Cake_NR5/historys
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Unsupported ope...', 'C:\\WORKS\\WS\\Ecl...', 52)
+#1 [internal function]: ErrorHandler::handleError(1, 'Unsupported ope...', 'C:\\WORKS\\WS\\Ecl...', 52, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Unsupported ope...', 'C:\\WORKS\\WS\\Ecl...', 52, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-15 00:40:28 Error: Fatal Error (1): Unsupported operand types in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\HistorysController.php, line 52]
+2015-02-15 00:40:28 Error: [FatalErrorException] Unsupported operand types
+Request URL: /Cake_NR5/historys
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Unsupported ope...', 'C:\\WORKS\\WS\\Ecl...', 52)
+#1 [internal function]: ErrorHandler::handleError(1, 'Unsupported ope...', 'C:\\WORKS\\WS\\Ecl...', 52, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Unsupported ope...', 'C:\\WORKS\\WS\\Ecl...', 52, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-17 00:13:21 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\simple_html_dom.php, line 75]
+2015-02-17 00:13:21 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /Cake_NR5/articles
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 75)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 75, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 75, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-17 00:43:30 Error: Fatal Error (4): syntax error, unexpected '$this' (T_VARIABLE) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php, line 29]
+2015-02-17 00:43:30 Error: [FatalErrorException] syntax error, unexpected '$this' (T_VARIABLE)
+Request URL: /Cake_NR5/articles?genre_id=4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 29)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 29, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 29, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-17 00:45:43 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php, line 119]
+2015-02-17 00:45:43 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /Cake_NR5/articles?genre_id=4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 119)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 119, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 119, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-17 00:52:31 Error: Fatal Error (4): syntax error, unexpected 'debug' (T_STRING) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php, line 27]
+2015-02-17 00:52:31 Error: [FatalErrorException] syntax error, unexpected 'debug' (T_STRING)
+Request URL: /Cake_NR5/articles?genre_id=4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 27)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 27, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 27, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-17 00:53:49 Error: Fatal Error (4): syntax error, unexpected '$articles' (T_VARIABLE) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php, line 30]
+2015-02-17 00:53:49 Error: [FatalErrorException] syntax error, unexpected '$articles' (T_VARIABLE)
+Request URL: /Cake_NR5/articles?genre_id=4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 30)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 30, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 30, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-17 00:55:46 Error: Fatal Error (1): Call to undefined function couint() in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php, line 206]
+2015-02-17 00:55:46 Error: [FatalErrorException] Call to undefined function couint()
+Request URL: /Cake_NR5/articles?genre_id=4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 206)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 206, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 206, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-17 01:46:51 Error: Fatal Error (64): Call-time pass-by-reference has been removed; If you would like to pass argument by reference, modify the declaration of debug(). in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php, line 2744]
+2015-02-17 01:46:51 Error: [FatalErrorException] Call-time pass-by-reference has been removed; If you would like to pass argument by reference, modify the declaration of debug().
+Request URL: /Cake_NR5/articles?genre_id=3
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(64, 'Call-time pass-...', 'C:\\WORKS\\WS\\Ecl...', 2744)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', 'C:\\WORKS\\WS\\Ecl...', 2744, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', 'C:\\WORKS\\WS\\Ecl...', 2744, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-03-14 00:56:53 Error: Fatal Error (4): syntax error, unexpected ';', expecting ')' in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\HistorysController.php, line 31]
+2015-03-14 00:56:53 Error: [FatalErrorException] syntax error, unexpected ';', expecting ')'
+Request URL: /Cake_NR5/historys
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 31)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 31, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 31, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-03-14 01:29:16 Error: [PDOException] SQLSTATE[HY000]: General error: 1 ambiguous column name: id
+Request URL: /Cake_NR5/historys
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "History...', Array)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "History...', Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "History...', Array, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "History...', false)
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(History), Array)
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Component\PaginatorComponent.php(196): Model->find('all', Array)
+#7 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(1080): PaginatorComponent->paginate('History', Array, Array)
+#8 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\HistorysController.php(51): Controller->paginate('History')
+#9 [internal function]: HistorysController->index()
+#10 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(HistorysController), Array)
+#11 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#12 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(HistorysController), Object(CakeRequest))
+#13 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2015-03-18 22:58:55 Error: [MissingActionException] Action AdminsController::csv() could not be found.
+Exception Attributes: array (
+  'controller' => 'AdminsController',
+  'action' => 'csv',
+)
+Request URL: /Cake_NR5/admins/csv
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AdminsController), Object(CakeRequest))
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-03-18 23:21:50 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Admins\csv__tokens_dl.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Admins\\csv__tokens_dl.ctp',
+)
+Request URL: /Cake_NR5/admins/csv_Tokens_dl
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AdminsController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-03-18 23:23:00 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Admins\csv__tokens_dl.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Admins\\csv__tokens_dl.ctp',
+)
+Request URL: /Cake_NR5/admins/csv_Tokens_dl
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AdminsController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-03-18 23:28:51 Error: Fatal Error (1): Call to undefined function fcloce() in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\AdminsController.php, line 288]
+2015-03-18 23:28:51 Error: [FatalErrorException] Call to undefined function fcloce()
+Request URL: /Cake_NR5/admins/csv_Tokens_dl
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 288)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 288, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 288, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-03-18 23:31:50 Error: [MissingActionException] Action AdminsController::index.php() could not be found.
+Exception Attributes: array (
+  'controller' => 'AdminsController',
+  'action' => 'index.php',
+)
+Request URL: /Cake_NR5/admins/index.php
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AdminsController), Object(CakeRequest))
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-03-19 00:47:56 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 26075269 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-03-19 00:47:56 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 26075269 bytes)
+Request URL: /Cake_NR5/admins/csv_Tokens_create/tokens
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-03-19 00:48:11 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 26075269 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-03-19 00:48:11 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 26075269 bytes)
+Request URL: /Cake_NR5/admins/csv_Tokens_create/tokens
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-03-25 01:18:38 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\tests\test_Tokens.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\tests\\test_Tokens.ctp',
+)
+Request URL: /Cake_NR5/Tokens/test_NVP
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName('/Tokens/tests/t...')
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render('/Tokens/tests/t...', NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php(1802): Controller->render('/Tokens/tests/t...')
+#3 [internal function]: TokensController->test_NVP()
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(TokensController), Array)
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#7 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2015-03-25 02:55:22 Error: [PDOException] SQLSTATE[HY000]: General error: 1 no such column: History.id
+Request URL: /Cake_NR5/Tokens/test_NVP?hist_id=63
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Categor...', Array)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Categor...', Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Categor...', Array, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Categor...', false)
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Category), Array)
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('first', Array)
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils.php(1105): Model->find('first', Array)
+#7 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php(1817): Utils::exists_History('63')
+#8 [internal function]: TokensController->test_NVP()
+#9 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(TokensController), Array)
+#10 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#12 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2015-03-25 02:55:56 Error: [PDOException] SQLSTATE[HY000]: General error: 1 no such column: History.id
+Request URL: /Cake_NR5/Tokens/test_NVP?hist_id=63
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Categor...', Array)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Categor...', Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Categor...', Array, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Categor...', false)
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Category), Array)
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('first', Array)
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils.php(1105): Model->find('first', Array)
+#7 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php(1817): Utils::exists_History('63')
+#8 [internal function]: TokensController->test_NVP()
+#9 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(TokensController), Array)
+#10 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#12 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2015-03-27 01:18:22 Error: Fatal Error (1): Call to undefined method TokensController::conv_Particle_2_SubParticle() in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php, line 1870]
+2015-03-27 01:18:22 Error: [FatalErrorException] Call to undefined method TokensController::conv_Particle_2_SubParticle()
+Request URL: /Cake_NR5/Tokens/test_NVP
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 1870)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 1870, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 1870, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-03-28 08:03:05 Error: Fatal Error (4): syntax error, unexpected end of file, expecting function (T_FUNCTION) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php, line 2388]
+2015-03-28 08:03:05 Error: [FatalErrorException] syntax error, unexpected end of file, expecting function (T_FUNCTION)
+Request URL: /Cake_NR5/Tokens/test_NVP_Nouns
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 2388)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 2388, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 2388, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-03-31 02:35:07 Error: [MissingActionException] Action TokensController::get_JSON_Data() could not be found.
+Exception Attributes: array (
+  'controller' => 'TokensController',
+  'action' => 'get_JSON_Data',
+)
+Request URL: /Cake_NR5/Tokens/get_JSON_Data
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-01 04:44:00 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php, line 1006]
+2015-04-01 04:44:00 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /Cake_NR5/Tokens/test_D3
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 1006)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 1006, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 1006, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-03 01:34:40 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\test__n_v_p_nouns_list.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\test__n_v_p_nouns_list.ctp',
+)
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-04-03 01:35:06 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\test__n_v_p_nouns_list.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\test__n_v_p_nouns_list.ctp',
+)
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-04-04 01:26:59 Error: [NotFoundException] Not Found
+Request URL: /Cake_NR5/historys/index/page:8?sort=category_id&filter_Cat=22
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(1080): PaginatorComponent->paginate('History', Array, Array)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\HistorysController.php(71): Controller->paginate('History')
+#2 [internal function]: HistorysController->index()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(HistorysController), Array)
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(HistorysController), Object(CakeRequest))
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 {main}
+2015-04-04 02:39:48 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "IN": syntax error
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list?hist_id=112
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Token"....', Array)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Token"....', Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Token"....', Array, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Token"....', false)
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Token), Array)
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php(2770): Model->find('all', Array)
+#7 [internal function]: TokensController->test_NVP_nouns_list()
+#8 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(TokensController), Array)
+#9 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#11 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-04-04 02:41:20 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "IN": syntax error
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list?hist_id=112
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Token"....', Array)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Token"....', Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Token"....', Array, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Token"....', false)
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Token), Array)
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php(2771): Model->find('all', Array)
+#7 [internal function]: TokensController->test_NVP_nouns_list()
+#8 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(TokensController), Array)
+#9 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#11 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-04-04 02:49:01 Error: Fatal Error (4): syntax error, unexpected ';', expecting ')' in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php, line 2786]
+2015-04-04 02:49:01 Error: [FatalErrorException] syntax error, unexpected ';', expecting ')'
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list?hist_id=112
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 2786)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 2786, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 2786, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-04 03:17:05 Error: Fatal Error (4): syntax error, unexpected '=' in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php, line 2865]
+2015-04-04 03:17:05 Error: [FatalErrorException] syntax error, unexpected '='
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list?hist_id=112
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 2865)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 2865, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 2865, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 01:49:03 Error: Fatal Error (1): Call to undefined function deb() in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php, line 19]
+2015-04-05 01:49:03 Error: [FatalErrorException] Call to undefined function deb()
+Request URL: /Cake_NR5/articles?genre_id=3
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 19)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 19, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 19, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 02:01:29 Error: Fatal Error (4): syntax error, unexpected end of file in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils.php, line 1180]
+2015-04-05 02:01:29 Error: [FatalErrorException] syntax error, unexpected end of file
+Request URL: /Cake_NR5/articles?genre_id=3
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 1180)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 1180, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 1180, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 02:02:37 Error: Fatal Error (4): syntax error, unexpected end of file in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils.php, line 1180]
+2015-04-05 02:02:37 Error: [FatalErrorException] syntax error, unexpected end of file
+Request URL: /Cake_NR5/articles?genre_id=3
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 1180)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 1180, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 1180, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 01:08:23 Error: [NotFoundException] Not Found
+Request URL: /Cake_NR5/keywords/index/page:5/sort:Keyword.id/direction:asc
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(1080): PaginatorComponent->paginate('Keyword', Array, Array)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\KeywordsController.php(82): Controller->paginate('Keyword')
+#2 [internal function]: KeywordsController->index()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(KeywordsController), Array)
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(KeywordsController), Object(CakeRequest))
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 {main}
+2015-04-06 01:41:25 Error: Fatal Error (4): syntax error, unexpected '$opt_conditions' (T_VARIABLE) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\KeywordsController.php, line 143]
+2015-04-06 01:41:25 Error: [FatalErrorException] syntax error, unexpected '$opt_conditions' (T_VARIABLE)
+Request URL: /Cake_NR5/keywords/index/?search=&filter_Cat=15
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 143)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 143, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 143, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-07 08:01:48 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php, line 458]
+2015-04-07 08:01:48 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /Cake_NR5/historys/save_Tokens/134
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 458)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 458, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 458, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-09 01:21:36 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 25195219 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-04-09 01:21:37 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 25195219 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list_V4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-09 01:22:12 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 25195219 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-04-09 01:22:12 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 25195219 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list_V4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-09 01:22:32 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 25195219 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-04-09 01:22:32 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 25195219 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list_V4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-09 01:23:14 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 25195236 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-04-09 01:23:14 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 25195236 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list_V4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-09 01:25:45 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 25195236 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-04-09 01:25:45 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 25195236 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list_V4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-09 01:26:12 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 25195239 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-04-09 01:26:12 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 25195239 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list_V4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-09 01:26:38 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 25195212 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-04-09 01:26:38 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 25195212 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list_V4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-09 01:27:14 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 25195212 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-04-09 01:27:14 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 25195212 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list_V4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-09 01:37:05 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 25225468 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-04-09 01:37:05 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 25225468 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list_V4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-09 01:37:30 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 25204953 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-04-09 01:37:30 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 25204953 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list_V4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-09 01:37:39 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 25204953 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-04-09 01:37:39 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 25204953 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list_V4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-09 01:44:23 Error: Fatal Error (4): syntax error, unexpected 'test_D3' (T_STRING), expecting function (T_FUNCTION) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php, line 3569]
+2015-04-09 01:44:23 Error: [FatalErrorException] syntax error, unexpected 'test_D3' (T_STRING), expecting function (T_FUNCTION)
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list_V4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 3569)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 3569, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 3569, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-09 01:51:16 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 25195010 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-04-09 01:51:16 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 25195010 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list_V4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-09 01:55:03 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 25225524 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-04-09 01:55:03 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 25225524 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list_V4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-09 01:56:27 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 25225527 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-04-09 01:56:27 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 25225527 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list_V4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-09 01:57:21 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 25225527 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-04-09 01:57:21 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 25225527 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_nouns_list_V4
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-10 00:40:09 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\create__tokens.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\create__tokens.ctp',
+)
+Request URL: /Cake_NR5/Tokens/create_Tokens
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-04-10 08:05:07 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php, line 458]
+2015-04-10 08:05:07 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /Cake_NR5/Historys/create_Tokens?cat_id=22
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 458)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 458, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 458, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-10 01:23:16 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near ">": syntax error
+Request URL: /Cake_NR5/Tokens
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Token"....', Array)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Token"....', Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Token"....', Array, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Token"....', false)
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Token), Array)
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Component\PaginatorComponent.php(196): Model->find('all', Array)
+#7 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(1080): PaginatorComponent->paginate('Token', Array, Array)
+#8 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php(59): Controller->paginate('Token')
+#9 [internal function]: TokensController->index()
+#10 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(TokensController), Array)
+#11 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#12 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#13 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2015-04-11 03:54:41 Error: Fatal Error (4): syntax error, unexpected 'return' (T_RETURN) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\HistorysController.php, line 435]
+2015-04-11 03:54:41 Error: [FatalErrorException] syntax error, unexpected 'return' (T_RETURN)
+Request URL: /Cake_NR5/historys?filter_Line=-%E3%83%88%E3%83%A8%E3%82%BF%E3%80%80%E6%97%A5%E7%94%A3%E3%80%80%E3%83%9B%E3%83%B3%E3%83%80%E3%80%80-%E4%B8%AD%E5%9B%BD
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 435)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 435, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 435, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-12 00:24:54 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\test__n_v_p_2__categories.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\test__n_v_p_2__categories.ctp',
+)
+Request URL: /Cake_NR5/Tokens/test_NVP_2_Categories
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-04-12 00:44:59 Error: Fatal Error (1): Call to undefined method Utils::find_Tokens_from_CatId_and_Hin() in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php, line 4292]
+2015-04-12 00:44:59 Error: [FatalErrorException] Call to undefined method Utils::find_Tokens_from_CatId_and_Hin()
+Request URL: /Cake_NR5/Tokens/test_NVP_2_Categories?cat_id=8%2C15
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 4292)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 4292, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 4292, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-12 00:45:16 Error: Fatal Error (1): Using $this when not in object context in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils.php, line 1229]
+2015-04-12 00:45:16 Error: [FatalErrorException] Using $this when not in object context
+Request URL: /Cake_NR5/Tokens/test_NVP_2_Categories?cat_id=8%2C15
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1229)
+#1 [internal function]: ErrorHandler::handleError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1229, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1229, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-12 00:45:32 Error: Fatal Error (1): Using $this when not in object context in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils.php, line 1229]
+2015-04-12 00:45:32 Error: [FatalErrorException] Using $this when not in object context
+Request URL: /Cake_NR5/Tokens/test_NVP_2_Categories?cat_id=8%2C15
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1229)
+#1 [internal function]: ErrorHandler::handleError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1229, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1229, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-12 00:51:07 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 25057981 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-04-12 00:51:07 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 25057981 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_2_Categories?cat_id=8%2C15
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-12 00:52:00 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 25057981 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2015-04-12 00:52:00 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 25057981 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_2_Categories?cat_id=8%2C15
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 241, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-12 01:01:15 Error: Fatal Error (1): Unsupported operand types in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\tests\test_NVP_2_Categories.ctp, line 59]
+2015-04-12 01:01:15 Error: [FatalErrorException] Unsupported operand types
+Request URL: /Cake_NR5/Tokens/test_NVP_2_Categories?cat_id=8%2C15
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Unsupported ope...', 'C:\\WORKS\\WS\\Ecl...', 59)
+#1 [internal function]: ErrorHandler::handleError(1, 'Unsupported ope...', 'C:\\WORKS\\WS\\Ecl...', 59, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Unsupported ope...', 'C:\\WORKS\\WS\\Ecl...', 59, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-12 01:02:04 Error: Fatal Error (1): Unsupported operand types in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\tests\test_NVP_2_Categories.ctp, line 81]
+2015-04-12 01:02:04 Error: [FatalErrorException] Unsupported operand types
+Request URL: /Cake_NR5/Tokens/test_NVP_2_Categories?cat_id=8%2C15
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Unsupported ope...', 'C:\\WORKS\\WS\\Ecl...', 81)
+#1 [internal function]: ErrorHandler::handleError(1, 'Unsupported ope...', 'C:\\WORKS\\WS\\Ecl...', 81, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Unsupported ope...', 'C:\\WORKS\\WS\\Ecl...', 81, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-12 01:12:34 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\Debugger.php, line 803]
+2015-04-12 01:12:34 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /Cake_NR5/Tokens/test_NVP_2_Categories?cat_id=8%2C15
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 803)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 803, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 803, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-12 01:13:11 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\Debugger.php, line 803]
+2015-04-12 01:13:11 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /Cake_NR5/Tokens/test_NVP_2_Categories?cat_id=8%2C15
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 803)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 803, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 803, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-13 00:29:06 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 15132900 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\Debugger.php, line 563]
+2015-04-13 00:29:06 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 15132900 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_2_Categories_Compare
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 563)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 563, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 563, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-13 00:55:32 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 46308771 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php, line 951]
+2015-04-13 00:55:32 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 46308771 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_2_Categories_Compare
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 951)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 951, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 951, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-13 00:55:53 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\Debugger.php, line 803]
+2015-04-13 00:55:53 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /Cake_NR5/Tokens/test_NVP_2_Categories_Compare
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 803)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 803, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 803, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-13 01:40:02 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 659456 bytes) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\Debugger.php, line 802]
+2015-04-13 01:40:02 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 659456 bytes)
+Request URL: /Cake_NR5/Tokens/test_NVP_2_Categories_Compare
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 802)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 802, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS\\WS\\Ecl...', 802, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-14 00:58:34 Error: Fatal Error (64): Cannot declare property CONS::$admin_Open_Mode final, the final modifier is allowed only for methods and classes in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\CONS.php, line 57]
+2015-04-14 00:58:34 Error: [FatalErrorException] Cannot declare property CONS::$admin_Open_Mode final, the final modifier is allowed only for methods and classes
+Request URL: /Cake_NR5/Tokens/test_NVP_Category_AB_Top50?history_id=137
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(64, 'Cannot declare ...', 'C:\\WORKS\\WS\\Ecl...', 57)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot declare ...', 'C:\\WORKS\\WS\\Ecl...', 57, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot declare ...', 'C:\\WORKS\\WS\\Ecl...', 57, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-14 00:58:39 Error: Fatal Error (64): Cannot declare property CONS::$admin_Open_Mode final, the final modifier is allowed only for methods and classes in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\CONS.php, line 57]
+2015-04-14 00:58:39 Error: [FatalErrorException] Cannot declare property CONS::$admin_Open_Mode final, the final modifier is allowed only for methods and classes
+Request URL: /Cake_NR5/Tokens/test_NVP_Category_AB_Top50?history_id=137
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(64, 'Cannot declare ...', 'C:\\WORKS\\WS\\Ecl...', 57)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot declare ...', 'C:\\WORKS\\WS\\Ecl...', 57, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot declare ...', 'C:\\WORKS\\WS\\Ecl...', 57, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-14 00:58:47 Error: Fatal Error (64): Cannot declare property CONS::$admin_Open_Mode final, the final modifier is allowed only for methods and classes in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\CONS.php, line 57]
+2015-04-14 00:58:47 Error: [FatalErrorException] Cannot declare property CONS::$admin_Open_Mode final, the final modifier is allowed only for methods and classes
+Request URL: /Cake_NR5/Tokens/test_NVP_Category_AB_Top50?history_id=137
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(64, 'Cannot declare ...', 'C:\\WORKS\\WS\\Ecl...', 57)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot declare ...', 'C:\\WORKS\\WS\\Ecl...', 57, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot declare ...', 'C:\\WORKS\\WS\\Ecl...', 57, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-14 00:58:50 Error: Fatal Error (64): Cannot declare property CONS::$admin_Open_Mode final, the final modifier is allowed only for methods and classes in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\CONS.php, line 57]
+2015-04-14 00:58:50 Error: [FatalErrorException] Cannot declare property CONS::$admin_Open_Mode final, the final modifier is allowed only for methods and classes
+Request URL: /Cake_NR5/Tokens/test_NVP_Category_AB_Top50?history_id=139
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(64, 'Cannot declare ...', 'C:\\WORKS\\WS\\Ecl...', 57)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot declare ...', 'C:\\WORKS\\WS\\Ecl...', 57, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot declare ...', 'C:\\WORKS\\WS\\Ecl...', 57, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-14 00:59:09 Error: Fatal Error (64): Cannot declare property CONS::$admin_Open_Mode final, the final modifier is allowed only for methods and classes in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\CONS.php, line 57]
+2015-04-14 00:59:09 Error: [FatalErrorException] Cannot declare property CONS::$admin_Open_Mode final, the final modifier is allowed only for methods and classes
+Request URL: /Cake_NR5/Tokens/test_NVP_Category_AB_Top50
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(64, 'Cannot declare ...', 'C:\\WORKS\\WS\\Ecl...', 57)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot declare ...', 'C:\\WORKS\\WS\\Ecl...', 57, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot declare ...', 'C:\\WORKS\\WS\\Ecl...', 57, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-14 01:01:04 Error: Fatal Error (64): Cannot declare property CONS::$admin_Open_Mode final, the final modifier is allowed only for methods and classes in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\CONS.php, line 57]
+2015-04-14 01:01:04 Error: [FatalErrorException] Cannot declare property CONS::$admin_Open_Mode final, the final modifier is allowed only for methods and classes
+Request URL: /Cake_NR5/Tokens/test_NVP_Category_AB_Top50
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(64, 'Cannot declare ...', 'C:\\WORKS\\WS\\Ecl...', 57)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot declare ...', 'C:\\WORKS\\WS\\Ecl...', 57, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot declare ...', 'C:\\WORKS\\WS\\Ecl...', 57, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-14 01:05:39 Error: Fatal Error (1): Using $this when not in object context in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils.php, line 1522]
+2015-04-14 01:05:39 Error: [FatalErrorException] Using $this when not in object context
+Request URL: /Cake_NR5/Tokens/test_NVP_Category_AB_Top50?history_id=139
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1522)
+#1 [internal function]: ErrorHandler::handleError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1522, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1522, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-15 00:30:30 Error: Fatal Error (1): Using $this when not in object context in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils.php, line 1608]
+2015-04-15 00:30:30 Error: [FatalErrorException] Using $this when not in object context
+Request URL: /Cake_NR5/Tokens/create_Tokens?cat_id=15
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1608)
+#1 [internal function]: ErrorHandler::handleError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1608, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1608, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-15 00:47:55 Error: Fatal Error (1): Using $this when not in object context in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils.php, line 1646]
+2015-04-15 00:47:55 Error: [FatalErrorException] Using $this when not in object context
+Request URL: /Cake_NR5/Tokens/create_Tokens?cat_id=14
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1646)
+#1 [internal function]: ErrorHandler::handleError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1646, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1646, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-15 00:48:12 Error: Fatal Error (1): Using $this when not in object context in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils.php, line 1728]
+2015-04-15 00:48:12 Error: [FatalErrorException] Using $this when not in object context
+Request URL: /Cake_NR5/Tokens/create_Tokens?cat_id=14
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1728)
+#1 [internal function]: ErrorHandler::handleError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1728, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1728, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-15 00:48:30 Error: Fatal Error (1): Using $this when not in object context in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils.php, line 1728]
+2015-04-15 00:48:30 Error: [FatalErrorException] Using $this when not in object context
+Request URL: /Cake_NR5/Tokens/create_Tokens?cat_id=14
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1728)
+#1 [internal function]: ErrorHandler::handleError(1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1728, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Using $this whe...', 'C:\\WORKS\\WS\\Ecl...', 1728, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-15 01:03:45 Error: [PDOException] SQLSTATE[HY000]: General error: 1 no such column: History.category_id
+Request URL: /Cake_NR5/Tokens/index/page:116
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Token"....', Array)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Token"....', Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Token"....', Array, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Token"....', false)
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Token), Array)
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Component\PaginatorComponent.php(196): Model->find('all', Array)
+#7 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(1080): PaginatorComponent->paginate('Token', Array, Array)
+#8 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php(102): Controller->paginate('Token')
+#9 [internal function]: TokensController->index()
+#10 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(TokensController), Array)
+#11 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#12 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#13 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2015-04-15 01:06:33 Error: [NotFoundException] Not Found
+Request URL: /Cake_NR5/Tokens/index/page:116
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(1080): PaginatorComponent->paginate('Token', Array, Array)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php(102): Controller->paginate('Token')
+#2 [internal function]: TokensController->index()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(TokensController), Array)
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 {main}
+2015-04-15 01:07:12 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php, line 946]
+2015-04-15 01:07:12 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /Cake_NR5/Tokens/index
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 946)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 946, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 946, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-15 08:27:37 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php, line 458]
+2015-04-15 08:27:37 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /Cake_NR5/Tokens/create_Tokens?cat_id=6
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 458)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 458, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 458, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-15 01:44:18 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php, line 1175]
+2015-04-15 01:44:18 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /Cake_NR5/tokens?filter_hist_id=filter_hist_id_all
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 1175)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 1175, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\\WORKS\\WS\\Ecl...', 1175, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-27 00:06:57 Error: [NotFoundException] The requested file C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\categorys.csv was not found or not readable
+Request URL: /Cake_NR5/admins/csv_Categories_dl/tokens
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\AdminsController.php(408): CakeResponse->file('categorys.csv', Array)
+#1 [internal function]: AdminsController->csv_Categories_dl('tokens')
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(AdminsController), Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AdminsController), Object(CakeRequest))
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#6 {main}
+2015-04-27 00:11:22 Error: [MissingActionException] Action AdminsController::csv_Tokens_dl() could not be found.
+Exception Attributes: array (
+  'controller' => 'AdminsController',
+  'action' => 'csv_Tokens_dl',
+)
+Request URL: /Cake_NR5/admins/csv_Tokens_dl/categorys
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AdminsController), Object(CakeRequest))
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-05-25 00:07:32 Error: Fatal Error (4): syntax error, unexpected '$val_1' (T_VARIABLE) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\HistorysController.php, line 775]
+2015-05-25 00:07:32 Error: [FatalErrorException] syntax error, unexpected '$val_1' (T_VARIABLE)
+Request URL: /Cake_NR5/historys/view/154
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 775)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 775, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 775, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-05-25 00:10:34 Error: Fatal Error (4): syntax error, unexpected '}' in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\HistorysController.php, line 1011]
+2015-05-25 00:10:34 Error: [FatalErrorException] syntax error, unexpected '}'
+Request URL: /Cake_NR5/historys/view/154
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 1011)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 1011, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 1011, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-05-25 00:15:20 Error: Fatal Error (4): syntax error, unexpected 'debug' (T_STRING) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\HistorysController.php, line 777]
+2015-05-25 00:15:20 Error: [FatalErrorException] syntax error, unexpected 'debug' (T_STRING)
+Request URL: /Cake_NR5/historys/view/154
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 777)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 777, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 777, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-05-25 00:18:39 Error: Fatal Error (4): syntax error, unexpected 'debug' (T_STRING) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\HistorysController.php, line 1013]
+2015-05-25 00:18:39 Error: [FatalErrorException] syntax error, unexpected 'debug' (T_STRING)
+Request URL: /Cake_NR5/historys/view/154
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 1013)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 1013, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 1013, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-05-25 00:24:15 Error: Fatal Error (4): syntax error, unexpected 'return' (T_RETURN) in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\HistorysController.php, line 1126]
+2015-05-25 00:24:15 Error: [FatalErrorException] syntax error, unexpected 'return' (T_RETURN)
+Request URL: /Cake_NR5/historys/view/154
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 1126)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 1126, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS\\WS\\Ecl...', 1126, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-06-20 01:38:09 Error: [NotFoundException] Not Found
+Request URL: /Cake_NR5/Historys/index/page:2
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(1080): PaginatorComponent->paginate('History', Array, Array)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\HistorysController.php(60): Controller->paginate('History')
+#2 [internal function]: HistorysController->index()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(HistorysController), Array)
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(HistorysController), Object(CakeRequest))
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 {main}
+2015-06-20 03:11:53 Error: Fatal Error (1): Call to a member function format() on string in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\HistorysController.php, line 105]
+2015-06-20 03:11:53 Error: [FatalErrorException] Call to a member function format() on string
+Request URL: /Cake_NR5/Historys?RBs_AND_OR_History=AND&filter_Line=__%40
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\WORKS\\WS\\Ecl...', 105)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\WORKS\\WS\\Ecl...', 105, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\WORKS\\WS\\Ecl...', 105, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-06-20 03:13:48 Error: [Exception] DateTime::__construct() [<a href='http://php.net/datetime.construct'>datetime.construct</a>]: Failed to parse time string (0.022001981735229) at position 15 (2): Unexpected character
+Request URL: /Cake_NR5/Historys?RBs_AND_OR_History=AND&filter_Line=__%40
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\HistorysController.php(101): DateTime->__construct('0.0220019817352...')
+#1 [internal function]: HistorysController->index()
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(HistorysController), Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(HistorysController), Object(CakeRequest))
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#6 {main}
+2015-06-20 03:33:32 Error: Fatal Error (1): Call to undefined function _index__Options__Range() in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\HistorysController.php, line 19]
+2015-06-20 03:33:32 Error: [FatalErrorException] Call to undefined function _index__Options__Range()
+Request URL: /Cake_NR5/Historys?RBs_AND_OR_History=AND&filter_Line=__%40&range=20150501
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 19)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 19, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\\WORKS\\WS\\Ecl...', 19, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-08-26 08:05:04 Error: [MissingTableException] Table users for model User was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'users',
+  'class' => 'User',
+  'ds' => 'default',
+)
+Request URL: /Eclipse_Luna/Cake_NR5/users/login
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(3501): Model->setSource('users')
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(1357): Model->getDataSource()
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\Helper\FormHelper.php(215): Model->schema()
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\Helper\FormHelper.php(467): FormHelper->_introspectModel('User', 'fields')
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Users\login.ctp(3): FormHelper->create('User')
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(948): include('C:\\WORKS\\WS\\Ecl...')
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(910): View->_evaluate('C:\\WORKS\\WS\\Ecl...', Array)
+#7 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(471): View->_render('C:\\WORKS\\WS\\Ecl...')
+#8 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#9 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#10 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest))
+#11 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-08-26 08:05:19 Error: [MissingTableException] Table admins for model Admin was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'admins',
+  'class' => 'Admin',
+  'ds' => 'default',
+)
+Request URL: /Eclipse_Luna/Cake_NR5/admins
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(3501): Model->setSource('admins')
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): Model->getDataSource()
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\AdminsController.php(7): Model->find('all')
+#4 [internal function]: AdminsController->index()
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(AdminsController), Array)
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#7 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AdminsController), Object(CakeRequest))
+#8 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2015-08-26 08:05:34 Error: [MissingTableException] Table genres for model Genre was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'genres',
+  'class' => 'Genre',
+  'ds' => 'default',
+)
+Request URL: /Eclipse_Luna/Cake_NR5/articles
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(3501): Model->setSource('genres')
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): Model->getDataSource()
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('first', Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php(197): Model->find('first', Array)
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php(31): ArticlesController->_index_Get_GenreID()
+#5 [internal function]: ArticlesController->index()
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ArticlesController), Array)
+#7 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#8 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest))
+#9 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2015-08-26 08:08:09 Error: [PDOException] SQLSTATE[HY000]: General error: 11 database disk image is malformed
+Request URL: /Eclipse_Luna/Cake_NR5/articles
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT name FRO...', Array)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT name FRO...', Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT name FRO...', Array, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\Database\Sqlite.php(147): DboSource->fetchAll('SELECT name FRO...', false)
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(1134): Sqlite->listSources()
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(3501): Model->setSource('genres')
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): Model->getDataSource()
+#7 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('first', Array)
+#8 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php(197): Model->find('first', Array)
+#9 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php(31): ArticlesController->_index_Get_GenreID()
+#10 [internal function]: ArticlesController->index()
+#11 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ArticlesController), Array)
+#12 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#13 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest))
+#14 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
