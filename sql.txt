@@ -10,6 +10,7 @@ pragma table_info(tokens);
 
 pragma table_info(articles);
 pragma table_info(categories);
+pragma table_info(histories);
 
 .exit
 
@@ -291,6 +292,9 @@ DROP TABLE tokens;
 #REF consicely explained => http://stackoverflow.com/questions/805363/how-do-i-rename-a-column-in-a-sqlite-database-table answered Apr 30 '09 at 5:57
 ALTER TABLE tokens_new RENAME TO tokens;
 
+#REF	http://razorsql.com/features/sqlite_add_column.html
+ALTER TABLE histories ADD updates VARCHAR(200);
+
 
 [mysql(lollipop)]======================================
 #REF http://sql-info.de/mysql/examples/CREATE-TABLE-examples.html
@@ -490,3 +494,7 @@ CREATE TABLE users (
 	role VARCHAR(20)
 	
 );
+
+#REF http://www.tech-recipes.com/rx/378/add-a-column-to-an-existing-mysql-table/
+ALTER TABLE histories ADD updates VARCHAR(200);
+

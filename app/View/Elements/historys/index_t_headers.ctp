@@ -43,6 +43,12 @@
 		
 		<?php echo $this->element('historys/_index_t_headers__Category'); ?>
 		
+		<th>
+		
+			Updates
+		
+		</th>
+		
 <!-- 		<th> -->
 			<?php 
 		

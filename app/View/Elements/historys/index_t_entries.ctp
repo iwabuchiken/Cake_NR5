@@ -28,8 +28,11 @@
 // 				echo $this->Html->link(htmlentities($history['History']['line']),
 							array(
 								'controller' => 'Historys', 
+// 								'action' => 'bufferTo_View', 
 								'action' => 'view', 
-								$history['History']['id']),
+								$history['History']['id'],
+// 								'?' => array('refer' => 'true')
+							),
 							$option
 							); ?>
 		</td>
@@ -48,6 +51,32 @@
 			
 				echo $history['Category']['name']
 					."(".$history['Category']['id']."/".$history['Category']['genre_id'].")"; 
+				
+			?>
+			
+		</td>
+		
+		<td>
+		
+			<?php 
+			
+				$txt = "";
+				
+// 				if (defined($history['History']['updates'])) {
+				if ($history['History']['updates'] != null) {
+				
+					$tokens = explode(CONS::$his_Updates_Delimiter, 
+										$history['History']['updates']);
+// 					$tokens = explode(" ", $history['History']['updates']);
+					
+					echo count($tokens);
+				
+				} else {
+				
+					echo "*";
+// 					echo "NO DATA";
+					
+				}//if ($history['History']['updates'] != null)
 				
 			?>
 			

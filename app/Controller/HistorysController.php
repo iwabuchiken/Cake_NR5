@@ -30,7 +30,7 @@ class HistorysController extends AppController {
 			
 		}
 		
-		debug($opt_conditions);
+// 		debug($opt_conditions);
 		
 		/*******************************
 			total limit
@@ -46,9 +46,14 @@ class HistorysController extends AppController {
 
 		$opt_Fields = array(
 					'History.id',
+				
 					'History.line',
+					'History.url',
 					'History.vendor',
 					'History.news_time',
+				
+					'History.updates',
+				
 					'History.created_at', 
 					'History.updated_at',
 					'History.category_id',
@@ -697,6 +702,32 @@ class HistorysController extends AppController {
 		
 		$this->set('history', $history);
 		
+		/*******************************
+			test: detect refresh
+		*******************************/
+		$pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'];
+
+		if ($pageWasRefreshed) {
+		
+// 			debug("view => refreshed");
+		
+		} else {
+		
+// 			debug("view => NOT refreshed");
+			/*******************************
+				save: updates info
+			*******************************/
+			$this->_view_Updates($history);
+			
+		}//if ($pagew)
+		
+		
+		
+// 		/*******************************
+// 			save: updates info
+// 		*******************************/
+// 		$this->_view_Updates($history);
+		
 		/**********************************
 		* content: modified
 		**********************************/
@@ -830,6 +861,92 @@ class HistorysController extends AppController {
 		
 	}//view($id = null)
 
+	public function 
+	_view_Updates($history) {
+
+		/*******************************
+			update: updates, updated_at
+		*******************************/
+		$tmp = $history['History']['updates'];
+		
+		$current_Time = Utils::get_CurrentTime2(CONS::$timeLabelTypes["basic"]);
+		
+		if ($tmp == null) {
+		
+			$tmp = $current_Time;
+// 			$tmp = Utils::get_CurrentTime2(CONS::$timeLabelTypes["basic"]);
+		
+		} else {
+		
+			$tmp .= CONS::$his_Updates_Delimiter.$current_Time;
+// 			$tmp .= CONS::$his_Updates_Delimiter.Utils::get_CurrentTime2(CONS::$timeLabelTypes["basic"]);
+// 			$tmp .= " ".Utils::get_CurrentTime2(CONS::$timeLabelTypes["basic"]);
+			
+		}//if ($tmp == null)
+		
+		$history['History']['updates'] = $tmp;
+		$history['History']['updated_at'] = $current_Time;
+// 								Utils::get_CurrentTime2(CONS::$timeLabelTypes["basic"]);
+		
+		/*******************************
+			save
+		*******************************/
+		$res = $this->History->save($history);
+		
+		if ($res == true) {
+		
+			debug("updates => saved");
+		
+		} else {
+		
+			debug("updates => NOT saved");
+			
+		}//if ($res == true)
+		
+	}//_view_Updates($history)
+	
+	public function 
+	bufferTo_View($id = null) {
+
+		/*******************************
+			validate
+		*******************************/
+		if (!$id) {
+			throw new NotFoundException(__("Invalid history: id = $id"));
+			
+			return $this->redirect(array('action' => 'index'));
+			
+		}
+		
+		$history = $this->History->findById($id);
+		
+		if (!$history) {
+			
+			throw new NotFoundException(__("History not found: id = $id"));
+			
+			return $this->redirect(array('action' => 'index'));
+			
+		}
+		
+		/*******************************
+			save: updates info
+		*******************************/
+		$this->_view_Updates($history);
+
+		/*******************************
+			redir
+		*******************************/
+		return $this->redirect(
+				
+					array(
+							'controller'	=> 'historys',
+							'action' => 'view', $history['History']['id'])
+		
+		);
+		
+	}//bufferTo_View($id = null)
+	
+	
 	public function 
 	_build_Text_Colorize_Kanji
 	($words) {
