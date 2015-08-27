@@ -1675,80 +1675,45 @@ Stack Trace:
 #13 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest))
 #14 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #15 {main}
-2015-08-26 08:27:17 Error: [MissingActionException] Action TokensController::get__tokens() could not be found.
-Exception Attributes: array (
-  'controller' => 'TokensController',
-  'action' => 'get__tokens',
-)
-Request URL: /Eclipse_Luna/Cake_NR5/tokens/get__tokens
+2015-08-27 02:29:57 Error: [PDOException] SQLSTATE[HY000]: General error: 11 database disk image is malformed
+Request URL: /Eclipse_Luna/Cake_NR5/users/login
 Stack Trace:
-#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
-#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
-#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
-#3 {main}
-2015-08-26 09:10:46 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\get__tokens.ctp" is missing.
-Exception Attributes: array (
-  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\get__tokens.ctp',
-)
-Request URL: /Eclipse_Luna/Cake_NR5/tokens/get_Tokens?type=N&num=a
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT name FRO...', Array)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT name FRO...', Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT name FRO...', Array, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\Database\Sqlite.php(147): DboSource->fetchAll('SELECT name FRO...', false)
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(1134): Sqlite->listSources()
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(3501): Model->setSource('users')
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(1357): Model->getDataSource()
+#7 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\Helper\FormHelper.php(215): Model->schema()
+#8 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\Helper\FormHelper.php(467): FormHelper->_introspectModel('User', 'fields')
+#9 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Users\login.ctp(3): FormHelper->create('User')
+#10 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(948): include('C:\\WORKS\\WS\\Ecl...')
+#11 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(910): View->_evaluate('C:\\WORKS\\WS\\Ecl...', Array)
+#12 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(471): View->_render('C:\\WORKS\\WS\\Ecl...')
+#13 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#14 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#15 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest))
+#16 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#17 {main}
+2015-08-27 03:03:20 Error: [PDOException] SQLSTATE[HY000]: General error: 11 database disk image is malformed
+Request URL: /Eclipse_Luna/Cake_NR5/users/login
 Stack Trace:
-#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
-#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
-#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
-#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
-#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
-#5 {main}
-2015-08-26 09:10:58 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\get__tokens.ctp" is missing.
-Exception Attributes: array (
-  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\get__tokens.ctp',
-)
-Request URL: /Eclipse_Luna/Cake_NR5/tokens/get_Tokens?type=N&num=a
-Stack Trace:
-#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
-#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
-#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
-#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
-#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
-#5 {main}
-2015-08-26 09:12:18 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\get__tokens.ctp" is missing.
-Exception Attributes: array (
-  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\get__tokens.ctp',
-)
-Request URL: /Eclipse_Luna/Cake_NR5/tokens/get_Tokens?type=N&num=a
-Stack Trace:
-#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
-#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
-#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
-#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
-#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
-#5 {main}
-2015-08-26 09:17:54 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\Tokens\get__tokens2.ctp" is missing.
-Exception Attributes: array (
-  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\Tokens\\get__tokens2.ctp',
-)
-Request URL: /Eclipse_Luna/Cake_NR5/tokens/get_Tokens?type=N&num=10
-Stack Trace:
-#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName('Tokens/get__tok...')
-#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render('Tokens/get__tok...', NULL)
-#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php(5139): Controller->render('Tokens/get__tok...')
-#3 [internal function]: TokensController->get_Tokens()
-#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(TokensController), Array)
-#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
-#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
-#7 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
-#8 {main}
-2015-08-26 09:18:18 Error: [MissingViewException] View file "C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Tokens\Tokens\get__tokens.ctp" is missing.
-Exception Attributes: array (
-  'file' => 'C:\\WORKS\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Tokens\\Tokens\\get__tokens.ctp',
-)
-Request URL: /Eclipse_Luna/Cake_NR5/tokens/get_Tokens?type=N&num=10
-Stack Trace:
-#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName('Tokens/get__tok...')
-#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render('Tokens/get__tok...', NULL)
-#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php(5143): Controller->render('Tokens/get__tok...')
-#3 [internal function]: TokensController->get_Tokens()
-#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(TokensController), Array)
-#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
-#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(TokensController), Object(CakeRequest))
-#7 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
-#8 {main}
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT name FRO...', Array)
+#1 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT name FRO...', Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT name FRO...', Array, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\Database\Sqlite.php(147): DboSource->fetchAll('SELECT name FRO...', false)
+#4 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(1134): Sqlite->listSources()
+#5 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(3501): Model->setSource('users')
+#6 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(1357): Model->getDataSource()
+#7 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\Helper\FormHelper.php(215): Model->schema()
+#8 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\Helper\FormHelper.php(467): FormHelper->_introspectModel('User', 'fields')
+#9 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\View\Users\login.ctp(3): FormHelper->create('User')
+#10 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(948): include('C:\\WORKS\\WS\\Ecl...')
+#11 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(910): View->_evaluate('C:\\WORKS\\WS\\Ecl...', Array)
+#12 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(471): View->_render('C:\\WORKS\\WS\\Ecl...')
+#13 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#14 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#15 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest))
+#16 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#17 {main}
