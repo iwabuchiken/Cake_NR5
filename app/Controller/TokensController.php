@@ -5079,7 +5079,7 @@ class TokensController extends AppController {
 		
 		@$num = $this->request->query['num'];
 		
-		debug("type => ".$type."/"."num => ".$num);
+// 		debug("type => ".$type."/"."num => ".$num);
 		
 		/*******************************
 			validate: params
@@ -5122,9 +5122,27 @@ class TokensController extends AppController {
 		}
 		
 		/*******************************
+			tokens
+		*******************************/
+		$opt = array(
+			
+			'conditions'	=> array('Token.hin' => CONS::$map_Symbols_2_HinNames[$type]),
+			
+			'limit'			=> $num
+				
+		);
+		
+		$tokens = $this->Token->find('all', $opt);
+		
+// 		debug(count($tokens));
+		
+// 		debug($tokens[0]);
+		
+		/*******************************
 			set value
 		*******************************/
-		$this->set("result", "done");
+		$this->set("result", $tokens);
+// 		$this->set("result", "done");
 		
 // 		debug($this->request->webroot);
 // 		debug($this->request);
@@ -5134,7 +5152,7 @@ class TokensController extends AppController {
 		/*******************************
 			layout
 		*******************************/
-// 		$this->layout = 'plain';
+		$this->layout = 'plain';
 
 		/*******************************
 			render
