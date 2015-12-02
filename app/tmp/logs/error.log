@@ -1717,3 +1717,13 @@ Stack Trace:
 #15 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest))
 #16 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #17 {main}
+2015-12-02 00:46:52 Error: Fatal Error (1): Call to a member function format() on null in [C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php, line 11]
+2015-12-02 00:46:52 Error: [FatalErrorException] Call to a member function format() on null
+Request URL: /Eclipse_Luna/Cake_NR5/articles
+Stack Trace:
+#0 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\WORKS\\WS\\Ecl...', 11)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\WORKS\\WS\\Ecl...', 11, Array)
+#2 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\WORKS\\WS\\Ecl...', 11, Array)
+#3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}

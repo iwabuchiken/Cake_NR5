@@ -7,23 +7,11 @@ class ArticlesController extends AppController {
 	public function 
 	index() {
 
-		//test
-// 		$line = "<body text='%body%'>";
-// 		$bodytag = str_replace("%body%", "black", $line);
+// 		//test
+// 		$now=new DateTime; //includes hours, minutes, seconds
+// 		$today=new DateTime($now->format('Ymd')); //time set to 0:00
 		
-// 		debug("$line => $bodytag");
-
-// 		$string = 'April 15, 2003';
-// 		$pattern = '/(\w+) (\d+), (\d+)/i';
-// 		$replacement = '${1}1,$3';
-// 		debug($string."=>".preg_replace($pattern, $replacement, $string));
-		
-// 		$this->set('articles', $this->Article->find('all'));
-		
-// 		$line = "<font color=\"blue\">トヨタ</font>、あえて中国へ工場新設　他社注視";
-		
-// 		debug("$line \n=> ".Utils::sanitize_Tags($line, array("font")));
-		
+// 		debug($today);
 		
 		/**********************************
 		* genre id
@@ -34,8 +22,6 @@ class ArticlesController extends AppController {
 		* get: articles
 		**********************************/
 		$articles = $this->_index_GetArticles($query_genre_id);
-		
-// 		debug($articles[0]);
 		
 		/*******************************
 			vendors
@@ -883,10 +869,70 @@ class ArticlesController extends AppController {
 		
 // // 		debug("top + 2 => ".count($articles));
 		
-		/**********************************
+		/***********************************************
+			limit num of articles => by date
+		***********************************************/
+		$articles_Limited_BY_Date = array();
+		
+		/*******************************
+			prep: dates
+		*******************************/
+		//ref http://php.net/manual/en/datetime.sub.php
+		$date = new DateTime;
+// 		$date = new DateTime('2000-01-20');
+
+		// admin value
+		$past_XDays = Utils::get_Admin_Value(CONS::$admin_LimitArticle_PastXDays, "val1");
+		
+		// validate: null
+		if ($past_XDays === null) {
+			
+			$past_XDays = 3;
+			
+		}//$past_XDays === null
+		
+// 		$past_XDays = 3;
+		
+		//ref http://stackoverflow.com/questions/5368890/mixing-php-variable-with-string-literal answered Mar 20 '11 at 13:55
+		$param = "P{$past_XDays}D";
+		
+// 		debug($param);
+		
+		$date->sub(new DateInterval($param));
+// 		$date->sub(new DateInterval('P10D'));
+// 		echo $date->format('Y-m-d') . "\n";
+		
+		$limit = $date->format('Ymd');
+
+		debug("\$limit => ".$limit);
+// 		debug($date->format('Ymd'));
+
+		/*******************************
+			limit
+		*******************************/
+		foreach ($articles as $elem) {
+		
+			// filter
+			if ($elem['news_time'] > $limit) {
+				
+				array_push($articles_Limited_BY_Date, $elem);
+				
+			}//$elem['news_time'] > $limit
+			
+// 			debug($elem['news_time']);
+			
+// 			break;
+			
+		}//foreach ($articles as $elem)
+		
+		
+		
+		
+		/**************************************************
 		* return
-		**********************************/
-		return $articles;
+		**************************************************/
+		return $articles_Limited_BY_Date;
+// 		return $articles;
 		
 	}//__index_Get_Articles
 	
@@ -3066,5 +3112,51 @@ class ArticlesController extends AppController {
 // 		$this->render('/Articles/others/plain');
 		
 	}//store_Article_from_URL
+
+	public function
+	test() {
+		
+		/*******************************
+			D-31
+		*******************************/
+		/*******************************
+		 get: todays date
+		*******************************/
+		//ref http://php.net/manual/en/datetime.sub.php
+		$date = new DateTime;
+// 		$date = new DateTime('2000-01-20');
+
+		$past_XDays = 3;
+		
+		//ref http://stackoverflow.com/questions/5368890/mixing-php-variable-with-string-literal answered Mar 20 '11 at 13:55
+		$param = "P{$past_XDays}D";
+		
+		debug($param);
+		
+		$date->sub(new DateInterval($param));
+// 		$date->sub(new DateInterval('P10D'));
+// 		echo $date->format('Y-m-d') . "\n";
+		
+		debug($date->format('Ymd'));
+// 		debug($date->format('Y-m-d'));
+		
+		//ref http://stackoverflow.com/questions/12424473/filtering-by-date-php-for-this-month-and-last-x-days-and-this-week answered Sep 14 '12 at 12:33
+// 		$now=new DateTime; //includes hours, minutes, seconds
+// 		$today=new DateTime($now->format('Ymd')); //time set to 0:00
+
+// 		$mytime = new DateTime('2012-03-19 05:00:32');
+// 		$mydate = new DateTime($mytime->format('Y-m-d')); //keep date only, exclude the time component
+// 		$now=new DateTime; //includes hours, minutes, seconds
+// 		$today=new DateTime($now->format('Y-m-d')); //time set to 0:00
+
+// 		$interval = $mydate->diff($today);
+// 		if($interval->format('d') <=7) { //assuming that $mydate isn't in the past
+// 			//do something
+// 		}
+
+		
+		$this->render("/Elements/plain");
+		
+	}
 	
 }//class ArticlesController extends AppController

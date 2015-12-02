@@ -68,6 +68,8 @@ class CONS {
 	
 	public static $admin_Val_2 = "val2";
 	
+	public static $admin_LimitArticle_PastXDays = "Limit_Articles_Past_X_Days";
+	
 	/**********************************
 	* Tokens
 	**********************************/

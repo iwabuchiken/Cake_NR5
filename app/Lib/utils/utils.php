@@ -1518,6 +1518,9 @@
 			
 		}//get_Histo
 
+		/*******************************
+			@return null => can't find the value
+		*******************************/
 		public static function
 		get_Admin_Value
 		($key, $val_1) {
