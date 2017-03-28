@@ -172,8 +172,45 @@ class Articles2Controller extends AppController {
 		 *    : test_1_1_1_get_html_content()
 		 *
 		 ********************/
-		$name_genre = "tech_science";
+		/*******************************
+			get: genre name
+		*******************************/
+		$genre_name = @$this->request->query['genre_name'];
 		
+		debug("\$genre_name => ".$genre_name);
+		
+		if ($genre_name == NULL) {
+		
+			debug("genre name => NULL");
+			
+			$name_genre = "tech_science";
+		
+		} else if ($genre_name == "") {
+		
+			debug("genre name => blank");
+			
+			$name_genre = "tech_science";
+			
+		} else {
+			
+			debug("genre name => $genre_name");
+// 			debug("genre name => unknown type ---> ");
+// 			debug($genre_name);
+			
+			$name_genre = $genre_name;
+// 			$name_genre = "tech_science";
+			
+		}//if ($genre_name == NULL)
+		
+		
+		
+// 		$name_genre = "tech_science";
+
+		debug("tech_science, international, national, politics, business, eco");
+		
+		/*******************************
+			build hrefs list
+		*******************************/
 		$url = "http://www.asahi.com/".$name_genre."/list/";
 		
 		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
