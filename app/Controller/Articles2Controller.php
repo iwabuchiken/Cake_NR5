@@ -8,7 +8,8 @@ class Articles2Controller extends AppController {
 	public function 
 	index() {
 
-		$this->test_1_1_1_get_html_content();
+		$this->test_1_1_2_get_hrefs_for_articles();
+// 		$this->test_1_1_1_get_html_content();
 		
 		
 	}//index()
@@ -97,5 +98,65 @@ class Articles2Controller extends AppController {
 		
 		
 	}//test_1_1_1_get_html_content()
+
+	function test_1_1_2_get_hrefs_for_articles() {
+		
+		/******************** (20 '*'s)
+		 *
+		 * get: url content
+		 *
+		 * ref: app\Controller\ArticlesController.php\__index_Get_Articles__Top
+		 *    : test_1_1_1_get_html_content()
+		 *
+		 ********************/
+		$name_genre = "tech_science";
+		
+		$url = "http://www.asahi.com/".$name_genre."/list/";
+		
+		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+		$html = file_get_html($url);
+		
+		// hrefs
+		$ahrefs = $html->find('a[href]');
+		
+		debug("\$ahrefs => ".count($ahrefs));
+		
+		// validate
+		if (count($ahrefs) < 1) {
+				
+			debug("\$ahrefs => less than 1");
+				
+			return;
+				
+		}
+		
+		/******************** (20 '*'s)
+		 *
+		 * filter: hrefs for articles
+		 *
+		 ********************/
+		$ahrefs_articles = array();
+		
+// 		$count = 0;
+// 		$max = 5;
+		
+		foreach ($ahrefs as $ahref) {
+
+			//ref view-source:http://www.asahi.com/tech_science/list/
+			
+			if (Utils::startsWith($ahref->href, "/articles")) {
+// 			if (Utils::startsWith($ahref->href, "http://headlines")
+// 					&& count(explode("-", $ahref->href)) > 3) {
+
+						array_push($ahrefs_articles, $ahref);
+
+			}//if (Utils::startsWith($ahref->href, "/articles"))
+		
+		}//foreach ($ahrefs as $ahref)
+			
+		//debug
+		debug("count(\$ahrefs_articles) => ".count($ahrefs_articles));
+		
+	}//function test_1_1_2_get_hrefs_for_articles()
 	
 }//class ArticlesController extends AppController
