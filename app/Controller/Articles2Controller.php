@@ -291,6 +291,8 @@ class Articles2Controller extends AppController {
 // 					&& count(explode("-", $ahref->href)) > 3) {
 
 						array_push($ahrefs_articles, $ahref);
+						
+// 						debug($ahref->find('span'));
 
 			}//if (Utils::startsWith($ahref->href, "/articles"))
 		
@@ -316,6 +318,8 @@ class Articles2Controller extends AppController {
 		//test
 		mb_language("Japanese");
 		
+		$max = 4; $count = 0;
+		
 		foreach ($ahrefs as $ahref) {
 		
 			//ref view-source:http://www.asahi.com/tech_science/list/
@@ -337,7 +341,8 @@ class Articles2Controller extends AppController {
 // 				//debug
 // 				if ($count < $max ) {
 					
-// 					debug($a);
+// // 					debug($a);
+// 					debug($ahref->find('span'));
 					
 // 					$count ++;
 					
@@ -352,6 +357,78 @@ class Articles2Controller extends AppController {
 		//debug
 		debug("(re) count(\$ahrefs_articles) => ".count($ahrefs_articles));
 
+// 		/**************************************************************
+// 			add: nikkei articles
+// 		**************************************************************/
+// 		/*******************************
+// 		 build hrefs list
+// 		 *******************************/
+// // 		$url = "http://www.asahi.com/".$name_genre."/list/";
+// 		$url = "http://www.nikkei.com/news/category/world/?bn=1";
+		
+// 		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+// 		unset($html);
+		
+// 		$html = file_get_html($url);
+		
+// 		// hrefs
+// 		unset($ahrefs);
+		
+// 		$ahrefs = $html->find('a[href]');
+		
+// 		debug("\$ahrefs => ".count($ahrefs));
+		
+// 		// validate
+// 		if (count($ahrefs) < 1) {
+		
+// 			debug("\$ahrefs => less than 1");
+		
+// 			return;
+		
+// 		}
+		
+// 		/******************** (20 '*'s)
+// 		 *
+// 		 * filter: hrefs for articles
+// 		 *
+// 		 ********************/
+// // 		$ahrefs_articles = array();
+// // 		unset($ahrefs_articles);
+
+// // 		$ahrefs_articles = array();
+		
+// 		// 		$count = 0;
+// 		// 		$max = 5;
+		
+// 		foreach ($ahrefs as $ahref) {
+		
+// 			//ref view-source:http://www.asahi.com/tech_science/list/
+				
+// // 			if (Utils::startsWith($ahref->href, "/articles")) {
+// 			if (Utils::startsWith($ahref->href, "/article")) {
+// 				// 			if (Utils::startsWith($ahref->href, "http://headlines")
+// 				// 					&& count(explode("-", $ahref->href)) > 3) {
+		
+// // 				array_push($ahrefs_articles, $ahref);
+// 				$a = $this->Article->create();
+				
+// 				$a['url'] = "http://www.asahi.com".$ahref->href;
+// 				// 				$a['url'] = $ahref->href;
+				
+// 				$a['line'] = mb_convert_encoding($ahref->plaintext, 'UTF-8');
+// 				// 				$a['line'] = $ahref->plaintext;
+				
+// 				$a['vendor'] = "www.nikkei.com"; 
+				
+// 				array_push($ahrefs_articles, $a);
+				
+// 			}//if (Utils::startsWith($ahref->href, "/articles"))
+		
+// 		}//foreach ($ahrefs as $ahref)
+			
+// 		//debug
+// 		debug("count(\$ahrefs_articles) (nikkei site added) => ".count($ahrefs_articles));
+		
 		/******************** (20 '*'s)
 		*
 		* set: articles
