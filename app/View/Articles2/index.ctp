@@ -7,7 +7,7 @@
 
 <?php 
 
-// 	echo $this->element('articles/index/_header'); 
+	echo $this->element('articles/index/_header'); 
 	
 ?>
 

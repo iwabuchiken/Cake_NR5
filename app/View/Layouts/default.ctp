@@ -22,7 +22,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <!DOCTYPE html>
 <html>
 <head>
-	<?php echo $this->Html->charset(); ?>
+	<?php //echo $this->Html->charset(); ?>
+	
+	<!-- ref http://onlineconsultant.jp/pukiwiki/?Cake%20PHP%20%E6%96%87%E5%AD%97%E5%8C%96%E3%81%91%E3%82%92%E7%9B%B4%E3%81%99 -->
+	<?php //echo $html->charset("utf-8"); ?>
+	<?php echo $this->Html->charset("utf-8"); ?>
+	
 	<title>
 		<?php echo CONS::$proj_Name ?>:
 		<?php //echo CONS::$proj_Name ?>:
