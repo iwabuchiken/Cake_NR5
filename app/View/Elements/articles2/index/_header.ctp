@@ -2,6 +2,7 @@
 
 	$opt_create = array(
 					'div' => false,
+// 					'id' => "Genre2",
 					//REF http://book.cakephp.org/2.0/en/core-libraries/helpers/form.html#options-for-create 
 					'type' => 'get');
 
@@ -13,6 +14,9 @@
 			
 					'label'		=> false,
 					'name'		=> "genre_id",
+			
+// 					'id' => "Genre2",	//=> no change
+			
 					'div'		=> false,
 			
 					'class'		=> 'select_genre'
@@ -25,8 +29,10 @@
 	
 	);
 	
+// 	echo $this->Form->create('Genre2', $opt_create);	
 	echo $this->Form->create('Genre', $opt_create);	
 	echo $this->Form->input(
+// 						'Genre2', $opt_input
 						'', $opt_input
 	
 					);

@@ -5,6 +5,8 @@
 
 (<a href="#bottom">Bottom</a><a name="top"></a>)
 
+<?php echo $this->element('articles/index/_header'); ?>
+
 <?php 
 
 	echo "<br>"; echo "<br>";

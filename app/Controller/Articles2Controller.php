@@ -8,10 +8,20 @@ class Articles2Controller extends AppController {
 	public function 
 	index() {
 
+		/*******************************
+			build: articles
+		*******************************/
+		$this->test_2_1_1_build_genres_list();
+		
 		$articles = $this->test_1_1_3_build_articles_list();
 		
 // 		$this->test_1_1_2_get_hrefs_for_articles();
 // 		$this->test_1_1_1_get_html_content();
+
+		/*******************************
+			build: genres list
+		*******************************/
+		
 		
 		
 	}//index()
@@ -177,30 +187,62 @@ class Articles2Controller extends AppController {
 		*******************************/
 		$genre_name = @$this->request->query['genre_name'];
 		
-		debug("\$genre_name => ".$genre_name);
+		$genre_id = @$this->request->query['genre_id'];
+
+		$genres_List = $this->get_genres_list();
 		
-		if ($genre_name == NULL) {
+		debug($genres_List);
 		
-			debug("genre name => NULL");
-			
+		debug("\$genre_id => ".$genre_id);
+
+		if ($genre_id == NULL) {
+
+			debug("genre id => NULL");
+	
 			$name_genre = "tech_science";
-		
-		} else if ($genre_name == "") {
-		
-			debug("genre name => blank");
-			
+
+		} else if ($genre_id == "") {
+
+			debug("genre id => blank");
+	
 			$name_genre = "tech_science";
-			
+	
 		} else {
-			
-			debug("genre name => $genre_name");
+	
+			debug("genre id => $genre_id");
 // 			debug("genre name => unknown type ---> ");
-// 			debug($genre_name);
+// 			debug($genre_id);
+	
+			$name_genre = $genres_List[$genre_id];
+// 			$name_genre = $genre_id;
+// 			$name_genre = "tech_science";
+	
+		}//if ($genre_id == NULL)
+
+		debug("\$name_genre => ".$name_genre);
+		
+// 		if ($genre_name == NULL) {
+		
+// 			debug("genre name => NULL");
 			
-			$name_genre = $genre_name;
+// 			$name_genre = "tech_science";
+		
+// 		} else if ($genre_name == "") {
+		
+// 			debug("genre name => blank");
+			
 // 			$name_genre = "tech_science";
 			
-		}//if ($genre_name == NULL)
+// 		} else {
+			
+// 			debug("genre name => $genre_name");
+// // 			debug("genre name => unknown type ---> ");
+// // 			debug($genre_name);
+			
+// 			$name_genre = $genre_name;
+// // 			$name_genre = "tech_science";
+			
+// 		}//if ($genre_name == NULL)
 		
 		
 		
@@ -327,6 +369,85 @@ class Articles2Controller extends AppController {
 		
 	}//function test_1_1_3_build_articles_list()
 
-	
+	function test_2_1_1_build_genres_list() {
+
+		/*******************************
+			genres list
+		*******************************/
+		$this->loadModel('Genre');
+		
+		$select_Genres = $this->get_genres_list();
+		
+// 		$select_Genres = array();
+		
+// 		// tech_science, international, national, politics, business, eco
+// 		$select_Genres[0] = "tech_science";
+// 		$select_Genres[1] = "international";
+// 		$select_Genres[2] = "national";
+// 		$select_Genres[3] = "politics";
+// 		$select_Genres[4] = "business";
+// 		$select_Genres[5] = "eco";
+		
+		// set
+		$this->set('select_Genres', $select_Genres);
+
+		/*******************************
+			genre id
+		*******************************/
+		$genre_id = @$this->request->query['genre_id'];
+		
+		if ($genre_id == NULL) {
+		
+			debug("genre id => NULL");
+			
+			$genre_id = $select_Genres[0];
+		
+// 			$name_genre = "tech_science";
+		
+		} else if ($genre_id == "") {
+		
+			debug("genre id => blank");
+		
+// 			$name_genre = "tech_science";
+			
+			$genre_id = $select_Genres[0];
+		
+		} else {
+		
+			debug("genre id => $genre_id");
+			// 			debug("genre name => unknown type ---> ");
+			// 			debug($genre_id);
+		
+// 			$name_genre = $genres_List[$genre_id];
+			// 			$name_genre = $genre_id;
+			// 			$name_genre = "tech_science";
+		
+		}//if ($genre_id == NULL)
+		
+// 		debug("\$name_genre => ".$name_genre);
+		
+		/*******************************
+			set: genre id
+		*******************************/
+		$this->set("genre_id", $genre_id);
+		
+		
+	}//test_2_1_1_build_genres_list()
+
+	function get_genres_list() {
+
+		$select_Genres = array();
+		
+		// tech_science, international, national, politics, business, eco
+		$select_Genres[0] = "tech_science";
+		$select_Genres[1] = "international";
+		$select_Genres[2] = "national";
+		$select_Genres[3] = "politics";
+		$select_Genres[4] = "business";
+		$select_Genres[5] = "eco";
+		
+		// return
+		return $select_Genres;
+	}//get_genres_list()
 	
 }//class ArticlesController extends AppController

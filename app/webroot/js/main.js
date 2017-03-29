@@ -1,3 +1,5 @@
+//alert("main.js !!!");
+
 function
 add_KW__Genre_Changed
 (id) {
@@ -159,6 +161,8 @@ $(document).ready(function(){
     });
     
     $('#Genre').change(function(){
+
+//    	alert("$('#Genre') => changed");
     	
     	//REF http://stackoverflow.com/questions/10659097/jquery-get-selected-option-from-dropdown answered May 18 '12 at 20:14
     	var id = $('#Genre').find(":selected").val();
@@ -168,8 +172,10 @@ $(document).ready(function(){
     	var url = "";
     	
     	if (hostname == "localhost") {
-			
-    		url = "http://localhost/Cake_NR5/articles?genre_id=" + id;
+//    		http://localhost/Eclipse_Luna/Cake_NR5/articles2?genre_id=4
+    		
+    		url = "http://localhost/Eclipse_Luna/Cake_NR5/articles2?genre_id=" + id;
+//    		url = "http://localhost/Cake_NR5/articles?genre_id=" + id;
     			
 		} else {
 			
