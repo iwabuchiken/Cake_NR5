@@ -358,76 +358,132 @@ class Articles2Controller extends AppController {
 		debug("(re) count(\$ahrefs_articles) => ".count($ahrefs_articles));
 
 // 		/**************************************************************
-// 			add: nikkei articles
+// 			test: add nikkei articles
 // 		**************************************************************/
-// 		/*******************************
-// 		 build hrefs list
-// 		 *******************************/
-// // 		$url = "http://www.asahi.com/".$name_genre."/list/";
 // 		$url = "http://www.nikkei.com/news/category/world/?bn=1";
-		
+
 // 		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
 // 		unset($html);
-		
+
 // 		$html = file_get_html($url);
-		
+
 // 		// hrefs
 // 		unset($ahrefs);
-		
-// 		$ahrefs = $html->find('a[href]');
-		
-// 		debug("\$ahrefs => ".count($ahrefs));
-		
-// 		// validate
-// 		if (count($ahrefs) < 1) {
-		
-// 			debug("\$ahrefs => less than 1");
-		
-// 			return;
-		
-// 		}
-		
-// 		/******************** (20 '*'s)
-// 		 *
-// 		 * filter: hrefs for articles
-// 		 *
-// 		 ********************/
-// // 		$ahrefs_articles = array();
-// // 		unset($ahrefs_articles);
 
-// // 		$ahrefs_articles = array();
+// 		//ref http://so-zou.jp/web-app/tech/programming/php/library/simplehtmldom/ "id属性がfooである、すべてのdiv要素を取得する"
+// 		// <div class="cmn-section cmn-indent">
+// 		$ahrefs = $html->find('div[class=cmn-section cmn-indent]');
+
+// 		debug("\$ahrefs(div) => ".count($ahrefs));
 		
-// 		// 		$count = 0;
-// 		// 		$max = 5;
+		/**************************************************************
+			add: nikkei articles
+		**************************************************************/
+		/*******************************
+		 build hrefs list
+		 *******************************/
+// 		$url = "http://www.asahi.com/".$name_genre."/list/";
+		$url = "http://www.nikkei.com/news/category/politics/";
+// 		$url = "http://www.nikkei.com/news/category/world/";
+// 		$url = "http://www.nikkei.com/news/category/world/?bn=1";
 		
-// 		foreach ($ahrefs as $ahref) {
+		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+		unset($html);
 		
-// 			//ref view-source:http://www.asahi.com/tech_science/list/
+		$html = file_get_html($url);
+		
+		// hrefs
+		unset($ahrefs);
+		
+		$ahrefs = $html->find('a[href]');
+		
+		debug("\$ahrefs => ".count($ahrefs));
+		
+		// validate
+		if (count($ahrefs) < 1) {
+		
+			debug("\$ahrefs => less than 1");
+		
+			return;
+		
+		}
+		
+		/******************** (20 '*'s)
+		 *
+		 * filter: hrefs for articles
+		 *
+		 ********************/
+// 		$ahrefs_articles = array();
+// 		unset($ahrefs_articles);
+
+// 		$ahrefs_articles = array();
+		
+		// 		$count = 0;
+		// 		$max = 5;
+		
+		$count = 0;
+		
+		foreach ($ahrefs as $ahref) {
+		
+			//ref view-source:http://www.asahi.com/tech_science/list/
 				
-// // 			if (Utils::startsWith($ahref->href, "/articles")) {
+// 			if (Utils::startsWith($ahref->href, "/articles")) {
 // 			if (Utils::startsWith($ahref->href, "/article")) {
-// 				// 			if (Utils::startsWith($ahref->href, "http://headlines")
-// 				// 					&& count(explode("-", $ahref->href)) > 3) {
+			if (Utils::startsWith($ahref->href, "/article")
+					
+					&& !isset($ahref->class)
+// 					&& $ahref->find('span')
+					
+// 					&& $ahref->class != "cmnc-title"
+// 					&& $ahref->class != "m-sub_access_ranking_link"
+// 					&& $ahref->class != ""
+// 					&& !($ahref->class)
+					
+					) {
+				// 			if (Utils::startsWith($ahref->href, "http://headlines")
+				// 					&& count(explode("-", $ahref->href)) > 3) {
 		
-// // 				array_push($ahrefs_articles, $ahref);
-// 				$a = $this->Article->create();
+// 						//debug
+// 						debug("\$ahref->class => ".$ahref->class);
+
+// 				//debug
+// 				if (isset($ahref->class)) {
+// // 				if (!isset($ahref->class)) {
+					
+// 					debug("class --> SET: ".$ahref->plaintext);
+// // 					debug("class --> not set: ".$ahref->plaintext);
+					
+// 				}
+						
+// 				debug("isset(\$ahref->class) => \"".isset($ahref->class)."\"");
+// 				debug($ahref->find(('span'))[0]);
+// 				debug($ahref->find(('span')));
+						
+// 				array_push($ahrefs_articles, $ahref);
+				$a = $this->Article->create();
 				
-// 				$a['url'] = "http://www.asahi.com".$ahref->href;
-// 				// 				$a['url'] = $ahref->href;
+				$a['url'] = "http://www.asahi.com".$ahref->href;
+				// 				$a['url'] = $ahref->href;
 				
-// 				$a['line'] = mb_convert_encoding($ahref->plaintext, 'UTF-8');
-// 				// 				$a['line'] = $ahref->plaintext;
+				$a['line'] = mb_convert_encoding($ahref->plaintext, 'UTF-8');
+				// 				$a['line'] = $ahref->plaintext;
 				
-// 				$a['vendor'] = "www.nikkei.com"; 
+				$a['vendor'] = "www.nikkei.com"; 
 				
-// 				array_push($ahrefs_articles, $a);
+				array_push($ahrefs_articles, $a);
 				
-// 			}//if (Utils::startsWith($ahref->href, "/articles"))
+				// count
+				$count ++;
+				
+			}//if (Utils::startsWith($ahref->href, "/articles"))
 		
-// 		}//foreach ($ahrefs as $ahref)
+		}//foreach ($ahrefs as $ahref)
 			
-// 		//debug
-// 		debug("count(\$ahrefs_articles) (nikkei site added) => ".count($ahrefs_articles));
+		//debug
+		debug("nikkei site articles => ".$count);
+		
+		//debug
+		debug("count(\$ahrefs_articles) (nikkei site added) => ".count($ahrefs_articles));
 		
 		/******************** (20 '*'s)
 		*
