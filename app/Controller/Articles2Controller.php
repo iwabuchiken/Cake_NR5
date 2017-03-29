@@ -191,7 +191,7 @@ class Articles2Controller extends AppController {
 
 		$genres_List = $this->get_genres_list();
 		
-		debug($genres_List);
+// 		debug($genres_List);
 		
 		debug("\$genre_id => ".$genre_id);
 

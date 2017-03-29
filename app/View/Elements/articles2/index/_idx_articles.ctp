@@ -53,7 +53,8 @@
 				echo "<a href=\"".$a['url']."\" target=_blank".">"
 // 						."$count) "
 // 						.mb_string($a['line'])
-						.$a['line']
+						.mb_convert_encoding($a['line'], 'UTF-8')
+// 						.$a['line']
 						."</a>";
 						// 		echo "<a href=\"".$a['url']."\"".">".$a['line']."</a>";
 			
