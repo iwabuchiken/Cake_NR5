@@ -335,6 +335,8 @@ class Articles2Controller extends AppController {
 				
 				$a['line'] = mb_convert_encoding($ahref->plaintext, 'UTF-8');
 // 				$a['line'] = $ahref->plaintext;
+
+				$a['vendor'] = "www.asahi.com";
 		
 				array_push($ahrefs_articles, $a);
 				
@@ -462,7 +464,8 @@ class Articles2Controller extends AppController {
 // 				array_push($ahrefs_articles, $ahref);
 				$a = $this->Article->create();
 				
-				$a['url'] = "http://www.asahi.com".$ahref->href;
+				$a['url'] = "http://www.nikkei.com".$ahref->href;
+// 				$a['url'] = "http://www.asahi.com".$ahref->href;
 				// 				$a['url'] = $ahref->href;
 				
 				$a['line'] = mb_convert_encoding($ahref->plaintext, 'UTF-8');

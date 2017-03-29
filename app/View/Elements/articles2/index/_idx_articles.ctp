@@ -58,12 +58,31 @@
 						."</a>";
 						// 		echo "<a href=\"".$a['url']."\"".">".$a['line']."</a>";
 			
-						echo "<br>"; echo "<br>";
+// 						echo "<br>"; echo "<br>";
 			
 						// increment
 						$count ++;
 		?>
 
+	</td>
+	
+	<td>
+		<?php 
+		
+			if (isset($a['vendor'])) {
+// 			if ($a['vendor']) {
+			
+				echo $a['vendor'];
+			
+			} else {
+			
+				echo "no vendor";
+				
+			}//if ($a['vendor'])
+			
+			
+		?>
+	
 	</td>
 	
 </tr>
