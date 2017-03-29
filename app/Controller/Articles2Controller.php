@@ -182,202 +182,186 @@ class Articles2Controller extends AppController {
 		 *    : test_1_1_1_get_html_content()
 		 *
 		 ********************/
-		/*******************************
-			get: genre name
-		*******************************/
-		$genre_name = @$this->request->query['genre_name'];
+// 		/*******************************
+// 			get: genre name
+// 		*******************************/
+// 		$genre_name = @$this->request->query['genre_name'];
 		
-		$genre_id = @$this->request->query['genre_id'];
+// 		$genre_id = @$this->request->query['genre_id'];
 
-		$genres_List = $this->get_genres_list();
+// 		$genres_List = $this->get_genres_list();
 		
-// 		debug($genres_List);
+// // 		debug($genres_List);
 		
-		debug("\$genre_id => ".$genre_id);
+// 		debug("\$genre_id => ".$genre_id);
 
-		if ($genre_id == NULL) {
+// 		if ($genre_id == NULL) {
 
-			debug("genre id => NULL");
+// 			debug("genre id => NULL");
 	
-			$name_genre = "tech_science";
+// 			$name_genre = "tech_science";
 
-		} else if ($genre_id == "") {
+// 		} else if ($genre_id == "") {
 
-			debug("genre id => blank");
+// 			debug("genre id => blank");
 	
-			$name_genre = "tech_science";
-	
-		} else {
-	
-			debug("genre id => $genre_id");
-// 			debug("genre name => unknown type ---> ");
-// 			debug($genre_id);
-	
-			$name_genre = $genres_List[$genre_id];
-// 			$name_genre = $genre_id;
 // 			$name_genre = "tech_science";
 	
-		}//if ($genre_id == NULL)
-
-		debug("\$name_genre => ".$name_genre);
-		
-// 		if ($genre_name == NULL) {
-		
-// 			debug("genre name => NULL");
-			
-// 			$name_genre = "tech_science";
-		
-// 		} else if ($genre_name == "") {
-		
-// 			debug("genre name => blank");
-			
-// 			$name_genre = "tech_science";
-			
 // 		} else {
-			
-// 			debug("genre name => $genre_name");
+	
+// 			debug("genre id => $genre_id");
 // // 			debug("genre name => unknown type ---> ");
-// // 			debug($genre_name);
+// // 			debug($genre_id);
+	
+// 			$name_genre = $genres_List[$genre_id];
+// // 			$name_genre = $genre_id;
+// // 			$name_genre = "tech_science";
+	
+// 		}//if ($genre_id == NULL)
+
+// 		debug("\$name_genre => ".$name_genre);
+		
+// // 		if ($genre_name == NULL) {
+		
+// // 			debug("genre name => NULL");
 			
-// 			$name_genre = $genre_name;
+// // 			$name_genre = "tech_science";
+		
+// // 		} else if ($genre_name == "") {
+		
+// // 			debug("genre name => blank");
+			
 // // 			$name_genre = "tech_science";
 			
-// 		}//if ($genre_name == NULL)
-		
-		
-		
-// 		$name_genre = "tech_science";
-
-		debug("tech_science, international, national, politics, business, eco");
-		
-		/*******************************
-			build hrefs list
-		*******************************/
-		$url = "http://www.asahi.com/".$name_genre."/list/";
-		
-		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
-		$html = file_get_html($url);
-		
-		// hrefs
-		$ahrefs = $html->find('a[href]');
-		
-		debug("\$ahrefs => ".count($ahrefs));
-		
-		// validate
-		if (count($ahrefs) < 1) {
-				
-			debug("\$ahrefs => less than 1");
-				
-			return;
-				
-		}
-		
-		/******************** (20 '*'s)
-		 *
-		 * filter: hrefs for articles
-		 *
-		 ********************/
-		$ahrefs_articles = array();
-		
-// 		$count = 0;
-// 		$max = 5;
-		
-		foreach ($ahrefs as $ahref) {
-
-			//ref view-source:http://www.asahi.com/tech_science/list/
+// // 		} else {
 			
-			if (Utils::startsWith($ahref->href, "/articles")) {
-// 			if (Utils::startsWith($ahref->href, "http://headlines")
-// 					&& count(explode("-", $ahref->href)) > 3) {
+// // 			debug("genre name => $genre_name");
+// // // 			debug("genre name => unknown type ---> ");
+// // // 			debug($genre_name);
+			
+// // 			$name_genre = $genre_name;
+// // // 			$name_genre = "tech_science";
+			
+// // 		}//if ($genre_name == NULL)
+		
+		
+		
+// // 		$name_genre = "tech_science";
 
-						array_push($ahrefs_articles, $ahref);
+// 		debug("tech_science, international, national, politics, business, eco");
+		
+// 		/*******************************
+// 			build hrefs list
+// 		*******************************/
+// 		$url = "http://www.asahi.com/".$name_genre."/list/";
+		
+// 		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+// 		$html = file_get_html($url);
+		
+// 		// hrefs
+// 		$ahrefs = $html->find('a[href]');
+		
+// 		debug("\$ahrefs => ".count($ahrefs));
+		
+// 		// validate
+// 		if (count($ahrefs) < 1) {
+				
+// 			debug("\$ahrefs => less than 1");
+				
+// 			return;
+				
+// 		}
+		
+// 		/******************** (20 '*'s)
+// 		 *
+// 		 * filter: hrefs for articles
+// 		 *
+// 		 ********************/
+// 		$ahrefs_articles = array();
+		
+// // 		$count = 0;
+// // 		$max = 5;
+		
+// 		foreach ($ahrefs as $ahref) {
+
+// 			//ref view-source:http://www.asahi.com/tech_science/list/
+			
+// 			if (Utils::startsWith($ahref->href, "/articles")) {
+// // 			if (Utils::startsWith($ahref->href, "http://headlines")
+// // 					&& count(explode("-", $ahref->href)) > 3) {
+
+// 						array_push($ahrefs_articles, $ahref);
 						
-// 						debug($ahref->find('span'));
+// // 						debug($ahref->find('span'));
 
-			}//if (Utils::startsWith($ahref->href, "/articles"))
+// 			}//if (Utils::startsWith($ahref->href, "/articles"))
 		
-		}//foreach ($ahrefs as $ahref)
+// 		}//foreach ($ahrefs as $ahref)
 			
-		//debug
-		debug("count(\$ahrefs_articles) => ".count($ahrefs_articles));
+// 		//debug
+// 		debug("count(\$ahrefs_articles) => ".count($ahrefs_articles));
 		
-		/******************** (20 '*'s)
-		*
-		* build: articles list
-		*
-		********************/
-		unset($ahrefs_articles);
+// 		/******************** (20 '*'s)
+// 		*
+// 		* build: articles list
+// 		*
+// 		********************/
+// 		unset($ahrefs_articles);
 		
+// 		$ahrefs_articles = array();
+		
+// 		// load model
+// 		$this->loadModel('Article');
+		
+// 		$count = 0; $max = 5;
+		
+// 		//test
+// 		mb_language("Japanese");
+		
+// 		$max = 4; $count = 0;
+		
+// 		foreach ($ahrefs as $ahref) {
+		
+// 			//ref view-source:http://www.asahi.com/tech_science/list/
+				
+// 			if (Utils::startsWith($ahref->href, "/articles")) {
+// 				// 			if (Utils::startsWith($ahref->href, "http://headlines")
+// 				// 					&& count(explode("-", $ahref->href)) > 3) {
+				
+// 				$a = $this->Article->create();
+				
+// 				$a['url'] = "http://www.asahi.com".$ahref->href;
+// // 				$a['url'] = $ahref->href;
+				
+// 				$a['line'] = mb_convert_encoding($ahref->plaintext, 'UTF-8');
+// // 				$a['line'] = $ahref->plaintext;
+
+// 				$a['vendor'] = "www.asahi.com";
+		
+// 				array_push($ahrefs_articles, $a);
+				
+// // 				//debug
+// // 				if ($count < $max ) {
+					
+// // // 					debug($a);
+// // 					debug($ahref->find('span'));
+					
+// // 					$count ++;
+					
+// // 				}
+				
+				
+		
+// 			}//if (Utils::startsWith($ahref->href, "/articles"))
+		
+// 		}//foreach ($ahrefs as $ahref)
 		$ahrefs_articles = array();
 		
-		// load model
-		$this->loadModel('Article');
-		
-		$count = 0; $max = 5;
-		
-		//test
-		mb_language("Japanese");
-		
-		$max = 4; $count = 0;
-		
-		foreach ($ahrefs as $ahref) {
-		
-			//ref view-source:http://www.asahi.com/tech_science/list/
-				
-			if (Utils::startsWith($ahref->href, "/articles")) {
-				// 			if (Utils::startsWith($ahref->href, "http://headlines")
-				// 					&& count(explode("-", $ahref->href)) > 3) {
-				
-				$a = $this->Article->create();
-				
-				$a['url'] = "http://www.asahi.com".$ahref->href;
-// 				$a['url'] = $ahref->href;
-				
-				$a['line'] = mb_convert_encoding($ahref->plaintext, 'UTF-8');
-// 				$a['line'] = $ahref->plaintext;
+		$ahrefs_articles = $this->get_articles_list_Asahi($ahrefs_articles);
 
-				$a['vendor'] = "www.asahi.com";
-		
-				array_push($ahrefs_articles, $a);
-				
-// 				//debug
-// 				if ($count < $max ) {
-					
-// // 					debug($a);
-// 					debug($ahref->find('span'));
-					
-// 					$count ++;
-					
-// 				}
-				
-				
-		
-			}//if (Utils::startsWith($ahref->href, "/articles"))
-		
-		}//foreach ($ahrefs as $ahref)
-		
 		//debug
 		debug("(re) count(\$ahrefs_articles) => ".count($ahrefs_articles));
 
-// 		/**************************************************************
-// 			test: add nikkei articles
-// 		**************************************************************/
-// 		$url = "http://www.nikkei.com/news/category/world/?bn=1";
-
-// 		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
-// 		unset($html);
-
-// 		$html = file_get_html($url);
-
-// 		// hrefs
-// 		unset($ahrefs);
-
-// 		//ref http://so-zou.jp/web-app/tech/programming/php/library/simplehtmldom/ "id属性がfooである、すべてのdiv要素を取得する"
-// 		// <div class="cmn-section cmn-indent">
-// 		$ahrefs = $html->find('div[class=cmn-section cmn-indent]');
-
-// 		debug("\$ahrefs(div) => ".count($ahrefs));
-		
 		/**************************************************************
 			add: nikkei articles
 		**************************************************************/
@@ -509,6 +493,155 @@ class Articles2Controller extends AppController {
 		
 	}//function test_1_1_3_build_articles_list()
 
+	function get_articles_list_Asahi($ahrefs_articles) {
+		
+		/******************** (20 '*'s)
+		 *
+		 * get: url content
+		 *
+		 * ref: app\Controller\ArticlesController.php\__index_Get_Articles__Top
+		 *    : test_1_1_1_get_html_content()
+		 *
+		 ********************/
+		/*******************************
+			get: genre name
+		*******************************/
+		$genre_name = @$this->request->query['genre_name'];
+		
+		$genre_id = @$this->request->query['genre_id'];
+
+		$genres_List = $this->get_genres_list();
+		
+// 		debug($genres_List);
+		
+// 		debug("\$genre_id => ".$genre_id);
+
+		if ($genre_id == NULL) {
+
+			debug("genre id => NULL");
+	
+			$name_genre = "tech_science";
+
+		} else if ($genre_id == "") {
+
+			debug("genre id => blank");
+	
+			$name_genre = "tech_science";
+	
+		} else {
+	
+// 			debug("genre id => $genre_id");
+	
+			$name_genre = $genres_List[$genre_id];
+	
+		}//if ($genre_id == NULL)
+
+		debug("\$name_genre => ".$name_genre);
+		
+		/*******************************
+			build hrefs list
+		*******************************/
+		$url = "http://www.asahi.com/".$name_genre."/list/";
+		
+		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
+		$html = file_get_html($url);
+		
+		// hrefs
+		$ahrefs = $html->find('a[href]');
+		
+		debug("\$ahrefs => ".count($ahrefs));
+		
+		// validate
+		if (count($ahrefs) < 1) {
+				
+			debug("\$ahrefs => less than 1");
+				
+			return;
+				
+		}
+		
+		/******************** (20 '*'s)
+		 *
+		 * filter: hrefs for articles
+		 *
+		 ********************/
+// 		$ahrefs_articles = array();
+		
+// 		$count = 0;
+// 		$max = 5;
+		
+// 		foreach ($ahrefs as $ahref) {
+
+// 			//ref view-source:http://www.asahi.com/tech_science/list/
+			
+// 			if (Utils::startsWith($ahref->href, "/articles")) {
+// // 			if (Utils::startsWith($ahref->href, "http://headlines")
+// // 					&& count(explode("-", $ahref->href)) > 3) {
+
+// 						array_push($ahrefs_articles, $ahref);
+						
+// // 						debug($ahref->find('span'));
+
+// 			}//if (Utils::startsWith($ahref->href, "/articles"))
+		
+// 		}//foreach ($ahrefs as $ahref)
+			
+// 		//debug
+// 		debug("count(\$ahrefs_articles) => ".count($ahrefs_articles));
+		
+		/******************** (20 '*'s)
+		*
+		* build: articles list
+		*
+		********************/
+// 		unset($ahrefs_articles);
+		
+// 		$ahrefs_articles = array();
+		
+		// load model
+		$this->loadModel('Article');
+		
+		$count = 0; $max = 5;
+		
+		//test
+		mb_language("Japanese");
+		
+		$max = 4; $count = 0;
+		
+		foreach ($ahrefs as $ahref) {
+		
+			//ref view-source:http://www.asahi.com/tech_science/list/
+				
+			if (Utils::startsWith($ahref->href, "/articles")) {
+				// 			if (Utils::startsWith($ahref->href, "http://headlines")
+				// 					&& count(explode("-", $ahref->href)) > 3) {
+				
+				$a = $this->Article->create();
+				
+				$a['url'] = "http://www.asahi.com".$ahref->href;
+// 				$a['url'] = $ahref->href;
+				
+				$a['line'] = mb_convert_encoding($ahref->plaintext, 'UTF-8');
+// 				$a['line'] = $ahref->plaintext;
+
+				$a['vendor'] = "www.asahi.com";
+		
+				array_push($ahrefs_articles, $a);
+				
+			}//if (Utils::startsWith($ahref->href, "/articles"))
+		
+		}//foreach ($ahrefs as $ahref)
+		
+		//debug
+// 		debug("(re) count(\$ahrefs_articles) => ".count($ahrefs_articles));
+		
+		/*******************************
+			return
+		*******************************/
+		return $ahrefs_articles;
+
+	}//get_articles_list_Asahi($ahrefs_articles)
+
 	function test_2_1_1_build_genres_list() {
 
 		/*******************************
@@ -554,7 +687,7 @@ class Articles2Controller extends AppController {
 		
 		} else {
 		
-			debug("genre id => $genre_id");
+// 			debug("genre id => $genre_id");
 			// 			debug("genre name => unknown type ---> ");
 			// 			debug($genre_id);
 		
