@@ -8,6 +8,9 @@
 
 	$count = 1;
 	
+	//test
+	mb_language("Japanese"); //ref Cake_IFM11\app\View\Elements\images\index\index_t_headers.ctp
+	
 	foreach ($articles as $a) {
 
 ?>
@@ -49,6 +52,7 @@
 			
 				echo "<a href=\"".$a['url']."\" target=_blank".">"
 // 						."$count) "
+// 						.mb_string($a['line'])
 						.$a['line']
 						."</a>";
 						// 		echo "<a href=\"".$a['url']."\"".">".$a['line']."</a>";
