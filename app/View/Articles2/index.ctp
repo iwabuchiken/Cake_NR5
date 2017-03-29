@@ -7,6 +7,9 @@
 
 <?php 
 
+	//test
+	mb_language("Japanese");
+
 	echo $this->element('articles/index/_header'); 
 	
 ?>

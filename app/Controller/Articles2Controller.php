@@ -313,6 +313,9 @@ class Articles2Controller extends AppController {
 		
 		$count = 0; $max = 5;
 		
+		//test
+		mb_language("Japanese");
+		
 		foreach ($ahrefs as $ahref) {
 		
 			//ref view-source:http://www.asahi.com/tech_science/list/
@@ -326,7 +329,8 @@ class Articles2Controller extends AppController {
 				$a['url'] = "http://www.asahi.com".$ahref->href;
 // 				$a['url'] = $ahref->href;
 				
-				$a['line'] = $ahref->plaintext;
+				$a['line'] = mb_convert_encoding($ahref->plaintext, 'UTF-8');
+// 				$a['line'] = $ahref->plaintext;
 		
 				array_push($ahrefs_articles, $a);
 				
