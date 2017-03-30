@@ -575,6 +575,33 @@ class Articles2Controller extends AppController {
 		$select_Genres[16] = "company";
 		$select_Genres[17] = "markets";
 		
+		/*******************************
+			use GenreName model
+		*******************************/
+		$this->loadModel('GenreName');
+		
+		$genre_names_Asahi = $this->GenreName->find(
+				
+				'all',
+				//ref conditions https://book.cakephp.org/2.0/ja/models/retrieving-your-data.html
+				array('conditions' => 
+						
+							array(
+									'media_name'	=> 'asahi',
+									
+							)
+					, 'order' =>
+						
+							array('GenreName.id_master'	=> 'asc')
+						
+				)
+				
+		);
+		
+		debug("count(\$genre_names_Asahi) => ".count($genre_names_Asahi));
+
+		debug($genre_names_Asahi);
+		
 		// return
 		return $select_Genres;
 	}//get_genres_list_Nikkei()

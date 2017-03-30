@@ -313,6 +313,7 @@ CREATE TABLE genre_names
 	
 )
 
+#ref https://www.dbonline.jp/sqlite/insert/index1.html
 INSERT INTO genre_names (
 
 	created_at, updated_at,
