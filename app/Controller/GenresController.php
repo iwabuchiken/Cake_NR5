@@ -7,6 +7,12 @@ class GenresController extends AppController {
 		$this->set('genres', $this->Genre->find('all'));
 	}
 	
+	public function index2() {
+		
+		
+		
+	}//public function index()
+	
 	public function view($id = null) {
 		if (!$id) {
 			throw new NotFoundException(__('Invalid genre'));

@@ -182,6 +182,9 @@ class Articles2Controller extends AppController {
 		 *    : test_1_1_1_get_html_content()
 		 *
 		 ********************/
+		/**************************************************************
+		 add: asahi articles
+		 **************************************************************/
 		$ahrefs_articles = array();
 		
 		$ahrefs_articles = $this->get_articles_list_Asahi($ahrefs_articles);
@@ -192,110 +195,6 @@ class Articles2Controller extends AppController {
 		/**************************************************************
 			add: nikkei articles
 		**************************************************************/
-// 		/*******************************
-// 		 build hrefs list
-// 		 *******************************/
-// // 		$url = "http://www.asahi.com/".$name_genre."/list/";
-// 		$url = "http://www.nikkei.com/news/category/politics/";
-// // 		$url = "http://www.nikkei.com/news/category/world/";
-// // 		$url = "http://www.nikkei.com/news/category/world/?bn=1";
-		
-// 		//REF http://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.5/
-// 		unset($html);
-		
-// 		$html = file_get_html($url);
-		
-// 		// hrefs
-// 		unset($ahrefs);
-		
-// 		$ahrefs = $html->find('a[href]');
-		
-// 		debug("\$ahrefs => ".count($ahrefs));
-		
-// 		// validate
-// 		if (count($ahrefs) < 1) {
-		
-// 			debug("\$ahrefs => less than 1");
-		
-// 			return;
-		
-// 		}
-		
-// 		/******************** (20 '*'s)
-// 		 *
-// 		 * filter: hrefs for articles
-// 		 *
-// 		 ********************/
-// // 		$ahrefs_articles = array();
-// // 		unset($ahrefs_articles);
-
-// // 		$ahrefs_articles = array();
-		
-// 		// 		$count = 0;
-// 		// 		$max = 5;
-		
-// 		$count = 0;
-		
-// 		foreach ($ahrefs as $ahref) {
-		
-// 			//ref view-source:http://www.asahi.com/tech_science/list/
-				
-// // 			if (Utils::startsWith($ahref->href, "/articles")) {
-// // 			if (Utils::startsWith($ahref->href, "/article")) {
-// 			if (Utils::startsWith($ahref->href, "/article")
-					
-// 					&& !isset($ahref->class)
-// // 					&& $ahref->find('span')
-					
-// // 					&& $ahref->class != "cmnc-title"
-// // 					&& $ahref->class != "m-sub_access_ranking_link"
-// // 					&& $ahref->class != ""
-// // 					&& !($ahref->class)
-					
-// 					) {
-// 				// 			if (Utils::startsWith($ahref->href, "http://headlines")
-// 				// 					&& count(explode("-", $ahref->href)) > 3) {
-		
-// // 						//debug
-// // 						debug("\$ahref->class => ".$ahref->class);
-
-// // 				//debug
-// // 				if (isset($ahref->class)) {
-// // // 				if (!isset($ahref->class)) {
-					
-// // 					debug("class --> SET: ".$ahref->plaintext);
-// // // 					debug("class --> not set: ".$ahref->plaintext);
-					
-// // 				}
-						
-// // 				debug("isset(\$ahref->class) => \"".isset($ahref->class)."\"");
-// // 				debug($ahref->find(('span'))[0]);
-// // 				debug($ahref->find(('span')));
-						
-// // 				array_push($ahrefs_articles, $ahref);
-// 				$a = $this->Article->create();
-				
-// 				$a['url'] = "http://www.nikkei.com".$ahref->href;
-// // 				$a['url'] = "http://www.asahi.com".$ahref->href;
-// 				// 				$a['url'] = $ahref->href;
-				
-// 				$a['line'] = mb_convert_encoding($ahref->plaintext, 'UTF-8');
-// 				// 				$a['line'] = $ahref->plaintext;
-				
-// 				$a['vendor'] = "www.nikkei.com"; 
-				
-// 				array_push($ahrefs_articles, $a);
-				
-// 				// count
-// 				$count ++;
-				
-// 			}//if (Utils::startsWith($ahref->href, "/articles"))
-		
-// 		}//foreach ($ahrefs as $ahref)
-			
-// 		//debug
-// 		debug("nikkei site articles => ".$count);
-		
 		// add
 		$ahrefs_articles = $this->get_articles_list_Nikkei($ahrefs_articles);
 
@@ -310,16 +209,6 @@ class Articles2Controller extends AppController {
 		$this->set("articles", $ahrefs_articles);
 		
 		debug("articles => set"."(".count($ahrefs_articles)." articles)");
-		
-// 		/******************** (20 '*'s)
-// 		 *
-// 		 * return: articles
-// 		 *
-// 		 ********************/
-// 		$this->set("articles", $a);
-// 		return $ahrefs_articles;
-// 		return $a;
-		
 		
 	}//function test_1_1_3_build_articles_list()
 
@@ -340,7 +229,7 @@ class Articles2Controller extends AppController {
 		
 		$genre_id = @$this->request->query['genre_id'];
 
-		$genres_List = $this->get_genres_list();
+		$genres_List = $this->get_genres_list_Asahi();
 		
 // 		debug($genres_List);
 		
@@ -372,7 +261,8 @@ class Articles2Controller extends AppController {
 			build hrefs list
 		*******************************/
 // 		http://www.asahi.com/business/list/finance.html
-		if ($genre_id >= 6) {
+		if ($genre_id >= 16) {
+// 		if ($genre_id >= 6) {
 
 			$url = "http://www.asahi.com/business/list/".$name_genre.".html";
 		
@@ -481,7 +371,7 @@ class Articles2Controller extends AppController {
 
 			debug("genre id => NULL");
 	
-			$name_genre = $genres_List[0];
+			$name_genre = $genres_List[10];
 // 			$name_genre = "science";
 // 			$name_genre = "tech_science";
 
@@ -489,7 +379,7 @@ class Articles2Controller extends AppController {
 
 			debug("genre id => blank");
 	
-			$name_genre = $genres_List[0];
+			$name_genre = $genres_List[10];
 	
 		} else {
 	
@@ -583,7 +473,7 @@ class Articles2Controller extends AppController {
 		*******************************/
 		$this->loadModel('Genre');
 		
-		$select_Genres = $this->get_genres_list();
+		$select_Genres = $this->get_genres_list_Asahi();
 		
 // 		$select_Genres = array();
 		
@@ -607,7 +497,7 @@ class Articles2Controller extends AppController {
 		
 			debug("genre id => NULL");
 			
-			$genre_id = $select_Genres[0];
+			$genre_id = $select_Genres[10];
 		
 // 			$name_genre = "tech_science";
 		
@@ -617,7 +507,7 @@ class Articles2Controller extends AppController {
 		
 // 			$name_genre = "tech_science";
 			
-			$genre_id = $select_Genres[0];
+			$genre_id = $select_Genres[10];
 		
 		} else {
 		
@@ -641,24 +531,24 @@ class Articles2Controller extends AppController {
 		
 	}//test_2_1_1_build_genres_list()
 
-	function get_genres_list() {
+	function get_genres_list_Asahi() {
 
 		$select_Genres = array();
 		
 		// tech_science, international, national, politics, business, eco
-		$select_Genres[0] = "tech_science";
-		$select_Genres[1] = "international";
-		$select_Genres[2] = "national";
-		$select_Genres[3] = "politics";
-		$select_Genres[4] = "business";
-		$select_Genres[5] = "eco";
+		$select_Genres[10] = "tech_science";
+		$select_Genres[11] = "international";
+		$select_Genres[12] = "national";
+		$select_Genres[13] = "politics";
+		$select_Genres[14] = "business";
+		$select_Genres[15] = "eco";
 		
-		$select_Genres[6] = "industry";
-		$select_Genres[7] = "finance";
+		$select_Genres[16] = "industry";
+		$select_Genres[17] = "finance";
 		
 		// return
 		return $select_Genres;
-	}//get_genres_list()
+	}//get_genres_list_Asahi()
 	
 	function get_genres_list_Nikkei() {
 
@@ -666,27 +556,58 @@ class Articles2Controller extends AppController {
 		
 		// asahi.com
 		// tech_science, international, national, politics, business, eco
-// 		$select_Genres[0] = "tech_science";
-// 		$select_Genres[1] = "international";
-// 		$select_Genres[2] = "national";
-// 		$select_Genres[3] = "politics";
-// 		$select_Genres[4] = "business";
-// 		$select_Genres[5] = "eco";
-// 		$select_Genres[6] = "industry";
-// 		$select_Genres[7] = "finance";
+// 		$select_Genres[10] = "tech_science";
+// 		$select_Genres[11] = "international";
+// 		$select_Genres[12] = "national";
+// 		$select_Genres[13] = "politics";
+// 		$select_Genres[14] = "business";
+// 		$select_Genres[15] = "eco";
+// 		$select_Genres[16] = "industry";
+// 		$select_Genres[17] = "finance";
 		
 		// nikkei.com
-		$select_Genres[0] = "science";
-		$select_Genres[1] = "world";
-		$select_Genres[2] = "national";
-		$select_Genres[3] = "politics";
-		$select_Genres[4] = "economy";
-		$select_Genres[5] = "eco";
-		$select_Genres[6] = "company";
-		$select_Genres[7] = "markets";
+		$select_Genres[10] = "science";
+		$select_Genres[11] = "world";
+		$select_Genres[12] = "national";
+		$select_Genres[13] = "politics";
+		$select_Genres[14] = "economy";
+		$select_Genres[15] = "eco";
+		$select_Genres[16] = "company";
+		$select_Genres[17] = "markets";
 		
 		// return
 		return $select_Genres;
-	}//get_genres_list()
+	}//get_genres_list_Nikkei()
+
+	function convto_categorized_articles($ahrefs_articles) {
+	
+		// new array
+		$categorized_articles = array();
+
+		// genre id
+		$genre_id = @$this->request->query['genre_id'];
+		
+		if ($genre_id == NULL) {
+		
+			debug("genre id => NULL");
+		
+			$name_genre = "tech_science";
+		
+		} else if ($genre_id == "") {
+		
+			debug("genre id => blank");
+		
+			$name_genre = "tech_science";
+		
+		} else {
+		
+			// 			debug("genre id => $genre_id");
+		
+			$name_genre = $genres_List[$genre_id];
+		
+		}//if ($genre_id == NULL)
+		
+	}
+	
 	
 }//class ArticlesController extends AppController

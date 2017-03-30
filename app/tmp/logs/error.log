@@ -1956,3 +1956,129 @@ Stack Trace:
 #3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2017-03-30 07:07:45 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\simple_html_dom.php, line 75]
+2017-03-30 07:07:45 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /Eclipse_Luna/Cake_NR5/articles2
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\\WORKS_2\\WS\\E...', 75)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\\WORKS_2\\WS\\E...', 75, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\\WORKS_2\\WS\\E...', 75, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-03-30 07:08:50 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\simple_html_dom.php, line 75]
+2017-03-30 07:08:50 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /Eclipse_Luna/Cake_NR5/articles2
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\\WORKS_2\\WS\\E...', 75)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\\WORKS_2\\WS\\E...', 75, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\\WORKS_2\\WS\\E...', 75, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-03-30 07:44:43 Error: Fatal Error (1): Call to a member function find() on boolean in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\Articles2Controller.php, line 403]
+2017-03-30 07:44:43 Error: [FatalErrorException] Call to a member function find() on boolean
+Request URL: /Eclipse_Luna/Cake_NR5/articles2
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\WORKS_2\\WS\\E...', 403)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\WORKS_2\\WS\\E...', 403, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\WORKS_2\\WS\\E...', 403, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-03-30 07:44:50 Error: Fatal Error (1): Call to a member function find() on boolean in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\Articles2Controller.php, line 403]
+2017-03-30 07:44:50 Error: [FatalErrorException] Call to a member function find() on boolean
+Request URL: /Eclipse_Luna/Cake_NR5/articles2
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\WORKS_2\\WS\\E...', 403)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\WORKS_2\\WS\\E...', 403, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\WORKS_2\\WS\\E...', 403, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-03-30 07:46:37 Error: Fatal Error (1): Call to a member function find() on boolean in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\Articles2Controller.php, line 281]
+2017-03-30 07:46:37 Error: [FatalErrorException] Call to a member function find() on boolean
+Request URL: /Eclipse_Luna/Cake_NR5/articles2?genre_id=14
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\WORKS_2\\WS\\E...', 281)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\WORKS_2\\WS\\E...', 281, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\WORKS_2\\WS\\E...', 281, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-03-30 07:49:16 Error: Fatal Error (4): syntax error, unexpected '$ahrefs' (T_VARIABLE) in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\Articles2Controller.php, line 282]
+2017-03-30 07:49:16 Error: [FatalErrorException] syntax error, unexpected '$ahrefs' (T_VARIABLE)
+Request URL: /Eclipse_Luna/Cake_NR5/articles2?genre_id=14
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 282)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 282, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 282, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-03-30 08:11:06 Error: [MissingViewException] View file "C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\View\GenreNames\index.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS_2\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\GenreNames\\index.ctp',
+)
+Request URL: /Eclipse_Luna/Cake_NR5/genre_names
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(GenreNamesController), Object(CakeRequest))
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2017-03-30 08:13:14 Error: [MissingTableException] Table genre_names for model GenreName was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'genre_names',
+  'class' => 'GenreName',
+  'ds' => 'default',
+)
+Request URL: /Eclipse_Luna/Cake_NR5/genre_names
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(3501): Model->setSource('genre_names')
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): Model->getDataSource()
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\GenreNamesController.php(15): Model->find('all')
+#4 [internal function]: GenreNamesController->index()
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GenreNamesController), Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(GenreNamesController), Object(CakeRequest))
+#8 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2017-03-30 08:19:00 Error: [MissingTableException] Table genre_names for model GenreName was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'genre_names',
+  'class' => 'GenreName',
+  'ds' => 'default',
+)
+Request URL: /Eclipse_Luna/Cake_NR5/genre_names
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(3501): Model->setSource('genre_names')
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): Model->getDataSource()
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\GenreNamesController.php(15): Model->find('all')
+#4 [internal function]: GenreNamesController->index()
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GenreNamesController), Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(GenreNamesController), Object(CakeRequest))
+#8 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2017-03-30 08:19:10 Error: [MissingTableException] Table genre_names for model GenreName was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'genre_names',
+  'class' => 'GenreName',
+  'ds' => 'default',
+)
+Request URL: /Eclipse_Luna/Cake_NR5/genre_names
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(3501): Model->setSource('genre_names')
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): Model->getDataSource()
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\GenreNamesController.php(15): Model->find('all')
+#4 [internal function]: GenreNamesController->index()
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GenreNamesController), Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(GenreNamesController), Object(CakeRequest))
+#8 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}

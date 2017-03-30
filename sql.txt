@@ -297,6 +297,38 @@ ALTER TABLE tokens_new RENAME TO tokens;
 #REF	http://razorsql.com/features/sqlite_add_column.html
 ALTER TABLE histories ADD updates VARCHAR(200);
 
+CREATE TABLE genre_names 
+( 
+	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+	created_at VARCHAR(30), 
+	updated_at VARCHAR(30), 
+	
+	id_master	INT,
+	
+	media_name	VARCHAR(30),
+	
+	genre_name	VARCHAR(30),
+	
+	memo		VARCHAR(100) 
+	
+)
+
+INSERT INTO genre_names (
+
+	created_at, updated_at,
+	
+	id_master, media_name, genre_name
+	
+)
+VALUES (
+
+	'03/30/2017 15:27:20', '03/30/2017 15:27:20',
+
+	10, 'asahi', 'tech_science' 
+
+);
+	
+DROP TABLE genre_names;
 
 [mysql(lollipop)]======================================
 #REF http://sql-info.de/mysql/examples/CREATE-TABLE-examples.html
