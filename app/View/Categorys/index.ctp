@@ -1,4 +1,5 @@
 <h1>Categories (<a href="#bottom">Bottom</a><a name="top"></a>)</h1>
+
 <table>
 
 	<?php echo $this->element('categories/index_t_headers'); ?>
