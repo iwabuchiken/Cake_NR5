@@ -8,9 +8,43 @@ class CategorysController
 
 	public function index() {
 
+		/*******************************
+			get: params --> sort name
+		*******************************/
+		$sort_name = @$this->request->query['sort'];
+		
+		$column_names = ["id", "name", "genre_id"];
+// 		$column_names = ["id", "name", "genre"];
+		
+		// validate
+		if ($sort_name == NULL) {
+		
+			debug("sort --> NULL; set to default of 'id'");
+			
+			$sort_name = "id";
+		
+		} else if ($sort_name == "") {
+		
+			debug("sort --> blank; set to default of 'id'");
+				
+			$sort_name = "id";
+			
+		//ref in_array() http://php.net/manual/ja/function.in-array.php
+		} else if (!in_array($sort_name, $column_names)) {
+				
+			debug("sort --> unknown name: $sort_name; set to default of 'id'");
+			
+			$sort_name = "id";
+			
+		}//if ($sort_name == NULL)
+
+		/*******************************
+			set: options
+		*******************************/
 		$option = array(
 				//REF http://book.cakephp.org/2.0/ja/models/retrieving-your-data.html "$params はいろいろな種類のfindへのパラメータを渡すために使われます"
-				'order'	=> array('Category.id' => 'asc')
+				'order'	=> array("Category.$sort_name" => 'asc')
+// 				'order'	=> array('Category.id' => 'asc')
 			
 		);
 		

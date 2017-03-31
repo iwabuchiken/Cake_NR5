@@ -33,7 +33,8 @@
 					'Genre',
 					array('controller' => 'Categorys', 
 							'action' => 'index',
-							'?' => "sort=genre"),
+							'?' => "sort=genre_id"),
+// 							'?' => "sort=genre"),
 					array('class'	=> 'has_link'));
 			?>
 			
