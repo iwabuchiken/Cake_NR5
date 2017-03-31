@@ -229,7 +229,8 @@ class Articles2Controller extends AppController {
 		
 		$genre_id = @$this->request->query['genre_id'];
 
-		$genres_List = $this->get_genres_list_Asahi();
+		$genres_List = $this->get_genres_list_Generic('asahi');
+// 		$genres_List = $this->get_genres_list_Asahi();
 		
 // 		debug($genres_List);
 		
@@ -255,7 +256,7 @@ class Articles2Controller extends AppController {
 	
 		}//if ($genre_id == NULL)
 
-		debug("\$name_genre => ".$name_genre);
+		debug("\$name_genre (asahi) => ".$name_genre);
 		
 		/*******************************
 			build hrefs list
@@ -281,7 +282,7 @@ class Articles2Controller extends AppController {
 		// hrefs
 		$ahrefs = $html->find('a[href]');
 		
-		debug("\$ahrefs => ".count($ahrefs));
+// 		debug("\$ahrefs => ".count($ahrefs));
 		
 		// validate
 		if (count($ahrefs) < 1) {
@@ -358,7 +359,8 @@ class Articles2Controller extends AppController {
 		
 		$genre_id = @$this->request->query['genre_id'];
 
-		$genres_List = $this->get_genres_list_Nikkei();
+		$genres_List = $this->get_genres_list_Generic('nikkei');
+// 		$genres_List = $this->get_genres_list_Nikkei();
 
 // 		$select_Genres[0] = "tech_science";
 // 		$select_Genres[1] = "international";
@@ -389,7 +391,7 @@ class Articles2Controller extends AppController {
 	
 		}//if ($genre_id == NULL)
 
-		debug("\$name_genre => ".$name_genre);
+		debug("\$name_genre (nikkei) => ".$name_genre);
 		
 		/*******************************
 			build hrefs list
@@ -403,7 +405,7 @@ class Articles2Controller extends AppController {
 		// hrefs
 		$ahrefs = $html->find('a[href]');
 		
-		debug("\$ahrefs => ".count($ahrefs));
+// 		debug("\$ahrefs => ".count($ahrefs));
 		
 		// validate
 		if (count($ahrefs) < 1) {
@@ -600,11 +602,81 @@ class Articles2Controller extends AppController {
 		
 		debug("count(\$genre_names_Asahi) => ".count($genre_names_Asahi));
 
-		debug($genre_names_Asahi);
+		//test
+// 		$this->get_genres_list_Generic('nikkei');
+// 		$this->get_genres_list_Generic('asahi');
+		
 		
 		// return
 		return $select_Genres;
 	}//get_genres_list_Nikkei()
+
+	function get_genres_list_Generic($media_name) {
+
+		$select_Genres = array();
+		
+		// asahi.com
+		// tech_science, international, national, politics, business, eco
+// 		$select_Genres[10] = "tech_science";
+// 		$select_Genres[11] = "international";
+// 		$select_Genres[12] = "national";
+// 		$select_Genres[13] = "politics";
+// 		$select_Genres[14] = "business";
+// 		$select_Genres[15] = "eco";
+// 		$select_Genres[16] = "industry";
+// 		$select_Genres[17] = "finance";
+		
+// 		// nikkei.com
+// 		$select_Genres[10] = "science";
+// 		$select_Genres[11] = "world";
+// 		$select_Genres[12] = "national";
+// 		$select_Genres[13] = "politics";
+// 		$select_Genres[14] = "economy";
+// 		$select_Genres[15] = "eco";
+// 		$select_Genres[16] = "company";
+// 		$select_Genres[17] = "markets";
+		
+		/*******************************
+			use GenreName model
+		*******************************/
+		$this->loadModel('GenreName');
+		
+		$genre_names_Asahi = $this->GenreName->find(
+				
+				'all',
+				//ref conditions https://book.cakephp.org/2.0/ja/models/retrieving-your-data.html
+				array('conditions' => 
+						
+							array(
+									'media_name'	=> $media_name,
+// 									'media_name'	=> 'asahi',
+									
+							)
+					, 'order' =>
+						
+							array('GenreName.id_master'	=> 'asc')
+						
+				)
+				
+		);
+		
+// 		debug("$media_name => ".count($genre_names_Asahi));
+
+		// build array
+		foreach ($genre_names_Asahi as $genre_name) {
+		
+			$select_Genres[$genre_name['GenreName']['id_master']] = 
+						$genre_name['GenreName']['genre_name'];
+			
+		}//foreach ($genre_names_Asahi as $genre_name)
+		
+		//debug
+// 		debug($select_Genres);
+		
+		// return
+		return $select_Genres;
+		
+	}//get_genres_list_Generic($media_name)
 
 	function convto_categorized_articles($ahrefs_articles) {
 	
