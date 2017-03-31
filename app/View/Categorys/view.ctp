@@ -43,3 +43,30 @@
 	?>
 
 </p>
+
+<p>
+	<?php 
+			//ref link url http://d.hatena.ne.jp/SumiTomohiko/20061227/1167233803
+			echo $this->Html->link(
+					'Back to list',
+					//ref http://stackoverflow.com/questions/4662110/how-to-get-the-previous-url-using-php answered Jul 8 '13 at 23:58
+					$_SERVER['HTTP_REFERER']
+			
+// 					array(
+// 							'url'	=> $_SERVER['HTTP_REFERER']
+// // 							'controller' => 'Categorys', 
+// // 							'action' => 'delete', 
+// // 							$category['Category']['id']
+// 					),
+// 					array(
+// 							// 							'style'	=> 'color: blue'
+// // 							'class'		=> 'link_word_alert'
+// 					),
+						
+// 					//REF http://stackoverflow.com/questions/22519966/cakephp-delete-confirmation answered Mar 19 at 23:18
+// 					__("Delete? => %s", $category['Category']['name'])
+	
+				);
+	?>
+
+</p>

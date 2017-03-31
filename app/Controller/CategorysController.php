@@ -5,48 +5,46 @@ class CategorysController
 // class CategoriesController extends AppController {
 	
 	public $helpers = array('Html', 'Form');
+	
+	public $column_names = ["id", "name", "genre_id"];
+// 	public $column_names = ["id", "name", "genre_id"];
 
 	public function index() {
 
 		/*******************************
-			get: params --> sort name
+			sort names
 		*******************************/
-		$sort_name = @$this->request->query['sort'];
+		$select_SortNames_1 = ["id", "name", "genre_id"];
+		$select_SortNames_2 = ["id", "name", "genre_id"];
+
+		// set
+		$this->set('select_SortNames_1', $select_SortNames_1);
+		$this->set('select_SortNames_2', $select_SortNames_2);
 		
-		$column_names = ["id", "name", "genre_id"];
-// 		$column_names = ["id", "name", "genre"];
+// 		/*******************************
+// 			get: params --> sort name
+// 		*******************************/
+// 		$sort_name = $this->index__get_sort_name();
 		
-		// validate
-		if ($sort_name == NULL) {
-		
-			debug("sort --> NULL; set to default of 'id'");
-			
-			$sort_name = "id";
-		
-		} else if ($sort_name == "") {
-		
-			debug("sort --> blank; set to default of 'id'");
-				
-			$sort_name = "id";
-			
-		//ref in_array() http://php.net/manual/ja/function.in-array.php
-		} else if (!in_array($sort_name, $column_names)) {
-				
-			debug("sort --> unknown name: $sort_name; set to default of 'id'");
-			
-			$sort_name = "id";
-			
-		}//if ($sort_name == NULL)
 
 		/*******************************
 			set: options
 		*******************************/
-		$option = array(
-				//REF http://book.cakephp.org/2.0/ja/models/retrieving-your-data.html "$params はいろいろな種類のfindへのパラメータを渡すために使われます"
-				'order'	=> array("Category.$sort_name" => 'asc')
-// 				'order'	=> array('Category.id' => 'asc')
+		$option = $this->index__get_sort_name();
+		
+// 		$option = array(
+// 				//REF http://book.cakephp.org/2.0/ja/models/retrieving-your-data.html "$params はいろいろな種類のfindへのパラメータを渡すために使われます"
+// 				'order'	=> array(
+						
+// 								"Category.$sort_name" => 'asc'
+// 								, "Category.name" => 'asc'
+// // 								, "Category.id" => 'asc'
+						
+// 							)
+// // 				'order'	=> array('Category.id' => 'asc')
 			
-		);
+// 		);
+		
 		
 		$this->set('categories', $this->Category->find('all', $option));
 // 		$this->set('categories', $this->Category->find('all'));
@@ -60,6 +58,150 @@ class CategorysController
 		
 	}
 	
+	function index__get_sort_name() {
+
+		/*******************************
+		 get: params --> sort name
+		 *******************************/
+		$sort_name = @$this->request->query['sort'];
+		
+		$sort_name_1 = @$this->request->query['sort_1'];
+		$sort_name_2 = @$this->request->query['sort_2'];
+
+		/*******************************
+			build: sort conditions
+			set: page variables
+		*******************************/
+// 		$column_names = ["id", "name", "genre_id"];
+		// 		$column_names = ["id", "name", "genre"];
+		
+		// validate
+		if ($sort_name == NULL || $sort_name == "") {
+// 		if ($sort_name == NULL) {
+		
+			debug("sort --> NULL or blank");
+// 			debug("sort --> NULL; set to default of 'id'");
+				
+			if (isset($sort_name_1) && isset($sort_name_2)) {
+
+				$order_ary = array(
+		
+						//ref global var http://stackoverflow.com/questions/12638962/global-variable-in-controller-cakephp-2
+						"Category.".$this->column_names[$sort_name_1] => 'asc'
+						, "Category.".$this->column_names[$sort_name_2] => 'asc'
+// 						"Category.$sort_name_1" => 'asc'
+// 						, "Category.$sort_name_2" => 'asc'
+						// 								, "Category.id" => 'asc'
+		
+				);
+				
+				// set page variables
+				$this->set("sort_name_1", $sort_name_1);
+				$this->set("sort_name_2", $sort_name_2);
+				
+// 				debug("\$this->column_names[\$sort_name_1]  => ".$this->column_names[$sort_name_1] );
+				
+// 				debug($order_ary);
+				
+			
+			} else {
+			
+				debug("sort --> not set; set to default of 'id'");
+				
+				$order_ary = array(
+				
+						"Category.id" => 'asc'
+// 						, "Category.$sort_2" => 'asc'
+						// 								, "Category.id" => 'asc'
+				
+				);
+				
+				// set page variables
+				$this->set("sort", "id");
+				
+				
+			}//if (isset($sort_name_1) && isset($sort_name_2))
+			
+			//ref in_array() http://php.net/manual/ja/function.in-array.php
+		} else if (!in_array($sort_name, $this->column_names)) {
+// 		} else if (!in_array($sort_name, $column_names)) {
+
+			debug("sort --> unknown name: $sort_name; set to default of 'id'");
+				
+// 			$sort_name = "id";
+			$order_ary = array(
+			
+					"Category.id" => 'asc'
+					// 						, "Category.$sort_2" => 'asc'
+					// 								, "Category.id" => 'asc'
+			
+			);
+				
+			// set page variables
+			$this->set("sort", "id");
+				
+		} else if (in_array($sort_name, $this->column_names)) {
+			
+			debug("sort name given --> $sort_name");
+			
+			$order_ary = array(
+						
+					"Category.$sort_name" => 'asc'
+					// 						, "Category.$sort_2" => 'asc'
+					// 								, "Category.id" => 'asc'
+						
+			);
+			
+			// set page variables
+			$this->set("sort", $sort_name);
+				
+		} else {//if ($sort_name == NULL)
+			
+			debug("sort --> unknown value: $sort_name; set to default of 'id'");
+			
+// 			$sort_name = "id";
+			$order_ary = array(
+			
+					"Category.id" => 'asc'
+					// 						, "Category.$sort_2" => 'asc'
+					// 								, "Category.id" => 'asc'
+			
+			);
+
+			// set page variables
+			$this->set("sort", "id");
+				
+		}//if ($sort_name == NULL)
+
+		/*******************************
+			set: page var: list of sort names
+		*******************************/
+		$this->set("column_names", $this->column_names);
+		
+		
+		/*******************************
+			build: condition
+		*******************************/
+		$condition = array(
+				//REF http://book.cakephp.org/2.0/ja/models/retrieving-your-data.html "$params はいろいろな種類のfindへのパラメータを渡すために使われます"
+				'order'	=> $order_ary
+// 				'order'	=> array(
+		
+// 						"Category.$sort_name" => 'asc'
+// 						, "Category.name" => 'asc'
+// 						// 								, "Category.id" => 'asc'
+		
+// 				)
+				// 				'order'	=> array('Category.id' => 'asc')
+					
+		);
+		
+		// return
+		return $condition;
+// 		return $sort_name;
+		
+	}//function index__get_sort_name()
+	
 	public function view($id = null) {
 		if (!$id) {
 			throw new NotFoundException(__('Invalid genre'));
@@ -70,8 +212,12 @@ class CategorysController
 			throw new NotFoundException(__('Invalid category'));
 		}
 		$this->set('category', $category);
+
+		//test 2017/03/31 15:22:58
+		debug($_SERVER['HTTP_REFERER']);
 		
-		debug($category);
+		
+// 		debug($category);
 		
 		/**********************************
 		* read csv

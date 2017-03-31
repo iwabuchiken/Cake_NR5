@@ -1,5 +1,24 @@
-<h1>Categories (<a href="#bottom">Bottom</a><a name="top"></a>)</h1>
+<h1>
 
+	Categories 
+		(
+			<?php 
+			
+				echo "total = ".count($categories);
+			
+			?>
+		
+			&nbsp;
+			&nbsp;
+		
+			<a href="#bottom">Bottom</a><a name="top"></a>
+		)
+	
+</h1>
+
+<?php echo $this->element('categories/index/_header'); ?>
+
+	
 <table>
 
 	<?php echo $this->element('categories/index_t_headers'); ?>
