@@ -15,6 +15,11 @@ class Articles2Controller extends AppController {
 		
 		$articles = $this->test_1_1_3_build_articles_list();
 		
+		/*******************************
+			categorize
+		*******************************/
+		$articles_categorized = $this->categorize_articles($articles);
+		
 // 		$this->test_1_1_2_get_hrefs_for_articles();
 // 		$this->test_1_1_1_get_html_content();
 
@@ -707,6 +712,35 @@ class Articles2Controller extends AppController {
 		}//if ($genre_id == NULL)
 		
 	}
-	
+
+	function categorize_articles($articles) {
+		
+		/*******************************
+			test: get genres list
+		*******************************/
+		// load model
+		$this->loadModel('Genre');
+		
+		$genres = $this->Genre->find('all',
+		
+				array(
+						'conditions'	=> array(
+								
+						)
+						
+						, 'order'	=> array(
+								
+								'Genre.id'	=> 'asc'
+								
+						)
+						
+				)
+				
+		);
+		
+		debug(count($genres) > 0 ? $genres[0] : "no entry in genres table");
+// 		debug($genres);
+		
+	}//categorize_articles($articles)
 	
 }//class ArticlesController extends AppController

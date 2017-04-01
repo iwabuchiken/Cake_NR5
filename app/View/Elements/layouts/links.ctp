@@ -140,6 +140,22 @@
 				?>
 		</td>
 	
+		<td>
+		
+			<?php 
+				echo $this->Html->link(
+						
+						'Genre names',
+						array('controller' => 'genre_names', 
+								'action' => 'index'),
+						array(
+								'class' => "button"
+								,'target'	=> "_blank"
+						)
+				);
+			?>
+		</td>
+	
 	</tr>
 	
 </table>
