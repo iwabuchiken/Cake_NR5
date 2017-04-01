@@ -16,6 +16,11 @@ class GenreNamesController extends AppController {
 		
 		$this->set('genre_names', $genre_names);
 		
+// 		debug($genre_names[0]);
+// 		debug($genre_names[0]['Genre']);
+// 		debug($genre_names['GenreName']['Genre']);	//=> "Notice (8): Undefined index: GenreName"
+		
+		
 // 		//debug
 // 		debug($genre_names);
 		

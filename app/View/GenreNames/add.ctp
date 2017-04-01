@@ -12,7 +12,7 @@
 		
 		echo $this->Form->create('GenreName');
 		
-		echo $this->Form->input('id_master', $opt_input);
+		echo $this->Form->input('genre_id', $opt_input);
 		
 		echo $this->Form->input('media_name', $opt_input);
 		

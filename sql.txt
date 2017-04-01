@@ -313,6 +313,22 @@ CREATE TABLE genre_names
 	
 )
 
+CREATE TABLE genre_names 
+( 
+	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+	created_at VARCHAR(30), 
+	updated_at VARCHAR(30), 
+	
+	genre_id	INT,
+	
+	media_name	VARCHAR(30),
+	
+	genre_name	VARCHAR(30),
+	
+	memo		VARCHAR(100) 
+	
+);
+
 #ref https://www.dbonline.jp/sqlite/insert/index1.html
 INSERT INTO genre_names (
 
@@ -330,6 +346,22 @@ VALUES (
 );
 	
 DROP TABLE genre_names;
+
+#ref http://stackoverflow.com/questions/805363/how-do-i-rename-a-column-in-a-sqlite-database-table
+ALTER TABLE genre_names_tmp RENAME TO genre_names;
+ALTER TABLE genre_names RENAME TO genre_names_tmp;
+
+INSERT INTO genre_names(
+
+	id, created_at, updated_at,  genre_id,  media_name,  genre_name,  memo 
+
+)
+SELECT id, created_at, updated_at,  id_master,  media_name,  genre_name,  memo
+
+FROM genre_names_tmp;
+
+DROP TABLE genre_names_tmp;
+
 
 [mysql(lollipop)]======================================
 #REF http://sql-info.de/mysql/examples/CREATE-TABLE-examples.html

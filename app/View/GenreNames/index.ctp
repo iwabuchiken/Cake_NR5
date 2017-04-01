@@ -10,7 +10,8 @@
   <tr>
     <th>id</th>
 
-    <th>id master</th>
+    <th>genre id</th>
+<!--     <th>id master</th> -->
 
     <th>media name</th>
 
@@ -32,7 +33,7 @@
   
   	<td>
   		<?php 
-  		
+  			
   			echo $genre_name['GenreName']['id'];
   		
   		?>
@@ -40,8 +41,10 @@
   	</td>
   	<td>
   		<?php 
-  		
-  			echo $genre_name['GenreName']['id_master'];
+
+  			echo $genre_name['Genre']['name']."(".$genre_name['GenreName']['id'].")";
+//   			echo $genre_name['GenreName']['genre_id'];
+//   			echo $genre_name['GenreName']['id_master'];
   		
   		?>
   

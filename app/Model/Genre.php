@@ -11,6 +11,11 @@ class Genre extends AppModel {
 					'className' => 'Category'
 			)
 				
+			,'GenreName' => array(
+						
+					'className' => 'GenreName'
+			)
+				
 	);
 	
 }
