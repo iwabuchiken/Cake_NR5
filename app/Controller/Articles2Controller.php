@@ -13,12 +13,23 @@ class Articles2Controller extends AppController {
 		*******************************/
 		$this->test_2_1_1_build_genres_list();
 		
-		$articles = $this->test_1_1_3_build_articles_list();
+// 		$articles = $this->test_1_1_3_build_articles_list();
+		$ahrefs_articles = $this->test_1_1_3_build_articles_list();
+		
+		/******************** (20 '*'s)
+		 *
+		 * set: articles
+		 *
+		 ********************/
+		$this->set("articles", $ahrefs_articles);
+		
+		debug("articles => set"."(".count($ahrefs_articles)." articles)");
 		
 		/*******************************
 			categorize
 		*******************************/
-		$articles_categorized = $this->categorize_articles($articles);
+		$articles_categorized = $this->categorize_articles($ahrefs_articles);
+// 		$articles_categorized = $this->categorize_articles($articles);
 		
 // 		$this->test_1_1_2_get_hrefs_for_articles();
 // 		$this->test_1_1_1_get_html_content();
@@ -205,15 +216,20 @@ class Articles2Controller extends AppController {
 
 		//debug
 		debug("count(\$ahrefs_articles) (nikkei site added) => ".count($ahrefs_articles));
+
+		/*******************************
+			return
+		*******************************/
+		return $ahrefs_articles;
 		
-		/******************** (20 '*'s)
-		*
-		* set: articles
-		*
-		********************/
-		$this->set("articles", $ahrefs_articles);
+// 		/******************** (20 '*'s)
+// 		*
+// 		* set: articles
+// 		*
+// 		********************/
+// 		$this->set("articles", $ahrefs_articles);
 		
-		debug("articles => set"."(".count($ahrefs_articles)." articles)");
+// 		debug("articles => set"."(".count($ahrefs_articles)." articles)");
 		
 	}//function test_1_1_3_build_articles_list()
 
@@ -716,18 +732,23 @@ class Articles2Controller extends AppController {
 		
 	}
 
-	function categorize_articles($articles) {
+	function categorize_articles($ahrefs_articles) {
+// 	function categorize_articles($articles) {
 		
 		/*******************************
 			test: get genres list
 		*******************************/
 		// load model
 		$this->loadModel('Genre');
+		$this->loadModel('Category');
 		
 		$genres = $this->Genre->find('all',
 		
 				array(
 						'conditions'	=> array(
+								
+								'Genre.id >='	=> 10
+// 								'Genre.id'	=> "> 10"
 								
 						)
 						
@@ -741,9 +762,100 @@ class Articles2Controller extends AppController {
 				
 		);
 		
+		// validate
+		if (count($genres) < 1) {
+		
+			debug("no genres found");
+			
+			return null;
+			
+		}//if (count($genres) < 1)
+		
 // 		debug(count($genres) > 0 ? $genres[0] : "no entry in genres table");
 // 		debug($genres);
+		// 		'Genre' => array(
+		// 				'id' => '10',
+		// 				'created_at' => '03/31/2017 13:05:38',
+		// 				'updated_at' => '03/31/2017 13:05:38',
+		// 				'code' => '',
+		// 				'name' => 'Tech & Science'
+		// 		),
+		
+		/*******************************
+			categories
+		*******************************/
+		$categories = array();
+		
+		$genre_0 = $genres[0];
+		
+// 		debug($genre_0['Category']);
+
+		$categories_0 = $genre_0['Category'];
+		
+		foreach ($categories_0 as $category) {
+		
+			array_push($categories, array($category['id'], $category['name']));
+// 			array_push($categories, $category['name']);
+			
+		}//foreach ($categories_0 as $category)
+		
+		debug("\$categories => ");
+		debug($categories);
+
+		$model_category_0 = $this->Category->find('first',
+		
+				array(
+						'conditions'	=> array(
+		
+								'Category.id >='	=> $categories[0][0]
+								// 								'Genre.id'	=> "> 10"
+		
+						)
+		
+// 						, 'order'	=> array(
+		
+// 								'Genre.id'	=> 'asc'
+		
+// 						)
+		
+				)
+		
+				);
+		
+		debug("\$model_category_0 => ");
+		debug($model_category_0);
+		
+		/*******************************
+			keywords
+		*******************************/
+		$keywords_0 = $model_category_0['Keyword'];
+		
+		debug("\$keywords_0 => ");
+		debug($keywords_0);
+		
+		/*******************************
+			array of: keyword strings
+		*******************************/
+		$keyword_labels = array();
+		
+		foreach ($keywords_0 as $kw) {
+		
+			array_push($keyword_labels, $kw['name']);
+			
+		}//foreach ($keywords_0 as $kw)
+		
+		debug("\$keyword_labels =>");
+		debug($keyword_labels);
+		
+		
+		
+// 		debug($categories_0[0]);
+		
+// 		debug($categories_0[0]['Keyword']);
+		
+		
 		
 	}//categorize_articles($articles)
 	
 }//class ArticlesController extends AppController
+
