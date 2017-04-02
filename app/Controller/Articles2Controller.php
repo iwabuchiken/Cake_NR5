@@ -599,7 +599,8 @@ class Articles2Controller extends AppController {
 							)
 					, 'order' =>
 						
-							array('GenreName.id_master'	=> 'asc')
+							array('GenreName.genre_id'	=> 'asc')
+// 							array('GenreName.id_master'	=> 'asc')
 						
 				)
 				
@@ -659,7 +660,8 @@ class Articles2Controller extends AppController {
 							)
 					, 'order' =>
 						
-							array('GenreName.id_master'	=> 'asc')
+							array('GenreName.genre_id'	=> 'asc')
+// 							array('GenreName.id_master'	=> 'asc')
 						
 				)
 				
@@ -670,7 +672,8 @@ class Articles2Controller extends AppController {
 		// build array
 		foreach ($genre_names_Asahi as $genre_name) {
 		
-			$select_Genres[$genre_name['GenreName']['id_master']] = 
+			$select_Genres[$genre_name['GenreName']['genre_id']] = 
+// 			$select_Genres[$genre_name['GenreName']['id_master']] = 
 						$genre_name['GenreName']['genre_name'];
 			
 		}//foreach ($genre_names_Asahi as $genre_name)
@@ -738,7 +741,7 @@ class Articles2Controller extends AppController {
 				
 		);
 		
-		debug(count($genres) > 0 ? $genres[0] : "no entry in genres table");
+// 		debug(count($genres) > 0 ? $genres[0] : "no entry in genres table");
 // 		debug($genres);
 		
 	}//categorize_articles($articles)
