@@ -20,6 +20,8 @@ add_KW__Genre_Changed
 	
 	var hostname = window.location.hostname;
 	
+//	alert(hostname);
+	
 	var url;
 	
 	if (hostname == "benfranklin.chips.jp") {
@@ -28,9 +30,12 @@ add_KW__Genre_Changed
 		
 	} else {
 	
-		url = "/Cake_NR5/keywords/add_KW__Genre_Changed";
+		url = "/Eclipse_Luna/Cake_NR5/keywords/add_KW__Genre_Changed";
+//		url = "/Cake_NR5/keywords/add_KW__Genre_Changed";
 	
 	}
+	
+//	alert("url -> " + url);
 	
 	$.ajax({
 		
@@ -149,6 +154,8 @@ $(document).ready(function(){
 
     	//REF http://stackoverflow.com/questions/10659097/jquery-get-selected-option-from-dropdown answered May 18 '12 at 20:14
 //    	alert($('#genre').find(":selected").val());
+    	
+//    	alert("genre => changed");
     	
     	var id = $('#genre').find(":selected").val();
     	

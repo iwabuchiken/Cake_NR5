@@ -156,6 +156,22 @@
 			?>
 		</td>
 	
+		<td>
+		
+			<?php 
+				echo $this->Html->link(
+						
+						'Articles2',
+						array('controller' => 'articles2', 
+								'action' => 'index'),
+						array(
+								'class' => "button"
+								,'target'	=> "_blank"
+						)
+				);
+			?>
+		</td>
+	
 	</tr>
 	
 </table>
