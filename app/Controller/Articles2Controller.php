@@ -260,7 +260,7 @@ class Articles2Controller extends AppController {
 
 		if ($genre_id == NULL) {
 
-			debug("genre id => NULL");
+// 			debug("genre id => NULL");
 	
 			$name_genre = "tech_science";
 
@@ -393,7 +393,7 @@ class Articles2Controller extends AppController {
 		
 		if ($genre_id == NULL) {
 
-			debug("genre id => NULL");
+// 			debug("genre id => NULL");
 	
 			$name_genre = $genres_List[10];
 // 			$name_genre = "science";
@@ -815,9 +815,9 @@ class Articles2Controller extends AppController {
 		$genre_id = $genre_0['Genre']['id'];
 		$category_id = $genre_0['Category'][0]['id'];
 		
-		debug("\$genre_id =>".$genre_id);
+// 		debug("\$genre_id =>".$genre_id);
 		
-		debug("\$category_id =>".$category_id);
+// 		debug("\$category_id =>".$category_id);
 		
 		$keywords = $this->get_keywords($category_id);
 
@@ -854,12 +854,12 @@ class Articles2Controller extends AppController {
 // 		debug("\$category_keywords_0 =>");
 // 		debug($category_keywords_0);
 		
-		debug($category_keywords_0['computer']);
-		debug($category_keywords_0['computer'][0]);
+// 		debug($category_keywords_0['computer']);
+// 		debug($category_keywords_0['computer'][0]);
 		
-		debug(count($category_keywords_0['computer']));
+// 		debug(count($category_keywords_0['computer']));
 		
-		debug(array_keys($category_keywords_0));
+// 		debug(array_keys($category_keywords_0));
 // 		debug(array_keys($category_keywords_0));
 		
 		/*******************************
@@ -867,13 +867,13 @@ class Articles2Controller extends AppController {
 		*******************************/
 		$genre_category_keyword = array();
 
-		debug($genres[0]['Genre']['name']);
+// 		debug($genres[0]['Genre']['name']);
 		
 		$aryof_category_keywords = array();
 		
 		array_push($aryof_category_keywords, $category_keywords_0);
 		
-		debug($aryof_category_keywords);
+// 		debug($aryof_category_keywords);
 		
 		$genre_category_keyword[$genres[0]['Genre']['name']] = $aryof_category_keywords;
 		
@@ -889,8 +889,8 @@ class Articles2Controller extends AppController {
 		$arykeysof_genre_category_keyword_TechScience = 
 					array_keys($genre_category_keyword['Tech & Science'][0]);
 		
-		debug("\$arykeysof_genre_category_keyword_TechScience =>");
-		debug($arykeysof_genre_category_keyword_TechScience);
+// 		debug("\$arykeysof_genre_category_keyword_TechScience =>");
+// 		debug($arykeysof_genre_category_keyword_TechScience);
 					
 		
 // 		debug("\$keywords['Keyword'] =>");	//=> "Notice (8): Undefined index: Keyword"
