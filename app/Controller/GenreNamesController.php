@@ -34,7 +34,7 @@ class GenreNamesController extends AppController {
 		 *******************************/
 		$option = $this->index__get_sort_name();
 		
-		debug($option);
+// 		debug($option);
 		
 		//
 		$genre_names = $this->GenreName->find('all', $option);
@@ -138,7 +138,7 @@ class GenreNamesController extends AppController {
 	
 		} else if (in_array($sort_genrenames, $this->column_names)) {
 				
-			debug("sort name given --> $sort_genrenames");
+// 			debug("sort name given --> $sort_genrenames");
 				
 			$order_ary = array(
 	

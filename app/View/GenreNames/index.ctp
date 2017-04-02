@@ -5,22 +5,12 @@
 
 (<a href="#bottom">Bottom</a><a name="top"></a>)
 
+<?php echo $this->element('genre_names/index/_header'); ?>
+
 <table>
 
-  <tr>
-    <th>id</th>
-
-    <th>genre id</th>
-<!--     <th>id master</th> -->
-
-    <th>media name</th>
-
-    <th>genre name</th>
-
-    <th>created at</th>
-
-  </tr>
-  
+	<?php echo $this->element('genre_names/index_t_headers'); ?>
+	
   <?php 
   
   	foreach ($genre_names as $genre_name) {
@@ -42,7 +32,8 @@
   	<td>
   		<?php 
 
-  			echo $genre_name['Genre']['name']."(".$genre_name['GenreName']['id'].")";
+  			echo $genre_name['Genre']['name']."(".$genre_name['Genre']['id'].")";
+//   			echo $genre_name['Genre']['name']."(".$genre_name['GenreName']['id'].")";
 //   			echo $genre_name['GenreName']['genre_id'];
 //   			echo $genre_name['GenreName']['id_master'];
   		
