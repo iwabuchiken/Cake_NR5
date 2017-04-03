@@ -11,7 +11,7 @@ class Articles2Controller extends AppController {
 		/*******************************
 			build: articles
 		*******************************/
-		$this->test_2_1_1_build_genres_list();
+		$genre_id = $this->test_2_1_1_build_genres_list();
 		
 // 		$articles = $this->test_1_1_3_build_articles_list();
 		$ahrefs_articles = $this->test_1_1_3_build_articles_list();
@@ -28,7 +28,7 @@ class Articles2Controller extends AppController {
 		/*******************************
 			categorize
 		*******************************/
-		$articles_categorized = $this->categorize_articles($ahrefs_articles);
+		$articles_categorized = $this->categorize_articles($ahrefs_articles, $genre_id);
 		
 // 		$articles_categorized = $this->categorize_articles($articles);
 		
@@ -512,6 +512,10 @@ class Articles2Controller extends AppController {
 		// set
 		$this->set('select_Genres', $select_Genres);
 
+// 		debug($select_Genres);
+		
+// 		debug(array_keys($select_Genres));
+		
 		/*******************************
 			genre id
 		*******************************/
@@ -521,7 +525,8 @@ class Articles2Controller extends AppController {
 		
 			debug("genre id => NULL");
 			
-			$genre_id = $select_Genres[10];
+			$genre_id = array_keys($select_Genres)[0];
+// 			$genre_id = $select_Genres[10];
 		
 // 			$name_genre = "tech_science";
 		
@@ -531,7 +536,8 @@ class Articles2Controller extends AppController {
 		
 // 			$name_genre = "tech_science";
 			
-			$genre_id = $select_Genres[10];
+			$genre_id = array_keys($select_Genres)[0];
+// 			$genre_id = $select_Genres[10];
 		
 		} else {
 		
@@ -550,8 +556,15 @@ class Articles2Controller extends AppController {
 		/*******************************
 			set: genre id
 		*******************************/
+		debug("\$genre_id => ".$genre_id);
+		
+		
 		$this->set("genre_id", $genre_id);
 		
+		/*******************************
+			return
+		*******************************/
+		return $genre_id;
 		
 	}//test_2_1_1_build_genres_list()
 
@@ -733,161 +746,180 @@ class Articles2Controller extends AppController {
 		
 	}
 
-	function categorize_articles($ahrefs_articles) {
+	function categorize_articles($ahrefs_articles, $genre_id) {
 // 	function categorize_articles($articles) {
 		
 		/*******************************
-			test: get genres list
+			test: function in utils.php
 		*******************************/
-		// load model
-		$this->loadModel('Genre');
-		$this->loadModel('Category');
+		$genre_category_keyword_2 = array();
+
+		$genre = Utils::get_Genre_From_Genre_Id($genre_id);
 		
-		$genres = $this->Genre->find('all',
+// 		debug($genre);
 		
-				array(
-						'conditions'	=> array(
+// 		debug("genre_id = $genre_id ---> ".$genre['Genre']['name']);
+
+		// build list
+// 		$genre_category_keyword_2[$genre['Genre']['name']] = 
+		$genre_category_keyword_2 = 
+					Utils::get_GenreCategoryKeyword_List($genre_id);
+		
+		debug("\$genre_category_keyword_2 =>");
+		debug($genre_category_keyword_2);
+		
+// 		/*******************************
+// 			test: get genres list
+// 		*******************************/
+// 		// load model
+// 		$this->loadModel('Genre');
+// 		$this->loadModel('Category');
+		
+// 		$genres = $this->Genre->find('all',
+		
+// 				array(
+// 						'conditions'	=> array(
 								
-								'Genre.id >='	=> 10
-// 								'Genre.id'	=> "> 10"
+// 								'Genre.id >='	=> 10
+// // 								'Genre.id'	=> "> 10"
 								
-						)
+// 						)
 						
-						, 'order'	=> array(
+// 						, 'order'	=> array(
 								
-								'Genre.id'	=> 'asc'
+// 								'Genre.id'	=> 'asc'
 								
-						)
+// 						)
 						
-				)
+// 				)
 				
-		);
+// 		);
 		
-		// validate
-		if (count($genres) < 1) {
+// 		// validate
+// 		if (count($genres) < 1) {
 		
-			debug("no genres found");
+// 			debug("no genres found");
 			
-			return null;
+// 			return null;
 			
-		}//if (count($genres) < 1)
+// 		}//if (count($genres) < 1)
 		
-// 		debug(count($genres) > 0 ? $genres[0] : "no entry in genres table");
-// 		debug($genres);
-		// 		'Genre' => array(
-		// 				'id' => '10',
-		// 				'created_at' => '03/31/2017 13:05:38',
-		// 				'updated_at' => '03/31/2017 13:05:38',
-		// 				'code' => '',
-		// 				'name' => 'Tech & Science'
-		// 		),
+// // 		debug(count($genres) > 0 ? $genres[0] : "no entry in genres table");
+// // 		debug($genres);
+// 		// 		'Genre' => array(
+// 		// 				'id' => '10',
+// 		// 				'created_at' => '03/31/2017 13:05:38',
+// 		// 				'updated_at' => '03/31/2017 13:05:38',
+// 		// 				'code' => '',
+// 		// 				'name' => 'Tech & Science'
+// 		// 		),
 		
-		/*******************************
-			categories
-		*******************************/
-		$categories = array();
+// 		/*******************************
+// 			categories
+// 		*******************************/
+// 		$categories = array();
 		
-		$genre_0 = $genres[0];
+// 		$genre_0 = $genres[0];
 		
-// 		debug($genre_0['Category']);
+// // 		debug($genre_0['Category']);
 
-		$categories_0 = $genre_0['Category'];
+// 		$categories_0 = $genre_0['Category'];
 		
-// 		debug($genre_0['Category'][0]['id']);
-// 		debug($categories_0);
+// // 		debug($genre_0['Category'][0]['id']);
+// // 		debug($categories_0);
 		
-		foreach ($categories_0 as $category) {
+// 		foreach ($categories_0 as $category) {
 		
-			array_push($categories, array($category['id'], $category['name']));
-// 			array_push($categories, $category['name']);
+// 			array_push($categories, array($category['id'], $category['name']));
+// // 			array_push($categories, $category['name']);
 			
-		}//foreach ($categories_0 as $category)
+// 		}//foreach ($categories_0 as $category)
 		
-// 		debug("\$categories => ");
-// 		debug($categories);
+// // 		debug("\$categories => ");
+// // 		debug($categories);
 
-		/*******************************
-			build: keywords list
-		*******************************/
-// 		debug("\$genre_0 =>");
-// 		debug($genre_0);
+// 		/*******************************
+// 			build: keywords list
+// 		*******************************/
+// // 		debug("\$genre_0 =>");
+// // 		debug($genre_0);
 		
-		$genre_id = $genre_0['Genre']['id'];
-		$category_id = $genre_0['Category'][0]['id'];
+// 		$genre_id = $genre_0['Genre']['id'];
+// 		$category_id = $genre_0['Category'][0]['id'];
 		
-// 		debug("\$genre_id =>".$genre_id);
+// // 		debug("\$genre_id =>".$genre_id);
 		
-// 		debug("\$category_id =>".$category_id);
+// // 		debug("\$category_id =>".$category_id);
 		
-		$keywords = $this->get_keywords($category_id);
+// 		$keywords = $this->get_keywords($category_id);
 
-// 		debug("\$keywords =>");
-// 		debug($keywords);
+// // 		debug("\$keywords =>");
+// // 		debug($keywords);
 		
-// 		debug("\$keywords[0] =>");
-// 		debug($keywords[0]);
+// // 		debug("\$keywords[0] =>");
+// // 		debug($keywords[0]);
 		
-// 		debug("\$keywords[0]['Keyword'] =>");
-// 		debug($keywords[0]['Keyword']);
+// // 		debug("\$keywords[0]['Keyword'] =>");
+// // 		debug($keywords[0]['Keyword']);
 		
-		/*******************************
-			keywords: labels
-		*******************************/
-		$keywords_names = array();
+// 		/*******************************
+// 			keywords: labels
+// 		*******************************/
+// 		$keywords_names = array();
 		
-		foreach ($keywords as $kw) {
+// 		foreach ($keywords as $kw) {
 		
-			array_push($keywords_names, $kw['Keyword']['name']);
+// 			array_push($keywords_names, $kw['Keyword']['name']);
 			
-		}//foreach ($keywords as $kw)
+// 		}//foreach ($keywords as $kw)
 		
-// 		debug("\$keywords_names =>");
-// 		debug($keywords_names);
+// // 		debug("\$keywords_names =>");
+// // 		debug($keywords_names);
 		
-		/*******************************
-			category set
-		*******************************/
-		$category_keywords_0 = array();
+// 		/*******************************
+// 			category set
+// 		*******************************/
+// 		$category_keywords_0 = array();
 		
-		$category_keywords_0[$genre_0['Category'][0]['name']] = $keywords_names;
+// 		$category_keywords_0[$genre_0['Category'][0]['name']] = $keywords_names;
 		
-// 		debug("\$category_keywords_0 =>");
-// 		debug($category_keywords_0);
+// // 		debug("\$category_keywords_0 =>");
+// // 		debug($category_keywords_0);
 		
-// 		debug($category_keywords_0['computer']);
-// 		debug($category_keywords_0['computer'][0]);
+// // 		debug($category_keywords_0['computer']);
+// // 		debug($category_keywords_0['computer'][0]);
 		
-// 		debug(count($category_keywords_0['computer']));
+// // 		debug(count($category_keywords_0['computer']));
 		
-// 		debug(array_keys($category_keywords_0));
-// 		debug(array_keys($category_keywords_0));
+// // 		debug(array_keys($category_keywords_0));
+// // 		debug(array_keys($category_keywords_0));
 		
-		/*******************************
-			genre-category-keyword set
-		*******************************/
-		$genre_category_keyword = array();
+// 		/*******************************
+// 			genre-category-keyword set
+// 		*******************************/
+// 		$genre_category_keyword = array();
 
-// 		debug($genres[0]['Genre']['name']);
+// // 		debug($genres[0]['Genre']['name']);
 		
-		$aryof_category_keywords = array();
+// 		$aryof_category_keywords = array();
 		
-		array_push($aryof_category_keywords, $category_keywords_0);
+// 		array_push($aryof_category_keywords, $category_keywords_0);
 		
-// 		debug($aryof_category_keywords);
+// // 		debug($aryof_category_keywords);
 		
-		$genre_category_keyword[$genres[0]['Genre']['name']] = $aryof_category_keywords;
+// 		$genre_category_keyword[$genres[0]['Genre']['name']] = $aryof_category_keywords;
 		
-// 		debug("\$genre_category_keyword =>");
-// 		debug($genre_category_keyword);
+// // 		debug("\$genre_category_keyword =>");
+// // 		debug($genre_category_keyword);
 		
-// 		debug($genre_category_keyword['Tech & Science']);
+// // 		debug($genre_category_keyword['Tech & Science']);
 		
-// 		debug($genre_category_keyword['Tech & Science'][0]);
+// // 		debug($genre_category_keyword['Tech & Science'][0]);
 		
-// 		debug(array_keys($genre_category_keyword['Tech & Science'][0]));
+// // 		debug(array_keys($genre_category_keyword['Tech & Science'][0]));
 		
-		$arykeysof_genre_category_keyword_TechScience = 
-					array_keys($genre_category_keyword['Tech & Science'][0]);
+// 		$arykeysof_genre_category_keyword_TechScience = 
+// 					array_keys($genre_category_keyword['Tech & Science'][0]);
 		
 // 		debug("\$arykeysof_genre_category_keyword_TechScience =>");
 // 		debug($arykeysof_genre_category_keyword_TechScience);

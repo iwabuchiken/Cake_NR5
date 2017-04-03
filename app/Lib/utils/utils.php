@@ -1176,6 +1176,27 @@
 		}
 
 		public static function
+		get_Genre_From_Genre_Id($genre_id) {
+
+			/*******************************
+				get: category
+			*******************************/
+// 			$this->loadModel('Category');
+			$model = ClassRegistry::init('Genre');
+			
+			$option = array('conditions' => array('Genre.id' => $genre_id));
+			
+			$genre = $model->find('first', $option);
+			
+// 			debug($genre);
+			
+			return $genre;
+// 			return $model->find('first', $option);
+// 			return $this->Category->find('first', $option);
+				
+		}//get_Genre_From_Genre_Id($genre_id)
+
+		public static function
 		sanitize_Tags($article_line, $tag_array) {
 			
 			for ($i = 0; $i < count($tag_array); $i++) {
@@ -2052,6 +2073,125 @@
 			return $texts[0];
 			
 		}//get_Article_Line($url)
+	
+		public static function
+		get_GenreCategoryKeyword_List($genre_id) {
+	
+			/*******************************
+				get: genre
+			*******************************/
+			$model = ClassRegistry::init('Genre');
+			
+			$option = array('conditions' => array('Genre.id' => $genre_id));
+				
+			$genre = $model->find('first', $option);
+			
+			$genre_name = $genre['Genre']['name'];
+			
+			debug("genre_id = $genre_id ---> ".$genre_name);
+// 			debug("genre_id = $genre_id ---> ".$genre['Genre']['name']);
+
+			/*******************************
+				categories: ids and names
+			*******************************/
+			$categories = $genre['Category'];
+			
+// 			debug($categories);
+			
+			$aryof_category_ids_and_names = array();
+			
+			// build list
+			foreach ($categories as $category) {
+	
+				array_push(
+						$aryof_category_ids_and_names, 
+						array($category['id'], $category['name']));
+				
+			}//foreach ($categories_0 as $category)
+
+// 			debug($aryof_category_ids_and_names);
+			
+			/*******************************
+				build array: ary_1, ary_2
+				
+				ary_1 = array("49", "computer", array("AI", "アプリ"))
+				ary_2 = array(ary_1, ary_1, ...)
+			*******************************/
+			$ary_2 = array();	// ary of ary_1
+			
+			foreach ($aryof_category_ids_and_names as $pair) {
+
+				$ary_1 = array();	// ary of cat id, cat name, keywords
+				
+// 				debug("cat id = ".$pair[0]." / "."cat name = ".$pair[1]);
+				//	'cat id = 49 / cat name = computer'
+	
+				$keywords = Utils::get_Keywords_From_Category_Id($pair[0]);
+
+// 				debug("category name => ".$pair[1]);
+// 				debug($keywords);
+
+				array_push($ary_1, $pair[0], $pair[1], $keywords);
+				
+				// ary_2
+				array_push($ary_2, $ary_1);
+				
+			}//foreach ($aryof_category_ids_and_names as $pair)
+
+			//debug
+			debug("count(\$ary_2) => ".count($ary_2));
+// 			debug("count(\$ary_1) => ".count($ary_1));
+			
+// 			debug($ary_2);
+// 			debug($ary_1);
+
+			/*******************************
+				array: ary_3
+				
+				ary_3 = array($genre_id, $genre_name, ary_2)
+			*******************************/
+			$ary_3 = [
+					
+					$genre_id,
+					$genre_name,
+					$ary_2
+			];
+			
+// 			debug($ary_3);
+			
+			/*******************************
+				return
+			*******************************/
+			return $ary_3;
+			
+		}//get_GenreCategoryKeyword_List($genre_id)
+	
+		public static function
+		get_Keywords_From_Category_Id($category_id) {
+			
+			// keywords
+// 			$this->loadModel('Keyword');
+			$model = ClassRegistry::init('Keyword');
+			
+			$keywords = $model->find('all',
+			
+					array('conditions' =>
+			
+							array(
+									'Keyword.category_id'	=> $category_id,
+										
+							)
+							, 'order' =>
+			
+							array('Keyword.id'	=> 'asc')
+			
+					)
+					);
+			
+			// return
+			return $keywords;
+			
+		}//get_Keywords_From_Category_Id($pair[0])
 		
 	}//class Utils
 	
