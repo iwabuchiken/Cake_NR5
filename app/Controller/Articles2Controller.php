@@ -750,6 +750,11 @@ class Articles2Controller extends AppController {
 // 	function categorize_articles($articles) {
 		
 		/*******************************
+			test
+		*******************************/
+		debug($ahrefs_articles[0]);
+		
+		/*******************************
 			build: keywords list
 		*******************************/
 		$genre_category_keyword_2 = array();
@@ -759,6 +764,32 @@ class Articles2Controller extends AppController {
 		// build list
 		$genre_category_keyword_2 = 
 					Utils::get_GenreCategoryKeyword_List($genre_id);
+		
+		/**************************************************************
+			categorize
+		**************************************************************/
+		/*******************************
+			iterate: keywords
+		*******************************/
+		$listof_cat_and_kws = $genre_category_keyword_2[2];
+
+		foreach ($listof_cat_and_kws as $cat_and_kws) {
+		
+// 			debug($cat_and_kws[2]);
+			foreach ($cat_and_kws[2] as $c_w) {	// keyword['Keyword'], keyword['Category']
+			
+// 				debug($c_w);
+
+// 				debug($c_w['Keyword']['name']);	//=> 'ＡＩ', and others
+
+// 				aa
+				
+			}//foreach ($cat_and_kws as $value)
+			
+			
+			
+		}//foreach ($listof_cat_and_kws as $cat_and_kws)
+		
 		
 		
 	}//categorize_articles($articles)

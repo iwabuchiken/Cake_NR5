@@ -2073,7 +2073,17 @@
 			return $texts[0];
 			
 		}//get_Article_Line($url)
-	
+
+		/*******************************
+			get_GenreCategoryKeyword_List($genre_id)
+			
+			@return
+			[$genre_id, $genre_name, ary_2]
+			ary_2	=> [ary_1, ary_1, ...]
+			ary_1	=> [$category_id, $category_name, ary_0]
+			ary_0	=> [$keyword, $keyword, ...]
+			 
+		*******************************/
 		public static function
 		get_GenreCategoryKeyword_List($genre_id) {
 	
