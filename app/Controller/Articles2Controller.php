@@ -427,6 +427,30 @@ class Articles2Controller extends AppController {
 		// hrefs
 		$ahrefs = $html->find('a[href]');
 		
+// 		$div_h4s = $html->find("div[class='cmn-section cmn-indent'] ul li h4");
+// // 		$div_h4s = $html->find("div[class='cmn-section cmn-indent']");
+		
+// 		debug($div_h4s != null ? "count(\$div_h4s) => ".count($div_h4s) : "\$div_h4s => null");	//=> 18
+		
+// 		//debug
+// 		foreach ($div_h4s as $h4) {
+		
+// 			debug($h4->plaintext);
+// // 			debug($h4);
+			
+// 		}//foreach ($div_h4s as $h4)
+		
+		
+
+// 		debug($div_h4s);
+// 		debug($div_h4s->a);
+// 		debug($div_h4s[0]);	//=> n.w.
+		
+// 		$div_ahrefs = $div_h4s->ul;	//=> "Trying to get property of non-object"
+// // 		$div_ahrefs = $div_h4s->ul->li->h4;
+		
+// 		debug($div_ahrefs != null ? "count(\$div_ahrefs) => ".count($div_ahrefs) : "\$div_ahrefs => null");
+		
 // 		debug("\$ahrefs => ".count($ahrefs));
 		
 		// validate
@@ -773,6 +797,8 @@ class Articles2Controller extends AppController {
 		*******************************/
 		$listof_cat_and_kws = $genre_category_keyword_2[2];
 
+// 		debug($listof_cat_and_kws);
+		
 		foreach ($listof_cat_and_kws as $cat_and_kws) {
 		
 // 			debug($cat_and_kws[2]);
@@ -780,9 +806,30 @@ class Articles2Controller extends AppController {
 			
 // 				debug($c_w);
 
-// 				debug($c_w['Keyword']['name']);	//=> 'ＡＩ', and others
+				debug($c_w['Keyword']['name']);	//=> 'ＡＩ', and others
 
-// 				aa
+				/*******************************
+					search
+				*******************************/
+				$keyword = $c_w['Keyword']['name'];
+				
+				foreach ($ahrefs_articles as $article) {
+				
+					$line = $article['line'];
+					
+					if (strpos($line, $keyword) !== false) {
+						
+// 						echo 'true';
+						debug("hit: keyword => $keyword"
+								."(id = ".$c_w['Keyword']['id'].")"
+								." / "
+								."line = $line");
+						
+					}
+					
+				}//foreach ($ahrefs_articles as $article)
+				
+				
 				
 			}//foreach ($cat_and_kws as $value)
 			
