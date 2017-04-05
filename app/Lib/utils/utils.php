@@ -2098,7 +2098,7 @@
 			
 			$genre_name = $genre['Genre']['name'];
 			
-			debug("genre_id = $genre_id ---> ".$genre_name);
+// 			debug("genre_id = $genre_id ---> ".$genre_name);
 // 			debug("genre_id = $genre_id ---> ".$genre['Genre']['name']);
 
 			/*******************************
@@ -2119,6 +2119,17 @@
 				
 			}//foreach ($categories_0 as $category)
 
+// 			debug($aryof_category_ids_and_names);
+			
+			//test
+// 			asort($aryof_category_ids_and_names);
+			//REF http://cakephp.1045679.n5.nabble.com/Using-usort-in-Cake-td1327099.html Aug 11, 2009; 9:18pm
+			usort($aryof_category_ids_and_names, 
+					array("utils", "cmp_Sort_Categories_By_Name"));	//=> working (20170405_142133)
+// 					array(&$this, "cmp_Sort_Categories_By_Name"));
+				
+// 			debug("sorted");
+			
 // 			debug($aryof_category_ids_and_names);
 			
 			/*******************************
@@ -2149,7 +2160,7 @@
 			}//foreach ($aryof_category_ids_and_names as $pair)
 
 			//debug
-			debug("count(\$ary_2) => ".count($ary_2));
+// 			debug("count(\$ary_2) => ".count($ary_2));
 // 			debug("count(\$ary_1) => ".count($ary_1));
 			
 // 			debug($ary_2);
@@ -2202,6 +2213,50 @@
 			return $keywords;
 			
 		}//get_Keywords_From_Category_Id($pair[0])
+		
+		public static function
+		get_Keyword_From_Keyword_Id($keyword_id) {
+			
+			// keywords
+// 			$this->loadModel('Keyword');
+			$model = ClassRegistry::init('Keyword');
+			
+			$keyword = $model->find('first',
+			
+					array('conditions' =>
+			
+							array(
+									'Keyword.id'	=> $keyword_id,
+										
+							)
+							, 'order' =>
+			
+							array('Keyword.id'	=> 'asc')
+			
+					)
+					);
+			
+			// return
+			return $keyword;
+			
+		}//get_Keywords_From_Category_Id($pair[0])
+
+		public static function
+		cmp_Sort_Categories_By_Name($cat_1, $cat_2) {
+		
+			//REF http://www.php.net/manual/en/function.floatval.php
+			$cat_name_1 = $cat_1[1];
+			$cat_name_2 = $cat_2[1];
+			
+			//REF http://stackoverflow.com/questions/481466/php-string-to-float answered Jan 26 '09 at 21:35
+			
+// 			return $cat_name_1 < $cat_name_2;
+			return $cat_name_1 > $cat_name_2;
+			// 		return $point_1 < $point_2;
+					
+			
+		}//cmp_Sort_Categories_By_Name($cat_1, $cat_2)
+		
 		
 	}//class Utils
 	
