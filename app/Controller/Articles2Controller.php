@@ -799,6 +799,114 @@ class Articles2Controller extends AppController {
 
 // 		debug($listof_cat_and_kws);
 		
+		$listof_cat_name_and_kw_id_and_article_id = 
+			$this->_categorize_articles__get_CatName_KwId_ArticleIndex_list(
+					$ahrefs_articles,
+					$listof_cat_and_kws);
+		
+// 		$listof_cat_name_and_kw_id_and_article_id = array();
+		
+// 		foreach ($listof_cat_and_kws as $cat_and_kws) {
+
+// 			$category_name = $cat_and_kws[1];
+			
+// 			debug("\$category_name => ".$category_name);
+			
+// 			array_push($listof_cat_name_and_kw_id_and_article_id, $category_name);
+			
+// // 			$hit_articles_num = array($category_name);
+// // 			$hit_articles_num = array();
+			
+// // 			debug("\$cat_and_kws =>");
+// // 			debug($cat_and_kws);
+// 			// 			(int) 0 => '50',
+// 			// 			(int) 1 => 'biology',
+// 			// 			(int) 2 => array(
+// 			// 					(int) 0 => array(
+// 			// 							'Keyword' => array(
+// 			// 									'id' => '923',
+// 			// 									'created_at' => '04/02/2017 16:34:14',
+// 			// 									'updated_at' => '04/02/2017 16:34:14',
+// 			// 									'name' => 'ｉＰＳ',
+// 			// 									'category_id' => '50'
+// 			// 							),
+// 			// 							'Category' => array(
+// 			// 									'id' => '50',
+			
+// // 			debug($cat_and_kws[2]);
+
+// 			// prep
+// 			$lenof_cat_and_kws_2 = count($cat_and_kws[2]);
+
+// 			// pair of hit article and keyword
+// 			$pairof_keyword_and_article = array();
+				
+// 			for ($i = 0; $i < $lenof_cat_and_kws_2; $i++) {	// keyword['Keyword'], keyword['Category']
+// // 			foreach ($cat_and_kws[2] as $c_w) {	// keyword['Keyword'], keyword['Category']
+			
+// // 				debug($c_w);
+
+// // 				debug($c_w['Keyword']['name']);	//=> 'ＡＩ', and others
+
+// 				/*******************************
+// 					search
+// 				*******************************/
+// 				$keyword = $cat_and_kws[2][$i]['Keyword']['name'];
+// // 				$keyword = $c_w['Keyword']['name'];
+				
+// 				$lenof_ahrefs_articles = count($ahrefs_articles);
+				
+// // 				// pair of hit article and keyword
+// // 				$pairof_keyword_and_article = array();
+				
+// 				for ($j = 0; $j < $lenof_ahrefs_articles; $j++) {
+// // 				foreach ($ahrefs_articles as $article) {
+				
+// 					$line = $ahrefs_articles[$j]['line'];
+// // 					$line = $article['line'];
+					
+// 					if (strpos($line, $keyword) !== false) {
+						
+// // 						echo 'true';
+// 						debug("hit: keyword => $keyword"
+// 								."(id = ".$cat_and_kws[2][$i]['Keyword']['id'].")"
+// // 								."(id = ".$c_w['Keyword']['id'].")"
+// 								." / "
+// 								."line = $line");
+						
+// 						// push
+// 						array_push($pairof_keyword_and_article, 
+// 									array($cat_and_kws[2][$i]['Keyword']['id'], $j));
+// // 						array_push($hit_articles_num, array($cat_and_kws[2][$i]['Keyword']['id'], $j));
+// // 						array_push($hit_articles_num, $j);
+// // 						array_push($hit_articles_num, $i);
+						
+// 					}
+					
+// 				}//foreach ($ahrefs_articles as $article)
+
+// 			}//for ($i = 0; $i < $lenof_cat_and_kws_2; $i++)
+// // 			}//foreach ($cat_and_kws as $value)
+
+// 			debug("\$pairof_keyword_and_article =>");
+// 			debug($pairof_keyword_and_article);
+			
+// 			// push
+// 			array_push($listof_cat_name_and_kw_id_and_article_id, $pairof_keyword_and_article);
+			
+// 		}//foreach ($listof_cat_and_kws as $cat_and_kws)
+		
+		
+		debug("\$listof_cat_name_and_kw_id_and_article_id =>");
+		debug($listof_cat_name_and_kw_id_and_article_id);
+		
+		
+	}//categorize_articles($articles)
+
+	function 
+	_categorize_articles__get_CatName_KwId_ArticleIndex_list
+	($ahrefs_articles, $listof_cat_and_kws) {
+		
 		$listof_cat_name_and_kw_id_and_article_id = array();
 		
 		foreach ($listof_cat_and_kws as $cat_and_kws) {
@@ -883,20 +991,22 @@ class Articles2Controller extends AppController {
 			}//for ($i = 0; $i < $lenof_cat_and_kws_2; $i++)
 // 			}//foreach ($cat_and_kws as $value)
 
-			debug("\$pairof_keyword_and_article =>");
-			debug($pairof_keyword_and_article);
+// 			debug("\$pairof_keyword_and_article =>");
+// 			debug($pairof_keyword_and_article);
 			
 			// push
 			array_push($listof_cat_name_and_kw_id_and_article_id, $pairof_keyword_and_article);
 			
 		}//foreach ($listof_cat_and_kws as $cat_and_kws)
 		
+		// return
+		return $listof_cat_name_and_kw_id_and_article_id;
 		
-		debug("\$listof_cat_name_and_kw_id_and_article_id =>");
-		debug($listof_cat_name_and_kw_id_and_article_id);
+// 		debug("\$listof_cat_name_and_kw_id_and_article_id =>");
+// 		debug($listof_cat_name_and_kw_id_and_article_id);
 		
 		
-	}//categorize_articles($articles)
+	}//_categorize_articles__get_CatName_KwId_ArticleIndex_list
 
 	function get_keywords($category_id) {
 
