@@ -28,39 +28,26 @@
 
 (<a href="#bottom">Bottom</a><a name="top"></a>)
 
+<!-- <div id="message_space"> -->
+
+<!-- message space -->
+
+<!-- </div> -->
+
 <?php 
 
 	echo "<br>"; echo "<br>";
 
+	echo $this->element('articles2/index/_header');
+	
+	echo "<br>"; echo "<br>";
+	
 ?>
 
-<?php 
+<?php 	
 
 	//test
 	mb_language("Japanese");
-
-?>
-
-<?php 
-
-// 	if (isset($articles_categorized)) {
-
-// 		$genre_name = $articles_categorized[0];
-		
-// 		echo "<font color='blue'>$genre_name</font> (total = ".$articles_categorized[2].")";
-// // 		echo $articles_categorized[0];
-		
-// 		echo "<br>"; echo "<br>";
-	
-// 	} else {
-	
-// 		echo "\$articles_categorized => not set";
-		
-// 		return;
-		
-// 	}//if (isset($articles_categorized))
-	
-	
 
 ?>
 
@@ -70,15 +57,9 @@
 
 <?php 
 
-// 	debug($articles_categorized[1][0]);
-// 	debug($articles_categorized[1][0][0]);	//=> 'biology'
-// 	debug($articles_categorized[1][0][1][0][0]['line']);	//=> article line
-// 	debug($articles_categorized[1][0][1][0][0]);	//=> 
-	
 	$count_article = 1;
 	
 	foreach ($articles_categorized[1] as $category_set) {
-// 	foreach ($articles_categorized as $category_set) {
 	
 		$category_name = $category_set[0];
 		
@@ -86,27 +67,8 @@
 		echo "<td colspan='3' bgcolor='yellow'>";
 		
 			echo "$category_name (".count($category_set[1]).")";
-// 			echo $category_set[0];	//=> 'biology'
 			
 		echo "</td>";
-// 		echo "</tr>"
-
-// // 		$lenof_category_set = count($category_set[1][0]);
-// 		$lenof_category_set = count($category_set[1][0][0]);
-		
-// 		debug($lenof_category_set);	//	=> 3
-// 		debug("\$category_set[1][0][0] =>");
-// 		debug($category_set[1][0][0]);
-		// 		array(
-		// 				'url' => 'http://www.asahi.com/articles/ASK3W5J6KK3WPLBJ005.html',
-		// 				'line' => 'ｉＰＳ、医療利用への試金石　他人の細胞から初移植(3/28)  ',
-		// 				'vendor' => 'www.asahi.com'
-		// 		)
-		
-// 		debug("\$category_set[1][0] =>");
-// 		debug($category_set[1][0]);
-// 		debug("\$category_set[1] =>");
-// 		debug($category_set[1]);
 		
 		$lenof_category_set_1 = count($category_set[1]);
 		

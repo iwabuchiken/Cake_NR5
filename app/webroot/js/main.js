@@ -1,5 +1,20 @@
 //alert("main.js !!!");
 
+//ref http://stackoverflow.com/questions/406192/get-current-url-in-javascript
+//ref http://stackoverflow.com/questions/1034621/get-current-url-in-web-browser
+//alert(window.location.href);
+
+//ref http://stackoverflow.com/questions/979975/how-to-get-the-value-from-the-get-parameters
+//var query = window.location.search.substring(1);
+//
+//alert(query);
+
+//var query_string = get_query_string();
+//alert(query_string[0]);
+//alert(query_string[0][0]);
+
+//test_replace_genre_id(12);
+
 function
 add_KW__Genre_Changed
 (id) {
@@ -142,6 +157,9 @@ _modify_content__Done
 }//_modify_content__Done
 
 $(document).ready(function(){
+
+//	//test
+//	test_replace_genre_id(12);
 	
 //	alert("ready");
 
@@ -167,12 +185,16 @@ $(document).ready(function(){
 //    	alert("changed");
     });
     
-    $('#Genre').change(function(){
+    $('#select_genre').change(function(){
+//    	$('#Genre').change(function(){		//=> working, also
 
+//    	alert("changed");
+    	
 //    	alert("$('#Genre') => changed");
     	
     	//REF http://stackoverflow.com/questions/10659097/jquery-get-selected-option-from-dropdown answered May 18 '12 at 20:14
-    	var id = $('#Genre').find(":selected").val();
+    	var id = $('#select_genre').find(":selected").val();
+//    	var id = $('#Genre').find(":selected").val();
     	
     	var hostname = window.location.hostname;
     	
@@ -180,8 +202,12 @@ $(document).ready(function(){
     	
     	if (hostname == "localhost") {
 //    		http://localhost/Eclipse_Luna/Cake_NR5/articles2?genre_id=4
-    		
-    		url = "http://localhost/Eclipse_Luna/Cake_NR5/articles2?genre_id=" + id;
+
+//    		test_replace_genre_id(id);
+
+//    		url = window.location.href;
+    		url = test_replace_genre_id(id);
+//    		url = "http://localhost/Eclipse_Luna/Cake_NR5/articles2?genre_id=" + id;
 //    		url = "http://localhost/Cake_NR5/articles?genre_id=" + id;
     			
 		} else {
@@ -190,6 +216,8 @@ $(document).ready(function(){
 //			url = "http://benfranklin.chips.jp/cake_apps/Cake_NR5/articles?genre_id=" + id;
 
 		}
+
+//    	alert(url);
     	
 //    	alert(window.location.hostname);
 //    	alert(window.location.href);	//=> working
@@ -435,4 +463,153 @@ function show_msg() {
 //$(function() {
 //    $( "#dialog" ).dialog();
 //});
+
+//ref http://stackoverflow.com/questions/979975/how-to-get-the-value-from-the-get-parameters
+function get_query_string() {
+	  // This function is anonymous, is executed immediately and 
+	  // the return value is assigned to QueryString!
+	  var query_string = {};
+	  var query = window.location.search.substring(1);
+	  var vars = query.split("&");
+	  for (var i=0;i<vars.length;i++) {
+	    var pair = vars[i].split("=");
+	        // If first entry with this name
+	    if (typeof query_string[pair[0]] === "undefined") {
+	      query_string[pair[0]] = decodeURIComponent(pair[1]);
+	        // If second entry with this name
+	    } else if (typeof query_string[pair[0]] === "string") {
+	      var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+	      query_string[pair[0]] = arr;
+	        // If third or later entry with this name
+	    } else {
+	      query_string[pair[0]].push(decodeURIComponent(pair[1]));
+	    }
+	  } 
+	  
+	  return query_string;
+	  
+}
+
+/*************************************
+ * started: 2017/04/07 00:22:42
+ * 
+ *************************************/
+function test_replace_genre_id(id_new) {
+
+	var url_current = window.location.href;		// 'http://localhost/Eclipse_Luna/Cake_NR5/articles2?genre_id=10&test'
+	var pathname = window.location.pathname;	// '/Eclipse_Luna/Cake_NR5/articles2' 
+	var params = window.location.search.substring(1);	// 'genre_id=10&test' 
+	var hostname = window.location.hostname;	//  
+	
+//	var msg = "url_current => " + "'" + url_current + "'" 
+//			+ " | "
+//			+ "pathname => "  + "'" + pathname + "'"
+//			
+//			+ " | "
+//			+ "params => " + "'" + params + "'"
+//
+//			+ " | "
+//			+ "hostname => " + "'" + hostname + "'";
+	
+	//ref http://stackoverflow.com/questions/6042007/how-to-get-the-host-url-using-javascript-from-the-current-page answered May 18 '11 at 8:44
+	var protocol = location.protocol;
+	var slashes = protocol.concat("//");
+	var host = slashes.concat(window.location.hostname);	//=> 'http://localhost'
+
+	var msg = host.concat(pathname).concat("?").concat(params); 
+	
+//	var msg = "protocol => " 
+//				+ "'" + protocol + "'" 
+//				+ " | "
+//				+ "slashes => "  + "'" + slashes + "'"
+//				
+//				+ " | "
+//				+ "host => " + "'" + host + "'";
+
+	
+//	alert("div => " + $("#message_space").text());
+	
+//	$("#message_space").text(msg);	//=> n.w.
+//	$("div#message_space").text(msg);	//=> n.w.
+	
+//	alert("message => " + msg);
+	
+	//ref http://stackoverflow.com/questions/1103172/jquery-change-div-text
+//	$("div#message_space").text(msg);
+//	$("div#message_space").text(msg);	//=> n.w.
+//	$('div#message_space').text(msg);	//=> n.w.
+//	$('div#message_space').html(msg);	//=> n.w.
+//	$('div#debug').html(msg);	//=> n.w.
+//	$('div#debug').text = msg;
+	
+//	alert(msg);
+
+	/***************************
+		rebuild url
+	 ***************************/
+	var tokens = params.split('&');
+	
+	var lenof_tokens = tokens.length;
+	
+//	alert("lenof_tokens => " + lenof_tokens);
+	
+	msg = "";		// reset the msg var
+	
+	var params_new = "";
+	
+	// iterate params
+	for (var i = 0; i < lenof_tokens; i++) {
+		
+		var elems = tokens[i].split('=');
+		
+		var lenof_elems = elems.length;
+		
+		if (lenof_elems == 1) {
+
+			params_new += elems[0];
+
+		} else {
+
+			if (elems[0] == "genre_id") {
+
+				params_new += "genre_id=" + id_new;
+
+			} else {
+
+				params_new += elems[0] + "=" + elems[1];
+
+			}//if (elems[0])
+			;
+
+		}//if (lenof_elems == 1)
+		
+		// add "&"
+		if (!(i == lenof_tokens - 1)) {
+			
+			params_new += "&";
+			
+		}
+		
+		
+//		msg += "tokens[" + i + "]"
+//				+ " => " + lenof_elems + " | ";
+		
+	}
+	
+//	alert(params_new);
+//	alert(msg);
+
+	/***************************
+		rebuild
+	 ***************************/
+	var url_new = host.concat(pathname).concat("?").concat(params_new);
+	
+//	alert("url_new => " + url_new);
+	
+	/***************************
+		return
+	 ***************************/
+	return url_new;
+	
+}//function test_replace_genre_id(url)
 

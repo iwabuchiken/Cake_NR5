@@ -16,6 +16,7 @@
 					'name'		=> "genre_id",
 			
 // 					'id' => "Genre2",	//=> no change
+					'id'		=> "select_genre",
 			
 					'div'		=> false,
 			
@@ -30,7 +31,7 @@
 	);
 	
 // 	echo $this->Form->create('Genre2', $opt_create);	
-	echo $this->Form->create('Genre', $opt_create);	
+// 	echo $this->Form->create('Genre', $opt_create);	
 	echo $this->Form->input(
 // 						'Genre2', $opt_input
 						'', $opt_input
@@ -38,52 +39,14 @@
 					);
 	
 	//REF http://stackoverflow.com/questions/6360767/form-end-without-a-div-in-cakephp answered Jun 15 '11 at 17:06
-	echo $this->Form->submit("Go", $opt_end);
-
- ?>
- 
- &nbsp;
- 
-<?php 
-
-// 	$opt_create = array(
-// 					'div' => false,
-// 					//REF http://book.cakephp.org/2.0/en/core-libraries/helpers/form.html#options-for-create 
-// 					'type' => 'get');
-
-// 	$opt_input = array(
-// 					'type'		=> 'select',
-// 					'options'	=> $vendors,
-// 					//REF http://satussy.blogspot.jp/2011/07/cakephp-select.html "見つけた方法は"
-// // 					'selected'	=> $genre_id,
-			
-// 					'label'		=> false,
-// 					'name'		=> "vendor",
-// 					'div'		=> false,
-			
-// 					'class'		=> 'select_genre'
-// 			);
-
-// 	$opt_end = array(
-// 			'div' => false,
-			
-// 			'class'	=> 'submit_go'
-	
-// 	);
-	
-// 	echo $this->Form->create('Vendor', $opt_create);	
-// 	echo $this->Form->input(
-// 						'', $opt_input
-	
-// 					);
-	
-// 	//REF http://stackoverflow.com/questions/6360767/form-end-without-a-div-in-cakephp answered Jun 15 '11 at 17:06
 // 	echo $this->Form->submit("Go", $opt_end);
 
  ?>
-
- &nbsp;
- filter_vendor =  
+ 
+<!--  &nbsp; -->
+ 
+<!--  &nbsp; -->
+<!--  filter_vendor =   -->
 
 <?php 
 
