@@ -1,5 +1,28 @@
 <h1>
-	Articles 2: index_2 
+<!-- 	Articles 2: index_2  -->
+<?php 
+
+	if (isset($articles_categorized)) {
+
+		$genre_name = $articles_categorized[0];
+		
+		echo "<font color='blue'>$genre_name</font> (total = ".$articles_categorized[2].")";
+// 		echo $articles_categorized[0];
+		
+		echo "<br>"; echo "<br>";
+	
+	} else {
+	
+		echo "\$articles_categorized => not set";
+		
+		return;
+		
+	}//if (isset($articles_categorized))
+	
+	
+
+?>
+
 	
 </h1>
 
@@ -20,19 +43,22 @@
 
 <?php 
 
-	if (isset($articles_categorized)) {
-	
-		echo $articles_categorized[0];
+// 	if (isset($articles_categorized)) {
+
+// 		$genre_name = $articles_categorized[0];
 		
-		echo "<br>"; echo "<br>";
-	
-	} else {
-	
-		echo "\$articles_categorized => not set";
+// 		echo "<font color='blue'>$genre_name</font> (total = ".$articles_categorized[2].")";
+// // 		echo $articles_categorized[0];
 		
-		return;
+// 		echo "<br>"; echo "<br>";
+	
+// 	} else {
+	
+// 		echo "\$articles_categorized => not set";
 		
-	}//if (isset($articles_categorized))
+// 		return;
+		
+// 	}//if (isset($articles_categorized))
 	
 	
 
@@ -54,14 +80,17 @@
 	foreach ($articles_categorized[1] as $category_set) {
 // 	foreach ($articles_categorized as $category_set) {
 	
+		$category_name = $category_set[0];
+		
 		echo "<tr>";
 		echo "<td colspan='3' bgcolor='yellow'>";
-		echo $category_set[0];	//=> 'biology'
+		
+			echo "$category_name (".count($category_set[1]).")";
+// 			echo $category_set[0];	//=> 'biology'
+			
 		echo "</td>";
 // 		echo "</tr>"
 
-		$category_name = $category_set[0];
-		
 // // 		$lenof_category_set = count($category_set[1][0]);
 // 		$lenof_category_set = count($category_set[1][0][0]);
 		

@@ -1042,6 +1042,12 @@ class Articles2Controller extends AppController {
 		// 								(int) 0 => array(
 		// 										(int) 0 => '923',
 
+		
+		/*******************************
+			add: number of the articles
+		*******************************/
+		array_push($final_list, count($ahrefs_articles));
+		
 		/*******************************
 			return
 		*******************************/
