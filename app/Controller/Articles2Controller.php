@@ -617,8 +617,48 @@ class Articles2Controller extends AppController {
 		$select_Genres[16] = "industry";
 		$select_Genres[17] = "finance";
 		
+		/*******************************
+			load model
+		*******************************/
+		$this->loadModel('Genre');
+		
+		$genres = $this->Genre->find('all',
+				
+				array(
+						'conditions'	=> array(
+						
+								'Genre.id >='	=> 10
+// 								'Genre.id =>'	=> 10
+						)
+						
+						, 'sort'		=> array(
+						
+								'Genre.name'	=> "asc"
+						)
+						
+				)
+		);
+		
+		/*******************************
+			build array
+		*******************************/
+		$select_Genres_2 = array();
+		
+		foreach ($genres as $genre) {
+		
+			$select_Genres_2[$genre['Genre']['id']] = $genre['Genre']['name'];
+			
+		}//foreach ($genres as $genre)
+		
+// 		debug("\$select_Genres_2 =>");
+// 		debug($select_Genres_2);
+		
+// 		debug("\$select_Genres =>");
+// 		debug($select_Genres);
+		
 		// return
-		return $select_Genres;
+		return $select_Genres_2;
+// 		return $select_Genres;
 	}//get_genres_list_Asahi()
 	
 	function get_genres_list_Nikkei() {
