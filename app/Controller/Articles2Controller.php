@@ -30,9 +30,6 @@ class Articles2Controller extends AppController {
 		*******************************/
 		$articles_categorized = $this->categorize_articles($ahrefs_articles, $genre_id);
 		
-		/*******************************
-			build: genres list
-		*******************************/
 		
 		
 		
@@ -843,6 +840,9 @@ class Articles2Controller extends AppController {
 		*******************************/
 		$setof_cat_and_articles = array();
 		
+		// list of article nums ---> others
+		$listof_article_nums_categorized = array();
+		
 		foreach ($listof_cat_name_and_kw_id_and_article_id as $cat_and_kws) {
 		
 			/*******************************
@@ -857,7 +857,7 @@ class Articles2Controller extends AppController {
 			*******************************/
 			$cat_name = $cat_and_kws[0];
 			
-			debug("\$cat_and_kws[0] => ".$cat_name);
+// 			debug("\$cat_and_kws[0] => ".$cat_name);
 			
 			/*******************************
 				iterate: keywords
@@ -892,6 +892,9 @@ class Articles2Controller extends AppController {
 								
 						)
 				);
+				
+				// add to categorized num array
+				array_push($listof_article_nums_categorized, $article_num);
 
 			}//for ($i = 0; $i < $lenof_keyword_article_pairs; $i++)
 			
@@ -901,10 +904,51 @@ class Articles2Controller extends AppController {
 			array_push($setof_cat_and_articles, array($cat_name, $listof_ahrefs_modified));
 			
 		}//foreach ($listof_cat_name_and_kw_id_and_article_id as $cat_and_kws)
+
+// 		debug("\$listof_article_nums_categorized =>");
+// 		debug($listof_article_nums_categorized);
+
+// 		debug("\$setof_cat_and_articles[0] =>");
+// 		debug($setof_cat_and_articles[0]);
+
+		/*******************************
+			build: "others" list
+		*******************************/
+		$cat_others = array("others");
+		
+		$article_others = array();
+	
+		$lenof_ahrefs_articles = count($ahrefs_articles);
+
+		for ($i = 0; $i < $lenof_ahrefs_articles; $i++) {
+		
+			if (!in_array($i, $listof_article_nums_categorized)) {
+				
+// 				debug("\not in array: \$i => $i: ".$ahrefs_articles[$i]['line']);
+				
+				array_push($article_others, $ahrefs_articles[$i]);
+				
+			}//if (in_array())
+			;;
+			
+		}//for ($i = 0; $i < $lenof_ahrefs_articles; $i++)
+
+// 		//debug
+// 		debug("count(\$article_others) =>");
+// 		debug(count($article_others));
+		
+		// build category array
+		array_push($cat_others, $article_others);
+		
+// 		debug("\$cat_others =>");
+// 		debug($cat_others);
+		
+		// add "others" to --> the set
+		array_push($setof_cat_and_articles, $cat_others);
 		
 // 		debug("\$setof_cat_and_articles =>");
 // 		debug($setof_cat_and_articles);
-
+		
 		/*******************************
 			build: final list
 		*******************************/
