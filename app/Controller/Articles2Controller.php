@@ -30,6 +30,24 @@ class Articles2Controller extends AppController {
 		*******************************/
 		$articles_categorized = $this->categorize_articles($ahrefs_articles, $genre_id);
 		
+		$this->set("articles_categorized", $articles_categorized);
+
+		/*******************************
+			view: swtich
+		*******************************/
+		$test = @$this->request->query['test'];
+		
+		if (isset($test)) {
+		
+			debug("test view --> used");
+			
+			$this -> render('index_2');
+			
+		} else {//if (isset($test))
+
+			debug("test view --> NOT used");
+
+		}
 		
 		
 		
@@ -984,7 +1002,7 @@ class Articles2Controller extends AppController {
 		// 				'vendor' => 'www.asahi.com'
 		// 		)
 		
-		debug(isset($final_list[1][0][1][0]) ? $final_list[1][0][1][0] : "\$final_list[1][0][1][0] => not set");
+// 		debug(isset($final_list[1][0][1][0]) ? $final_list[1][0][1][0] : "\$final_list[1][0][1][0] => not set");
 // 		debug($final_list[1][0][1][0]);
 		// 		array(
 		// 				(int) 0 => array(

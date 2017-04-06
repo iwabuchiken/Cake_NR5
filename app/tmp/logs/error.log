@@ -2552,3 +2552,38 @@ Stack Trace:
 #3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2017-04-06 07:49:24 Error: [MissingViewException] View file "C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\View\Articles2\Articles2\index_2.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS_2\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Articles2\\Articles2\\index_2.ctp',
+)
+Request URL: /Eclipse_Luna/Cake_NR5/articles2?test=
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName('Articles2/index...')
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render('Articles2/index...', NULL)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\Articles2Controller.php(42): Controller->render('Articles2/index...')
+#3 [internal function]: Articles2Controller->index()
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(Articles2Controller), Array)
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(Articles2Controller), Object(CakeRequest))
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2017-04-06 07:56:24 Error: Fatal Error (4): syntax error, unexpected 'echo' (T_ECHO), expecting ',' or ';' in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\View\Articles2\index_2.ctp, line 46]
+2017-04-06 07:56:24 Error: [FatalErrorException] syntax error, unexpected 'echo' (T_ECHO), expecting ',' or ';'
+Request URL: /Eclipse_Luna/Cake_NR5/articles2?test=
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 46)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 46, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 46, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-04-06 08:19:55 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php, line 196]
+2017-04-06 08:19:55 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /Eclipse_Luna/Cake_NR5/articles2?test=
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\\WORKS_2\\WS\\E...', 196)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\\WORKS_2\\WS\\E...', 196, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\\WORKS_2\\WS\\E...', 196, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
