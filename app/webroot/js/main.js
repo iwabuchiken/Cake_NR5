@@ -165,7 +165,7 @@ $(document).ready(function(){
 
 	//REF http://stackoverflow.com/questions/3224535/how-do-i-add-an-onchange-event-to-select-tag-in-cakephp answered Jul 13 '10 at 11:15
 //    $('#category').change(function(){
-//        alert("changed");
+//      ("changed");
 //    });
 	
     $('#genre').change(function(){
@@ -195,6 +195,8 @@ $(document).ready(function(){
     	//REF http://stackoverflow.com/questions/10659097/jquery-get-selected-option-from-dropdown answered May 18 '12 at 20:14
     	var id = $('#select_genre').find(":selected").val();
 //    	var id = $('#Genre').find(":selected").val();
+
+//    	alert("selected id => " + id);
     	
     	var hostname = window.location.hostname;
     	
@@ -501,16 +503,6 @@ function test_replace_genre_id(id_new) {
 	var params = window.location.search.substring(1);	// 'genre_id=10&test' 
 	var hostname = window.location.hostname;	//  
 	
-//	var msg = "url_current => " + "'" + url_current + "'" 
-//			+ " | "
-//			+ "pathname => "  + "'" + pathname + "'"
-//			
-//			+ " | "
-//			+ "params => " + "'" + params + "'"
-//
-//			+ " | "
-//			+ "hostname => " + "'" + hostname + "'";
-	
 	//ref http://stackoverflow.com/questions/6042007/how-to-get-the-host-url-using-javascript-from-the-current-page answered May 18 '11 at 8:44
 	var protocol = location.protocol;
 	var slashes = protocol.concat("//");
@@ -518,32 +510,6 @@ function test_replace_genre_id(id_new) {
 
 	var msg = host.concat(pathname).concat("?").concat(params); 
 	
-//	var msg = "protocol => " 
-//				+ "'" + protocol + "'" 
-//				+ " | "
-//				+ "slashes => "  + "'" + slashes + "'"
-//				
-//				+ " | "
-//				+ "host => " + "'" + host + "'";
-
-	
-//	alert("div => " + $("#message_space").text());
-	
-//	$("#message_space").text(msg);	//=> n.w.
-//	$("div#message_space").text(msg);	//=> n.w.
-	
-//	alert("message => " + msg);
-	
-	//ref http://stackoverflow.com/questions/1103172/jquery-change-div-text
-//	$("div#message_space").text(msg);
-//	$("div#message_space").text(msg);	//=> n.w.
-//	$('div#message_space').text(msg);	//=> n.w.
-//	$('div#message_space').html(msg);	//=> n.w.
-//	$('div#debug').html(msg);	//=> n.w.
-//	$('div#debug').text = msg;
-	
-//	alert(msg);
-
 	/***************************
 		rebuild url
 	 ***************************/
@@ -556,6 +522,8 @@ function test_replace_genre_id(id_new) {
 	msg = "";		// reset the msg var
 	
 	var params_new = "";
+	
+	var flag_genre_id_param_given = false;
 	
 	// iterate params
 	for (var i = 0; i < lenof_tokens; i++) {
@@ -573,6 +541,9 @@ function test_replace_genre_id(id_new) {
 			if (elems[0] == "genre_id") {
 
 				params_new += "genre_id=" + id_new;
+				
+				// set the flag
+				flag_genre_id_param_given = true;
 
 			} else {
 
@@ -598,7 +569,16 @@ function test_replace_genre_id(id_new) {
 	
 //	alert(params_new);
 //	alert(msg);
-
+	/***************************
+		validate: genre_id param
+	 ***************************/
+	if (flag_genre_id_param_given == false) {
+		
+		params_new += "&genre_id=" + id_new;
+		
+	}
+	
+	
 	/***************************
 		rebuild
 	 ***************************/
