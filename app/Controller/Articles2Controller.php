@@ -1258,6 +1258,9 @@ class Articles2Controller extends AppController {
 		$article_line = @$this->request->query['article_line'];
 		$article_vendor = @$this->request->query['article_vendor'];
 	
+// 		debug("\$article_line =>");
+// 		debug($article_line);
+		
 // 		//sanitize
 // 		$article_line = Utils::sanitize_Tags($article_line, array("font"));
 	
@@ -1266,8 +1269,8 @@ class Articles2Controller extends AppController {
 	
 // 		$article_news_time = @$this->request->query['article_news_time'];
 
-		// redirect
-		$this->redirect($article_url);
+// 		// redirect
+// 		$this->redirect($article_url);
 		
 		/**********************************
 			* get: content
@@ -1276,17 +1279,44 @@ class Articles2Controller extends AppController {
 		// 		$article_content = $this->_open_article__GetContent($article_url);
 	
 		/**********************************
-			* build: instance: History
+			* build: instance: Geschichte
 		**********************************/
+		$this->loadModel('Geschichte');
 		
-		/**********************************
-			* get: setting value: open_mode
-			**********************************/
-	
+		$this->Geschichte->create();
+		
+		$this->Geschichte->set('url', $article_url);
+		$this->Geschichte->set('line', $article_line);
+		
+		$this->Geschichte->set('vendor', $article_vendor);
+// 		$this->Geschichte->set('news_time', $article_news_time);
+		
+		$this->Geschichte->set('category_id', $article_category_id);
+		$this->Geschichte->set('genre_id', $article_genre_id);
+		
+// 		$this->Geschichte->set('content', $article_content);
+		
+		$this->Geschichte->set('created_at', Utils::get_CurrentTime());
+		$this->Geschichte->set('updated_at', Utils::get_CurrentTime());
+		
 		/**********************************
 			* save: history
 		**********************************/
+		if ($this->Geschichte->save()) {
+			
+			$this->Session->setFlash(__("Geschichte has been saved: ".$article_line));
+			
+		} else {
+			
+			$this->Session->setFlash(__("Geschichte has NOT been saved: ".$article_line));
+			
+		}
 		
+		
+		/**********************************
+			* get: setting value: open_mode
+		**********************************/
+	
 	}//open_article
 	
 }//class ArticlesController extends AppController

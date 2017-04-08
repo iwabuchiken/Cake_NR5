@@ -115,7 +115,8 @@
 				/*******************************
 					line
 				*******************************/
-				
+
+				//ref pass variables http://stackoverflow.com/questions/5523162/cakephp-passing-data-to-element answered Apr 2 '11 at 12:51
 				echo $this->element('articles2/index/_index_td_line', 
 				
 					array(
