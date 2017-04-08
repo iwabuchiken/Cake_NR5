@@ -981,8 +981,14 @@ class Articles2Controller extends AppController {
 		for ($i = 0; $i < $lenof_ahrefs_articles; $i++) {
 		
 			if (!in_array($i, $listof_article_nums_categorized)) {
+
+				/*******************************
+					add: category name, genre name
+				*******************************/
+				// genre name
+				$ahrefs_articles[$i]['genre_name'] = $genre_name;
 				
-// 				debug("\not in array: \$i => $i: ".$ahrefs_articles[$i]['line']);
+				$ahrefs_articles[$i]['category_name'] = "others";
 				
 				array_push($article_others, $ahrefs_articles[$i]);
 				

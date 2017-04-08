@@ -87,8 +87,14 @@ class KeywordsController extends AppController {
 		$this->set('keywords', $this->paginate('Keyword'));
 // 		$this->set('keywords', $this->Keyword->find('all'));
 		
-		$num_of_kws = count($this->Keyword->find('all'));
-		$this->set('num_of_kws', count($this->Keyword->find('all')));
+		$kws = $this->Keyword->find('all');
+		
+		$num_of_kws = count($kws);
+		$this->set('num_of_kws', count($kws));
+// 		$num_of_kws = count($this->Keyword->find('all'));
+// 		$this->set('num_of_kws', count($this->Keyword->find('all')));
+		
+		debug($kws[0]);
 		
 		// total pages
 // 		$num_of_pages = $num_of_kws / $page_limit;

@@ -2654,3 +2654,12 @@ Stack Trace:
 #12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(Articles2Controller), Object(CakeRequest))
 #13 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #14 {main}
+2017-04-08 07:41:42 Error: [MissingControllerException] Controller class Articles2&testController could not be found.
+Exception Attributes: array (
+  'class' => 'Articles2&testController',
+  'plugin' => NULL,
+)
+Request URL: /Eclipse_Luna/Cake_NR5/articles2&test
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

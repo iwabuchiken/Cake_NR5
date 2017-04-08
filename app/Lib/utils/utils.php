@@ -1197,6 +1197,27 @@
 		}//get_Genre_From_Genre_Id($genre_id)
 
 		public static function
+		get_Genre_From_Genre_Name($genre_name) {
+
+			/*******************************
+				get: category
+			*******************************/
+// 			$this->loadModel('Category');
+			$model = ClassRegistry::init('Genre');
+			
+			$option = array('conditions' => array('Genre.name' => $genre_name));
+			
+			$genre = $model->find('first', $option);
+			
+// 			debug($genre);
+			
+			return $genre;
+// 			return $model->find('first', $option);
+// 			return $this->Category->find('first', $option);
+				
+		}//get_Genre_From_Genre_Name($genre_name)
+
+		public static function
 		sanitize_Tags($article_line, $tag_array) {
 			
 			for ($i = 0; $i < count($tag_array); $i++) {

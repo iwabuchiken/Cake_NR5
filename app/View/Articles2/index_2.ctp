@@ -64,19 +64,46 @@
 		$category_name = $category_set[0];
 		
 		echo "<tr>";
-		echo "<td colspan='3' bgcolor='yellow'>";
 		
-			echo "$category_name (".count($category_set[1]).")";
+			echo "<td colspan='3' bgcolor='yellow'>";
 			
-		echo "</td>";
+				echo "$category_name (".count($category_set[1]).")";
+				
+			echo "</td>";
+
+		echo "</tr>";
 		
+		/*******************************
+			tag: tr
+		*******************************/
 		$lenof_category_set_1 = count($category_set[1]);
+		
+// 		//debug
+// 		if (isset($category_set[1][0])) {
+// // 		if ($category_name != "others") {
+			
+// 			debug($category_set[1][0]);
+			
+// 		} else {
+			
+// 			debug($category_set);
+// // 			debug($category_set[1]);
+			
+// 		}
+
+// 		debug("\$category_set[1] =>");
+// 		debug($category_set[1]);
+// 		debug($category_set[1][0]);
 		
 		for ($i = 0; $i < $lenof_category_set_1; $i++) {
 			
 			$article_set = $category_set[1][$i];
 		
 			echo "<tr>";
+			
+				/*******************************
+					serial number
+				*******************************/
 				echo "<td>";
 				
 					echo $count_article;
@@ -84,33 +111,55 @@
 					$count_article ++;
 					
 				echo "</td>";
-				echo "<td>";
+				
+				/*******************************
+					line
+				*******************************/
+				
+				echo $this->element('articles2/index/_index_td_line', 
+				
+					array(
+					
+							"category_name"	=> $category_name
+					
+							, "article_set"	=> $article_set
+					
+					)
+				
+				);
+				
+// 				echo "<td>";
 				
 			
-				if ($category_name != "others") {
+// 				if ($category_name != "others") {
 				
-					echo "<a href=\"".$article_set[0]['url']."\" target=_blank".">"
-					// 						."$count) "
-					// 						.mb_string($a['line'])
-					.mb_convert_encoding($article_set[0]['line'], 'UTF-8')
-					// 						.$a['line']
-					."</a>";
+// 					echo "<a href=\"".$article_set[0]['url']."\" target=_blank".">"
+// 					// 						."$count) "
+// 					// 						.mb_string($a['line'])
+// 					.mb_convert_encoding($article_set[0]['line'], 'UTF-8')
+// 					// 						.$a['line']
+// 					."</a>";
 						
-// 					echo $article_set[0]['line'];
+// // 					echo $article_set[0]['line'];
 				
-				} else {
+// 				} else {
 				
-// 					echo $article_set['line'];
-					echo "<a href=\"".$article_set['url']."\" target=_blank".">"
-							// 						."$count) "
-					// 						.mb_string($a['line'])
-					.mb_convert_encoding($article_set['line'], 'UTF-8')
-					// 						.$a['line']
-					."</a>";
+// // 					echo $article_set['line'];
+// 					echo "<a href=\"".$article_set['url']."\" target=_blank".">"
+// 							// 						."$count) "
+// 					// 						.mb_string($a['line'])
+// 					.mb_convert_encoding($article_set['line'], 'UTF-8')
+// 					// 						.$a['line']
+// 					."</a>";
 						
 					
-				}//if ($category_name != "others")
+// 				}//if ($category_name != "others")
 
+// 				echo "</td>";
+				
+				/*******************************
+					vendor
+				*******************************/
 				echo "<td>";
 				
 				if ($category_name != "others") {
@@ -126,19 +175,11 @@
 				echo "</td>";
 				
 				
-				echo "</td>";
+// 				echo "</td>";
+				
 			echo "</tr>";
 				
 		}//for ($i = 0; $i < $lenof_category_set; $i++)
-		
-		
-// 		echo "<td>";
-// // 		echo $category_set[0][0];
-// 		echo $category_set[1][0][0]['line'];
-// // 		echo $category_set[0];
-// 		echo "</td>";
-		
-// 		echo "</tr>";
 
 ?>
 <?php 
