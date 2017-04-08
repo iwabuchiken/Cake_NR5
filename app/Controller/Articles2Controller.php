@@ -1250,6 +1250,44 @@ class Articles2Controller extends AppController {
 		return $keywords;
 		
 	}//get_keywords($category_id)
+
+	public function
+	open_article() {
+	
+		$article_url = @$this->request->query['article_url'];
+		$article_line = @$this->request->query['article_line'];
+		$article_vendor = @$this->request->query['article_vendor'];
+	
+// 		//sanitize
+// 		$article_line = Utils::sanitize_Tags($article_line, array("font"));
+	
+		$article_category_id = @$this->request->query['article_category_id'];
+		$article_genre_id = @$this->request->query['article_genre_id'];
+	
+// 		$article_news_time = @$this->request->query['article_news_time'];
+
+		// redirect
+		$this->redirect($article_url);
+		
+		/**********************************
+			* get: content
+		**********************************/
+// 		$article_content = $this->_open_article__GetContent_2($article_url);
+		// 		$article_content = $this->_open_article__GetContent($article_url);
+	
+		/**********************************
+			* build: instance: History
+		**********************************/
+		
+		/**********************************
+			* get: setting value: open_mode
+			**********************************/
+	
+		/**********************************
+			* save: history
+		**********************************/
+		
+	}//open_article
 	
 }//class ArticlesController extends AppController
 
