@@ -228,16 +228,41 @@ class CategorysController
 
 	public function add() {
 		if ($this->request->is('post')) {
+			
 			$this->Category->create();
 			
 			$this->request->data['Category']['created_at'] = Utils::get_CurrentTime();
 			$this->request->data['Category']['updated_at'] = Utils::get_CurrentTime();
 			
 			if ($this->Category->save($this->request->data)) {
+			
+				$cat = $this->request->data;
+// 				$cat = $this->request->data['Category'];
+				
+				$genre = Utils::get_Genre_From_Genre_Id($cat['Category']['genre_id']);
+// 				$genre = Utils::get_Genre_From_Genre_Id($cat['Genre']['id']);
+				
+				$msg = "Category saved: name => ".$cat['Category']['name']
+// 				$msg = "Category saved: name => ".$cat['name']
+				." / "
+						."Genre id => ".$cat['Category']['genre_id']
+						." ('"
+								.$genre['Genre']['name']
+								."')"
+				;
+				
+				Utils::write_Log(
+						Utils::get_dPath_Log(),
+						$msg,
+						__FILE__, __LINE__);
+				
 				$this->Session->setFlash(__('Your categories has been saved.'));
 				return $this->redirect(array('action' => 'index'));
+				
 			}
+			
 			$this->Session->setFlash(__('Unable to add your categories.'));
+			
 		} else {//if ($this->request->is('post'))
 			
 			$this->loadModel('Genre');

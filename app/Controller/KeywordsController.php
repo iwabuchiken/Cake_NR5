@@ -368,11 +368,37 @@ class KeywordsController extends AppController {
 			$this->request->data['Keyword']['created_at'] = Utils::get_CurrentTime();
 			$this->request->data['Keyword']['updated_at'] = Utils::get_CurrentTime();
 			
+// 			if (true) {
 			if ($this->Keyword->save($this->request->data)) {
+			
+// 				// log
+// 				$this->loadModel('Category');
+				
+				$kw = $this->request->data['Keyword'];
+				
+				$cat = Utils::get_Category_From_Id($kw['category_id']);
+				
+				$msg = "Keyword saved: name => ".$kw['name']
+						." / "
+						."category id => ".$kw['category_id']
+						." ('"
+						.$cat['Category']['name']
+						."')"
+				;
+
+				Utils::write_Log(
+						Utils::get_dPath_Log(),
+						$msg,
+						__FILE__, __LINE__);
+	
+				
 				$this->Session->setFlash(__('Your keywords has been saved.'));
 				return $this->redirect(array('action' => 'index'));
+				
 			}
+			
 			$this->Session->setFlash(__('Unable to add your keywords.'));
+			
 		} else {
 			
 			$select_Genres = $this->_get_Selector_Genre();
