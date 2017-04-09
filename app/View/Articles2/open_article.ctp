@@ -11,6 +11,12 @@
 
 <br>
 
+<?php 
+
+// 	debug($a);
+
+?>
+
 <table id="open_article">
 
   <tr>
@@ -78,13 +84,30 @@
     <td class="open_article_content">
     
     	<?php 
-    		
-    		$cat = Utils::get_Category_From_Id($a['category_id']);
     	
-//     		debug($cat);
+    		if ($a['category_id'] == "-1") {
     		
-// 	    	echo $cat['category_id'];
-	    	echo $cat['Category']['name']."(".$cat['Category']['id'].")";
+    			echo "others(-1)";
+    		
+    		} else {
+    		
+    			$cat = Utils::get_Category_From_Id($a['category_id']);
+    			 
+    			//     		debug($cat);
+    			
+    			// 	    	echo $cat['category_id'];
+    			echo $cat['Category']['name']."(".$cat['Category']['id'].")";
+    			
+    		}//if ($a['category_id'] == "-1")
+    		
+    		
+    	
+//     		$cat = Utils::get_Category_From_Id($a['category_id']);
+    	
+// //     		debug($cat);
+    		
+// // 	    	echo $cat['category_id'];
+// 	    	echo $cat['Category']['name']."(".$cat['Category']['id'].")";
 // 	    	echo $a['category_id'];
     	?>
     	
@@ -97,7 +120,8 @@
     
     	<?php 
     	
-	    	$genre = Utils::get_Genre_From_Genre_Id($cat['Genre']['id']);
+	    	$genre = Utils::get_Genre_From_Genre_Id(intval($article_genre_id));
+// 	    	$genre = Utils::get_Genre_From_Genre_Id($cat['Genre']['id']);
 // 	    	$genre = Utils::get_Genre_From_Genre_Id($cat['genre_id']);
 	    	 
 	    	//     		debug($cat);

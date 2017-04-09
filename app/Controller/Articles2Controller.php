@@ -1281,7 +1281,7 @@ class Articles2Controller extends AppController {
 						
 							, $article_vendor
 				);
-		// 		$article_content = $this->_open_article__GetContent($article_url);
+// 		// 		$article_content = $this->_open_article__GetContent($article_url);
 	
 		/**********************************
 			* build: instance: Geschichte
@@ -1317,9 +1317,15 @@ class Articles2Controller extends AppController {
 			
 		}
 		
-		/**********************************
+		/********************************************************************
 		 * build: article
-		 **********************************/
+		 ********************************************************************/
+		/*******************************
+			modify: content
+		*******************************/
+		$article_content_modified =
+				$this->_open_article__ModifyContent($article_content);
+		
 // 		$a = $this->Article->create();
 		// 				$a = new Article();
 		
@@ -1330,11 +1336,17 @@ class Articles2Controller extends AppController {
 		$a['vendor'] = $article_vendor;
 // 		$a['news_time'] = $article_news_time;
 		$a['category_id'] = $article_category_id;
-		$a['content'] = $article_content;
+		$a['content'] = $article_content_modified;
+// 		$a['content'] = $article_content;
 		
 // 		debug($a);
 		
+		// set --> $a
 		$this->set("a", $a);
+		
+		// set --> genre name
+		$this->set("article_genre_id", $article_genre_id);
+		
 		
 		/**********************************
 			* get: setting value: open_mode
@@ -1343,12 +1355,48 @@ class Articles2Controller extends AppController {
 		/*******************************
 			open page
 		*******************************/
+		if ($article_vendor != "www.asahi.com") {
+		
+			// redirect
+			$this->redirect($article_url);
+				
+		}//if ($article_vendor == "www.")
+		;
+		
 // 		// redirect
 // 		$this->redirect($article_url);
 		
 	
 	}//open_article
 
+	public function
+	_open_article__ModifyContent($article_content) {
+		
+		$temp = explode("。", $article_content);
+// 		$temp = $article_content.split("。");
+		
+		$modified = join('。<br>', $temp);
+
+		/*******************************
+			test
+		*******************************/
+// 		debug($article_content);
+		
+// 		$temp = Utils::get_Words($article_content);
+		
+// 		debug($temp);
+		
+		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$article_content";
+			
+		//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
+		$xml = simplexml_load_file($url);
+		
+// 		debug($xml);
+		
+		return $modified;
+		
+	}//_open_article__ModifyContent($article_content)
+	
 	public function
 	_open_article__GetContent_2
 	($article_url, $article_vendor) {
@@ -1384,8 +1432,8 @@ class Articles2Controller extends AppController {
 		$article_text = "";
 		
 		if ($article_vendor == "www.asahi.com") {
-		
-			
+
+			//ref http://simplehtmldom.sourceforge.net/
 			$div_article_p = $html->find('div[class=ArticleText] p');
 			// 		ｉＰＳ、医療利用への試金石　他人の細胞から初移植(3/28) http://www.asahi.com/articles/ASK3W5J6KK3WPLBJ005.html
 			
