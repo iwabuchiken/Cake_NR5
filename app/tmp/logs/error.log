@@ -2742,3 +2742,53 @@ Stack Trace:
 #3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2017-04-09 13:19:44 Error: Fatal Error (1): Call to a member function create() on null in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\Articles2Controller.php, line 1318]
+2017-04-09 13:19:44 Error: [FatalErrorException] Call to a member function create() on null
+Request URL: /Eclipse_Luna/Cake_NR5/articles2/open_article?article_url=http%3A%2F%2Fwww.asahi.com%2Farticles%2FASK3W5J6KK3WPLBJ005.html&article_line=%EF%BD%89%EF%BC%B0%EF%BC%B3%E3%80%81%E5%8C%BB%E7%99%82%E5%88%A9%E7%94%A8%E3%81%B8%E3%81%AE%E8%A9%A6%E9%87%91%E7%9F%B3%E3%80%80%E4%BB%96%E4%BA%BA%E3%81%AE%E7%B4%B0%E8%83%9E%E3%81%8B%E3%82%89%E5%88%9D%E7%A7%BB%E6%A4%8D%283%2F28%29++&article_vendor=www.asahi.com&article_category_id=50&article_genre_id=10
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\WORKS_2\\WS\\E...', 1318)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\WORKS_2\\WS\\E...', 1318, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\WORKS_2\\WS\\E...', 1318, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-04-09 13:19:57 Error: Fatal Error (1): Call to a member function create() on null in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\Articles2Controller.php, line 1318]
+2017-04-09 13:19:57 Error: [FatalErrorException] Call to a member function create() on null
+Request URL: /Eclipse_Luna/Cake_NR5/articles2/open_article?article_url=http%3A%2F%2Fwww.asahi.com%2Farticles%2FASK3W5J6KK3WPLBJ005.html&article_line=%EF%BD%89%EF%BC%B0%EF%BC%B3%E3%80%81%E5%8C%BB%E7%99%82%E5%88%A9%E7%94%A8%E3%81%B8%E3%81%AE%E8%A9%A6%E9%87%91%E7%9F%B3%E3%80%80%E4%BB%96%E4%BA%BA%E3%81%AE%E7%B4%B0%E8%83%9E%E3%81%8B%E3%82%89%E5%88%9D%E7%A7%BB%E6%A4%8D%283%2F28%29++&article_vendor=www.asahi.com&article_category_id=50&article_genre_id=10
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\WORKS_2\\WS\\E...', 1318)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\WORKS_2\\WS\\E...', 1318, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\WORKS_2\\WS\\E...', 1318, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-04-09 13:26:22 Error: Fatal Error (1): Call to undefined method Utils::get_Genre_From_Id() in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\View\Articles2\open_article.ctp, line 100]
+2017-04-09 13:26:22 Error: [FatalErrorException] Call to undefined method Utils::get_Genre_From_Id()
+Request URL: /Eclipse_Luna/Cake_NR5/articles2/open_article?article_url=http%3A%2F%2Fwww.asahi.com%2Farticles%2FASK3W5J6KK3WPLBJ005.html&article_line=%EF%BD%89%EF%BC%B0%EF%BC%B3%E3%80%81%E5%8C%BB%E7%99%82%E5%88%A9%E7%94%A8%E3%81%B8%E3%81%AE%E8%A9%A6%E9%87%91%E7%9F%B3%E3%80%80%E4%BB%96%E4%BA%BA%E3%81%AE%E7%B4%B0%E8%83%9E%E3%81%8B%E3%82%89%E5%88%9D%E7%A7%BB%E6%A4%8D%283%2F28%29++&article_vendor=www.asahi.com&article_category_id=50&article_genre_id=10
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\\WORKS_2\\WS\\E...', 100)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\\WORKS_2\\WS\\E...', 100, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\\WORKS_2\\WS\\E...', 100, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-04-09 13:26:22 Error: Fatal Error (1): Call to undefined method Utils::get_Genre_From_Id() in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\View\Articles2\open_article.ctp, line 100]
+2017-04-09 13:26:22 Error: [FatalErrorException] Call to undefined method Utils::get_Genre_From_Id()
+Request URL: /Eclipse_Luna/Cake_NR5/articles2/open_article?article_url=http%3A%2F%2Fwww.asahi.com%2Farticles%2FASK3W5J6KK3WPLBJ005.html&article_line=%EF%BD%89%EF%BC%B0%EF%BC%B3%E3%80%81%E5%8C%BB%E7%99%82%E5%88%A9%E7%94%A8%E3%81%B8%E3%81%AE%E8%A9%A6%E9%87%91%E7%9F%B3%E3%80%80%E4%BB%96%E4%BA%BA%E3%81%AE%E7%B4%B0%E8%83%9E%E3%81%8B%E3%82%89%E5%88%9D%E7%A7%BB%E6%A4%8D%283%2F28%29++&article_vendor=www.asahi.com&article_category_id=50&article_genre_id=10
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\\WORKS_2\\WS\\E...', 100)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\\WORKS_2\\WS\\E...', 100, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\\WORKS_2\\WS\\E...', 100, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-04-09 06:40:24 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 75417 bytes) in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\Debugger.php, line 611]
+2017-04-09 06:40:24 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 75417 bytes)
+Request URL: /Eclipse_Luna/Cake_NR5/articles2/open_article?article_url=http%3A%2F%2Fwww.asahi.com%2Farticles%2FASK3W5J6KK3WPLBJ005.html&article_line=%EF%BD%89%EF%BC%B0%EF%BC%B3%E3%80%81%E5%8C%BB%E7%99%82%E5%88%A9%E7%94%A8%E3%81%B8%E3%81%AE%E8%A9%A6%E9%87%91%E7%9F%B3%E3%80%80%E4%BB%96%E4%BA%BA%E3%81%AE%E7%B4%B0%E8%83%9E%E3%81%8B%E3%82%89%E5%88%9D%E7%A7%BB%E6%A4%8D%283%2F28%29++&article_vendor=www.asahi.com&article_category_id=50&article_genre_id=10
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\\WORKS_2\\WS\\E...', 611)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\\WORKS_2\\WS\\E...', 611, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\\WORKS_2\\WS\\E...', 611, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}

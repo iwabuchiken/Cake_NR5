@@ -1275,7 +1275,12 @@ class Articles2Controller extends AppController {
 		/**********************************
 			* get: content
 		**********************************/
-// 		$article_content = $this->_open_article__GetContent_2($article_url);
+		$article_content = 
+				$this->_open_article__GetContent_2(
+							$article_url
+						
+							, $article_vendor
+				);
 		// 		$article_content = $this->_open_article__GetContent($article_url);
 	
 		/**********************************
@@ -1294,7 +1299,7 @@ class Articles2Controller extends AppController {
 		$this->Geschichte->set('category_id', $article_category_id);
 		$this->Geschichte->set('genre_id', $article_genre_id);
 		
-// 		$this->Geschichte->set('content', $article_content);
+		$this->Geschichte->set('content', $article_content);
 		
 		$this->Geschichte->set('created_at', Utils::get_CurrentTime());
 		$this->Geschichte->set('updated_at', Utils::get_CurrentTime());
@@ -1312,6 +1317,24 @@ class Articles2Controller extends AppController {
 			
 		}
 		
+		/**********************************
+		 * build: article
+		 **********************************/
+// 		$a = $this->Article->create();
+		// 				$a = new Article();
+		
+		$a = array();
+		
+		$a['url'] = $article_url;
+		$a['line'] = $article_line;
+		$a['vendor'] = $article_vendor;
+// 		$a['news_time'] = $article_news_time;
+		$a['category_id'] = $article_category_id;
+		$a['content'] = $article_content;
+		
+// 		debug($a);
+		
+		$this->set("a", $a);
 		
 		/**********************************
 			* get: setting value: open_mode
@@ -1320,11 +1343,76 @@ class Articles2Controller extends AppController {
 		/*******************************
 			open page
 		*******************************/
-		// redirect
-		$this->redirect($article_url);
+// 		// redirect
+// 		$this->redirect($article_url);
 		
 	
 	}//open_article
+
+	public function
+	_open_article__GetContent_2
+	($article_url, $article_vendor) {
+	
+		$html = file_get_html($article_url);
+
+// 		$div_article_p = $html->find('div[class=ArticleText] p');
+// // 		ｉＰＳ、医療利用への試金石　他人の細胞から初移植(3/28) http://www.asahi.com/articles/ASK3W5J6KK3WPLBJ005.html
+		
+// 		debug(count($div_article_p));	//=> 4
+		
+// 		$article_text = "";
+		
+// 		foreach ($div_article_p as $p) {
+		
+// // 			debug($p->plaintext);
+			
+// 			$article_text .= $p->plaintext;
+			
+// 		}//foreach ($div_article_p as $p)
+		
+// 		debug($article_text);
+
+// 		$div_article = $html->find('div[class=ArticleText]');
+		
+// 		debug("count(\$div_article) =>");	//=> 1
+// 		debug(count($div_article));
+// 		debug($div_article->p);	//=> Trying to get property of non-object
+// 		debug($div_article->plaintext);	//=> Trying to get property of non-object
+// 		debug($div_article);
+		
+		// switch
+		$article_text = "";
+		
+		if ($article_vendor == "www.asahi.com") {
+		
+			
+			$div_article_p = $html->find('div[class=ArticleText] p');
+			// 		ｉＰＳ、医療利用への試金石　他人の細胞から初移植(3/28) http://www.asahi.com/articles/ASK3W5J6KK3WPLBJ005.html
+			
+			debug(count($div_article_p));	//=> 4
+			
+// 			$article_text = "";
+			
+			foreach ($div_article_p as $p) {
+			
+				// 			debug($p->plaintext);
+					
+				$article_text .= $p->plaintext;
+					
+			}//foreach ($div_article_p as $p)
+		
+		} else {
+		
+			$article_text = "PREPARING...";
+			
+			
+		}//if ($article_vendor == "")
+		
+		
+
+		return $article_text;
+	
+	}//_open_article__GetContent
 	
 }//class ArticlesController extends AppController
 
