@@ -172,6 +172,22 @@
 			?>
 		</td>
 	
+		<td>
+		
+			<?php 
+				echo $this->Html->link(
+						
+						'Geschichte',
+						array('controller' => 'geschichtes', 
+								'action' => 'index'),
+						array(
+								'class' => "button"
+								,'target'	=> "_blank"
+						)
+				);
+			?>
+		</td>
+	
 	</tr>
 	
 </table>

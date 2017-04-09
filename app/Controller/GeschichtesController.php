@@ -9,47 +9,35 @@ class GeschichtesController extends AppController {
 	index() {
 
 		/*******************************
-			build: articles
+			options
 		*******************************/
-		$genre_id = $this->test_2_1_1_build_genres_list();
+		$options = 				array(
+				
+// 				'conditions'	=> array(
+				
+// 						'Genre.id >='	=> 10
+// 				)
+// 				,
+				
+				'order'		=> array(
+// 				'sort'		=> array(
+				
+						'Geschichte.id'	=> "desc"
+// 						'Geschichte.id'	=> "asc"
+				)
+						
+		);
 		
-// 		$articles = $this->test_1_1_3_build_articles_list();
-		$ahrefs_articles = $this->test_1_1_3_build_articles_list();
-		
-		/******************** (20 '*'s)
-		 *
-		 * set: articles
-		 *
-		 ********************/
-		$this->set("articles", $ahrefs_articles);
-		
-// 		debug("articles => set"."(".count($ahrefs_articles)." articles)");
+		debug($options);
 		
 		/*******************************
-			categorize
+			geschichtes
 		*******************************/
-		$articles_categorized = $this->categorize_articles($ahrefs_articles, $genre_id);
+		$geschichtes = $this->Geschichte->find('all', $options);
 		
-		$this->set("articles_categorized", $articles_categorized);
-
-		/*******************************
-			view: swtich
-		*******************************/
-		$test = @$this->request->query['test'];
+// 		debug($geschichtes[0]);
 		
-		if (isset($test)) {
-		
-			debug("test view --> used");
-			
-			$this -> render('index_2');
-			
-		} else {//if (isset($test))
-
-			debug("test view --> NOT used");
-
-		}
-		
-		
+		$this->set("geschichtes", $geschichtes);
 		
 	}//index()
 

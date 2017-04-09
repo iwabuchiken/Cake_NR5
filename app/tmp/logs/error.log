@@ -2681,3 +2681,64 @@ Stack Trace:
 #7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(Articles2Controller), Object(CakeRequest))
 #8 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #9 {main}
+2017-04-09 05:19:08 Error: [MissingControllerException] Controller class Articles2&testController could not be found.
+Exception Attributes: array (
+  'class' => 'Articles2&testController',
+  'plugin' => NULL,
+)
+Request URL: /Eclipse_Luna/Cake_NR5/articles2&test
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-09 05:19:36 Error: [MissingControllerException] Controller class Articles2&testController could not be found.
+Exception Attributes: array (
+  'class' => 'Articles2&testController',
+  'plugin' => NULL,
+)
+Request URL: /Eclipse_Luna/Cake_NR5/articles2&test
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-09 05:21:46 Error: Fatal Error (1): Call to undefined method GeschichtesController::test_2_1_1_build_genres_list() in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\GeschichtesController.php, line 14]
+2017-04-09 05:21:46 Error: [FatalErrorException] Call to undefined method GeschichtesController::test_2_1_1_build_genres_list()
+Request URL: /Eclipse_Luna/Cake_NR5/geschichtes
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\\WORKS_2\\WS\\E...', 14)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\\WORKS_2\\WS\\E...', 14, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\\WORKS_2\\WS\\E...', 14, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-04-09 05:22:30 Error: [MissingViewException] View file "C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\View\Geschichtes\index.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS_2\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Geschichtes\\index.ctp',
+)
+Request URL: /Eclipse_Luna/Cake_NR5/geschichtes
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(GeschichtesController), Object(CakeRequest))
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2017-04-09 05:34:13 Error: [MissingActionException] Action GeschichtesController::米商務長官、ＷＨ支援先「注視」　米中会談では議論せず(4() could not be found.
+Exception Attributes: array (
+  'controller' => 'GeschichtesController',
+  'action' => '米商務長官、ＷＨ支援先「注視」　米中会談では議論せず(4',
+)
+Request URL: /Eclipse_Luna/Cake_NR5/geschichtes/%E7%B1%B3%E5%95%86%E5%8B%99%E9%95%B7%E5%AE%98%E3%80%81%EF%BC%B7%EF%BC%A8%E6%94%AF%E6%8F%B4%E5%85%88%E3%80%8C%E6%B3%A8%E8%A6%96%E3%80%8D%E3%80%80%E7%B1%B3%E4%B8%AD%E4%BC%9A%E8%AB%87%E3%81%A7%E3%81%AF%E8%AD%B0%E8%AB%96%E3%81%9B%E3%81%9A(4/8)
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(GeschichtesController), Object(CakeRequest))
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2017-04-09 05:34:56 Error: Fatal Error (4): syntax error, unexpected '=>' (T_DOUBLE_ARROW) in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\View\Geschichtes\index.ctp, line 54]
+2017-04-09 05:34:56 Error: [FatalErrorException] syntax error, unexpected '=>' (T_DOUBLE_ARROW)
+Request URL: /Eclipse_Luna/Cake_NR5/geschichtes
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 54)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 54, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 54, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}

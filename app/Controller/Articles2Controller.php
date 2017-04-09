@@ -1316,6 +1316,13 @@ class Articles2Controller extends AppController {
 		/**********************************
 			* get: setting value: open_mode
 		**********************************/
+		
+		/*******************************
+			open page
+		*******************************/
+		// redirect
+		$this->redirect($article_url);
+		
 	
 	}//open_article
 	
