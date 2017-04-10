@@ -631,7 +631,8 @@ class Articles2Controller extends AppController {
 // 								'Genre.id =>'	=> 10
 						)
 						
-						, 'sort'		=> array(
+						, 'order'		=> array(
+// 						, 'sort'		=> array(
 						
 								'Genre.name'	=> "asc"
 						)
@@ -1281,8 +1282,8 @@ class Articles2Controller extends AppController {
 						
 							, $article_vendor
 				);
-// 		// 		$article_content = $this->_open_article__GetContent($article_url);
-	
+
+				
 		/**********************************
 			* build: instance: Geschichte
 		**********************************/
@@ -1355,13 +1356,12 @@ class Articles2Controller extends AppController {
 		/*******************************
 			open page
 		*******************************/
-		if ($article_vendor != "www.asahi.com") {
+// 		if ($article_vendor != "www.asahi.com") {
 		
-			// redirect
-			$this->redirect($article_url);
+// 			// redirect
+// 			$this->redirect($article_url);
 				
-		}//if ($article_vendor == "www.")
-		;
+// 		}//if ($article_vendor == "www.")
 		
 // 		// redirect
 // 		$this->redirect($article_url);
@@ -1374,8 +1374,24 @@ class Articles2Controller extends AppController {
 		
 		$temp = explode("。", $article_content);
 // 		$temp = $article_content.split("。");
+
+		// add prefix
+		$temp_2 = array();
 		
-		$modified = join('。<br>', $temp);
+		foreach ($temp as $t) {
+		
+// 			array_push($temp_2, "--- ".$t." @@@");
+			array_push($temp_2, "--- ".$t);
+// 			$t = "--- ".$t;
+			
+		}//foreach ($temp as $t)
+		
+		
+		$modified = join('。<br>', $temp_2);
+// 		$modified = join('。<br>', $temp);
+		
+		// add prefix
+// 		$modified = "○ ".$modified;
 
 		/*******************************
 			test
@@ -1403,31 +1419,6 @@ class Articles2Controller extends AppController {
 	
 		$html = file_get_html($article_url);
 
-// 		$div_article_p = $html->find('div[class=ArticleText] p');
-// // 		ｉＰＳ、医療利用への試金石　他人の細胞から初移植(3/28) http://www.asahi.com/articles/ASK3W5J6KK3WPLBJ005.html
-		
-// 		debug(count($div_article_p));	//=> 4
-		
-// 		$article_text = "";
-		
-// 		foreach ($div_article_p as $p) {
-		
-// // 			debug($p->plaintext);
-			
-// 			$article_text .= $p->plaintext;
-			
-// 		}//foreach ($div_article_p as $p)
-		
-// 		debug($article_text);
-
-// 		$div_article = $html->find('div[class=ArticleText]');
-		
-// 		debug("count(\$div_article) =>");	//=> 1
-// 		debug(count($div_article));
-// 		debug($div_article->p);	//=> Trying to get property of non-object
-// 		debug($div_article->plaintext);	//=> Trying to get property of non-object
-// 		debug($div_article);
-		
 		// switch
 		$article_text = "";
 		
@@ -1449,6 +1440,43 @@ class Articles2Controller extends AppController {
 					
 			}//foreach ($div_article_p as $p)
 		
+		} else if ($article_vendor == "www.nikkei.com") {
+			
+// 			debug("nikkei");
+			
+			// content
+			//<div  class="cmn-article_text a-cf JSID_key_fonttxt" itemprop="articleBody">
+			
+			$div_article_p = $html->find('div[itemprop=articleBody] p');
+// 			$div_article_p = $html->find('div[itemprop=articleBody]');
+			
+// 			debug(isset($div_article_p) ? $div_article_p->paintext : "not obtained");	//=> Trying to get property of non-object 
+// 			debug(isset($div_article_p) ? 
+// 					"div p --> obtained"."(".count($div_article_p).")" :
+// 					"not obtained");
+			
+			/*******************************
+				build text
+			*******************************/
+			if (isset($div_article_p)) {
+			
+				foreach ($div_article_p as $p) {
+						
+					// 			debug($p->plaintext);
+						
+					$article_text .= $p->plaintext;
+						
+				}//foreach ($div_article_p as $p)
+				
+// 				debug($article_text);
+				
+			} else {//if (isset($div_article_p))
+				
+				$article_text = "PREPARING...";
+				
+			}//if (isset($div_article_p))
+			
+			
 		} else {
 		
 			$article_text = "PREPARING...";
