@@ -27,6 +27,10 @@ class Articles2Controller extends AppController {
 		
 		/*******************************
 			categorize
+			
+			$articles_categorized
+			[genre name, list of articles set(categorized), number of articles]
+			
 		*******************************/
 		$articles_categorized = $this->categorize_articles($ahrefs_articles, $genre_id);
 		

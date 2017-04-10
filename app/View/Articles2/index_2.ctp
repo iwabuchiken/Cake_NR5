@@ -53,6 +53,19 @@
 
 <!-- ------------------------------------------------ -->
 
+<?php 
+
+
+	echo $this->element('articles2/index/_links_to_categories');
+
+	echo "<br>"; echo "<br>";
+	
+?>
+
+
+
+<!-- ------------------------------------------------ -->
+
 <table>
 
 <?php 
@@ -65,9 +78,25 @@
 		
 		echo "<tr>";
 		
-			echo "<td colspan='3' bgcolor='yellow'>";
+// 			echo "<td colspan='3' bgcolor='yellow'>";
+			echo "<td colspan='3' bgcolor='yellow' id=\"$category_name\">";
 			
 				echo "$category_name (".count($category_set[1]).")";
+				
+				echo "&nbsp";
+				echo "&nbsp";
+				
+				echo "(";
+				
+				echo "<a href=\"#top\">Top</a>";
+				
+				echo "&nbsp";
+				echo "&nbsp";
+				
+				echo "<a href=\"#bottom\">Bottom</a>";
+				
+				
+				echo ")";
 				
 			echo "</td>";
 
@@ -77,23 +106,6 @@
 			tag: tr
 		*******************************/
 		$lenof_category_set_1 = count($category_set[1]);
-		
-// 		//debug
-// 		if (isset($category_set[1][0])) {
-// // 		if ($category_name != "others") {
-			
-// 			debug($category_set[1][0]);
-			
-// 		} else {
-			
-// 			debug($category_set);
-// // 			debug($category_set[1]);
-			
-// 		}
-
-// 		debug("\$category_set[1] =>");
-// 		debug($category_set[1]);
-// 		debug($category_set[1][0]);
 		
 		for ($i = 0; $i < $lenof_category_set_1; $i++) {
 			
