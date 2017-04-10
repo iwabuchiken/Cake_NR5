@@ -24,6 +24,7 @@
     <td class="td_label_narrow">Line</td>
     
     <td class="open_article_content">
+<!--     <td class="open_article_content" width="100"> -->
     
     	<?php 
     	

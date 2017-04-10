@@ -828,11 +828,72 @@
 		public static function
 		get_Words($text) {
 		
+// 			debug("\$text => ");
+// 			debug($text);
+			
 			$sen = Utils::_sanitize($text);
 // 			$sen = $this->_sanitize($text);
 		
 // 			debug("\$sen is...");
 // 			debug($sen);
+			
+			$max = 800;
+			// 		$max = 1500;	//=> error
+			// 		$max = 2000;	//=> error
+			
+// 			debug("mb_strlen(\$sen) => ".mb_strlen($sen)." / "."\$max => ".$max );
+			
+			if (mb_strlen($sen) > $max) {
+					
+				$words_ary = Utils::get_Mecab_WordsArray__MultiLots($sen, $max);
+// 				$words_ary = $this->_view_Mecab__MultiLots($sen, $max);
+				// 			$words = $this->_view_Mecab__MultiLots($sen, $max);
+					
+			} else {
+			
+				$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
+			
+				//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
+				$xml = simplexml_load_file($url);
+				
+// 				debug("\$xml =>");
+// 				debug($xml);
+				// 				object(SimpleXMLElement) {
+				// 					word => array(
+				// 							(int) 0 => object(SimpleXMLElement) {
+				// 								surface => '---'
+				// 										feature => '名詞,サ変接続,*,*,*,*,*'
+				// 					},
+				// 					(int) 1 => object(SimpleXMLElement) {
+				// 						surface => '　'
+				// 								feature => '記号,空白,*,*,*,*,　,　,　'
+			
+				$words_ary = array($xml->word);
+				// 			$words = $xml->word;
+				
+// 				debug("\$xml->word =>");
+// 				debug($xml->word);
+				
+// 				debug("count(\$xml->word) =>");
+// 				debug(count($xml->word));
+				
+				
+// 				debug("count(\$words_ary) => ");
+// 				debug(count($words_ary));
+				
+// 				debug("\$words_ary =>");
+// 				debug($words_ary);
+					
+			}
+			
+			return $words_ary;
+				
+		}//_view_Mecab
+
+		public static function
+		get_Words_2($text) {
+		
+			$sen = Utils::_sanitize($text);
 			
 			$max = 800;
 			// 		$max = 1500;	//=> error
@@ -850,15 +911,41 @@
 			
 				//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
 				$xml = simplexml_load_file($url);
+				
+// 				debug("\$xml =>");
+// 				debug($xml);
+				// 				object(SimpleXMLElement) {
+				// 					word => array(
+				// 							(int) 0 => object(SimpleXMLElement) {
+				// 								surface => '---'
+				// 										feature => '名詞,サ変接続,*,*,*,*,*'
+				// 					},
+				// 					(int) 1 => object(SimpleXMLElement) {
+				// 						surface => '　'
+				// 								feature => '記号,空白,*,*,*,*,　,　,　'
 			
-				$words_ary = array($xml->word);
+				$words_ary = $xml->word;
+// 				$words_ary = array($xml->word);
 				// 			$words = $xml->word;
+				
+// 				debug("\$xml->word =>");
+// 				debug($xml->word);
+				
+// 				debug("count(\$xml->word) =>");
+// 				debug(count($xml->word));
+				
+				
+// 				debug("count(\$words_ary) => ");
+// 				debug(count($words_ary));
+				
+// 				debug("\$words_ary =>");
+// 				debug($words_ary);
 					
 			}
 			
 			return $words_ary;
 				
-		}//_view_Mecab
+		}//get_Words_2($text)
 
 		public static function
 		_sanitize

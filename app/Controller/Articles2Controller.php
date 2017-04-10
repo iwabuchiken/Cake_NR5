@@ -1308,15 +1308,16 @@ class Articles2Controller extends AppController {
 		/**********************************
 			* save: history
 		**********************************/
-		if ($this->Geschichte->save()) {
+		debug("geschichte --> NOT saving...");
+// 		if ($this->Geschichte->save()) {
 			
-			$this->Session->setFlash(__("Geschichte has been saved: ".$article_line));
+// 			$this->Session->setFlash(__("Geschichte has been saved: ".$article_line));
 			
-		} else {
+// 		} else {
 			
-			$this->Session->setFlash(__("Geschichte has NOT been saved: ".$article_line));
+// 			$this->Session->setFlash(__("Geschichte has NOT been saved: ".$article_line));
 			
-		}
+// 		}
 		
 		/********************************************************************
 		 * build: article
@@ -1324,12 +1325,26 @@ class Articles2Controller extends AppController {
 		/*******************************
 			modify: content
 		*******************************/
+// 		debug($article_content);
+		// 		　トランプ米大統領と中国の習近平（シーチンピン）国家主席による	
+		
 		$article_content_modified =
 				$this->_open_article__ModifyContent($article_content);
 		
-// 		$a = $this->Article->create();
-		// 				$a = new Article();
+// 		debug("\$article_content_modified =>");
+// 		debug($article_content_modified);
+		// 		--- 　トランプ米大統領と中国の習近平（シーチンピン）国家主席による初の首脳会談は７日、米フロリダ州パームビーチで２日間の日程を終えた。<br>--- トランプ氏は、北朝鮮問題で習氏に国連制
 		
+		/*******************************
+			modify: Kanji
+		*******************************/
+		$article_content_modified_final =
+				$this->_open_article__ModifyContent_Kanji($article_content_modified);
+		
+				
+		/*******************************
+			build: template variable
+		*******************************/
 		$a = array();
 		
 		$a['url'] = $article_url;
@@ -1337,7 +1352,8 @@ class Articles2Controller extends AppController {
 		$a['vendor'] = $article_vendor;
 // 		$a['news_time'] = $article_news_time;
 		$a['category_id'] = $article_category_id;
-		$a['content'] = $article_content_modified;
+		$a['content'] = $article_content_modified_final;
+// 		$a['content'] = $article_content_modified;
 // 		$a['content'] = $article_content;
 		
 // 		debug($a);
@@ -1369,6 +1385,134 @@ class Articles2Controller extends AppController {
 	
 	}//open_article
 
+	/***********************************
+	 *
+	 * @param $article_content
+	 * 		"--- 　トランプ米大統領と中国の習近平（シーチンピン）国家主席による初の首脳会談は７日、米フロリダ州パームビーチで２日間の日程を終えた。<br>--- トランプ氏は、北朝鮮問題で習氏に国連制"
+	 *
+	 * @return
+	 * 		"'<b>---</b><b>　</b><font color="purple"><b>トランプ</b></font><font color="blue"><b>米</b></font><font color="blue"><b>大統領</b></font><font color="black"><b>と</b>""
+	 *
+	 ***********************************/
+	public function
+	_open_article__ModifyContent_Kanji($article_content) {
+	
+		$separator = "<br>";
+		
+		$temp = explode($separator, $article_content);
+// 		$temp = explode("<br>", $article_content);
+// 		$temp = explode("。", $article_content);
+		
+// 		debug("\$temp[0] =>");
+// 		debug($temp[0]);
+		// 		--- 　トランプ米大統領と中国の習近平（シーチンピン）国家主席による初の首脳会談は７日、米フロリダ州パームビーチで２日間の日程を終えた。
+		
+		/**************************************************************
+			modify
+		**************************************************************/
+		$aryof_lines_colorized = array();
+// 		$text_colorized = "";
+		
+		foreach ($temp as $line) {
+		
+			/*******************************
+			 get words
+			 *******************************/
+			$words_ary = Utils::get_Words_2($line);
+			
+// 			$words_ary = Utils::get_Words_2($temp[0]);
+			// 		$words_ary = Utils::get_Words($article_content);
+			
+// 			debug("count(\$words_ary) =>");
+// 			debug(count($words_ary));		//=> '37'
+			
+			/*******************************
+			 colorize
+			 *******************************/
+// 			$tmp = "";
+			
+				// 		foreach ($words_ary as $word) {
+			
+			array_push(
+					$aryof_lines_colorized, 
+					$this->build_Text_Colorize_Kanji($words_ary));
+			
+// 			$text_colorized .= $this->build_Text_Colorize_Kanji($words_ary);
+// 			$text_colorized .= $this->build_Text_Colorize_Kanji($words_ary);
+			
+// 			$tmp .= $this->build_Text_Colorize_Kanji($words_ary);
+// 			$tmp .= $this->build_Text_Colorize_Kanji($words_ary);
+			// 			'<b>---</b><b>　</b><font color="purple"><b>トランプ</b></font><font color="blue"><b>米</b></font><font color="blue"><b>大統領</b></font><font color="black"><b>と</b>
+				
+			// 			$tmp .= $this->build_Text_Colorize_Kanji($word);
+			// 			$tmp .= $this->build_Text_Colorize_Kanji_2($word);
+				
+			// 		}//foreach ($words_ary as $word)
+			
+// 			debug($tmp);
+			// 		<b>---</b><b>　</b><font color="purple"><b>トランプ</b></font><font color="blue"><b>米</b></font><font color="blue"><b>大統領</b></font><font color="black"><b>と</b></font><font color="blue"><b>中国</b>
+					
+		}//foreach ($temp as $line)
+		
+		
+		
+// 		/*******************************
+// 			get words
+// 		*******************************/
+// 		$words_ary = Utils::get_Words_2($temp[0]);
+// // 		$words_ary = Utils::get_Words($article_content);
+		
+// 		debug("count(\$words_ary) =>");
+// 		debug(count($words_ary));		//=> '37'
+		
+// // 		//debug
+// // 		foreach ($words_ary as $word) {
+		
+// // 			debug($word);
+// // 			// 			object(SimpleXMLElement) {
+// // 			// 				surface => 'トランプ'
+// // 			// 						feature => '名詞,一般,*,*,*,*,トランプ,トランプ,トランプ'
+// // 			// 			}
+			
+// // 		}//foreach ($words_ary as $word)
+		
+
+// 		/*******************************
+// 			colorize
+// 		*******************************/
+// 		$tmp = "";
+		
+// // 		foreach ($words_ary as $word) {
+		
+// 			$tmp .= $this->build_Text_Colorize_Kanji($words_ary);
+// 			// 			'<b>---</b><b>　</b><font color="purple"><b>トランプ</b></font><font color="blue"><b>米</b></font><font color="blue"><b>大統領</b></font><font color="black"><b>と</b>
+			
+// // 			$tmp .= $this->build_Text_Colorize_Kanji($word);
+// // 			$tmp .= $this->build_Text_Colorize_Kanji_2($word);
+			
+// // 		}//foreach ($words_ary as $word)
+		
+// 		debug($tmp);
+// 		// 		<b>---</b><b>　</b><font color="purple"><b>トランプ</b></font><font color="blue"><b>米</b></font><font color="blue"><b>大統領</b></font><font color="black"><b>と</b></font><font color="blue"><b>中国</b>
+
+		/*******************************
+			return
+		*******************************/
+		return implode($separator, $aryof_lines_colorized);
+// 		return $text_colorized;
+// 		return null;
+		
+	}//_open_article__ModifyContent_Kanji($article_content)
+	
+	/***********************************
+	 * 
+	 * @param $article_content
+	 * 		"XXXX。XXXX。XXXX。 ..."
+	 * 
+	 * @return
+	 * 		"--- XXXX。<br>--- XXXX。<br>--- XXXX。<br> ..."
+	 * 
+	 ***********************************/
 	public function
 	_open_article__ModifyContent($article_content) {
 		
@@ -1402,10 +1546,10 @@ class Articles2Controller extends AppController {
 		
 // 		debug($temp);
 		
-		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$article_content";
+// 		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$article_content";
 			
-		//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
-		$xml = simplexml_load_file($url);
+// 		//REF http://stackoverflow.com/questions/12542469/how-to-read-xml-file-from-url-using-php answered Sep 22 '12 at 9:17
+// 		$xml = simplexml_load_file($url);
 		
 // 		debug($xml);
 		
@@ -1428,7 +1572,7 @@ class Articles2Controller extends AppController {
 			$div_article_p = $html->find('div[class=ArticleText] p');
 			// 		ｉＰＳ、医療利用への試金石　他人の細胞から初移植(3/28) http://www.asahi.com/articles/ASK3W5J6KK3WPLBJ005.html
 			
-			debug(count($div_article_p));	//=> 4
+// 			debug(count($div_article_p));	//=> 4
 			
 // 			$article_text = "";
 			

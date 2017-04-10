@@ -2852,3 +2852,13 @@ Stack Trace:
 #3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2017-04-10 10:15:47 Error: Fatal Error (4): syntax error, unexpected 'return' (T_RETURN) in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\Articles2Controller.php, line 1388]
+2017-04-10 10:15:47 Error: [FatalErrorException] syntax error, unexpected 'return' (T_RETURN)
+Request URL: /Eclipse_Luna/Cake_NR5/articles2/open_article?article_url=http%3A%2F%2Fwww.asahi.com%2Farticles%2FASK485HPKK48UHBI016.html&article_line=%E5%8C%97%E6%9C%9D%E9%AE%AE%E5%95%8F%E9%A1%8C%E3%80%81%E4%B8%AD%E5%9B%BD%E3%81%AB%E5%88%B6%E8%A3%81%E5%AE%8C%E5%85%A8%E5%B1%A5%E8%A1%8C%E4%BF%83%E3%81%99%E3%80%80%E7%B1%B3%E4%B8%AD%E9%A6%96%E8%84%B3%E4%BC%9A%E8%AB%87%E7%B5%82%E4%BA%86%284%2F8%29++&article_vendor=www.asahi.com&article_category_id=103&article_genre_id=11
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 1388)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 1388, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 1388, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}

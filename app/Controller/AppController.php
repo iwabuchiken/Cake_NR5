@@ -208,6 +208,75 @@ class AppController extends Controller {
 	
 	}//_build_Text_Colorize_Kanji
 	
+	public function
+	build_Text_Colorize_Kanji_2
+	($words) {
+
+// 		//debug
+// 		debug("count(\$words) =>");
+// 		debug(count($words));
+		
+// 		debug("\$words =>");
+// 		debug($words);
+	
+		$content = "";
+	
+		// 		$str = $words->surface;
+	
+		foreach ($words as $w) {
+	
+			$str = $w->surface;
+				
+			$res = Utils::get_Type($str);
+	
+			//REF color names http://www.colordic.org/
+				
+			switch ($res) {
+				case 1:
+						
+					$content .="<font color=\"blue\"><b>".$str."</b></font>";
+						
+					break;
+	
+				case 2:	// hiragana
+					// blue
+					$content .="<font color=\"black\"><b>".$str."</b></font>";
+						
+					break;
+						
+				case 3:	// katakana
+						
+					$content .="<font color=\"purple\"><b>".$str."</b></font>";
+						
+					break;
+	
+				case 4:	// number
+						
+					$content .="<font color=\"darkgreen\"><b>".$str."</b></font>";
+						
+					break;
+	
+				case 0:
+						
+					$content .= "<b>".$str."</b>";
+						
+					break;
+	
+				default:
+						
+					$content .= "<b>".$str."</b>";
+						
+					break;
+	
+			}
+	
+		}//foreach ($words as $w)
+	
+		return $content;
+	
+	
+	}//_build_Text_Colorize_Kanji_2
+	
 	public function 
 	get_Admin_Value
 	($key, $val_1) {
