@@ -2862,3 +2862,19 @@ Stack Trace:
 #3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2017-04-10 11:22:55 Error: [PDOException] SQLSTATE[HY000]: General error: 1 no such column: Geschichte.genre_id
+Request URL: /Eclipse_Luna/Cake_NR5/admins/stats2
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Categor...', Array)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Categor...', Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Categor...', Array, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Categor...', false)
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Category), Array)
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\AdminsController.php(627): Model->find('all', Array)
+#7 [internal function]: AdminsController->stats2()
+#8 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(AdminsController), Array)
+#9 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AdminsController), Object(CakeRequest))
+#11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}

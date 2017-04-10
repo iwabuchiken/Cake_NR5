@@ -534,5 +534,140 @@ class AdminsController extends AppController {
 		return $this->response;
 		
 	}//csv_Categories_dl($name)
+
+	public function stats2() {
+	
+		/*******************************
+			geschichtes
+		*******************************/
+		$this->loadModel('Geschichte');
+		
+		$options = 				array(
+				
+				"conditions"	=> array(
+				
+						
+// 						'Geschichte.category_id >='	=> 49
+						'Geschichte.genre_id >='	=> 10
+				)
+		
+				,
+		
+				'order'		=> array(
+		
+						'Geschichte.id'	=> "asc"
+				)
+		
+		);
+		
+		debug($options);
+		
+		/*******************************
+		 geschichtes
+		 *******************************/
+		$geschichtes = $this->Geschichte->find('all', $options);
+		
+		debug("count(\$geschichtes) =>");
+		debug(count($geschichtes));
+
+// 		debug("\$geschichtes[0] =>");
+// 		debug($geschichtes[0]);
+		
+		/**************************************************************
+			count --> categories
+		**************************************************************/
+		/*******************************
+			get: minimum category id
+		*******************************/
+		$id_min = 49;	//=> 'Computer'
+// 		$id_min = 99999;
+		
+// 		foreach ($geschichtes as $g) {
+		
+// 			$cat_id = $g['Geschichte']['category_id'];
+			
+// 			// judge
+// 			if ($cat_id < $id_min && $cat_id > 0) {
+			
+// 				$id_min = $cat_id;
+				
+// 			}//if ($cat_id < $id_min)
+// 			;
+			
+// 		}//foreach ($geschichtes as $g)
+		
+// 		debug("min cat id => $id_min");
+		
+		/*******************************
+			count
+		*******************************/
+		// num of categories
+		$this->loadModel('Category');
+		
+		$options_2 = 				array(
+		
+				"conditions"	=> array(
+		
+		
+				// 						'Geschichte.category_id >='	=> 49
+						'Category.id >='	=> 49
+				)
+		
+				,
+		
+				'order'		=> array(
+		
+						'Category.id'	=> "asc"
+				)
+		
+		);
+		
+		debug($options_2);
+		
+		$categories = $this->Category->find('all', $options_2);
+		
+		debug("count(\$categories) =>");
+		debug(count($categories));
+
+		/*******************************
+			histogram
+		*******************************/
+		$aryof_histogram = array();
+		
+// 		foreach ($geschichtes as $g) {
+		
+// 			$cat_id = $g['Geschichte']['category_id'];
+		
+			
+			
+// 		}//foreach ($geschichtes as $g)
+		
+		
+
+		
+	
+// 		/**********************************
+// 			* num of histories
+// 			**********************************/
+// 		$historys = $this->History->find('all');
+	
+// 		$this->set("numOf_Histories", count($historys));
+	
+// 		// 		debug(count($historys));
+	
+	
+// 		/**********************************
+// 			* num of histories: each vendor
+// 			**********************************/
+// 		$this->_stats__Vendors($historys);
+	
+// 		/**********************************
+// 			* render
+// 			**********************************/
+// // 		$this->render("/Admins/stats/stats");
+	
+	}//public function stats2()
+	
+	
 	
 }
