@@ -560,15 +560,15 @@ class AdminsController extends AppController {
 		
 		);
 		
-		debug($options);
+// 		debug($options);
 		
 		/*******************************
 		 geschichtes
 		 *******************************/
 		$geschichtes = $this->Geschichte->find('all', $options);
 		
-		debug("count(\$geschichtes) =>");
-		debug(count($geschichtes));
+// 		debug("count(\$geschichtes) =>");
+// 		debug(count($geschichtes));
 
 // 		debug("\$geschichtes[0] =>");
 // 		debug($geschichtes[0]);
@@ -622,52 +622,193 @@ class AdminsController extends AppController {
 		
 		);
 		
-		debug($options_2);
+// 		debug($options_2);
 		
 		$categories = $this->Category->find('all', $options_2);
 		
-		debug("count(\$categories) =>");
-		debug(count($categories));
+// 		debug("count(\$categories) =>");
+// 		debug(count($categories));
 
 		/*******************************
 			histogram
 		*******************************/
-		$aryof_histogram = array();
+		// init: "+1" --> for 'others' category
+// 		debug("\$categories[count(\$categories)-1]['Category']['id'] =>");
+// 		debug($categories[count($categories)-1]['Category']['id']);
 		
-// 		foreach ($geschichtes as $g) {
+		$lastid_categories = $categories[count($categories)-1]['Category']['id'];
 		
-// 			$cat_id = $g['Geschichte']['category_id'];
+// 		debug("last id => $lastid_categories");
 		
-			
-			
-// 		}//foreach ($geschichtes as $g)
-		
-		
+		//ref http://php.net/manual/ja/function.array-fill.php
+		$aryof_histogram = array_fill(
+// 		$aryof_histogram = array(
 
+// 				$id_min, count($categories), 0
+
+				-1,
+				$lastid_categories + 1,
+// 				$categories[count($categories)-1]['Category']['id'] + 1,
+				0
+				
+		);
 		
-	
-// 		/**********************************
-// 			* num of histories
-// 			**********************************/
-// 		$historys = $this->History->find('all');
-	
-// 		$this->set("numOf_Histories", count($historys));
-	
-// 		// 		debug(count($historys));
-	
-	
-// 		/**********************************
-// 			* num of histories: each vendor
-// 			**********************************/
-// 		$this->_stats__Vendors($historys);
-	
+// 		array_unshift($aryof_histogram, -1);
+		
+// 		/*******************************
+// 			subtract ---> index 0 up to 48
+// 		*******************************/
+// 		$ary_tmp = array_slice($aryof_histogram, 0, ($id_min));
+// // 		$ary_tmp = array_slice($aryof_histogram, 0, ($id_min - 1));
+		
+// 		debug($aryof_histogram);
+
+		$lenof_aryof_histogram = count($aryof_histogram);
+		
+		for ($i = 0; $i < $id_min; $i++) {
+// 		for ($i = 0; $i <= $id_min; $i++) {
+		
+			unset($aryof_histogram[$i]);
+			
+		}//for ($i = 0; $i < $lenof_aryof_histogram; $i++)
+		
+// 		debug("\$aryof_histogram");
+// 		debug($aryof_histogram);
+		
+		
+// 		$ary_tmp = array_fill(0, $id_min, 0);
+		
+// 		debug("\$ary_tmp");
+// 		debug($ary_tmp);
+		
+		
+// 		$ary_tmp_2 = array_diff($aryof_histogram, $ary_tmp);
+		
+// 		debug("\$ary_tmp");
+// 		debug($ary_tmp);
+		
+// 		$aryof_histogram = array_diff($aryof_histogram, $ary_tmp);
+		
+// 		debug($aryof_histogram);
+		
+// 		$aryof_histogram = array($categories[count($categories)-1]['Category']['id'] + 1);
+// 		$aryof_histogram = array($categories[count($categories)-1]['id'] + 1);
+// 		$aryof_histogram = array(end($categories)['id'] + 1);
+// 		$aryof_histogram = array(count($categories) + 1);
+// 		$aryof_histogram = array();
+
+// 		debug("count(\$aryof_histogram) =>");
+// 		debug(count($aryof_histogram));
+		
+		// init array
+		foreach ($aryof_histogram as $a) {
+		
+			$a = 0;
+			
+		}//foreach ($aryof_histogram as $a)
+		
+		// count up
+		foreach ($geschichtes as $g) {
+		
+			$cat_id = $g['Geschichte']['category_id'];
+		
+			// count up
+			$aryof_histogram[$cat_id] += 1;
+			
+		}//foreach ($geschichtes as $g)
+
+// 		debug("\$aryof_histogram");
+// 		debug($aryof_histogram);
+
+		/*******************************
+			build: list
+		*******************************/
+		$aryof_category_stats = array();
+		
+		for ($i = 0; $i < $lenof_aryof_histogram; $i++) {
+		
+			if (isset($aryof_histogram[$i])) {
+			
+				$cat = Utils::get_Category_From_Id($i);
+
+				//debug
+				if (!isset($cat['Category'])) {
+
+// 					debug("\$cat['Category'] => not set: $i");
+					
+					continue;
+				
+				}//if ($cat[])
+				
+				array_push(
+						$aryof_category_stats, 
+						
+						array(
+								$i, 
+								$cat['Category']['name'], 
+								$cat['Genre']['name'], 
+								$aryof_histogram[$i])
+// 						array($i, $cat['Category']['name'], $aryof_histogram[$i])
+				);
+				
+			}//if (isset($aryof_histogram[$i]))
+			;;
+			
+		}//for ($i = 0; $i < $lenof_aryof_histogram; $i++)
+		
+// 		debug("\$aryof_category_stats");
+// 		debug($aryof_category_stats);
+
+		/*******************************
+			sort
+		*******************************/
+		@usort($aryof_category_stats, array(&$this, 'cmp_category_stats__freq'));
+		
+		/*******************************
+			set: page vars
+		*******************************/
+		$this->set("aryof_category_stats", $aryof_category_stats);
+		
+		// sum of frequency
+		$sum = 0;
+		
+		foreach ($aryof_category_stats as $ary) {
+		
+			$sum += $ary[3];
+			
+		}//foreach ($aryof_category_stats as $ary)
+		
+		$this->set("sumof_freqs", $sum);
+		
+		
 // 		/**********************************
 // 			* render
 // 			**********************************/
 // // 		$this->render("/Admins/stats/stats");
 	
 	}//public function stats2()
-	
-	
+
+	public function
+	cmp_category_stats__freq($a1, $a2) {
+		
+// 		if ($a1[] != $a2[]) {
+				
+// 			// 			debug($a1);
+// 			// 			debug($a2);
+				
+// 			// 			return 1;
+// 			// 			return -1;
+// 			return strcasecmp($a2['news_time'], $a1['news_time']);;
+// 			// 			return 0;
+				
+// 		}
+		
+// 		$a1_new = $a1['vendor'];
+// 		$a2_new = $a2['vendor'];
+		
+		return ($a1[3] < $a2[3]);	// Z -> A
+// 		return ($a1[3] > $a2[3]);
+		
+	}//cmp_category_stats__freq
 	
 }

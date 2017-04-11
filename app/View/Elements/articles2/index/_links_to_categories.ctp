@@ -95,7 +95,7 @@ links
 			
 		if ($member[1] == 0) {
 		
-			echo "!!<a href=\"#".$member[0]."\" class=\"no_article\">";
+			echo "<a href=\"#".$member[0]."\" class=\"no_article\">";
 // 			echo "!!<a href=\"#".$member[0]."\" color=\"gray\">";
 // 			echo "<a href=\"#".$member[0]."\" color=\"grey\">";
 	// 			echo "<span color=\"grey\">";
