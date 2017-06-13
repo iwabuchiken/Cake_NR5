@@ -1312,16 +1312,16 @@ class Articles2Controller extends AppController {
 		/**********************************
 			* save: history
 		**********************************/
-		debug("geschichte --> NOT saving...");
-// 		if ($this->Geschichte->save()) {
+// 		debug("geschichte --> NOT saving...");
+		if ($this->Geschichte->save()) {
 			
-// 			$this->Session->setFlash(__("Geschichte has been saved: ".$article_line));
+			$this->Session->setFlash(__("Geschichte has been saved: ".$article_line));
 			
-// 		} else {
+		} else {
 			
-// 			$this->Session->setFlash(__("Geschichte has NOT been saved: ".$article_line));
+			$this->Session->setFlash(__("Geschichte has NOT been saved: ".$article_line));
 			
-// 		}
+		}
 		
 		/********************************************************************
 		 * build: article

@@ -101,6 +101,27 @@
 		
 		</td>
 		
+		<td>
+
+			<?php 
+			
+				echo $this->Html->link(
+					
+					'Stats2',
+					array('controller' => 'Admins', 
+							'action' => 'stats2'),
+					array(
+							'class' => "button"
+							
+							,'target'	=> '_blank'
+							
+					)
+				);
+			
+			?>
+		
+		</td>
+		
 <!-- 		<td> -->
 
 			<?php 
