@@ -8,6 +8,9 @@ class PiecesController extends AppController {
 	public function 
 	index() {
 
+		$pieces = $this->Piece->find('all');
+		
+		debug("count(\$pieces) => '".count($pieces)."'");
 		
 	}//index
 
