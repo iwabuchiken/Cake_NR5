@@ -3535,3 +3535,83 @@ Stack Trace:
 #3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2017-06-13 08:15:14 Error: Fatal Error (1): Class 'Piece' not found in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils_2.php, line 19]
+2017-06-13 08:15:14 Error: [FatalErrorException] Class 'Piece' not found
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/create_Tokens
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'Piece' n...', 'C:\\WORKS_2\\WS\\E...', 19)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Piece' n...', 'C:\\WORKS_2\\WS\\E...', 19, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'Piece' n...', 'C:\\WORKS_2\\WS\\E...', 19, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-06-13 08:15:53 Error: Fatal Error (1): Class 'Piece' not found in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils_2.php, line 19]
+2017-06-13 08:15:53 Error: [FatalErrorException] Class 'Piece' not found
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/create_Tokens
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'Piece' n...', 'C:\\WORKS_2\\WS\\E...', 19)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Piece' n...', 'C:\\WORKS_2\\WS\\E...', 19, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'Piece' n...', 'C:\\WORKS_2\\WS\\E...', 19, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-06-13 08:16:07 Error: Fatal Error (1): Class 'Piece' not found in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils_2.php, line 19]
+2017-06-13 08:16:07 Error: [FatalErrorException] Class 'Piece' not found
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/create_Tokens
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'Piece' n...', 'C:\\WORKS_2\\WS\\E...', 19)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Piece' n...', 'C:\\WORKS_2\\WS\\E...', 19, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'Piece' n...', 'C:\\WORKS_2\\WS\\E...', 19, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-06-13 08:18:10 Error: Fatal Error (1): Class 'Piece' not found in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils_2.php, line 19]
+2017-06-13 08:18:10 Error: [FatalErrorException] Class 'Piece' not found
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/create_Tokens
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'Piece' n...', 'C:\\WORKS_2\\WS\\E...', 19)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Piece' n...', 'C:\\WORKS_2\\WS\\E...', 19, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'Piece' n...', 'C:\\WORKS_2\\WS\\E...', 19, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-06-13 08:19:14 Error: Fatal Error (1): Class 'Token' not found in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils_2.php, line 19]
+2017-06-13 08:19:14 Error: [FatalErrorException] Class 'Token' not found
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/create_Tokens
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'Token' n...', 'C:\\WORKS_2\\WS\\E...', 19)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Token' n...', 'C:\\WORKS_2\\WS\\E...', 19, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'Token' n...', 'C:\\WORKS_2\\WS\\E...', 19, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-06-13 08:22:55 Error: Fatal Error (1): Class 'AppModel' not found in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Model\Piece.php, line 3]
+2017-06-13 08:22:55 Error: [FatalErrorException] Class 'AppModel' not found
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/create_Tokens
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'AppModel...', 'C:\\WORKS_2\\WS\\E...', 3)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'AppModel...', 'C:\\WORKS_2\\WS\\E...', 3, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'AppModel...', 'C:\\WORKS_2\\WS\\E...', 3, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-06-13 15:53:22 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\Debugger.php, line 558]
+2017-06-13 15:53:22 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/create_Tokens
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\\WORKS_2\\WS\\E...', 558)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\\WORKS_2\\WS\\E...', 558, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\\WORKS_2\\WS\\E...', 558, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-06-13 15:58:30 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\String.php, line 241]
+2017-06-13 15:58:30 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/create_Tokens
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\\WORKS_2\\WS\\E...', 241)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\\WORKS_2\\WS\\E...', 241, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\\WORKS_2\\WS\\E...', 241, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}

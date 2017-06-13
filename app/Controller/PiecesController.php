@@ -50,13 +50,13 @@ class PiecesController extends AppController {
 // 			// 					feature => '名詞,固有名詞,地域,一般,*,*,ロサンゼルス,ロサンゼルス,ロサンゼルス'
 // 			// 		}
 		
-		debug($xml->word[4]);
+// 		debug($xml->word[4]);
 		
 		
 		
 // 		Utils_2::test_Utils_2_Copied();	//=> works.
 
-		
+		Utils_2::conv_Xml_2_AryOf_Pieces($xml);
 			
 	}//create_Tokens
 	

@@ -83,3 +83,7 @@ CREATE TABLE pieces(
 	genre_id	INT
 	
 );
+
+DELETE FROM pieces;
+#ref https://www.tutorialspoint.com/sqlite/sqlite_update_query.htm
+UPDATE sqlite_sequence SET seq = 0 WHERE name = 'pieces';
