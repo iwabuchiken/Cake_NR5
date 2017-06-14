@@ -48,7 +48,29 @@
 				$data['Piece']['katsu_kata']	= $tmp[5];
 				$data['Piece']['genkei']	= $tmp[6];
 				
-				debug($tmp);
+				if ($tmp == null || count($tmp) == 7 ) {
+					
+					$data['Piece']['yomi']	= "*";
+					
+					$data['Piece']['hatsu']	= "*";
+					
+				} else if (count($tmp) == 9) {
+					
+					$data['Piece']['yomi']	= $tmp[7];
+					
+					$data['Piece']['hatsu']	= $tmp[8];
+					
+				} else {
+		
+					debug("irregular number of tokens -> "
+							.count($tmp)
+							." (".(string)$w->feature.")");
+					
+					continue;
+		
+				}
+				
+// 				debug($tmp);	
 				// 				array(
 				// 						(int) 0 => '記号',
 				// 						(int) 1 => '読点',
@@ -78,17 +100,17 @@
 				# push to array
 				array_push($aryOf_Pieces, $data);
 				
-				# count
-				$count += 1;
+// 				# count
+// 				$count += 1;
 				
-				if ($count > $count_max) {
+// 				if ($count > $count_max) {
 						
-					debug("count => more than ".$count_max);
+// 					debug("count => more than ".$count_max);
 					
-					break;
-// 					return ;
+// 					break;
+// // 					return ;
 				
-				}//if ($count > $count_max)
+// 				}//if ($count > $count_max)
 				
 				
 			}//foreach ($words_ary as $w)
@@ -114,11 +136,11 @@
 					
 					$count += 1;
 					
-					if ($count > $count_max) {
+// 					if ($count > $count_max) {
 					
-						break;
+// 						break;
 						
-					}//if ($count > $count_max)
+// 					}//if ($count > $count_max)
 					
 				} else {
 					
