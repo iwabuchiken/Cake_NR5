@@ -13,9 +13,8 @@
 			debug($xml->word[4]);
 			
 			$words_ary = $xml->word;
-// 			$words_ary = array($xml->word);
 			
-			debug("count(\$words_ary) => ".count($words_ary));	//=> 'count($words_ary) => 158'
+// 			debug("count(\$words_ary) => ".count($words_ary));	//=> 'count($words_ary) => 158'
 			
 			$model = ClassRegistry::init('Piece');
 			
@@ -25,103 +24,82 @@
 			$count = 0;
 			$count_max = 10;
 		
+			/*******************************
+				build : ary of pieces
+			*******************************/
 			foreach ($words_ary as $w) {
 			
-				$model->create();
-				
 				$data = array();
-				
-// 				$data = array('Piece' =>
-				
-// 						array(
-									
-// 								'created_at'	=> Utils::get_CurrentTime(),
-// 								'updated_at'	=> Utils::get_CurrentTime(),
-									
-// 								'form'			=> (string)$w->surface
-// // 								'form'			=> $token->form
-// 						)
-// 				);
-				// 			array(
-				// 					'Piece' => array(
-				// 							'created_at' => '06/13/2017 15:53:50',
-				// 							'updated_at' => '06/13/2017 15:53:50',
-				// 							'form' => '、'
-				// 					)
-				// 			)
-				
 				
 				$data['Piece']['created_at'] = Utils::get_CurrentTime(); 
 				$data['Piece']['updated_at'] = Utils::get_CurrentTime(); 
 				#ref (string) http://www.pahoo.org/e-soul/webtech/php06/php06-12-01.shtm
 				$data['Piece']['form'] = (string)$w->surface;
+				
+				$tmp = explode(',', (string)$w->feature);
+				
+				$data['Piece']['hin']	= $tmp[0];
+				
+				$data['Piece']['hin_1']= $tmp[1];
+				$data['Piece']['hin_2']	= $tmp[2];
+				$data['Piece']['hin_3']	= $tmp[3];
+				
+				$data['Piece']['katsu_kei']	= $tmp[4];
+				$data['Piece']['katsu_kata']	= $tmp[5];
+				$data['Piece']['genkei']	= $tmp[6];
+				
+				debug($tmp);
 				// 				array(
-				// 						'Piece' => array(
-				// 								'created_at' => '06/13/2017 15:54:55',
-				// 								'updated_at' => '06/13/2017 15:54:55',
-				// 								'form' => '、'
-				// 						)
+				// 						(int) 0 => '記号',
+				// 						(int) 1 => '読点',
+				// 						(int) 2 => '*',
+				// 						(int) 3 => '*',
+				// 						(int) 4 => '*',
+				// 						(int) 5 => '*',
+				// 						(int) 6 => '、',
+				// 						(int) 7 => '、',
+				// 						(int) 8 => '、'
 				// 				)
 				
-// 				$data['Piece']['form'] = $w->surface->content;
-// 				$data['Piece']['form'] = $w->surface->content;	//=> blank
-// 				$data['Piece']['form'] = $w->surface;
+// 				debug("count(\$tmp) => ".count($tmp));
 				
-// 				debug($w);
-// 				debug($w->surface);	//=> blank
-// 				debug($w->surface->text);	//=> blank
-// 				debug(get_class($w->surface));	//=> 'SimpleXMLElement'
-// 				debug((string)$w->surface);	//=> 
-
+// 				if (count($tmp) != 9) {
+				
+// 					debug("not 9");
+					
+// // 					debug($tmp);
+					
+// 				}//if (count($tmp) != 9)
+// 				;
+				
+// 				debug($data['Piece']['form']);
+// 				debug($tmp);
+				
+				# push to array
 				array_push($aryOf_Pieces, $data);
 				
-// 				# save data
-// 				if ($model->save($data)) {
+				# count
+				$count += 1;
+				
+				if ($count > $count_max) {
 						
-// 					debug("piece => saved : ".$data['Piece']['form']);
-
-// // 					$count += 1;
-
-// // 					if ($count > $count_max) {
-	
-// // 						break;
-	
-// // 					}//if ($count > $count_max)
-
-// 				} else {
-
-// 					debug("data NOT saved : ".$data['Piece']['form']);
-// 				}
-				
-// 				// count
-// 				$count += 1;
-				
-// 				if($count > $count_max ) {
+					debug("count => more than ".$count_max);
 					
-// 					debug("count => 10");
-					
-// 					break;
-// 				}
+					break;
+// 					return ;
+				
+				}//if ($count > $count_max)
+				
 				
 			}//foreach ($words_ary as $w)
 			
-			//debug
-			debug("count(\$aryOf_Pieces) => '".count($aryOf_Pieces)."'");
+// 			#debug
+// 			debug("returning...");
+// 			return;
 			
-// 			debug($aryOf_Pieces[10]);
 			
-			//debug
-			for ($i = 0; $i < 10; $i++) {
-			
-				debug("\$aryOf_Pieces[$i]['Piece']['form'] => ".$aryOf_Pieces[$i]['Piece']['form']);
-// 				debug("\$words_ary[$i]['form'] => ".$words_ary[$i]['form']);
-				
-			}//for ($i = 0; $i < 10; $i++)
-			
-
 			$count = 0;
 			$count_max = 5;
-// 			$count_max = 10;
 
 			foreach ($aryOf_Pieces as $piece) {
 				
@@ -132,20 +110,15 @@
 				 */
 				$model->create();
 				
-// 				debug("saving piece => ");
-// 				debug($piece);
-				
 				if ($model->save($piece)) {
-					
-// 					debug("piece => saved : ".$piece['Piece']['form']);
 					
 					$count += 1;
 					
-// 					if ($count > $count_max) {
+					if ($count > $count_max) {
 					
-// 						break;
+						break;
 						
-// 					}//if ($count > $count_max)
+					}//if ($count > $count_max)
 					
 				} else {
 					
