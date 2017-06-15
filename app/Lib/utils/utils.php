@@ -468,6 +468,7 @@
 		* 	2	=> Hiragana<br>
 		* 	3	=> Katakana<br>
 		* 	4	=> Number<br>
+		* 	0	=> Other<br>
 		**********************************/
 		public static function
 		get_Type

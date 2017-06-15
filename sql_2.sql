@@ -5,6 +5,7 @@
 #.explain on
 #.tables
 
+pushd C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\
 sqlite3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\development.sqlite3
 .explain on
 .tables

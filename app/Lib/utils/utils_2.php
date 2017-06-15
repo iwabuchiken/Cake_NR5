@@ -301,6 +301,13 @@
 			
 			debug("pieces saved => '$count'");
 			
+			$ret = $count;
+			
+			/*******************************
+				return
+			*******************************/
+			return $ret;
+			
 		}//conv_Xml_2_AryOf_Pieces_2($xml, $geschichte)
 		
 	}//class Utils

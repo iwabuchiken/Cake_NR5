@@ -226,5 +226,17 @@ class CONS {
 	
 	public static $his_Updates_Delimiter = ",";
 	
+	/*******************************
+		pieces
+	*******************************/
+	public static $dict = [
+				
+			1	=> "Kanji",
+			2	=> "Hiragana",
+			3	=> "Katakana",
+			4	=> "Number",
+			0	=> "Other",
+	];
+	
 	
 }//class CONS

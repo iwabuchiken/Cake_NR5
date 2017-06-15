@@ -3625,3 +3625,70 @@ Stack Trace:
 #3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2017-06-15 03:25:04 Error: [Exception] DateInterval::__construct(): Unknown or bad format (PUsed in: /articles/index =&gt; limit articles to past X daysD)
+Request URL: /Eclipse_Luna/Cake_NR5/articles
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php(901): DateInterval->__construct('PUsed in: /arti...')
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php(206): ArticlesController->__index_Get_Articles('2')
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\ArticlesController.php(24): ArticlesController->_index_GetArticles('2')
+#3 [internal function]: ArticlesController->index()
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ArticlesController), Array)
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest))
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2017-06-15 04:30:07 Error: [MissingViewException] View file "C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\View\Pieces\edit_database.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS_2\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Pieces\\edit_database.ctp',
+)
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/edit_database
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2017-06-15 04:30:25 Error: [MissingViewException] View file "C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\View\Pieces\edit_database.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\WORKS_2\\WS\\Eclipse_Luna\\Cake_NR5\\app\\View\\Pieces\\edit_database.ctp',
+)
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/edit_database
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2017-06-15 04:32:01 Error: [MissingActionException] Action PiecesController::create__tokens() could not be found.
+Exception Attributes: array (
+  'controller' => 'PiecesController',
+  'action' => 'create__tokens',
+)
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/create__tokens
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2017-06-15 04:35:29 Error: Fatal Error (1): Call to undefined method PiecesController::find() in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php, line 127]
+2017-06-15 04:35:29 Error: [FatalErrorException] Call to undefined method PiecesController::find()
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/edit_database
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\\WORKS_2\\WS\\E...', 127)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\\WORKS_2\\WS\\E...', 127, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\\WORKS_2\\WS\\E...', 127, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-06-15 04:43:34 Error: Fatal Error (1): Call to undefined function edit_Database__Get_TypeNames() in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php, line 165]
+2017-06-15 04:43:34 Error: [FatalErrorException] Call to undefined function edit_Database__Get_TypeNames()
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/edit_database
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\\WORKS_2\\WS\\E...', 165)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\\WORKS_2\\WS\\E...', 165, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\\WORKS_2\\WS\\E...', 165, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
