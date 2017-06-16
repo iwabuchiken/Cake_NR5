@@ -38,44 +38,47 @@
 			
 		</th>
 
-		<th>
+<!-- 		<th> -->
 			
-			<?php echo $this->Html->link(
-								'Form',
-								array('controller' => 'Pieces', 
-										'action' => 'index',
-// 										'sort'		=> 'id')
-										'?'		=> 'sort=form')
-						);
-			?>
+			<?php 
+// 				echo $this->Html->link(
+// 								'Form',
+// 								array('controller' => 'Pieces', 
+// 										'action' => 'index',
+// // 										'sort'		=> 'id')
+// 										'?'		=> 'sort=form')
+// 						);
+// 			?>
 			
-		</th>
+<!-- 		</th> -->
 
-		<th>
+<!-- 		<th> -->
 			
-			<?php echo $this->Html->link(
-								'Hin',
-								array('controller' => 'Pieces', 
-										'action' => 'index',
-// 										'sort'		=> 'id')
-										'?'		=> 'sort=hin')
-						);
-			?>
+			<?php 
+// 				echo $this->Html->link(
+// 								'Hin',
+// 								array('controller' => 'Pieces', 
+// 										'action' => 'index',
+// // 										'sort'		=> 'id')
+// 										'?'		=> 'sort=hin')
+// 						);
+// 			?>
 			
-		</th>
+<!-- 		</th> -->
 
-		<th>
+<!-- 		<th> -->
 			
-			<?php echo $this->Html->link(
-								'Hin_1',
-								array('controller' => 'Pieces', 
-										'action' => 'index',
-// 										'sort'		=> 'id')
-										'?'		=> 'sort=hin_1')
-						);
-			?>
+			<?php
+// 			echo $this->Html->link(
+// 								'Hin_1',
+// 								array('controller' => 'Pieces', 
+// 										'action' => 'index',
+// // 										'sort'		=> 'id')
+// 										'?'		=> 'sort=hin_1')
+// 						);
+// 			?>
 			
-		</th>
+<!-- 		</th> -->
 
 <!-- 		<th> -->
 			
@@ -123,33 +126,64 @@
 		
 // 			$names = array('katsu_kei', 'katsu_kata');
 			$names = array(
-						'hin_2', 'hin_3', 'katsu_kei', 'katsu_kata',
-						'genkei', 'yomi', 'hatsu', 'type',
-						'geschichte_id', 'category_id', 'genre_id'
+						'form'			=> 'Form',
+						'hin'			=> '品詞',
+						'hin_1'			=> '品詞　１',
+						'hin_2'			=> '品詞　２',
+						'hin_3'			=> '品詞　３',
+						'katsu_kei'		=> '活用形',
+						'katsu_kata'	=> '活用型',
+						'genkei'		=> '原型',
+						'yomi'			=> '読み',
+						'hatsu'			=> '発音',
+						'type'			=> 'タイプ',
+						'geschichte_id'			=> 'Geschichte Id',
+						'category_id'			=> 'Category Id',
+						'genre_id'			=> 'Genre Id'
 			);
 			
-			foreach ($names as $name) {
+			$names_keys = array_keys($names);
+			
+// 			$names = array(
+// 						'hin_2', 'hin_3', 'katsu_kei', 'katsu_kata',
+// 						'genkei', 'yomi', 'hatsu', 'type',
+// 						'geschichte_id', 'category_id', 'genre_id'
+// 			);
+			
+			foreach ($names_keys as $name) {
+// 			foreach ($names as $name) {
 			
 		?>
 		<th>
 			
 			<?php 
 				
-				$opt = array(
-						'controller' => 'Pieces', 
-						'action' => 'index',
-						'?'		=> "sort=$name"
-// 						'?'		=> 'sort=katsu_kata'
+				$opt = Utils_2::update_URL__Param_Sort($name, "desc");
+// 				$opt = $url_new;
+// 				$opt = 'http://localhost/Eclipse_Luna/Cake_NR5/Pieces/index';
+// 				$opt = array(
 						
-				);
+// 						'url'	=> 'http://localhost/Eclipse_Luna/Cake_NR5/Pieces/index'
+// 				);
 				
-				$names = array('katsu_kata');
+// 				$opt = array(
+// 						'controller' => 'Pieces', 
+// 						'action' => 'index',
+// // 						'http://localhost/Eclipse_Luna/Cake_NR5/Pieces/index'
+// 						'?'		=> "sort=$name"
+// // 						'?'		=> 'sort=katsu_kata'
+						
+// 				);
+				
+// 				$names = array('katsu_kata');
 			
 				echo $this->Html->link(
 					
-								$name,
+								$names[$name],
+// 								$name,
 // 								$names[0],
 // 								'katsu_kata',
+// 								array('url'	=> $opt)
 								$opt
 // 								array('controller' => 'Pieces', 
 // 										'action' => 'index',

@@ -309,6 +309,141 @@
 			return $ret;
 			
 		}//conv_Xml_2_AryOf_Pieces_2($xml, $geschichte)
+	
+		public static function
+		update_URL__Param_Sort($param_new, $sort_direction_type = 'asc') {
+// 		update_URL__Param_Sort($param_new) {
+			
+			#ref https://stackoverflow.com/questions/6768793/get-the-full-url-in-php 'answered Jul 20 '11 at 21:33'
+			$url =  (isset($_SERVER['HTTPS']) ? "https" : "http")
+					. "://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+
+			$url_2 = parse_url($url);
+			// 			array(
+			// 					'host' => '*****',
+			// 					'scheme' => 'http',
+			// 					'path' => '/Eclipse_Luna/Cake_NR5/Pieces',
+			// 					'query' => 'sort=created_at'
+			// 			)
+			//	http://localhost/Eclipse_Luna/Cake_NR5/Pieces/index/page:186?sort=created_at&filter=hin-%E5%90%8D%E8%A9%9E
+			
+// 			debug($url_2);
+// 			debug(isset($url_2['query']) ? urldecode($url_2['query']) : "query => Not set");
+// 			debug($url_2);
+			
+// 			$url_new = $url_2['host'];
+			$url_new = $url_2['scheme']."://".$url_2['host']
+			
+					.$url_2['path']
+			;
+			
+// 			debug("\$url_new => ".$url_new);
+
+			/*******************************
+				process : query
+			*******************************/
+			$query_new = array();
+			
+			$key_Sort = "sort";
+			
+			if (isset($url_2['query'])) {
+			
+				$tokens = explode("&", $url_2['query']);
+				
+// 				debug($tokens);
+				
+				foreach ($tokens as $token) {
+				
+					$key_val = explode("=", $token);
+					
+// 					debug($key_val);
+					
+					if ($key_val[0] == $key_Sort) {
+					
+						$key_val[1] = $param_new;
+					
+					} else {
+					
+						
+						
+					}//if ($key_val[0] == $key_Sort)
+					
+					$query_new[$key_val[0]] = $key_val[1];
+					
+				}//foreach ($tokens as $token)
+				
+				
+// 				debug("\$query_new => ");
+// 				debug($query_new);
+				
+// 				debug(array_keys($query_new));
+				
+				$query_new_Keys = array_keys($query_new);
+				
+				$ary_tmp = array();
+				
+				foreach ($query_new_Keys as $key) {
+				
+					array_push($ary_tmp, $key."=".urldecode($query_new[$key]));
+// 					array_push($ary_tmp, $key."=".$query_new[$key]);
+					
+				}//foreach ($query_new as $pair)
+				
+// 				debug($ary_tmp);
+				
+				$query_string_new = implode("&", $ary_tmp);
+				
+// 				debug("\$query_string_new => ".$query_string_new);
+				
+// 				debug(urldecode(http_build_query($query_new)));
+				
+				# add to url
+				$url_new .= "?".$query_string_new;
+				
+			}//if (isset($url_2['query']))
+			
+			
+			
+			
+			/*******************************
+				return
+			*******************************/
+			return $url_new;
+			
+// 			$url_new = http_build_url($url_2);
+			
+// 			debug("\$url_new => ".$url_new);	#=> Error: Call to undefined function http_build_url()
+			
+					
+// 			debug("\$url => ".$url);
+// 			// 			'$url => http://localhost/Eclipse_Luna/Cake_NR5/Pieces?sort=created_at'
+					
+// 			debug("\$_SERVER['QUERY_STRING'] =>");	#=> 'sort=created_at'
+// 			debug($_SERVER['QUERY_STRING']);
+			
+// 			if ($_SERVER['QUERY_STRING'] == '') {
+			
+// 				debug("QUERY_STRING => blank");
+				
+// 			}//if ($_SERVER['QUERY_STRING'] == '')
+
+// 			# test
+// 			$url_2 = parse_url($url);
+			
+// 			debug("\$url_2 => ");
+// 			debug($url_2);
+			
+// 			#ref https://stackoverflow.com/questions/2317508/get-fragment-value-after-hash-from-a-url-in-php 'answered Feb 23 '10 at 11:05'
+// 			debug("\$url_2[\"frangment\"] =>");
+// 			debug($url_2["frangment"]);
+		
+// 			#test
+// 			debug("\$_GET['fragment'] => ");
+// 			debug($_GET['fragment']);
+			
+		}
+// 		(isset($_SERVER['HTTPS']) ? "https" : "http")
+		
 		
 	}//class Utils
 	

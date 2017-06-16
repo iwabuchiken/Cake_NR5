@@ -1,6 +1,6 @@
 <h1>
 
-	Pieces
+	Pieces (<a href="<?php echo $url_new; ?>"><?php echo $url_new; ?></a>)
 		
 </h1>
 

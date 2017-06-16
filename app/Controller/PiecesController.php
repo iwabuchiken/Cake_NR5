@@ -14,6 +14,20 @@ class PiecesController extends AppController {
 	index() {
 
 		/*******************************
+			option : sort
+		*******************************/
+		$sort_key = "sort";
+		
+		$sort_direction_key = "sort-direction";
+		
+		@$query_Sort = $this->request->query[$sort_key];
+		
+		@$query_SortDirection = $this->request->query[$sort_direction_key];
+
+		$sort_type = isset($query_Sort) ? $query_Sort : "id";
+		$sort_direction_type = isset($query_SortDirection) ? $query_SortDirection : "asc";
+		
+		/*******************************
 			pagination
 		*******************************/
 		#ref C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php
@@ -37,6 +51,32 @@ class PiecesController extends AppController {
 		debug("count(\$pieces) => '".count($pieces)."'");
 		
 		$this->set("pieces_Paginated", $pieces_Paginated);
+		
+		#test
+// 		$url =  (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+// 		$param_new = "abc";
+		
+// 		$sort_type = isset($query_Sort) ? $query_Sort : "id";
+// 		$sort_direction_type = isset($query_SortDirection) ? $query_SortDirection : "asc";
+		
+		$url_new = Utils_2::update_URL__Param_Sort($sort_type, $sort_direction_type);
+// 		$url_new = Utils_2::update_URL__Param_Sort($param_new);
+		
+		debug("\$url_new => ".$url_new);
+		
+		#test
+		$this->set("url_new", $url_new);
+		
+// 		debug($_SERVER['HTTP_HOST']);	#=> 'localhost'
+// 		debug($_SERVER['REQUEST_URI']);	#=> '/Eclipse_Luna/Cake_NR5/Pieces?sort=id'
+		
+// 		debug("\$_SERVER['QUERY_STRING'] =>");
+// 		debug($_SERVER['QUERY_STRING']);
+		
+// 		debug(str_replace($_SERVER['QUERY_STRING'], "", $_SERVER['REQUEST_URI']));
+		
+// 		debug("\$_GET => ");
+// 		debug($_GET);
 		
 	}//index
 
