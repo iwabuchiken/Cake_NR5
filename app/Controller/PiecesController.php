@@ -36,6 +36,8 @@ class PiecesController extends AppController {
 		
 		debug("count(\$pieces) => '".count($pieces)."'");
 		
+		$this->set("pieces_Paginated", $pieces_Paginated);
+		
 	}//index
 
 	public function

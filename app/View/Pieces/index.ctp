@@ -7,7 +7,18 @@
 <?php echo $this->element('pieces/_index_pagination')?>
 
 (<a href="#bottom">Bottom</a><a name="top"></a>)
+<br>
+<br>
 
+<table border="1">
+
+	<?php echo $this->element('pieces/_index_t_headers')?>
+	<?php echo $this->element('pieces/_index_t_entries')?>
+
+</table>
+
+<br>
+<br>
 (<a href="#top">Top</a><a name="bottom"></a>)
 
 <?php 
