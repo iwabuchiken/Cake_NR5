@@ -1,7 +1,8 @@
 #pushd C:\WORKS\WS\Eclipse_Kepler\Cake_NR5\app\webroot
 #sqlite3 C:\WORKS\WS\Eclipse_Kepler\Cake_NR5\app\webroot\development.sqlite3
 
-sqlite3 C:\WORKS\WS\Eclipse_Luna\Cake_NR5\app\webroot\development.sqlite3
+pushd C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5
+sqlite3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\development.sqlite3
 .explain on
 .tables
 
@@ -11,6 +12,9 @@ pragma table_info(tokens);
 pragma table_info(articles);
 pragma table_info(categories);
 pragma table_info(histories);
+
+#ref https://stackoverflow.com/questions/947215/how-to-get-a-list-of-column-names-on-sqlite3-iphone 'answered Jun 4 '09 at 1:38'
+pragma table_info(pieces);
 
 SELECT id,name FROM genres;
 

@@ -13,22 +13,36 @@
 <?php //foreach ($historys as $history): ?>
 
 	<tr>
-			<td><?php echo $piece['Piece']['id']; ?></td>
+			
+			<?php 
+			
+				$names = array(
+						'id', 'created_at', 'updated_at',
+						'form', 'hin',
+						'hin_1', 'hin_2', 'hin_3', 'katsu_kei',
+						'katsu_kata', 'genkei', 'yomi', 'hatsu', 'type',
+						
+						'geschichte_id', 'category_id', 'genre_id'
+						
+				);
+// 				$names = array('type');
+				
+				foreach ($names as $name) {
+			
+			?>
 	
+				<td>
+					<?php 
+						echo $piece['Piece'][$name]; 
+// 						echo $piece['Piece']['type']; 
+					?>
+				</td>
+
+			<?php 
 			
-			<td><?php echo $piece['Piece']['created_at']; ?></td>
-			<td><?php echo $piece['Piece']['updated_at']; ?></td>
+				}//foreach ($names as $name)
 			
-			<td><?php echo $piece['Piece']['form']; ?></td>
-			
-			<td><?php echo $piece['Piece']['hin']; ?></td>
-			
-			<td><?php echo $piece['Piece']['hin_1']; ?></td>
-			
-			<td><?php echo $piece['Piece']['hin_2']; ?></td>
-			
-			<td><?php echo $piece['Piece']['hin_3']; ?></td>
-			
+			?>			
 	</tr>
 	
 <?php endforeach; ?>
