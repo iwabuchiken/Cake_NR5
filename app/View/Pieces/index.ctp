@@ -4,8 +4,9 @@
 		
 </h1>
 
-(<a href="#bottom">Bottom</a><a name="top"></a>)
+<?php echo $this->element('pieces/_index_pagination')?>
 
+(<a href="#bottom">Bottom</a><a name="top"></a>)
 
 (<a href="#top">Top</a><a name="bottom"></a>)
 

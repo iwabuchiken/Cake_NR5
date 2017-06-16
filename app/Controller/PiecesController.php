@@ -13,6 +13,25 @@ class PiecesController extends AppController {
 	public function 
 	index() {
 
+		/*******************************
+			pagination
+		*******************************/
+		#ref C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php
+		$this->paginate = array(
+				//REF http://stackoverflow.com/questions/861960/how-can-i-limit-the-find-to-a-specific-number-in-cakephp answered May 14 '10 at 0:08
+		// 					'limit' => "13314,10",
+		// 					'recursive'	=> -1,
+				'limit' => 10,
+				#ref $opt_order["Token.$session_Sort"] = "asc";
+				'order' => array("Pieces.id" => "asc"),
+// 				'conditions'	=> $opt_conditions,
+					
+		);
+		
+		$pieces_Paginated = $this->paginate('Piece');
+// 		$tokens = $this->paginate('Token');
+		
+		
 		$pieces = $this->Piece->find('all');
 		
 		debug("count(\$pieces) => '".count($pieces)."'");
