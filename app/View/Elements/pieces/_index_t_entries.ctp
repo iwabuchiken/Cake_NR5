@@ -21,6 +21,14 @@
 			
 			<td><?php echo $piece['Piece']['form']; ?></td>
 			
+			<td><?php echo $piece['Piece']['hin']; ?></td>
+			
+			<td><?php echo $piece['Piece']['hin_1']; ?></td>
+			
+			<td><?php echo $piece['Piece']['hin_2']; ?></td>
+			
+			<td><?php echo $piece['Piece']['hin_3']; ?></td>
+			
 	</tr>
 	
 <?php endforeach; ?>
