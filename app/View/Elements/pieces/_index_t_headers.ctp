@@ -1,138 +1,64 @@
 <tr>
-		<th>
+<!-- 		<th> -->
 		
-			<?php echo $this->Html->link(
-								'Id',
-								array('controller' => 'Pieces', 
-										'action' => 'index',
-// 										'sort'		=> 'id')
-										'?'		=> 'sort=id')
-						);
-			?>
+			<?php 
+// 				echo $this->Html->link(
+// 								'Id',
+// 								array('controller' => 'Pieces', 
+// 										'action' => 'index',
+// // 										'sort'		=> 'id')
+// 										'?'		=> 'sort=id')
+// 						);
+// 			?>
 			
-		</th>
+<!-- 		</th> -->
 		
 		
-		<th>
-			
-			<?php echo $this->Html->link(
-								'Created at',
-								array('controller' => 'Pieces', 
-										'action' => 'index',
-// 										'sort'		=> 'id')
-										'?'		=> 'sort=created_at')
-						);
-			?>
-		</th>
-		
-		<th>
-			
-			<?php echo $this->Html->link(
-								'Updated at',
-								array('controller' => 'Pieces', 
-										'action' => 'index',
-// 										'sort'		=> 'id')
-										'?'		=> 'sort=updated_at')
-						);
-			?>
-			
-		</th>
-
 <!-- 		<th> -->
 			
 			<?php 
 // 				echo $this->Html->link(
-// 								'Form',
+// 								'Created at',
 // 								array('controller' => 'Pieces', 
 // 										'action' => 'index',
 // // 										'sort'		=> 'id')
-// 										'?'		=> 'sort=form')
+// 										'?'		=> 'sort=created_at')
 // 						);
 // 			?>
-			
 <!-- 		</th> -->
-
+		
 <!-- 		<th> -->
 			
 			<?php 
 // 				echo $this->Html->link(
-// 								'Hin',
+// 								'Updated at',
 // 								array('controller' => 'Pieces', 
 // 										'action' => 'index',
 // // 										'sort'		=> 'id')
-// 										'?'		=> 'sort=hin')
+// 										'?'		=> 'sort=updated_at')
 // 						);
 // 			?>
 			
 <!-- 		</th> -->
 
-<!-- 		<th> -->
-			
-			<?php
-// 			echo $this->Html->link(
-// 								'Hin_1',
-// 								array('controller' => 'Pieces', 
-// 										'action' => 'index',
-// // 										'sort'		=> 'id')
-// 										'?'		=> 'sort=hin_1')
-// 						);
-// 			?>
-			
-<!-- 		</th> -->
-
-<!-- 		<th> -->
-			
-			<?php 
-// 				echo $this->Html->link(
-// 								'Hin_2',
-// 								array('controller' => 'Pieces', 
-// 										'action' => 'index',
-// // 										'sort'		=> 'id')
-// 										'?'		=> 'sort=hin_2')
-// 						);
-// 			?>
-			
-<!-- 		</th> -->
-
-<!-- 		<th> -->
-			
-			<?php 
-// 			echo $this->Html->link(
-// 								'Hin_3',
-// 								array('controller' => 'Pieces', 
-// 										'action' => 'index',
-// // 										'sort'		=> 'id')
-// 										'?'		=> 'sort=hin_3')
-// 						);
-			?>
-			
-<!-- 		</th> -->
-
-<!-- 		<th> -->
-			
-			<?php 
-// 			echo $this->Html->link(
-// 								'katsu_kei',
-// 								array('controller' => 'Pieces', 
-// 										'action' => 'index',
-// // 										'sort'		=> 'id')
-// 										'?'		=> 'sort=katsu_kei')
-// 						);
-			?>
-			
-<!-- 		</th> -->
 
 		<?php 
 		
 // 			$names = array('katsu_kei', 'katsu_kata');
 			$names = array(
+						'id'			=> 'Id',
+						'created_at'	=> '作成',
+						'updated_at'	=> '変更',	// 3
+						
 						'form'			=> 'Form',
 						'hin'			=> '品詞',
 						'hin_1'			=> '品詞　１',
 						'hin_2'			=> '品詞　２',
-						'hin_3'			=> '品詞　３',
+						'hin_3'			=> '品詞　３',	// 5
+						
 						'katsu_kei'		=> '活用形',
-						'katsu_kata'	=> '活用型',
+						'katsu_kata'	=> '活用型',	// 2
+						
 						'genkei'		=> '原型',
 						'yomi'			=> '読み',
 						'hatsu'			=> '発音',
@@ -177,6 +103,7 @@
 				
 // 				$names = array('katsu_kata');
 			
+				#ref https://stackoverflow.com/questions/8332166/cakephp-redirect-to-external-url 'answered Nov 30 '11 at 20:03'
 				echo $this->Html->link(
 					
 								$names[$name],

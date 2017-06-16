@@ -395,6 +395,7 @@
 				
 // 				debug("\$query_string_new => ".$query_string_new);
 				
+				#ref http://phpspot.net/php/man/php/function.http-build-query.html
 // 				debug(urldecode(http_build_query($query_new)));
 				
 				# add to url

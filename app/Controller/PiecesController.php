@@ -9,6 +9,15 @@ class PiecesController extends AppController {
 	public $helpers = array('Html', 'Form');
 
 	public $components = array('Paginator');
+// 	public $components = array(
+// 			'Paginator' => array(
+// 					'limit' => 10,
+// 					'maxLimit' => 10,
+// 					'order' => array('Pieces.id' => 'desc')
+// // 					'order' => array('Hoge.modified' => 'desc')
+// 			)
+// 	);
+	
 	
 	public function 
 	index() {
@@ -27,22 +36,88 @@ class PiecesController extends AppController {
 		$sort_type = isset($query_Sort) ? $query_Sort : "id";
 		$sort_direction_type = isset($query_SortDirection) ? $query_SortDirection : "asc";
 		
+		debug($sort_type." / ".$sort_direction_type);
+		
 		/*******************************
 			pagination
 		*******************************/
 		#ref C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php
-		$this->paginate = array(
+		$paginate_array = array(
 				//REF http://stackoverflow.com/questions/861960/how-can-i-limit-the-find-to-a-specific-number-in-cakephp answered May 14 '10 at 0:08
 		// 					'limit' => "13314,10",
 		// 					'recursive'	=> -1,
 				'limit' => 10,
 				#ref $opt_order["Token.$session_Sort"] = "asc";
-				'order' => array("Pieces.id" => "asc"),
+				'order' => array("Pieces.$sort_type" => $sort_direction_type),
+// 				'order' => array("Pieces.id" => "asc"),
 // 				'conditions'	=> $opt_conditions,
 					
 		);
 		
-		$pieces_Paginated = $this->paginate('Piece');
+// 		debug($paginate_array);
+		
+// 		$this->paginate = $paginate_array;
+// 		$this->paginate = array(
+// 				//REF http://stackoverflow.com/questions/861960/how-can-i-limit-the-find-to-a-specific-number-in-cakephp answered May 14 '10 at 0:08
+// 		// 					'limit' => "13314,10",
+// 		// 					'recursive'	=> -1,
+// 				'limit' => 10,
+// 				#ref $opt_order["Token.$session_Sort"] = "asc";
+// 				'order' => array("Pieces.$sort_type" => $sort_direction_type),
+// // 				'order' => array("Pieces.id" => "asc"),
+// // 				'conditions'	=> $opt_conditions,
+					
+// 		);
+		
+		#ref https://book.cakephp.org/2.0/ja/core-libraries/components/pagination.html
+		#ref public $this->Paginator->settings = array(
+// 		public $this->Paginator->settings = array(
+		$pagination_settings = array(
+// 				'limit' => 3,
+				'limit' => 10,
+				'maxLimit' => 10,
+				
+// 				'conditions'	=> array(
+						
+// 						"Piece.type"	=> 'Hiragana'
+// 				),
+				
+				'order' => array(
+// 							"Piece.hin" => 'asc',
+							"Piece.hin" => 'desc',
+							"Piece.hin_1" => 'desc',
+							"Piece.type" => 'desc',
+// 							"Piece.type" => 'asc',
+// 							"Piece.$sort_type" => 'desc',
+				),
+				
+// 				'order' => array("Piece.$sort_type" => 'desc')
+// 				'order' => array('Piece.hin' => 'desc')
+// 				'order' => array('Piece.form' => 'desc')
+// 				'order' => array('Piece.id' => 'desc')
+// 				'order' => array('Hoge.modified' => 'desc')
+		);
+		
+		debug($pagination_settings);
+		
+		$this->Paginator->settings = $pagination_settings;
+// 		$this->Paginator->settings = array(
+// 				'limit' => 10,
+// 				'maxLimit' => 10,
+// 				'order' => array(
+// 							"Piece.hin" => 'desc',
+// 							"Piece.hin_1" => 'desc',
+// // 							"Piece.$sort_type" => 'desc',
+// 				)
+// // 				'order' => array("Piece.$sort_type" => 'desc')
+// // 				'order' => array('Piece.hin' => 'desc')
+// // 				'order' => array('Piece.form' => 'desc')
+// // 				'order' => array('Piece.id' => 'desc')
+// // 				'order' => array('Hoge.modified' => 'desc')
+// 		);
+		
+		$pieces_Paginated = $this->Paginator->paginate('Piece');
+// 		$pieces_Paginated = $this->paginate('Piece');
 // 		$tokens = $this->paginate('Token');
 		
 		
