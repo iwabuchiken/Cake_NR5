@@ -158,8 +158,8 @@ class PiecesController extends AppController {
 	public function
 	create_Tokens() {
 	
-		#debug
-		return;
+// 		#debug
+// 		return;
 	
 		
 		$this->loadModel('Geschichte');
@@ -172,8 +172,11 @@ class PiecesController extends AppController {
 		
 		$max_word_num = 800;
 		
-		$tickOf_Geschichtes = 50;
-// 		$tickOf_Geschichtes = 5;
+// 		$tickOf_Geschichtes = 50;
+// 		$tickOf_Geschichtes = 15;
+// 		$tickOf_Geschichtes = 10;
+		$tickOf_Geschichtes = 5;
+// 		$tickOf_Geschichtes = 1;
 		
 		$index_Start = 31;
 		
@@ -183,30 +186,48 @@ class PiecesController extends AppController {
 		
 			$text = $geschichtes[$i]['Geschichte']['content'];
 			
+			/*******************************
+				processes
+			*******************************/
+			$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$text";
+			
+			$xml = simplexml_load_file($url);
+
+			$result = Utils_2::conv_Xml_2_AryOf_Pieces_2($xml, $geschichtes[$i]);
+	
+			debug(sprintf("Geschichte %d : Total words %d / Saved %d", 
+						$geschichtes[$i]['Geschichte']['id'], count($xml->word), $result));
+// 						$geschichtes[$i]['id'], count($xml->word), $result));
+			
+// 			#test
+// 			#ref http://pentan.info/php/30timeout.html
+// 			echo str_pad('Y',10);
+// 			flush();
+			
 // 			debug("\$i = $i : $text");
 // 			debug(" (".mb_strlen($text).")");
 			
-			# validate
-			if (mb_strlen($text) > $max_word_num) {
+// 			# validate
+// 			if (mb_strlen($text) > $max_word_num) {
 				
-				debug("words more than $max_word_num");
+// 				debug("words more than $max_word_num");
 
-				$text = $geschichtes[$i]['Geschichte']['content'];
+// 				$text = $geschichtes[$i]['Geschichte']['content'];
 					
-				debug("\$i = $i : $text");
-				debug(" (".mb_strlen($text).")");
+// 				debug("\$i = $i : $text");
+// 				debug(" (".mb_strlen($text).")");
 	
-				$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$text";
+// 				$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$text";
 				
-				$xml = simplexml_load_file($url);
+// 				$xml = simplexml_load_file($url);
 				
-				Utils_2::conv_Xml_2_AryOf_Pieces_2($xml, $geschichtes[$i]);
+// 				Utils_2::conv_Xml_2_AryOf_Pieces_2($xml, $geschichtes[$i]);
 				
-// 				debug($xml);
+// // 				debug($xml);
 				
-				continue;
+// 				continue;
 				
-			}
+// 			}
 			
 // 			# tokeninze
 // 			$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$text";

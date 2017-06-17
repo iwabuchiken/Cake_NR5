@@ -153,16 +153,68 @@
 			
 		}//conv_Xml_2_AryOf_Pieces(xml)
 		
+		/*******************************
+			@return
+			> 0		=> number of pieces saved
+			-1		=> This geschichte has already been saved
+			-2		=> "find" method returned 'null'
+		*******************************/
 		public static function
 		conv_Xml_2_AryOf_Pieces_2($xml, $geschichte) {
+
+			/*******************************
+				validate
+			*******************************/
+			$model = ClassRegistry::init('Piece');
 			
+			$id = $geschichte['Geschichte']['id'];
+			
+			$piece_tmp = $model->find('first', 
+						array('conditions' => 
+// 								array('Piece.geschichte_id' => 700))
+								array('Piece.geschichte_id' => $id))
+			);
+			
+			# validate
+// 			if ($piece_tmp == null) {
+// // 			if ($piece_tmp == null || count($piece_tmp) == 0) {
+			
+// // 				debug("'find' method returned 'null' : $id");
+				
+// // 				debug($piece_tmp);
+				
+// // 				debug(count($piece_tmp));
+			
+// // 				return -2;
+				
+// 			} else if (count($piece_tmp) > 0) {//if ($piece_tmp == null || count($piece_tmp) == 0)
+			if (count($piece_tmp) > 0) {//if ($piece_tmp == null || count($piece_tmp) == 0)
+// 			if ($piece_tmp == null || count($piece_tmp) == 0) {
+			
+				debug("This geschichte already piece-processed : $id");
+			
+				return -1;
+				
+			}//if ($piece_tmp == null || count($piece_tmp) == 0)
+			;
+			
+			
+// 			#debug
+// 			debug("\$piece_tmp => ".count($piece_tmp));
+// // 			debug("\$piece_tmp => ");
+// 			debug($piece_tmp);
+// 			return 0;
+			
+			/*******************************
+				processing
+			*******************************/
 // 			debug($xml->word[4]);
 			
 			$words_ary = $xml->word;
 			
 // 			debug("count(\$words_ary) => ".count($words_ary));	//=> 'count($words_ary) => 158'
 			
-			$model = ClassRegistry::init('Piece');
+// 			$model = ClassRegistry::init('Piece');
 			
 			$aryOf_Pieces = array();
 			
@@ -182,10 +234,18 @@
 				#ref (string) http://www.pahoo.org/e-soul/webtech/php06/php06-12-01.shtm
 				$data['Piece']['form'] = (string)$w->surface;
 				
+				/*******************************
+					id numbers
+				*******************************/
 				$data['Piece']['geschichte_id'] = $geschichte['Geschichte']['id'];
 				$data['Piece']['category_id'] = $geschichte['Geschichte']['category_id'];
 				$data['Piece']['genre_id'] = $geschichte['Geschichte']['genre_id'];
 				
+				$data['Piece']['intext_id'] = $count;
+				
+				/*******************************
+					word strings
+				*******************************/
 				$tmp = explode(',', (string)$w->feature);
 				
 				$data['Piece']['hin']	= $tmp[0];
@@ -219,6 +279,33 @@
 					continue;
 		
 				}
+				
+				/*******************************
+					save data
+				*******************************/
+				/*
+				 * <Notice>
+				 * 1. The model object needs to be created each time of the iterations
+				 * 2. Otherwise, ONLY the last element in the iterations will be saved
+				 */
+				$model->create();
+				
+				if ($model->save($data)) {
+// 				if ($model->save($piece)) {
+						
+					$count += 1;
+						
+					// 					if ($count > $count_max) {
+						
+					// 						break;
+				
+					// 					}//if ($count > $count_max)
+						
+				} else {
+						
+					debug("data NOT saved : ".$piece['Piece']['form']);
+				}
+				
 				
 // 				debug($tmp);	
 				// 				array(
@@ -270,36 +357,36 @@
 // 			return;
 			
 			
-			$count = 0;
-			$count_max = 5;
+// 			$count = 0;
+// 			$count_max = 5;
 
-			foreach ($aryOf_Pieces as $piece) {
+// 			foreach ($aryOf_Pieces as $piece) {
 				
-				/*
-				 * <Notice>
-				 * 1. The model object needs to be created each time of the iterations
-				 * 2. Otherwise, ONLY the last element in the iterations will be saved 
-				 */
-				$model->create();
+// // 				/*
+// // 				 * <Notice>
+// // 				 * 1. The model object needs to be created each time of the iterations
+// // 				 * 2. Otherwise, ONLY the last element in the iterations will be saved 
+// // 				 */
+// // 				$model->create();
 				
-				if ($model->save($piece)) {
+// // 				if ($model->save($piece)) {
 					
-					$count += 1;
+// // 					$count += 1;
 					
-// 					if ($count > $count_max) {
+// // // 					if ($count > $count_max) {
 					
-// 						break;
+// // // 						break;
 						
-// 					}//if ($count > $count_max)
+// // // 					}//if ($count > $count_max)
 					
-				} else {
+// // 				} else {
 					
-					debug("data NOT saved : ".$piece['Piece']['form']);
-				}
+// // 					debug("data NOT saved : ".$piece['Piece']['form']);
+// // 				}
 				
-			}//foreach ($aryOf_Pieces as $piece)
+// 			}//foreach ($aryOf_Pieces as $piece)
 			
-			debug("pieces saved => '$count'");
+// 			debug("pieces saved => '$count'");
 			
 			$ret = $count;
 			

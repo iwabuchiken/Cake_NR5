@@ -86,5 +86,5 @@ CREATE TABLE pieces(
 );
 
 DELETE FROM pieces;
-#ref https://www.tutorialspoint.com/sqlite/sqlite_update_query.htm
 UPDATE sqlite_sequence SET seq = 0 WHERE name = 'pieces';
+#ref https://www.tutorialspoint.com/sqlite/sqlite_update_query.htm

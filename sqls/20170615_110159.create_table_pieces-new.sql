@@ -1,4 +1,16 @@
+/*
+pushd C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5
+sqlite3 app\webroot\development.sqlite3
+.explain on
+.tables
 
+.read sqls/20170615_110159.create_table_pieces-new.sql
+.read sqls/20170615_111504.insert_into_table_pieces-new_from_pieces.sql
+.read sqls/20170615_112300.drop-table_pieces.sql
+.read sqls/20170615_112421.alter-table_rename-to-pieces.sql
+
+ * 
+ */
 CREATE TABLE pieces_new (
 
 	id			INTEGER PRIMARY KEY     AUTOINCREMENT	NOT NULL,
@@ -21,6 +33,8 @@ CREATE TABLE pieces_new (
 	hatsu		VARCHAR(30),
 	
 	type		VARCHAR(30),
+	
+	intext_id	INT,
 	
 	geschichte_id	INT,
 	

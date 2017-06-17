@@ -9,7 +9,7 @@ INSERT INTO pieces_new (
 	hin,
 	hin_1,
 	hin_2,
-	hin_3,
+	hin_3,	/* 8 */
 	
 	katsu_kei,
 	katsu_kata,
@@ -18,6 +18,8 @@ INSERT INTO pieces_new (
 	
 	yomi,
 	hatsu,
+	
+	intext_id,
 	
 	geschichte_id,
 	
