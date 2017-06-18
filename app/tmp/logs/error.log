@@ -3760,3 +3760,35 @@ Stack Trace:
 #3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2017-06-18 04:10:56 Error: [PrivateActionException] Private Action PiecesController::_filter_List_By_Type() is not directly accessible.
+Exception Attributes: array (
+  'controller' => 'PiecesController',
+  'action' => '_filter_List_By_Type',
+)
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/_filter_List_By_Type
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2017-06-18 04:11:14 Error: [PrivateActionException] Private Action PiecesController::__filter_List_By_Type() is not directly accessible.
+Exception Attributes: array (
+  'controller' => 'PiecesController',
+  'action' => '__filter_List_By_Type',
+)
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/__filter_List_By_Type
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2017-06-18 04:34:01 Error: Fatal Error (4): syntax error, unexpected '"calling _filter_List_By_Type_' (T_CONSTANT_ENCAPSED_STRING), expecting identifier (T_STRING) in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php, line 475]
+2017-06-18 04:34:01 Error: [FatalErrorException] syntax error, unexpected '"calling _filter_List_By_Type_' (T_CONSTANT_ENCAPSED_STRING), expecting identifier (T_STRING)
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=hira_kata
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 475)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 475, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 475, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}

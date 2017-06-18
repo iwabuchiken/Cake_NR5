@@ -230,13 +230,52 @@ class CONS {
 		pieces
 	*******************************/
 	public static $dict = [
+			// 		C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils.php
+			// 			* 	1	=> Kanji<br>
+			// 			* 	2	=> Hiragana<br>
+			// 			* 	3	=> Katakana<br>
+			// 			* 	4	=> Number<br>
+			// 			* 	5	=> Kanji & Hiragana<br>
+			// 			* 	6	=> Kanji & Katakana<br>
+			// 			* 	7	=> Hiragana & Katakana<br>
+			// 			*
+			// 			* 	0	=> Other<br>
 				
-			1	=> "Kanji",
-			2	=> "Hiragana",
-			3	=> "Katakana",
-			4	=> "Number",
-			0	=> "Other",
+		1	=> "Kanji",
+		2	=> "Hiragana",
+		3	=> "Katakana",
+		4	=> "Number",
+		
+		5	=> "Kanji-Hira",
+		6	=> "Kanji-Kata",
+		7	=> "Hira-Kata",
+		
+		0	=> "Other",
+			
 	];
+
+	public static $piece_ColumnNames = array(
+				'id'			=> 'Id',
+				'created_at'	=> '作成',
+				'updated_at'	=> '変更',	// 3
+				
+				'form'			=> 'Form',
+				'hin'			=> '品詞',
+				'hin_1'			=> '品詞　１',
+				'hin_2'			=> '品詞　２',
+				'hin_3'			=> '品詞　３',	// 5
+				
+				'katsu_kei'		=> '活用形',
+				'katsu_kata'	=> '活用型',	// 2
+				
+				'genkei'		=> '原型',
+				'yomi'			=> '読み',
+				'hatsu'			=> '発音',
+				'type'			=> 'タイプ',
+				'geschichte_id'			=> 'Geschichte Id',
+				'category_id'			=> 'Category Id',
+				'genre_id'			=> 'Genre Id'
+	);
 	
 	
 }//class CONS

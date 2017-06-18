@@ -155,6 +155,28 @@ class PiecesController extends AppController {
 		
 	}//index
 
+	public function 
+	index_2() {
+
+		/*******************************
+			option : sort
+		*******************************/
+		$sort_key = "sort";
+		
+		$sort_direction_key = "sort-direction";
+		
+		@$query_Sort = $this->request->query[$sort_key];
+		
+		@$query_SortDirection = $this->request->query[$sort_direction_key];
+
+		$sort_type = isset($query_Sort) ? $query_Sort : "id";
+		$sort_direction_type = isset($query_SortDirection) ? $query_SortDirection : "asc";
+		
+		debug($sort_type." / ".$sort_direction_type);
+		
+		
+	}//index
+
 	public function
 	create_Tokens() {
 	
@@ -415,4 +437,65 @@ class PiecesController extends AppController {
 		
 	}//edit_Database()
 	
+	public function
+	_filter_List_By_Type__Hiragana() {
+		
+		$conditions = array(
+				
+				'conditions'	=>
+					array("Piece.type"	=> "Hiragana")
+// 					array("Piece.type"	=> "hiragana")
+		);
+		
+		$pieces = $this->Piece->find('all', $conditions);
+		
+		return $pieces;
+		
+	}
+	
+	public function
+	filter_List_By_Type() {
+		
+		@$query_Type = $this->request->query["type"];
+
+		if ($query_Type == '') {
+
+			$query_Type = 'kanji';
+			
+		}//if ($query_Type == '')
+		;
+		
+		debug("\$query_Type => ".$query_Type);
+		
+		$listOf_Pieces = array();
+		
+		switch ($query_Type) {
+			
+			case 'hiragana' :
+				
+// 				debug("calling _filter_List_By_Type__Hiragana() ...");
+				
+				$listOf_Pieces = $this->_filter_List_By_Type__Hiragana();
+				
+				break;
+				
+			default :
+				
+				break;
+			
+		}//switch ($type)
+		
+		/*******************************
+			variables
+		*******************************/
+		$this->set("listOf_Pieces", $listOf_Pieces);
+		
+		/**********************************
+		 * view
+		 **********************************/
+		$this->layout = 'plain';
+		
+		$this->render("/Pieces/partials/_index_filter_by_type");
+		
+	}//_filter_List_By_Type($type)
 }

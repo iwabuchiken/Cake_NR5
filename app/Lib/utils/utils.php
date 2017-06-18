@@ -468,6 +468,10 @@
 		* 	2	=> Hiragana<br>
 		* 	3	=> Katakana<br>
 		* 	4	=> Number<br>
+		* 	5	=> Kanji & Hiragana<br>
+		* 	6	=> Kanji & Katakana<br>
+		* 	7	=> Hiragana & Katakana<br>
+		* 
 		* 	0	=> Other<br>
 		**********************************/
 		public static function
@@ -610,7 +614,116 @@
 				return 4;
 				
 			}
+
+			/**********************************
+			 * 5	=> Kanji & Hiragana
+			 **********************************/
+			//REF http://stackoverflow.com/questions/2556289/php-split-multibyte-string-word-into-separate-characters answered Mar 31 '10 at 21:56
+			foreach (preg_split('//u', $str, -1, PREG_SPLIT_NO_EMPTY) as $chr) {
+				// 			foreach ($str as $chr) {
+					
+				// 				debug($chr);
 			
+				if (!preg_match("/^[一-龠]+$/u",$chr)	// Kanji
+						|| !preg_match("/^[ぁ-んー]+$/u",$chr)	// Hiragana
+						) {
+
+					$flag = false;
+						
+					// 					debug("not match, kanji");
+						
+					break;
+						
+				} else {
+						
+					// 					debug("mactch, kanji");
+						
+				}
+					
+			}
+				
+			if ($flag == true) {
+			
+				// 				debug("all match, kanji");
+			
+				return 5;
+			
+			}
+			
+			/**********************************
+			 * 6	=> Kanji & Katakana
+			 **********************************/
+			//REF http://stackoverflow.com/questions/2556289/php-split-multibyte-string-word-into-separate-characters answered Mar 31 '10 at 21:56
+			foreach (preg_split('//u', $str, -1, PREG_SPLIT_NO_EMPTY) as $chr) {
+				// 			foreach ($str as $chr) {
+					
+				// 				debug($chr);
+			
+				if (!preg_match("/^[一-龠]+$/u",$chr)	// Kanji
+						|| !preg_match("/^[ァ-ヶー]+$/u",$chr)	// Kata
+						) {
+
+					$flag = false;
+						
+					// 					debug("not match, kanji");
+						
+					break;
+						
+				} else {
+						
+					// 					debug("mactch, kanji");
+						
+				}
+					
+			}
+				
+			if ($flag == true) {
+			
+				// 				debug("all match, kanji");
+			
+				return 6;
+			
+			}
+			
+			/**********************************
+			 * 7	=> Hiragana & Katakana
+			 **********************************/
+			//REF http://stackoverflow.com/questions/2556289/php-split-multibyte-string-word-into-separate-characters answered Mar 31 '10 at 21:56
+			foreach (preg_split('//u', $str, -1, PREG_SPLIT_NO_EMPTY) as $chr) {
+				// 			foreach ($str as $chr) {
+					
+				// 				debug($chr);
+			
+				if (!preg_match("/^[一-龠]+$/u",$chr)	// Kanji
+						|| !preg_match("/^[ァ-ヶー]+$/u",$chr)	// Kata
+						|| !preg_match("/^[ぁ-んー]+$/u",$chr)	// Hiragana
+						) {
+
+					$flag = false;
+						
+					// 					debug("not match, kanji");
+						
+					break;
+						
+				} else {
+						
+					// 					debug("mactch, kanji");
+						
+				}
+					
+			}
+				
+			if ($flag == true) {
+			
+				// 				debug("all match, kanji");
+			
+				return 7;
+			
+			}
+			
+			/*******************************
+				default : 0
+			*******************************/
 			return 0;
 			
 // 			return true;

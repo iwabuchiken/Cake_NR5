@@ -233,6 +233,18 @@
 				$data['Piece']['updated_at'] = Utils::get_CurrentTime(); 
 				#ref (string) http://www.pahoo.org/e-soul/webtech/php06/php06-12-01.shtm
 				$data['Piece']['form'] = (string)$w->surface;
+
+				// 				* 	1	=> Kanji<br>
+				// 				* 	2	=> Hiragana<br>
+				// 				* 	3	=> Katakana<br>
+				// 				* 	4	=> Number<br>
+				// 				* 	5	=> Kanji & Hiragana<br>
+				// 				* 	6	=> Kanji & Katakana<br>
+				// 				* 	7	=> Hiragana & Katakana<br>
+				// 				*
+				// 				* 	0	=> Other<br>
+				$data['Piece']['type'] = CONS::$dict[Utils::get_Type((string)$w->surface)];
+// 				$data['Piece']['type'] = Utils::get_Type((string)$w->surface);
 				
 				/*******************************
 					id numbers
