@@ -12,7 +12,13 @@
 
 	<?php 
 		
-	echo $this->element('pieces/index_2/_index_t_headers')
+		echo $this->element('pieces/index_2/_index_t_headers')
+	
+	?>
+
+	<?php 
+			
+		echo $this->element('pieces/index_2/_index_t_entries')
 	
 	?>
 

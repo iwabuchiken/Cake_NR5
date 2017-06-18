@@ -272,10 +272,40 @@ class CONS {
 				'yomi'			=> '読み',
 				'hatsu'			=> '発音',
 				'type'			=> 'タイプ',
+			
+				'intext_id'		=> 'Intext Id',
+			
 				'geschichte_id'			=> 'Geschichte Id',
 				'category_id'			=> 'Category Id',
 				'genre_id'			=> 'Genre Id'
 	);
 	
+	public static $piece_ColumnNames_Entry = array(
+			
+			'id',
+			'created_at',
+			'updated_at',
+			
+			'form',
+			'hin',
+			'hin_1',
+			'hin_2',
+			'hin_3',
+			
+			'katsu_kei',
+			'katsu_kata',
+			'genkei',
+			'yomi',
+			'hatsu',
+			
+			'type',
+			
+			'intext_id',
+			
+			'geschichte_id',
+			'category_id',
+			'genre_id'
+			
+	);
 	
 }//class CONS

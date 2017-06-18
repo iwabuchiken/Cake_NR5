@@ -9,29 +9,33 @@
 
 ?>
 
-<?php foreach ($pieces_Paginated as $piece): ?>
-<?php //foreach ($historys as $history): ?>
+<?php foreach ($listOf_Pieces as $piece): ?>
+<?php //foreach ($pieces_Paginated as $piece): ?>
 
 	<tr>
 			
 			<?php 
 			
-				$names = array(
-						'id', 'created_at', 'updated_at',
-						'form', 'hin', 'hin_1', 'hin_2', 'hin_3', 
-						'katsu_kei', 'katsu_kata', 
-						'genkei', 'yomi', 'hatsu',
-						'type',
-						
-						'geschichte_id', 'category_id', 'genre_id'
+				$names = CONS::$piece_ColumnNames_Entry;
+				
+// 				$names = array(
 // 						'id', 'created_at', 'updated_at',
-// 						'form', 'hin',
-// 						'hin_1', 'hin_2', 'hin_3', 'katsu_kei',
-// 						'katsu_kata', 'genkei', 'yomi', 'hatsu', 'type',
+// 						'form', 'hin', 'hin_1', 'hin_2', 'hin_3', 
+// 						'katsu_kei', 'katsu_kata', 
+// 						'genkei', 'yomi', 'hatsu',
+// 						'type',
+						
+// 						'intext_id',
 						
 // 						'geschichte_id', 'category_id', 'genre_id'
+// // 						'id', 'created_at', 'updated_at',
+// // 						'form', 'hin',
+// // 						'hin_1', 'hin_2', 'hin_3', 'katsu_kei',
+// // 						'katsu_kata', 'genkei', 'yomi', 'hatsu', 'type',
 						
-				);
+// // 						'geschichte_id', 'category_id', 'genre_id'
+						
+// 				);
 // 				$names = array('type');
 				
 				foreach ($names as $name) {
