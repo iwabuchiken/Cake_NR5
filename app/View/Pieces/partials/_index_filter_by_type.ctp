@@ -8,7 +8,7 @@
 	
 ?>
 
-<table>
+<table id="pieces">
 
 	<?php 
 		

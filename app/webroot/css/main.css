@@ -337,6 +337,8 @@ div#ytplayer {
 	
 }
 
+
+
 div#controller, div#video_title {
 	
 	float:	right;
@@ -354,6 +356,20 @@ div#div_poslist {
 /*	height:	10%;*/
 	height:	500px;
 	overflow:	scroll;
+	
+	
+}
+
+div#list_area {
+	
+	background:	#CEFDB8;
+	
+	height:	50%;
+	
+	overflow	:	scroll;
+	/*overflow-y	:	scroll;	*/
+	/*
+	overflow:	scroll;	/* ref div#div_poslist */
 	
 	
 }
@@ -403,6 +419,15 @@ table#table_stats tr td.td_id {
 	
 	width:	20%;
 
+	
+}
+
+table#pieces {
+	
+	/* background-color	:	yellow;*/
+	
+	/* ref http://qiita.com/naru0504/items/ff0c77775223dc5a9148 */
+	overflow-y: scroll;
 	
 }
 
@@ -571,6 +596,17 @@ input.submit_go {
 	
 }
 
+label.basic {
+	/*display: block;*/
+	/*font-size: 110%;*/
+	font-size: 15px;
+	margin-bottom:3px;
+	
+	/* ref https://quartet-communications.com/info/topics/7165 */
+	cursor: pointer;
+	
+}
+
 form .submit input[value="Filter"] {
 /*input[value="Filter"] {*/
 /*input.btn[value="Filter"] {*/
@@ -675,6 +711,15 @@ div.user_index {
 	
 }
 
+input.cb_type {
+	
+	-moz-transform:		scale(2);
+	-webkit-transform:	scale(2);
+	transform:		scale(2);
+	
+	cursor:pointer;
+}
+
 div.flash_done {
 	
 	color: blue;
@@ -720,4 +765,12 @@ div.pagination {
     zoom: 1.0;
     width: device-width;
 }
+
+
+button.basic {
+	
+	font-size	:	20px;
+	padding		:	5px;
+	
+}/*button.basic*/
 
