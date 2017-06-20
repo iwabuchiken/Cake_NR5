@@ -511,6 +511,84 @@ class PiecesController extends AppController {
 		return $pieces;
 		
 	}//_filter_List_By_Type($type_Tokens)
+
+	/*******************************
+		@param $sort_Param_Set => array($query_Sort, $query_Sort_Direction);
+	*******************************/
+	public function
+	_filter_List_By_Type_2($type_Tokens, $sort_Param_Set) {
+
+		/*******************************
+			condition : OR
+		*******************************/
+		$aryOf_ORs = array();
+
+		foreach ($type_Tokens as $token) {
+		
+			array_push(
+					
+					$aryOf_ORs, 
+					array("Piece.type"	=> $token)
+					
+			);
+			
+		}//foreach ($type_Tokens as $token)
+
+		$conditions = array(
+		
+				'conditions'	=>
+				// 				array("Piece.type"	=> "Hiragana")
+				array('OR'	=> $aryOf_ORs
+						// 						array(
+		
+						// 							array("Piece.type"	=> "Hiragana"),
+						// 							array("Piece.type"	=> "Number"),
+						// 				)
+							
+				)
+				// 					array("Piece.type"	=> "hiragana")
+		);
+		
+		/*******************************
+			sort
+		*******************************/
+		$valOf_SortArray = array();
+		
+		$tokensOf_Sorts = explode(",", $sort_Param_Set[0]);
+		$tokensOf_SortsDirections = explode(",", $sort_Param_Set[1]);
+		
+		$lenOf_TokensOf_Sorts = count($tokensOf_Sorts);
+		
+// 		debug("\$tokensOf_Sorts =>");
+// 		debug($tokensOf_Sorts);
+		
+		for ($i = 0; $i < $lenOf_TokensOf_Sorts; $i++) {
+		
+			array_push(
+					$valOf_SortArray, 
+					"Piece.$tokensOf_Sorts[$i] $tokensOf_SortsDirections[$i]"
+// 					array($tokensOf_Sorts[$i] => $tokensOf_SortsDirections[$i])
+			);
+			
+		}//for ($i = 0; $i < $lenOf_TokensOf_Sorts; $i++)
+		
+		debug("\$valOf_SortArray");
+		debug($valOf_SortArray);
+		
+		// set option
+		$conditions['order'] = $valOf_SortArray;
+		
+		debug("\$conditions");
+		debug($conditions);
+		
+		/*******************************
+			find
+		*******************************/
+		$pieces = $this->Piece->find('all', $conditions);
+		
+		return $pieces;
+		
+	}//_filter_List_By_Type_2($type_Tokens, $sort_Param_Set)
 	
 	public function
 	filter_List_By_Type() {
@@ -542,15 +620,18 @@ class PiecesController extends AppController {
 		debug("\$query_Sort => ");
 		debug($query_Sort);
 		
+		debug("\$query_Sort_Direction =>");
+		debug($query_Sort_Direction);
+		
 // 		$data_Sort = explode()
 		
-// 		$sort_Param_Set = array($query_Sort, $query_Sort_Direction);
+		$sort_Param_Set = array($query_Sort, $query_Sort_Direction);
 		
 		/*******************************
 			get : pieces
 		*******************************/
-// 		$listOf_Pieces = $this->_filter_List_By_Type_2($type_Tokens, $sort_Param_Set);
-		$listOf_Pieces = $this->_filter_List_By_Type($type_Tokens);
+		$listOf_Pieces = $this->_filter_List_By_Type_2($type_Tokens, $sort_Param_Set);
+// 		$listOf_Pieces = $this->_filter_List_By_Type($type_Tokens);
 		
 // 		$listOf_Pieces = array();
 		

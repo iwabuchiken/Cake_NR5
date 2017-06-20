@@ -14,113 +14,71 @@
 
 <div>
 
-<span id="numOf_sort_block" hidden>1</span>
-<!-- <div> -->
-<!-- ref select http://html.eweb-design.com/0905_slc.html -->
-	Sort 1
-	<SELECT id="select_sort_column_1">
+	<span id="numOf_sort_block" hidden>1</span>
 	
-		<OPTION value="0">---</OPTION>
-		
-		<?php 
-		
-			$index = 0;
-			
-			foreach ($listOf_ColumnNames as $item) {
-			
-				echo "<OPTION value=\"$item\">".$item."</OPTION>";
-	// 			echo "<OPTION value=\"$index\">".$item."</OPTION>";
-				
-				$index += 1;
-				
-			}//foreach ($listOf_ColumnNames as $item)
-			
-			
-			
-		
-		?>
-	</SELECT>
+	<!-- ref select http://html.eweb-design.com/0905_slc.html -->
 	
-	Sort 2
-	<SELECT id="select_sort_column_2">
+	<?php 
 	
-		<OPTION value="0">---</OPTION>
-		
-		<?php 
-		
-			$index = 0;
-			
-			foreach ($listOf_ColumnNames as $item) {
-			
-				echo "<OPTION value=\"$item\">".$item."</OPTION>";
-	// 			echo "<OPTION value=\"$index\">".$item."</OPTION>";
-				
-				$index += 1;
-				
-			}//foreach ($listOf_ColumnNames as $item)
-			
-			
-			
-		
-		?>
-	</SELECT>
+		$sort_block_ids = array(1, 2, 3, 4);
 	
-	Sort 3
-	<SELECT id="select_sort_column_3">
+		foreach ($sort_block_ids as $id_num) {
+		
+		
+	?>
+		Sort <?php echo $id_num; ?>
+		<SELECT id="select_sort_column_<?php echo $id_num; ?>">
+		
+			<OPTION value="0">---</OPTION>
+			
+			<?php 
+			
+				$index = 0;
+				
+				foreach ($listOf_ColumnNames as $item) {
+				
+					echo "<OPTION value=\"$item\">".$item."</OPTION>";
+		// 			echo "<OPTION value=\"$index\">".$item."</OPTION>";
+					
+					$index += 1;
+					
+				}//foreach ($listOf_ColumnNames as $item)
+				
+			?>
+		</SELECT>
 	
-		<OPTION value="0">---</OPTION>
+	<?php 
+	
+		}//foreach ($sort_block_ids as $id_num)
 		
-		<?php 
-		
-			$index = 0;
-			
-			foreach ($listOf_ColumnNames as $item) {
-			
-				echo "<OPTION value=\"$item\">".$item."</OPTION>";
-	// 			echo "<OPTION value=\"$index\">".$item."</OPTION>";
-				
-				$index += 1;
-				
-			}//foreach ($listOf_ColumnNames as $item)
-			
-			
-			
-		
-		?>
-	</SELECT>
+	?>
 	
 </div>
 
-<div class="radio_buttons">
+<?php 
 
-	<input type="radio" name="sort_direction_1" id="sort_direction_1_asc" value="asc" checked/>
-	<label for="sort_direction_1_asc">ASC</label>
-	
-	<input type="radio" name="sort_direction_1" id="sort_direction_1_desc" value="desc"/>
-	<label for="sort_direction_1_desc">DESC</label>
-	
-</div>
+// 	$sort_block_ids = array(1, 2, 3, );
 
-<div class="radio_buttons">
-
-	<input type="radio" name="sort_direction_2" id="sort_direction_2_asc" value="asc" checked/>
-	<label for="sort_direction_2_asc">ASC</label>
+	foreach ($sort_block_ids as $id_num) {
 	
-	<input type="radio" name="sort_direction_2" id="sort_direction_2_desc" value="desc"/>
-	<label for="sort_direction_2_desc">DESC</label>
-	
-</div>
+?>
 
-<div class="radio_buttons">
-
-	<input type="radio" name="sort_direction_3" id="sort_direction_3_asc" value="asc" checked/>
-	<label for="sort_direction_3_asc">ASC</label>
+	<div class="radio_buttons">
 	
-	<input type="radio" name="sort_direction_3" id="sort_direction_3_desc" value="desc"/>
-	<label for="sort_direction_3_desc">DESC</label>
-	
-</div>
+		<input type="radio" name="sort_direction_<?php echo $id_num; ?>" id="sort_direction_<?php echo $id_num; ?>_asc" value="asc" checked/>
+		<label for="sort_direction_<?php echo $id_num; ?>_asc">ASC</label>
+		
+		<input type="radio" name="sort_direction_<?php echo $id_num; ?>" id="sort_direction_<?php echo $id_num; ?>_desc" value="desc"/>
+		<label for="sort_direction_<?php echo $id_num; ?>_desc">DESC</label>
+		
+	</div>
 
+<?php 
+
+	}//foreach ($sort_block_ids as $id_num)
+	
+
+?>
 
 <div>
 <!-- ref http://www.htmq.com/html/input_checkbox.shtml -->

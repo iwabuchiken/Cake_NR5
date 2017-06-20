@@ -71,14 +71,17 @@ function show_List() {
 	var val_Sort_1 = $("#select_sort_column_1").val();
 	var val_Sort_2 = $("#select_sort_column_2").val();
 	var val_Sort_3 = $("#select_sort_column_3").val();
+	var val_Sort_4 = $("#select_sort_column_4").val();
 	
-	alert(
-			"select_sort_column_1 => " + val_Sort_1
-			+ " / "
-			+ "select_sort_column_2 => " + val_Sort_2
-			+ " / "
-			+ "select_sort_column_3 => " + val_Sort_3
-	);
+//	alert(
+//			"select_sort_column_1 => " + val_Sort_1
+//			+ " / "
+//			+ "select_sort_column_2 => " + val_Sort_2
+//			+ " / "
+//			+ "select_sort_column_3 => " + val_Sort_3
+//			+ " / "
+//			+ "select_sort_column_4 => " + val_Sort_4
+//	);
 //	alert("select_sort_column_1 => " + val_Sort_1);
 	
 	/***************************
@@ -88,15 +91,16 @@ function show_List() {
 	var radio_1 = $('input[name=sort_direction_1]:checked').val();
 	var radio_2 = $('input[name=sort_direction_2]:checked').val();
 	var radio_3 = $('input[name=sort_direction_3]:checked').val();
+	var radio_4 = $('input[name=sort_direction_4]:checked').val();
 	
-	alert(
-				"radio_1 => " + radio_1
-				+ " / "
-				+ "radio_2 => " + radio_2
-				+ " / "
-				+ "radio_3 => " + radio_3
-				
-	);
+//	alert(
+//				"radio_1 => " + radio_1
+//				+ " / "
+//				+ "radio_2 => " + radio_2
+//				+ " / "
+//				+ "radio_3 => " + radio_3
+//				
+//	);
 	//alert("radio_1 => " + radio_1);
 	//alert("select_sort_column_1 => " + val_Sort_1);
 
@@ -134,18 +138,26 @@ function show_List() {
 				
 				// direction
 				param_Sorts_Directions += "," + radio_3;
-				
-			}
+
+				if (val_Sort_4 != 0) {
+					
+					param_Sorts += "," + val_Sort_4;
+					
+					// direction
+					param_Sorts_Directions += "," + radio_4;
+
+				}				
+			}//if (val_Sort_3 != 0) {
 			
 		}
 		
 	}//if (val_Sort_1 == 0) {
 	
-	alert("param_Sorts => " + param_Sorts);
-	alert("param_Sorts_Directions => " + param_Sorts_Directions);
+//	alert("param_Sorts => " + param_Sorts);
+//	alert("param_Sorts_Directions => " + param_Sorts_Directions);
 	
 	
-	return;
+//	return;
 	
 	/***************************
 		get values
@@ -219,7 +231,8 @@ function show_List() {
 		url: url,
 		type: "GET",
 		//REF http://stackoverflow.com/questions/1916309/pass-multiple-parameters-to-jquery-ajax-call answered Dec 16 '09 at 17:37
-		data: {type: param_types},
+		data: {type: param_types, sort : param_Sorts, sort_direction : param_Sorts_Directions},
+//		data: {type: param_types},
 //		data: {type: type_name},
 		
 		timeout: 10000
