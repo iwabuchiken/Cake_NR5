@@ -65,6 +65,89 @@ function show_Hiraganas() {
 function show_List() {
 	
 	/***************************
+		get values : sort
+	 ***************************/
+	//ref https://jquery.nj-clucker.com/select-set-get/
+	var val_Sort_1 = $("#select_sort_column_1").val();
+	var val_Sort_2 = $("#select_sort_column_2").val();
+	var val_Sort_3 = $("#select_sort_column_3").val();
+	
+	alert(
+			"select_sort_column_1 => " + val_Sort_1
+			+ " / "
+			+ "select_sort_column_2 => " + val_Sort_2
+			+ " / "
+			+ "select_sort_column_3 => " + val_Sort_3
+	);
+//	alert("select_sort_column_1 => " + val_Sort_1);
+	
+	/***************************
+		get values : radio button : sort_1
+	 ***************************/
+	
+	var radio_1 = $('input[name=sort_direction_1]:checked').val();
+	var radio_2 = $('input[name=sort_direction_2]:checked').val();
+	var radio_3 = $('input[name=sort_direction_3]:checked').val();
+	
+	alert(
+				"radio_1 => " + radio_1
+				+ " / "
+				+ "radio_2 => " + radio_2
+				+ " / "
+				+ "radio_3 => " + radio_3
+				
+	);
+	//alert("radio_1 => " + radio_1);
+	//alert("select_sort_column_1 => " + val_Sort_1);
+
+	/***************************
+		build param : sort
+	***************************/
+	var param_Sorts = "";
+	
+	var param_Sorts_Directions = "";
+	
+	if (val_Sort_1 == 0) {
+		
+		param_Sorts = "id";
+		
+		// direction
+		param_Sorts_Directions = radio_1;
+		
+	} else {
+		
+		param_Sorts = val_Sort_1;
+
+		// direction
+		param_Sorts_Directions = radio_1;
+
+		if (val_Sort_2 != 0) {
+			
+			param_Sorts += "," + val_Sort_2;
+
+			// direction
+			param_Sorts_Directions += "," + radio_2;
+
+			if (val_Sort_3 != 0) {
+				
+				param_Sorts += "," + val_Sort_3;
+				
+				// direction
+				param_Sorts_Directions += "," + radio_3;
+				
+			}
+			
+		}
+		
+	}//if (val_Sort_1 == 0) {
+	
+	alert("param_Sorts => " + param_Sorts);
+	alert("param_Sorts_Directions => " + param_Sorts_Directions);
+	
+	
+	return;
+	
+	/***************************
 		get values
 	 ***************************/
 //	alert("checkboxes...");
@@ -89,12 +172,12 @@ function show_List() {
 	 ***************************/
 	var lenOf_Types = val.length;
 	
-	alert("lenOf_Types => " + lenOf_Types);
+//	alert("lenOf_Types => " + lenOf_Types);
 
 	//ref https://www.ajaxtower.jp/js/array_class/index3.html
 	var param_types = val.join(",");
 	
-	alert(param_types);
+//	alert(param_types);
 	
 //	return;
 	

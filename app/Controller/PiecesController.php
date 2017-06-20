@@ -174,6 +174,18 @@ class PiecesController extends AppController {
 		
 		debug($sort_type." / ".$sort_direction_type);
 		
+		/*******************************
+			sort column : item list
+		*******************************/
+		#ref column names https://stackoverflow.com/questions/5840150/how-to-get-the-field-names-of-the-table-in-cakephp 'answered Apr 30 '11 at 9:27'
+// 		debug(array_keys($this->Piece->getColumnTypes()));
+		
+		$listOf_ColumnNames = array_keys($this->Piece->getColumnTypes());
+		
+		$this->set("listOf_ColumnNames", $listOf_ColumnNames);
+		
+// 		debug($this->Piece->schema());	//=> works.
+		
 		
 	}//index
 
@@ -503,8 +515,11 @@ class PiecesController extends AppController {
 	public function
 	filter_List_By_Type() {
 		
+		/*******************************
+			query : type : default
+		*******************************/
 		@$query_Type = $this->request->query["type"];
-
+		
 		if ($query_Type == '') {
 
 			$query_Type = 'kanji';
@@ -518,6 +533,23 @@ class PiecesController extends AppController {
 		
 		debug($type_Tokens);
 		
+		/*******************************
+		 query : sort
+		 *******************************/
+		@$query_Sort = $this->request->query["sort"];
+		@$query_Sort_Direction = $this->request->query["sort_direction"];
+		
+		debug("\$query_Sort => ");
+		debug($query_Sort);
+		
+// 		$data_Sort = explode()
+		
+// 		$sort_Param_Set = array($query_Sort, $query_Sort_Direction);
+		
+		/*******************************
+			get : pieces
+		*******************************/
+// 		$listOf_Pieces = $this->_filter_List_By_Type_2($type_Tokens, $sort_Param_Set);
 		$listOf_Pieces = $this->_filter_List_By_Type($type_Tokens);
 		
 // 		$listOf_Pieces = array();

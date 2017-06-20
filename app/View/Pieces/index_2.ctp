@@ -14,19 +14,114 @@
 
 <div>
 
+<span id="numOf_sort_block" hidden>1</span>
 <!-- <div> -->
 <!-- ref select http://html.eweb-design.com/0905_slc.html -->
-	Sort
-	<SELECT>
-	<OPTION value="1">項目１</OPTION>
-	<OPTION value="2" selected>項目２</OPTION>
-	<OPTION value="3">項目３</OPTION>
-	<OPTION value="4">項目４</OPTION>
-	<OPTION value="5">項目５</OPTION>
+	Sort 1
+	<SELECT id="select_sort_column_1">
+	
+		<OPTION value="0">---</OPTION>
+		
+		<?php 
+		
+			$index = 0;
+			
+			foreach ($listOf_ColumnNames as $item) {
+			
+				echo "<OPTION value=\"$item\">".$item."</OPTION>";
+	// 			echo "<OPTION value=\"$index\">".$item."</OPTION>";
+				
+				$index += 1;
+				
+			}//foreach ($listOf_ColumnNames as $item)
+			
+			
+			
+		
+		?>
 	</SELECT>
-<!-- </div> -->
-
+	
+	Sort 2
+	<SELECT id="select_sort_column_2">
+	
+		<OPTION value="0">---</OPTION>
+		
+		<?php 
+		
+			$index = 0;
+			
+			foreach ($listOf_ColumnNames as $item) {
+			
+				echo "<OPTION value=\"$item\">".$item."</OPTION>";
+	// 			echo "<OPTION value=\"$index\">".$item."</OPTION>";
+				
+				$index += 1;
+				
+			}//foreach ($listOf_ColumnNames as $item)
+			
+			
+			
+		
+		?>
+	</SELECT>
+	
+	Sort 3
+	<SELECT id="select_sort_column_3">
+	
+		<OPTION value="0">---</OPTION>
+		
+		<?php 
+		
+			$index = 0;
+			
+			foreach ($listOf_ColumnNames as $item) {
+			
+				echo "<OPTION value=\"$item\">".$item."</OPTION>";
+	// 			echo "<OPTION value=\"$index\">".$item."</OPTION>";
+				
+				$index += 1;
+				
+			}//foreach ($listOf_ColumnNames as $item)
+			
+			
+			
+		
+		?>
+	</SELECT>
+	
 </div>
+
+<div class="radio_buttons">
+
+	<input type="radio" name="sort_direction_1" id="sort_direction_1_asc" value="asc" checked/>
+	<label for="sort_direction_1_asc">ASC</label>
+	
+	<input type="radio" name="sort_direction_1" id="sort_direction_1_desc" value="desc"/>
+	<label for="sort_direction_1_desc">DESC</label>
+	
+</div>
+
+<div class="radio_buttons">
+
+	<input type="radio" name="sort_direction_2" id="sort_direction_2_asc" value="asc" checked/>
+	<label for="sort_direction_2_asc">ASC</label>
+	
+	<input type="radio" name="sort_direction_2" id="sort_direction_2_desc" value="desc"/>
+	<label for="sort_direction_2_desc">DESC</label>
+	
+</div>
+
+<div class="radio_buttons">
+
+	<input type="radio" name="sort_direction_3" id="sort_direction_3_asc" value="asc" checked/>
+	<label for="sort_direction_3_asc">ASC</label>
+	
+	<input type="radio" name="sort_direction_3" id="sort_direction_3_desc" value="desc"/>
+	<label for="sort_direction_3_desc">DESC</label>
+	
+</div>
+
+
 <div>
 <!-- ref http://www.htmq.com/html/input_checkbox.shtml -->
 Type

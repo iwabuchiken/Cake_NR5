@@ -596,6 +596,14 @@ input.submit_go {
 	
 }
 
+input.sort_direction {
+	
+	font-size	:	20px;
+	padding		:	5px;
+
+	
+}
+
 label.basic {
 	/*display: block;*/
 	/*font-size: 110%;*/
@@ -774,3 +782,11 @@ button.basic {
 	
 }/*button.basic*/
 
+div.radio_buttons {
+	
+	float :	left;
+	width: auto;
+	margin-left: 3em;
+	margin-right: 3em;
+	
+}
