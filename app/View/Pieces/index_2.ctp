@@ -31,12 +31,13 @@
 <!-- ref http://www.htmq.com/html/input_checkbox.shtml -->
 Type
 <!-- <p> -->
-<input type="checkbox" class="cb_type" name="riyu" value="kanji" checked="checked">Kanji
-<input type="checkbox" class="cb_type" name="riyu" value="hiragana" >Hiragana
-<input type="checkbox" class="cb_type" name="riyu" value="katakana" >Katakana
+<input type="checkbox" class="cb_type" name="riyu" value="Kanji" checked="checked">Kanji
+<input type="checkbox" class="cb_type" name="riyu" value="Hiragana" >Hiragana
+<input type="checkbox" class="cb_type" name="riyu" value="Katakana" >Katakana
 <!-- <label>Number</label><input type="checkbox" class="cb_type" name="riyu" value="number" > -->
 
-<input type="checkbox" class="cb_type" name="riyu" value="number" >Number
+<input type="checkbox" class="cb_type" name="riyu" value="Number" >Number
+<input type="checkbox" class="cb_type" name="riyu" value="Other" >Other
 <!-- ref https://stackoverflow.com/questions/6293588/how-to-create-an-html-checkbox-with-a-clickable-label -->
 <!-- <label class="basic"><input type="checkbox" class="cb_type" name="riyu" value="number" >Number</label> -->
 <!-- </p> -->

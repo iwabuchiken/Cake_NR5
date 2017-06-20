@@ -67,7 +67,7 @@ function show_List() {
 	/***************************
 		get values
 	 ***************************/
-	alert("checkboxes...");
+//	alert("checkboxes...");
 	
 	
 //	var val = $(".cb_type:checked").map(function() {
@@ -80,10 +80,22 @@ function show_List() {
 //	var val = $("input[type='checkbox']").val();	//=> works
 //	
 //	alert(val.name);	//=> 'undefined'
-	alert(val[1]);
-	alert(val.length);
+//	alert(val[1]);
+//	alert(val.length);
 //	alert(val);
-//	
+
+	/***************************
+		build : type string
+	 ***************************/
+	var lenOf_Types = val.length;
+	
+	alert("lenOf_Types => " + lenOf_Types);
+
+	//ref https://www.ajaxtower.jp/js/array_class/index3.html
+	var param_types = val.join(",");
+	
+	alert(param_types);
+	
 //	return;
 	
 	
@@ -124,7 +136,8 @@ function show_List() {
 		url: url,
 		type: "GET",
 		//REF http://stackoverflow.com/questions/1916309/pass-multiple-parameters-to-jquery-ajax-call answered Dec 16 '09 at 17:37
-		data: {type: type_name},
+		data: {type: param_types},
+//		data: {type: type_name},
 		
 		timeout: 10000
 		

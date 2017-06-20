@@ -454,6 +454,53 @@ class PiecesController extends AppController {
 	}
 	
 	public function
+	_filter_List_By_Type($type_Tokens) {
+
+		$aryOf_ORs = array();
+		
+		foreach ($type_Tokens as $token) {
+		
+			array_push(
+					
+					$aryOf_ORs, 
+					array("Piece.type"	=> $token)
+					
+			);
+			
+		}//foreach ($type_Tokens as $token)
+		
+		
+		
+// 		$aryOf_ORs = array(
+				
+// 				array("Piece.type"	=> "Katakana"),
+// // 				array("Piece.type"	=> "Hiragana"),
+// 				array("Piece.type"	=> "Number"),
+				
+// 		);
+		
+		$conditions = array(
+		
+				'conditions'	=>
+// 				array("Piece.type"	=> "Hiragana")
+				array('OR'	=> $aryOf_ORs
+// 						array(
+						
+// 							array("Piece.type"	=> "Hiragana"),
+// 							array("Piece.type"	=> "Number"),
+// 				)
+					
+			)
+				// 					array("Piece.type"	=> "hiragana")
+		);
+		
+		$pieces = $this->Piece->find('all', $conditions);
+		
+		return $pieces;
+		
+	}//_filter_List_By_Type($type_Tokens)
+	
+	public function
 	filter_List_By_Type() {
 		
 		@$query_Type = $this->request->query["type"];
@@ -467,23 +514,33 @@ class PiecesController extends AppController {
 		
 		debug("\$query_Type => ".$query_Type);
 		
-		$listOf_Pieces = array();
+		$type_Tokens = explode(",", $query_Type);
 		
-		switch ($query_Type) {
+		debug($type_Tokens);
+		
+		$listOf_Pieces = $this->_filter_List_By_Type($type_Tokens);
+		
+// 		$listOf_Pieces = array();
+		
+// 		#test
+// 		$query_Type = 'hiragana';
+		
+// 		switch ($query_Type) {
 			
-			case 'hiragana' :
+// 			case 'hiragana' :
 				
-// 				debug("calling _filter_List_By_Type__Hiragana() ...");
+// // 				debug("calling _filter_List_By_Type__Hiragana() ...");
 				
-				$listOf_Pieces = $this->_filter_List_By_Type__Hiragana();
+// // 				$listOf_Pieces = $this->_filter_List_By_Type__Hiragana();
+// 				$listOf_Pieces = $this->_filter_List_By_Type($type_Tokens);
 				
-				break;
+// 				break;
 				
-			default :
+// 			default :
 				
-				break;
+// 				break;
 			
-		}//switch ($type)
+// 		}//switch ($type)
 		
 		/*******************************
 			variables
