@@ -101,7 +101,7 @@ Type
 
 <!-- 	<a onclick="filter_By_Type()"> -->
 <!-- 	<a onclick="show_List()"> -->
-	<button onclick="show_List()" class="basic">
+	<button onclick="show_List()" class="basic" id="index_2_go">
 		Go
 	</button>
 <!-- 	</a> -->

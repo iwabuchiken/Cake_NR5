@@ -1,12 +1,6 @@
 function show_Hiraganas() {
 	
-//	alert("hiraganas");
-//	$("#list_area").html("yes");
-	
 	var url_curr = $(location).attr('href');
-	
-//	$("#list_area").html(url_curr);
-	
 	var url;
 	
 	var hostname = window.location.hostname;
@@ -18,13 +12,9 @@ function show_Hiraganas() {
 	} else {
 	
 		url = "/Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type";
-//		url = "/Cake_NR5/keywords/add_KW__Genre_Changed";
 
-//		/Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=hiragana
 		
 	}
-	
-//	alert(url);
 	
 	/*
 	 * ajax
@@ -45,11 +35,7 @@ function show_Hiraganas() {
 		
 		$("#list_area").html(data);
 		
-//	//	alert(conv_Float_to_TimeLabel(data.point));
-//	//	addPosition_ToList(data.point);
-//		
-////		_delete_position_Ajax__Done(data, status, xhr);
-//		_add_KW__Genre_Changed__Done(data, status, xhr);
+
 		
 	}).fail(function(xhr, status, error) {
 		
@@ -57,10 +43,8 @@ function show_Hiraganas() {
 		
 	});
 
-
 	
 }
-
 
 function show_List() {
 	
@@ -72,18 +56,6 @@ function show_List() {
 	var val_Sort_2 = $("#select_sort_column_2").val();
 	var val_Sort_3 = $("#select_sort_column_3").val();
 	var val_Sort_4 = $("#select_sort_column_4").val();
-	
-//	alert(
-//			"select_sort_column_1 => " + val_Sort_1
-//			+ " / "
-//			+ "select_sort_column_2 => " + val_Sort_2
-//			+ " / "
-//			+ "select_sort_column_3 => " + val_Sort_3
-//			+ " / "
-//			+ "select_sort_column_4 => " + val_Sort_4
-//	);
-//	alert("select_sort_column_1 => " + val_Sort_1);
-	
 	/***************************
 		get values : radio button : sort_1
 	 ***************************/
@@ -92,15 +64,6 @@ function show_List() {
 	var radio_2 = $('input[name=sort_direction_2]:checked').val();
 	var radio_3 = $('input[name=sort_direction_3]:checked').val();
 	var radio_4 = $('input[name=sort_direction_4]:checked').val();
-	
-//	alert(
-//				"radio_1 => " + radio_1
-//				+ " / "
-//				+ "radio_2 => " + radio_2
-//				+ " / "
-//				+ "radio_3 => " + radio_3
-//				
-//	);
 	//alert("radio_1 => " + radio_1);
 	//alert("select_sort_column_1 => " + val_Sort_1);
 
@@ -152,55 +115,23 @@ function show_List() {
 		}
 		
 	}//if (val_Sort_1 == 0) {
-	
-//	alert("param_Sorts => " + param_Sorts);
-//	alert("param_Sorts_Directions => " + param_Sorts_Directions);
-	
-	
-//	return;
-	
 	/***************************
 		get values
 	 ***************************/
-//	alert("checkboxes...");
-	
-	
-//	var val = $(".cb_type:checked").map(function() {
-//		  return $(this).val();
 	var val = $(".cb_type:checked").val();	//=> w.
 	//ref http://qiita.com/kazu56/items/36b025dac5802b76715c
 	var val = $(".cb_type:checked").map(function() {
 		  return $(this).val();
 	}).get();
-//	var val = $("input[type='checkbox']").val();	//=> works
-//	
-//	alert(val.name);	//=> 'undefined'
-//	alert(val[1]);
-//	alert(val.length);
-//	alert(val);
 
 	/***************************
 		build : type string
 	 ***************************/
 	var lenOf_Types = val.length;
-	
-//	alert("lenOf_Types => " + lenOf_Types);
-
 	//ref https://www.ajaxtower.jp/js/array_class/index3.html
 	var param_types = val.join(",");
 	
-//	alert(param_types);
-	
-//	return;
-	
-	
-//	alert("hiraganas");
-//	$("#list_area").html("yes");
-	
 	var url_curr = $(location).attr('href');
-	
-//	$("#list_area").html(url_curr);
-	
 	var url;
 	
 	var hostname = window.location.hostname;
@@ -212,13 +143,17 @@ function show_List() {
 	} else {
 		
 		url = "/Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type";
-//		url = "/Cake_NR5/keywords/add_KW__Genre_Changed";
 		
-//		/Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=hiragana
 		
 	}
 	
-//	alert(url);
+	/***************************
+		change color
+	 ***************************/
+	var button_Go = $('#index_2_go');
+	
+	//ref C:\WORKS_2\WS\Eclipse_Luna\Cake_IFM11\app\webroot\js\main.js
+	button_Go.css("background", "yellow");
 	
 	/*
 	 * ajax
@@ -232,28 +167,53 @@ function show_List() {
 		type: "GET",
 		//REF http://stackoverflow.com/questions/1916309/pass-multiple-parameters-to-jquery-ajax-call answered Dec 16 '09 at 17:37
 		data: {type: param_types, sort : param_Sorts, sort_direction : param_Sorts_Directions},
-//		data: {type: param_types},
-//		data: {type: type_name},
 		
 		timeout: 10000
 		
 	}).done(function(data, status, xhr) {
 		
+		// button color
+		button_Go.css("background", "PaleTurquoise");
+//		button_Go.css("background", "white");
+		
+//		$("#list_area").css("height", "120%");
+		
 		$("#list_area").html(data);
 		
-//	//	alert(conv_Float_to_TimeLabel(data.point));
-//	//	addPosition_ToList(data.point);
-//		
-////		_delete_position_Ajax__Done(data, status, xhr);
-//		_add_KW__Genre_Changed__Done(data, status, xhr);
+//		alert("data.length => " + data.length);
+		
+		var rowCount = $('table#pieces tr').length;
+		
+		alert("num of 'tr's => " + rowCount);
+		
+//		var rowCount = $('#myTable tr').length;
+		
+		// set table height
+		var tmp = rowCount / 2.0;
+		
+		if (tmp < 50) {
+			
+			tmp = 50;
+			
+		} else if (tmp > 130) {
+			
+			tmp = 130;
+			
+		}
+		
+		
+		var table_Height = tmp + "%";
+//		var table_Height = rowCount / 2.0 + "%";
+		
+		alert("table_Height => " + table_Height);
+		
+		$("#list_area").css("height", table_Height);
 		
 	}).fail(function(xhr, status, error) {
 		
 		alert(xhr.status);
 		
 	});
-	
-	
 	
 }
 

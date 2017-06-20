@@ -633,28 +633,6 @@ class PiecesController extends AppController {
 		$listOf_Pieces = $this->_filter_List_By_Type_2($type_Tokens, $sort_Param_Set);
 // 		$listOf_Pieces = $this->_filter_List_By_Type($type_Tokens);
 		
-// 		$listOf_Pieces = array();
-		
-// 		#test
-// 		$query_Type = 'hiragana';
-		
-// 		switch ($query_Type) {
-			
-// 			case 'hiragana' :
-				
-// // 				debug("calling _filter_List_By_Type__Hiragana() ...");
-				
-// // 				$listOf_Pieces = $this->_filter_List_By_Type__Hiragana();
-// 				$listOf_Pieces = $this->_filter_List_By_Type($type_Tokens);
-				
-// 				break;
-				
-// 			default :
-				
-// 				break;
-			
-// 		}//switch ($type)
-		
 		/*******************************
 			variables
 		*******************************/
