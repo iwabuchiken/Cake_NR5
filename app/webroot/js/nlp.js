@@ -130,7 +130,30 @@ function show_List() {
 	var lenOf_Types = val.length;
 	//ref https://www.ajaxtower.jp/js/array_class/index3.html
 	var param_types = val.join(",");
+
+	/***************************
+		get values : hin names
+	 ***************************/
+//	var val = $(".cb_hin:checked").val();	//=> w.
+	//ref http://qiita.com/kazu56/items/36b025dac5802b76715c
+	var val_hins = $(".cb_hin:checked").map(function() {
+		return $(this).val();
+	}).get();
 	
+	alert(val_hins);
+	
+	return;
+	
+	/***************************
+		build : type string
+	 ***************************/
+	var lenOf_Types = val.length;
+	//ref https://www.ajaxtower.jp/js/array_class/index3.html
+	var param_types = val.join(",");
+	
+	/***************************
+		build : url
+	 ***************************/
 	var url_curr = $(location).attr('href');
 	var url;
 	

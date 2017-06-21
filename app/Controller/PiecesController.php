@@ -186,6 +186,12 @@ class PiecesController extends AppController {
 		
 // 		debug($this->Piece->schema());	//=> works.
 		
+		/*******************************
+			group by : hin names
+		*******************************/
+		$this->set("listOf_Hin_Nams", CONS::$listOf_Hin_Nams);
+		
+// 		$result = Utils_2::get_Hin_Names();
 		
 	}//index
 

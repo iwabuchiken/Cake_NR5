@@ -2,10 +2,8 @@
 
 	require_once 'CONS.php';
 	
-// 	include 'C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Model\Piece.php';
-// 	include 'Piece.php';
 	
-	class Utils_2 {
+class Utils_2 {
 		
 		public static function
 		conv_Xml_2_AryOf_Pieces($xml) {
@@ -542,9 +540,148 @@
 // 			debug($_GET['fragment']);
 			
 		}
-// 		(isset($_SERVER['HTTPS']) ? "https" : "http")
+	
+	public static function
+	get_Hin_Names() {
+
+		$model = ClassRegistry::init('Piece');
+		
+		$options = array(
+		
+				'group'	=> array("Piece.hin")
+		);
+		
+		$pieces = $model->find('all', $options);
+		
+		debug("count(\$pieces) => " + count($pieces));
+		
+		$aryOf_Hin_Values = array();
+		
+		foreach ($pieces as $piece) {
+		
+			array_push($aryOf_Hin_Values, $piece['Piece']['hin']);
+				
+		}//foreach ($pieces as $piece)
+		
+		debug($aryOf_Hin_Values);
+		
+		$text = implode(",", $aryOf_Hin_Values);
+		
+		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$text";
+			
+		$xml = simplexml_load_file($url);
+		
+		$words = $xml->word;
+		
+		debug(count($words));
+		
+// 		debug($words);
+
+		$pairOf_HinNames = array();
+		
+		$genkei = "";
+		$yomi = "";
+		
+		foreach ($words as $w) {
+		
+			$surface = (string)$w->surface;
+			
+// 			debug($surface);
+			
+			if ($surface == ",") {
+			
+				array_push($pairOf_HinNames, array($genkei, $yomi));
+				
+				$genkei = "";
+				$yomi = "";
+				
+			} else {//if ($surface == ",")
+			
+				$tokens = explode(",", (string)$w->feature);
+				
+				$genkei .= $tokens[6];
+				$yomi .= $tokens[7];
+			
+			}//if ($surface == ",")
+			
+// // 			debug(explode(",", (string)$w->feature)[6]);
+// 			debug(explode(",", (string)$w->feature));
+// // 			debug((string)$w->feature);
+			
+// 			$tokens = explode(",", (string)$w->feature);
+			
+// 			if (isset($tokens[7])) {
+				
+// 				array_push($pairOf_HinNames, array($tokens[6], $tokens[7]));
+				
+// 			}
+			
+		}//foreach ($words as $w)
+		
+		debug($pairOf_HinNames);
+		
+// 		debug($xml);
+	
+		/*******************************
+			modify
+		*******************************/
+		$pairOf_HinNames_new = array();
+		
+		foreach ($pairOf_HinNames as $pair) {
+		
+			$genkei = $pair[0];
+		
+			if ($genkei == '接頭詞') {
+			
+				debug("\$genkei => ".$genkei);
+				
+				$pair[1] = 'セットウシ';
+				
+			}//if ($genkei == '接頭詞')
+			
+			array_push($pairOf_HinNames_new, $pair);
+			
+		}//foreach ($pairOf_HinNames as $pair)
 		
 		
-	}//class Utils
+		
+		/*******************************
+			sort
+		*******************************/
+// 		usort($pairOf_HinNames,
+		usort($pairOf_HinNames_new,
+				array("utils_2", "cmp_Sort_HinNames_By_Yomi"));
+		
+// 		debug($pairOf_HinNames_new);
+
+		foreach ($pairOf_HinNames_new as $pair) {
+		
+			debug($pair[0]." ".$pair[1]);
+			
+		}//foreach ($pairOf_HinNames_new as $pair)
+		
+		
+		
+		
+	}//get_Hin_Names()
+
+	public static function
+	cmp_Sort_HinNames_By_Yomi($cat_1, $cat_2) {
+	
+		//REF http://www.php.net/manual/en/function.floatval.php
+		$cat_name_1 = $cat_1[1];
+		$cat_name_2 = $cat_2[1];
+			
+		//REF http://stackoverflow.com/questions/481466/php-string-to-float answered Jan 26 '09 at 21:35
+			
+		// 			return $cat_name_1 < $cat_name_2;
+		return $cat_name_1 > $cat_name_2;
+		// 		return $point_1 < $point_2;
+			
+			
+	}//cmp_Sort_Categories_By_Name($cat_1, $cat_2)
+	
+	
+}//class Utils
 	
 	

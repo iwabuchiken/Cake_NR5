@@ -12,49 +12,59 @@
 
 <div id="link_area">
 
-<div>
+<!-- <div> -->
 
 	<span id="numOf_sort_block" hidden>1</span>
 	
 	<!-- ref select http://html.eweb-design.com/0905_slc.html -->
 	
-	<?php 
+	<table>
 	
-		$sort_block_ids = array(1, 2, 3, 4);
-	
-		foreach ($sort_block_ids as $id_num) {
-		
-		
-	?>
-		Sort <?php echo $id_num; ?>
-		<SELECT id="select_sort_column_<?php echo $id_num; ?>">
-		
-			<OPTION value="0">---</OPTION>
+		<tr>
+			<?php 
+			
+				$sort_block_ids = array(1, 2, 3, 4);
+			
+				foreach ($sort_block_ids as $id_num) {
+				
+				
+			?>
+			<td>
+				Sort <?php echo $id_num; ?>
+				<SELECT id="select_sort_column_<?php echo $id_num; ?>">
+				
+					<OPTION value="0">---</OPTION>
+					
+					<?php 
+					
+						$index = 0;
+						
+						foreach ($listOf_ColumnNames as $item) {
+						
+							echo "<OPTION value=\"$item\">".$item."</OPTION>";
+				// 			echo "<OPTION value=\"$index\">".$item."</OPTION>";
+							
+							$index += 1;
+							
+						}//foreach ($listOf_ColumnNames as $item)
+						
+					?>
+				</SELECT>
+			
+			</td>
 			
 			<?php 
 			
-				$index = 0;
-				
-				foreach ($listOf_ColumnNames as $item) {
-				
-					echo "<OPTION value=\"$item\">".$item."</OPTION>";
-		// 			echo "<OPTION value=\"$index\">".$item."</OPTION>";
-					
-					$index += 1;
-					
-				}//foreach ($listOf_ColumnNames as $item)
+				}//foreach ($sort_block_ids as $id_num)
 				
 			?>
-		</SELECT>
+			
+		</tr>
+<!-- 	</table> -->
 	
-	<?php 
-	
-		}//foreach ($sort_block_ids as $id_num)
-		
-	?>
-	
-</div>
+<!-- </div> -->
 
+		<tr>
 <?php 
 
 // 	$sort_block_ids = array(1, 2, 3, );
@@ -63,6 +73,7 @@
 	
 ?>
 
+	<td>
 	<div class="radio_buttons">
 	
 		<input type="radio" name="sort_direction_<?php echo $id_num; ?>" id="sort_direction_<?php echo $id_num; ?>_asc" value="asc" checked/>
@@ -72,31 +83,77 @@
 		<label for="sort_direction_<?php echo $id_num; ?>_desc">DESC</label>
 		
 	</div>
-
+	</td>
 <?php 
 
 	}//foreach ($sort_block_ids as $id_num)
 	
 
 ?>
+		</tr>
+<!-- 	</table> -->
 
-<div>
-<!-- ref http://www.htmq.com/html/input_checkbox.shtml -->
-Type
-<!-- <p> -->
-<input type="checkbox" class="cb_type" name="riyu" value="Kanji" checked="checked">Kanji
-<input type="checkbox" class="cb_type" name="riyu" value="Hiragana" >Hiragana
-<input type="checkbox" class="cb_type" name="riyu" value="Katakana" >Katakana
-<!-- <label>Number</label><input type="checkbox" class="cb_type" name="riyu" value="number" > -->
+		<tr>
+			<td colspan="2">
+			<!-- <div> -->
+			<!-- ref http://www.htmq.com/html/input_checkbox.shtml -->
+			<font color="blue">
+				Type
+			</font>
+			<!-- <p> -->
+			<input type="checkbox" class="cb_type" name="riyu" value="Kanji" checked="checked">Kanji
+			<input type="checkbox" class="cb_type" name="riyu" value="Hiragana" >Hiragana
+			<input type="checkbox" class="cb_type" name="riyu" value="Katakana" >Katakana
+			<!-- <label>Number</label><input type="checkbox" class="cb_type" name="riyu" value="number" > -->
+			
+			<input type="checkbox" class="cb_type" name="riyu" value="Number" >Number
+			<input type="checkbox" class="cb_type" name="riyu" value="Other" >Other
+			<!-- ref https://stackoverflow.com/questions/6293588/how-to-create-an-html-checkbox-with-a-clickable-label -->
+			<!-- <label class="basic"><input type="checkbox" class="cb_type" name="riyu" value="number" >Number</label> -->
+			<!-- </p> -->
+			<!-- </div> -->
 
-<input type="checkbox" class="cb_type" name="riyu" value="Number" >Number
-<input type="checkbox" class="cb_type" name="riyu" value="Other" >Other
-<!-- ref https://stackoverflow.com/questions/6293588/how-to-create-an-html-checkbox-with-a-clickable-label -->
-<!-- <label class="basic"><input type="checkbox" class="cb_type" name="riyu" value="number" >Number</label> -->
-<!-- </p> -->
-</div>
-
-
+			</td>
+<!-- 		</tr> -->
+		
+		
+<!-- 		<tr> -->
+		
+			<td colspan="2">
+			
+				<font color="blue">
+					Filter
+				</font>
+			
+				<?php
+					
+					$index = 0;
+					
+					foreach ($listOf_Hin_Nams as $item) {
+				?>
+				
+				<input type="checkbox" class="cb_hin" name="riyu" 
+						value="<?php echo $index; ?>"
+						
+						checked="checked"
+						>
+						
+						<?php echo $item; ?>
+							
+				<?php 	
+				
+						$index += 1;
+				
+					}//foreach ($listOf_ColumnNames as $item)
+					
+				?>
+			
+			</td>
+		
+		</tr>
+		
+		
+	</table>
 <br>
 
 <!-- 	<a onclick="filter_By_Type()"> -->

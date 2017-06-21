@@ -728,6 +728,15 @@ input.cb_type {
 	cursor:pointer;
 }
 
+input.cb_hin {
+	
+	-moz-transform:		scale(2);
+	-webkit-transform:	scale(2);
+	transform:		scale(2);
+	
+	cursor:pointer;
+}
+
 div.flash_done {
 	
 	color: blue;
