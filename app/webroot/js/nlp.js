@@ -53,6 +53,11 @@ function show_Hiraganas() {
 function show_List() {
 	
 	/***************************
+		button --> disable
+	 ***************************/
+	$('button#index_2_go').prop('disabled', true);
+	
+	/***************************
 		get values : sort
 	 ***************************/
 	//ref https://jquery.nj-clucker.com/select-set-get/
@@ -120,7 +125,7 @@ function show_List() {
 		
 	}//if (val_Sort_1 == 0) {
 	
-	alert(param_Sorts_Directions);
+	//alert(param_Sorts_Directions);
 	
 	/***************************
 		get values : types
@@ -132,7 +137,7 @@ function show_List() {
 	}).get();
 
 //	alert(val);
-	alert("types => " + val);
+	//alert("types => " + val);
 	
 	var lenOf_Types = val.length;
 	//ref https://www.ajaxtower.jp/js/array_class/index3.html
@@ -147,7 +152,7 @@ function show_List() {
 		return $(this).val();
 	}).get();
 	
-	alert("val_hins" + val_hins);
+	//alert("val_hins" + val_hins);
 	
 //	return;
 	
@@ -155,7 +160,7 @@ function show_List() {
 	//ref https://www.ajaxtower.jp/js/array_class/index3.html
 	var param_Hins = val_hins.join(",");
 	
-	alert("param_Hins => " + param_Hins);
+	//alert("param_Hins => " + param_Hins);
 	
 	/***************************
 		build : url
@@ -184,6 +189,27 @@ function show_List() {
 	//ref C:\WORKS_2\WS\Eclipse_Luna\Cake_IFM11\app\webroot\js\main.js
 	button_Go.css("background", "yellow");
 	
+	/***************************
+		set message
+	 ***************************/
+	//	data: {type: param_types, 
+	//		sort : param_Sorts, 
+	//		sort_direction : param_Sorts_Directions,
+	//		filter_Hins	: param_Hins
+	//		}
+	var message = "param_types=" + param_types
+				+ "/"
+				+ "param_Sorts=" + param_Sorts
+				+ "/"
+				+ "param_Sorts_Directions=" + param_Sorts_Directions
+				+ "/"
+				+ "param_Hins=" + param_Hins
+				
+	$('span#message').html(message);
+//	$('span#message').html("prep --> done");
+	
+//	return;
+	
 	/*
 	 * ajax
 	 */
@@ -207,9 +233,10 @@ function show_List() {
 		
 		// button color
 		button_Go.css("background", "PaleTurquoise");
-//		button_Go.css("background", "white");
+
+		// disable ---> false
+		button_Go.prop('disabled', false);
 		
-//		$("#list_area").css("height", "120%");
 		
 		$("#list_area").html(data);
 		
@@ -217,7 +244,7 @@ function show_List() {
 		
 		var rowCount = $('table#pieces tr').length;
 		
-		alert("num of 'tr's => " + rowCount);
+		//alert("num of 'tr's => " + rowCount);
 		
 //		var rowCount = $('#myTable tr').length;
 		
@@ -238,9 +265,14 @@ function show_List() {
 		var table_Height = tmp + "%";
 //		var table_Height = rowCount / 2.0 + "%";
 		
-		alert("table_Height => " + table_Height);
+		//alert("table_Height => " + table_Height);
 		
 		$("#list_area").css("height", table_Height);
+		
+		/***************************
+			row count ---> display
+		 ***************************/
+		$('span#message').append("<br>" + "records=" + rowCount);
 		
 	}).fail(function(xhr, status, error) {
 		

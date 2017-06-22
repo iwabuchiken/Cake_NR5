@@ -596,6 +596,151 @@ class PiecesController extends AppController {
 		
 	}//_filter_List_By_Type_2($type_Tokens, $sort_Param_Set)
 	
+	/*******************************
+	 @param $sort_Param_Set => array($query_Sort, $query_Sort_Direction);
+	 @param $aryOf_Filtered_Hins	=> array(
+										(int) 0 => '名詞',
+										(int) 1 => '副詞',
+										(int) 2 => '助動詞',
+										(int) 3 => '助詞',
+										(int) 4 => '接続詞',
+										(int) 5 => '記号'
+									)
+	 *******************************/
+	public function
+	_filter_List_By_Type_3
+	($type_Tokens, $sort_Param_Set, $aryOf_Filtered_Hins) {
+
+		/*******************************
+			condition : OR
+		*******************************/
+		$aryOf_ORs = array();
+
+		foreach ($type_Tokens as $token) {
+		
+			array_push(
+					
+					$aryOf_ORs, 
+					array("Piece.type"	=> $token)
+					
+			);
+			
+		}//foreach ($type_Tokens as $token)
+
+// 		$conditions = array(
+		
+// 				'conditions'	=>
+// 				// 				array("Piece.type"	=> "Hiragana")
+// 				array('OR'	=> $aryOf_ORs
+// 						// 						array(
+		
+// 						// 							array("Piece.type"	=> "Hiragana"),
+// 						// 							array("Piece.type"	=> "Number"),
+// 						// 				)
+							
+// 				)
+// 				// 					array("Piece.type"	=> "hiragana")
+// 		);
+		
+		/*******************************
+			sort
+		*******************************/
+		$valOf_SortArray = array();
+		
+		$tokensOf_Sorts = explode(",", $sort_Param_Set[0]);
+		$tokensOf_SortsDirections = explode(",", $sort_Param_Set[1]);
+		
+		$lenOf_TokensOf_Sorts = count($tokensOf_Sorts);
+		
+// 		debug("\$tokensOf_Sorts =>");
+// 		debug($tokensOf_Sorts);
+		
+		for ($i = 0; $i < $lenOf_TokensOf_Sorts; $i++) {
+		
+			array_push(
+					$valOf_SortArray, 
+					"Piece.$tokensOf_Sorts[$i] $tokensOf_SortsDirections[$i]"
+// 					array($tokensOf_Sorts[$i] => $tokensOf_SortsDirections[$i])
+			);
+			
+		}//for ($i = 0; $i < $lenOf_TokensOf_Sorts; $i++)
+		
+		debug("\$valOf_SortArray");
+		debug($valOf_SortArray);
+		
+// 		// set option
+// 		$conditions['order'] = $valOf_SortArray;
+		
+		
+		
+// 		debug("\$conditions");
+// 		debug($conditions);
+		
+		/*******************************
+		 	品詞
+		 *******************************/
+		$valOf_HinArray = array();
+
+		$lenOf_AryOf_Filtered_Hins = count($aryOf_Filtered_Hins);
+		
+		for ($i = 0; $i < $lenOf_AryOf_Filtered_Hins; $i++) {
+		
+			array_push(
+					$valOf_HinArray,
+					array("Piece.hin" => $aryOf_Filtered_Hins[$i])
+					// 					array($tokensOf_Sorts[$i] => $tokensOf_SortsDirections[$i])
+					);
+				
+		}//for ($i = 0; $i < $lenOf_TokensOf_Sorts; $i++)
+		
+		debug("\$valOf_HinArray => ");
+		debug($valOf_HinArray);
+		
+		// set option
+// 		$conditions['order'] = $valOf_SortArray;
+		
+// 		aa
+		
+		/*******************************
+			build : condtions
+		*******************************/
+// 		$conditions['order'] = array(
+// 				'AND'	=> array(
+// 						array('OR'	=> $valOf_SortArray),
+// 						array('OR'	=> $valOf_HinArray),
+						
+// 				)
+				
+// 		);
+		
+		$conditions = array(
+				'order'			=> $valOf_SortArray,
+				'conditions'	=> array(
+						'AND'	=> array(
+// 								'OR'	=> $aryOf_ORs,
+// 								'OR'	=> $aryOf_Filtered_Hins
+							array('OR'	=> $aryOf_ORs),
+							array('OR'	=> $valOf_HinArray),
+// 							array('OR'	=> $aryOf_Filtered_Hins),
+// 							array('OR'	=> $aryOf_Filtered_Hins),
+								
+						)//'AND'	=> array(
+					)//'conditions'	=> array(
+				// 					array("Piece.type"	=> "hiragana")
+		);
+
+		debug("\$conditions => ");
+		debug($conditions);
+		
+		/*******************************
+			find
+		*******************************/
+		$pieces = $this->Piece->find('all', $conditions);
+		
+		return $pieces;
+		
+	}//_filter_List_By_Type_3($type_Tokens, $sort_Param_Set)
+	
 	public function
 	filter_List_By_Type() {
 		
@@ -655,14 +800,23 @@ class PiecesController extends AppController {
 			
 		}//foreach ($tokensOf_Filtered_Hins_Indexes as $token)
 		
-		debug("\$aryOf_Filtered_Hins");
-		debug($aryOf_Filtered_Hins);
-		
+// 		debug("\$aryOf_Filtered_Hins");
+// 		debug($aryOf_Filtered_Hins);
+		// 		array(
+		// 				(int) 0 => '名詞',
+		// 				(int) 1 => '副詞',
+		// 				(int) 2 => '助動詞',
+		// 				(int) 3 => '助詞',
+		// 				(int) 4 => '接続詞',
+		// 				(int) 5 => '記号'
+		// 		)
 		
 		/*******************************
 			get : pieces
 		*******************************/
-		$listOf_Pieces = $this->_filter_List_By_Type_2($type_Tokens, $sort_Param_Set);
+		$listOf_Pieces = $this->_filter_List_By_Type_3($type_Tokens, $sort_Param_Set, $aryOf_Filtered_Hins);
+		
+// 		$listOf_Pieces = $this->_filter_List_By_Type_2($type_Tokens, $sort_Param_Set);
 // 		$listOf_Pieces = $this->_filter_List_By_Type($type_Tokens);
 		
 		/*******************************
