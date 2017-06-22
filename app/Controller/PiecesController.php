@@ -600,7 +600,7 @@ class PiecesController extends AppController {
 	filter_List_By_Type() {
 		
 		/*******************************
-			query : type : default
+			query : filter : type : default
 		*******************************/
 		@$query_Type = $this->request->query["type"];
 		
@@ -632,6 +632,32 @@ class PiecesController extends AppController {
 // 		$data_Sort = explode()
 		
 		$sort_Param_Set = array($query_Sort, $query_Sort_Direction);
+		
+		/*******************************
+		 query : filter : hins
+		 *******************************/
+		@$query_Filter_Hins = $this->request->query["filter_Hins"];
+		
+		debug("\query_Filter_Hins => ");
+		debug($query_Filter_Hins);
+		
+		// build array of hins
+		$aryOf_Filtered_Hins = array();
+		
+		$tokensOf_Filtered_Hins_Indexes = explode(",", $query_Filter_Hins);
+		
+		debug("\$tokensOf_Filtered_Hins_Indexes");
+		debug($tokensOf_Filtered_Hins_Indexes);
+		
+		foreach ($tokensOf_Filtered_Hins_Indexes as $token) {
+		
+			array_push($aryOf_Filtered_Hins, CONS::$listOf_Hin_Nams[$token]);
+			
+		}//foreach ($tokensOf_Filtered_Hins_Indexes as $token)
+		
+		debug("\$aryOf_Filtered_Hins");
+		debug($aryOf_Filtered_Hins);
+		
 		
 		/*******************************
 			get : pieces

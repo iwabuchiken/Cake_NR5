@@ -322,4 +322,13 @@ class CONS {
 		'接頭詞',		// 7
 		'記号',		// 8
 	);
+	
+	public static $listOf_Type_Nams = array(
+		'Kanji',		// 0
+		'Hiragana',
+		'Katakana',		// 2
+		'Number',
+		'Other',		// 4
+	);
+	
 }//class CONS

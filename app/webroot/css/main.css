@@ -805,6 +805,42 @@ button#index_2_go {
 	
 }
 
+button#uncheck_all_hins {
+	
+	font-size	: 15px;
+	
+	margin-left	: 10px;
+	
+	padding		: 5px;
+	/*
+	font-color		: 'green';
+	*/
+	background	: Green;
+	
+	color	: White;
+	
+	border-radius: 10px;
+	
+}
+
+button#uncheck_All_Types {
+	
+	font-size	: 15px;
+	
+	margin-left	: 10px;
+	
+	padding		: 5px;
+	/*
+	font-color		: 'green';
+	*/
+	background	: Green;
+	
+	color	: White;
+	
+	border-radius: 10px;
+	
+}/*button#uncheck_All_Types*/
+
 div.radio_buttons {
 	
 	float :	left;

@@ -50,6 +50,16 @@
 						
 					?>
 				</SELECT>
+
+	<div class="radio_buttons">
+	
+		<input type="radio" name="sort_direction_<?php echo $id_num; ?>" id="sort_direction_<?php echo $id_num; ?>_asc" value="asc" checked/>
+		<label for="sort_direction_<?php echo $id_num; ?>_asc">ASC</label>
+		
+		<input type="radio" name="sort_direction_<?php echo $id_num; ?>" id="sort_direction_<?php echo $id_num; ?>_desc" value="desc"/>
+		<label for="sort_direction_<?php echo $id_num; ?>_desc">DESC</label>
+		
+	</div>
 			
 			</td>
 			
@@ -60,59 +70,61 @@
 			?>
 			
 		</tr>
-<!-- 	</table> -->
-	
-<!-- </div> -->
 
 		<tr>
-<?php 
-
-// 	$sort_block_ids = array(1, 2, 3, );
-
-	foreach ($sort_block_ids as $id_num) {
-	
-?>
-
-	<td>
-	<div class="radio_buttons">
-	
-		<input type="radio" name="sort_direction_<?php echo $id_num; ?>" id="sort_direction_<?php echo $id_num; ?>_asc" value="asc" checked/>
-		<label for="sort_direction_<?php echo $id_num; ?>_asc">ASC</label>
 		
-		<input type="radio" name="sort_direction_<?php echo $id_num; ?>" id="sort_direction_<?php echo $id_num; ?>_desc" value="desc"/>
-		<label for="sort_direction_<?php echo $id_num; ?>_desc">DESC</label>
-		
-	</div>
-	</td>
-<?php 
-
-	}//foreach ($sort_block_ids as $id_num)
-	
-
-?>
-		</tr>
-<!-- 	</table> -->
-
-		<tr>
 			<td colspan="2">
-			<!-- <div> -->
-			<!-- ref http://www.htmq.com/html/input_checkbox.shtml -->
-			<font color="blue">
-				Type
-			</font>
-			<!-- <p> -->
-			<input type="checkbox" class="cb_type" name="riyu" value="Kanji" checked="checked">Kanji
-			<input type="checkbox" class="cb_type" name="riyu" value="Hiragana" >Hiragana
-			<input type="checkbox" class="cb_type" name="riyu" value="Katakana" >Katakana
-			<!-- <label>Number</label><input type="checkbox" class="cb_type" name="riyu" value="number" > -->
 			
-			<input type="checkbox" class="cb_type" name="riyu" value="Number" >Number
-			<input type="checkbox" class="cb_type" name="riyu" value="Other" >Other
-			<!-- ref https://stackoverflow.com/questions/6293588/how-to-create-an-html-checkbox-with-a-clickable-label -->
-			<!-- <label class="basic"><input type="checkbox" class="cb_type" name="riyu" value="number" >Number</label> -->
-			<!-- </p> -->
-			<!-- </div> -->
+				<!-- ref http://www.htmq.com/html/input_checkbox.shtml -->
+				<font color="blue">
+					Type
+				</font>
+					<?php 
+					
+						$aryOf_Type_Names = CONS::$listOf_Type_Nams;
+						
+						foreach ($aryOf_Type_Names as $name) {
+							
+					?>
+				
+						<input 
+							type="checkbox" 
+							class="cb_type" 
+							name="riyu" 
+							value="<?php echo $name; ?>" 
+							checked="checked">
+							
+							<?php 
+							
+								echo $name;
+							
+							?>
+<!-- 							Kanji -->
+						
+<!-- 						<input type="checkbox" class="cb_type" name="riyu" value="Kanji" checked="checked">Kanji -->
+<!-- 						<input type="checkbox" class="cb_type" name="riyu" value="Hiragana" >Hiragana -->
+<!-- 						<input type="checkbox" class="cb_type" name="riyu" value="Katakana" >Katakana -->
+<!-- 						 -->
+<!-- 						<input type="checkbox" class="cb_type" name="riyu" value="Number" >Number -->
+<!-- 						<input type="checkbox" class="cb_type" name="riyu" value="Other" >Other -->
 
+						<!-- ref https://stackoverflow.com/questions/6293588/how-to-create-an-html-checkbox-with-a-clickable-label -->
+		
+					<?php
+							
+						}//foreach ($aryOf_Type_Names as $name)
+						
+						
+					
+					?>
+
+				<button id="uncheck_All_Types" 
+						onclick="uncheck_All_Types();">
+						
+						Check/Uncheck
+						
+				</button>
+				
 			</td>
 <!-- 		</tr> -->
 		
@@ -147,6 +159,8 @@
 					}//foreach ($listOf_ColumnNames as $item)
 					
 				?>
+				
+				<button id="uncheck_all_hins" onclick="uncheck_All_Hins();">Check/Uncheck</button>
 			
 			</td>
 		

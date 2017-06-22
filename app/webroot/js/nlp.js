@@ -1,3 +1,7 @@
+var hins_Checked = true;	// default ---> all checked (input.cb_hin)
+var types_Checked = true;	// default ---> all checked (input.cb_type)
+
+
 function show_Hiraganas() {
 	
 	var url_curr = $(location).attr('href');
@@ -115,18 +119,21 @@ function show_List() {
 		}
 		
 	}//if (val_Sort_1 == 0) {
+	
+	alert(param_Sorts_Directions);
+	
 	/***************************
-		get values
+		get values : types
 	 ***************************/
-	var val = $(".cb_type:checked").val();	//=> w.
+//	var val = $(".cb_type:checked").val();	//=> w.
 	//ref http://qiita.com/kazu56/items/36b025dac5802b76715c
 	var val = $(".cb_type:checked").map(function() {
 		  return $(this).val();
 	}).get();
 
-	/***************************
-		build : type string
-	 ***************************/
+//	alert(val);
+	alert("types => " + val);
+	
 	var lenOf_Types = val.length;
 	//ref https://www.ajaxtower.jp/js/array_class/index3.html
 	var param_types = val.join(",");
@@ -140,16 +147,15 @@ function show_List() {
 		return $(this).val();
 	}).get();
 	
-	alert(val_hins);
+	alert("val_hins" + val_hins);
 	
-	return;
+//	return;
 	
-	/***************************
-		build : type string
-	 ***************************/
-	var lenOf_Types = val.length;
+	var lenOf_Hins = val_hins.length;
 	//ref https://www.ajaxtower.jp/js/array_class/index3.html
-	var param_types = val.join(",");
+	var param_Hins = val_hins.join(",");
+	
+	alert("param_Hins => " + param_Hins);
 	
 	/***************************
 		build : url
@@ -189,8 +195,12 @@ function show_List() {
 		url: url,
 		type: "GET",
 		//REF http://stackoverflow.com/questions/1916309/pass-multiple-parameters-to-jquery-ajax-call answered Dec 16 '09 at 17:37
-		data: {type: param_types, sort : param_Sorts, sort_direction : param_Sorts_Directions},
-		
+		data: {type: param_types, 
+			sort : param_Sorts, 
+			sort_direction : param_Sorts_Directions,
+			filter_Hins	: param_Hins
+			}
+		,
 		timeout: 10000
 		
 	}).done(function(data, status, xhr) {
@@ -239,4 +249,61 @@ function show_List() {
 	});
 	
 }
+
+function uncheck_All_Hins() {
+	
+	var inputs = $('input.cb_hin');
+	
+	if (hins_Checked == true) {
+
+		inputs.prop('checked', false);
+		
+		hins_Checked = false;
+
+	} else {
+
+		inputs.prop('checked', true);
+		
+		hins_Checked = true;
+
+	}//if (hins_unchecked == true)
+	
+	
+//	inputs.prop('checked', false);
+	
+	
+//	alert("unchecking...");
+	
+//	alert(inputs.length);
+	
+}//uncheck_All_Hins()
+
+function uncheck_All_Types() {
+	
+	var inputs = $('input.cb_type');
+	
+	if (types_Checked == true) {
+		
+		inputs.prop('checked', false);
+		
+		types_Checked = false;
+		
+	} else {
+		
+		inputs.prop('checked', true);
+		
+		types_Checked = true;
+		
+	}//if (hins_unchecked == true)
+	
+	
+//	inputs.prop('checked', false);
+	
+	
+//	alert("unchecking...");
+	
+//	alert(inputs.length);
+	
+}//uncheck_All_Types
+
 
