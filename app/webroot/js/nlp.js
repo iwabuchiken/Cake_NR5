@@ -1,5 +1,6 @@
 var hins_Checked = true;	// default ---> all checked (input.cb_hin)
 var types_Checked = true;	// default ---> all checked (input.cb_type)
+var groups_Checked = false;	// default ---> all checked (input.cb_type)
 
 
 function show_Hiraganas() {
@@ -152,15 +153,30 @@ function show_List() {
 		return $(this).val();
 	}).get();
 	
-	//alert("val_hins" + val_hins);
-	
-//	return;
-	
 	var lenOf_Hins = val_hins.length;
 	//ref https://www.ajaxtower.jp/js/array_class/index3.html
 	var param_Hins = val_hins.join(",");
 	
-	//alert("param_Hins => " + param_Hins);
+	/***************************
+		get values : group by
+	 ***************************/
+//	var val = $(".cb_hin:checked").val();	//=> w.
+	//ref http://qiita.com/kazu56/items/36b025dac5802b76715c
+	var val_Group_By = $(".cb_Group_By:checked").map(function() {
+		return $(this).val();
+	}).get();
+	
+	var lenOf_Group_By = val_Group_By.length;
+	//ref https://www.ajaxtower.jp/js/array_class/index3.html
+	var param_Group_By = val_Group_By.join(",");
+
+	//debug
+	var button_Go = $('#index_2_go');
+	button_Go.prop('disabled', false);
+	
+	alert(param_Group_By);
+	
+//	return;
 	
 	/***************************
 		build : url
@@ -204,6 +220,8 @@ function show_List() {
 				+ "param_Sorts_Directions=" + param_Sorts_Directions
 				+ "/"
 				+ "param_Hins=" + param_Hins
+				+ "/"
+				+ "param_Group_By=" + param_Group_By
 				
 	$('span#message').html(message);
 //	$('span#message').html("prep --> done");
@@ -224,7 +242,8 @@ function show_List() {
 		data: {type: param_types, 
 			sort : param_Sorts, 
 			sort_direction : param_Sorts_Directions,
-			filter_Hins	: param_Hins
+			filter_Hins	: param_Hins,
+			group_by	: param_Group_By
 			}
 		,
 		timeout: 10000
@@ -249,7 +268,8 @@ function show_List() {
 //		var rowCount = $('#myTable tr').length;
 		
 		// set table height
-		var tmp = rowCount / 2.0;
+		var tmp = rowCount / 1.5;
+//		var tmp = rowCount / 2.0;
 		
 		if (tmp < 50) {
 			
@@ -272,6 +292,10 @@ function show_List() {
 		/***************************
 			row count ---> display
 		 ***************************/
+		if(rowCount > 1) {
+			rowCount = rowCount - 1;
+		}
+		
 		$('span#message').append("<br>" + "records=" + rowCount);
 		
 	}).fail(function(xhr, status, error) {
@@ -325,6 +349,34 @@ function uncheck_All_Types() {
 		inputs.prop('checked', true);
 		
 		types_Checked = true;
+		
+	}//if (hins_unchecked == true)
+	
+	
+//	inputs.prop('checked', false);
+	
+	
+//	alert("unchecking...");
+	
+//	alert(inputs.length);
+	
+}//uncheck_All_Types
+
+function uncheck_All_Groups() {
+	
+	var inputs = $('input.cb_Group_By');
+	
+	if (groups_Checked == true) {
+		
+		inputs.prop('checked', false);
+		
+		groups_Checked = false;
+		
+	} else {
+		
+		inputs.prop('checked', true);
+		
+		groups_Checked = true;
 		
 	}//if (hins_unchecked == true)
 	

@@ -3900,3 +3900,210 @@ Stack Trace:
 #11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
 #12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #13 {main}
+2017-06-23 04:55:45 Error: Fatal Error (4): syntax error, unexpected 'aa' (T_STRING) in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php, line 988]
+2017-06-23 04:55:46 Error: [FatalErrorException] syntax error, unexpected 'aa' (T_STRING)
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther&sort=form&sort_direction=asc&filter_Hins=0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C8&group_by=hin
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 988)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 988, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 988, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-06-23 04:57:08 Error: Fatal Error (4): syntax error, unexpected 'aa' (T_STRING) in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php, line 988]
+2017-06-23 04:57:08 Error: [FatalErrorException] syntax error, unexpected 'aa' (T_STRING)
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther&sort=form&sort_direction=asc&filter_Hins=0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C8&group_by=hin
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 988)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 988, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\WORKS_2\\WS\\E...', 988, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-06-23 05:01:32 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "ORDER": syntax error
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther&sort=hin_1&sort_direction=asc&filter_Hins=0&group_by=
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Piece"....', Array)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Piece"....', Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Piece"....', Array, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Piece"....', false)
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Piece), Array)
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(743): Model->find('all', Array)
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(987): PiecesController->_filter_List_By_Type__4(Array, Array, Array, Array)
+#8 [internal function]: PiecesController->filter_List_By_Type()
+#9 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PiecesController), Array)
+#10 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2017-06-23 05:10:24 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "ORDER": syntax error
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther&sort=hin_1&sort_direction=asc&filter_Hins=3&group_by=
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Piece"....', Array)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Piece"....', Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Piece"....', Array, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Piece"....', false)
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Piece), Array)
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(761): Model->find('all', Array)
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1005): PiecesController->_filter_List_By_Type__4(Array, Array, Array, Array)
+#8 [internal function]: PiecesController->filter_List_By_Type()
+#9 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PiecesController), Array)
+#10 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2017-06-23 05:11:31 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "ORDER": syntax error
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Piece"....', Array)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Piece"....', Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Piece"....', Array, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Piece"....', false)
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Piece), Array)
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(761): Model->find('all', Array)
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1005): PiecesController->_filter_List_By_Type__4(Array, Array, Array, Array)
+#8 [internal function]: PiecesController->filter_List_By_Type()
+#9 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PiecesController), Array)
+#10 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2017-06-23 05:12:01 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "ORDER": syntax error
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther&sort=hin_1&sort_direction=asc&filter_Hins=3&group_by=
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Piece"....', Array)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Piece"....', Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Piece"....', Array, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Piece"....', false)
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Piece), Array)
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(761): Model->find('all', Array)
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1005): PiecesController->_filter_List_By_Type__4(Array, Array, Array, Array)
+#8 [internal function]: PiecesController->filter_List_By_Type()
+#9 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PiecesController), Array)
+#10 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2017-06-23 05:12:53 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "ORDER": syntax error
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Piece"....', Array)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Piece"....', Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Piece"....', Array, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Piece"....', false)
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Piece), Array)
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(761): Model->find('all', Array)
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1005): PiecesController->_filter_List_By_Type__4(Array, Array, Array, Array)
+#8 [internal function]: PiecesController->filter_List_By_Type()
+#9 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PiecesController), Array)
+#10 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2017-06-23 05:13:41 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "ORDER": syntax error
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Piece"....', Array)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Piece"....', Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Piece"....', Array, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Piece"....', false)
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Piece), Array)
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(761): Model->find('all', Array)
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1005): PiecesController->_filter_List_By_Type__4(Array, Array, Array, Array)
+#8 [internal function]: PiecesController->filter_List_By_Type()
+#9 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PiecesController), Array)
+#10 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2017-06-23 05:14:16 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "ORDER": syntax error
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther&param_Hins=3%2C4
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Piece"....', Array)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Piece"....', Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Piece"....', Array, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Piece"....', false)
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Piece), Array)
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(761): Model->find('all', Array)
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1005): PiecesController->_filter_List_By_Type__4(Array, Array, Array, Array)
+#8 [internal function]: PiecesController->filter_List_By_Type()
+#9 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PiecesController), Array)
+#10 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2017-06-23 05:14:27 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "ORDER": syntax error
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther&param_Hins=3%2C4
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Piece"....', Array)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Piece"....', Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Piece"....', Array, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Piece"....', false)
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Piece), Array)
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(761): Model->find('all', Array)
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1005): PiecesController->_filter_List_By_Type__4(Array, Array, Array, Array)
+#8 [internal function]: PiecesController->filter_List_By_Type()
+#9 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PiecesController), Array)
+#10 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2017-06-23 05:14:53 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "ORDER": syntax error
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther&filter_Hins=3%2C4
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Piece"....', Array)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Piece"....', Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Piece"....', Array, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Piece"....', false)
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Piece), Array)
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(761): Model->find('all', Array)
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1005): PiecesController->_filter_List_By_Type__4(Array, Array, Array, Array)
+#8 [internal function]: PiecesController->filter_List_By_Type()
+#9 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PiecesController), Array)
+#10 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2017-06-23 05:16:07 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "ORDER": syntax error
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther&filter_Hins=3%2C4&sort=hin_1&sort_direction=asc
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Piece"....', Array)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Piece"....', Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Piece"....', Array, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Piece"....', false)
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Piece), Array)
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(761): Model->find('all', Array)
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1005): PiecesController->_filter_List_By_Type__4(Array, Array, Array, Array)
+#8 [internal function]: PiecesController->filter_List_By_Type()
+#9 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PiecesController), Array)
+#10 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2017-06-23 05:21:25 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "lastQuery": syntax error
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther&filter_Hins=3%2C4&sort=hin_1&sort_direction=asc
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('lastQuery', Array)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('lastQuery', Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('lastQuery', Array, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(609): DboSource->fetchAll('lastQuery', Array, Array)
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(800): DboSource->query('lastQuery', Array, Object(Piece))
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(769): Model->__call('lastQuery', Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(769): Piece->lastQuery()
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1013): PiecesController->_filter_List_By_Type__4(Array, Array, Array, Array)
+#8 [internal function]: PiecesController->filter_List_By_Type()
+#9 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PiecesController), Array)
+#10 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}

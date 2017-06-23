@@ -608,6 +608,182 @@ class PiecesController extends AppController {
 									)
 	 *******************************/
 	public function
+	_filter_List_By_Type__4
+	($type_Tokens, 
+			$sort_Param_Set, 
+			$aryOf_Filtered_Hins, 
+			$tokensOf_Group_By_Names) {
+
+		/*******************************
+			condition : OR
+		*******************************/
+		$aryOf_ORs = array();
+
+		foreach ($type_Tokens as $token) {
+		
+			array_push(
+					
+					$aryOf_ORs, 
+					array("Piece.type"	=> $token)
+					
+			);
+			
+		}//foreach ($type_Tokens as $token)
+
+// 		$conditions = array(
+		
+// 				'conditions'	=>
+// 				// 				array("Piece.type"	=> "Hiragana")
+// 				array('OR'	=> $aryOf_ORs
+// 						// 						array(
+		
+// 						// 							array("Piece.type"	=> "Hiragana"),
+// 						// 							array("Piece.type"	=> "Number"),
+// 						// 				)
+							
+// 				)
+// 				// 					array("Piece.type"	=> "hiragana")
+// 		);
+		
+		/*******************************
+			sort
+		*******************************/
+		$valOf_SortArray = array();
+		
+		$tokensOf_Sorts = explode(",", $sort_Param_Set[0]);
+		$tokensOf_SortsDirections = explode(",", $sort_Param_Set[1]);
+		
+		$lenOf_TokensOf_Sorts = count($tokensOf_Sorts);
+		
+// 		debug("\$tokensOf_Sorts =>");
+// 		debug($tokensOf_Sorts);
+		
+		for ($i = 0; $i < $lenOf_TokensOf_Sorts; $i++) {
+		
+			array_push(
+					$valOf_SortArray, 
+					"Piece.$tokensOf_Sorts[$i] $tokensOf_SortsDirections[$i]"
+// 					array($tokensOf_Sorts[$i] => $tokensOf_SortsDirections[$i])
+			);
+			
+		}//for ($i = 0; $i < $lenOf_TokensOf_Sorts; $i++)
+		
+// 		debug("\$valOf_SortArray");
+// 		debug($valOf_SortArray);
+		
+// 		// set option
+// 		$conditions['order'] = $valOf_SortArray;
+		
+		
+		
+// 		debug("\$conditions");
+// 		debug($conditions);
+		
+		/*******************************
+		 	品詞
+		 *******************************/
+		$valOf_HinArray = array();
+
+		$lenOf_AryOf_Filtered_Hins = count($aryOf_Filtered_Hins);
+		
+		for ($i = 0; $i < $lenOf_AryOf_Filtered_Hins; $i++) {
+		
+			array_push(
+					$valOf_HinArray,
+					array("Piece.hin" => $aryOf_Filtered_Hins[$i])
+					// 					array($tokensOf_Sorts[$i] => $tokensOf_SortsDirections[$i])
+					);
+				
+		}//for ($i = 0; $i < $lenOf_TokensOf_Sorts; $i++)
+		
+// 		debug("\$valOf_HinArray => ");
+// 		debug($valOf_HinArray);
+		
+		// set option
+// 		$conditions['order'] = $valOf_SortArray;
+		
+// 		aa
+		
+		/*******************************
+			build : condtions
+		*******************************/
+// 		$conditions['order'] = array(
+// 				'AND'	=> array(
+// 						array('OR'	=> $valOf_SortArray),
+// 						array('OR'	=> $valOf_HinArray),
+						
+// 				)
+				
+// 		);
+		
+		$conditions = array(
+				'order'			=> $valOf_SortArray,
+				'conditions'	=> array(
+						'AND'	=> array(
+// 								'OR'	=> $aryOf_ORs,
+// 								'OR'	=> $aryOf_Filtered_Hins
+							array('OR'	=> $aryOf_ORs),
+							array('OR'	=> $valOf_HinArray),
+// 							array('OR'	=> $aryOf_Filtered_Hins),
+// 							array('OR'	=> $aryOf_Filtered_Hins),
+								
+						)//'AND'	=> array(
+					)//'conditions'	=> array(
+				// 					array("Piece.type"	=> "hiragana")
+				,
+// 				'group'	=> $tokensOf_Group_By_Names
+		);
+
+		debug("\$conditions => ");
+		debug($conditions);
+		
+		/*******************************
+			option : group by
+		*******************************/
+		if ($tokensOf_Group_By_Names == null) {
+		
+			debug("\$tokensOf_Group_By_Names => null");
+		
+		} else if (count($tokensOf_Group_By_Names) < 1) {
+			
+			debug("\$tokensOf_Group_By_Names => less than 1");
+			
+		} else if ($tokensOf_Group_By_Names[0] == '') {
+			
+			debug("\$tokensOf_Group_By_Names => 1 entry, value is ''");
+			
+		} else {
+		
+			//ref group by http://monmon.hateblo.jp/entry/20110115/1295099252
+			$conditions['group'] = $tokensOf_Group_By_Names;
+			
+		}//if ($tokensOf_Group_By_Names == null)
+		
+				
+		/*******************************
+			find
+		*******************************/
+		$pieces = $this->Piece->find('all', $conditions);
+		
+		//debug
+// 		debug($this->Piece->lastQuery());
+		
+		return $pieces;
+		
+	}//_filter_List_By_Type__4
+	
+	/*******************************
+	 @param $sort_Param_Set => array($query_Sort, $query_Sort_Direction);
+	 @param $aryOf_Filtered_Hins	=> array(
+										(int) 0 => '名詞',
+										(int) 1 => '副詞',
+										(int) 2 => '助動詞',
+										(int) 3 => '助詞',
+										(int) 4 => '接続詞',
+										(int) 5 => '記号'
+									)
+	 *******************************/
+	public function
 	_filter_List_By_Type_3
 	($type_Tokens, $sort_Param_Set, $aryOf_Filtered_Hins) {
 
@@ -665,8 +841,8 @@ class PiecesController extends AppController {
 			
 		}//for ($i = 0; $i < $lenOf_TokensOf_Sorts; $i++)
 		
-		debug("\$valOf_SortArray");
-		debug($valOf_SortArray);
+// 		debug("\$valOf_SortArray");
+// 		debug($valOf_SortArray);
 		
 // 		// set option
 // 		$conditions['order'] = $valOf_SortArray;
@@ -693,8 +869,8 @@ class PiecesController extends AppController {
 				
 		}//for ($i = 0; $i < $lenOf_TokensOf_Sorts; $i++)
 		
-		debug("\$valOf_HinArray => ");
-		debug($valOf_HinArray);
+// 		debug("\$valOf_HinArray => ");
+// 		debug($valOf_HinArray);
 		
 		// set option
 // 		$conditions['order'] = $valOf_SortArray;
@@ -745,6 +921,17 @@ class PiecesController extends AppController {
 	filter_List_By_Type() {
 		
 		/*******************************
+			debug
+		*******************************/
+		@$query_Debug = $this->request->query["debug"];
+		
+		if ($query_Debug) {
+		
+			debug("debug --->enabled");
+			
+		}//if ($query_Debug)
+		
+		/*******************************
 			query : filter : type : default
 		*******************************/
 		@$query_Type = $this->request->query["type"];
@@ -756,11 +943,11 @@ class PiecesController extends AppController {
 		}//if ($query_Type == '')
 		;
 		
-		debug("\$query_Type => ".$query_Type);
+// 		debug("\$query_Type => ".$query_Type);
 		
 		$type_Tokens = explode(",", $query_Type);
 		
-		debug($type_Tokens);
+// 		debug($type_Tokens);
 		
 		/*******************************
 		 query : sort
@@ -768,11 +955,11 @@ class PiecesController extends AppController {
 		@$query_Sort = $this->request->query["sort"];
 		@$query_Sort_Direction = $this->request->query["sort_direction"];
 		
-		debug("\$query_Sort => ");
-		debug($query_Sort);
+// 		debug("\$query_Sort => ");
+// 		debug($query_Sort);
 		
-		debug("\$query_Sort_Direction =>");
-		debug($query_Sort_Direction);
+// 		debug("\$query_Sort_Direction =>");
+// 		debug($query_Sort_Direction);
 		
 // 		$data_Sort = explode()
 		
@@ -783,8 +970,8 @@ class PiecesController extends AppController {
 		 *******************************/
 		@$query_Filter_Hins = $this->request->query["filter_Hins"];
 		
-		debug("\query_Filter_Hins => ");
-		debug($query_Filter_Hins);
+// 		debug("\query_Filter_Hins => ");
+// 		debug($query_Filter_Hins);
 		
 		// build array of hins
 		$aryOf_Filtered_Hins = array();
@@ -810,14 +997,36 @@ class PiecesController extends AppController {
 		// 				(int) 4 => '接続詞',
 		// 				(int) 5 => '記号'
 		// 		)
+
+		/*******************************
+		 query : group by
+		 *******************************/
+		@$query_Group_By = $this->request->query["group_by"];
+		
+		debug("\$query_Group_By => ");
+		debug($query_Group_By);
+		
+		// build array of hins
+		$aryOf_Group_By = array();
+		
+		$tokensOf_Group_By_Names = explode(",", $query_Group_By);
+		
+		debug("\$tokensOf_Group_By_Names =>");
+		debug($tokensOf_Group_By_Names);
 		
 		/*******************************
 			get : pieces
 		*******************************/
-		$listOf_Pieces = $this->_filter_List_By_Type_3($type_Tokens, $sort_Param_Set, $aryOf_Filtered_Hins);
+		$listOf_Pieces = $this->_filter_List_By_Type__4(
+				$type_Tokens, 
+				$sort_Param_Set, 
+				$aryOf_Filtered_Hins, 
+				$tokensOf_Group_By_Names);
 		
-// 		$listOf_Pieces = $this->_filter_List_By_Type_2($type_Tokens, $sort_Param_Set);
-// 		$listOf_Pieces = $this->_filter_List_By_Type($type_Tokens);
+// 		$listOf_Pieces = $this->_filter_List_By_Type_3(
+// 				$type_Tokens, 
+// 				$sort_Param_Set, 
+// 				$aryOf_Filtered_Hins);
 		
 		/*******************************
 			variables

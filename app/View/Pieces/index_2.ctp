@@ -20,153 +20,12 @@
 	
 	<table>
 	
-		<tr>
-			<?php 
-			
-				$sort_block_ids = array(1, 2, 3, 4);
-			
-				foreach ($sort_block_ids as $id_num) {
-				
-				
-			?>
-			<td>
-				Sort <?php echo $id_num; ?>
-				<SELECT id="select_sort_column_<?php echo $id_num; ?>">
-				
-					<OPTION value="0">---</OPTION>
-					
-					<?php 
-					
-						$index = 0;
-						
-						foreach ($listOf_ColumnNames as $item) {
-						
-							echo "<OPTION value=\"$item\">".$item."</OPTION>";
-				// 			echo "<OPTION value=\"$index\">".$item."</OPTION>";
-							
-							$index += 1;
-							
-						}//foreach ($listOf_ColumnNames as $item)
-						
-					?>
-				</SELECT>
-
-	<div class="radio_buttons">
+		<?php echo $this->element('pieces/index_2/_index_2_tr_sort'); ?>
 	
-		<input type="radio" name="sort_direction_<?php echo $id_num; ?>" id="sort_direction_<?php echo $id_num; ?>_asc" value="asc" checked/>
-		<label for="sort_direction_<?php echo $id_num; ?>_asc">ASC</label>
-		
-		<input type="radio" name="sort_direction_<?php echo $id_num; ?>" id="sort_direction_<?php echo $id_num; ?>_desc" value="desc"/>
-		<label for="sort_direction_<?php echo $id_num; ?>_desc">DESC</label>
-		
-	</div>
-			
-			</td>
-			
-			<?php 
-			
-				}//foreach ($sort_block_ids as $id_num)
-				
-			?>
-			
-		</tr>
-
-		<tr>
-		
-			<td colspan="2">
-			
-				<!-- ref http://www.htmq.com/html/input_checkbox.shtml -->
-				<font color="blue">
-					Type
-				</font>
-					<?php 
-					
-						$aryOf_Type_Names = CONS::$listOf_Type_Nams;
-						
-						foreach ($aryOf_Type_Names as $name) {
-							
-					?>
-				
-						<input 
-							type="checkbox" 
-							class="cb_type" 
-							name="riyu" 
-							value="<?php echo $name; ?>" 
-							checked="checked">
-							
-							<?php 
-							
-								echo $name;
-							
-							?>
-<!-- 							Kanji -->
-						
-<!-- 						<input type="checkbox" class="cb_type" name="riyu" value="Kanji" checked="checked">Kanji -->
-<!-- 						<input type="checkbox" class="cb_type" name="riyu" value="Hiragana" >Hiragana -->
-<!-- 						<input type="checkbox" class="cb_type" name="riyu" value="Katakana" >Katakana -->
-<!-- 						 -->
-<!-- 						<input type="checkbox" class="cb_type" name="riyu" value="Number" >Number -->
-<!-- 						<input type="checkbox" class="cb_type" name="riyu" value="Other" >Other -->
-
-						<!-- ref https://stackoverflow.com/questions/6293588/how-to-create-an-html-checkbox-with-a-clickable-label -->
-		
-					<?php
-							
-						}//foreach ($aryOf_Type_Names as $name)
-						
-						
-					
-					?>
-
-				<button id="uncheck_All_Types" 
-						onclick="uncheck_All_Types();">
-						
-						Check/Uncheck
-						
-				</button>
-				
-			</td>
-<!-- 		</tr> -->
-		
-		
-<!-- 		<tr> -->
-		
-			<td colspan="2">
-			
-				<font color="blue">
-					Filter
-				</font>
-			
-				<?php
-					
-					$index = 0;
-					
-					foreach ($listOf_Hin_Nams as $item) {
-				?>
-				
-				<input type="checkbox" class="cb_hin" name="riyu" 
-						value="<?php echo $index; ?>"
-						
-						checked="checked"
-						>
-						
-						<?php echo $item; ?>
-							
-				<?php 	
-				
-						$index += 1;
-				
-					}//foreach ($listOf_ColumnNames as $item)
-					
-				?>
-				
-				<button id="uncheck_all_hins" onclick="uncheck_All_Hins();">Check/Uncheck</button>
-			
-			</td>
-		
-		</tr>
-		
-		
+		<?php echo $this->element('pieces/index_2/_index_2_tr_type'); ?>
+	
+		<?php echo $this->element('pieces/index_2/_index_2_tr_group_by'); ?>
+	
 	</table>
 <br>
 
@@ -185,40 +44,11 @@
 <br>
 
 <div id="list_area" >
-<!-- <div id="list_area" style="height:100px;width:140px;overflow:auto;background-color:yellowgreen;color:white;scrollbar-base-color:gold;font-family:sans-serif;padding:10px;"> -->
-<!-- <div id="list_area" style="height:100px;overflow:auto;background-color:yellowgreen;color:white;scrollbar-base-color:gold;font-family:sans-serif;padding:10px;"> -->
-List
+
+	List
 
 </div>
 <br>
 <br>
 (<a href="#top">Top</a><a name="bottom"></a>)
 
-<?php 
-
-// 	$count = 1;
-
-// 	foreach ($articles as $a) {
-	
-// // 		echo $article['line']." / ".$article['url'];
-		
-// // 		echo "<br>"; echo "<br>";
-		
-// 		echo "<a href=\"".$a['url']."\" target=_blank".">"
-// 				."$count) "
-// 				.$a['line']
-// 				."</a>";
-// // 		echo "<a href=\"".$a['url']."\"".">".$a['line']."</a>";
-		
-// 		echo "<br>"; echo "<br>";
-		
-// 		// increment
-// 		$count ++;
-		
-// 	}//foreach ($articles as $article)
-	
-	
-
-
-
-?>

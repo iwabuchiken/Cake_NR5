@@ -407,6 +407,12 @@ class Utils_2 {
 			
 		}//conv_Xml_2_AryOf_Pieces_2($xml, $geschichte)
 	
+		/*
+		 * <Information>
+		 * 	1. url parameters are expected to have both key and value;
+		 * 		=> if no value, then errors will be generated ---> 'Notice (8): Undefined offset: 1'
+		 * 		(2017/06/23 12:35:43)
+		 */
 		public static function
 		update_URL__Param_Sort($param_new, $sort_direction_type = 'asc') {
 // 		update_URL__Param_Sort($param_new) {
