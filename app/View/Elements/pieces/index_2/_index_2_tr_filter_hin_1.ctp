@@ -1,10 +1,12 @@
 <tr id="tr_Filter_Hin_1">
 	<td colspan="4" id="td_Filter_Hin_1">
 
-		<font color="blue">
+		<span id="label_Filter_Hin_1">
+<!-- 		<font color="blue"> -->
 		Filter : hin_1
-		</font>
-	
+<!-- 		</font> -->
+		</span>
+		
 		Sort 
 		<SELECT id="select_Filter_Hin_1">
 		

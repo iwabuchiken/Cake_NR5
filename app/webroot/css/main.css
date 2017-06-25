@@ -572,6 +572,14 @@ span#volume_val {
 	
 }
 
+span#label_Filter_Hin_1 {
+
+	color	: #00f;
+	/*
+	font-size	: 15px;
+	*/
+}
+
 textarea#jquery_textarea {
 	
 	height:	170px;

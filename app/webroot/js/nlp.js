@@ -476,16 +476,6 @@ function _onChange_Filter_Hin_1(hin_Name) {
 		return;
 	}
 	
-//	} else {
-//		
-//		//test
-//		$('td#td_Filter_Hin_1').append(hin_Name);
-//		
-//	}
-//	
-//	//test
-//	return;
-	
 	/***************************
 		build : url
 	 ***************************/
@@ -503,6 +493,11 @@ function _onChange_Filter_Hin_1(hin_Name) {
 		url = "/Eclipse_Luna/Cake_NR5/pieces/get_ListOf__Hin_1";
 		
 	}
+
+	/***************************
+		change color
+	 ***************************/
+	$('span#label_Filter_Hin_1').css("background", "yellow");
 	
 	/***************************
 		ajax
@@ -525,10 +520,20 @@ function _onChange_Filter_Hin_1(hin_Name) {
 		$('span#td_Filter_Hin_1_Data_Area').html(data);
 //		$('td#td_Filter_Hin_1').append(data);
 		
+		/***************************
+			change color
+		 ***************************/
+		$('span#label_Filter_Hin_1').css("background", "white");
+	
 	}).fail(function(xhr, status, error) {
 		
 		alert(xhr.status);
-		
+
+		/***************************
+			change color
+		 ***************************/
+		$('span#label_Filter_Hin_1').css("background", "white");
+
 	});
 
 	
