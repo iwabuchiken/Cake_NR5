@@ -880,8 +880,6 @@ class PiecesController extends AppController {
 		// set option
 // 		$conditions['order'] = $valOf_SortArray;
 		
-// 		aa
-		
 		/*******************************
 			build : condtions
 		*******************************/
@@ -1046,4 +1044,99 @@ class PiecesController extends AppController {
 		$this->render("/Pieces/partials/_index_filter_by_type");
 		
 	}//_filter_List_By_Type($type)
+
+	public function
+	_get_ListOf_Hin_1_Names($query_Hin_Name) {
+			
+		$options = array(
+				
+				"conditions"	=> array(
+		
+						"Piece.hin"	=> $query_Hin_Name
+						
+				),
+				
+				"group"	=> array(
+						
+						"Piece.hin_1"
+				)
+				
+		);
+
+// 		debug($options);
+		
+		/*******************************
+			pieces
+		*******************************/
+		$pieces = $this->Piece->find('all', $options);
+		
+		/*******************************
+			return
+		*******************************/
+		return $pieces;
+		
+	}//_get_ListOf_Hin_1_Names($query_Hin_Name)
+	
+	public function
+	get_ListOf__Hin_1() {
+		
+		/*******************************
+			query
+		*******************************/
+		@$query_Hin_Name = $this->request->query["hin_name"];
+		
+		/*******************************
+			validate
+		*******************************/
+// 		//test
+// 		//ref https://book.cakephp.org/3.0/en/controllers/components/flash.html
+// // 		$this->Flash->set('This is a message');
+// 		$this->Session->setFlash(__("Geschichte has been saved"));
+		
+// 		return;
+		
+		if ($query_Hin_Name == null) {
+		
+			debug("\$query_Hin_Name => null");
+		
+		} else if ($query_Hin_Name == '') {
+			
+			debug("\$query_Hin_Name => blank");
+			
+		} else {
+
+			/*******************************
+			 get : pieces
+			 *******************************/
+			$listOf_Hin_1_Names = $this->_get_ListOf_Hin_1_Names(
+					$query_Hin_Name);
+			
+			/*******************************
+			 variables
+			 *******************************/
+			$this->set("listOf_Hin_1_Names", $listOf_Hin_1_Names);
+			
+		}//if ($query_Hin_Name == null)
+		
+// 		/*******************************
+// 		 get : pieces
+// 		 *******************************/
+// 		$listOf_Hin_1_Names = $this->_get_ListOf_Hin_1_Names(
+// 				$query_Hin_Name);
+		
+// 		/*******************************
+// 			variables
+// 		*******************************/
+// 		$this->set("listOf_Hin_1_Names", $listOf_Hin_1_Names);
+		
+		/**********************************
+		 * view
+		 **********************************/
+		$this->layout = 'plain';
+		
+		$this->render("/Pieces/partials/_index_Filter__Hin_1");
+		
+		
+	}//get_ListOf__Hin_1
+	
 }

@@ -25,6 +25,8 @@
 		<?php echo $this->element('pieces/index_2/_index_2_tr_type'); ?>
 	
 		<?php echo $this->element('pieces/index_2/_index_2_tr_group_by'); ?>
+		
+		<?php echo $this->element('pieces/index_2/_index_2_tr_filter_hin_1'); ?>
 	
 	</table>
 <br>

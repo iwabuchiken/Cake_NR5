@@ -1,6 +1,7 @@
 var hins_Checked = true;	// default ---> all checked (input.cb_hin)
 var types_Checked = true;	// default ---> all checked (input.cb_type)
-var groups_Checked = false;	// default ---> all checked (input.cb_type)
+var groups_Checked = false;	// default ---> all unchecked (input.cb_type)
+var filter_Hin_1_Checked = true;	// default ---> all checked (input.cb_type)
 
 
 function show_Hiraganas() {
@@ -174,9 +175,43 @@ function show_List() {
 	var button_Go = $('#index_2_go');
 	button_Go.prop('disabled', false);
 	
-	alert(param_Group_By);
+//	alert(param_Group_By);
 	
 //	return;
+	
+	/***************************
+		get values : selected hin name
+	 ***************************/
+	var val_Filter_Hin_1 = $("select#select_Filter_Hin_1").val();
+	
+	alert("val_Filter_Hin_1 => " + val_Filter_Hin_1);
+	
+	/***************************
+		get values : hin_1
+	 ***************************/
+	//ref http://qiita.com/kazu56/items/36b025dac5802b76715c
+	var val_Filter_Hin_1 = $(".cb_Filter_Hin_1:checked").map(function() {
+		return $(this).val();
+	}).get();
+	
+	var lenOf_Filter_Hin_1 = val_Filter_Hin_1.length;
+	
+	alert("lenOf_Filter_Hin_1 => " + lenOf_Filter_Hin_1);
+	
+	//ref https://www.ajaxtower.jp/js/array_class/index3.html
+	var param_Filter_Hin_1 = val_Filter_Hin_1.join(",");
+	
+	alert("param_Filter_Hin_1 => " + param_Filter_Hin_1);
+	
+	//test
+	return;
+	
+	/***************************
+		button 'Go' => disable
+	 ***************************/
+	var button_Go = $('#index_2_go');
+	button_Go.prop('disabled', false);
+	
 	
 	/***************************
 		build : url
@@ -390,4 +425,146 @@ function uncheck_All_Groups() {
 	
 }//uncheck_All_Types
 
+function uncheck_All_Hin_1() {
+	
+	var inputs = $('input.cb_Filter_Hin_1');
+	
+	if (filter_Hin_1_Checked == true) {
+		
+		inputs.prop('checked', false);
+		
+		filter_Hin_1_Checked = false;
+		
+	} else {
+		
+		inputs.prop('checked', true);
+		
+		filter_Hin_1_Checked = true;
+		
+	}//if (hins_unchecked == true)
+	
+	
+//	inputs.prop('checked', false);
+	
+	
+//	alert("unchecking...");
+	
+//	alert(inputs.length);
+	
+}//uncheck_All_Hin_1
 
+function _onChange_Filter_Hin_1(hin_Name) {
+	
+//	alert("changing...");
+	
+//	//test
+//	alert("hin => " + hin_Name);
+//	
+//	return;
+	
+	/***************************
+		validate
+	 ***************************/
+	if (hin_Name == '0') {
+		
+//		alert("hin => 0");
+		
+//		$('td#td_Filter_Hin_1_Data_Area').html().text();
+//		$('td#td_Filter_Hin_1_Data_Area').html("abc");
+		$('span#td_Filter_Hin_1_Data_Area').html("");
+		
+		return;
+	}
+	
+//	} else {
+//		
+//		//test
+//		$('td#td_Filter_Hin_1').append(hin_Name);
+//		
+//	}
+//	
+//	//test
+//	return;
+	
+	/***************************
+		build : url
+	 ***************************/
+	var url_curr = $(location).attr('href');
+	var url;
+	
+	var hostname = window.location.hostname;
+	
+	if (hostname == "benfranklin.chips.jp") {
+		
+		url = "/cake_apps/Cake_NR5/keywords/add_KW__Genre_Changed";
+		
+	} else {
+		
+		url = "/Eclipse_Luna/Cake_NR5/pieces/get_ListOf__Hin_1";
+		
+	}
+	
+	/***************************
+		ajax
+	 ***************************/
+	$.ajax({
+		
+		url: url,
+		type: "GET",
+		//REF http://stackoverflow.com/questions/1916309/pass-multiple-parameters-to-jquery-ajax-call answered Dec 16 '09 at 17:37
+		data: {
+			
+				hin_name : hin_Name
+				
+			}
+		,
+		timeout: 10000
+		
+	}).done(function(data, status, xhr) {
+		
+		$('span#td_Filter_Hin_1_Data_Area').html(data);
+//		$('td#td_Filter_Hin_1').append(data);
+		
+	}).fail(function(xhr, status, error) {
+		
+		alert(xhr.status);
+		
+	});
+
+	
+}//_onChange_Filter_Hin_1()
+
+$(document).ready(function(){
+
+//	//test
+//	test_replace_genre_id(12);
+	
+//	alert("ready");
+
+	//REF http://stackoverflow.com/questions/3224535/how-do-i-add-an-onchange-event-to-select-tag-in-cakephp answered Jul 13 '10 at 11:15
+//    $('#category').change(function(){
+//      ("changed");
+//    });
+	
+    $('select#select_Filter_Hin_1').change(
+		function(){
+
+			var val = $('select#select_Filter_Hin_1').find(":selected").val();
+			
+//			alert("changed => " + id);
+//			alert("changed => " + "'" + val + "'");
+			
+//			var msg = "changed => " + "'" + val + "'";
+			
+//			$('td#tr_Filter_Hin_1').append("changed");
+//			$('td#tr_Filter_Hin_1').append(msg);	//=> n.w.
+//			$('td#tr_Filter_Hin_1').append("changed => " + "'" + val + "'");	//=> n.w.
+//			$('td#td_Filter_Hin_1').append("changed => " + "'" + val + "'");	//=> n.w.
+    	
+			// exec
+			_onChange_Filter_Hin_1(val);
+			
+    	}//function(){
+    );//change(
+    
+})//$(document).ready(function(){
