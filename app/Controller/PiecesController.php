@@ -1,3 +1,8 @@
+<!-- 
+
+http://yapi.ta2o.net/apis/mecapi.cgi?sentence=
+
+ -->
 <?php
 
 /*
