@@ -54,6 +54,25 @@ function show_Hiraganas() {
 
 function show_List() {
 	
+//	//test
+//	var total_Pieces = Number($('span#stats_area').text());	//=> 
+//	//ref https://stackoverflow.com/questions/3567835/get-text-from-span-using-jquery 'answered Aug 25 '10 at 15:56'
+////	var total_Pieces = $('span#stats_area').text();	//=> "980"
+////	var total_Pieces = $('span#stats_area').textContent;	//=> 'undefined'
+////	var total_Pieces = $('span#stats_area');	//=> [object]
+////	var total_Pieces = $('span#stats_area').innerText;	//=> n.w.
+////	var total_Pieces = $('span#stats_area').innerHTML;	//=> n.w.
+////	var total_Pieces = $('span#stats_area').html().text();
+////	var total_Pieces = $('span#stats_area').html();
+//	
+//	alert("total pieces => " + total_Pieces
+//			+ "(x 2 = " + total_Pieces * 2 + ")"
+//	);
+//	alert("total pieces => " + total_Pieces);
+//	alert($('span#stats_area').html());
+//	
+//	return;
+	
 	/***************************
 		button --> disable
 	 ***************************/
@@ -251,15 +270,29 @@ function show_List() {
 	//		sort_direction : param_Sorts_Directions,
 	//		filter_Hins	: param_Hins
 	//		}
-	var message = "param_types=" + param_types
-				+ "/"
-				+ "param_Sorts=" + param_Sorts
-				+ "/"
-				+ "param_Sorts_Directions=" + param_Sorts_Directions
-				+ "/"
-				+ "param_Hins=" + param_Hins
-				+ "/"
-				+ "param_Group_By=" + param_Group_By
+	var message = "type=" + param_types
+				+ "&"
+				+ "sort=" + param_Sorts
+				+ "&"
+				+ "sort_direction=" + param_Sorts_Directions
+				+ "&"
+				+ "filter_Hins=" + param_Hins
+				+ "&"
+				+ "group_by=" + param_Group_By
+				+ "&"
+				+ "filter_hin_1_hin_name=" + val_Filter_Hin_1_Hin_Name
+				+ "&"
+				+ "filter_hin_1_chosen_hin_1=" + param_Filter_Hin_1
+				
+//				var message = "param_types=" + param_types
+//				+ "/"
+//				+ "param_Sorts=" + param_Sorts
+//				+ "/"
+//				+ "param_Sorts_Directions=" + param_Sorts_Directions
+//				+ "/"
+//				+ "param_Hins=" + param_Hins
+//				+ "/"
+//				+ "param_Group_By=" + param_Group_By
 				
 	$('span#message').html(message);
 //	$('span#message').html("prep --> done");
@@ -337,6 +370,27 @@ function show_List() {
 		}
 		
 		$('span#message').append("<br>" + "records=" + rowCount);
+		
+		/***************************
+			stats
+		 ***************************/
+		//ref https://www.w3schools.com/jsref/jsref_number.asp
+		var total_Pieces = Number($('span#stats_area').text());	//=>
+		
+		$('span#message').append(" ("
+				//ref https://stackoverflow.com/questions/11695618/dealing-with-float-precision-in-javascript 'answered Jul 27 '12 at 21:14'
+				+ (((rowCount - 1) / total_Pieces) * 100).toFixed(2)	//=> '42.35'
+				
+//				+ ((rowCount - 1) / total_Pieces) * 100	//=> '(42.3469387755102)'
+//				+ Math.floor( (rowCount - 1) / total_Pieces * 100).toFixed(2)	//=> '42.00'
+//				+ Math.floor( (rowCount - 1) / total_Pieces * 100)	//=> '42'
+//				+ (Math.floor( (rowCount - 1) / total_Pieces ) * 100).toFixed(2)
+//				+ ((rowCount - 1) / total_Pieces) 
+				+ " %"
+				+ ")");
+//		$('span#message').append(" (" + ((rowCount - 1) / total_Pieces) + ")");
+		
+//		alert($('span#stats_area').html());
 		
 	}).fail(function(xhr, status, error) {
 		

@@ -37,6 +37,18 @@
 
 	<span id="message"></span>
 	
+	<div>
+		total = 
+		<span id="stats_area">
+			<?php 
+			
+				echo $numOf_Pieces_All;
+			
+			?>
+		
+		</span>
+	</div>
+	
 </div><!-- <div id="link_area"> -->
 
 <br>

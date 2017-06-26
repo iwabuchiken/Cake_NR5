@@ -196,6 +196,8 @@ class PiecesController extends AppController {
 		*******************************/
 		$this->set("listOf_Hin_Nams", CONS::$listOf_Hin_Nams);
 		
+		$this->set("numOf_Pieces_All", count($this->Piece->find('all')));
+		
 // 		$result = Utils_2::get_Hin_Names();
 		
 	}//index
@@ -600,6 +602,270 @@ class PiecesController extends AppController {
 		return $pieces;
 		
 	}//_filter_List_By_Type_2($type_Tokens, $sort_Param_Set)
+	
+	/*******************************
+	 @param $sort_Param_Set => array($query_Sort, $query_Sort_Direction);
+	 @param $aryOf_Filtered_Hins	=> array(
+										(int) 0 => '名詞',
+										(int) 1 => '副詞',
+										(int) 2 => '助動詞',
+										(int) 3 => '助詞',
+										(int) 4 => '接続詞',
+										(int) 5 => '記号'
+									)
+	 *******************************/
+	public function
+	_filter_List_By_Type__5
+	($type_Tokens, 
+		$sort_Param_Set, 
+		$aryOf_Filtered_Hins, 
+		$tokensOf_Group_By_Names,
+		$query_Filter_Hin_1_Hin_Name,
+		$query_Filter_Hin_1_Chosen_Hin_1) {
+
+		/*******************************
+			condition : OR
+		*******************************/
+		$aryOf_ORs = array();
+
+		foreach ($type_Tokens as $token) {
+		
+			array_push(
+					
+					$aryOf_ORs, 
+					array("Piece.type"	=> $token)
+					
+			);
+			
+		}//foreach ($type_Tokens as $token)
+
+		/*******************************
+			sort
+		*******************************/
+		$valOf_SortArray = array();
+		
+		$tokensOf_Sorts = explode(",", $sort_Param_Set[0]);
+		$tokensOf_SortsDirections = explode(",", $sort_Param_Set[1]);
+		
+		$lenOf_TokensOf_Sorts = count($tokensOf_Sorts);
+		
+		for ($i = 0; $i < $lenOf_TokensOf_Sorts; $i++) {
+		
+			array_push(
+					$valOf_SortArray, 
+					"Piece.$tokensOf_Sorts[$i] $tokensOf_SortsDirections[$i]"
+// 					array($tokensOf_Sorts[$i] => $tokensOf_SortsDirections[$i])
+			);
+			
+		}//for ($i = 0; $i < $lenOf_TokensOf_Sorts; $i++)
+		
+		/*******************************
+		 	品詞
+		 *******************************/
+		$valOf_HinArray = array();
+
+		$lenOf_AryOf_Filtered_Hins = count($aryOf_Filtered_Hins);
+		
+		for ($i = 0; $i < $lenOf_AryOf_Filtered_Hins; $i++) {
+		
+			array_push(
+					$valOf_HinArray,
+					array("Piece.hin" => $aryOf_Filtered_Hins[$i])
+					// 					array($tokensOf_Sorts[$i] => $tokensOf_SortsDirections[$i])
+					);
+				
+		}//for ($i = 0; $i < $lenOf_TokensOf_Sorts; $i++)
+		
+		/*******************************
+			build : condtions
+		*******************************/
+		$conditions = array(
+				'order'			=> $valOf_SortArray,
+				'conditions'	=> array(
+						'AND'	=> array(
+// 								'OR'	=> $aryOf_Filtered_Hins
+							array('OR'	=> $aryOf_ORs),
+							array('OR'	=> $valOf_HinArray),
+								
+						)//'AND'	=> array(
+					)//'conditions'	=> array(
+				// 					array("Piece.type"	=> "hiragana")
+				,
+
+		);
+
+// 		debug("\$conditions => ");
+// 		debug($conditions);
+		
+		/*******************************
+			option 2
+		*******************************/
+		$valOf_HinArray_2 = array();
+		
+		// exclide hin_1 hin name
+		if (in_array($query_Filter_Hin_1_Hin_Name, $aryOf_Filtered_Hins)) {
+		
+			$tmp_array = array_diff($aryOf_Filtered_Hins, array($query_Filter_Hin_1_Hin_Name));
+			
+			$tmp_array = array_values($tmp_array);
+			
+			debug("hin name deleted => ");
+			debug($tmp_array);
+			
+		} else {//if (in_array($query_Filter_Hin_1_Hin_Name, $aryOf_Filtered_Hins))
+			
+			$tmp_array = $aryOf_Filtered_Hins;
+			
+		}//if (in_array($query_Filter_Hin_1_Hin_Name, $aryOf_Filtered_Hins))
+
+		
+		$lenOf_AryOf_Filtered_Hins = count($tmp_array);
+// 		$lenOf_AryOf_Filtered_Hins = count($aryOf_Filtered_Hins);
+		
+		for ($i = 0; $i < $lenOf_AryOf_Filtered_Hins; $i++) {
+		
+			array_push(
+					$valOf_HinArray_2,
+					array("Piece.hin" => $tmp_array[$i])
+// 					array("Piece.hin" => $aryOf_Filtered_Hins[$i])
+					// 					array($tokensOf_Sorts[$i] => $tokensOf_SortsDirections[$i])
+					);
+		
+		}//for ($i = 0; $i < $lenOf_TokensOf_Sorts; $i++)
+		
+		debug("\$valOf_HinArray_2 =>");
+		debug($valOf_HinArray_2);
+		
+		debug("\$query_Filter_Hin_1_Chosen_Hin_1 =>");
+		debug($query_Filter_Hin_1_Chosen_Hin_1);	//=> '0,1'
+		
+		debug("\$query_Filter_Hin_1_Hin_Name =>");
+		debug($query_Filter_Hin_1_Hin_Name);
+		
+		/*******************************
+			add : hin_1 names
+		*******************************/
+		if ($query_Filter_Hin_1_Hin_Name != '0') {
+		
+			
+			// hin_1
+			$aryOf_Hin_1_Names = CONS::$listOf_Hin_1_Names[$query_Filter_Hin_1_Hin_Name];
+			
+			debug("\$aryOf_Hin_1_Names =>");
+			debug($aryOf_Hin_1_Names);
+			// 		array(
+			// 				(int) 0 => '一般',
+			// 				(int) 1 => '助詞類接続'
+			// 		)
+	
+			$aryOf_Hin_1_Names_Chosen = 
+					Utils::get_SubArray_By_Indexes(
+							$aryOf_Hin_1_Names, 
+							explode(",", $query_Filter_Hin_1_Chosen_Hin_1));
+			
+			debug("\$aryOf_Hin_1_Names_Chosen =>");
+			debug($aryOf_Hin_1_Names_Chosen);
+					
+			$cond_Filter_Hin_1 = array();
+			
+			$tmp_array = array();
+			
+			foreach ($aryOf_Hin_1_Names_Chosen as $item) {
+			
+				array_push(
+						$valOf_HinArray_2, 
+	// 					$tmp_array, 
+	// 					$cond_Filter_Hin_1, 
+						array('AND'	=> array(
+								
+								array("Piece.hin"	=> $query_Filter_Hin_1_Hin_Name),
+								array("Piece.hin_1"	=> $item),
+								
+							)
+								
+						)//array('AND'
+				);//array_push(
+				
+			}//foreach ($aryOf_Hin_1_Names_Chosen as $item)
+			
+	// 		$cond_Filter_Hin_1['OR'] = $tmp_array;
+			
+			debug("\$cond_Filter_Hin_1 =>");
+			debug($cond_Filter_Hin_1);
+	
+		}//if ($query_Filter_Hin_1_Hin_Name != '0')
+			
+					
+		debug("\$valOf_HinArray_2 =>");
+		debug($valOf_HinArray_2);
+		
+		$options = array(
+				'order'			=> $valOf_SortArray,
+				'conditions'	=> array(
+						'AND'	=> array(
+						// 								'OR'	=> $aryOf_Filtered_Hins
+								array('OR'	=> $aryOf_ORs),
+								array('OR'	=> $valOf_HinArray_2),
+								
+// 								array('OR'	=> $tmp_array[0]),
+// 								array('OR'	=> $tmp_array),
+// 								array('OR'	=> $valOf_HinArray),
+// 								$cond_Filter_Hin_1,
+		
+						)//'AND'	=> array(
+				)//'conditions'	=> array(
+				,
+		
+		);
+		
+// 		debug("\$options =>");
+// 		debug($options);
+		
+		/*******************************
+			option : group by
+		*******************************/
+		if ($tokensOf_Group_By_Names == null) {
+		
+			debug("\$tokensOf_Group_By_Names => null");
+		
+		} else if (count($tokensOf_Group_By_Names) < 1) {
+			
+			debug("\$tokensOf_Group_By_Names => less than 1");
+			
+		} else if ($tokensOf_Group_By_Names[0] == '') {
+			
+			debug("\$tokensOf_Group_By_Names => 1 entry, value is ''");
+			
+		} else {
+		
+			//ref group by http://monmon.hateblo.jp/entry/20110115/1295099252
+			$conditions['group'] = $tokensOf_Group_By_Names;
+			
+			$options['group'] = $tokensOf_Group_By_Names;
+			
+		}//if ($tokensOf_Group_By_Names == null)
+		
+		/*******************************
+			options
+		*******************************/
+		debug("\$conditions => ");
+		debug($conditions);
+		
+		debug("\$options =>");
+		debug($options);
+		
+		/*******************************
+			find
+		*******************************/
+		$pieces = $this->Piece->find('all', $options);
+// 		$pieces = $this->Piece->find('all', $conditions);
+		
+		//debug
+// 		debug($this->Piece->lastQuery());
+		
+		return $pieces;
+		
+	}//_filter_List_By_Type__4
 	
 	/*******************************
 	 @param $sort_Param_Set => array($query_Sort, $query_Sort_Direction);
@@ -1025,20 +1291,74 @@ class PiecesController extends AppController {
 		@$query_Filter_Hin_1_Chosen_Hin_1 = $this->request->query["filter_hin_1_chosen_hin_1"];
 		
 		debug("\$query_Filter_Hin_1_Hin_Name =>");
-		debug($query_Filter_Hin_1_Hin_Name);
+		debug($query_Filter_Hin_1_Hin_Name);	//=> '名詞'
 		
 		debug("\$query_Filter_Hin_1_Chosen_Hin_1 =>");
-		debug($query_Filter_Hin_1_Chosen_Hin_1);
+// 		debug($query_Filter_Hin_1_Chosen_Hin_1);
+		debug(($query_Filter_Hin_1_Chosen_Hin_1 == '') 
+					? "blank" : $query_Filter_Hin_1_Chosen_Hin_1);
 		
+		/*******************************
+			validate : hin name in filtered hin names list
+		*******************************/
+// 		$result = in_array($query_Filter_Hin_1_Hin_Name, $aryOf_Filtered_Hins);
+// 		$result = true;
+		$result = false;
+		
+		foreach ($aryOf_Filtered_Hins as $item) {
+		
+			if ($item == $query_Filter_Hin_1_Hin_Name) {
+			
+				debug("equal => $item / $query_Filter_Hin_1_Hin_Name");
+				
+				$result = true;
+				
+				break;
+				
+			} else {//if ($item == $query_Filter_Hin_1_Hin_Name)
+			
+				debug("no : $item");
+				
+			}
+			
+		}//foreach ($aryOf_Filtered_Hins as $item)
+		
+		//debug
+		if ($result == true) {
+		
+			debug("result ---> true");
+		
+		} else {
+		
+			debug("result ---> false");
+			
+		}//if ($result == true)
+		
+		
+		
+		
+		debug("\$result => " . (($result == false) ? "false!" : "not false"));
+		
+		debug("\$aryOf_Filtered_Hins =>");
+		debug($aryOf_Filtered_Hins);
 		
 		/*******************************
 			get : pieces
 		*******************************/
-		$listOf_Pieces = $this->_filter_List_By_Type__4(
+		$listOf_Pieces = $this->_filter_List_By_Type__5(
 				$type_Tokens, 
 				$sort_Param_Set, 
 				$aryOf_Filtered_Hins, 
-				$tokensOf_Group_By_Names);
+				$tokensOf_Group_By_Names,
+				$query_Filter_Hin_1_Hin_Name,
+				$query_Filter_Hin_1_Chosen_Hin_1
+		);
+		
+// 		$listOf_Pieces = $this->_filter_List_By_Type__4(
+// 				$type_Tokens, 
+// 				$sort_Param_Set, 
+// 				$aryOf_Filtered_Hins, 
+// 				$tokensOf_Group_By_Names);
 		
 // 		$listOf_Pieces = $this->_filter_List_By_Type_3(
 // 				$type_Tokens, 
@@ -1049,6 +1369,8 @@ class PiecesController extends AppController {
 			variables
 		*******************************/
 		$this->set("listOf_Pieces", $listOf_Pieces);
+
+// 		$this->set("numOf_Pieces_All", count($this->Piece->find('all')));
 		
 		/**********************************
 		 * view

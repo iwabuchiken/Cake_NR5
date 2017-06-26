@@ -4171,3 +4171,23 @@ Stack Trace:
 #3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2017-06-26 03:50:55 Error: Fatal Error (1): Undefined class constant 'listOf_Hin_Nams' in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php, line 1040]
+2017-06-26 03:50:55 Error: [FatalErrorException] Undefined class constant 'listOf_Hin_Nams'
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther&sort=id&sort_direction=asc&filter_Hins=0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C8&group_by=&filter_hin_1_hin_name=%E6%8E%A5%E7%B6%9A%E8%A9%9E&filter_hin_1_chosen_hin_1=0
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Undefined class...', 'C:\\WORKS_2\\WS\\E...', 1040)
+#1 [internal function]: ErrorHandler::handleError(1, 'Undefined class...', 'C:\\WORKS_2\\WS\\E...', 1040, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Undefined class...', 'C:\\WORKS_2\\WS\\E...', 1040, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-06-26 03:56:10 Error: Fatal Error (1): Undefined class constant 'listOf_Hin_Nams' in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php, line 1040]
+2017-06-26 03:56:10 Error: [FatalErrorException] Undefined class constant 'listOf_Hin_Nams'
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther&sort=id&sort_direction=asc&filter_Hins=0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C8&group_by=&filter_hin_1_hin_name=%E5%8A%A9%E8%A9%9E&filter_hin_1_chosen_hin_1=0%2C1%2C2%2C3%2C4%2C5%2C6
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Undefined class...', 'C:\\WORKS_2\\WS\\E...', 1040)
+#1 [internal function]: ErrorHandler::handleError(1, 'Undefined class...', 'C:\\WORKS_2\\WS\\E...', 1040, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Undefined class...', 'C:\\WORKS_2\\WS\\E...', 1040, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}

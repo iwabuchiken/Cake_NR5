@@ -2479,6 +2479,48 @@
 			
 		}//cmp_Sort_Categories_By_Name($cat_1, $cat_2)
 		
+		/*
+		 * @param $aryOf_Indexes
+		 * 			array(
+						(int) 0 => '0',
+						(int) 1 => '1'
+					)
+			@param $aryOf_Entries
+					array(
+						(int) 0 => '一般',
+						(int) 1 => '助詞類接続'
+					)
+		 */
+		public static function
+		get_SubArray_By_Indexes
+		($aryOf_Entries, $aryOf_Indexes) {
+// 		($aryOf_Indexes, $aryOf_Entries) {
+			
+			$array_new = array();
+			
+// 			debug("\$aryOf_Indexes =>");
+// 			debug($aryOf_Indexes);
+			
+// 			debug("\$aryOf_Entries =>");
+// 			debug($aryOf_Entries);
+
+			foreach ($aryOf_Indexes as $item) {
+			
+// 				debug("\$aryOf_Entries[$item] => " . $aryOf_Entries[$item]);
+				
+				array_push($array_new, $aryOf_Entries[$item]);
+				
+			}//foreach ($aryOf_Indexes as $item)
+			
+// 			debug("\$array_new =>");
+// 			debug($array_new);
+			
+			/*******************************
+				return
+			*******************************/
+			return $array_new;
+			
+		}//get_SubArray_By_Indexes
 		
 	}//class Utils
 	
