@@ -981,8 +981,8 @@ class PiecesController extends AppController {
 		
 		$tokensOf_Filtered_Hins_Indexes = explode(",", $query_Filter_Hins);
 		
-		debug("\$tokensOf_Filtered_Hins_Indexes");
-		debug($tokensOf_Filtered_Hins_Indexes);
+// 		debug("\$tokensOf_Filtered_Hins_Indexes");
+// 		debug($tokensOf_Filtered_Hins_Indexes);
 		
 		foreach ($tokensOf_Filtered_Hins_Indexes as $token) {
 		
@@ -1006,16 +1006,30 @@ class PiecesController extends AppController {
 		 *******************************/
 		@$query_Group_By = $this->request->query["group_by"];
 		
-		debug("\$query_Group_By => ");
-		debug($query_Group_By);
+// 		debug("\$query_Group_By => ");
+// 		debug($query_Group_By);
 		
 		// build array of hins
 		$aryOf_Group_By = array();
 		
 		$tokensOf_Group_By_Names = explode(",", $query_Group_By);
 		
-		debug("\$tokensOf_Group_By_Names =>");
-		debug($tokensOf_Group_By_Names);
+// 		debug("\$tokensOf_Group_By_Names =>");
+// 		debug($tokensOf_Group_By_Names);
+		
+		/*******************************
+		 query : filter : hin_1
+		 *******************************/
+		@$query_Filter_Hin_1_Hin_Name = $this->request->query["filter_hin_1_hin_name"];
+		
+		@$query_Filter_Hin_1_Chosen_Hin_1 = $this->request->query["filter_hin_1_chosen_hin_1"];
+		
+		debug("\$query_Filter_Hin_1_Hin_Name =>");
+		debug($query_Filter_Hin_1_Hin_Name);
+		
+		debug("\$query_Filter_Hin_1_Chosen_Hin_1 =>");
+		debug($query_Filter_Hin_1_Chosen_Hin_1);
+		
 		
 		/*******************************
 			get : pieces

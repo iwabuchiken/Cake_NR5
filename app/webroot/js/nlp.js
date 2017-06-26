@@ -182,9 +182,10 @@ function show_List() {
 	/***************************
 		get values : selected hin name
 	 ***************************/
-	var val_Filter_Hin_1 = $("select#select_Filter_Hin_1").val();
+	var val_Filter_Hin_1_Hin_Name = $("select#select_Filter_Hin_1").val();
+//	var val_Filter_Hin_1 = $("select#select_Filter_Hin_1").val();
 	
-	alert("val_Filter_Hin_1 => " + val_Filter_Hin_1);
+//	alert("val_Filter_Hin_1 => " + val_Filter_Hin_1);	//=> '助詞'
 	
 	/***************************
 		get values : hin_1
@@ -196,15 +197,17 @@ function show_List() {
 	
 	var lenOf_Filter_Hin_1 = val_Filter_Hin_1.length;
 	
-	alert("lenOf_Filter_Hin_1 => " + lenOf_Filter_Hin_1);
+//	alert("lenOf_Filter_Hin_1 => " + lenOf_Filter_Hin_1);	//=> '0' if '---' chosen
 	
 	//ref https://www.ajaxtower.jp/js/array_class/index3.html
 	var param_Filter_Hin_1 = val_Filter_Hin_1.join(",");
 	
-	alert("param_Filter_Hin_1 => " + param_Filter_Hin_1);
+//	alert("param_Filter_Hin_1 => " + param_Filter_Hin_1);	//=> '0,1,2,3,4,5'
+//	alert("param_Filter_Hin_1 => " + (param_Filter_Hin_1 == '' ? "blank" : "not blank"));	
+	//=> blank if '0' chosen
 	
-	//test
-	return;
+//	//test
+//	return;
 	
 	/***************************
 		button 'Go' => disable
@@ -278,7 +281,9 @@ function show_List() {
 			sort : param_Sorts, 
 			sort_direction : param_Sorts_Directions,
 			filter_Hins	: param_Hins,
-			group_by	: param_Group_By
+			group_by	: param_Group_By,
+			filter_hin_1_hin_name	: val_Filter_Hin_1_Hin_Name,
+			filter_hin_1_chosen_hin_1	: param_Filter_Hin_1
 			}
 		,
 		timeout: 10000
