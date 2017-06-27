@@ -88,3 +88,43 @@ CREATE TABLE pieces(
 DELETE FROM pieces;
 UPDATE sqlite_sequence SET seq = 0 WHERE name = 'pieces';
 #ref https://www.tutorialspoint.com/sqlite/sqlite_update_query.htm
+
+
+
+[mysql]======================================
+------------------------------------------------ pieces
+DROP TABLE pieces;
+
+CREATE TABLE pieces (
+/* ref not null https://www.dbonline.jp/mysql/table/index5.html */
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	created_at	VARCHAR(30),
+	updated_at	VARCHAR(30),
+	
+	form			VARCHAR(30),
+	
+	hin			VARCHAR(30),
+	hin_1		VARCHAR(30),
+	hin_2		VARCHAR(30),
+	hin_3		VARCHAR(30),
+	
+	katsu_kei	VARCHAR(30),
+	katsu_kata	VARCHAR(30),
+	
+	genkei		VARCHAR(30),
+	
+	yomi			VARCHAR(30),
+	hatsu		VARCHAR(30),
+	
+	type		VARCHAR(30),
+	
+	intext_id	INT,
+	
+	geschichte_id	INT,
+	
+	category_id	INT,
+	genre_id	INT
+	
+);
+
+

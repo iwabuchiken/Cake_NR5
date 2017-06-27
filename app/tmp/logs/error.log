@@ -4191,3 +4191,25 @@ Stack Trace:
 #3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2017-06-27 04:56:54 Error: [MissingActionException] Action PiecesController::index_3() could not be found.
+Exception Attributes: array (
+  'controller' => 'PiecesController',
+  'action' => 'index_3',
+)
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/index_3
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2017-06-27 04:58:40 Error: [MissingActionException] Action PiecesController::get_ListOf__Hin_1&hin_name=副詞() could not be found.
+Exception Attributes: array (
+  'controller' => 'PiecesController',
+  'action' => 'get_ListOf__Hin_1&hin_name=副詞',
+)
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/get_ListOf__Hin_1&hin_name=%E5%89%AF%E8%A9%9E
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}

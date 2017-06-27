@@ -591,3 +591,26 @@ CREATE TABLE users (
 #REF http://www.tech-recipes.com/rx/378/add-a-column-to-an-existing-mysql-table/
 ALTER TABLE histories ADD updates VARCHAR(200);
 
+---------------------------------- geschichtes
+DROP TABLE geschichtes;
+
+CREATE TABLE geschichtes (
+ 
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	created_at VARCHAR(30),
+	updated_at VARCHAR(30),
+	
+	line TEXT,
+	url TEXT,
+	vendor VARCHAR(30),
+	news_time VARCHAR(30),
+	
+	genre_id INT,
+	category_id INT,
+	subcat_id INT,
+	
+	content TEXT,
+	user_id INT
+	
+);
+

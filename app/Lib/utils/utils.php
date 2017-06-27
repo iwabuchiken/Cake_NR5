@@ -2393,12 +2393,14 @@
 				
 				ary_3 = array($genre_id, $genre_name, ary_2)
 			*******************************/
-			$ary_3 = [
+// 			$ary_3 = [
+			$ary_3 = array(
 					
 					$genre_id,
 					$genre_name,
 					$ary_2
-			];
+			);
+// 			];
 			
 // 			debug($ary_3);
 			

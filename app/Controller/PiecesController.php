@@ -2,6 +2,9 @@
 
 http://yapi.ta2o.net/apis/mecapi.cgi?sentence=
 
+C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller
+C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php
+
  -->
 <?php
 
@@ -28,41 +31,199 @@ class PiecesController extends AppController {
 	index() {
 
 		/*******************************
-			option : sort
+			guilde to : filter
 		*******************************/
-		$sort_key = "sort";
+		@$query_Action = $this->request->query['action'];
 		
-		$sort_direction_key = "sort-direction";
+// 		debug("\$query_Action =>");
+// 		debug($query_Action);
 		
-		@$query_Sort = $this->request->query[$sort_key];
+		if ($query_Action == 'filter') {
 		
-		@$query_SortDirection = $this->request->query[$sort_direction_key];
+			debug("action ==> filter");
+			
+			$this->filter_List_By_Type();
+			
+			return;
+			
+		} else if ($query_Action == 'get_list_of_hin_name') {
+			
+			$this->get_ListOf__Hin_1();
+			
+			return;
+			
+		} else {//if ($query_Action == 'filter')
 
-		$sort_type = isset($query_Sort) ? $query_Sort : "id";
-		$sort_direction_type = isset($query_SortDirection) ? $query_SortDirection : "asc";
+			debug("action is 'else' => " . $query_Action);
+			
+		}//if ($query_Action == 'filter')
 		
-		debug($sort_type." / ".$sort_direction_type);
 		
-		/*******************************
-			pagination
-		*******************************/
-		#ref C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php
-		$paginate_array = array(
-				//REF http://stackoverflow.com/questions/861960/how-can-i-limit-the-find-to-a-specific-number-in-cakephp answered May 14 '10 at 0:08
-		// 					'limit' => "13314,10",
-		// 					'recursive'	=> -1,
-				'limit' => 10,
-				#ref $opt_order["Token.$session_Sort"] = "asc";
-				'order' => array("Pieces.$sort_type" => $sort_direction_type),
-// 				'order' => array("Pieces.id" => "asc"),
-// 				'conditions'	=> $opt_conditions,
-					
-		);
+// 		$hostname = $_SERVER['HTTP_HOST'];	// 'localhost'
+
+		debug(env('SERVER_NAME'));
 		
-// 		debug($paginate_array);
+		$servername = env('SERVER_NAME');
 		
-// 		$this->paginate = $paginate_array;
-// 		$this->paginate = array(
+		if ($servername == 'localhost') {
+		
+			/*******************************
+			 option : sort
+			 *******************************/
+			$sort_key = "sort";
+			
+			$sort_direction_key = "sort-direction";
+			
+			@$query_Sort = $this->request->query[$sort_key];
+			
+			@$query_SortDirection = $this->request->query[$sort_direction_key];
+			
+			$sort_type = isset($query_Sort) ? $query_Sort : "id";
+			$sort_direction_type = isset($query_SortDirection) ? $query_SortDirection : "asc";
+			
+			debug($sort_type." / ".$sort_direction_type);
+			
+			/*******************************
+			 pagination
+			 *******************************/
+			#ref C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php
+			$paginate_array = array(
+					//REF http://stackoverflow.com/questions/861960/how-can-i-limit-the-find-to-a-specific-number-in-cakephp answered May 14 '10 at 0:08
+					// 					'limit' => "13314,10",
+					// 					'recursive'	=> -1,
+					'limit' => 10,
+					#ref $opt_order["Token.$session_Sort"] = "asc";
+					'order' => array("Pieces.$sort_type" => $sort_direction_type),
+					// 				'order' => array("Pieces.id" => "asc"),
+			// 				'conditions'	=> $opt_conditions,
+						
+			);
+			
+			// 		debug($paginate_array);
+			
+			// 		$this->paginate = $paginate_array;
+			// 		$this->paginate = array(
+			// 				//REF http://stackoverflow.com/questions/861960/how-can-i-limit-the-find-to-a-specific-number-in-cakephp answered May 14 '10 at 0:08
+			// 		// 					'limit' => "13314,10",
+			// 		// 					'recursive'	=> -1,
+			// 				'limit' => 10,
+			// 				#ref $opt_order["Token.$session_Sort"] = "asc";
+			// 				'order' => array("Pieces.$sort_type" => $sort_direction_type),
+			// // 				'order' => array("Pieces.id" => "asc"),
+			// // 				'conditions'	=> $opt_conditions,
+				
+			// 		);
+			
+			#ref https://book.cakephp.org/2.0/ja/core-libraries/components/pagination.html
+			#ref public $this->Paginator->settings = array(
+			// 		public $this->Paginator->settings = array(
+			$pagination_settings = array(
+			// 				'limit' => 3,
+					'limit' => 10,
+					'maxLimit' => 10,
+			
+					// 				'conditions'	=> array(
+			
+							// 						"Piece.type"	=> 'Hiragana'
+							// 				),
+			
+					'order' => array(
+					// 							"Piece.hin" => 'asc',
+							"Piece.hin" => 'desc',
+							"Piece.hin_1" => 'desc',
+							"Piece.type" => 'desc',
+							// 							"Piece.type" => 'asc',
+					// 							"Piece.$sort_type" => 'desc',
+					),
+			
+					// 				'order' => array("Piece.$sort_type" => 'desc')
+					// 				'order' => array('Piece.hin' => 'desc')
+					// 				'order' => array('Piece.form' => 'desc')
+					// 				'order' => array('Piece.id' => 'desc')
+					// 				'order' => array('Hoge.modified' => 'desc')
+			);
+			
+			debug($pagination_settings);
+			
+			$this->Paginator->settings = $pagination_settings;
+			// 		$this->Paginator->settings = array(
+			// 				'limit' => 10,
+			// 				'maxLimit' => 10,
+			// 				'order' => array(
+			// 							"Piece.hin" => 'desc',
+			// 							"Piece.hin_1" => 'desc',
+			// // 							"Piece.$sort_type" => 'desc',
+			// 				)
+			// // 				'order' => array("Piece.$sort_type" => 'desc')
+			// // 				'order' => array('Piece.hin' => 'desc')
+			// // 				'order' => array('Piece.form' => 'desc')
+			// // 				'order' => array('Piece.id' => 'desc')
+			// // 				'order' => array('Hoge.modified' => 'desc')
+			// 		);
+			
+			$pieces_Paginated = $this->Paginator->paginate('Piece');
+			// 		$pieces_Paginated = $this->paginate('Piece');
+			// 		$tokens = $this->paginate('Token');
+			
+			
+			$pieces = $this->Piece->find('all');
+			
+			debug("count(\$pieces) => '".count($pieces)."'");
+			
+			$this->set("pieces_Paginated", $pieces_Paginated);
+			
+			#test
+			// 		$url =  (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+			// 		$param_new = "abc";
+			
+			// 		$sort_type = isset($query_Sort) ? $query_Sort : "id";
+			// 		$sort_direction_type = isset($query_SortDirection) ? $query_SortDirection : "asc";
+			
+			$url_new = Utils_2::update_URL__Param_Sort($sort_type, $sort_direction_type);
+			// 		$url_new = Utils_2::update_URL__Param_Sort($param_new);
+			
+			debug("\$url_new => ".$url_new);
+			
+			#test
+			$this->set("url_new", $url_new);
+			
+		} else {//if ($servername == 'localhost')
+
+			$this->_index_Remote();
+			
+// 			debug("not localhost");
+			
+// 			/**********************************
+// 			 * view
+// 			 **********************************/
+// // 			$this->layout = 'plain';
+			
+// 			$this->render("/Pieces/index_3");
+// // 			$this->render("/Pieces/partials/_index_filter_by_type");
+				
+		}
+		
+// 		/*******************************
+// 			option : sort
+// 		*******************************/
+// 		$sort_key = "sort";
+		
+// 		$sort_direction_key = "sort-direction";
+		
+// 		@$query_Sort = $this->request->query[$sort_key];
+		
+// 		@$query_SortDirection = $this->request->query[$sort_direction_key];
+
+// 		$sort_type = isset($query_Sort) ? $query_Sort : "id";
+// 		$sort_direction_type = isset($query_SortDirection) ? $query_SortDirection : "asc";
+		
+// 		debug($sort_type." / ".$sort_direction_type);
+		
+// 		/*******************************
+// 			pagination
+// 		*******************************/
+// 		#ref C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\TokensController.php
+// 		$paginate_array = array(
 // 				//REF http://stackoverflow.com/questions/861960/how-can-i-limit-the-find-to-a-specific-number-in-cakephp answered May 14 '10 at 0:08
 // 		// 					'limit' => "13314,10",
 // 		// 					'recursive'	=> -1,
@@ -74,46 +235,43 @@ class PiecesController extends AppController {
 					
 // 		);
 		
-		#ref https://book.cakephp.org/2.0/ja/core-libraries/components/pagination.html
-		#ref public $this->Paginator->settings = array(
-// 		public $this->Paginator->settings = array(
-		$pagination_settings = array(
-// 				'limit' => 3,
-				'limit' => 10,
-				'maxLimit' => 10,
-				
-// 				'conditions'	=> array(
-						
-// 						"Piece.type"	=> 'Hiragana'
-// 				),
-				
-				'order' => array(
-// 							"Piece.hin" => 'asc',
-							"Piece.hin" => 'desc',
-							"Piece.hin_1" => 'desc',
-							"Piece.type" => 'desc',
-// 							"Piece.type" => 'asc',
-// 							"Piece.$sort_type" => 'desc',
-				),
-				
-// 				'order' => array("Piece.$sort_type" => 'desc')
-// 				'order' => array('Piece.hin' => 'desc')
-// 				'order' => array('Piece.form' => 'desc')
-// 				'order' => array('Piece.id' => 'desc')
-// 				'order' => array('Hoge.modified' => 'desc')
-		);
+// // 		debug($paginate_array);
 		
-		debug($pagination_settings);
+// // 		$this->paginate = $paginate_array;
+// // 		$this->paginate = array(
+// // 				//REF http://stackoverflow.com/questions/861960/how-can-i-limit-the-find-to-a-specific-number-in-cakephp answered May 14 '10 at 0:08
+// // 		// 					'limit' => "13314,10",
+// // 		// 					'recursive'	=> -1,
+// // 				'limit' => 10,
+// // 				#ref $opt_order["Token.$session_Sort"] = "asc";
+// // 				'order' => array("Pieces.$sort_type" => $sort_direction_type),
+// // // 				'order' => array("Pieces.id" => "asc"),
+// // // 				'conditions'	=> $opt_conditions,
+					
+// // 		);
 		
-		$this->Paginator->settings = $pagination_settings;
-// 		$this->Paginator->settings = array(
+// 		#ref https://book.cakephp.org/2.0/ja/core-libraries/components/pagination.html
+// 		#ref public $this->Paginator->settings = array(
+// // 		public $this->Paginator->settings = array(
+// 		$pagination_settings = array(
+// // 				'limit' => 3,
 // 				'limit' => 10,
 // 				'maxLimit' => 10,
+				
+// // 				'conditions'	=> array(
+						
+// // 						"Piece.type"	=> 'Hiragana'
+// // 				),
+				
 // 				'order' => array(
+// // 							"Piece.hin" => 'asc',
 // 							"Piece.hin" => 'desc',
 // 							"Piece.hin_1" => 'desc',
+// 							"Piece.type" => 'desc',
+// // 							"Piece.type" => 'asc',
 // // 							"Piece.$sort_type" => 'desc',
-// 				)
+// 				),
+				
 // // 				'order' => array("Piece.$sort_type" => 'desc')
 // // 				'order' => array('Piece.hin' => 'desc')
 // // 				'order' => array('Piece.form' => 'desc')
@@ -121,45 +279,104 @@ class PiecesController extends AppController {
 // // 				'order' => array('Hoge.modified' => 'desc')
 // 		);
 		
-		$pieces_Paginated = $this->Paginator->paginate('Piece');
-// 		$pieces_Paginated = $this->paginate('Piece');
-// 		$tokens = $this->paginate('Token');
+// 		debug($pagination_settings);
+		
+// 		$this->Paginator->settings = $pagination_settings;
+// // 		$this->Paginator->settings = array(
+// // 				'limit' => 10,
+// // 				'maxLimit' => 10,
+// // 				'order' => array(
+// // 							"Piece.hin" => 'desc',
+// // 							"Piece.hin_1" => 'desc',
+// // // 							"Piece.$sort_type" => 'desc',
+// // 				)
+// // // 				'order' => array("Piece.$sort_type" => 'desc')
+// // // 				'order' => array('Piece.hin' => 'desc')
+// // // 				'order' => array('Piece.form' => 'desc')
+// // // 				'order' => array('Piece.id' => 'desc')
+// // // 				'order' => array('Hoge.modified' => 'desc')
+// // 		);
+		
+// 		$pieces_Paginated = $this->Paginator->paginate('Piece');
+// // 		$pieces_Paginated = $this->paginate('Piece');
+// // 		$tokens = $this->paginate('Token');
 		
 		
-		$pieces = $this->Piece->find('all');
+// 		$pieces = $this->Piece->find('all');
 		
-		debug("count(\$pieces) => '".count($pieces)."'");
+// 		debug("count(\$pieces) => '".count($pieces)."'");
 		
-		$this->set("pieces_Paginated", $pieces_Paginated);
+// 		$this->set("pieces_Paginated", $pieces_Paginated);
 		
-		#test
-// 		$url =  (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-// 		$param_new = "abc";
+// 		#test
+// // 		$url =  (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+// // 		$param_new = "abc";
 		
-// 		$sort_type = isset($query_Sort) ? $query_Sort : "id";
-// 		$sort_direction_type = isset($query_SortDirection) ? $query_SortDirection : "asc";
+// // 		$sort_type = isset($query_Sort) ? $query_Sort : "id";
+// // 		$sort_direction_type = isset($query_SortDirection) ? $query_SortDirection : "asc";
 		
-		$url_new = Utils_2::update_URL__Param_Sort($sort_type, $sort_direction_type);
-// 		$url_new = Utils_2::update_URL__Param_Sort($param_new);
+// 		$url_new = Utils_2::update_URL__Param_Sort($sort_type, $sort_direction_type);
+// // 		$url_new = Utils_2::update_URL__Param_Sort($param_new);
 		
-		debug("\$url_new => ".$url_new);
+// 		debug("\$url_new => ".$url_new);
 		
-		#test
-		$this->set("url_new", $url_new);
-		
-// 		debug($_SERVER['HTTP_HOST']);	#=> 'localhost'
-// 		debug($_SERVER['REQUEST_URI']);	#=> '/Eclipse_Luna/Cake_NR5/Pieces?sort=id'
-		
-// 		debug("\$_SERVER['QUERY_STRING'] =>");
-// 		debug($_SERVER['QUERY_STRING']);
-		
-// 		debug(str_replace($_SERVER['QUERY_STRING'], "", $_SERVER['REQUEST_URI']));
-		
-// 		debug("\$_GET => ");
-// 		debug($_GET);
+// 		#test
+// 		$this->set("url_new", $url_new);
 		
 	}//index
 
+	public function
+	_index_Remote() {
+
+// 		debug("not localhost");
+		
+		/*******************************
+		 option : sort
+		 *******************************/
+		$sort_key = "sort";
+		
+		$sort_direction_key = "sort-direction";
+		
+		@$query_Sort = $this->request->query[$sort_key];
+		
+		@$query_SortDirection = $this->request->query[$sort_direction_key];
+		
+		$sort_type = isset($query_Sort) ? $query_Sort : "id";
+		$sort_direction_type = isset($query_SortDirection) ? $query_SortDirection : "asc";
+		
+		debug($sort_type." / ".$sort_direction_type);
+		
+		/*******************************
+		 sort column : item list
+		 *******************************/
+		#ref column names https://stackoverflow.com/questions/5840150/how-to-get-the-field-names-of-the-table-in-cakephp 'answered Apr 30 '11 at 9:27'
+		// 		debug(array_keys($this->Piece->getColumnTypes()));
+		
+		$listOf_ColumnNames = array_keys($this->Piece->getColumnTypes());
+		
+		$this->set("listOf_ColumnNames", $listOf_ColumnNames);
+		
+		// 		debug($this->Piece->schema());	//=> works.
+		
+		/*******************************
+		 group by : hin names
+		 *******************************/
+		$this->set("listOf_Hin_Nams", CONS::$listOf_Hin_Nams);
+		
+		$this->set("numOf_Pieces_All", count($this->Piece->find('all')));
+		
+			
+		/**********************************
+		 * view
+		 **********************************/
+		// 			$this->layout = 'plain';
+			
+		$this->render("/Pieces/index_2");
+// 		$this->render("/Pieces/index_3");
+		// 			$this->render("/Pieces/partials/_index_filter_by_type");
+		
+	}//_index_Remote() {
+	
 	public function 
 	index_2() {
 
@@ -202,6 +419,21 @@ class PiecesController extends AppController {
 		
 	}//index
 
+	public function
+	inde() {
+
+		debug("inde");
+		
+	}
+	
+	public function
+// 	index_3() {
+	index3() {
+		
+		
+		
+	}
+	
 	public function
 	create_Tokens() {
 	
@@ -1381,6 +1613,13 @@ class PiecesController extends AppController {
 		
 	}//_filter_List_By_Type($type)
 
+	public function
+	filter() {
+		
+		
+		
+	}//filter() {
+	
 	public function
 	_get_ListOf_Hin_1_Names($query_Hin_Name) {
 			

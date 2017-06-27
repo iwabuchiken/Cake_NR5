@@ -245,7 +245,10 @@ function show_List() {
 	
 	if (hostname == "benfranklin.chips.jp") {
 		
-		url = "/cake_apps/Cake_NR5/keywords/add_KW__Genre_Changed";
+		url = "/cake_apps/Cake_NR5/pieces/index?action=filter";
+//		url = "/cake_apps/Cake_NR5/pieces/index?actoin=filter";
+//		url = "/cake_apps/Cake_NR5/pieces/filter_List_By_Type";
+//		url = "/cake_apps/Cake_NR5/keywords/add_KW__Genre_Changed";
 		
 	} else {
 		
@@ -253,6 +256,8 @@ function show_List() {
 		
 		
 	}
+	
+	alert("url => " + url);
 	
 	/***************************
 		change color
@@ -545,7 +550,10 @@ function _onChange_Filter_Hin_1(hin_Name) {
 	
 	if (hostname == "benfranklin.chips.jp") {
 		
-		url = "/cake_apps/Cake_NR5/keywords/add_KW__Genre_Changed";
+		url = "/cake_apps/Cake_NR5/pieces/index?action=get_list_of_hin_name";
+//		url = "/cake_apps/Cake_NR5/pieces/get_ListOf__Hin_1?action=get_list_of_hin_name";
+//		url = "/cake_apps/Cake_NR5/pieces/get_ListOf__Hin_1";
+//		url = "/cake_apps/Cake_NR5/keywords/add_KW__Genre_Changed";
 		
 	} else {
 		
@@ -553,6 +561,8 @@ function _onChange_Filter_Hin_1(hin_Name) {
 		
 	}
 
+	alert("url => " + url);
+	
 	/***************************
 		change color
 	 ***************************/

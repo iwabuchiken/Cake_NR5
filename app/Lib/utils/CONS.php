@@ -229,7 +229,8 @@ class CONS {
 	/*******************************
 		pieces
 	*******************************/
-	public static $dict = [
+// 	public static $dict = [
+	public static $dict = array(
 			// 		C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Lib\utils\utils.php
 			// 			* 	1	=> Kanji<br>
 			// 			* 	2	=> Hiragana<br>
@@ -252,7 +253,8 @@ class CONS {
 		
 		0	=> "Other",
 			
-	];
+	);
+// 	];
 
 	public static $piece_ColumnNames = array(
 				'id'			=> 'Id',
