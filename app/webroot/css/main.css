@@ -604,6 +604,18 @@ input.submit_go {
 	
 }
 
+input#input_Query_String {
+	
+	/* ref http://www.cam.hi-ho.ne.jp/mendoxi/misc/colorchart.html */
+	background	: PaleGoldenrod;
+	
+	/* ref http://www.1uphp.com/con1/form/textsize.html */
+	width		: 80%;
+	/*
+	width		: 50px;
+	*/
+}
+
 input.sort_direction {
 	
 	font-size	:	20px;

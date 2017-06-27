@@ -35,7 +35,12 @@
 		Go
 	</button>
 
+	<!-- ref http://www.htmq.com/html/input.shtml -->
+	<input type="text" id="input_Query_String" name="name" size="30">
+<!-- 	<input type="text" id="input_Query_String" name="name" size="30" maxlength="40" width="10"> -->
+
 	<span id="message"></span>
+	<span id="message_2"></span>
 	
 	<div>
 		total = 

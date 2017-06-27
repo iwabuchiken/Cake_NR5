@@ -52,25 +52,226 @@ function show_Hiraganas() {
 	
 }
 
-function show_List() {
+function _show_List(query_String) {
 	
-//	//test
-//	var total_Pieces = Number($('span#stats_area').text());	//=> 
-//	//ref https://stackoverflow.com/questions/3567835/get-text-from-span-using-jquery 'answered Aug 25 '10 at 15:56'
-////	var total_Pieces = $('span#stats_area').text();	//=> "980"
-////	var total_Pieces = $('span#stats_area').textContent;	//=> 'undefined'
-////	var total_Pieces = $('span#stats_area');	//=> [object]
-////	var total_Pieces = $('span#stats_area').innerText;	//=> n.w.
-////	var total_Pieces = $('span#stats_area').innerHTML;	//=> n.w.
-////	var total_Pieces = $('span#stats_area').html().text();
-////	var total_Pieces = $('span#stats_area').html();
+	alert("showing list...");
+
+	/***************************
+		button 'Go' => disable
+	 ***************************/
+	var button_Go = $('#index_2_go');
+	button_Go.prop('disabled', false);
+	
+	/***************************
+		change color
+	 ***************************/
+	var button_Go = $('#index_2_go');
+	
+	//ref C:\WORKS_2\WS\Eclipse_Luna\Cake_IFM11\app\webroot\js\main.js
+	button_Go.css("background", "yellow");
+	
+	/***************************
+		build : url
+	 ***************************/
+	var url_curr = $(location).attr('href');
+	var url;
+	
+	var hostname = window.location.hostname;
+	
+	if (hostname == "benfranklin.chips.jp") {
+		
+		url = "/cake_apps/Cake_NR5/pieces/index?action=filter"
+				+ "&"
+				+ query_String
+				;
+		
+	} else {
+		
+		url = "/Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type"
+			+ "?"
+			+ query_String
+			;
+		
+	}
+	
+	alert("url => " + url);
+	
+	/***************************
+		set message
+	 ***************************/
+	//	data: {type: param_types, 
+	//		sort : param_Sorts, 
+	//		sort_direction : param_Sorts_Directions,
+	//		filter_Hins	: param_Hins
+	//		}
+//	var message = "type=" + param_types
+//				+ "&"
+//				+ "sort=" + param_Sorts
+//				+ "&"
+//				+ "sort_direction=" + param_Sorts_Directions
+//				+ "&"
+//				+ "filter_Hins=" + param_Hins
+//				+ "&"
+//				+ "group_by=" + param_Group_By
+//				+ "&"
+//				+ "filter_hin_1_hin_name=" + val_Filter_Hin_1_Hin_Name
+//				+ "&"
+//				+ "filter_hin_1_chosen_hin_1=" + param_Filter_Hin_1
+//				
+	$('span#message').html("ajaxing...<br><font color='blue'>" + query_String + "</font>");
+//	$('span#message').html("ajaxing...");
+//	$('span#message').html(query_String);
+	
+	/********************
+	 * ajax
+	 ********************/
+	var type_name = "hiragana";
+	
+	$.ajax(
+			{
+		
+				url: url,
+				type: "GET",
+		//		//REF http://stackoverflow.com/questions/1916309/pass-multiple-parameters-to-jquery-ajax-call answered Dec 16 '09 at 17:37
+		//		data: {type: param_types, 
+		//			sort : param_Sorts, 
+		//			sort_direction : param_Sorts_Directions,
+		//			filter_Hins	: param_Hins,
+		//			group_by	: param_Group_By,
+		//			filter_hin_1_hin_name	: val_Filter_Hin_1_Hin_Name,
+		//			filter_hin_1_chosen_hin_1	: param_Filter_Hin_1
+		//			}
+		//		,
+				timeout: 10000
+		
+			}
+	).done(
+			function(data, status, xhr) {
+		
+				alert("done");
+				
+				// button color
+				button_Go.css("background", "PaleTurquoise");
+			
+				// disable ---> false
+				button_Go.prop('disabled', false);
+				
+				
+				$("#list_area").html(data);
+				
+			//	alert("data.length => " + data.length);
+				
+				var rowCount = $('table#pieces tr').length;
+				
+				//alert("num of 'tr's => " + rowCount);
+				
+			//	var rowCount = $('#myTable tr').length;
+				
+				// set table height
+				var tmp = rowCount / 1.5;
+			//	var tmp = rowCount / 2.0;
+				
+				if (tmp < 50) {
+					
+					tmp = 50;
+					
+				} else if (tmp > 130) {
+					
+					tmp = 130;
+					
+				}
+				
+				
+				var table_Height = tmp + "%";
+			//	var table_Height = rowCount / 2.0 + "%";
+				
+				//alert("table_Height => " + table_Height);
+				
+				$("#list_area").css("height", table_Height);
+				
+				/***************************
+					row count ---> display
+				 ***************************/
+				if(rowCount > 1) {
+					rowCount = rowCount - 1;
+				}
+				
+				var span_Message = $('span#message_2');
+//				var span_Message = $('span#message');
+				
+				span_Message.append("<br>" + "records=" + rowCount);
+//				$('span#message').append("<br>" + "records=" + rowCount);
+				
+				span_Message.css("background", "yellow");
+				
+				/***************************
+					stats
+				 ***************************/
+				//ref https://www.w3schools.com/jsref/jsref_number.asp
+				var total_Pieces = Number($('span#stats_area').text());	//=>
+				
+//				$('span#message').append(" ("
+				$('span#message_2').append(" ("
+						//ref https://stackoverflow.com/questions/11695618/dealing-with-float-precision-in-javascript 'answered Jul 27 '12 at 21:14'
+						+ (((rowCount - 1) / total_Pieces) * 100).toFixed(2)	//=> '42.35'
+						
+						+ " %"
+						+ ")");
+		
+	}
+	).fail(
+		function(xhr, status, error) {
+		
+			alert(xhr.status);
+		
+		}
+	);
+
+}//_show_List(query_String)
+
+function show_List() {
+
+	/***************************
+		validate : filter with query string
+	 ***************************/
+	var query_String = $('input#input_Query_String').val();
+	
+	if (query_String != null && query_String != '') {
+		
+//		alert("query_String => " + query_String);
+		
+		/***************************
+			dispatch
+		 ***************************/
+		_show_List(query_String);
+		
+		return;
+	}
+//	if (query_String == '') {
+//
+//		alert("query_String => blank");
+//
+//	} else if (query_String == null) {
+//		
+//		alert("query_String => null");
+//		
+//	} else {
+//
+//		alert("query_String => unknown : " + query_String);
+//
+//	}//if (query_String == '')
+	
+	
+//	alert("list");
+	
+////	var query_String = $('input#input_Query_String').text().
+	//ref https://stackoverflow.com/questions/4088467/get-the-value-in-an-input-text-box
+//	var query_String = $('input#input_Query_String').val().
+//	var query_String = $('input#input_Query_String').val();	//=> w.
+//	var query_String = $('input#input_Query_String');
 //	
-//	alert("total pieces => " + total_Pieces
-//			+ "(x 2 = " + total_Pieces * 2 + ")"
-//	);
-//	alert("total pieces => " + total_Pieces);
-//	alert($('span#stats_area').html());
-//	
+//	alert("query_String => " + query_String);
+	
 //	return;
 	
 	/***************************
