@@ -200,6 +200,99 @@ function _show_List(query_String) {
 
 }//_show_List(query_String)
 
+function _show_List__Done(data, status, xhr) {
+
+//	alert("done");
+	
+	//debug
+	var button_Go = $('#index_2_go');
+
+	// button color
+	button_Go.css("background", "PaleTurquoise");
+
+	// disable ---> false
+	button_Go.prop('disabled', false);
+	
+	$("#list_area").html(data);
+//	$("#list_area").html(data);
+	
+//	alert("data ==> set");
+	
+	var rowCount = $('table#pieces tr').length;
+//	var rowCount = $('#myTable tr').length;
+	
+	// set table height
+	var tmp = rowCount / 1.5;
+//	var tmp = rowCount / 2.0;
+	
+	if (tmp < 50) {
+		
+		tmp = 50;
+		
+	} else if (tmp > 130) {
+		
+		tmp = 130;
+		
+	}
+	var table_Height = tmp + "%";
+//	var table_Height = rowCount / 2.0 + "%";
+	$("#list_area").css("height", table_Height);
+
+	/***************************
+		stats
+	 ***************************/
+	//ref https://www.w3schools.com/jsref/jsref_number.asp
+	var total_Pieces = Number($('span#stats_area').text());	//=>
+	
+	var percentage = 
+					"("
+					+ (((rowCount - 1) / total_Pieces) * 100).toFixed(2)	//=> '42.35'
+					+ " %"
+					+ ")";
+
+	/***************************
+		row count ---> display
+	 ***************************/
+	if(rowCount > 1) {
+		rowCount = rowCount - 1;
+	}
+	
+	$('table#tbl_index_2_Message_Area').prepend(
+			
+//			"<tr><td>"
+			"<tr><td class='td_index_2_Message_Area'>"
+			+ "records=" + rowCount
+			+ " "
+			+ percentage
+			+ "</td></tr>"
+	);
+//	$('span#message').append("<br>" + "records=" + rowCount);
+	
+//	/***************************
+//		stats
+//	 ***************************/
+//	//ref https://www.w3schools.com/jsref/jsref_number.asp
+//	var total_Pieces = Number($('span#stats_area').text());	//=>
+//	
+//	var percentage = (((rowCount - 1) / total_Pieces) * 100).toFixed(2)	//=> '42.35'
+//					+ " %"
+//					+ ")";
+	
+//	$('span#message').append(" ("
+//			//ref https://stackoverflow.com/questions/11695618/dealing-with-float-precision-in-javascript 'answered Jul 27 '12 at 21:14'
+//			+ (((rowCount - 1) / total_Pieces) * 100).toFixed(2)	//=> '42.35'
+//			
+////			+ ((rowCount - 1) / total_Pieces) * 100	//=> '(42.3469387755102)'
+////			+ Math.floor( (rowCount - 1) / total_Pieces * 100).toFixed(2)	//=> '42.00'
+////			+ Math.floor( (rowCount - 1) / total_Pieces * 100)	//=> '42'
+////			+ (Math.floor( (rowCount - 1) / total_Pieces ) * 100).toFixed(2)
+////			+ ((rowCount - 1) / total_Pieces) 
+//			+ " %"
+//			+ ")");
+////	$('span#message').append(" (" + ((rowCount - 1) / total_Pieces) + ")");
+
+}//_show_List__Done(data, status, xhr)
+
 function show_List() {
 
 	/***************************
@@ -444,59 +537,61 @@ function show_List() {
 		
 	}).done(function(data, status, xhr) {
 		
-		// button color
-		button_Go.css("background", "PaleTurquoise");
-
-		// disable ---> false
-		button_Go.prop('disabled', false);
-		$("#list_area").html(data);
-		var rowCount = $('table#pieces tr').length;
-//		var rowCount = $('#myTable tr').length;
+		_show_List__Done(data, status, xhr);
 		
-		// set table height
-		var tmp = rowCount / 1.5;
-//		var tmp = rowCount / 2.0;
-		
-		if (tmp < 50) {
-			
-			tmp = 50;
-			
-		} else if (tmp > 130) {
-			
-			tmp = 130;
-			
-		}
-		var table_Height = tmp + "%";
-//		var table_Height = rowCount / 2.0 + "%";
-		$("#list_area").css("height", table_Height);
-		
-		/***************************
-			row count ---> display
-		 ***************************/
-		if(rowCount > 1) {
-			rowCount = rowCount - 1;
-		}
-		
-		$('span#message').append("<br>" + "records=" + rowCount);
-		
-		/***************************
-			stats
-		 ***************************/
-		//ref https://www.w3schools.com/jsref/jsref_number.asp
-		var total_Pieces = Number($('span#stats_area').text());	//=>
-		
-		$('span#message').append(" ("
-				//ref https://stackoverflow.com/questions/11695618/dealing-with-float-precision-in-javascript 'answered Jul 27 '12 at 21:14'
-				+ (((rowCount - 1) / total_Pieces) * 100).toFixed(2)	//=> '42.35'
-				
-//				+ ((rowCount - 1) / total_Pieces) * 100	//=> '(42.3469387755102)'
-//				+ Math.floor( (rowCount - 1) / total_Pieces * 100).toFixed(2)	//=> '42.00'
-//				+ Math.floor( (rowCount - 1) / total_Pieces * 100)	//=> '42'
-//				+ (Math.floor( (rowCount - 1) / total_Pieces ) * 100).toFixed(2)
-//				+ ((rowCount - 1) / total_Pieces) 
-				+ " %"
-				+ ")");
-//		$('span#message').append(" (" + ((rowCount - 1) / total_Pieces) + ")");
+//		// button color
+//		button_Go.css("background", "PaleTurquoise");
+//
+//		// disable ---> false
+//		button_Go.prop('disabled', false);
+//		$("#list_area").html(data);
+//		var rowCount = $('table#pieces tr').length;
+////		var rowCount = $('#myTable tr').length;
+//		
+//		// set table height
+//		var tmp = rowCount / 1.5;
+////		var tmp = rowCount / 2.0;
+//		
+//		if (tmp < 50) {
+//			
+//			tmp = 50;
+//			
+//		} else if (tmp > 130) {
+//			
+//			tmp = 130;
+//			
+//		}
+//		var table_Height = tmp + "%";
+////		var table_Height = rowCount / 2.0 + "%";
+//		$("#list_area").css("height", table_Height);
+//		
+//		/***************************
+//			row count ---> display
+//		 ***************************/
+//		if(rowCount > 1) {
+//			rowCount = rowCount - 1;
+//		}
+//		
+//		$('span#message').append("<br>" + "records=" + rowCount);
+//		
+//		/***************************
+//			stats
+//		 ***************************/
+//		//ref https://www.w3schools.com/jsref/jsref_number.asp
+//		var total_Pieces = Number($('span#stats_area').text());	//=>
+//		
+//		$('span#message').append(" ("
+//				//ref https://stackoverflow.com/questions/11695618/dealing-with-float-precision-in-javascript 'answered Jul 27 '12 at 21:14'
+//				+ (((rowCount - 1) / total_Pieces) * 100).toFixed(2)	//=> '42.35'
+//				
+////				+ ((rowCount - 1) / total_Pieces) * 100	//=> '(42.3469387755102)'
+////				+ Math.floor( (rowCount - 1) / total_Pieces * 100).toFixed(2)	//=> '42.00'
+////				+ Math.floor( (rowCount - 1) / total_Pieces * 100)	//=> '42'
+////				+ (Math.floor( (rowCount - 1) / total_Pieces ) * 100).toFixed(2)
+////				+ ((rowCount - 1) / total_Pieces) 
+//				+ " %"
+//				+ ")");
+////		$('span#message').append(" (" + ((rowCount - 1) / total_Pieces) + ")");
 	}).fail(function(xhr, status, error) {
 		
 		alert(xhr.status);
@@ -622,7 +717,7 @@ function _onChange_Filter_Hin_1(hin_Name) {
 		
 	}
 
-	alert("url => " + url);
+//	alert("url => " + url);
 	
 	/***************************
 		change color
@@ -666,6 +761,21 @@ function _onChange_Filter_Hin_1(hin_Name) {
 
 	});
 }//_onChange_Filter_Hin_1()
+
+$(function() {
+	
+    $('button#index_2_Show_Hide').click(
+    		
+    		function(){
+    			
+    			$('div#link_area').toggle('fast');
+//    			$('div#link_area').toggle('slow');
+    			
+    		}
+    		
+	);//$('#toggletest1').click(
+    
+});//$(function() {
 
 $(document).ready(function(){
 

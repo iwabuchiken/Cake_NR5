@@ -197,6 +197,19 @@ td#td_video_memo {
 	
 }
 
+td.td_index_2_Message_Area {
+	
+	border: 1px solid blue;
+	background	: #81BEF7;
+	
+	/*
+	width		: 70%;
+	*/
+	/* ref https://stackoverflow.com/questions/1057574/html-td-wrap-text 'answered May 29 '12 at 12:43' */
+	word-wrap	: break-word;
+	
+}
+
 td.open_article_content {
 	
 	/*color:	blue;*/
@@ -428,6 +441,16 @@ table#pieces {
 	
 	/* ref http://qiita.com/naru0504/items/ff0c77775223dc5a9148 */
 	overflow-y: scroll;
+	
+}
+
+table#tbl_index_2_Message_Area {
+	/* ref https://stackoverflow.com/questions/1057574/html-td-wrap-text 'answered May 29 '12 at 12:43' */
+	table-layout	: fixed;
+	
+	background-color	:	yellow;
+	
+	width	: 70%;
 	
 }
 

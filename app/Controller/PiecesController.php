@@ -2,8 +2,16 @@
 
 http://yapi.ta2o.net/apis/mecapi.cgi?sentence=
 
+C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app
 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller
 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php
+
+http://benfranklin.chips.jp/cake_apps/Cake_NR5/pieces/index
+/cake_apps/Cake_NR5/app
+/cake_apps/Cake_NR5
+
+<regular expressions>
+^[ \t]+debug
 
  -->
 <?php
@@ -40,7 +48,7 @@ class PiecesController extends AppController {
 		
 		if ($query_Action == 'filter') {
 		
-			debug("action ==> filter");
+//			debug("action ==> filter");
 			
 			$this->filter_List_By_Type();
 			
@@ -54,14 +62,14 @@ class PiecesController extends AppController {
 			
 		} else {//if ($query_Action == 'filter')
 
-			debug("action is 'else' => " . $query_Action);
+//			debug("action is 'else' => " . $query_Action);
 			
 		}//if ($query_Action == 'filter')
 		
 		
 // 		$hostname = $_SERVER['HTTP_HOST'];	// 'localhost'
 
-		debug(env('SERVER_NAME'));
+//		debug(env('SERVER_NAME'));
 		
 		$servername = env('SERVER_NAME');
 		
@@ -81,7 +89,7 @@ class PiecesController extends AppController {
 			$sort_type = isset($query_Sort) ? $query_Sort : "id";
 			$sort_direction_type = isset($query_SortDirection) ? $query_SortDirection : "asc";
 			
-			debug($sort_type." / ".$sort_direction_type);
+//			debug($sort_type." / ".$sort_direction_type);
 			
 			/*******************************
 			 pagination
@@ -143,7 +151,7 @@ class PiecesController extends AppController {
 					// 				'order' => array('Hoge.modified' => 'desc')
 			);
 			
-			debug($pagination_settings);
+//			debug($pagination_settings);
 			
 			$this->Paginator->settings = $pagination_settings;
 			// 		$this->Paginator->settings = array(
@@ -168,7 +176,7 @@ class PiecesController extends AppController {
 			
 			$pieces = $this->Piece->find('all');
 			
-			debug("count(\$pieces) => '".count($pieces)."'");
+//			debug("count(\$pieces) => '".count($pieces)."'");
 			
 			$this->set("pieces_Paginated", $pieces_Paginated);
 			
@@ -182,7 +190,7 @@ class PiecesController extends AppController {
 			$url_new = Utils_2::update_URL__Param_Sort($sort_type, $sort_direction_type);
 			// 		$url_new = Utils_2::update_URL__Param_Sort($param_new);
 			
-			debug("\$url_new => ".$url_new);
+//			debug("\$url_new => ".$url_new);
 			
 			#test
 			$this->set("url_new", $url_new);
@@ -344,7 +352,7 @@ class PiecesController extends AppController {
 		$sort_type = isset($query_Sort) ? $query_Sort : "id";
 		$sort_direction_type = isset($query_SortDirection) ? $query_SortDirection : "asc";
 		
-		debug($sort_type." / ".$sort_direction_type);
+//		debug($sort_type." / ".$sort_direction_type);
 		
 		/*******************************
 		 sort column : item list
@@ -394,7 +402,7 @@ class PiecesController extends AppController {
 		$sort_type = isset($query_Sort) ? $query_Sort : "id";
 		$sort_direction_type = isset($query_SortDirection) ? $query_SortDirection : "asc";
 		
-		debug($sort_type." / ".$sort_direction_type);
+//		debug($sort_type." / ".$sort_direction_type);
 		
 		/*******************************
 			sort column : item list
@@ -422,7 +430,7 @@ class PiecesController extends AppController {
 	public function
 	inde() {
 
-		debug("inde");
+//		debug("inde");
 		
 	}
 	
@@ -445,7 +453,7 @@ class PiecesController extends AppController {
 		
 		$geschichtes = $this->Geschichte->find('all');
 		
-		debug("count(\$geschichtes) => ".count($geschichtes));
+//		debug("count(\$geschichtes) => ".count($geschichtes));
 		
 		$lenOf_Geschichtes = count($geschichtes);
 		
@@ -474,8 +482,8 @@ class PiecesController extends AppController {
 
 			$result = Utils_2::conv_Xml_2_AryOf_Pieces_2($xml, $geschichtes[$i]);
 	
-			debug(sprintf("Geschichte %d : Total words %d / Saved %d", 
-						$geschichtes[$i]['Geschichte']['id'], count($xml->word), $result));
+// 			debug(sprintf("Geschichte %d : Total words %d / Saved %d", 
+// 						$geschichtes[$i]['Geschichte']['id'], count($xml->word), $result));
 // 						$geschichtes[$i]['id'], count($xml->word), $result));
 			
 // 			#test
@@ -574,11 +582,11 @@ class PiecesController extends AppController {
 // 				0	=> "Other",
 // 		];
 		
-		debug($dict);
+//		debug($dict);
 		
 		$pieces = $this->Piece->find('all');
 		
-		debug("count(\$pieces) => ".count($pieces));	//=> 'count($pieces) => 2396'
+//		debug("count(\$pieces) => ".count($pieces));	//=> 'count($pieces) => 2396'
 		
 		$count = 0;
 		$count_max = 100;
@@ -588,13 +596,13 @@ class PiecesController extends AppController {
 		
 		foreach ($pieces as $piece) {
 		
-			debug($piece['Piece']['form']);
+//			debug($piece['Piece']['form']);
 			// 			debug($piece);
 				
 			# judge : type
 			$result = Utils::get_Type($piece['Piece']['form']);
 				
-			debug("\$result => ".$result." (".$dict[$result].")");
+//			debug("\$result => ".$result." (".$dict[$result].")");
 			
 			// update column 'type'
 			if ($piece['Piece']['type'] == null
@@ -817,14 +825,14 @@ class PiecesController extends AppController {
 			
 		}//for ($i = 0; $i < $lenOf_TokensOf_Sorts; $i++)
 		
-		debug("\$valOf_SortArray");
-		debug($valOf_SortArray);
+//		debug("\$valOf_SortArray");
+//		debug($valOf_SortArray);
 		
 		// set option
 		$conditions['order'] = $valOf_SortArray;
 		
-		debug("\$conditions");
-		debug($conditions);
+//		debug("\$conditions");
+//		debug($conditions);
 		
 		/*******************************
 			find
@@ -941,8 +949,8 @@ class PiecesController extends AppController {
 			
 			$tmp_array = array_values($tmp_array);
 			
-			debug("hin name deleted => ");
-			debug($tmp_array);
+// 			debug("hin name deleted => ");
+// 			debug($tmp_array);
 			
 		} else {//if (in_array($query_Filter_Hin_1_Hin_Name, $aryOf_Filtered_Hins))
 			
@@ -965,14 +973,14 @@ class PiecesController extends AppController {
 		
 		}//for ($i = 0; $i < $lenOf_TokensOf_Sorts; $i++)
 		
-		debug("\$valOf_HinArray_2 =>");
-		debug($valOf_HinArray_2);
+// 		debug("\$valOf_HinArray_2 =>");
+// 		debug($valOf_HinArray_2);
 		
-		debug("\$query_Filter_Hin_1_Chosen_Hin_1 =>");
-		debug($query_Filter_Hin_1_Chosen_Hin_1);	//=> '0,1'
+// 		debug("\$query_Filter_Hin_1_Chosen_Hin_1 =>");
+// 		debug($query_Filter_Hin_1_Chosen_Hin_1);	//=> '0,1'
 		
-		debug("\$query_Filter_Hin_1_Hin_Name =>");
-		debug($query_Filter_Hin_1_Hin_Name);
+// 		debug("\$query_Filter_Hin_1_Hin_Name =>");
+// 		debug($query_Filter_Hin_1_Hin_Name);
 		
 		/*******************************
 			add : hin_1 names
@@ -983,8 +991,8 @@ class PiecesController extends AppController {
 			// hin_1
 			$aryOf_Hin_1_Names = CONS::$listOf_Hin_1_Names[$query_Filter_Hin_1_Hin_Name];
 			
-			debug("\$aryOf_Hin_1_Names =>");
-			debug($aryOf_Hin_1_Names);
+// 			debug("\$aryOf_Hin_1_Names =>");
+// 			debug($aryOf_Hin_1_Names);
 			// 		array(
 			// 				(int) 0 => '一般',
 			// 				(int) 1 => '助詞類接続'
@@ -995,8 +1003,8 @@ class PiecesController extends AppController {
 							$aryOf_Hin_1_Names, 
 							explode(",", $query_Filter_Hin_1_Chosen_Hin_1));
 			
-			debug("\$aryOf_Hin_1_Names_Chosen =>");
-			debug($aryOf_Hin_1_Names_Chosen);
+// 			debug("\$aryOf_Hin_1_Names_Chosen =>");
+// 			debug($aryOf_Hin_1_Names_Chosen);
 					
 			$cond_Filter_Hin_1 = array();
 			
@@ -1022,14 +1030,14 @@ class PiecesController extends AppController {
 			
 	// 		$cond_Filter_Hin_1['OR'] = $tmp_array;
 			
-			debug("\$cond_Filter_Hin_1 =>");
-			debug($cond_Filter_Hin_1);
+// 			debug("\$cond_Filter_Hin_1 =>");
+// 			debug($cond_Filter_Hin_1);
 	
 		}//if ($query_Filter_Hin_1_Hin_Name != '0')
 			
 					
-		debug("\$valOf_HinArray_2 =>");
-		debug($valOf_HinArray_2);
+// 		debug("\$valOf_HinArray_2 =>");
+// 		debug($valOf_HinArray_2);
 		
 		$options = array(
 				'order'			=> $valOf_SortArray,
@@ -1058,15 +1066,15 @@ class PiecesController extends AppController {
 		*******************************/
 		if ($tokensOf_Group_By_Names == null) {
 		
-			debug("\$tokensOf_Group_By_Names => null");
+//			debug("\$tokensOf_Group_By_Names => null");
 		
 		} else if (count($tokensOf_Group_By_Names) < 1) {
 			
-			debug("\$tokensOf_Group_By_Names => less than 1");
+//			debug("\$tokensOf_Group_By_Names => less than 1");
 			
 		} else if ($tokensOf_Group_By_Names[0] == '') {
 			
-			debug("\$tokensOf_Group_By_Names => 1 entry, value is ''");
+//			debug("\$tokensOf_Group_By_Names => 1 entry, value is ''");
 			
 		} else {
 		
@@ -1237,23 +1245,23 @@ class PiecesController extends AppController {
 // 				'group'	=> $tokensOf_Group_By_Names
 		);
 
-		debug("\$conditions => ");
-		debug($conditions);
+//		debug("\$conditions => ");
+//		debug($conditions);
 		
 		/*******************************
 			option : group by
 		*******************************/
 		if ($tokensOf_Group_By_Names == null) {
 		
-			debug("\$tokensOf_Group_By_Names => null");
+//			debug("\$tokensOf_Group_By_Names => null");
 		
 		} else if (count($tokensOf_Group_By_Names) < 1) {
 			
-			debug("\$tokensOf_Group_By_Names => less than 1");
+//			debug("\$tokensOf_Group_By_Names => less than 1");
 			
 		} else if ($tokensOf_Group_By_Names[0] == '') {
 			
-			debug("\$tokensOf_Group_By_Names => 1 entry, value is ''");
+//			debug("\$tokensOf_Group_By_Names => 1 entry, value is ''");
 			
 		} else {
 		
@@ -1406,8 +1414,8 @@ class PiecesController extends AppController {
 				// 					array("Piece.type"	=> "hiragana")
 		);
 
-		debug("\$conditions => ");
-		debug($conditions);
+//		debug("\$conditions => ");
+//		debug($conditions);
 		
 		/*******************************
 			find
@@ -1522,13 +1530,13 @@ class PiecesController extends AppController {
 		
 		@$query_Filter_Hin_1_Chosen_Hin_1 = $this->request->query["filter_hin_1_chosen_hin_1"];
 		
-		debug("\$query_Filter_Hin_1_Hin_Name =>");
-		debug($query_Filter_Hin_1_Hin_Name);	//=> '名詞'
+// 		debug("\$query_Filter_Hin_1_Hin_Name =>");
+// 		debug($query_Filter_Hin_1_Hin_Name);	//=> '名詞'
 		
-		debug("\$query_Filter_Hin_1_Chosen_Hin_1 =>");
-// 		debug($query_Filter_Hin_1_Chosen_Hin_1);
-		debug(($query_Filter_Hin_1_Chosen_Hin_1 == '') 
-					? "blank" : $query_Filter_Hin_1_Chosen_Hin_1);
+// 		debug("\$query_Filter_Hin_1_Chosen_Hin_1 =>");
+// // 		debug($query_Filter_Hin_1_Chosen_Hin_1);
+// 		debug(($query_Filter_Hin_1_Chosen_Hin_1 == '') 
+// 					? "blank" : $query_Filter_Hin_1_Chosen_Hin_1);
 		
 		/*******************************
 			validate : hin name in filtered hin names list
@@ -1541,7 +1549,7 @@ class PiecesController extends AppController {
 		
 			if ($item == $query_Filter_Hin_1_Hin_Name) {
 			
-				debug("equal => $item / $query_Filter_Hin_1_Hin_Name");
+// 				debug("equal => $item / $query_Filter_Hin_1_Hin_Name");
 				
 				$result = true;
 				
@@ -1549,7 +1557,7 @@ class PiecesController extends AppController {
 				
 			} else {//if ($item == $query_Filter_Hin_1_Hin_Name)
 			
-				debug("no : $item");
+//				debug("no : $item");
 				
 			}
 			
@@ -1558,21 +1566,21 @@ class PiecesController extends AppController {
 		//debug
 		if ($result == true) {
 		
-			debug("result ---> true");
+//			debug("result ---> true");
 		
 		} else {
 		
-			debug("result ---> false");
+//			debug("result ---> false");
 			
 		}//if ($result == true)
 		
 		
 		
 		
-		debug("\$result => " . (($result == false) ? "false!" : "not false"));
+//		debug("\$result => " . (($result == false) ? "false!" : "not false"));
 		
-		debug("\$aryOf_Filtered_Hins =>");
-		debug($aryOf_Filtered_Hins);
+//		debug("\$aryOf_Filtered_Hins =>");
+//		debug($aryOf_Filtered_Hins);
 		
 		/*******************************
 			get : pieces
@@ -1672,11 +1680,11 @@ class PiecesController extends AppController {
 		
 		if ($query_Hin_Name == null) {
 		
-			debug("\$query_Hin_Name => null");
+//			debug("\$query_Hin_Name => null");
 		
 		} else if ($query_Hin_Name == '') {
 			
-			debug("\$query_Hin_Name => blank");
+//			debug("\$query_Hin_Name => blank");
 			
 		} else {
 

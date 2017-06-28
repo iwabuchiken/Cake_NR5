@@ -6,6 +6,9 @@
 
 (<a href="#bottom">Bottom</a><a name="top"></a>)
 
+	<button class="basic" id="index_2_Show_Hide">
+		Show/Hide
+	</button>
 <br>
 <br>
 <hr>
@@ -39,22 +42,64 @@
 	<input type="text" id="input_Query_String" name="name" size="30">
 <!-- 	<input type="text" id="input_Query_String" name="name" size="30" maxlength="40" width="10"> -->
 
-	<span id="message"></span>
-	<span id="message_2"></span>
+<!-- 	<span id="message"></span> -->
+<!-- 	<span id="message_2"></span> -->
 	
-	<div>
-		total = 
-		<span id="stats_area">
+<!-- 	<div> -->
+<!-- 		total =  -->
+<!-- 		<span id="stats_area"> -->
 			<?php 
 			
-				echo $numOf_Pieces_All;
+// 				echo $numOf_Pieces_All;
 			
-			?>
+// 			?>
 		
-		</span>
-	</div>
+<!-- 		</span> -->
+<!-- 	</div> -->
 	
 </div><!-- <div id="link_area"> -->
+
+<div id="div_index_2_Message_Area">
+
+	<table id="tbl_index_2_Message_Area">
+	
+		<tr>
+<!-- 			<td width="200"> -->
+			<td width="200" class="td_index_2_Message_Area">
+				<span id="message"></span>
+			</td>
+		</tr>
+		
+<!-- 		<tr> -->
+<!-- 			<td> -->
+<!-- 			<span id="message_2"></span> -->
+<!-- 			</td> -->
+<!-- 		</tr> -->
+		
+<!-- 		<span id="message_2"></span> -->
+		
+		<tr>
+<!-- 			<div> -->
+				
+				<td>
+				total = 
+				
+				<span id="stats_area">
+					<?php 
+					
+						echo $numOf_Pieces_All;
+					
+					?>
+				
+				</span>
+				</td>
+<!-- 			</div> -->
+		</tr>
+		
+		
+	</table>
+
+</div><!-- <div id="index_2_Message_Area"> -->
 
 <br>
 <hr>
