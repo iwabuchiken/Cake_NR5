@@ -1,7 +1,7 @@
 <?php 
 
 	//ref sql dump : http://qiita.com/kazu56/items/fa72b97db235193fe2d3
-echo $this->element('sql_dump');
+// echo $this->element('sql_dump');
 
 // 	echo "yes";
 	

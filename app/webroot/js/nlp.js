@@ -3,7 +3,6 @@ var types_Checked = true;	// default ---> all checked (input.cb_type)
 var groups_Checked = false;	// default ---> all unchecked (input.cb_type)
 var filter_Hin_1_Checked = true;	// default ---> all checked (input.cb_type)
 
-
 function show_Hiraganas() {
 	
 	var url_curr = $(location).attr('href');
@@ -18,8 +17,6 @@ function show_Hiraganas() {
 	} else {
 	
 		url = "/Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type";
-
-		
 	}
 	
 	/*
@@ -40,21 +37,14 @@ function show_Hiraganas() {
 	}).done(function(data, status, xhr) {
 		
 		$("#list_area").html(data);
-		
-
-		
 	}).fail(function(xhr, status, error) {
 		
 		alert(xhr.status);
 		
 	});
-
-	
 }
 
 function _show_List(query_String) {
-	
-	alert("showing list...");
 
 	/***************************
 		button 'Go' => disable
@@ -93,9 +83,6 @@ function _show_List(query_String) {
 			;
 		
 	}
-	
-	alert("url => " + url);
-	
 	/***************************
 		set message
 	 ***************************/
@@ -147,24 +134,13 @@ function _show_List(query_String) {
 			}
 	).done(
 			function(data, status, xhr) {
-		
-				alert("done");
-				
 				// button color
 				button_Go.css("background", "PaleTurquoise");
 			
 				// disable ---> false
 				button_Go.prop('disabled', false);
-				
-				
 				$("#list_area").html(data);
-				
-			//	alert("data.length => " + data.length);
-				
 				var rowCount = $('table#pieces tr').length;
-				
-				//alert("num of 'tr's => " + rowCount);
-				
 			//	var rowCount = $('#myTable tr').length;
 				
 				// set table height
@@ -180,13 +156,8 @@ function _show_List(query_String) {
 					tmp = 130;
 					
 				}
-				
-				
 				var table_Height = tmp + "%";
 			//	var table_Height = rowCount / 2.0 + "%";
-				
-				//alert("table_Height => " + table_Height);
-				
 				$("#list_area").css("height", table_Height);
 				
 				/***************************
@@ -237,9 +208,6 @@ function show_List() {
 	var query_String = $('input#input_Query_String').val();
 	
 	if (query_String != null && query_String != '') {
-		
-//		alert("query_String => " + query_String);
-		
 		/***************************
 			dispatch
 		 ***************************/
@@ -247,33 +215,7 @@ function show_List() {
 		
 		return;
 	}
-//	if (query_String == '') {
-//
-//		alert("query_String => blank");
-//
-//	} else if (query_String == null) {
-//		
-//		alert("query_String => null");
-//		
-//	} else {
-//
-//		alert("query_String => unknown : " + query_String);
-//
-//	}//if (query_String == '')
-	
-	
-//	alert("list");
-	
-////	var query_String = $('input#input_Query_String').text().
-	//ref https://stackoverflow.com/questions/4088467/get-the-value-in-an-input-text-box
-//	var query_String = $('input#input_Query_String').val().
-//	var query_String = $('input#input_Query_String').val();	//=> w.
-//	var query_String = $('input#input_Query_String');
-//	
-//	alert("query_String => " + query_String);
-	
-//	return;
-	
+
 	/***************************
 		button --> disable
 	 ***************************/
@@ -295,9 +237,7 @@ function show_List() {
 	var radio_2 = $('input[name=sort_direction_2]:checked').val();
 	var radio_3 = $('input[name=sort_direction_3]:checked').val();
 	var radio_4 = $('input[name=sort_direction_4]:checked').val();
-	//alert("radio_1 => " + radio_1);
-	//alert("select_sort_column_1 => " + val_Sort_1);
-
+		
 	/***************************
 		build param : sort
 	***************************/
@@ -346,9 +286,6 @@ function show_List() {
 		}
 		
 	}//if (val_Sort_1 == 0) {
-	
-	//alert(param_Sorts_Directions);
-	
 	/***************************
 		get values : types
 	 ***************************/
@@ -357,10 +294,6 @@ function show_List() {
 	var val = $(".cb_type:checked").map(function() {
 		  return $(this).val();
 	}).get();
-
-//	alert(val);
-	//alert("types => " + val);
-	
 	var lenOf_Types = val.length;
 	//ref https://www.ajaxtower.jp/js/array_class/index3.html
 	var param_types = val.join(",");
@@ -394,9 +327,6 @@ function show_List() {
 	//debug
 	var button_Go = $('#index_2_go');
 	button_Go.prop('disabled', false);
-	
-//	alert(param_Group_By);
-	
 //	return;
 	
 	/***************************
@@ -404,9 +334,6 @@ function show_List() {
 	 ***************************/
 	var val_Filter_Hin_1_Hin_Name = $("select#select_Filter_Hin_1").val();
 //	var val_Filter_Hin_1 = $("select#select_Filter_Hin_1").val();
-	
-//	alert("val_Filter_Hin_1 => " + val_Filter_Hin_1);	//=> '助詞'
-	
 	/***************************
 		get values : hin_1
 	 ***************************/
@@ -416,14 +343,9 @@ function show_List() {
 	}).get();
 	
 	var lenOf_Filter_Hin_1 = val_Filter_Hin_1.length;
-	
-//	alert("lenOf_Filter_Hin_1 => " + lenOf_Filter_Hin_1);	//=> '0' if '---' chosen
-	
 	//ref https://www.ajaxtower.jp/js/array_class/index3.html
 	var param_Filter_Hin_1 = val_Filter_Hin_1.join(",");
 	
-//	alert("param_Filter_Hin_1 => " + param_Filter_Hin_1);	//=> '0,1,2,3,4,5'
-//	alert("param_Filter_Hin_1 => " + (param_Filter_Hin_1 == '' ? "blank" : "not blank"));	
 	//=> blank if '0' chosen
 	
 //	//test
@@ -434,8 +356,6 @@ function show_List() {
 	 ***************************/
 	var button_Go = $('#index_2_go');
 	button_Go.prop('disabled', false);
-	
-	
 	/***************************
 		build : url
 	 ***************************/
@@ -454,12 +374,7 @@ function show_List() {
 	} else {
 		
 		url = "/Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type";
-		
-		
 	}
-	
-	alert("url => " + url);
-	
 	/***************************
 		change color
 	 ***************************/
@@ -534,16 +449,8 @@ function show_List() {
 
 		// disable ---> false
 		button_Go.prop('disabled', false);
-		
-		
 		$("#list_area").html(data);
-		
-//		alert("data.length => " + data.length);
-		
 		var rowCount = $('table#pieces tr').length;
-		
-		//alert("num of 'tr's => " + rowCount);
-		
 //		var rowCount = $('#myTable tr').length;
 		
 		// set table height
@@ -559,13 +466,8 @@ function show_List() {
 			tmp = 130;
 			
 		}
-		
-		
 		var table_Height = tmp + "%";
 //		var table_Height = rowCount / 2.0 + "%";
-		
-		//alert("table_Height => " + table_Height);
-		
 		$("#list_area").css("height", table_Height);
 		
 		/***************************
@@ -595,9 +497,6 @@ function show_List() {
 				+ " %"
 				+ ")");
 //		$('span#message').append(" (" + ((rowCount - 1) / total_Pieces) + ")");
-		
-//		alert($('span#stats_area').html());
-		
 	}).fail(function(xhr, status, error) {
 		
 		alert(xhr.status);
@@ -623,15 +522,7 @@ function uncheck_All_Hins() {
 		hins_Checked = true;
 
 	}//if (hins_unchecked == true)
-	
-	
 //	inputs.prop('checked', false);
-	
-	
-//	alert("unchecking...");
-	
-//	alert(inputs.length);
-	
 }//uncheck_All_Hins()
 
 function uncheck_All_Types() {
@@ -651,15 +542,7 @@ function uncheck_All_Types() {
 		types_Checked = true;
 		
 	}//if (hins_unchecked == true)
-	
-	
 //	inputs.prop('checked', false);
-	
-	
-//	alert("unchecking...");
-	
-//	alert(inputs.length);
-	
 }//uncheck_All_Types
 
 function uncheck_All_Groups() {
@@ -679,15 +562,7 @@ function uncheck_All_Groups() {
 		groups_Checked = true;
 		
 	}//if (hins_unchecked == true)
-	
-	
 //	inputs.prop('checked', false);
-	
-	
-//	alert("unchecking...");
-	
-//	alert(inputs.length);
-	
 }//uncheck_All_Types
 
 function uncheck_All_Hin_1() {
@@ -707,23 +582,11 @@ function uncheck_All_Hin_1() {
 		filter_Hin_1_Checked = true;
 		
 	}//if (hins_unchecked == true)
-	
-	
 //	inputs.prop('checked', false);
-	
-	
-//	alert("unchecking...");
-	
-//	alert(inputs.length);
-	
 }//uncheck_All_Hin_1
 
 function _onChange_Filter_Hin_1(hin_Name) {
-	
-//	alert("changing...");
-	
 //	//test
-//	alert("hin => " + hin_Name);
 //	
 //	return;
 	
@@ -731,9 +594,6 @@ function _onChange_Filter_Hin_1(hin_Name) {
 		validate
 	 ***************************/
 	if (hin_Name == '0') {
-		
-//		alert("hin => 0");
-		
 //		$('td#td_Filter_Hin_1_Data_Area').html().text();
 //		$('td#td_Filter_Hin_1_Data_Area').html("abc");
 		$('span#td_Filter_Hin_1_Data_Area').html("");
@@ -805,16 +665,12 @@ function _onChange_Filter_Hin_1(hin_Name) {
 		$('span#label_Filter_Hin_1').css("background", "white");
 
 	});
-
-	
 }//_onChange_Filter_Hin_1()
 
 $(document).ready(function(){
 
 //	//test
 //	test_replace_genre_id(12);
-	
-//	alert("ready");
 
 	//REF http://stackoverflow.com/questions/3224535/how-do-i-add-an-onchange-event-to-select-tag-in-cakephp answered Jul 13 '10 at 11:15
 //    $('#category').change(function(){
@@ -825,10 +681,6 @@ $(document).ready(function(){
 		function(){
 
 			var val = $('select#select_Filter_Hin_1').find(":selected").val();
-			
-//			alert("changed => " + id);
-//			alert("changed => " + "'" + val + "'");
-			
 //			var msg = "changed => " + "'" + val + "'";
 			
 //			$('td#tr_Filter_Hin_1').append("changed");

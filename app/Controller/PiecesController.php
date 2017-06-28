@@ -1080,11 +1080,11 @@ class PiecesController extends AppController {
 		/*******************************
 			options
 		*******************************/
-		debug("\$conditions => ");
-		debug($conditions);
+// 		debug("\$conditions => ");
+// 		debug($conditions);
 		
-		debug("\$options =>");
-		debug($options);
+// 		debug("\$options =>");
+// 		debug($options);
 		
 		/*******************************
 			find
