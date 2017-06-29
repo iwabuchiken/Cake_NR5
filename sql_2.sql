@@ -92,6 +92,7 @@ UPDATE sqlite_sequence SET seq = 0 WHERE name = 'pieces';
 /* ref http://d.hatena.ne.jp/tech_onoue/20070909/1189320117
 mysqk	*/
 ALTER TABLE table_name AUTO_INCREMENT = 1
+ALTER TABLE pieces AUTO_INCREMENT = 1
 
 [mysql]======================================
 ------------------------------------------------ pieces
