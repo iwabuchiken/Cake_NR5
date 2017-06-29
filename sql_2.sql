@@ -89,7 +89,9 @@ DELETE FROM pieces;
 UPDATE sqlite_sequence SET seq = 0 WHERE name = 'pieces';
 #ref https://www.tutorialspoint.com/sqlite/sqlite_update_query.htm
 
-
+/* ref http://d.hatena.ne.jp/tech_onoue/20070909/1189320117
+mysqk	*/
+ALTER TABLE table_name AUTO_INCREMENT = 1
 
 [mysql]======================================
 ------------------------------------------------ pieces
@@ -126,5 +128,10 @@ CREATE TABLE pieces (
 	genre_id	INT
 	
 );
+
+
+[sqlite browser]======================================
+/* 2017/06/29 11:19:47 */
+delete from pieces;
 
 

@@ -461,8 +461,8 @@ class PiecesController extends AppController {
 		
 // 		$tickOf_Geschichtes = 50;
 // 		$tickOf_Geschichtes = 15;
-// 		$tickOf_Geschichtes = 10;
-		$tickOf_Geschichtes = 5;
+		$tickOf_Geschichtes = 10;
+// 		$tickOf_Geschichtes = 5;
 // 		$tickOf_Geschichtes = 1;
 		
 		$index_Start = 31;
@@ -482,8 +482,8 @@ class PiecesController extends AppController {
 
 			$result = Utils_2::conv_Xml_2_AryOf_Pieces_2($xml, $geschichtes[$i]);
 	
-// 			debug(sprintf("Geschichte %d : Total words %d / Saved %d", 
-// 						$geschichtes[$i]['Geschichte']['id'], count($xml->word), $result));
+			debug(sprintf("Geschichte %d : Total words %d / Saved %d", 
+						$geschichtes[$i]['Geschichte']['id'], count($xml->word), $result));
 // 						$geschichtes[$i]['id'], count($xml->word), $result));
 			
 // 			#test
