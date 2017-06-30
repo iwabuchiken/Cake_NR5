@@ -112,6 +112,16 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	
 	</div>
 	
+	<button class="basic" id="links_2_Show_Hide">
+		Show/Hide
+	</button>
+	
+	<div class="footer" id="div_Default_Layout_Footer_2">
+	
+		<?php echo $this->element('layouts/links_2'); ?>
+	
+	</div>
+	
 	
 	
 	<?php 

@@ -6,107 +6,111 @@
 
 (<a href="#bottom">Bottom</a><a name="top"></a>)
 
-<table>
+	<?php echo $this->element('pieces/stats/_stats__Hins'); ?>
+	
+	<?php echo $this->element('pieces/stats/_stats__Joshis'); ?>
+
+<!-- <table> -->
 
 
-	<tr>
+<!-- 	<tr> -->
 		<?php 
 		
-			$column_Names = array(
+// 			$column_Names = array(
 					
-					"Item",
-					"Data",
-					"Ratio"
+// 					"Item",
+// 					"Data",
+// 					"Ratio"
 					
-			);
+// 			);
 		
-			foreach ($column_Names as $item) {
+// 			foreach ($column_Names as $item) {
 			
-		?>
+// 		?>
 		
 		
-		<th>
+<!-- 		<th> -->
 			<?php 
 			
-				echo $item;
+// 				echo $item;
 			
-			?>
-		</th>
+// 			?>
+<!-- 		</th> -->
 
 		<?php 
 
-			}//foreach ($column_Names as $item)
+// 			}//foreach ($column_Names as $item)
 				
-		?>
-	</tr>
+// 		?>
+<!-- 	</tr> -->
 
 	<?php 
 	
-		foreach ($data_2 as $item) {
+// 		foreach ($data_2 as $item) {
 			
 			
-	?>
+// 	?>
 	
-	<tr>
+<!-- 	<tr> -->
 	
 		<?php 
 		
-// 			foreach ($item as $tds) {
+// // 			foreach ($item as $tds) {
 			
-		?>
-		<td>
+// 		?>
+<!-- 		<td> -->
 		
 			<?php 
 			
-// 				echo $tds;
+// // 				echo $tds;
 
-				echo $item[0];
+// 				echo $item[0];
 			
-			?>
+// 			?>
 		
-		</td>  
+<!-- 		</td>   -->
   		
-		<td>
+<!-- 		<td> -->
 		
 			<?php 
 			
-// 				echo $tds;
+// // 				echo $tds;
 
-				echo $item[1];
+// 				echo $item[1];
 			
-			?>
+// 			?>
 		
-		</td>  
+<!-- 		</td>   -->
   		
-		<td>
+<!-- 		<td> -->
 		
 			<?php 
 			
-// 				echo $tds;
-				$label = sprintf("%.2f %%", $item[2] * 100);
+// // 				echo $tds;
+// 				$label = sprintf("%.2f %%", $item[2] * 100);
 				
-				echo $label;
-// 				echo $item[2];
+// 				echo $label;
+// // 				echo $item[2];
 			
-			?>
+// 			?>
 		
-		</td>  
+<!-- 		</td>   -->
   		
 		<?php 
 			
-// 			}//foreach ($item as $tds)
+// // 			}//foreach ($item as $tds)
 			
-		?>
+// 		?>
 		
-  	</tr>
+<!--   	</tr> -->
   	
   	<?php 
   	
-  		}//foreach ($data_2 as $item)
+//   		}//foreach ($data_2 as $item)
   	  
-  	?>
+//   	?>
 
-</table>
+<!-- </table> -->
   	
 <br>
 <br>

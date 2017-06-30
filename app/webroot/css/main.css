@@ -323,6 +323,12 @@ table#links {
 	
 }
 
+table#links_2 {
+	
+	width:	400px;
+	
+}
+
 table#a_list_header {
 	
 	/*background:	#CEFDB8;*/
@@ -852,6 +858,13 @@ button.basic {
 	
 }/*button.basic*/
 
+button.basic_2 {
+	
+	font-size	:	15px;
+	padding		:	5px;
+	
+}/*button.basic*/
+
 button#index_2_go {
 	
 	font-size	:	20px;
@@ -937,6 +950,18 @@ button#uncheck_All_Hin_1 {
 	border-radius: 10px;
 	
 }/*button#uncheck_All_Hin_1 {*/
+
+button#bt_Stats_Joshis_Show_Hide {
+	
+	background-color	: yellow;
+	
+}/*button#bt_Stats_Joshis_Show_Hide {*/
+
+button#bt_Stats_Hins_Show_Hide {
+	
+	background-color	: yellow;
+	
+}/*button#bt_Stats_Hins_Show_Hide {*/
 
 div.radio_buttons {
 	

@@ -3,6 +3,9 @@ var types_Checked = true;	// default ---> all checked (input.cb_type)
 var groups_Checked = false;	// default ---> all unchecked (input.cb_type)
 var filter_Hin_1_Checked = true;	// default ---> all checked (input.cb_type)
 
+var flag_Table_Stats_Joshis = 1;
+var flag_Table_Stats_Hins = 1;
+
 function show_Hiraganas() {
 	
 	var url_curr = $(location).attr('href');
@@ -762,8 +765,8 @@ function _onChange_Filter_Hin_1(hin_Name) {
 	});
 }//_onChange_Filter_Hin_1()
 
-$(function() {
-	
+function _setup_Buttons() {
+
     $('button#index_2_Show_Hide').click(
     		
     		function(){
@@ -774,29 +777,97 @@ $(function() {
     		}
     		
 	);//$('#toggletest1').click(
+
+    $('button#links_2_Show_Hide').click(
+    		
+    		function(){
+    			
+    			$('div#div_Default_Layout_Footer_2').toggle('fast');
+//    			$('div#link_area').toggle('slow');
+    			
+    		}
+    		
+    );//$('#toggletest1').click(
+    
+    $('button#bt_Stats_Hins_Show_Hide').click(
+    		
+    		function(){
+    			
+    			$('table#tbl_Stats_Hins').toggle('fast');
+    			
+    			if (flag_Table_Stats_Hins == 1) {
+
+    				//ref css https://stackoverflow.com/questions/9821691/jquery-background-color-change-on-button-click 'answered Mar 22 '12 at 11:52'
+    				$('button#bt_Stats_Hins_Show_Hide').css("background-color", "white");
+					
+					flag_Table_Stats_Hins = flag_Table_Stats_Hins * (-1);
+					
+				} else {
+
+					$('button#bt_Stats_Hins_Show_Hide').css("background-color", "yellow");
+					
+					flag_Table_Stats_Hins = flag_Table_Stats_Hins * (-1);
+					
+				}//if (flag_Table_Stats_Joshi == 1)
+
+    		}
+    		
+    );//$('#toggletest1').click(
+
+    $('button#bt_Stats_Joshis_Show_Hide').click(
+    		
+    		function(){
+    			
+    			$('table#tbl_Stats_Joshis').toggle('fast');
+//    			$('div#link_area').toggle('slow');
+    			
+    			if (flag_Table_Stats_Joshis == 1) {
+
+//    				alert("flag => 1");
+    				
+    				//ref css https://stackoverflow.com/questions/9821691/jquery-background-color-change-on-button-click 'answered Mar 22 '12 at 11:52'
+    				$('button#bt_Stats_Joshis_Show_Hide').css("background-color", "white");
+//    				$('button#bt_Stats_Joshis_Show_Hide').attr("background-color", "blue");
+//					this.attr("background-color", "blue");
+					
+					flag_Table_Stats_Joshis = flag_Table_Stats_Joshis * (-1);
+//					flag_Table_Stats_Joshi *= -1;
+
+//					alert("flag is now => " + flag_Table_Stats_Joshi);
+					
+				} else {
+
+//					alert("flag => -1");
+					
+					$('button#bt_Stats_Joshis_Show_Hide').css("background-color", "yellow");
+//					this.attr("background-color", "yellow");
+					
+					flag_Table_Stats_Joshis = flag_Table_Stats_Joshis * (-1);
+//					flag_Table_Stats_Joshi *= -1;
+
+//					alert("flag is now => " + flag_Table_Stats_Joshi);
+					
+				}//if (flag_Table_Stats_Joshi == 1)
+    			
+    		}
+    		
+    );//$('#toggletest1').click(
+
+	
+}//_setup_Buttons()
+
+$(function() {
+	
+    _setup_Buttons();
     
 });//$(function() {
 
 $(document).ready(function(){
 
-//	//test
-//	test_replace_genre_id(12);
-
-	//REF http://stackoverflow.com/questions/3224535/how-do-i-add-an-onchange-event-to-select-tag-in-cakephp answered Jul 13 '10 at 11:15
-//    $('#category').change(function(){
-//      ("changed");
-//    });
-	
     $('select#select_Filter_Hin_1').change(
 		function(){
 
 			var val = $('select#select_Filter_Hin_1').find(":selected").val();
-//			var msg = "changed => " + "'" + val + "'";
-			
-//			$('td#tr_Filter_Hin_1').append("changed");
-//			$('td#tr_Filter_Hin_1').append(msg);	//=> n.w.
-//			$('td#tr_Filter_Hin_1').append("changed => " + "'" + val + "'");	//=> n.w.
-//			$('td#td_Filter_Hin_1').append("changed => " + "'" + val + "'");	//=> n.w.
     	
 			// exec
 			_onChange_Filter_Hin_1(val);
