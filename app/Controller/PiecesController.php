@@ -1818,6 +1818,11 @@ class PiecesController extends AppController {
 			品詞
 		*******************************/
 		$data_2 = $this->_stats__Hinshis($numOf_Pieces_Total);
+
+		// sort
+		$sort_Direction = "DESC";
+		
+		$data_2 = Utils_2::sort_Stats_Data__By_Data($data_2, $sort_Direction);
 		
 		/*******************************
 			助詞
@@ -1838,6 +1843,12 @@ class PiecesController extends AppController {
 		
 		$data_Joshis = $this->_stats__Joshis($target, $numOf_Pieces_Total__Joshis);
 // 		$data_Joshis = $this->_stats__Joshis('助詞', $numOf_Pieces_Total);
+		
+		// sort
+		$sort_Direction = "DESC";
+		
+		$data_Joshis = Utils_2::sort_Stats_Data__By_Data($data_Joshis, $sort_Direction);
+// 		Utils_2::sort_Stats_Data__By_Data($data_Joshis);
 		
 		/*******************************
 			set : variables

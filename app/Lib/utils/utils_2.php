@@ -687,6 +687,65 @@ class Utils_2 {
 			
 	}//cmp_Sort_Categories_By_Name($cat_1, $cat_2)
 	
+	public static function
+	sort_Stats_Data__By_Data($list, $sort_Direction = "DESC") {
+// 	sort_Stats_Data__By_Data($list) {
+		
+		$func_Name = "";
+		
+		if ($sort_Direction == "ASC") {
+		
+			$func_Name = "cmp_Sort_Stats_Data__By_Data__ASC";
+		
+		} else {
+		
+			$func_Name = "cmp_Sort_Stats_Data__By_Data__DESC";
+			
+		}//if ($sort_Direction == "ASC")
+		
+		
+		
+// 		$func_Name = "cmp_Sort_Stats_Data__By_Data__ASC";
+		
+		usort($list,
+// 				array("utils_2", "cmp_Sort_Stats_Data__By_Data", "abc")
+				array("utils_2", $func_Name)
+// 				array("utils_2", "cmp_Sort_Stats_Data__By_Data")
+		);
+		
+		return $list;
+		
+	}
+	
+	public static function
+	cmp_Sort_Stats_Data__By_Data__ASC($item_1, $item_2) {
+		
+		//REF http://www.php.net/manual/en/function.floatval.php
+		$data_1 = $item_1[1];
+		$data_2 = $item_2[1];
+			
+		//REF http://stackoverflow.com/questions/481466/php-string-to-float answered Jan 26 '09 at 21:35
+			
+		// 			return $cat_name_1 < $cat_name_2;
+		return $data_1 > $data_2;
+		
+		
+	}
+	
+	public static function
+	cmp_Sort_Stats_Data__By_Data__DESC($item_1, $item_2) {
+		
+		//REF http://www.php.net/manual/en/function.floatval.php
+		$data_1 = $item_1[1];
+		$data_2 = $item_2[1];
+			
+		//REF http://stackoverflow.com/questions/481466/php-string-to-float answered Jan 26 '09 at 21:35
+			
+		// 			return $cat_name_1 < $cat_name_2;
+		return $data_1 < $data_2;
+		
+		
+	}
 	
 }//class Utils
 	

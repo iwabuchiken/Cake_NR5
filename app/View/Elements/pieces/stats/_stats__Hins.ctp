@@ -16,8 +16,11 @@
 	<tr>
 		<?php 
 		
+			$count = 1;
+		
 			$column_Names = array(
 					
+					"no.",
 					"Item",
 					"Data",
 					"Ratio"
@@ -52,12 +55,19 @@
 	?>
 	
 	<tr>
+
+		<td>
 	
-		<?php 
-		
-// 			foreach ($item as $tds) {
+			<?php 
 			
-		?>
+				echo $count;
+				
+				$count ++;
+			
+			?>
+		
+		</td>
+	
 		<td>
 		
 			<?php 
