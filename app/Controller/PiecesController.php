@@ -1764,6 +1764,47 @@ class PiecesController extends AppController {
 	}//_stats__Hinshis()
 	
 	public function
+	_stats__Joshis($hin_Name, $numOf_Pieces_Total) {
+
+		//test
+		$listOf_Joshis = CONS::$listOf_Hin_1_Names[$hin_Name];
+// 		$listOf_Joshis = CONS::$listOf_Hin_1_Names['助詞'];
+		
+		$data_2 = array();
+		
+		foreach ($listOf_Joshis as $item) {
+		
+			$option = array(
+		
+					'conditions'	=> array(
+								
+								'AND'	=> array(
+										
+										'Piece.hin'	=> $hin_Name,
+										
+										'Piece.hin_1'	=> $item,
+										
+								)
+// 								'Piece.hin'	=> $item
+					
+					
+					)
+		
+			);
+		
+			$pieces = $this->Piece->find('all', $option);
+		
+			$numOf_Pieces = count($pieces);
+		
+			array_push($data_2, array($item, $numOf_Pieces, $numOf_Pieces / $numOf_Pieces_Total));
+		
+		}//foreach ($listOf_Hin_Names as $item)
+		
+		return $data_2;
+		
+	}//_stats__Joshis($numOf_Pieces_Total)
+	
+	public function
 	stats() {
 
 		/*******************************
@@ -1779,11 +1820,33 @@ class PiecesController extends AppController {
 		$data_2 = $this->_stats__Hinshis($numOf_Pieces_Total);
 		
 		/*******************************
+			助詞
+		*******************************/
+		$target = '助詞';
+		
+		$option = array(
+		
+			'conditions'	=> array(
+			
+				"Piece.hin"	=> $target
+			
+			)
+		
+		);
+		
+		$numOf_Pieces_Total__Joshis = count($this->Piece->find('all', $option));
+		
+		$data_Joshis = $this->_stats__Joshis($target, $numOf_Pieces_Total__Joshis);
+// 		$data_Joshis = $this->_stats__Joshis('助詞', $numOf_Pieces_Total);
+		
+		/*******************************
 			set : variables
 		*******************************/
 		$this->set("numOf_Pieces_Total", $numOf_Pieces_Total);
 		
 		$this->set("data_2", $data_2);
+		
+		$this->set("data_Joshis", $data_Joshis);
 		
 		$this->render("/Pieces/stats");
 		

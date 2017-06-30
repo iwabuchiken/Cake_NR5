@@ -46,7 +46,7 @@
 
 	<?php 
 	
-		foreach ($data_2 as $item) {
+		foreach ($data_Joshis as $item) {
 			
 			
 	?>
