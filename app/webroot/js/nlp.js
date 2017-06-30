@@ -430,6 +430,7 @@ function show_List() {
 	 ***************************/
 	var val_Filter_Hin_1_Hin_Name = $("select#select_Filter_Hin_1").val();
 //	var val_Filter_Hin_1 = $("select#select_Filter_Hin_1").val();
+	
 	/***************************
 		get values : hin_1
 	 ***************************/

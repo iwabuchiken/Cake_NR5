@@ -1638,6 +1638,8 @@ class PiecesController extends AppController {
 	public function
 	_get_ListOf_Hin_1_Names($query_Hin_Name) {
 			
+		debug("\$query_Hin_Name => " . $query_Hin_Name);
+		
 		$options = array(
 				
 				"conditions"	=> array(
@@ -1659,6 +1661,10 @@ class PiecesController extends AppController {
 			pieces
 		*******************************/
 		$pieces = $this->Piece->find('all', $options);
+		
+// 		debug("count(\$pieces) => " . count($pieces));
+		
+// 		debug($pieces);
 		
 		/*******************************
 			return
@@ -1730,77 +1736,8 @@ class PiecesController extends AppController {
 	}//get_ListOf__Hin_1
 	
 	public function
-	stats() {
+	_stats__Hinshis($numOf_Pieces_Total) {
 
-		/*******************************
-			total
-		*******************************/
-		$pieces = $this->Piece->find('all');
-		
-		$numOf_Pieces_Total = count($pieces);
-
-		/*******************************
-			'名詞'
-		*******************************/
-		$option_meisi = array(
-		
-			'conditions'	=> array('Piece.hin'	=> '名詞')
-		
-		);
-		
-		$pieces_Meisi = $this->Piece->find('all', $option_meisi);
-		
-		$numOf_Pieces_Meisi = count($pieces_Meisi);
-		
-		/*******************************
-			'名詞'
-		*******************************/
-		$option_Dousi = array(
-		
-			'conditions'	=> array('Piece.hin'	=> '動詞')
-		
-		);
-		
-		$pieces_Dousi = $this->Piece->find('all', $option_Dousi);
-		
-		$numOf_Pieces_Dousi = count($pieces_Dousi);
-		
-		/*******************************
-			'助詞'
-		*******************************/
-		$option_Josi = array(
-		
-			'conditions'	=> array('Piece.hin'	=> '助詞')
-		
-		);
-		
-		$pieces_Josi = $this->Piece->find('all', $option_Josi);
-		
-		$numOf_Pieces_Josi = count($pieces_Josi);
-		
-		/*******************************
-			set : variables
-		*******************************/
-		$data = array(
-
-				"Total"	=> $numOf_Pieces_Total,
-				
-				"名詞"	=> $numOf_Pieces_Meisi,
-				
-				"動詞"	=> $numOf_Pieces_Dousi,
-				
-				"助詞"	=> $numOf_Pieces_Josi,
-				
-				"助詞"	=> $numOf_Pieces_Josi,
-				
-		);
-
-		$this->set("data", $data);
-		
-		$this->set("numOf_Pieces_Total", $numOf_Pieces_Total);
-		
-// 		$this->set("numOf_Pieces_Meisi", $numOf_Pieces_Meisi);
-		
 		//test
 		$listOf_Hin_Names = CONS::$listOf_Hin_Nams;
 		
@@ -1809,20 +1746,42 @@ class PiecesController extends AppController {
 		foreach ($listOf_Hin_Names as $item) {
 		
 			$option = array(
-			
+		
 					'conditions'	=> array('Piece.hin'	=> $item)
-			
+		
 			);
-			
+		
 			$pieces = $this->Piece->find('all', $option);
-			
+		
 			$numOf_Pieces = count($pieces);
-
+		
 			array_push($data_2, array($item, $numOf_Pieces, $numOf_Pieces / $numOf_Pieces_Total));
-			
+		
 		}//foreach ($listOf_Hin_Names as $item)
 		
-// 		debug($data_2);
+		return $data_2;
+		
+	}//_stats__Hinshis()
+	
+	public function
+	stats() {
+
+		/*******************************
+			total
+		*******************************/
+		$pieces = $this->Piece->find('all');
+		
+		$numOf_Pieces_Total = count($pieces);
+		
+		/*******************************
+			品詞
+		*******************************/
+		$data_2 = $this->_stats__Hinshis($numOf_Pieces_Total);
+		
+		/*******************************
+			set : variables
+		*******************************/
+		$this->set("numOf_Pieces_Total", $numOf_Pieces_Total);
 		
 		$this->set("data_2", $data_2);
 		

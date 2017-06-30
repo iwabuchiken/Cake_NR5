@@ -9,11 +9,35 @@
 	
 		<td>
 
-			<?php echo $this->Html->link(
+			<?php 
+				
+				$servername = env('SERVER_NAME');
+				
+				$option = null;
+				
+				if ($servername == 'localhost') {
+						
+					$option = array(
+								
+							'controller' => 'Pieces',
+							'action' => 'stats'
+				
+					);
+				
+				} else {//if ($servername == 'localhost')
+						
+					$option = 'http://benfranklin.chips.jp/cake_apps/Cake_NR5/pieces/index?action=stats';
+				
+				}//if ($servername == 'localhost')
+						
+			
+			
+				echo $this->Html->link(
 					
 					'Stats',
-					array('controller' => 'Pieces', 
-							'action' => 'stats'),
+					$option,
+// 					array('controller' => 'Pieces', 
+// 							'action' => 'stats'),
 					array('class' => "button"));
 			?>
 		
@@ -23,7 +47,7 @@
 
 			<?php 
 			
-				$servername = env('SERVER_NAME');
+// 				$servername = env('SERVER_NAME');
 				
 				$option = null;
 				
@@ -37,6 +61,7 @@
 					);
 						
 				} else {//if ($servername == 'localhost')
+					
 					
 					$option = array(
 								
