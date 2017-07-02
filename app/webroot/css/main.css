@@ -480,6 +480,12 @@ table#tbl_Stats_Nouns {
 	
 }/*table#tbl_Stats_Nouns {*/
 
+table#tbl_Stats_Symbols {
+	
+	display	: none;
+	
+}/*table#tbl_Stats_Nouns {*/
+
 img.delete_position {
 	
 /*	border: 1px solid blue;*/
@@ -996,6 +1002,14 @@ button#bt_Stats_Nouns_Show_Hide {
 	background-color	: yellow;
 	*/
 }/*button#bt_Stats_Nouns_Show_Hide {*/
+
+button#bt_Stats_Symbols_Show_Hide {
+	
+	background-color	: #aaffaa;
+	/*
+	background-color	: yellow;
+	*/
+}/*button#bt_Stats_Symbols_Show_Hide {*/
 
 button#bt_Stats_Hins_Show_Hide {
 	

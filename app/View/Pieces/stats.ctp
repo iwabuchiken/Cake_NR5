@@ -12,6 +12,8 @@
   	
 	<?php echo $this->element('pieces/stats/_stats__Nouns'); ?>
   	
+	<?php echo $this->element('pieces/stats/_stats__Symbols'); ?>
+  	
 <br>
 <br>
 (<a href="#top">Top</a><a name="bottom"></a>)
