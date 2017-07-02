@@ -23,7 +23,8 @@
 					"no.",
 					"Item",
 					"Data",
-					"Ratio"
+					"Ratio",
+					"Accum"
 					
 			);
 		
@@ -49,8 +50,9 @@
 
 	<?php 
 	
+		$sumOf_Percentage = 0;
+		
 		foreach ($data_2 as $item) {
-			
 			
 	?>
 	
@@ -106,6 +108,21 @@
 		
 		</td>  
   		
+		<td>
+		
+			<?php 
+			
+				$sumOf_Percentage = $sumOf_Percentage + $item[2];
+// 				echo $tds;
+				$label_2 = sprintf("%.2f %%", $sumOf_Percentage * 100);
+				
+				echo $label_2;
+// 				echo $item[2];
+			
+			?>
+		
+		</td>  
+  		
 		<?php 
 			
 // 			}//foreach ($item as $tds)
@@ -119,5 +136,45 @@
   		}//foreach ($data_2 as $item)
   	  
   	?>
+
+	<tr>
+		
+		<td>
+			<?php 
+			
+				echo $count;
+			
+			?>
+		</td>
+	
+		<td>
+
+			Total
+		
+		</td>
+	
+		<td>
+		
+			<?php 
+			
+				echo $numOf_Pieces_Total;
+			
+			?>
+		
+		</td>
+	
+		<td>
+		
+			<?php 
+				
+			
+				echo sprintf("%.2f %%", 
+						$numOf_Pieces_Total / $numOf_Pieces_Total * 100);
+			
+			?>
+		
+		</td>
+	
+	</tr>
 
 </table>

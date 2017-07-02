@@ -1805,6 +1805,47 @@ class PiecesController extends AppController {
 	}//_stats__Joshis($numOf_Pieces_Total)
 	
 	public function
+	_stats__Nouns($hin_Name, $numOf_Pieces_Total) {
+
+		//test
+		$listOf_Nouns = CONS::$listOf_Hin_1_Names[$hin_Name];
+// 		$listOf_Joshis = CONS::$listOf_Hin_1_Names['助詞'];
+		
+		$data_2 = array();
+		
+		foreach ($listOf_Nouns as $item) {
+		
+			$option = array(
+		
+					'conditions'	=> array(
+								
+								'AND'	=> array(
+										
+										'Piece.hin'	=> $hin_Name,
+										
+										'Piece.hin_1'	=> $item,
+										
+								)
+// 								'Piece.hin'	=> $item
+					
+					
+					)
+		
+			);
+		
+			$pieces = $this->Piece->find('all', $option);
+		
+			$numOf_Pieces = count($pieces);
+		
+			array_push($data_2, array($item, $numOf_Pieces, $numOf_Pieces / $numOf_Pieces_Total));
+		
+		}//foreach ($listOf_Hin_Names as $item)
+		
+		return $data_2;
+		
+	}//_stats__Nouns($numOf_Pieces_Total)
+	
+	public function
 	stats() {
 
 		/*******************************
@@ -1851,14 +1892,44 @@ class PiecesController extends AppController {
 // 		Utils_2::sort_Stats_Data__By_Data($data_Joshis);
 		
 		/*******************************
+			名詞
+		*******************************/
+		$target = '名詞';
+		
+		$option = array(
+		
+			'conditions'	=> array(
+			
+				"Piece.hin"	=> $target
+			
+			)
+		
+		);
+		
+		$numOf_Pieces_Total__Nouns = count($this->Piece->find('all', $option));
+		
+		$data_Nouns = $this->_stats__Nouns($target, $numOf_Pieces_Total__Nouns);
+		
+		// sort
+		$sort_Direction = "DESC";
+		
+		$data_Nouns = Utils_2::sort_Stats_Data__By_Data($data_Nouns, $sort_Direction);
+		
+		/*******************************
 			set : variables
 		*******************************/
 		$this->set("numOf_Pieces_Total", $numOf_Pieces_Total);
+		$this->set("numOf_Pieces_Total__Joshis", $numOf_Pieces_Total__Joshis);
 		
 		$this->set("data_2", $data_2);
 		
 		$this->set("data_Joshis", $data_Joshis);
 		
+		$this->set("data_Nouns", $data_Nouns);
+
+		/*******************************
+			views
+		*******************************/
 		$this->render("/Pieces/stats");
 		
 	}//stats() {

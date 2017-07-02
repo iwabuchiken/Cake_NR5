@@ -460,6 +460,26 @@ table#tbl_index_2_Message_Area {
 	
 }
 
+table#tbl_Stats_Hins {
+	/*
+	ref https://stackoverflow.com/questions/10960753/how-to-make-toggle-hidden-by-default 'answered Jun 9 '12 at 12:09'
+	*/
+	display	: none;
+	
+}/*table#tbl_Stats_Hins {*/
+
+table#tbl_Stats_Joshis {
+	
+	display	: none;
+	
+}/*table#tbl_Stats_Joshis {*/
+
+table#tbl_Stats_Nouns {
+	
+	display	: none;
+	
+}/*table#tbl_Stats_Nouns {*/
+
 img.delete_position {
 	
 /*	border: 1px solid blue;*/
@@ -853,8 +873,14 @@ div.pagination {
 
 button.basic {
 	
-	font-size	:	20px;
+	font-size	:	15px;
 	padding		:	5px;
+	
+	margin		: 5px;
+	
+	border-radius: 5px;
+	
+	background-color	: white;
 	
 }/*button.basic*/
 
@@ -862,6 +888,10 @@ button.basic_2 {
 	
 	font-size	:	15px;
 	padding		:	5px;
+	
+	margin		: 5px;
+
+	border-radius: 5px;
 	
 }/*button.basic*/
 
@@ -953,14 +983,26 @@ button#uncheck_All_Hin_1 {
 
 button#bt_Stats_Joshis_Show_Hide {
 	
+	background-color	: #aaffaa;
+	/*
 	background-color	: yellow;
-	
+	*/
 }/*button#bt_Stats_Joshis_Show_Hide {*/
+
+button#bt_Stats_Nouns_Show_Hide {
+	
+	background-color	: #aaffaa;
+	/*
+	background-color	: yellow;
+	*/
+}/*button#bt_Stats_Nouns_Show_Hide {*/
 
 button#bt_Stats_Hins_Show_Hide {
 	
+	background-color	: #aaffaa;
+	/*
 	background-color	: yellow;
-	
+	*/
 }/*button#bt_Stats_Hins_Show_Hide {*/
 
 div.radio_buttons {

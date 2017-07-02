@@ -5,6 +5,7 @@ var filter_Hin_1_Checked = true;	// default ---> all checked (input.cb_type)
 
 var flag_Table_Stats_Joshis = 1;
 var flag_Table_Stats_Hins = 1;
+var flag_Table_Stats_Nouns = 1;
 
 function show_Hiraganas() {
 	
@@ -790,22 +791,36 @@ function _setup_Buttons() {
     		
     );//$('#toggletest1').click(
     
+    $('button#links_Show_Hide').click(
+    		
+    		function(){
+    			
+    			$('div#div_Default_Layout_Footer').toggle('fast');
+//    			$('div#link_area').toggle('slow');
+    			
+    		}
+    		
+    );//$('#toggletest1').click(
+    
     $('button#bt_Stats_Hins_Show_Hide').click(
     		
     		function(){
     			
     			$('table#tbl_Stats_Hins').toggle('fast');
     			
-    			if (flag_Table_Stats_Hins == 1) {
+    			if (flag_Table_Stats_Hins == 1) {	// if closed
 
     				//ref css https://stackoverflow.com/questions/9821691/jquery-background-color-change-on-button-click 'answered Mar 22 '12 at 11:52'
-    				$('button#bt_Stats_Hins_Show_Hide').css("background-color", "white");
+    				$('button#bt_Stats_Hins_Show_Hide').css("background-color", "yellow");
+//    				$('button#bt_Stats_Hins_Show_Hide').css("background-color", "#aaffaa");
+//    				$('button#bt_Stats_Hins_Show_Hide').css("background-color", "white");
 					
 					flag_Table_Stats_Hins = flag_Table_Stats_Hins * (-1);
 					
-				} else {
+				} else {	// if opened
 
-					$('button#bt_Stats_Hins_Show_Hide').css("background-color", "yellow");
+					$('button#bt_Stats_Hins_Show_Hide').css("background-color", "#aaffaa");
+//					$('button#bt_Stats_Hins_Show_Hide').css("background-color", "yellow");
 					
 					flag_Table_Stats_Hins = flag_Table_Stats_Hins * (-1);
 					
@@ -827,7 +842,8 @@ function _setup_Buttons() {
 //    				alert("flag => 1");
     				
     				//ref css https://stackoverflow.com/questions/9821691/jquery-background-color-change-on-button-click 'answered Mar 22 '12 at 11:52'
-    				$('button#bt_Stats_Joshis_Show_Hide').css("background-color", "white");
+    				$('button#bt_Stats_Joshis_Show_Hide').css("background-color", "yellow");
+//    				$('button#bt_Stats_Joshis_Show_Hide').css("background-color", "white");
 //    				$('button#bt_Stats_Joshis_Show_Hide').attr("background-color", "blue");
 //					this.attr("background-color", "blue");
 					
@@ -840,7 +856,8 @@ function _setup_Buttons() {
 
 //					alert("flag => -1");
 					
-					$('button#bt_Stats_Joshis_Show_Hide').css("background-color", "yellow");
+					$('button#bt_Stats_Joshis_Show_Hide').css("background-color", "#aaffaa");
+//					$('button#bt_Stats_Joshis_Show_Hide').css("background-color", "yellow");
 //					this.attr("background-color", "yellow");
 					
 					flag_Table_Stats_Joshis = flag_Table_Stats_Joshis * (-1);
@@ -854,6 +871,42 @@ function _setup_Buttons() {
     		
     );//$('#toggletest1').click(
 
+    $('button#bt_Stats_Nouns_Show_Hide').click(
+    		
+    		function(){
+    			
+    			$('table#tbl_Stats_Nouns').toggle('fast');
+//    			$('div#link_area').toggle('slow');
+    			
+    			if (flag_Table_Stats_Nouns == 1) {
+    				
+//    				alert("flag => 1");
+    				
+    				//ref css https://stackoverflow.com/questions/9821691/jquery-background-color-change-on-button-click 'answered Mar 22 '12 at 11:52'
+    				$('button#bt_Stats_Nouns_Show_Hide').css("background-color", "yellow");
+//    				$('button#bt_Stats_Joshis_Show_Hide').css("background-color", "white");
+//    				$('button#bt_Stats_Joshis_Show_Hide').attr("background-color", "blue");
+//					this.attr("background-color", "blue");
+    				
+    				flag_Table_Stats_Nouns = flag_Table_Stats_Nouns * (-1);
+//					flag_Table_Stats_Joshi *= -1;
+    				
+//					alert("flag is now => " + flag_Table_Stats_Joshi);
+    				
+    			} else {
+    				
+//					alert("flag => -1");
+    				
+    				$('button#bt_Stats_Nouns_Show_Hide').css("background-color", "#aaffaa");
+    				
+    				flag_Table_Stats_Nouns = flag_Table_Stats_Nouns * (-1);
+    				
+    			}//if (flag_Table_Stats_Joshi == 1)
+    			
+    		}
+    		
+    );//$('#toggletest1').click(
+    
 	
 }//_setup_Buttons()
 

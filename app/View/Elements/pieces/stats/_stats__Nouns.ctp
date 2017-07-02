@@ -1,16 +1,16 @@
 <br>
 
 <span>
-	助詞毎　割合
+	名詞毎　割合
 </span>
 
-<button class="basic_2" id="bt_Stats_Joshis_Show_Hide">
+<button class="basic_2" id="bt_Stats_Nouns_Show_Hide">
 	Show/Hide
 </button>
 
 
 
-<table id="tbl_Stats_Joshis">
+<table id="tbl_Stats_Nouns">
 
 
 	<tr>
@@ -52,7 +52,7 @@
 	
 		$sumOf_Percentage = 0;
 		
-		foreach ($data_Joshis as $item) {
+		foreach ($data_Nouns as $item) {
 			
 			
 	?>
