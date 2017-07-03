@@ -110,6 +110,41 @@
 		
 		</td>
 		
+		<td>
+
+			<?php 
+			
+				$option = null;
+				
+				if ($servername == 'localhost') {
+					
+					$option = array(
+							
+							'controller' => 'Pieces',
+							'action' => 'svo'
+					
+					);
+						
+				} else {//if ($servername == 'localhost')
+					
+					$option = "http://benfranklin.chips.jp"
+								."/cake_apps/Cake_NR5/pieces/index"
+								."?action=svo";
+					
+				}//if ($servername == 'localhost')
+			
+				echo $this->Html->link(
+					
+					'Pieces',
+					$option,
+// 					array('controller' => 'Pieces', 
+// 							'action' => 'stats'),
+					array('class' => "button")
+				);
+			?>
+		
+		</td>
+		
 		
 	</tr>
 	

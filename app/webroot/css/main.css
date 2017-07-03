@@ -168,6 +168,15 @@ td.td_vendor {
 	
 }
 
+td.td_SVO_Symbols {
+
+	/*
+	ref http://www.cam.hi-ho.ne.jp/mendoxi/misc/colorchart.html
+	*/
+	background	: Gainsboro;
+	
+}/*td.td_SVO_Symbols*/
+
 td.td_news_time {
 	
 	border: 1px solid black;

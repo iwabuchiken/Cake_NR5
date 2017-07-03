@@ -355,5 +355,28 @@ class CONS {
 			"記号"	=> array("一般", "句点", "括弧閉", "括弧開", "空白",  "読点"),
 			
 	);
+
+	public static $Hin_Symbols = array(
+			
+			"副詞"	=> "D",		// aDverb
+			"名詞"	=> "N",		// Noun
+			"動詞"	=> "V",		// Verb
+				
+			"形容詞"	=> "J",		// adJective
+			// 			"形容詞"	=> "",
+			// 			"形容詞"	=> "",
+				
+			"助動詞"	=> "A",		// Auxilliary ...
+				
+			"助詞"	=> "P",		// Postpositional
+			// 			"助詞"	=> ""
+				
+			"接続詞"	=> "C",
+			"接頭詞"	=> "R",		// pRefix
+				
+			"記号"	=> "M",		// syMbol
+				
+			
+	);
 	
 }//class CONS

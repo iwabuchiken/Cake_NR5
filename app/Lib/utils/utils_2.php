@@ -407,6 +407,111 @@ class Utils_2 {
 			
 		}//conv_Xml_2_AryOf_Pieces_2($xml, $geschichte)
 	
+		/*******************************
+			@return
+			> 0		=> number of pieces saved
+			-1		=> This geschichte has already been saved
+			-2		=> "find" method returned 'null'
+		*******************************/
+		public static function
+		conv_Xml_2_AryOf_Pieces_3($xml, $geschichte) {
+
+			/*******************************
+				processing
+			*******************************/
+			$words_ary = $xml->word;
+			
+			$aryOf_Pieces = array();
+			
+			#ref Utils::save_token_list(...)
+			$count = 0;
+			$count_max = 10;
+		
+			/*******************************
+				build : ary of pieces
+			*******************************/
+			foreach ($words_ary as $w) {
+			
+				$data = array();
+				
+				$data['Piece']['created_at'] = Utils::get_CurrentTime(); 
+				$data['Piece']['updated_at'] = Utils::get_CurrentTime(); 
+				#ref (string) http://www.pahoo.org/e-soul/webtech/php06/php06-12-01.shtm
+				$data['Piece']['form'] = (string)$w->surface;
+
+				// 				* 	1	=> Kanji<br>
+				// 				* 	2	=> Hiragana<br>
+				// 				* 	3	=> Katakana<br>
+				// 				* 	4	=> Number<br>
+				// 				* 	5	=> Kanji & Hiragana<br>
+				// 				* 	6	=> Kanji & Katakana<br>
+				// 				* 	7	=> Hiragana & Katakana<br>
+				// 				*
+				// 				* 	0	=> Other<br>
+				$data['Piece']['type'] = CONS::$dict[Utils::get_Type((string)$w->surface)];
+// 				$data['Piece']['type'] = Utils::get_Type((string)$w->surface);
+				
+				/*******************************
+					id numbers
+				*******************************/
+				$data['Piece']['geschichte_id'] = $geschichte['Geschichte']['id'];
+				$data['Piece']['category_id'] = $geschichte['Geschichte']['category_id'];
+				$data['Piece']['genre_id'] = $geschichte['Geschichte']['genre_id'];
+				
+				$data['Piece']['intext_id'] = $count;
+				
+				/*******************************
+					word strings
+				*******************************/
+				$tmp = explode(',', (string)$w->feature);
+				
+				$data['Piece']['hin']	= $tmp[0];
+				
+				$data['Piece']['hin_1']= $tmp[1];
+				$data['Piece']['hin_2']	= $tmp[2];
+				$data['Piece']['hin_3']	= $tmp[3];
+				
+				$data['Piece']['katsu_kei']	= $tmp[4];
+				$data['Piece']['katsu_kata']	= $tmp[5];
+				$data['Piece']['genkei']	= $tmp[6];
+				
+				if ($tmp == null || count($tmp) == 7 ) {
+					
+					$data['Piece']['yomi']	= "*";
+					
+					$data['Piece']['hatsu']	= "*";
+					
+				} else if (count($tmp) == 9) {
+					
+					$data['Piece']['yomi']	= $tmp[7];
+					
+					$data['Piece']['hatsu']	= $tmp[8];
+					
+				} else {
+		
+					debug("irregular number of tokens -> "
+							.count($tmp)
+							." (".(string)$w->feature.")");
+					
+					continue;
+		
+				}
+				
+				# push to array
+				array_push($aryOf_Pieces, $data);
+				
+			}//foreach ($words_ary as $w)
+			
+			$ret = $count;
+			
+			/*******************************
+				return
+			*******************************/
+			return $aryOf_Pieces;
+// 			return $ret;
+			
+		}//conv_Xml_2_AryOf_Pieces($xml) {
+	
 		/*
 		 * <Information>
 		 * 	1. url parameters are expected to have both key and value;
@@ -746,6 +851,41 @@ class Utils_2 {
 		
 		
 	}
+	
+	public static function
+	build_PairOf_Sens_Symbols($sen_New, $sen_Symbolized) {
+		
+		$tokensOf_Sens = explode("。", $sen_New);
+		
+		$tokensOf_Symbolized = explode("。", $sen_Symbolized);
+
+		$lenOf_TokensOf_Sens = count($tokensOf_Sens);
+		
+		$lenOf_TokensOf_Symbolized = count($tokensOf_Symbolized);
+		
+// 		debug("sens => $lenOf_TokensOf_Sens");
+		
+// 		debug("sens => $lenOf_TokensOf_Symbolized");
+	
+		/*******************************
+			build : pairs
+		*******************************/
+		$pairOf_Sens_Symbolized = array();
+		
+		for ($i = 0; $i < $lenOf_TokensOf_Sens; $i++) {
+		
+			array_push(
+					$pairOf_Sens_Symbolized, 
+					array($tokensOf_Sens[$i], $tokensOf_Symbolized[$i]));
+			
+		}//for ($i = 0; $i < $lenOf_TokensOf_Sens; $i++)
+		
+// 		debug($pairOf_Sens_Symbolized);
+		
+		return $pairOf_Sens_Symbolized;
+		
+	}//build_PairOf_Sens_Symbols($sen_New, $sen_Symbolized)
+	
 	
 }//class Utils
 	

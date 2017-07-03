@@ -67,6 +67,12 @@ class PiecesController extends AppController {
 			
 			return;
 
+		} else if ($query_Action == 'svo') {
+			
+			$this->svo();
+			
+			return;
+
 		} else {//if ($query_Action == 'filter')
 
 //			debug("action is 'else' => " . $query_Action);
@@ -2000,5 +2006,86 @@ class PiecesController extends AppController {
 		$this->render("/Pieces/stats");
 		
 	}//stats() {
+
+	public function
+	svo() {
+
+		/*******************************
+			get : sentence
+		*******************************/
+		$this->loadModel('Geschichte');
+		
+		$geschichtes = $this->Geschichte->find('all');
+
+// 		debug($geschichtes[40]);	// 'line' => '土星の衛星、生命存在の環境整う？　水素分子を検出(4/14)  ',
+		
+		$sen = $geschichtes[40]['Geschichte']['content'];
+		
+		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
+		
+		$xml = simplexml_load_file($url);
+
+		$result = Utils_2::conv_Xml_2_AryOf_Pieces_3($xml, $geschichtes[40]);
+// 		$result = Utils_2::conv_Xml_2_AryOf_Pieces_3($xml);
+		
+// 		debug($xml);
+
+// 		debug($result);
+		
+		$aryOf_Symbolized_Sentence = array();
+		
+		foreach ($result as $piece) {
+		
+			$ary_Temp= null;
+			
+			$ary_Temp = array(
+				
+					$piece['Piece']['form'],
+					($piece['Piece']['hin'] == '記号') ?
+						$piece['Piece']['form']
+						: CONS::$Hin_Symbols[$piece['Piece']['hin']]
+			);
+			
+			array_push($aryOf_Symbolized_Sentence, $ary_Temp);
+			
+		}//foreach ($result as $piece)
+		
+// 		debug($aryOf_Symbolized_Sentence);
+
+		/*******************************
+			rebuild : sentence
+		*******************************/
+		$sen_New = "";
+		$sen_Symbolized = "";
+		
+		foreach ($aryOf_Symbolized_Sentence as $item) {
+		
+			$sen_New .= $item[0];
+			
+			$sen_Symbolized .= $item[1];
+			
+		}//foreach ($aryOf_Symbolized_Sentence as $item)
+
+		/*******************************
+			build : pairs
+		*******************************/
+		$pairOf_Sens_Symbols = Utils_2::build_PairOf_Sens_Symbols($sen_New, $sen_Symbolized);
+		
+		/*******************************
+			set : variables
+		*******************************/
+		$this->set("sen_New", $sen_New);
+		
+		$this->set("sen_Symbolized", $sen_Symbolized);
+		
+		$this->set("pairOf_Sens_Symbols", $pairOf_Sens_Symbols);
+
+		/*******************************
+		 views
+		 *******************************/
+		$this->render("/Pieces/svo");
+		
+		
+	}//svo() {
 	
 }
