@@ -886,6 +886,48 @@ class Utils_2 {
 		
 	}//build_PairOf_Sens_Symbols($sen_New, $sen_Symbolized)
 	
+	public static function
+	get_ListOf_Symbol_Forms() {
+		
+		$model = ClassRegistry::init('Piece');
+		
+		$option = array(
+				
+				'conditions'	=> array(
+						'Piece.hin'	=> "記号",
+// 						'group'	=> "form"
+// 						'group'	=> array("Piece.form")
+// 						'group'	=> "Piece.form"
+				)
+				,
+				'group'	=> array("Piece.form")
+		);
+		
+		$pieces = $model->find('all', $option);
+		
+		/*******************************
+			validate
+		*******************************/
+		if ($pieces == null || count($pieces) < 1) {
+		
+			return null;
+			
+		}//if ($pieces == null || count($pieces) < 1)
+		
+		/*******************************
+			list
+		*******************************/
+		$aryOf_Form_Names = array();
+		
+		foreach ($pieces as $p) {
+		
+			array_push($aryOf_Form_Names, $p['Piece']['form']);
+			
+		}//foreach ($pieces as $p)
+		
+		return $aryOf_Form_Names;
+		
+	}//get_ListOf_Symbol_Forms
 	
 }//class Utils
 	
