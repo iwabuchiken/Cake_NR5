@@ -947,6 +947,118 @@ function _setup_Buttons() {
 	
 }//_setup_Buttons()
 
+function btn_Get_SVO_List() {
+	
+//	alert("svo");
+	
+	/***************************
+		get : id
+	 ***************************/
+	var id = $('input#ipt_SVO_Geschichte_Id').val();
+	
+//	alert("geschichte id => " + id);
+	
+	if (id == '') {
+
+		alert("id ==> blank");
+
+		return;
+		
+	} else {//if (id == '') {
+		
+		alert("id => " + id);
+		
+	}//if (id == '') {
+	
+	/***************************
+		validate : numeric
+	 ***************************/
+	if (!Number.isInteger(Number(id))) {
+//		if (!Number.isInteger(id)) {
+//		if (!($.isNUmeric(id))) {
+//		if (!$.isNUmeric(id)) {
+
+		alert("id is not numeric => '" + id + "'");
+
+		return;
+		
+	} else {//if (!) {
+		
+		alert("id is numeric");
+		
+	}//if (!) {
+	
+
+	/***************************
+		build : url
+	 ***************************/
+	var url_curr = $(location).attr('href');
+	var url;
+	
+	var hostname = window.location.hostname;
+	
+	if (hostname == "benfranklin.chips.jp") {
+		
+		url = "/cake_apps/Cake_NR5/pieces/index?action=get_list_of_hin_name";
+		
+	} else {
+		
+		url = "/Eclipse_Luna/Cake_NR5/pieces/svo_table";
+		
+	}
+	
+	//alert("url => " + url);
+	
+	/***************************
+		change color
+	 ***************************/
+	$('button#btn_SVO_Geschichte_Id').css("background-color", "yellow");
+	
+//	//debug
+//	return;
+	
+	/***************************
+		ajax
+	 ***************************/
+	$.ajax({
+		
+		url: url,
+		type: "GET",
+		//REF http://stackoverflow.com/questions/1916309/pass-multiple-parameters-to-jquery-ajax-call answered Dec 16 '09 at 17:37
+		data: {
+			
+				geschichte_id : id
+				
+			}
+		,
+		timeout: 10000
+		
+	}).done(function(data, status, xhr) {
+		
+		$('div#div_SVO_Table').html(data);
+
+		/***************************
+			change color
+		 ***************************/
+		$('button#btn_SVO_Geschichte_Id').css("background-color", "Green");
+//		$('span#label_Filter_Hin_1').css("background", "white");
+	
+	}).fail(function(xhr, status, error) {
+		
+		alert(xhr.status);
+	
+		/***************************
+			change color
+		 ***************************/
+		$('button#btn_SVO_Geschichte_Id').css("background-color", "Green");
+	
+	});
+
+
+
+	
+}
+
 $(function() {
 	
     _setup_Buttons();

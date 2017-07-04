@@ -323,6 +323,7 @@ class CONS {
 		'接続詞',
 		'接頭詞',		// 7
 		'記号',		// 8
+		'連体詞',
 	);
 	
 	public static $listOf_Type_Nams = array(
@@ -354,6 +355,8 @@ class CONS {
 			
 			"記号"	=> array("一般", "句点", "括弧閉", "括弧開", "空白",  "読点"),
 			
+			"連体詞"	=> array("*"),
+			
 	);
 
 	public static $Hin_Symbols = array(
@@ -376,7 +379,7 @@ class CONS {
 				
 			"記号"	=> "M",		// syMbol
 				
-			
+			"連体詞"	=> "T",		// renTaishi
 	);
 	
 }//class CONS

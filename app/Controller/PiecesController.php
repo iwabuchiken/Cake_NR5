@@ -461,6 +461,34 @@ class PiecesController extends AppController {
 // 		#debug
 // 		return;
 	
+		/*******************************
+			query : tick
+		*******************************/
+		@$query_Tick = $this->request->query['tick'];
+		
+		if ($query_Tick == null) {
+		
+			$tickOf_Geschichtes = 15;
+			
+			debug("tick ==> null; set to 15");
+		
+		} else if ($query_Tick == '') {
+			
+			$tickOf_Geschichtes = 15;
+			
+			debug("tick ==> ''; set to 15");
+			
+		} else {
+		
+			$tickOf_Geschichtes = intval($query_Tick);
+			
+			debug("tick ===> set to $tickOf_Geschichtes");
+			
+		}//if ($query_Tick == null)
+		
+		
+		
+		
 		
 		$this->loadModel('Geschichte');
 		
@@ -474,7 +502,8 @@ class PiecesController extends AppController {
 		
 // 		$tickOf_Geschichtes = 50;
 // 		$tickOf_Geschichtes = 15;
-		$tickOf_Geschichtes = 10;
+// 		$tickOf_Geschichtes = 15;
+// 		$tickOf_Geschichtes = 10;
 // 		$tickOf_Geschichtes = 5;
 // 		$tickOf_Geschichtes = 1;
 		
@@ -1226,7 +1255,7 @@ class PiecesController extends AppController {
 		// set option
 // 		$conditions['order'] = $valOf_SortArray;
 		
-// 		aa
+// 		
 		
 		/*******************************
 			build : condtions
@@ -2007,6 +2036,138 @@ class PiecesController extends AppController {
 		
 	}//stats() {
 
+	public function
+	svo_table() {
+
+		/*******************************
+			query
+		*******************************/
+		$dflt_Geschichte_Id = 74;
+		
+		@$query_Geschichte_Id = $this->request->query['geschichte_id'];
+		
+		if ($query_Geschichte_Id == null) {
+		
+			$query_Geschichte_Id = $dflt_Geschichte_Id;
+				
+			debug("tick ==> null; set to $dflt_Geschichte_Id");
+		
+		} else if ($query_Geschichte_Id == '') {
+				
+			$query_Geschichte_Id = $dflt_Geschichte_Id;
+				
+			debug("tick ==> ''; set to $dflt_Geschichte_Id");
+				
+		} else {
+		
+			$query_Geschichte_Id = intval($query_Geschichte_Id);
+				
+// 			debug("tick ===> set to $query_Geschichte_Id");
+				
+		}//if ($query_Geschichte_Id == null)
+		
+		/*******************************
+		 get : sentence
+		 *******************************/
+		$this->loadModel('Geschichte');
+		
+// 		$geschichtes = $this->Geschichte->find('all');
+		
+		$option = array(
+				
+				'conditions' => array(
+
+						'Geschichte.id'	=> $query_Geschichte_Id
+				)
+		);
+		
+		
+		// 		debug($geschichtes[40]);	// 'line' => '土星の衛星、生命存在の環境整う？　水素分子を検出(4/14)  ',
+		
+		$geschichte_Target = $this->Geschichte->find('first', $option);
+// 		$geschichte_Target = $geschichtes[$query_Geschichte_Id];
+		
+		// validate
+		if ($geschichte_Target == null) {
+		
+			debug("geschichte => null : id = $query_Geschichte_Id");
+		
+			return;
+			
+		}//if ($geschichte_Target == null)
+		;
+		
+		$sen = $geschichte_Target['Geschichte']['content'];
+// 		$sen = $geschichtes[40]['Geschichte']['content'];
+		
+		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$sen";
+		
+		$xml = simplexml_load_file($url);
+		
+		$result = Utils_2::conv_Xml_2_AryOf_Pieces_3($xml, $geschichte_Target);
+		// 		$result = Utils_2::conv_Xml_2_AryOf_Pieces_3($xml);
+		
+		// 		debug($xml);
+		
+		
+		// 		debug($result);
+		$aryOf_Symbolized_Sentence = array();
+		
+		foreach ($result as $piece) {
+		
+			$ary_Temp= null;
+				
+			$ary_Temp = array(
+		
+					$piece['Piece']['form'],
+					($piece['Piece']['hin'] == '記号') ?
+					$piece['Piece']['form']
+					: CONS::$Hin_Symbols[$piece['Piece']['hin']]
+			);
+				
+			array_push($aryOf_Symbolized_Sentence, $ary_Temp);
+				
+		}//foreach ($result as $piece)
+		
+			// 		debug($aryOf_Symbolized_Sentence);
+		
+		/*******************************
+		 rebuild : sentence
+		 *******************************/
+		$sen_New = "";
+		$sen_Symbolized = "";
+		
+		foreach ($aryOf_Symbolized_Sentence as $item) {
+		
+			$sen_New .= $item[0];
+				
+			$sen_Symbolized .= $item[1];
+				
+		}//foreach ($aryOf_Symbolized_Sentence as $item)
+		
+		/*******************************
+		 build : pairs
+		 *******************************/
+		$pairOf_Sens_Symbols = Utils_2::build_PairOf_Sens_Symbols($sen_New, $sen_Symbolized);
+		
+		/*******************************
+		 set : variables
+		 *******************************/
+		$this->set("sen_New", $sen_New);
+		
+		$this->set("sen_Symbolized", $sen_Symbolized);
+		
+		$this->set("pairOf_Sens_Symbols", $pairOf_Sens_Symbols);
+		
+		$this->set("query_Geschichte_Id", $query_Geschichte_Id);
+		
+		/**********************************
+		 * view
+		 **********************************/
+		$this->layout = 'plain';
+
+	}
+	
 	public function
 	svo() {
 

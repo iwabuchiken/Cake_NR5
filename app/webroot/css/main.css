@@ -680,6 +680,18 @@ input#input_Query_String {
 	*/
 }
 
+input#ipt_SVO_Geschichte_Id {
+	
+	/* ref http://www.cam.hi-ho.ne.jp/mendoxi/misc/colorchart.html */
+	background	: PaleGoldenrod;
+	
+	/* ref http://www.1uphp.com/con1/form/textsize.html */
+	width		: 10%;
+	/*
+	width		: 50px;
+	*/
+}/*input#ipt_SVO_Geschichte_Id*/
+
 input.sort_direction {
 	
 	font-size	:	20px;
@@ -977,6 +989,24 @@ button#uncheck_All_Types {
 	border-radius: 10px;
 	
 }/*button#uncheck_All_Types*/
+
+button#btn_SVO_Geschichte_Id {
+	
+	font-size	: 15px;
+	
+	margin-left	: 10px;
+	
+	padding		: 5px;
+	/*
+	font-color		: 'green';
+	*/
+	background	: Green;
+	
+	color	: White;
+	
+	border-radius: 10px;
+	
+}/*button#btn_SVO_Geschichte_Id*/
 
 button#uncheck_All_Hin_1 {
 	
