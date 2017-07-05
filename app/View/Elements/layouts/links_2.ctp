@@ -135,7 +135,7 @@
 			
 				echo $this->Html->link(
 					
-					'Pieces',
+					'SVO',
 					$option,
 // 					array('controller' => 'Pieces', 
 // 							'action' => 'stats'),

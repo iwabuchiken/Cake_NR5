@@ -72,7 +72,15 @@ class PiecesController extends AppController {
 
 		} else if ($query_Action == 'svo') {
 			
+// 			$this->svo_table();
 			$this->svo();
+			
+			return;
+
+		} else if ($query_Action == 'svo_table') {
+			
+			$this->svo_table();
+// 			$this->svo();
 			
 			return;
 
@@ -2137,19 +2145,19 @@ class PiecesController extends AppController {
 		
 			$query_Geschichte_Id = $dflt_Geschichte_Id;
 				
-			debug("tick ==> null; set to $dflt_Geschichte_Id");
+			debug("geschichte id ==> null; set to $dflt_Geschichte_Id");
 		
 		} else if ($query_Geschichte_Id == '') {
 				
 			$query_Geschichte_Id = $dflt_Geschichte_Id;
 				
-			debug("tick ==> ''; set to $dflt_Geschichte_Id");
+			debug("geschichte id ==> ''; set to $dflt_Geschichte_Id");
 				
 		} else {
 		
 			$query_Geschichte_Id = intval($query_Geschichte_Id);
 				
-// 			debug("tick ===> set to $query_Geschichte_Id");
+// 			debug("geschichte id ===> set to $query_Geschichte_Id");
 				
 		}//if ($query_Geschichte_Id == null)
 		
@@ -2253,6 +2261,11 @@ class PiecesController extends AppController {
 		 **********************************/
 		$this->layout = 'plain';
 
+		/*******************************
+		 views
+		 *******************************/
+		$this->render("/Pieces/svo_table");
+		
 	}
 	
 	public function

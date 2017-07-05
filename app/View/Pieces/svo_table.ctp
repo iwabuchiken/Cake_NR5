@@ -3,7 +3,17 @@
 <table>
 
 	<!-- ref http://html.com/tables/rowspan-colspan/ -->
-	<caption>Sentences</caption>
+	<caption>
+<!-- 		Sentences -->
+
+		<?php 
+		
+			echo "Geschichte = $query_Geschichte_Id";
+		
+		
+		?>
+		
+	</caption>
 	<tr>
 		<th>no.</th>
 		<th colspan="1">Sentences</th>

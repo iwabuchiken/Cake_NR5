@@ -7,6 +7,7 @@ var flag_Table_Stats_Joshis = 1;
 var flag_Table_Stats_Hins = 1;
 var flag_Table_Stats_Nouns = 1;
 var flag_Table_Stats_Symbols = 1;
+var flag_Table_Stats_Top10_Genres = 1;
 
 function show_Hiraganas() {
 	
@@ -908,6 +909,42 @@ function _setup_Buttons() {
     		
     );//$('#toggletest1').click(
     
+    $('button#bt_Stats_Top10_Genres_Show_Hide').click(
+    		
+    		function(){
+    			
+    			$('table#tbl_Stats_Top10_Genres').toggle('fast');
+//    			$('div#link_area').toggle('slow');
+    			
+    			if (flag_Table_Stats_Top10_Genres == 1) {
+    				
+//    				alert("flag => 1");
+    				
+    				//ref css https://stackoverflow.com/questions/9821691/jquery-background-color-change-on-button-click 'answered Mar 22 '12 at 11:52'
+    				$('button#bt_Stats_Top10_Genres_Show_Hide').css("background-color", "yellow");
+//    				$('button#bt_Stats_Joshis_Show_Hide').css("background-color", "white");
+//    				$('button#bt_Stats_Joshis_Show_Hide').attr("background-color", "blue");
+//					this.attr("background-color", "blue");
+    				
+    				flag_Table_Stats_Top10_Genres = flag_Table_Stats_Top10_Genres * (-1);
+//					flag_Table_Stats_Joshi *= -1;
+    				
+//					alert("flag is now => " + flag_Table_Stats_Joshi);
+    				
+    			} else {
+    				
+//					alert("flag => -1");
+    				
+    				$('button#bt_Stats_Top10_Genres_Show_Hide').css("background-color", "#aaffaa");
+    				
+    				flag_Table_Stats_Top10_Genres = flag_Table_Stats_Top10_Genres * (-1);
+    				
+    			}//if (flag_Table_Stats_Joshi == 1)
+    			
+    		}
+    		
+    );//$('#toggletest1').click(
+    
     $('button#bt_Stats_Symbols_Show_Hide').click(
     		
     		function(){
@@ -966,7 +1003,7 @@ function btn_Get_SVO_List() {
 		
 	} else {//if (id == '') {
 		
-		alert("id => " + id);
+//		alert("id => " + id);
 		
 	}//if (id == '') {
 	
@@ -984,7 +1021,7 @@ function btn_Get_SVO_List() {
 		
 	} else {//if (!) {
 		
-		alert("id is numeric");
+//		alert("id is numeric");
 		
 	}//if (!) {
 	
@@ -999,7 +1036,9 @@ function btn_Get_SVO_List() {
 	
 	if (hostname == "benfranklin.chips.jp") {
 		
-		url = "/cake_apps/Cake_NR5/pieces/index?action=get_list_of_hin_name";
+		url = "/cake_apps/Cake_NR5/pieces/index?action=svo_table";
+//		url = "/cake_apps/Cake_NR5/pieces/index?action=svo";
+//		url = "/cake_apps/Cake_NR5/pieces/index?action=get_list_of_hin_name";
 		
 	} else {
 		
