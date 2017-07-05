@@ -14,6 +14,9 @@ http://benfranklin.chips.jp/cake_apps/Cake_NR5/pieces/index
 <regular expressions>
 ^[ \t]+debug
 
+https://docs.google.com/spreadsheets/d/1GlMjFYCAdSc87V-BhGAM-sz-Kka6AlyxgS-0jqvPlPc/edit#gid=0
+https://mysqladmin.lolipop.jp/pma/import.php#PMAURL-0:sql.php?db=LAA0278957-cakenr5&table=genre_names&server=137&target=&token=6d3d1dd80da492b5e63c64fbd6fa5ec3
+
  -->
 <?php
 
@@ -1922,11 +1925,90 @@ class PiecesController extends AppController {
 	}//_stats__Symbols($numOf_Pieces_Total)
 	
 	public function
+	_stats__Top10s() {
+		
+		/*******************************
+			genres
+		*******************************/
+		$this->loadModel('Geschichte');
+		
+		$geschichtes = $this->Geschichte->find('all');
+		
+// 		debug($geschichtes[10]);
+		
+		//ref https://webkaru.net/php/function-array-fill/
+		$aryOf_Genres_tmp = array_fill(0, 20, 0);
+		
+// 		debug($aryOf_Genres);
+
+		foreach ($geschichtes as $g) {
+		
+			$genre_Id = $g['Geschichte']['genre_id'];
+			
+			$aryOf_Genres_tmp[intval($genre_Id)] += 1;
+			
+		}//foreach ($geschichtes as $g)
+		
+// 		debug($aryOf_Genres_tmp);
+		
+		$aryOf_Genres = array_slice($aryOf_Genres_tmp, 10, 8);
+		
+// 		debug($aryOf_Genres);
+		
+		/*******************************
+			build list
+		*******************************/
+		$aryOf_Data = array();
+		
+		$lenOf_AryOf_Genres = count($aryOf_Genres);
+		
+		$total = 0;
+		
+		for ($i = 0; $i < $lenOf_AryOf_Genres; $i++) {
+		
+			$genre_Id = $i + 10;
+			
+			$numOf_Entries = $aryOf_Genres[$i];
+			
+			$genre = Utils::get_Genre_From_Genre_Id($genre_Id);
+
+// 			debug($genre);
+			
+			$genre_Name = $genre['Genre']['name'];
+			
+			array_push($aryOf_Data, array($genre_Id, $genre_Name, $numOf_Entries));
+			
+			// total
+			$total += $numOf_Entries;
+			
+		}//for ($i = 0; $i < $lenOf_AryOf_Genres; $i++)
+		
+// 		debug($aryOf_Data);
+		
+		/*******************************
+			sort
+		*******************************/
+		// sort
+		$sort_Direction = "DESC";
+		
+		$aryOf_Data = Utils_2::sort_Stats_Top10__Genres($aryOf_Data, $sort_Direction);
+		
+		/*******************************
+			variables
+		*******************************/
+		$this->set("aryOf_Data", $aryOf_Data);
+		
+		$this->set("numOf_Geschichte_Total", $total);
+		
+	}//_stats__Top10s()
+	
+	public function
 	stats() {
 
 		/*******************************
 			total
 		*******************************/
+
 		$pieces = $this->Piece->find('all');
 		
 		$numOf_Pieces_Total = count($pieces);
@@ -2014,6 +2096,11 @@ class PiecesController extends AppController {
 		$sort_Direction = "DESC";
 		
 		$data_Symbols = Utils_2::sort_Stats_Data__By_Data($data_Symbols, $sort_Direction);
+
+		/*******************************
+			top 10s
+		*******************************/
+		$this->_stats__Top10s();
 		
 		/*******************************
 			set : variables

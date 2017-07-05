@@ -823,6 +823,28 @@ class Utils_2 {
 	}
 	
 	public static function
+	sort_Stats_Top10__Genres($list, $sort_Direction = "DESC") {
+// 	sort_Stats_Data__By_Data($list) {
+		
+		$func_Name = "";
+		
+		if ($sort_Direction == "ASC") {
+		
+			$func_Name = "cmp_Sort_Stats_Top10_Genres__ASC";
+		
+		} else {
+		
+			$func_Name = "cmp_Sort_Stats_Top10_Genres__DESC";
+			
+		}//if ($sort_Direction == "ASC")
+		
+		usort($list, array("utils_2", $func_Name));
+		
+		return $list;
+		
+	}
+	
+	public static function
 	cmp_Sort_Stats_Data__By_Data__ASC($item_1, $item_2) {
 		
 		//REF http://www.php.net/manual/en/function.floatval.php
@@ -851,6 +873,34 @@ class Utils_2 {
 		
 		
 	}
+
+	public static function
+	cmp_Sort_Stats_Top10_Genres__ASC($item_1, $item_2) {
+	
+		//REF http://www.php.net/manual/en/function.floatval.php
+		$data_1 = $item_1[2];
+		$data_2 = $item_2[2];
+			
+		//REF http://stackoverflow.com/questions/481466/php-string-to-float answered Jan 26 '09 at 21:35
+			
+		// 			return $cat_name_1 < $cat_name_2;
+		return $data_1 > $data_2;
+	
+	}
+	
+	public static function
+	cmp_Sort_Stats_Top10_Genres__DESC($item_1, $item_2) {
+	
+		//REF http://www.php.net/manual/en/function.floatval.php
+		$data_1 = $item_1[2];
+		$data_2 = $item_2[2];
+			
+		//REF http://stackoverflow.com/questions/481466/php-string-to-float answered Jan 26 '09 at 21:35
+			
+		// 			return $cat_name_1 < $cat_name_2;
+		return $data_1 < $data_2;
+	
+	}//cmp_Sort_Stats_Top10_Genres__DESC($item_1, $item_2)
 	
 	public static function
 	build_PairOf_Sens_Symbols($sen_New, $sen_Symbolized) {

@@ -307,22 +307,6 @@ CREATE TABLE genre_names
 	created_at VARCHAR(30), 
 	updated_at VARCHAR(30), 
 	
-	id_master	INT,
-	
-	media_name	VARCHAR(30),
-	
-	genre_name	VARCHAR(30),
-	
-	memo		VARCHAR(100) 
-	
-)
-
-CREATE TABLE genre_names 
-( 
-	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-	created_at VARCHAR(30), 
-	updated_at VARCHAR(30), 
-	
 	genre_id	INT,
 	
 	media_name	VARCHAR(30),
@@ -591,7 +575,7 @@ CREATE TABLE users (
 #REF http://www.tech-recipes.com/rx/378/add-a-column-to-an-existing-mysql-table/
 ALTER TABLE histories ADD updates VARCHAR(200);
 
----------------------------------- geschichtes
+---------------------------------- [mysql] geschichtes
 DROP TABLE geschichtes;
 
 CREATE TABLE geschichtes (
@@ -614,3 +598,32 @@ CREATE TABLE geschichtes (
 	
 );
 
+DELETE FROM geschichtes;
+/*
+ * ref https://www.dbonline.jp/mysql/insert/index12.html
+ */
+TRUNCATE TABLE geschichtes;
+/*
+ * ref https://stackoverflow.com/questions/8923114/how-to-reset-auto-increment-in-mysql 'answered Jan 19 '12 at 8:39'
+ */
+ALTER TABLE geschichtes AUTO_INCREMENT = 1;
+
+---------------------------------- [mysql] genre_names
+CREATE TABLE genre_names 
+( 
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL, 
+	
+	created_at VARCHAR(30), 
+	updated_at VARCHAR(30), 
+	
+	genre_id	INT,
+	
+	media_name	VARCHAR(30),
+	
+	genre_name	VARCHAR(30),
+	
+	memo		VARCHAR(100) 
+	
+);
+
+DROP TABLE genre_names;
