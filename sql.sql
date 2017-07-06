@@ -12,14 +12,14 @@ pragma table_info(tokens);
 pragma table_info(articles);
 pragma table_info(categories);
 pragma table_info(histories);
-
+/*
 #ref https://stackoverflow.com/questions/947215/how-to-get-a-list-of-column-names-on-sqlite3-iphone 'answered Jun 4 '09 at 1:38'
 pragma table_info(pieces);
 
 SELECT id,name FROM genres;
 
 .exit
-
+*/
 [sqlite3]======================================
 DROP TABLE users;
 
@@ -293,9 +293,10 @@ INSERT INTO tokens_new (
 SELECT id,yomi FROM tokens_new WHERE id < 20;
 
 DROP TABLE tokens;
-
+/*
 #REF http://stackoverflow.com/questions/426495/how-do-you-rename-a-table-in-sqlite-3-0 Runscope API Tools
 #REF consicely explained => http://stackoverflow.com/questions/805363/how-do-i-rename-a-column-in-a-sqlite-database-table answered Apr 30 '09 at 5:57
+*/
 ALTER TABLE tokens_new RENAME TO tokens;
 
 #REF	http://razorsql.com/features/sqlite_add_column.html
@@ -373,9 +374,10 @@ CREATE TABLE geschichtes (
 
 DROP TABLE geschichtes;
 
+/*
 [mysql(lollipop)]======================================
 #REF http://sql-info.de/mysql/examples/CREATE-TABLE-examples.html
-
+*/
 DROP TABLE users;
 
 CREATE TABLE users (
@@ -419,6 +421,7 @@ CREATE TABLE genres (
 );
 
 DROP TABLE categories;
+TRUNCATE TABLE categories;
 
 CREATE TABLE categories (
 	id			INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

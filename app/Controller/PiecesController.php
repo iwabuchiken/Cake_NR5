@@ -16,6 +16,7 @@ http://benfranklin.chips.jp/cake_apps/Cake_NR5/pieces/index
 
 https://docs.google.com/spreadsheets/d/1GlMjFYCAdSc87V-BhGAM-sz-Kka6AlyxgS-0jqvPlPc/edit#gid=0
 https://mysqladmin.lolipop.jp/pma/import.php#PMAURL-0:sql.php?db=LAA0278957-cakenr5&table=genre_names&server=137&target=&token=6d3d1dd80da492b5e63c64fbd6fa5ec3
+https://user.lolipop.jp/?mode=mysql&database=LAA0278957-cakenr5&user_db_id=
 
  -->
 <?php
@@ -1134,7 +1135,20 @@ class PiecesController extends AppController {
 			//ref group by http://monmon.hateblo.jp/entry/20110115/1295099252
 			$conditions['group'] = $tokensOf_Group_By_Names;
 			
-			$options['group'] = $tokensOf_Group_By_Names;
+			// modify : group names
+			$tokensOf_Group_By_Names__Final = array();
+			
+			foreach ($tokensOf_Group_By_Names as $t) {
+			
+				array_push($tokensOf_Group_By_Names__Final, "Piece." . $t);
+				
+			}//foreach ($tokensOf_Group_By_Names as $t)
+			
+// 			debug("\$tokensOf_Group_By_Names__Final =>");
+// 			debug($tokensOf_Group_By_Names__Final);
+			
+			$options['group'] = $tokensOf_Group_By_Names__Final;
+// 			$options['group'] = $tokensOf_Group_By_Names;
 			
 		}//if ($tokensOf_Group_By_Names == null)
 		
@@ -1647,16 +1661,6 @@ class PiecesController extends AppController {
 				$query_Filter_Hin_1_Chosen_Hin_1
 		);
 		
-// 		$listOf_Pieces = $this->_filter_List_By_Type__4(
-// 				$type_Tokens, 
-// 				$sort_Param_Set, 
-// 				$aryOf_Filtered_Hins, 
-// 				$tokensOf_Group_By_Names);
-		
-// 		$listOf_Pieces = $this->_filter_List_By_Type_3(
-// 				$type_Tokens, 
-// 				$sort_Param_Set, 
-// 				$aryOf_Filtered_Hins);
 		
 		/*******************************
 			variables
@@ -2011,6 +2015,82 @@ class PiecesController extends AppController {
 	}//_stats__Top10s()
 	
 	public function
+	_stats__Top10s__Genre_Category() {
+		
+		/*******************************
+			genres
+		*******************************/
+		$this->loadModel('Geschichte');
+		
+		$geschichtes = $this->Geschichte->find('all');
+		
+		//ref https://webkaru.net/php/function-array-fill/
+		$aryOf_Genres_tmp = array_fill(0, 20, 0);
+		
+// 		debug($aryOf_Genres);
+
+		foreach ($geschichtes as $g) {
+		
+			$genre_Id = $g['Geschichte']['genre_id'];
+			
+			$aryOf_Genres_tmp[intval($genre_Id)] += 1;
+			
+		}//foreach ($geschichtes as $g)
+		
+// 		debug($aryOf_Genres_tmp);
+		
+		$aryOf_Genres = array_slice($aryOf_Genres_tmp, 10, 8);
+		
+// 		debug($aryOf_Genres);
+		
+		/*******************************
+			build list
+		*******************************/
+		$aryOf_Data = array();
+		
+		$lenOf_AryOf_Genres = count($aryOf_Genres);
+		
+		$total = 0;
+		
+		for ($i = 0; $i < $lenOf_AryOf_Genres; $i++) {
+		
+			$genre_Id = $i + 10;
+			
+			$numOf_Entries = $aryOf_Genres[$i];
+			
+			$genre = Utils::get_Genre_From_Genre_Id($genre_Id);
+
+// 			debug($genre);
+			
+			$genre_Name = $genre['Genre']['name'];
+			
+			array_push($aryOf_Data, array($genre_Id, $genre_Name, $numOf_Entries));
+			
+			// total
+			$total += $numOf_Entries;
+			
+		}//for ($i = 0; $i < $lenOf_AryOf_Genres; $i++)
+		
+// 		debug($aryOf_Data);
+		
+		/*******************************
+			sort
+		*******************************/
+		// sort
+		$sort_Direction = "DESC";
+		
+		$aryOf_Data = Utils_2::sort_Stats_Top10__Genres($aryOf_Data, $sort_Direction);
+		
+		/*******************************
+			variables
+		*******************************/
+		$this->set("aryOf_Data", $aryOf_Data);
+		
+		$this->set("numOf_Geschichte_Total", $total);
+		
+	}//_stats__Top10s__Genre_Category
+	
+	public function
 	stats() {
 
 		/*******************************
@@ -2266,7 +2346,7 @@ class PiecesController extends AppController {
 		 *******************************/
 		$this->render("/Pieces/svo_table");
 		
-	}
+	}//svo_table()
 	
 	public function
 	svo() {

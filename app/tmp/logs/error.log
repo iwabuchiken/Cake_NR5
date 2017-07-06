@@ -4275,3 +4275,88 @@ Stack Trace:
 #13 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
 #14 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #15 {main}
+2017-07-06 02:04:53 Error: [PDOException] SQLSTATE[HY000]: General error: 1 ambiguous column name: category_id
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther&sort=id&sort_direction=asc&filter_Hins=0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C8%2C9&group_by=category_id&filter_hin_1_hin_name=0&filter_hin_1_chosen_hin_1=
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Piece"....', Array)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Piece"....', Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Piece"....', Array, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Piece"....', false)
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Piece), Array)
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1154): Model->find('all', Array)
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1649): PiecesController->_filter_List_By_Type__5(Array, Array, Array, Array, '0', '')
+#8 [internal function]: PiecesController->filter_List_By_Type()
+#9 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PiecesController), Array)
+#10 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2017-07-06 02:05:31 Error: [PDOException] SQLSTATE[HY000]: General error: 1 ambiguous column name: category_id
+Request URL: /Eclipse_Luna/Cake_NR5/pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther&sort=id&sort_direction=asc&filter_Hins=0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C8%2C9&group_by=category_id&filter_hin_1_hin_name=0&filter_hin_1_chosen_hin_1=
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Piece"....', Array)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Piece"....', Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Piece"....', Array, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Piece"....', false)
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Piece), Array)
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1154): Model->find('all', Array)
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1649): PiecesController->_filter_List_By_Type__5(Array, Array, Array, Array, '0', '')
+#8 [internal function]: PiecesController->filter_List_By_Type()
+#9 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PiecesController), Array)
+#10 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2017-07-06 02:06:08 Error: [PDOException] SQLSTATE[HY000]: General error: 1 ambiguous column name: category_id
+Request URL: /Eclipse_Luna/Cake_NR5/Pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther&sort=id&sort_direction=asc&filter_Hins=0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C8%2C9&group_by=category_id&filter_hin_1_hin_name=0&filter_hin_1_chosen_hin_1=
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Piece"....', Array)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Piece"....', Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Piece"....', Array, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Piece"....', false)
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Piece), Array)
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1154): Model->find('all', Array)
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1649): PiecesController->_filter_List_By_Type__5(Array, Array, Array, Array, '0', '')
+#8 [internal function]: PiecesController->filter_List_By_Type()
+#9 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PiecesController), Array)
+#10 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2017-07-06 02:07:31 Error: [PDOException] SQLSTATE[HY000]: General error: 1 ambiguous column name: category_id
+Request URL: /Eclipse_Luna/Cake_NR5/Pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther&sort=id&sort_direction=asc&filter_Hins=0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C8%2C9&group_by=category_id&filter_hin_1_hin_name=0&filter_hin_1_chosen_hin_1=
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Piece"....', Array)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Piece"....', Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Piece"....', Array, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Piece"....', false)
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Piece), Array)
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1154): Model->find('all', Array)
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1649): PiecesController->_filter_List_By_Type__5(Array, Array, Array, Array, '0', '')
+#8 [internal function]: PiecesController->filter_List_By_Type()
+#9 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PiecesController), Array)
+#10 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2017-07-06 02:09:52 Error: [PDOException] SQLSTATE[HY000]: General error: 1 ambiguous column name: category_id
+Request URL: /Eclipse_Luna/Cake_NR5/Pieces/filter_List_By_Type?type=Kanji%2CHiragana%2CKatakana%2CNumber%2COther&sort=id&sort_direction=asc&filter_Hins=0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C8%2C9&group_by=category_id&filter_hin_1_hin_name=0&filter_hin_1_chosen_hin_1=
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Piece"....', Array)
+#1 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Piece"....', Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Piece"....', Array, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Piece"....', false)
+#4 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Piece), Array)
+#5 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1166): Model->find('all', Array)
+#7 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\Controller\PiecesController.php(1661): PiecesController->_filter_List_By_Type__5(Array, Array, Array, Array, '0', '')
+#8 [internal function]: PiecesController->filter_List_By_Type()
+#9 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PiecesController), Array)
+#10 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
+#12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}

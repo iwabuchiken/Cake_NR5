@@ -97,6 +97,7 @@ ALTER TABLE pieces AUTO_INCREMENT = 1
 [mysql]======================================
 ------------------------------------------------ pieces
 DROP TABLE pieces;
+TRUNCATE TABLE pieces;
 
 CREATE TABLE pieces (
 /* ref not null https://www.dbonline.jp/mysql/table/index5.html */
