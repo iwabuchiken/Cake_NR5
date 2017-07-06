@@ -4360,3 +4360,13 @@ Stack Trace:
 #11 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PiecesController), Object(CakeRequest))
 #12 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #13 {main}
+2017-07-06 04:32:47 Error: Fatal Error (1): Maximum execution time of 60 seconds exceeded in [C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Utility\Debugger.php, line 538]
+2017-07-06 04:32:47 Error: [FatalErrorException] Maximum execution time of 60 seconds exceeded
+Request URL: /Eclipse_Luna/Cake_NR5/Pieces/stats
+Stack Trace:
+#0 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\\WORKS_2\\WS\\E...', 538)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\\WORKS_2\\WS\\E...', 538, Array)
+#2 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\\WORKS_2\\WS\\E...', 538, Array)
+#3 C:\WORKS_2\WS\Eclipse_Luna\Cake_NR5\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}

@@ -2012,6 +2012,11 @@ class PiecesController extends AppController {
 		
 		$this->set("numOf_Geschichte_Total", $total);
 		
+		/*******************************
+			genre + category
+		*******************************/
+		$this->_stats__Top10s__Genre_Category();
+		
 	}//_stats__Top10s()
 	
 	public function
@@ -2024,69 +2029,145 @@ class PiecesController extends AppController {
 		
 		$geschichtes = $this->Geschichte->find('all');
 		
+		$numOf_Geschichtes = count($geschichtes);
+		
+		$lenOF_AryOf_Genres = 20;
+		$lenOF_AryOf_Categories = 170;
+		
+		$aryOf_Data = array();
+		
+		for ($i = 0; $i < $lenOF_AryOf_Genres; $i++) {
+
+			for ($j = 0; $j < $lenOF_AryOf_Categories; $j++) {
+			
+				$aryOf_Data["$i,$j"] = 0;
+				
+			}//for ($j = 0; $j < $lenOF_AryOf_Categories; $j++)
+			
+			
+		}//for ($i = 0; $i < $lenOF_AryOf_Genres; $i++)
+		
+		
 		//ref https://webkaru.net/php/function-array-fill/
-		$aryOf_Genres_tmp = array_fill(0, 20, 0);
+// 		$aryOf_Genres_tmp = array_fill(0, $lenOF_AryOf_Genres, 0);
+// 		$aryOf_Genres_tmp = array_fill(0, 20, 0);
+
+// 		$aryOf_Data = array_fill(0, $lenOF_AryOf_Genres, 0);
+		
+// 		for ($i = 0; $i < $lenOF_AryOf_Genres; $i++) {
+		
+// 			$aryOf_Data[$i] = array_fill(0,$lenOF_AryOf_Categories,0);
+// // 			$aryOf_Genres_tmp[$i] = array_fill(0,$lenOF_AryOf_Categories,0);
+// // 			$aryOf_Genres_tmp[$i] = array_fill(0,5,0);
+			
+// 		}//for ($i = 0; $i < $lenOF_AryOf_Genres; $i++)
+		
+// 		foreach ($aryOf_Genres_tmp as $a) {
+// // 		foreach ($aryOf_Genres_tmp as $a) {
+		
+// 			array_push($a, array_fill(0, 5, 0));
+// // 			$a = array_fill(0, 5, 0);
+			
+// 		}//foreach ($aryOf_Genres_tmp as $a)
+		
+		
+// 		$aryOf_Genres_tmp[8] = array_fill(0,5,0);
+		
+// 		debug("\$aryOf_Genres_tmp =>");
+// 		debug($aryOf_Genres_tmp);
+		
+// 		$aryOf_Categories_tmp = array_fill(0, 170, 0);
 		
 // 		debug($aryOf_Genres);
 
+// 		$aryOf_Data = array();
+		
 		foreach ($geschichtes as $g) {
 		
 			$genre_Id = $g['Geschichte']['genre_id'];
 			
-			$aryOf_Genres_tmp[intval($genre_Id)] += 1;
+			$cat_Id = $g['Geschichte']['category_id'];
+
+			// modify : category id
+			$cat_Id = ($cat_Id == -1) ? 0 : $cat_Id;
+			
+// 			$aryOf_Data[intval($genre_Id)][intval($cat_Id)] += 1;
+			
+			$aryOf_Data["$genre_Id,$cat_Id"] += 1;
+			
+// 			$tmp_Ary = array($genre_Id, $cat_Id);
+			
+// 			array_push($aryOf_Data, )
+			
+// 			$aryOf_Genres_tmp[intval($genre_Id)] += 1;
 			
 		}//foreach ($geschichtes as $g)
 		
 // 		debug($aryOf_Genres_tmp);
 		
-		$aryOf_Genres = array_slice($aryOf_Genres_tmp, 10, 8);
+// 		$aryOf_Genres = array_slice($aryOf_Genres_tmp, 10, 8);
 		
 // 		debug($aryOf_Genres);
+// 		debug($aryOf_Data);
+		
+		/*******************************
+		 sort
+		 *******************************/
+		// sort
+		//ref http://php.net/manual/ja/function.arsort.php
+		arsort($aryOf_Data);
+		
+// 		debug(array_slice($aryOf_Data, 0, 20));
+		
+// 		$sort_Direction = "DESC";
+
+// 		$aryOf_Data = Utils_2::sort_Stats_Top10__GenresANDCategories($aryOf_Data, $sort_Direction);
+		
+		
 		
 		/*******************************
 			build list
 		*******************************/
-		$aryOf_Data = array();
 		
-		$lenOf_AryOf_Genres = count($aryOf_Genres);
+// 		$aryOf_Data = array();
 		
-		$total = 0;
+// 		$lenOf_AryOf_Genres = count($aryOf_Genres);
 		
-		for ($i = 0; $i < $lenOf_AryOf_Genres; $i++) {
+// 		$total = 0;
 		
-			$genre_Id = $i + 10;
+// 		for ($i = 0; $i < $lenOf_AryOf_Genres; $i++) {
+		
+// 			$genre_Id = $i + 10;
 			
-			$numOf_Entries = $aryOf_Genres[$i];
+// 			$numOf_Entries = $aryOf_Genres[$i];
 			
-			$genre = Utils::get_Genre_From_Genre_Id($genre_Id);
+// 			$genre = Utils::get_Genre_From_Genre_Id($genre_Id);
 
-// 			debug($genre);
+// // 			debug($genre);
 			
-			$genre_Name = $genre['Genre']['name'];
+// 			$genre_Name = $genre['Genre']['name'];
 			
-			array_push($aryOf_Data, array($genre_Id, $genre_Name, $numOf_Entries));
+// 			array_push($aryOf_Data, array($genre_Id, $genre_Name, $numOf_Entries));
 			
-			// total
-			$total += $numOf_Entries;
+// 			// total
+// 			$total += $numOf_Entries;
 			
-		}//for ($i = 0; $i < $lenOf_AryOf_Genres; $i++)
+// 		}//for ($i = 0; $i < $lenOf_AryOf_Genres; $i++)
 		
-// 		debug($aryOf_Data);
+// // 		debug($aryOf_Data);
 		
-		/*******************************
-			sort
-		*******************************/
-		// sort
-		$sort_Direction = "DESC";
-		
-		$aryOf_Data = Utils_2::sort_Stats_Top10__Genres($aryOf_Data, $sort_Direction);
-		
+
+
 		/*******************************
 			variables
 		*******************************/
-		$this->set("aryOf_Data", $aryOf_Data);
+		$numOf_Data_To_Show = 30;
+
+		$this->set("aryOf_Data__Genres_And_Categories", array_slice($aryOf_Data, 0, $numOf_Data_To_Show));
+// 		$this->set("aryOf_Data", array_slice($aryOf_Data, 0, $numOf_Data_To_Show));
+// 		$this->set("aryOf_Data", $aryOf_Data);
 		
-		$this->set("numOf_Geschichte_Total", $total);
+		$this->set("numOf_Geschichtes", $numOf_Geschichtes);
 		
 	}//_stats__Top10s__Genre_Category
 	

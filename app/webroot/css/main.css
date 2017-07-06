@@ -501,6 +501,18 @@ table#tbl_Stats_Top10_Genres {
 	
 }/*table#tbl_Stats_Nouns {*/
 
+table#links {
+	
+	display	: none;
+	
+}/*table#links {*/
+
+table#links_2 {
+	
+	display	: none;
+	
+}/*table#links {*/
+
 
 img.delete_position {
 	

@@ -32,6 +32,8 @@
 
 	<?php echo $this->element('pieces/stats/_stats__Top10__Genres'); ?>
 	
+	<?php echo $this->element('pieces/stats/_stats__Top10__GenresAndCategories'); ?>
+	
 </div>
 
 <hr>
