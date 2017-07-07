@@ -7,7 +7,12 @@ var flag_Table_Stats_Joshis = 1;
 var flag_Table_Stats_Hins = 1;
 var flag_Table_Stats_Nouns = 1;
 var flag_Table_Stats_Symbols = 1;
+
 var flag_Table_Stats_Top10_Genres = 1;
+var flag_Table_Stats_Top10_GenresAndCategories = 1;
+
+var flag_Btn_Links_2_Show_Hide = 1;	// 1 : shown / -1 : folded
+var flag_Btn_Links_Show_Hide = 1;	// 1 : shown / -1 : folded
 
 function show_Hiraganas() {
 	
@@ -786,8 +791,47 @@ function _setup_Buttons() {
     		
     		function(){
     			
+    			var button = $('button#links_2_Show_Hide');
+    			
     			$('div#div_Default_Layout_Footer_2').toggle('fast');
 //    			$('div#link_area').toggle('slow');
+    			
+    			// change label
+    			if (flag_Btn_Links_2_Show_Hide == 1) {
+
+//    				alert("flag => 1 !!!");
+    				
+    				//ref https://stackoverflow.com/questions/21131548/change-button-value-onclick 'answered Jan 15 '14 at 7:46'
+    				$(this).text("Fold");
+//    				button.text("Fold");
+//    				button.val("Fold");
+//    				$(this).val("Fold");
+
+    				$(this).css("background-color", "LightSteelBlue");
+//    				$(this).css("background-color", "Lavender");
+    				
+    				flag_Btn_Links_2_Show_Hide = flag_Btn_Links_2_Show_Hide * (-1);
+    				
+//    				alert("flag is now => " + flag_Btn_Links_2_Show_Hide);
+    				
+				} else {
+
+//					alert("flag => -1");
+					
+					$(this).text("Links 2");
+//					button.text("Links 2");
+//					button.val("Links 2");
+//    				$(this).val("Links 2");
+
+					$(this).css("background-color", "white");
+					
+    				flag_Btn_Links_2_Show_Hide = flag_Btn_Links_2_Show_Hide * (-1);
+
+//    				alert("flag is now => " + flag_Btn_Links_2_Show_Hide);
+    				
+				}//if (flag_Btn_Links_2_Show_Hide == 1)
+				
+//    			$(this).val("Fold");
     			
     		}
     		
@@ -800,7 +844,40 @@ function _setup_Buttons() {
     			$('div#div_Default_Layout_Footer').toggle('fast');
 //    			$('div#link_area').toggle('slow');
     			
-    		}
+    			// change label
+    			if (flag_Btn_Links_Show_Hide == 1) {
+
+//    				alert("flag => 1 !!!");
+    				
+    				//ref https://stackoverflow.com/questions/21131548/change-button-value-onclick 'answered Jan 15 '14 at 7:46'
+    				$(this).text("Fold");
+//    				button.text("Fold");
+//    				button.val("Fold");
+//    				$(this).val("Fold");
+
+    				$(this).css("background-color", "LightSteelBlue");
+//    				$(this).css("background-color", "Lavender");
+    				
+    				flag_Btn_Links_Show_Hide = flag_Btn_Links_Show_Hide * (-1);
+    				
+//    				alert("flag is now => " + flag_Btn_Links_2_Show_Hide);
+    				
+				} else {
+
+//					alert("flag => -1");
+					
+					$(this).text("Links");
+
+					$(this).css("background-color", "white");
+					
+    				flag_Btn_Links_Show_Hide = flag_Btn_Links_Show_Hide * (-1);
+
+//    				alert("flag is now => " + flag_Btn_Links_2_Show_Hide);
+    				
+				}//if (flag_Btn_Links_Show_Hide == 1)
+				
+    			
+    		}//function(){
     		
     );//$('#toggletest1').click(
     
@@ -938,6 +1015,42 @@ function _setup_Buttons() {
     				$('button#bt_Stats_Top10_Genres_Show_Hide').css("background-color", "#aaffaa");
     				
     				flag_Table_Stats_Top10_Genres = flag_Table_Stats_Top10_Genres * (-1);
+    				
+    			}//if (flag_Table_Stats_Joshi == 1)
+    			
+    		}
+    		
+    );//$('#toggletest1').click(
+    
+    $('button#bt_Stats_Top10_GenresAndCategories_Show_Hide').click(
+    		
+    		function(){
+    			
+    			$('table#tbl_Stats_Top10_GenresAndCategories').toggle('fast');
+//    			$('div#link_area').toggle('slow');
+    			
+    			if (flag_Table_Stats_Top10_GenresAndCategories == 1) {
+    				
+//    				alert("flag => 1");
+    				
+    				//ref css https://stackoverflow.com/questions/9821691/jquery-background-color-change-on-button-click 'answered Mar 22 '12 at 11:52'
+    				$('button#bt_Stats_Top10_GenresAndCategories_Show_Hide')
+    						.css("background-color", "yellow");
+    				
+    				flag_Table_Stats_Top10_GenresAndCategories = flag_Table_Stats_Top10_GenresAndCategories * (-1);
+    				
+//    				alert("flag changed to => " + flag_Table_Stats_Top10_GenresAndCategories);
+    				
+    			} else {
+    				
+//					alert("flag => -1");
+    				
+//    				$('button#bt_Stats_Top10_GenresAndCategories_Show_Hide').css("background-color", "green");
+    				$('button#bt_Stats_Top10_GenresAndCategories_Show_Hide').css("background-color", "#aaffaa");
+    				
+    				flag_Table_Stats_Top10_GenresAndCategories = flag_Table_Stats_Top10_GenresAndCategories * (-1);
+    				
+//    				alert("flag changed to => " + flag_Table_Stats_Top10_GenresAndCategories);
     				
     			}//if (flag_Table_Stats_Joshi == 1)
     			

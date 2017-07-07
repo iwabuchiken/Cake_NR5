@@ -501,14 +501,26 @@ table#tbl_Stats_Top10_Genres {
 	
 }/*table#tbl_Stats_Nouns {*/
 
-table#links {
+table#tbl_Stats_Top10_GenresAndCategories {
 	
 	display	: none;
 	
+}/*table#tbl_Stats_Nouns {*/
+
+/*
+table#links {
+*/
+div#div_Default_Layout_Footer {
+	display	: none;
+	
+	
 }/*table#links {*/
 
+
+div#div_Default_Layout_Footer_2 {
+/*
 table#links_2 {
-	
+*/
 	display	: none;
 	
 }/*table#links {*/
@@ -1028,6 +1040,25 @@ button#btn_SVO_Geschichte_Id {
 }/*button#btn_SVO_Geschichte_Id*/
 
 button#bt_Stats_Top10_Genres_Show_Hide {
+	
+	font-size	: 15px;
+	
+	margin-left	: 10px;
+	
+	padding		: 5px;
+	/*
+	font-color		: 'green';
+	*/
+	background-color	: #aaffaa;
+	
+	color	: black;
+	
+	border-radius: 5px;
+	
+}/*button#bt_Stats_Top10_Genres_Show_Hide*/
+
+button#bt_Stats_Top10_GenresAndCategories_Show_Hide {
+	
 	
 	font-size	: 15px;
 	
