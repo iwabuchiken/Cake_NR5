@@ -85,6 +85,13 @@ class PiecesController extends AppController {
 			
 			return;
 
+		} else if ($query_Action == 'gen_keywords') {
+			
+			$this->gen_keywords();
+// 			$this->svo();
+			
+			return;
+
 		} else {//if ($query_Action == 'filter')
 
 //			debug("action is 'else' => " . $query_Action);
@@ -2509,5 +2516,47 @@ class PiecesController extends AppController {
 		
 		
 	}//svo() {
+
+	public function
+	gen_keywords() {
+		
+		/*******************************
+			geschichtes
+		*******************************/
+		$this->loadModel('Geschichte');
+		
+		$geschichtes = $this->Geschichte->find('all');
+		
+		$index_Start = 80;
+		$index_Length = 10;
+		
+		$geschichtes_Partial = array_slice($geschichtes, $index_Start, $index_Length);
+		
+		/*******************************
+			processing
+		*******************************/
+		$aryOf_Words = array();
+		
+		//test
+		$g = $geschichtes_Partial[0];
+		
+		debug($g);
+		
+		$ary_Tmp = Utils_2::get_WordsList_From_Geschichte($g);
+		
+// 		foreach ($geschichtes_Partial as $g) {
+		
+// 			$ary_Tmp = Utils_2::get_WordsList_From_Geschichte($g);
+			
+// 		}//foreach ($geschichtes_Partial as $g)
+		
+		/*******************************
+		 views
+		 *******************************/
+		$this->render("/Pieces/gen_keywords");
+		
+		
+		
+	}//gen_keywords() {
 	
 }

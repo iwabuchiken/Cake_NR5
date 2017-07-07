@@ -1016,6 +1016,76 @@ class Utils_2 {
 		
 	}//get_ListOf_Symbol_Forms
 	
+	public static function
+	get_WordsList_From_Geschichte($geschichte) {
+		
+		$content = $geschichte['Geschichte']['content'];
+		
+		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$content";
+			
+		$xml = simplexml_load_file($url);
+		
+		$words = $xml->word;
+		
+		debug(count($words));
+		
+		$aryOf_Nouns = array();
+		$aryOf_NounPieces = array();
+		
+		$numOf_Words = count($words);
+		
+		for ($i = 0; $i < $numOf_Words; $i++) {
+// 		for ($i = 0; $i < 10; $i++) {
+		
+			$w = $words[$i];
+			
+// 			debug($words[$i]);
+			// 			object(SimpleXMLElement) {
+			// 				surface => '歴史'
+			// 						feature => '名詞,一般,*,*,*,*,歴史,レキシ,レキシ'
+			// 			}
+
+			$str_Surface = (string) $w->surface;
+			
+			$str_Feature = (string) $w->feature;
+			
+			debug("feature => $str_Feature");
+// 			debug("surface => $str_Surface");
+			
+			$tokens_Feature = explode(",", $str_Feature);
+			
+			debug($tokens_Feature[0]);
+			
+			// judge
+			$hin = $tokens_Feature[0];
+			
+			if ($hin == '名詞') {
+			
+				array_push($aryOf_NounPieces, $str_Surface);
+			
+			} else {
+			
+				if (count($aryOf_NounPieces) < 1) {
+				
+					continue;
+				
+				// noun pieces exist; add these pieces into nouns array
+				} else {
+				
+					array_push($aryOf_Nouns, implode("", $aryOf_NounPieces));
+					
+					$aryOf_NounPieces = array();
+					
+				}//if (count($aryOf_NounPieces) < 1)
+				
+			}//if ($hin == '名詞')
+			
+		}//for ($i = 0; $i < 10; $i++)
+
+		debug($aryOf_Nouns);
+		
+	}//get_WordsList_From_Geschichte($geschichte)
+	
 }//class Utils
 	
 	
