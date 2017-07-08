@@ -1121,11 +1121,11 @@ class Utils_2 {
 			
 			$str_Feature = (string) $w->feature;
 			
-			debug("feature => $str_Feature");
+// 			debug("feature => $str_Feature");
 			
 			$tokens_Feature = explode(",", $str_Feature);
 			
-			debug($tokens_Feature[0]);
+// 			debug($tokens_Feature[0]);
 			
 			// judge
 			$hin = $tokens_Feature[0];
@@ -1139,20 +1139,57 @@ class Utils_2 {
 	
 				/*******************************
 					length => if more than 2 ---> also, in
+						==> if the next piece is of '接尾'
+							---> append the next piece to the current
+							---> then ~~> into the array
 				*******************************/
 				if (mb_strlen($str_Surface, "utf-8") >= 2) {
-				
-					//ref http://qiita.com/tadsan/items/2a4c3e6b0b74a408c038
-					if (!in_array($str_Surface, $aryOf_Nouns, true)) {
+
+					/*******************************
+						validate : next piece ---> '接尾'
+					*******************************/
+					if ($i < ($numOf_Words - 1)) {
+					
+						$w_Next = $words[$i + 1];
+					
+						$feature = (string) $w_Next->feature;
+						
+						$tokens_Tmp = explode(",", $feature);
+						
+						if ($tokens_Tmp[1] == '接尾') {
+						
+// 							continue;
+		
+							$total = $str_Surface . ((string) $w_Next->surface);
+// 							$total = $str_Surface . $tokens_Tmp[1];
+							
+							if (!in_array($total, $aryOf_Nouns, true)) {
+									
+								array_push($aryOf_Nouns, $total);
+							
+							}//if (!in_array($candidate, $aryOf_Nouns, true))
+							
+						} else {//if ($tokens_Tmp[1] == '接尾')
+							
+							if (!in_array($str_Surface, $aryOf_Nouns, true)) {
+								
+								array_push($aryOf_Nouns, $str_Surface);
+							
+							}
+						}
+						
+					} else if (!in_array($str_Surface, $aryOf_Nouns, true)) {
+// 					}//if ($i < ($numOf_Words - 1))
+// 					;
+					
+// 					//ref http://qiita.com/tadsan/items/2a4c3e6b0b74a408c038
+// 					if (!in_array($str_Surface, $aryOf_Nouns, true)) {
 					
 						array_push($aryOf_Nouns, $str_Surface);
 						
 					}//if (!in_array($aryOf_Nouns))
-					;
-// 					array_push($aryOf_Nouns, $str_Surface);;
 					
 				}//if (mb_strlen($str_Surface, "utf-8") >= 2)
-				;
 			
 			} else {
 			

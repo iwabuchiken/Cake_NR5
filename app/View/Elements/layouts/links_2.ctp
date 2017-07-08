@@ -190,7 +190,7 @@
 				
 					echo $this->Html->link(
 						
-						'Pieces',
+						'Gen KWs',
 						$option,
 	// 					array('controller' => 'Pieces', 
 	// 							'action' => 'stats'),
