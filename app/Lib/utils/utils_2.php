@@ -1086,6 +1086,106 @@ class Utils_2 {
 		
 	}//get_WordsList_From_Geschichte($geschichte)
 	
+	/*******************************
+		1 piece が、複数の漢字からできている ---> その piece 自体も、リストに　⇒　入れる
+	*******************************/
+	public static function
+	get_WordsList_From_Geschichte__2($geschichte) {
+		
+		$content = $geschichte['Geschichte']['content'];
+		
+		$url = "http://yapi.ta2o.net/apis/mecapi.cgi?sentence=$content";
+			
+		$xml = simplexml_load_file($url);
+		
+		$words = $xml->word;
+		
+		debug(count($words));
+		
+		$aryOf_Nouns = array();
+		$aryOf_NounPieces = array();
+		
+		$numOf_Words = count($words);
+		
+		for ($i = 0; $i < $numOf_Words; $i++) {
+		
+			$w = $words[$i];
+			
+// 			debug($words[$i]);
+			// 			object(SimpleXMLElement) {
+			// 				surface => '歴史'
+			// 						feature => '名詞,一般,*,*,*,*,歴史,レキシ,レキシ'
+			// 			}
+
+			$str_Surface = (string) $w->surface;
+			
+			$str_Feature = (string) $w->feature;
+			
+			debug("feature => $str_Feature");
+			
+			$tokens_Feature = explode(",", $str_Feature);
+			
+			debug($tokens_Feature[0]);
+			
+			// judge
+			$hin = $tokens_Feature[0];
+			
+			if ($hin == '名詞') {
+			
+				array_push($aryOf_NounPieces, $str_Surface);
+				
+				//ref http://itpro.nikkeibp.co.jp/article/COLUMN/20070307/264117/?rt=nocnt
+// 				debug(mb_strlen($str_Surface, "utf-8"));
+	
+				/*******************************
+					length => if more than 2 ---> also, in
+				*******************************/
+				if (mb_strlen($str_Surface, "utf-8") >= 2) {
+				
+					//ref http://qiita.com/tadsan/items/2a4c3e6b0b74a408c038
+					if (!in_array($str_Surface, $aryOf_Nouns, true)) {
+					
+						array_push($aryOf_Nouns, $str_Surface);
+						
+					}//if (!in_array($aryOf_Nouns))
+					;
+// 					array_push($aryOf_Nouns, $str_Surface);;
+					
+				}//if (mb_strlen($str_Surface, "utf-8") >= 2)
+				;
+			
+			} else {
+			
+				if (count($aryOf_NounPieces) < 1) {
+				
+					continue;
+				
+				// noun pieces exist; add these pieces into nouns array
+				} else {
+				
+					$candidate = implode("", $aryOf_NounPieces);
+					
+					if (!in_array($candidate, $aryOf_Nouns, true)) {
+					
+						array_push($aryOf_Nouns, $candidate);
+						
+					}//if (!in_array($candidate, $aryOf_Nouns, true))
+					;
+// 					array_push($aryOf_Nouns, $candidate);
+// 					array_push($aryOf_Nouns, implode("", $aryOf_NounPieces));
+					
+					$aryOf_NounPieces = array();
+					
+				}//if (count($aryOf_NounPieces) < 1)
+				
+			}//if ($hin == '名詞')
+			
+		}//for ($i = 0; $i < 10; $i++)
+
+		debug($aryOf_Nouns);
+		
+	}//get_WordsList_From_Geschichte($geschichte)
+	
 }//class Utils
 	
 	

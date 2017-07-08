@@ -7,10 +7,10 @@
 
 
 	<table id="links_2">
-		<tr>
+<!-- 		<tr> -->
 		
 		
-		</tr>
+<!-- 		</tr> -->
 	
 		<tr>
 		
@@ -37,14 +37,10 @@
 					
 					}//if ($servername == 'localhost')
 							
-				
-				
 					echo $this->Html->link(
 						
 						'Stats',
 						$option,
-	// 					array('controller' => 'Pieces', 
-	// 							'action' => 'stats'),
 						array('class' => "button"));
 				?>
 			
@@ -97,7 +93,10 @@
 						
 						'Pieces(remote)',
 						'http://benfranklin.chips.jp/cake_apps/Cake_NR5/pieces/index',
-						array('target'	=> '_blank')
+						array(
+								'target'	=> '_blank',
+								'class' => "button"
+							)
 						
 						);
 				?>
@@ -110,7 +109,10 @@
 						
 						'Pieces(local)',
 						'http://localhost/Eclipse_Luna/Cake_NR5/pieces/index_2',
-						array('target'	=> '_blank')
+						array(
+								'target'	=> '_blank',
+								'class' => "button"
+							)
 						
 						);
 				?>
@@ -153,6 +155,51 @@
 			</td>
 			
 			
+		</tr>
+		
+		<tr>
+
+			<td>
+	
+				<?php 
+				
+					$option = null;
+					
+					if ($servername == 'localhost') {
+						
+						$option = array(
+								
+								'controller' => 'Pieces',
+								'action' => 'gen_keywords'
+						
+						);
+							
+					} else {//if ($servername == 'localhost')
+						
+						
+						$option = array(
+									
+								'controller' => 'Pieces',
+								'action' => 'index',
+								//ref https://book.cakephp.org/2.0/ja/core-libraries/helpers/html.html 'クエリ文字列も link() で作成'
+								'?' => array('action' => 'gen_keywords')
+				
+						);
+							
+					}//if ($servername == 'localhost')
+				
+					echo $this->Html->link(
+						
+						'Pieces',
+						$option,
+	// 					array('controller' => 'Pieces', 
+	// 							'action' => 'stats'),
+						array('class' => "button")
+					);
+				?>
+			
+			</td>
+		
 		</tr>
 		
 	</table>

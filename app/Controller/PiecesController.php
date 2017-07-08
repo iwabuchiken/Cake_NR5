@@ -2542,7 +2542,8 @@ class PiecesController extends AppController {
 		
 		debug($g);
 		
-		$ary_Tmp = Utils_2::get_WordsList_From_Geschichte($g);
+		$ary_Tmp = Utils_2::get_WordsList_From_Geschichte__2($g);
+// 		$ary_Tmp = Utils_2::get_WordsList_From_Geschichte($g);
 		
 // 		foreach ($geschichtes_Partial as $g) {
 		
