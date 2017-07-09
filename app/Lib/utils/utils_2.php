@@ -1088,6 +1088,16 @@ class Utils_2 {
 	
 	/*******************************
 		1 piece が、複数の漢字からできている ---> その piece 自体も、リストに　⇒　入れる
+		@return
+			array(
+				(int) 0 => 'コメ',
+				(int) 1 => '消費',
+				(int) 2 => '価格',
+				(int) 3 => '政策',
+				(int) 4 => '価格政策',
+		
+		@param
+			$geschichte		=> Geschichte instance
 	*******************************/
 	public static function
 	get_WordsList_From_Geschichte__2($geschichte) {
@@ -1100,7 +1110,7 @@ class Utils_2 {
 		
 		$words = $xml->word;
 		
-		debug(count($words));
+// 		debug(count($words));
 		
 		$aryOf_Nouns = array();
 		$aryOf_NounPieces = array();
@@ -1219,7 +1229,12 @@ class Utils_2 {
 			
 		}//for ($i = 0; $i < 10; $i++)
 
-		debug($aryOf_Nouns);
+// 		debug($aryOf_Nouns);
+
+		/*******************************
+			return
+		*******************************/
+		return $aryOf_Nouns;
 		
 	}//get_WordsList_From_Geschichte($geschichte)
 	

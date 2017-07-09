@@ -2518,38 +2518,212 @@ class PiecesController extends AppController {
 	}//svo() {
 
 	public function
-	gen_keywords() {
-		
+	_gen_keywords($geschichte_Id) {
+	
 		/*******************************
-			geschichtes
-		*******************************/
+		 geschichtes
+		 *******************************/
 		$this->loadModel('Geschichte');
 		
-		$geschichtes = $this->Geschichte->find('all');
+		$option = array(
+				
+				'conditions'	=> array(
+						
+						'Geschichte.id'	=> $geschichte_Id
+				)
+		);
 		
-		$index_Start = 80;
-		$index_Length = 10;
+		$g = $this->Geschichte->find('first', $option);
+// 		$geschichtes = $this->Geschichte->find('all');
 		
-		$geschichtes_Partial = array_slice($geschichtes, $index_Start, $index_Length);
+		if ($g == null) {
+		
+// 			debug("geschichte => null (id = $geschichte_Id");
+
+			$geschichtes = $this->Geschichte->find('all');
+			
+			$index_Start = 80;
+			$index_Length = 10;
+	
+			$geschichtes_Partial = array_slice($geschichtes, $index_Start, $index_Length);
+	
+			//test
+			$g = $geschichtes_Partial[0];
+			
+		}//if ($g == null)
+		;
+		
+// 		$index_Start = 80;
+// 		$index_Length = 10;
+		
+// 		$geschichtes_Partial = array_slice($geschichtes, $index_Start, $index_Length);
+		
+// 		/*******************************
+// 		 processing
+// 		 *******************************/
+// 		$aryOf_Words = array();
+		
+// 		//test
+// 		$g = $geschichtes_Partial[0];
+// // 		$g = $geschichtes_Partial[0];
+		
+// 		debug($g);
+		
+		$aryOf_Nouns = Utils_2::get_WordsList_From_Geschichte__2($g);
+// 		$ary_Tmp = Utils_2::get_WordsList_From_Geschichte__2($g);
+		// 		$ary_Tmp = Utils_2::get_WordsList_From_Geschichte($g);
+		
+		// 		foreach ($geschichtes_Partial as $g) {
+		
+		// 			$ary_Tmp = Utils_2::get_WordsList_From_Geschichte($g);
+			
+		// 		}//foreach ($geschichtes_Partial as $g)
+
+		/*******************************
+			histogram
+		*******************************/
+		$content = $g['Geschichte']['content'];
+		
+		$numOf_Nouns = count($aryOf_Nouns);
+		
+		$aryOf_Histogram = array();
+// 		$aryOf_Histogram = array_fill(0, $numOf_Nouns, 0);
+		
+		foreach ($aryOf_Nouns as $item) {
+		
+			$aryOf_Histogram[$item] = 0;
+			
+		}//foreach ($aryOf_Nouns as $item)
+		
+// 		debug($aryOf_Histogram);
+
+		// count
+		$keysOf_AryOf_Histogram = array_keys($aryOf_Histogram);
+		
+		for ($i = 0; $i < $numOf_Nouns; $i++) {
+// 		foreach ($aryOf_Histogram as $item) {
+		
+			$item = $keysOf_AryOf_Histogram[$i];
+// 			$item = $aryOf_Histogram[$i];
+			
+			$count = substr_count($content, $item);
+			
+// 			debug("item => $item / count => $count");
+			
+			$aryOf_Histogram[$item] = $count;
+			
+		}//foreach ($aryOf_Histogram as $item)
+		
+// 		// sort
+// 		arsort($aryOf_Histogram);
+		
+// 		debug($aryOf_Histogram);
 		
 		/*******************************
-			processing
-		*******************************/
-		$aryOf_Words = array();
+		 variables
+		 *******************************/
+		$this->set("aryOf_Nouns", $aryOf_Nouns);
 		
-		//test
-		$g = $geschichtes_Partial[0];
+		$this->set("aryOf_Histogram", $aryOf_Histogram);
 		
-		debug($g);
+		$data = array();
 		
-		$ary_Tmp = Utils_2::get_WordsList_From_Geschichte__2($g);
-// 		$ary_Tmp = Utils_2::get_WordsList_From_Geschichte($g);
+// 		debug("count(\$aryOf_Nouns) => " . count($aryOf_Nouns));
+// 		debug("count(\$aryOf_Histogram) => " . count($aryOf_Histogram));
 		
-// 		foreach ($geschichtes_Partial as $g) {
+		for ($i = 0; $i < $numOf_Nouns; $i++) {
 		
-// 			$ary_Tmp = Utils_2::get_WordsList_From_Geschichte($g);
+			array_push($data, array($aryOf_Nouns[$i], $aryOf_Histogram[$aryOf_Nouns[$i]]));
+// 			array_push($data, array($i, $aryOf_Nouns[$i], $keysOf_AryOf_Histogram[$i]));
 			
-// 		}//foreach ($geschichtes_Partial as $g)
+		}//for ($i = 0; $i < $numOf_Nouns; $i++)
+		
+		// sort
+// 		$index = 1;
+// 		$sort_Direction = "DESC";
+// 		$data = Utils_2::sort_Stats_Data__By_Data($data, $index, $sort_Direction);
+		
+// 		debug($data);
+		
+		$this->set("data", $data);
+		
+		$this->set("geschichte_Id", $geschichte_Id);
+		
+		
+		/*******************************
+			return
+		*******************************/
+		return $aryOf_Nouns;
+		
+	}//_gen_keywords()
+	
+	public function
+	gen_keywords() {
+
+		/*******************************
+			query : geschichte id
+		*******************************/
+		@$query_Geschichte_Id = $this->request->query['geschichte_id'];
+		
+		$geschichte_Id_Tmp = 983;
+		
+		if ($query_Geschichte_Id == null) {
+		
+// 			debug("tick ==> null; set to $geschichte_Id_Tmp");
+		
+			$query_Geschichte_Id = $geschichte_Id_Tmp;
+			
+		} else if ($query_Geschichte_Id == '') {
+				
+// 			$tickOf_Geschichtes = 15;
+				
+			debug("tick ==> ''; set to $geschichte_Id_Tmp");
+			
+			$query_Geschichte_Id = $geschichte_Id_Tmp;
+			
+		} else {
+		
+// 			$tickOf_Geschichtes = intval($query_Geschichte_Id);
+				
+// 			debug("tick ===> set to $query_Geschichte_Id");
+				
+		}//if ($query_Geschichte_Id == null)
+		
+		
+		$aryOf_Nouns = $this->_gen_keywords($query_Geschichte_Id);
+// 		$this->_gen_keywords($query_Geschichte_Id);
+// 		$this->_gen_keywords();
+		
+// 		/*******************************
+// 			geschichtes
+// 		*******************************/
+// 		$this->loadModel('Geschichte');
+		
+// 		$geschichtes = $this->Geschichte->find('all');
+		
+// 		$index_Start = 80;
+// 		$index_Length = 10;
+		
+// 		$geschichtes_Partial = array_slice($geschichtes, $index_Start, $index_Length);
+		
+// 		/*******************************
+// 			processing
+// 		*******************************/
+// 		$aryOf_Words = array();
+		
+// 		//test
+// 		$g = $geschichtes_Partial[0];
+		
+// 		debug($g);
+		
+// 		$ary_Tmp = Utils_2::get_WordsList_From_Geschichte__2($g);
+// // 		$ary_Tmp = Utils_2::get_WordsList_From_Geschichte($g);
+		
+// // 		foreach ($geschichtes_Partial as $g) {
+		
+// // 			$ary_Tmp = Utils_2::get_WordsList_From_Geschichte($g);
+			
+// // 		}//foreach ($geschichtes_Partial as $g)
 		
 		/*******************************
 		 views
